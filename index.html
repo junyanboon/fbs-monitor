@@ -206,58 +206,39 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, July 14, 2026",
-  "generatedAt": "Jul 14, 8:45 PM ET",
+  "generatedAt": "Jul 14, 9:50 PM ET",
   "studios": [
     {
       "id": "509A",
-      "name": "Main"
+      "name": "509A",
+      "sub": "Main"
     },
     {
       "id": "509B",
-      "name": "Main"
+      "name": "509B",
+      "sub": "Main"
     },
     {
       "id": "527",
-      "name": "Loft"
+      "name": "527",
+      "sub": "Loft"
     },
     {
       "id": "693",
-      "name": "Annex"
+      "name": "693",
+      "sub": "Annex"
     },
     {
       "id": "901",
-      "name": "Elements"
+      "name": "901",
+      "sub": "Elements"
     }
   ],
   "events": [
     {
-      "studio": "527",
-      "kind": "cleaning",
-      "who": "Cleaning — Stefan",
-      "start": 15.0,
-      "end": 15.75,
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "arrived": null,
-      "departed": null
-    },
-    {
-      "studio": "527",
-      "kind": "booking",
-      "who": "Nabil Fairbairn",
-      "start": 19.0,
-      "end": 20.5,
-      "tier": "FBS",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "18:59",
-      "departed": null
-    },
-    {
       "studio": "509A",
-      "kind": "booking",
       "who": "O'Shani Cardwell",
+      "kind": "booking",
       "start": 12.0,
       "end": 15.0,
       "tier": "FBS",
@@ -268,8 +249,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509A",
+      "who": "Stefan",
       "kind": "cleaning",
-      "who": "Cleaning — Stefan",
       "start": 15.75,
       "end": 16.25,
       "tier": null,
@@ -280,8 +261,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509A",
-      "kind": "booking",
       "who": "Jaicyea Smith",
+      "kind": "booking",
       "start": 19.0,
       "end": 20.0,
       "tier": "Monitor",
@@ -292,8 +273,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509A",
+      "who": "Fabio Hernandez (Toronto Bujinkan)",
       "kind": "booking",
-      "who": "Fabio Hernandez — Toronto Bujinkan",
       "start": 20.25,
       "end": 22.25,
       "tier": null,
@@ -304,8 +285,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
+      "who": "Stefan",
       "kind": "cleaning",
-      "who": "Cleaning — Stefan",
       "start": 15.75,
       "end": 16.25,
       "tier": null,
@@ -316,8 +297,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "kind": "booking",
       "who": "Anneka K.",
+      "kind": "booking",
       "start": 17.0,
       "end": 19.0,
       "tier": "FBS",
@@ -328,32 +309,56 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "kind": "booking",
       "who": "David Diep",
+      "kind": "booking",
       "start": 20.0,
       "end": 22.0,
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "arrived": "19:46",
+      "departed": null
+    },
+    {
+      "studio": "527",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "start": 15.0,
+      "end": 15.75,
+      "tier": null,
+      "gtg": true,
+      "hta": null,
       "arrived": null,
       "departed": null
     },
     {
-      "studio": "693",
+      "studio": "527",
+      "who": "Nabil Fairbairn",
       "kind": "booking",
+      "start": 19.0,
+      "end": 20.5,
+      "tier": "FBS",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "18:59",
+      "departed": "20:32"
+    },
+    {
+      "studio": "693",
       "who": "Ifreestyle Dance Company",
+      "kind": "booking",
       "start": 18.75,
       "end": 22.0,
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:31",
       "departed": null
     },
     {
       "studio": "693",
+      "who": "Caryl CUIZON (iFreeStyle.ca)",
       "kind": "booking",
-      "who": "Caryl Cuizon — iFreeStyle.ca",
       "start": 22.0,
       "end": 23.5,
       "tier": null,
@@ -364,8 +369,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "901",
-      "kind": "booking",
       "who": "Reshiga Sri",
+      "kind": "booking",
       "start": 14.0,
       "end": 14.25,
       "tier": "Viewing",
@@ -376,8 +381,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "901",
+      "who": "Stefan",
       "kind": "cleaning",
-      "who": "Cleaning — Stefan",
       "start": 16.5,
       "end": 17.25,
       "tier": null,
@@ -388,8 +393,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "901",
+      "who": "Steph Brinning (SHE The Company)",
       "kind": "booking",
-      "who": "Steph Brinning — SHE The Company",
       "start": 18.0,
       "end": 20.0,
       "tier": "Monitor",
