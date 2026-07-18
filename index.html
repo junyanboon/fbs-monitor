@@ -190,7 +190,11 @@
     <div class="brand">Dance Annex · Front-of-Building Support</div>
     <h1 id="daytitle">FBS Studio Monitor</h1>
   </div>
-  <div class="clock"><span class="dot" aria-hidden="true"></span><span id="clock">--:--</span><small>Toronto</small></div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+    <span id="freshness" style="font-size:11px;letter-spacing:.04em"></span>
+    <button id="refreshbtn" type="button" style="font:600 11px/1 var(--sans,sans-serif);letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:99px;border:1px solid var(--tungsten);background:var(--tungsten-soft);color:var(--tungsten);cursor:pointer">⟳ Refresh</button>
+    <div class="clock"><span class="dot" aria-hidden="true"></span><span id="clock">--:--</span><small>Toronto</small></div>
+  </div>
 </header>
 
 <main>
@@ -224,250 +228,231 @@
    the FBS AI Support board (tier, GTG/HTA, arrivals from alarm disarm/arm).
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
-  "date": "Saturday, July 18, 2026",
-  "generatedAt": "Jul 18, 5:33 PM ET",
-  "studios": [
-    {
-      "id": "509A",
-      "name": "509A",
-      "sub": "Main"
-    },
-    {
-      "id": "509B",
-      "name": "509B",
-      "sub": "Main"
-    },
-    {
-      "id": "527",
-      "name": "527",
-      "sub": "Loft"
-    },
-    {
-      "id": "693",
-      "name": "693",
-      "sub": "Annex"
-    },
-    {
-      "id": "901",
-      "name": "901",
-      "sub": "Elements"
-    }
-  ],
-  "events": [
-    {
-      "studio": "527",
-      "who": "Kateryna Zozulia",
-      "start": 10.75,
-      "end": 12.25,
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "arrived": "10:36",
-      "departed": "12:25"
-    },
-    {
-      "studio": "527",
-      "who": "Roux Buciu — WCS Peer Practica",
-      "start": 14.0,
-      "end": 16.0,
-      "kind": "booking",
-      "tier": "FBS",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "13:45",
-      "departed": "16:04"
-    },
-    {
-      "studio": "527",
-      "who": "Kangbin Zhou — Versatile Dance",
-      "start": 16.5,
-      "end": 18.0,
-      "kind": "booking",
-      "tier": "FBS",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "16:29",
-      "departed": null
-    },
-    {
-      "studio": "527",
-      "who": "Anastasia Markevitch — Kizomba social",
-      "start": 20.0,
-      "end": 26.25,
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "arrived": null,
-      "departed": null
-    },
-    {
-      "studio": "509A",
-      "who": "Camila Avendano",
-      "start": 9.0,
-      "end": 11.0,
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "arrived": "09:13",
-      "departed": "11:05"
-    },
-    {
-      "studio": "509A",
-      "who": "Mia Vescarelli",
-      "start": 12.0,
-      "end": 13.75,
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "arrived": null,
-      "departed": null
-    },
-    {
-      "studio": "509A",
-      "who": "Desiree Joy",
-      "start": 14.0,
-      "end": 15.0,
-      "kind": "booking",
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "13:48",
-      "departed": "15:09"
-    },
-    {
-      "studio": "509B",
-      "who": "Kristyan Calletor — Salsa Dance",
-      "start": 14.0,
-      "end": 16.0,
-      "kind": "booking",
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "14:23",
-      "departed": "15:57"
-    },
-    {
-      "studio": "693",
-      "who": "Tunde Ifafore",
-      "start": 7.75,
-      "end": 9.75,
-      "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Sent",
-      "arrived": "07:34",
-      "departed": "09:30"
-    },
-    {
-      "studio": "693",
-      "who": "Zulekha Pirzada",
-      "start": 18.0,
-      "end": 21.0,
-      "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Sent",
-      "arrived": null,
-      "departed": null
-    },
-    {
-      "studio": "901",
-      "who": "Laura Flores",
-      "start": 11.25,
-      "end": 15.75,
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "arrived": "11:04",
-      "departed": "15:59"
-    },
-    {
-      "studio": "901",
-      "who": "Himanshi Mehta",
-      "start": 17.0,
-      "end": 18.5,
-      "kind": "booking",
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "16:53",
-      "departed": null
-    },
-    {
-      "studio": "901",
-      "who": "Quynh Tran — Dropping off items",
-      "start": 20.5,
-      "end": 20.75,
-      "kind": "booking",
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Will Not Send",
-      "arrived": null,
-      "departed": null
-    }
-  ],
-  "staff": [
-    {
-      "name": "Staff",
-      "role": "Open",
-      "start": 7.25,
-      "end": 7.75
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
-      "start": 7.5,
-      "end": 8.0
-    },
-    {
-      "name": "Junyan",
-      "role": "Monitoring",
-      "start": 13.75,
-      "end": 14.25
-    },
-    {
-      "name": "Junyan",
-      "role": "FBS",
-      "start": 13.75,
-      "end": 14.25
-    },
-    {
-      "name": "Junyan",
-      "role": "Monitoring",
-      "start": 14.75,
-      "end": 15.25
-    },
-    {
-      "name": "Junyan",
-      "role": "FBS",
-      "start": 15.75,
-      "end": 16.25
-    },
-    {
-      "name": "Junyan",
-      "role": "Monitoring",
-      "start": 15.75,
-      "end": 16.25
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
-      "start": 20.75,
-      "end": 21.25
-    },
-    {
-      "name": "Staff",
-      "role": "Close",
-      "start": 24.0,
-      "end": 24.5
-    }
-  ],
-  "attention": []
+ "date": "Saturday, July 18, 2026",
+ "generatedAt": "Jul 18, 5:58 PM ET",
+ "generatedAtISO": "2026-07-18T17:58:09-04:00",
+ "studios": [
+  "509A (Main)",
+  "509B (Main)",
+  "527 (Loft)",
+  "693 (Annex)",
+  "901 (Elements)"
+ ],
+ "events": [
+  {
+   "studio": "527",
+   "who": "Kateryna Zozulia",
+   "kind": "booking",
+   "start": 10.75,
+   "end": 12.25,
+   "tier": null,
+   "gtg": true,
+   "hta": null,
+   "arrived": "10:36",
+   "departed": "12:25"
+  },
+  {
+   "studio": "527",
+   "who": "Roux Buciu — WCS Peer Practica",
+   "kind": "booking",
+   "start": 14,
+   "end": 16,
+   "tier": "FBS",
+   "gtg": true,
+   "hta": "Sent",
+   "arrived": "13:45",
+   "departed": "16:04"
+  },
+  {
+   "studio": "527",
+   "who": "Kangbin Zhou (Versatile Dance)",
+   "kind": "booking",
+   "start": 16.5,
+   "end": 18,
+   "tier": "FBS",
+   "gtg": true,
+   "hta": "Sent",
+   "arrived": "16:29",
+   "departed": null
+  },
+  {
+   "studio": "527",
+   "who": "Anastasia Markevitch — Kizomba social",
+   "kind": "booking",
+   "start": 20,
+   "end": 26.25,
+   "tier": null,
+   "gtg": true,
+   "hta": null,
+   "arrived": null,
+   "departed": null
+  },
+  {
+   "studio": "509A",
+   "who": "Camila Avendano",
+   "kind": "booking",
+   "start": 9,
+   "end": 11,
+   "tier": null,
+   "gtg": true,
+   "hta": null,
+   "arrived": "09:13",
+   "departed": "11:05"
+  },
+  {
+   "studio": "509A",
+   "who": "Mia Vescarelli",
+   "kind": "booking",
+   "start": 12,
+   "end": 13.75,
+   "tier": null,
+   "gtg": true,
+   "hta": null,
+   "arrived": null,
+   "departed": null
+  },
+  {
+   "studio": "509A",
+   "who": "Desiree Joy",
+   "kind": "booking",
+   "start": 14,
+   "end": 15,
+   "tier": "Monitor",
+   "gtg": true,
+   "hta": "Sent",
+   "arrived": "13:48",
+   "departed": "15:09"
+  },
+  {
+   "studio": "509B",
+   "who": "Kristyan Calletor — Salsa Dance",
+   "kind": "booking",
+   "start": 14,
+   "end": 16,
+   "tier": "Monitor",
+   "gtg": true,
+   "hta": "Sent",
+   "arrived": "14:23",
+   "departed": "15:57"
+  },
+  {
+   "studio": "693",
+   "who": "Tunde Ifafore",
+   "kind": "booking",
+   "start": 7.75,
+   "end": 9.75,
+   "tier": "FBS",
+   "gtg": false,
+   "hta": "Sent",
+   "arrived": "07:34",
+   "departed": "09:30"
+  },
+  {
+   "studio": "693",
+   "who": "Zulekha Pirzada (Tagvenue)",
+   "kind": "booking",
+   "start": 18,
+   "end": 21,
+   "tier": "FBS",
+   "gtg": false,
+   "hta": "Sent",
+   "arrived": null,
+   "departed": null
+  },
+  {
+   "studio": "901",
+   "who": "Laura Flores — Samba (incl. extension)",
+   "kind": "booking",
+   "start": 11.25,
+   "end": 15.75,
+   "tier": null,
+   "gtg": true,
+   "hta": null,
+   "arrived": "11:04",
+   "departed": "15:59"
+  },
+  {
+   "studio": "901",
+   "who": "Himanshi Mehta",
+   "kind": "booking",
+   "start": 17,
+   "end": 18.5,
+   "tier": "Monitor",
+   "gtg": true,
+   "hta": "Sent",
+   "arrived": "16:53",
+   "departed": null
+  },
+  {
+   "studio": "901",
+   "who": "Quynh Tran — item drop-off",
+   "kind": "booking",
+   "start": 20.5,
+   "end": 20.75,
+   "tier": "Monitor",
+   "gtg": true,
+   "hta": "Will Not Send",
+   "arrived": null,
+   "departed": null
+  }
+ ],
+ "staff": [
+  {
+   "name": "Staff",
+   "role": "Open",
+   "start": 7.25,
+   "end": 7.75
+  },
+  {
+   "name": "Ela",
+   "role": "FBS",
+   "start": 7.5,
+   "end": 8.0
+  },
+  {
+   "name": "Junyan",
+   "role": "FBS",
+   "start": 13.75,
+   "end": 14.25
+  },
+  {
+   "name": "Junyan",
+   "role": "Monitoring",
+   "start": 13.75,
+   "end": 14.25
+  },
+  {
+   "name": "Junyan",
+   "role": "Monitoring",
+   "start": 14.75,
+   "end": 15.25
+  },
+  {
+   "name": "Junyan",
+   "role": "FBS",
+   "start": 15.75,
+   "end": 16.25
+  },
+  {
+   "name": "Junyan",
+   "role": "Monitoring",
+   "start": 15.75,
+   "end": 16.25
+  },
+  {
+   "name": "Ela",
+   "role": "FBS",
+   "start": 20.75,
+   "end": 21.25
+  },
+  {
+   "name": "Staff",
+   "role": "Close",
+   "start": 24.0,
+   "end": 24.5
+  }
+ ],
+ "attention": []
 }/*__END_DATA__*/;
 
 const $ = s => document.querySelector(s);
@@ -475,6 +460,29 @@ const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 document.getElementById('daytitle').innerHTML = "FBS Studio <em>Monitor</em> — " + esc(DATA.date);
 document.getElementById('stamp').textContent = "Data refreshed " + DATA.generatedAt +
   " · arrivals read from the FBS AI Support board (alarm disarm/arm)";
+
+/* Freshness + refresh. The page is a static edition rebuilt every 15 min by the
+   fbs-monitor-refresh task; Refresh pulls the newest pushed edition (cache-busted).
+   The button cannot rebuild data itself — freshness ceiling = the rebuild cadence. */
+(function(){
+  const btn = document.getElementById('refreshbtn');
+  const fresh = document.getElementById('freshness');
+  const reload = () => location.replace(location.pathname + '?r=' + Date.now());
+  btn.addEventListener('click', reload);
+  function paintAge(){
+    if(!fresh) return;
+    const iso = DATA.generatedAtISO;
+    if(!iso){ fresh.textContent = "Edition: " + (DATA.generatedAt||""); return; }
+    const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
+    const stale = mins > 40;
+    fresh.textContent = "Data " + (mins<1 ? "just updated" : mins + " min old");
+    fresh.style.color = stale ? "var(--crit)" : "var(--chalk-dim, inherit)";
+    fresh.style.fontWeight = stale ? "700" : "400";
+    if(stale) fresh.textContent += " — rebuild may be down";
+  }
+  paintAge(); setInterval(paintAge, 30000);
+  setInterval(reload, 5*60000);           // auto-pull the newest edition every 5 min
+})();
 
 const E = DATA.events;
 const hm = t => `${String(Math.floor(t)).padStart(2,"0")}:${String(Math.round((t%1)*60)).padStart(2,"0")}`;
