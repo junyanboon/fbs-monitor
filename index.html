@@ -160,6 +160,20 @@
   .nowline::after{content:"";position:absolute;inset:-2px 0 auto 0;height:2px;background:var(--tungsten);
                   filter:blur(4px);opacity:.7;animation:pulse 2.4s ease-in-out infinite}
 
+  /* staff coverage */
+  .staffcol{position:relative;border-right:1px solid var(--line);background:var(--tungsten-soft)}
+  .staffcol .slot{border-top:1px dashed var(--line)}
+  .staffblock{position:absolute;left:5px;right:5px;border-radius:8px;padding:6px 8px 5px;overflow:hidden;
+              background:var(--tungsten);color:#fff;box-shadow:var(--shadow)}
+  .staffblock.shift{background:var(--scrim-2);color:var(--chalk-dim);border:1px dashed var(--tungsten);box-shadow:none}
+  .staffblock .who{font-weight:600;font-size:12.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .staffblock .when{font-family:var(--mono);font-size:10.5px;opacity:.85;font-variant-numeric:tabular-nums}
+  .coverband{position:absolute;right:0;background:var(--tungsten-soft);pointer-events:none;z-index:1}
+  .booking{z-index:2}
+  .chip.cov-ok{background:var(--ok-bg);color:var(--ok)}
+  .chip.cov-part{background:var(--watch-bg);color:var(--watch)}
+  .chip.cov-no{background:var(--crit-bg);color:var(--crit)}
+
   footer{max-width:1320px;margin:26px auto 0;padding:0 28px;color:var(--chalk-faint);font-size:12.5px;
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .legend{display:flex;gap:16px;flex-wrap:wrap}
@@ -195,6 +209,7 @@
     <span><span class="swatch" style="background:var(--tungsten)"></span>Monitored (FBS · Monitor · Viewing)</span>
     <span><span class="swatch" style="background:var(--chalk-faint)"></span>Regular booking</span>
     <span><span class="swatch" style="background:repeating-linear-gradient(-45deg,var(--chalk-faint) 0 3px,transparent 3px 6px)"></span>Cleaning</span>
+    <span><span class="swatch" style="background:var(--tungsten-soft);border:1px solid var(--tungsten)"></span>Staff on-site (coverage)</span>
     <span>↓ arrived · ↑ departed</span>
   </div>
   <div id="stamp"></div>
@@ -207,7 +222,7 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 17, 2026",
-  "generatedAt": "Jul 17, 9:45 PM ET",
+  "generatedAt": "Jul 17, 11:45 PM ET",
   "studios": [
     {
       "id": "509A",
@@ -297,7 +312,27 @@ const DATA = /*__DATA__*/{
       "departed": null
     }
   ],
-  "attention": []
+  "attention": [],
+  "staff": [
+    {
+      "name": "Staff",
+      "role": "Open",
+      "start": 14.5,
+      "end": 15.0
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 19.75,
+      "end": 20.25
+    },
+    {
+      "name": "Staff",
+      "role": "Close",
+      "start": 23.25,
+      "end": 23.75
+    }
+  ]
 }/*__END_DATA__*/;
 
 const $ = s => document.querySelector(s);
@@ -311,6 +346,23 @@ const hm = t => `${String(Math.floor(t)).padStart(2,"0")}:${String(Math.round((t
 const parseHM = s => { if(!s) return null; const m=s.match(/^(\d{1,2}):(\d{2})$/); return m? +m[1]+ +m[2]/60 : null; };
 const dur = h => { const m=Math.round(h*60); return m>=60? `${Math.floor(m/60)}h ${String(m%60).padStart(2,"0")}m` : `${m} min`; };
 const GRACE = 10/60; // minutes past start before a missing arrival flags
+const STAFF = DATA.staff || []; // on-site coverage blocks from the Staff Scheduling calendar
+
+/* Presence-based coverage: a monitored booking (tier != null) is Covered when the
+   union of staff on-site blocks spans its window; Partial shows uncovered minutes. */
+function coverageOf(e){
+  if(e.kind!=="booking" || !e.tier) return null;
+  const segs = STAFF.map(s=>[Math.max(s.start,e.start), Math.min(s.end,e.end)])
+                    .filter(([a,b])=>b>a).sort((a,b)=>a[0]-b[0]);
+  let covered=0, cursor=e.start, names=new Set();
+  for(const [a,b] of segs){ const from=Math.max(a,cursor); if(b>from){covered+=b-from; cursor=b;} }
+  STAFF.forEach(s=>{ if(Math.min(s.end,e.end)>Math.max(s.start,e.start)) names.add(s.name); });
+  const total=e.end-e.start, gap=Math.round((total-covered)*60);
+  const who=[...names].join(" · ");
+  if(covered<=0.004) return {cls:"cov-no", label:"No coverage", gap:Math.round(total*60), who:""};
+  if(gap<=1) return {cls:"cov-ok", label:"Covered"+(who?" · "+who:""), gap:0, who};
+  return {cls:"cov-part", label:`Partial · ${gap}m gap`, gap, who};
+}
 
 function torontoNow(){ const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));
   return {t: d.getHours()+d.getMinutes()/60, hhmm: String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}; }
@@ -339,6 +391,8 @@ function render(){
     {n:inNow, l:"in studio now", cls: inNow?"good":""},
     {n:E.filter(e=>e.kind==="booking").length, l:"bookings today"},
     {n:tier("FBS"), l:"FBS"}, {n:tier("Monitor"), l:"monitor"}, {n:tier("Viewing"), l:"viewing"},
+    {n:E.filter(e=>{const c=coverageOf(e); return c && c.gap>0;}).length, l:"coverage gaps",
+     cls: E.some(e=>{const c=coverageOf(e); return c && c.gap>0;})?"bad":"good"},
     {n:flags, l:"⚠ flags", cls: flags?"bad":"good"}
   ].map(s=>`<div class="stat ${s.cls||""}"><b>${s.n}</b><span>${s.l}</span></div>`).join("");
 
@@ -352,7 +406,7 @@ function render(){
       <div class="txt">
         <div class="row1"><span class="studio-tag">${e.studio}</span><strong>${esc(e.who)}</strong>
           <span class="chip ${e.kind==="cleaning"?"plain":e.tier?"type":"plain"}">${e.kind==="cleaning"?"Cleaning":e.tier||"Booking"}</span></div>
-        <div class="row2">${hm(e.start)}–${hm(e.end)}${e.arrived?` · <span style="color:var(--ok)">↓ ${e.arrived}</span>`:""}${st.flagged?` · <span class="flag">⚠ no arrival logged</span>`:""}</div>
+        <div class="row2">${hm(e.start)}–${hm(e.end)}${e.arrived?` · <span style="color:var(--ok)">↓ ${e.arrived}</span>`:""}${st.flagged?` · <span class="flag">⚠ no arrival logged</span>`:""}${(cv=>cv?` · <span class="chip ${cv.cls}">${esc(cv.label)}</span>`:"")(coverageOf(e))}</div>
       </div>
       <div class="count"><b>${isNext? dur(e.start-n) : dur(e.end-n)}</b><span>${isNext?"until start":"left"}</span></div>
     </div>`;
@@ -372,10 +426,11 @@ function render(){
         ${e.tier&&e.tier!=="Viewing"&&!e.gtg?` <span class="chip ${st.label==="Complete"?"watch":"crit"}">No GTG</span>`:""}</td>
       <td class="t">${e.arrived?`<span class="arr">↓ ${e.arrived}</span>`:`<span class="dash">—</span>`}</td>
       <td class="t">${e.departed?`<span class="dep">↑ ${e.departed}</span>`:`<span class="dash">—</span>`}</td>
+      <td>${(cv=>cv?`<span class="chip ${cv.cls}">${esc(cv.label)}</span>`:`<span class="dash">—</span>`)(coverageOf(e))}</td>
       <td><span class="chip ${st.cls}">${st.label}</span>${st.flagged?`<span class="subflag">⚠ no arrival logged</span>`:""}</td>
     </tr>`;
   }).join("");
-  $('#ledger').innerHTML = `<thead><tr><th>Time</th><th>Studio</th><th>Booking</th><th>Arrived</th><th>Departed</th><th>Status</th></tr></thead><tbody>${rows}</tbody>`;
+  $('#ledger').innerHTML = `<thead><tr><th>Time</th><th>Studio</th><th>Booking</th><th>Arrived</th><th>Departed</th><th>Coverage</th><th>Status</th></tr></thead><tbody>${rows}</tbody>`;
 
   /* board */
   const lo = Math.min(9, ...E.map(e=>Math.floor(e.start)));
@@ -383,9 +438,20 @@ function render(){
   const HRS=[]; for(let h=lo;h<=hi;h++) HRS.push(h);
   const SLOT=52, yOf = t => (t-lo)*SLOT+46;
   const board = document.getElementById('board');
-  board.style.gridTemplateColumns = `56px repeat(${DATA.studios.length}, minmax(170px,1fr))`;
+  const RAIL = STAFF.length ? 118 : 0;
+  board.style.gridTemplateColumns = `56px ${RAIL?RAIL+"px ":""}repeat(${DATA.studios.length}, minmax(170px,1fr))`;
   let html = `<div class="timecol"><div class="studio-h" style="height:46px"></div>` +
     HRS.map(h=>`<div class="cell">${String(h%24).padStart(2,"0")}:00</div>`).join("") + `</div>`;
+  if(RAIL){
+    html += `<div class="staffcol">
+      <div class="studio-h" style="height:46px"><h2>Staff</h2><div class="sub">On-site</div></div>` +
+      HRS.slice(0,-1).map(()=>`<div class="slot"></div>`).join("") +
+      STAFF.map(s=>`<div class="staffblock ${s.role==="Open"||s.role==="Close"?"shift":""}"
+          style="top:${yOf(s.start)}px;height:${Math.max((s.end-s.start)*SLOT-6,26)}px">
+        <div class="who">${esc(s.name)}${s.role?` · ${esc(s.role)}`:""}</div>
+        <div class="when">${hm(s.start)}–${hm(s.end)}</div>
+      </div>`).join("") + `</div>`;
+  }
   for(const s of DATA.studios){
     html += `<div class="col">
       <div class="studio-h" style="height:46px"><h2>${s.name}</h2><div class="sub">${s.sub||""}</div></div>` +
@@ -399,11 +465,17 @@ function render(){
         return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px">
           <div class="who">${esc(e.who)}</div>
           <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr">↓${e.arrived}</span>`:""}${e.departed?` ↑${e.departed}`:""}${st.flagged?` <span class="flag">⚠</span>`:""}</div>
-          ${e.tier?`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}</div>`:""}
+          ${e.tier?(cv=>`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${cv?(cv.gap>0?`<span class="chip ${cv.cls}">${cv.cls==="cov-no"?"No cover":`Gap ${cv.gap}m`}</span>`:`<span class="chip cov-ok">Cover ✓</span>`):""}</div>`)(coverageOf(e)):""}
         </div>`;
       }).join("") + `</div>`;
   }
   board.innerHTML = html;
+  for(const s of STAFF){
+    const band = document.createElement('div'); band.className='coverband';
+    band.style.left = (56+RAIL)+"px"; band.style.top = yOf(s.start)+"px";
+    band.style.height = (s.end-s.start)*SLOT+"px";
+    board.appendChild(band);
+  }
   if(n>=lo && n<=hi){
     const line = document.createElement('div'); line.className='nowline'; line.style.top = yOf(n)+"px";
     board.appendChild(line);
