@@ -174,6 +174,7 @@
   .chip.cov-ok{background:var(--ok-bg);color:var(--ok)}
   .chip.cov-part{background:var(--watch-bg);color:var(--watch)}
   .chip.cov-no{background:var(--crit-bg);color:var(--crit)}
+  .chip.cov-ai{background:var(--tungsten-soft);color:var(--tungsten)}
 
   footer{max-width:1320px;margin:26px auto 0;padding:0 28px;color:var(--chalk-faint);font-size:12.5px;
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -211,6 +212,7 @@
     <span><span class="swatch" style="background:var(--chalk-faint)"></span>Regular booking</span>
     <span><span class="swatch" style="background:repeating-linear-gradient(-45deg,var(--chalk-faint) 0 3px,transparent 3px 6px)"></span>Cleaning</span>
     <span><span class="swatch" style="background:var(--tungsten-soft);border:1px solid var(--tungsten)"></span>Staff on-site (coverage)</span>
+    <span>Coverage: <b>Covered</b> = staff present · <b>Partial</b> = staff for part of the window · <b>AI watch</b> = no staff on-site; the desk AI monitors remotely (default, not an error)</span>
     <span>↓ arrived · ↑ departed</span>
   </div>
   <div id="stamp"></div>
@@ -223,7 +225,7 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, July 18, 2026",
-  "generatedAt": "Jul 18, 4:45 PM ET",
+  "generatedAt": "Jul 18, 5:33 PM ET",
   "studios": [
     {
       "id": "509A",
@@ -253,83 +255,11 @@ const DATA = /*__DATA__*/{
   ],
   "events": [
     {
-      "studio": "693",
-      "who": "Tunde Ifafore",
-      "kind": "booking",
-      "start": 7.75,
-      "end": 9.75,
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Sent",
-      "arrived": "07:34",
-      "departed": "09:30"
-    },
-    {
-      "studio": "693",
-      "who": "Zulekha Pirzada",
-      "kind": "booking",
-      "start": 18.0,
-      "end": 21.0,
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Sent",
-      "arrived": null,
-      "departed": null
-    },
-    {
-      "studio": "509A",
-      "who": "Camila Avendano",
-      "kind": "booking",
-      "start": 9.0,
-      "end": 11.0,
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "arrived": "09:13",
-      "departed": "11:05"
-    },
-    {
-      "studio": "509A",
-      "who": "Mia Vescarelli",
-      "kind": "booking",
-      "start": 12.0,
-      "end": 13.75,
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "arrived": null,
-      "departed": null
-    },
-    {
-      "studio": "509A",
-      "who": "Desiree Joy",
-      "kind": "booking",
-      "start": 14.0,
-      "end": 15.0,
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "13:48",
-      "departed": "15:09"
-    },
-    {
-      "studio": "509B",
-      "who": "Kristyan Calletor",
-      "kind": "booking",
-      "start": 14.0,
-      "end": 16.0,
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Sent",
-      "arrived": "14:23",
-      "departed": "15:57"
-    },
-    {
       "studio": "527",
       "who": "Kateryna Zozulia",
-      "kind": "booking",
       "start": 10.75,
       "end": 12.25,
+      "kind": "booking",
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
@@ -338,10 +268,10 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Roux Buciu",
-      "kind": "booking",
+      "who": "Roux Buciu — WCS Peer Practica",
       "start": 14.0,
       "end": 16.0,
+      "kind": "booking",
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
@@ -351,21 +281,21 @@ const DATA = /*__DATA__*/{
     {
       "studio": "527",
       "who": "Kangbin Zhou — Versatile Dance",
-      "kind": "booking",
       "start": 16.5,
       "end": 18.0,
+      "kind": "booking",
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "16:29",
       "departed": null
     },
     {
       "studio": "527",
-      "who": "Anastasia Markevitch",
-      "kind": "booking",
+      "who": "Anastasia Markevitch — Kizomba social",
       "start": 20.0,
       "end": 26.25,
+      "kind": "booking",
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
@@ -373,11 +303,83 @@ const DATA = /*__DATA__*/{
       "departed": null
     },
     {
+      "studio": "509A",
+      "who": "Camila Avendano",
+      "start": 9.0,
+      "end": 11.0,
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
+      "arrived": "09:13",
+      "departed": "11:05"
+    },
+    {
+      "studio": "509A",
+      "who": "Mia Vescarelli",
+      "start": 12.0,
+      "end": 13.75,
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null
+    },
+    {
+      "studio": "509A",
+      "who": "Desiree Joy",
+      "start": 14.0,
+      "end": 15.0,
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "13:48",
+      "departed": "15:09"
+    },
+    {
+      "studio": "509B",
+      "who": "Kristyan Calletor — Salsa Dance",
+      "start": 14.0,
+      "end": 16.0,
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "14:23",
+      "departed": "15:57"
+    },
+    {
+      "studio": "693",
+      "who": "Tunde Ifafore",
+      "start": 7.75,
+      "end": 9.75,
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "arrived": "07:34",
+      "departed": "09:30"
+    },
+    {
+      "studio": "693",
+      "who": "Zulekha Pirzada",
+      "start": 18.0,
+      "end": 21.0,
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "arrived": null,
+      "departed": null
+    },
+    {
       "studio": "901",
       "who": "Laura Flores",
-      "kind": "booking",
       "start": 11.25,
       "end": 15.75,
+      "kind": "booking",
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
@@ -387,21 +389,21 @@ const DATA = /*__DATA__*/{
     {
       "studio": "901",
       "who": "Himanshi Mehta",
-      "kind": "booking",
       "start": 17.0,
       "end": 18.5,
+      "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "16:53",
       "departed": null
     },
     {
       "studio": "901",
-      "who": "Quynh Tran",
-      "kind": "booking",
+      "who": "Quynh Tran — Dropping off items",
       "start": 20.5,
       "end": 20.75,
+      "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
@@ -424,13 +426,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.75,
       "end": 14.25
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.75,
       "end": 14.25
     },
@@ -492,7 +494,7 @@ function coverageOf(e){
   STAFF.forEach(s=>{ if(Math.min(s.end,e.end)>Math.max(s.start,e.start)) names.add(s.name); });
   const total=e.end-e.start, gap=Math.round((total-covered)*60);
   const who=[...names].join(" · ");
-  if(covered<=0.004) return {cls:"cov-no", label:"No coverage", gap:Math.round(total*60), who:""};
+  if(covered<=0.004) return {cls:"cov-ai", label:"AI watch", gap:Math.round(total*60), who:""};
   if(gap<=1) return {cls:"cov-ok", label:"Covered"+(who?" · "+who:""), gap:0, who};
   return {cls:"cov-part", label:`Partial · ${gap}m gap`, gap, who};
 }
@@ -524,8 +526,9 @@ function render(){
     {n:inNow, l:"in studio now", cls: inNow?"good":""},
     {n:E.filter(e=>e.kind==="booking").length, l:"bookings today"},
     {n:tier("FBS"), l:"FBS"}, {n:tier("Monitor"), l:"monitor"}, {n:tier("Viewing"), l:"viewing"},
-    {n:E.filter(e=>{const c=coverageOf(e); return c && c.gap>0;}).length, l:"coverage gaps",
-     cls: E.some(e=>{const c=coverageOf(e); return c && c.gap>0;})?"bad":"good"},
+    {n:E.filter(e=>{const c=coverageOf(e); return c && c.cls==="cov-ai";}).length, l:"on AI watch"},
+    {n:E.filter(e=>{const c=coverageOf(e); return c && c.cls==="cov-part";}).length, l:"partial staffing",
+     cls: E.some(e=>{const c=coverageOf(e); return c && c.cls==="cov-part";})?"bad":"good"},
     {n:flags, l:"⚠ flags", cls: flags?"bad":"good"}
   ].map(s=>`<div class="stat ${s.cls||""}"><b>${s.n}</b><span>${s.l}</span></div>`).join("");
 
@@ -598,7 +601,7 @@ function render(){
         return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px">
           <div class="who">${esc(e.who)}</div>
           <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr">↓${e.arrived}</span>`:""}${e.departed?` ↑${e.departed}`:""}${st.flagged?` <span class="flag">⚠</span>`:""}</div>
-          ${e.tier?(cv=>`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${cv?(cv.gap>0?`<span class="chip ${cv.cls}">${cv.cls==="cov-no"?"No cover":`Gap ${cv.gap}m`}</span>`:`<span class="chip cov-ok">Cover ✓</span>`):""}</div>`)(coverageOf(e)):""}
+          ${e.tier?(cv=>`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${cv?(cv.gap>0?`<span class="chip ${cv.cls}">${cv.cls==="cov-ai"?"AI watch":`Gap ${cv.gap}m`}</span>`:`<span class="chip cov-ok">Cover ✓</span>`):""}</div>`)(coverageOf(e)):""}
         </div>`;
       }).join("") + `</div>`;
   }
