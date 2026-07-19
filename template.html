@@ -244,10 +244,11 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
   " · arrivals read from the FBS AI Support board (alarm disarm/arm)";
 
 /* Freshness + refresh. The page is a static edition rebuilt every 15 min by the
-   fbs-monitor-refresh task. Refresh fetches the newest pushed edition in the
-   background (cache-busted, works inside sandboxed embeds where navigation is
-   blocked) and swaps the whole document in via document.write, which re-runs
-   scripts. The button cannot rebuild data itself — ceiling = rebuild cadence. */
+   GitHub Actions cron. Refresh probes for a newer pushed edition in the background
+   (cache-busted fetch, compare generatedAtISO); when one exists it reloads the page
+   with a cache-buster. (document.write swap was abandoned: scripts in the written
+   document never execute, leaving a dead board — and the artifact sandbox that
+   needed it is retired.) The button cannot rebuild data — ceiling = rebuild cadence. */
 (function(){
   const btn = document.getElementById('refreshbtn');
   const fresh = document.getElementById('freshness');
@@ -277,12 +278,9 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
         if(!silent) flash("latest edition ✓");
         return;
       }
-      document.open(); document.write(html); document.close();
+      location.replace(location.pathname + '?r=' + Date.now());
     }catch(e){
-      if(!silent){
-        try{ location.replace(location.pathname + '?r=' + Date.now()); }
-        catch(_){ flash("refresh unavailable here"); }
-      }
+      if(!silent) flash("refresh unavailable here");
     }finally{
       btn.classList.remove('busy');
     }

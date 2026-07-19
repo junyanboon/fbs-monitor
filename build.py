@@ -101,16 +101,42 @@ def norm_hm(val):
     return None
 
 
+def _strip_paren_groups(t, starters):
+    """Remove balanced (…) groups whose content starts with one of `starters` —
+    regex can't handle nesting like '(Studio 901 (Elements))'."""
+    out, i = [], 0
+    while i < len(t):
+        if t[i] == "(":
+            j, depth = i + 1, 1
+            while j < len(t) and depth:
+                depth += {"(": 1, ")": -1}.get(t[j], 0)
+                j += 1
+            inner = t[i + 1:j - 1].strip().lower()
+            if depth == 0 and any(inner.startswith(s) for s in starters):
+                i = j
+                continue
+        out.append(t[i])
+        i += 1
+    return "".join(out)
+
+
 def clean_who(title):
     t = title or ""
     t = re.sub(r"\*moved from[^*]*\*", "", t, flags=re.I)
-    t = re.sub(r"\((?:Fixed Option|AAP|Studio [^)]*)\)", "", t, flags=re.I)
+    t = _strip_paren_groups(t, ("fixed option", "aap", "studio"))
     t = re.sub(r"\[(?:Un)?Paid\]", "", t, flags=re.I)
     t = re.sub(r"\bBooking Extension Request\b", "", t, flags=re.I)
+    t = re.sub(r"moved from\s+\S+", "", t, flags=re.I)   # bare form: "moved from 9:30am"
     t = re.sub(r"\(\s*\)", "", t)
     t = re.sub(r"\s+#?\d+/\d+\b", "", t)          # session counters "2/8"
     t = re.sub(r"\s{2,}", " ", t)
-    return t.strip(" -–—")
+    t = t.strip(" -–—:)(")
+    # "Name: Description" → "Name — Description"; drop the rhs when it just
+    # repeats the name ("Desiree Joy: Desiree Joy", "X (Org): Org").
+    if ":" in t:
+        lhs, rhs = (s.strip(" -–—:") for s in t.split(":", 1))
+        t = lhs if (not rhs or rhs.lower() in lhs.lower()) else f"{lhs} — {rhs}"
+    return t
 
 
 # ─────────────────────────────────────────────────────────────────────────────
