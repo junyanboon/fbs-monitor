@@ -259,7 +259,28 @@ def merge_events(events):
         if cur:
             merged.append(cur)
     merged.sort(key=lambda x: (x["studio"], x["start"]))
-    return merged
+    return _dedupe_same_slot(merged)
+
+
+def _dedupe_same_slot(events):
+    """A studio can only hold one booking at a time, so two 'booking' events in
+    the same studio with identical start/end are the same booking under two
+    titles (seen with Peerspace: the synced 'Peerspace Booking, <First> <L>.'
+    event plus a manually created descriptive event). _renter_key can't link
+    them — the names share nothing — so dedupe on studio + exact time slot,
+    keeping the more descriptive title."""
+    out = []
+    for e in events:
+        dup = next((o for o in out
+                    if o["studio"] == e["studio"] and o["kind"] == e["kind"] == "booking"
+                    and abs(o["start"] - e["start"]) < 1e-6
+                    and abs(o["end"] - e["end"]) < 1e-6), None)
+        if dup:
+            if len(e["who"] or "") > len(dup["who"] or ""):
+                dup["who"] = e["who"]
+        else:
+            out.append(e)
+    return out
 
 
 def _renter_key(who):
