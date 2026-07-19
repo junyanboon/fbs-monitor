@@ -257,9 +257,14 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
     const iso = DATA.generatedAtISO;
     if(!iso){ fresh.textContent = "edition " + (DATA.generatedAt||"—"); return; }
     const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
-    const stale = mins > 40;
+    // Rebuilds pause 03:00–07:00 Toronto (build.py quiet hours) — old data then
+    // is expected, not an outage. Red-flag staleness only during operating hours.
+    const etHour = +new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",hour:"numeric",hour12:false}).format(new Date());
+    const quiet = etHour >= 3 && etHour < 7;
+    const stale = !quiet && mins > 40;
     btn.classList.toggle('stale', stale);
-    fresh.textContent = stale ? "data " + mins + " min old — rebuild down?"
+    fresh.textContent = quiet ? "overnight — rebuilds resume 7 AM"
+                      : stale ? "data " + mins + " min old — rebuild down?"
                       : mins < 1 ? "data live" : "data " + mins + " min old";
   }
   function flash(msg){

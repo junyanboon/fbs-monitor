@@ -640,8 +640,11 @@ def splice(data):
 def main():
     now = datetime.now(TZ)
     force = os.environ.get("FORCE_BUILD") == "1"
-    if not force and not (7 <= now.hour < 24):
-        print(f"Outside 07:00–24:00 Toronto window ({now:%H:%M}); skipping.")
+    # Run 07:00–02:59 Toronto: bookings regularly cross midnight (e.g. socials
+    # ending 02:15), so the board must keep updating arrivals/departures until
+    # the last cross-midnight block is done. Quiet hours: 03:00–06:59 only.
+    if not force and 3 <= now.hour < 7:
+        print(f"Quiet hours 03:00–07:00 Toronto ({now:%H:%M}); skipping.")
         return
     data, fallback = build_data(now)
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))

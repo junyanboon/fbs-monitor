@@ -2,7 +2,10 @@ name: Rebuild FBS Monitor
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # every 15 min (UTC); build.py gates to 07:00–24:00 America/Toronto
+    # Every 15 min, offset to :04 to dodge GitHub's scheduler congestion at exact
+    # quarter-hours (on-the-dot */15 crons get silently dropped under load).
+    # build.py gates execution to 07:00–02:59 America/Toronto.
+    - cron: "4,19,34,49 * * * *"
   workflow_dispatch: {}       # manual "Run workflow" button — bypasses the time gate
 
 concurrency:
