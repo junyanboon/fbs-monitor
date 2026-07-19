@@ -250,6 +250,8 @@ def merge_events(events):
             contiguous = cur and e["start"] <= cur["end"] + 1e-6
             if cur and same and contiguous:
                 cur["end"] = max(cur["end"], e["end"])
+                if len(e["who"]) > len(cur["who"]):   # keep the more descriptive title
+                    cur["who"] = e["who"]
             else:
                 if cur:
                     merged.append(cur)
@@ -261,7 +263,12 @@ def merge_events(events):
 
 
 def _renter_key(who):
-    return re.sub(r"[^a-z]", "", (who or "").lower())
+    """Merge key: the renter's name, not the whole title — an extension event or a
+    cross-midnight second event carries extra description ('… — Kizomba social',
+    '… additional time at no charge') that must not break the merge."""
+    name = re.split(r"\s+—\s+", who or "")[0]
+    toks = re.findall(r"[a-z]+", name.lower())
+    return "".join(toks[:2])
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -499,21 +506,58 @@ def _arm_evt(studio_raw, name, time_raw, kind):
     return {"studio": studio, "name": name, "time": norm_hm(time_raw), "kind": kind}
 
 
+def _name_match(who, arm_name):
+    """Do the renter title and the ADT event name share a name token (≥3 chars)?"""
+    a = set(t for t in re.findall(r"[a-z]{3,}", (who or "").lower()))
+    b = set(t for t in re.findall(r"[a-z]{3,}", (arm_name or "").lower()))
+    return bool(a & b)
+
+
 def apply_arm_events(events, arm_events):
-    """studio + nearest time in [start-60, end+90]; earliest disarm=arrived, last arm=departed."""
+    """Two-pass match, studio + time window [start-60, end+90].
+
+    Back-to-back bookings in one studio overlap windows, so pure nearest-time
+    steals events across bookings (Desiree's 15:09 arm became Mia's departure;
+    Laura's 11:04 disarm became Tufan's arrival). Pass 1 assigns each arm event
+    to in-window bookings whose title shares a name token with the event's name
+    and marks it claimed. Pass 2 gives still-unmatched bookings the unclaimed
+    nameless-or-foreign events in their window (panel events often carry a staff
+    or plus-one name — e.g. 'Shiela' closing out Quynh's booking).
+    Earliest disarm = arrived, last arm = departed."""
+    def in_window(e, t):
+        return e["start"] - 1.0 <= t <= e["end"] + 1.5
+
+    timed = []
+    for a in arm_events:
+        t = _time_to_decimal(a["time"]) if a["time"] else None
+        if t is not None:
+            timed.append({**a, "t": t, "claimed": False})
+
+    # pass 1 — name-matched
     for e in events:
-        lo, hi = e["start"] - 1.0, e["end"] + 1.5
         arrivals, departures = [], []
-        for a in arm_events:
-            if a["studio"] != e["studio"] or not a["time"]:
-                continue
-            t = _time_to_decimal(a["time"])
-            if t is None or not (lo <= t <= hi):
-                continue
-            (arrivals if a["kind"] == "arrival" else departures).append((t, a["time"]))
+        for a in timed:
+            if a["studio"] == e["studio"] and in_window(e, a["t"]) \
+                    and _name_match(e["who"], a["name"]):
+                a["claimed"] = True
+                (arrivals if a["kind"] == "arrival" else departures).append((a["t"], a["time"]))
         if arrivals:
             e["arrived"] = min(arrivals)[1]
         if departures:
+            e["departed"] = max(departures)[1]
+
+    # pass 2 — unclaimed events for still-unmatched bookings
+    for e in events:
+        if e["arrived"] and e["departed"]:
+            continue
+        arrivals, departures = [], []
+        for a in timed:
+            if a["claimed"] or a["studio"] != e["studio"] or not in_window(e, a["t"]):
+                continue
+            (arrivals if a["kind"] == "arrival" else departures).append((a["t"], a["time"]))
+        if not e["arrived"] and arrivals:
+            e["arrived"] = min(arrivals)[1]
+        if not e["departed"] and departures:
             e["departed"] = max(departures)[1]
     return events
 
