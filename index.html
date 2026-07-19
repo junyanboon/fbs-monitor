@@ -240,9 +240,9 @@
    the FBS AI Support board (tier, GTG/HTA, arrivals from alarm disarm/arm).
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
-  "date": "Saturday, July 18, 2026",
-  "generatedAt": "Jul 18, 10:53 PM ET",
-  "generatedAtISO": "2026-07-18T22:53:44-04:00",
+  "date": "Sunday, July 19, 2026",
+  "generatedAt": "Jul 19, 3:10 AM ET",
+  "generatedAtISO": "2026-07-19T03:10:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -467,19 +467,19 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "start": 13.75,
-      "end": 14.25
-    },
-    {
-      "name": "Junyan",
-      "role": "Monitoring",
-      "start": 13.75,
-      "end": 14.25
-    },
-    {
-      "name": "Junyan",
       "role": "FBS",
+      "start": 13.75,
+      "end": 14.25
+    },
+    {
+      "name": "Junyan",
+      "role": "Monitoring",
+      "start": 13.75,
+      "end": 14.25
+    },
+    {
+      "name": "Junyan",
+      "role": "Monitoring",
       "start": 13.75,
       "end": 14.25
     },
@@ -491,13 +491,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 15.75,
       "end": 16.25
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 15.75,
       "end": 16.25
     },
@@ -537,9 +537,14 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
     const iso = DATA.generatedAtISO;
     if(!iso){ fresh.textContent = "edition " + (DATA.generatedAt||"—"); return; }
     const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
-    const stale = mins > 40;
+    // Rebuilds pause 03:00–07:00 Toronto (build.py quiet hours) — old data then
+    // is expected, not an outage. Red-flag staleness only during operating hours.
+    const etHour = +new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",hour:"numeric",hour12:false}).format(new Date());
+    const quiet = etHour >= 3 && etHour < 7;
+    const stale = !quiet && mins > 40;
     btn.classList.toggle('stale', stale);
-    fresh.textContent = stale ? "data " + mins + " min old — rebuild down?"
+    fresh.textContent = quiet ? "overnight — rebuilds resume 7 AM"
+                      : stale ? "data " + mins + " min old — rebuild down?"
                       : mins < 1 ? "data live" : "data " + mins + " min old";
   }
   function flash(msg){
