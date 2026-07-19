@@ -5,33 +5,29 @@ FBS Studio Monitor — deterministic cloud rebuild (GitHub Actions).
 Pure rails, no AI. Fetches three cloud sources, builds the DATA JSON, splices it
 into template.html and writes index.html. Commit/push is handled by the workflow.
 
-Sources
-  1. Bookings   — Google Calendar secret ICS URLs (ICS_URLS env, JSON map)
-  2. Arrivals   — Gmail IMAP, label "Artist Care - ADT" (TELUS Secure Business emails)
-  3. Tier/GTG   — Notion API, FBS AI Support board
+Sources (all reuse the desk-correspondence secret conventions)
+  1. Bookings + staff — Google Calendar secret ICS URLs
+        ICS_URL_527 / ICS_URL_509A / ICS_URL_509B / ICS_URL_693 / ICS_URL_901 / ICS_URL_STAFF
+  2. Tier / GTG / HTA — Notion API (NOTION_TOKEN), FBS AI Support board
+  3. Arrivals / departures — Gmail API via OAuth (GMAIL_CLIENT_ID/SECRET/REFRESH_TOKEN),
+        label "Artist Care - ADT" (TELUS Secure Business emails). Same OAuth pattern as
+        desk-correspondence/scripts/gmail_pull.py (scope gmail.readonly).
 
-Fail-loud policy: any calendar or Notion source failure aborts with a nonzero exit
-and does NOT write a fabricated/partial page. IMAP failure is the one soft path —
-we fall back to the Notion board's Armed/Disarmed columns and note it for the commit
-message (writes FALLBACK_NOTE to $GITHUB_ENV / stdout).
+Fail-loud policy: any calendar or Notion source failure aborts nonzero and does NOT
+write a fabricated/partial page. A revoked/expired Gmail refresh token also fails RED
+(decision 023 — never skip-green after setup). Other Gmail failures soft-fall-back to
+the Notion board's Armed/Disarmed columns and note it for the commit message.
 
-Environment
-  ICS_URLS            JSON: {"527":"https://…ical…/basic.ics", "509A":..., "Staff":...}
-  NOTION_TOKEN        Notion internal integration token
-  GMAIL_USER          default thedanceannex@gmail.com
-  GMAIL_APP_PASSWORD  Gmail app password (16 chars, no spaces)
-  FORCE_BUILD         "1" to bypass the 07:00–24:00 Toronto time gate (manual dispatch)
-  GITHUB_ENV          (set by Actions) — we append FALLBACK_NOTE here for the commit step
+The workflow gates on NOTION_TOKEN presence (skip-green until secrets exist), so once
+build.py actually runs, missing/failing sources are real errors.
 """
 
 import os
 import re
 import sys
 import json
-import imaplib
-import email
-from email.header import decode_header
-from datetime import datetime, timedelta, date
+import base64
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import requests
@@ -40,7 +36,6 @@ import recurring_ical_events
 
 TZ = ZoneInfo("America/Toronto")
 
-# Fixed board studios (order matters — matches the template rails).
 STUDIOS = [
     {"id": "509A", "name": "509A", "sub": "Main"},
     {"id": "509B", "name": "509B", "sub": "Main"},
@@ -56,6 +51,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "template.html")
 OUTPUT = os.path.join(HERE, "index.html")
 
+TOKEN_URL = "https://oauth2.googleapis.com/token"
+GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
+ARM_LABEL = "Artist Care - ADT"
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # helpers
@@ -66,7 +65,7 @@ def die(msg):
 
 
 def emit_fallback_note(note):
-    """Surface an IMAP-fallback note to the workflow's commit step."""
+    """Surface a Gmail-fallback note to the workflow's commit step."""
     print(f"NOTE: {note}")
     gh_env = os.environ.get("GITHUB_ENV")
     if gh_env:
@@ -77,7 +76,8 @@ def emit_fallback_note(note):
 def decimal_hours(dt, base_day):
     """Local clock hours from the window's base day; +24 per day past it.
     e.g. 2:15 AM the next day → 26.25."""
-    dt = dt.astimezone(TZ) if isinstance(dt, datetime) and dt.tzinfo else dt
+    if isinstance(dt, datetime) and dt.tzinfo:
+        dt = dt.astimezone(TZ)
     delta_days = (dt.date() - base_day).days
     return delta_days * 24 + dt.hour + dt.minute / 60
 
@@ -102,7 +102,6 @@ def norm_hm(val):
 
 
 def clean_who(title):
-    """Strip source tags / paid markers / session counters / studio notes from a title."""
     t = title or ""
     t = re.sub(r"\*moved from[^*]*\*", "", t, flags=re.I)
     t = re.sub(r"\((?:Fixed Option|AAP|Studio [^)]*)\)", "", t, flags=re.I)
@@ -117,6 +116,19 @@ def clean_who(title):
 # ─────────────────────────────────────────────────────────────────────────────
 # 1. Bookings + staff — Google Calendar secret ICS
 # ─────────────────────────────────────────────────────────────────────────────
+def ics_map_from_env():
+    """Build {studio_or_Staff: url} from the ICS_URL_* secrets."""
+    m = {}
+    for sid in STUDIO_IDS:
+        url = os.environ.get(f"ICS_URL_{sid}")
+        if url:
+            m[sid] = url
+    staff = os.environ.get("ICS_URL_STAFF")
+    if staff:
+        m["Staff"] = staff
+    return m
+
+
 def fetch_ics(url, win_start, win_end):
     try:
         r = requests.get(url, timeout=30)
@@ -133,14 +145,11 @@ def fetch_ics(url, win_start, win_end):
             dte = ev.get("DTEND").dt if ev.get("DTEND") else dts
         except Exception:  # noqa: BLE001
             continue
-        # all-day (date, not datetime) → treat as full-day unavailable block, skip below
-        if not isinstance(dts, datetime):
-            out.append({"summary": summary, "allday": True, "start": None, "end": None})
+        if not isinstance(dts, datetime):     # all-day → skip (unavailable-style block)
             continue
         status = str(ev.get("STATUS") or "").upper()
         out.append({
             "summary": summary,
-            "allday": False,
             "cancelled": status == "CANCELLED",
             "dtstart": dts.astimezone(TZ),
             "dtend": dte.astimezone(TZ),
@@ -157,63 +166,41 @@ def is_cleaning(summary):
 
 
 def build_calendar_events(ics_map, win_start, win_end, base_day):
-    """Return (events, staff) from studio + staff calendars."""
-    events = []
-    staff = []
+    events, staff = [], []
     for key, url in ics_map.items():
         occ = fetch_ics(url, win_start, win_end)
-        is_staff = "staff" in key.lower()
-        studio_id = key if key in STUDIO_IDS else None
+        is_staff = key == "Staff"
         for ev in occ:
             summary = ev["summary"]
-            if ev.get("allday"):
+            if ev.get("cancelled") or "unavailable" in summary.lower():
                 continue
-            if ev.get("cancelled"):
-                continue
-            low = summary.lower()
-            if "unavailable" in low:
-                continue
-
             if is_staff:
                 s = parse_staff_row(summary, ev["dtstart"], ev["dtend"], base_day)
                 if s:
                     staff.append(s)
                 continue
-
-            if studio_id is None:
-                # Unknown non-studio calendar key — ignore rather than mis-map.
-                continue
-
             events.append({
-                "studio": studio_id,
-                "raw": summary,
+                "studio": key,
                 "who": clean_who(summary),
                 "kind": "cleaning" if is_cleaning(summary) else "booking",
                 "start": decimal_hours(ev["dtstart"], base_day),
                 "end": decimal_hours(ev["dtend"], base_day),
-                # tier/gtg/hta/arrived/departed filled by the Notion join
                 "tier": None, "gtg": True, "hta": None,
                 "arrived": None, "departed": None,
             })
-
-    events = merge_events(events)
-    return events, staff
+    return merge_events(events), staff
 
 
 def parse_staff_row(summary, dtstart, dtend, base_day):
     low = summary.lower().strip()
-    if low.startswith("need ") or "meeting" in low or "payroll" in low:
-        return None
-    if "ela morning" in low:
+    if low.startswith("need ") or "meeting" in low or "payroll" in low or "ela morning" in low:
         return None
     start = decimal_hours(dtstart, base_day)
     end = decimal_hours(dtend, base_day)
-    # Open/Close the Studio → name "Staff"
-    if re.search(r"open the studio", low):
+    if "open the studio" in low:
         return {"name": "Staff", "role": "Open", "start": start, "end": end}
-    if re.search(r"close the studio", low):
+    if "close the studio" in low:
         return {"name": "Staff", "role": "Close", "start": start, "end": end}
-    # "<Name> FBS|Monitoring|Monitor|Viewing"
     m = re.search(r"^\s*([A-Za-z][A-Za-z'’-]*)\s+.*?\b(FBS|Monitoring|Monitor|Viewing)\b", summary, re.I)
     if m:
         role = m.group(2)
@@ -228,14 +215,14 @@ def merge_events(events):
     for e in events:
         by_studio.setdefault(e["studio"], []).append(e)
     merged = []
-    for studio, evs in by_studio.items():
+    for evs in by_studio.values():
         evs.sort(key=lambda x: x["start"])
         cur = None
         for e in evs:
-            same_renter = cur and cur["kind"] == e["kind"] and \
-                _renter_key(cur["who"]) == _renter_key(e["who"]) and cur["who"]
+            same = cur and cur["kind"] == e["kind"] and cur["who"] \
+                and _renter_key(cur["who"]) == _renter_key(e["who"])
             contiguous = cur and e["start"] <= cur["end"] + 1e-6
-            if cur and same_renter and contiguous:
+            if cur and same and contiguous:
                 cur["end"] = max(cur["end"], e["end"])
             else:
                 if cur:
@@ -263,43 +250,37 @@ def _prop_text(prop):
         return None
     if t in ("title", "rich_text"):
         return "".join(x.get("plain_text", "") for x in v).strip() or None
-    if t == "select":
-        return v.get("name")
-    if t == "status":
+    if t in ("select", "status"):
         return v.get("name")
     if t == "date":
         return v.get("start")
     if t == "checkbox":
         return "Yes" if v else "No"
-    if t == "formula":
-        return _prop_text({"type": v.get("type"), v.get("type"): v.get(v.get("type"))})
     if t == "number":
         return v
+    if t == "formula":
+        inner = v.get("type")
+        return _prop_text({"type": inner, inner: v.get(inner)})
     if isinstance(v, str):
         return v
     return None
 
 
 def fetch_notion_rows(token, today_iso):
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Notion-Version": "2025-09-03",
-        "Content-Type": "application/json",
-    }
     body = {
         "filter": {"property": "Booking Date", "date": {"equals": today_iso}},
         "page_size": 100,
     }
-    # Prefer the data-source endpoint (2025-09 API); fall back to the database endpoint.
-    urls = [
+    endpoints = [
         (f"https://api.notion.com/v1/data_sources/{NOTION_DATA_SOURCE}/query", "2025-09-03"),
         (f"https://api.notion.com/v1/databases/{NOTION_DATA_SOURCE}/query", "2022-06-28"),
     ]
     last_err = None
-    for url, ver in urls:
+    for url, ver in endpoints:
         try:
-            h = dict(headers, **{"Notion-Version": ver})
-            rows, cursor = [], None
+            h = {"Authorization": f"Bearer {token}", "Notion-Version": ver,
+                 "Content-Type": "application/json"}
+            rows, cursor, ok = [], None, True
             while True:
                 b = dict(body)
                 if cursor:
@@ -307,39 +288,35 @@ def fetch_notion_rows(token, today_iso):
                 r = requests.post(url, headers=h, json=b, timeout=30)
                 if r.status_code != 200:
                     last_err = f"{r.status_code} {r.text[:200]}"
+                    ok = False
                     break
                 data = r.json()
                 rows.extend(data.get("results", []))
                 if not data.get("has_more"):
-                    return rows
+                    break
                 cursor = data.get("next_cursor")
-            # non-200 → try next endpoint
+            if ok:
+                return rows
         except Exception as e:  # noqa: BLE001
             last_err = str(e)
     die(f"Notion query failed: {last_err}")
 
 
 def parse_notion(rows):
-    """Return list of dicts with studio, title, start/end decimal-ish, tier, gtg, hta, board arm/disarm."""
     out = []
     for row in rows:
         p = row.get("properties", {})
         status = (_prop_text(p.get("Booking Status")) or "").lower()
         if "cancel" in status or "missed" in status:
             continue
-        studio = (_prop_text(p.get("Studio")) or "").strip()
-        # "901 (Elements)" → "901"
-        studio = re.sub(r"\s*\(.*\)\s*", "", studio).strip()
+        studio = re.sub(r"\s*\(.*\)\s*", "", (_prop_text(p.get("Studio")) or "")).strip()
         tob = (_prop_text(p.get("Type of Booking")) or "").strip()
-        tier = {
-            "fbs": "FBS", "monitor only": "Monitor", "studio viewing": "Viewing",
-        }.get(tob.lower())
+        tier = {"fbs": "FBS", "monitor only": "Monitor",
+                "studio viewing": "Viewing"}.get(tob.lower())
         gtg = (_prop_text(p.get("GTG")) or "").strip().lower() == "yes"
         out.append({
             "studio": studio,
-            "title": _prop_text(p.get("Skedda Booking Title")) or "",
             "start": _prop_text(p.get("Start Time")),
-            "end": _prop_text(p.get("End Time")),
             "tier": tier,
             "gtg": gtg if tier else True,
             "hta": _prop_text(p.get("HTA")),
@@ -358,7 +335,6 @@ def _time_to_decimal(val):
 
 
 def join_notion(events, notion_rows):
-    """Attach tier/gtg/hta (and board arm/disarm as fallback) by studio + overlapping time."""
     used = [False] * len(notion_rows)
     for e in events:
         best, best_i, best_gap = None, -1, 1e9
@@ -371,81 +347,93 @@ def join_notion(events, notion_rows):
                 best, best_i, best_gap = r, i, gap
         if best and best_gap <= 2.0:
             used[best_i] = True
-            e["tier"] = best["tier"]
-            e["gtg"] = best["gtg"]
-            e["hta"] = best["hta"]
+            e["tier"], e["gtg"], e["hta"] = best["tier"], best["gtg"], best["hta"]
             e["_board_disarmed"] = best["board_disarmed"]
             e["_board_armed"] = best["board_armed"]
     return events
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 3. Arrivals / departures — Gmail IMAP
+# 3. Arrivals / departures — Gmail API (OAuth refresh token)
 # ─────────────────────────────────────────────────────────────────────────────
-ARM_LABEL = "Artist Care - ADT"
-
 RE_DISARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:\s*Studio\s+(\d+\w?)\s+was\s+Disarmed\s+by\s+(.+?)\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)", re.I)
 RE_ARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:\s*Studio\s+(\d+\w?)\s+was\s+Armed\s+Away\s+by\s+(.+?)\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)", re.I)
 RE_PANEL_DISARM = re.compile(r"Studio\s+(\d+\w?)\s+Panel\s+was\s+Disarmed\s+by\s+(.+?)\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)", re.I)
-RE_PANEL_ARM = re.compile(r"Panel\s+was\s+Armed\s+Away\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
+# Panel arm has no "by <name>" — the name is in trailing parens: "… Armed Away at 9:16 PM (Shiela)".
+# Anchor the studio on the "Studio NNN:" subject prefix.
+RE_PANEL_ARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:.*?Panel\s+was\s+Armed\s+Away\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
 IGNORE = ("motion", "pending", "image", "alarm")
 STAFF_REMOTE = "info@danceannex.ca"
 
 
-def _decode(s):
-    if not s:
-        return ""
-    parts = decode_header(s)
-    return "".join(
-        (b.decode(enc or "utf-8", "ignore") if isinstance(b, bytes) else b)
-        for b, enc in parts
-    )
+def gmail_access_token():
+    data = {
+        "client_id": os.environ["GMAIL_CLIENT_ID"],
+        "client_secret": os.environ["GMAIL_CLIENT_SECRET"],
+        "refresh_token": os.environ["GMAIL_REFRESH_TOKEN"],
+        "grant_type": "refresh_token",
+    }
+    r = requests.post(TOKEN_URL, data=data, timeout=30)
+    if r.status_code != 200:
+        # revoked/expired refresh token = the silent-death risk → fail RED (decision 023)
+        die(f"Gmail OAuth refresh failed ({r.status_code}): {r.text[:200]}\n"
+            "If invalid_grant: refresh token revoked/expired — re-mint and update "
+            "GMAIL_REFRESH_TOKEN.")
+    return r.json()["access_token"]
 
 
-def norm_studio_label(raw):
-    raw = (raw or "").strip()
-    m = re.match(r"(\d+)([AB])?", raw)
-    if not m:
-        return None
-    base = m.group(1) + (m.group(2) or "")
-    if base in STUDIO_IDS:
-        return base
-    # bare "509" never occurs for arm/disarm; map "901" family
-    if base == "901":
-        return "901"
-    return base if base in STUDIO_IDS else None
+def _resolve_label_id(h, name):
+    """Gmail's label: search operator does NOT match quoted multi-word names
+    ('label:"Artist Care - ADT"' returns 0), so we resolve to the exact label ID
+    and filter with the labelIds param instead."""
+    r = requests.get(f"{GMAIL_API}/labels", headers=h, timeout=30)
+    if r.status_code in (401, 403):
+        die(f"Gmail API {r.status_code} listing labels — check scope/consent.")
+    r.raise_for_status()
+    for lab in r.json().get("labels", []):
+        if lab.get("name") == name:
+            return lab["id"]
+    die(f'Gmail label "{name}" not found on this account — arrivals source is misconfigured.')
 
 
-def fetch_arm_events(user, password, since_dt):
-    """Return list of {studio, name, time 'HH:MM', kind 'arrival'|'departure'}."""
+def fetch_arm_events(win_start):
+    """Return [{studio, name, time 'HH:MM', kind}]. Raises on soft (non-auth) failures."""
+    tok = gmail_access_token()
+    h = {"Authorization": f"Bearer {tok}"}
+    label_id = _resolve_label_id(h, ARM_LABEL)
+    after = int(win_start.timestamp())
+    ids, page = [], None
+    for _ in range(20):
+        params = {"labelIds": label_id, "q": f"after:{after}", "maxResults": 100}
+        if page:
+            params["pageToken"] = page
+        r = requests.get(f"{GMAIL_API}/messages", headers=h, params=params, timeout=30)
+        if r.status_code in (401, 403):
+            die(f"Gmail API {r.status_code} listing messages — check scope/consent.")
+        r.raise_for_status()
+        data = r.json()
+        ids.extend(m["id"] for m in data.get("messages", []))
+        page = data.get("nextPageToken")
+        if not page:
+            break
+    floor_ms = int(win_start.timestamp()) * 1000
     out = []
-    try:
-        M = imaplib.IMAP4_SSL("imap.gmail.com")
-        M.login(user, password)
-        M.select(f'"{ARM_LABEL}"')
-        since = since_dt.strftime("%d-%b-%Y")
-        typ, data = M.search(None, f'(SINCE "{since}")')
-        if typ != "OK":
-            raise RuntimeError(f"IMAP search failed: {typ}")
-        for num in data[0].split():
-            typ, msg_data = M.fetch(num, "(RFC822)")
-            if typ != "OK":
-                continue
-            msg = email.message_from_bytes(msg_data[0][1])
-            subject = _decode(msg.get("Subject"))
-            date_hdr = msg.get("Date")
-            try:
-                msg_dt = email.utils.parsedate_to_datetime(date_hdr).astimezone(TZ)
-            except Exception:  # noqa: BLE001
-                msg_dt = None
-            if msg_dt and msg_dt < since_dt:
-                continue
-            parsed = parse_arm_subject(subject)
-            if parsed:
-                out.append(parsed)
-        M.logout()
-    except Exception as e:  # noqa: BLE001
-        raise RuntimeError(f"IMAP error: {e}")
+    for mid in ids:
+        r = requests.get(f"{GMAIL_API}/messages/{mid}", headers=h,
+                         params={"format": "metadata", "metadataHeaders": "Subject"},
+                         timeout=30)
+        r.raise_for_status()
+        msg = r.json()
+        if int(msg.get("internalDate", "0")) < floor_ms:
+            continue
+        subject = ""
+        for hdr in msg.get("payload", {}).get("headers", []):
+            if hdr.get("name", "").lower() == "subject":
+                subject = hdr.get("value", "")
+                break
+        parsed = parse_arm_subject(subject)
+        if parsed:
+            out.append(parsed)
     return out
 
 
@@ -453,11 +441,9 @@ def parse_arm_subject(subject):
     low = subject.lower()
     if any(k in low for k in IGNORE):
         return None
-
     m = RE_DISARM.search(subject)
     if m:
-        who = m.group(3).strip()
-        return _arm_evt(m.group(2), who, m.group(4), "arrival")
+        return _arm_evt(m.group(2), m.group(3).strip(), m.group(4), "arrival")
     m = RE_ARM.search(subject)
     if m:
         return _arm_evt(m.group(2), m.group(3).strip(), m.group(4), "departure")
@@ -466,9 +452,16 @@ def parse_arm_subject(subject):
         return _arm_evt(m.group(1), m.group(2).strip(), m.group(3), "arrival")
     m = RE_PANEL_ARM.search(subject)
     if m:
-        # panel-arm variant: studio not in subject — best effort, drop (no studio)
-        return None
+        return _arm_evt(m.group(1), m.group(3).strip(), m.group(2), "departure")
     return None
+
+
+def norm_studio_label(raw):
+    m = re.match(r"(\d+)([AB])?", (raw or "").strip())
+    if not m:
+        return None
+    base = m.group(1) + (m.group(2) or "")
+    return base if base in STUDIO_IDS else None
 
 
 def _arm_evt(studio_raw, name, time_raw, kind):
@@ -481,17 +474,15 @@ def _arm_evt(studio_raw, name, time_raw, kind):
 
 
 def apply_arm_events(events, arm_events):
-    """Match arm/disarm to bookings: studio + nearest time in [start-60, end+90].
-    earliest disarm = arrived, last arm = departed."""
+    """studio + nearest time in [start-60, end+90]; earliest disarm=arrived, last arm=departed."""
     for e in events:
-        window_lo = e["start"] - 1.0
-        window_hi = e["end"] + 1.5
+        lo, hi = e["start"] - 1.0, e["end"] + 1.5
         arrivals, departures = [], []
         for a in arm_events:
             if a["studio"] != e["studio"] or not a["time"]:
                 continue
             t = _time_to_decimal(a["time"])
-            if t is None or not (window_lo <= t <= window_hi):
+            if t is None or not (lo <= t <= hi):
                 continue
             (arrivals if a["kind"] == "arrival" else departures).append((t, a["time"]))
         if arrivals:
@@ -516,53 +507,46 @@ def apply_board_fallback(events):
 def build_data(now):
     base_day = now.date() if now.hour >= 5 else (now - timedelta(days=1)).date()
     win_start = datetime.combine(base_day, datetime.min.time(), TZ).replace(hour=5)
-    win_end = win_start + timedelta(days=1) - timedelta(minutes=1)  # next day 04:59
+    win_end = win_start + timedelta(days=1) - timedelta(minutes=1)
 
-    ics_map = json.loads(os.environ.get("ICS_URLS") or "{}")
-    if not ics_map:
-        die("ICS_URLS env is empty — cannot build bookings.")
-
+    ics_map = ics_map_from_env()
+    if not any(k in STUDIO_IDS for k in ics_map):
+        die("No ICS_URL_<studio> secrets set — cannot build bookings.")
     events, staff = build_calendar_events(ics_map, win_start, win_end, base_day)
 
-    notion_token = os.environ.get("NOTION_TOKEN")
-    if not notion_token:
+    token = os.environ.get("NOTION_TOKEN")
+    if not token:
         die("NOTION_TOKEN missing.")
-    notion_rows = parse_notion(fetch_notion_rows(notion_token, base_day.isoformat()))
-    events = join_notion(events, notion_rows)
+    events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
 
-    # arrivals — IMAP, soft-fail to board columns
-    user = os.environ.get("GMAIL_USER", "thedanceannex@gmail.com")
-    pw = os.environ.get("GMAIL_APP_PASSWORD")
     used_fallback = False
-    if pw:
+    if os.environ.get("GMAIL_REFRESH_TOKEN"):
         try:
-            arm_events = fetch_arm_events(user, pw, win_start)
-            events = apply_arm_events(events, arm_events)
-        except Exception as e:  # noqa: BLE001
+            events = apply_arm_events(events, fetch_arm_events(win_start))
+        except SystemExit:
+            raise                       # auth failure already died RED
+        except Exception as e:          # noqa: BLE001 — soft: fall back to board
             used_fallback = True
-            emit_fallback_note(f"IMAP failed ({e}); used board Armed/Disarmed fallback.")
+            emit_fallback_note(f"Gmail fetch failed ({e}); used board Armed/Disarmed fallback.")
             events = apply_board_fallback(events)
     else:
         used_fallback = True
-        emit_fallback_note("GMAIL_APP_PASSWORD missing; used board Armed/Disarmed fallback.")
+        emit_fallback_note("GMAIL_* secrets missing; used board Armed/Disarmed fallback.")
         events = apply_board_fallback(events)
 
-    # strip internal keys
-    clean_events = []
-    for e in events:
-        clean_events.append({
-            "studio": e["studio"], "who": e["who"], "kind": e["kind"],
-            "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
-            "arrived": e.get("arrived"), "departed": e.get("departed"),
-            "start": round(e["start"], 4), "end": round(e["end"], 4),
-        })
+    clean = [{
+        "studio": e["studio"], "who": e["who"], "kind": e["kind"],
+        "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
+        "arrived": e.get("arrived"), "departed": e.get("departed"),
+        "start": round(e["start"], 4), "end": round(e["end"], 4),
+    } for e in events]
 
     data = {
         "date": now.strftime("%A, %B %-d, %Y"),
         "generatedAt": now.strftime("%b %-d, %-I:%M %p ET"),
         "generatedAtISO": now.replace(microsecond=0).isoformat(),
         "studios": STUDIOS,
-        "events": clean_events,
+        "events": clean,
         "staff": sorted(staff, key=lambda s: s["start"]),
         "attention": [],
     }
@@ -572,12 +556,9 @@ def build_data(now):
 def splice(data):
     tpl = open(TEMPLATE, encoding="utf-8").read()
     payload = json.dumps(data, indent=2, ensure_ascii=False)
-    out = re.sub(
-        r"/\*__DATA__\*/.*?/\*__END_DATA__\*/",
-        lambda _: "/*__DATA__*/" + payload + "/*__END_DATA__*/",
-        tpl, count=1, flags=re.S,
-    )
-    # wrap as full document (per RUNBOOK)
+    out = re.sub(r"/\*__DATA__\*/.*?/\*__END_DATA__\*/",
+                 lambda _: "/*__DATA__*/" + payload + "/*__END_DATA__*/",
+                 tpl, count=1, flags=re.S)
     out = ('<!doctype html>\n<html lang="en">\n<head>\n'
            '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
            '<meta name="robots" content="noindex,nofollow">\n') + out
@@ -593,12 +574,11 @@ def main():
         print(f"Outside 07:00–24:00 Toronto window ({now:%H:%M}); skipping.")
         return
     data, fallback = build_data(now)
-    html = splice(data)
-    open(OUTPUT, "w", encoding="utf-8").write(html)
+    open(OUTPUT, "w", encoding="utf-8").write(splice(data))
     n = len(data["events"])
     arrived = sum(1 for e in data["events"] if e["arrived"])
     print(f"Built index.html — {n} bookings, {arrived} with arrivals"
-          + (" [IMAP fallback]" if fallback else ""))
+          + (" [board fallback]" if fallback else ""))
 
 
 if __name__ == "__main__":

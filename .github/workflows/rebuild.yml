@@ -5,7 +5,6 @@ on:
     - cron: "*/15 * * * *"   # every 15 min (UTC); build.py gates to 07:00–24:00 America/Toronto
   workflow_dispatch: {}       # manual "Run workflow" button — bypasses the time gate
 
-# Avoid overlapping runs stepping on each other's commit.
 concurrency:
   group: rebuild
   cancel-in-progress: false
@@ -19,24 +18,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Skip cleanly (green, not red) until secrets are configured, so scheduled runs
+      # before setup don't email a failure every 15 minutes.
+      - name: Gate on setup
+        id: gate
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: |
+          if [ -z "$NOTION_TOKEN" ]; then
+            echo "::notice::NOTION_TOKEN not set — setup incomplete, skipping this run."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.ready == 'true'
         with:
           python-version: "3.12"
 
       - name: Install deps
+        if: steps.gate.outputs.ready == 'true'
         run: pip install -r requirements.txt
 
       - name: Build index.html
+        if: steps.gate.outputs.ready == 'true'
         env:
-          ICS_URLS: ${{ secrets.ICS_URLS }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ICS_URL_509A: ${{ secrets.ICS_URL_509A }}
+          ICS_URL_509B: ${{ secrets.ICS_URL_509B }}
+          ICS_URL_527: ${{ secrets.ICS_URL_527 }}
+          ICS_URL_693: ${{ secrets.ICS_URL_693 }}
+          ICS_URL_901: ${{ secrets.ICS_URL_901 }}
+          ICS_URL_STAFF: ${{ secrets.ICS_URL_STAFF }}
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
           # Manual dispatch bypasses the 07:00–24:00 Toronto gate; cron respects it.
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: python build.py
 
       - name: Commit if changed
+        if: steps.gate.outputs.ready == 'true'
         run: |
           git config user.name "fbs-monitor-bot"
           git config user.email "actions@github.com"
