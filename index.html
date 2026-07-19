@@ -63,6 +63,16 @@
   .clock{margin-left:auto;font-family:var(--mono);font-size:clamp(20px,3vw,30px);font-variant-numeric:tabular-nums;
          color:var(--chalk);display:flex;align-items:baseline;gap:10px}
   .clock small{font-family:var(--body);font-size:12px;color:var(--chalk-dim);letter-spacing:.08em;text-transform:uppercase}
+  .clockwrap{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+  .clockwrap .clock{margin-left:0}
+  .datastamp{display:inline-flex;align-items:center;gap:7px;background:none;border:0;padding:3px 0;cursor:pointer;
+             font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+             color:var(--chalk-dim);transition:color .15s ease}
+  .datastamp:hover,.datastamp:focus-visible{color:var(--tungsten);outline:none}
+  .datastamp svg{width:13px;height:13px;flex:none}
+  .datastamp.busy svg{animation:spin .8s linear infinite}
+  .datastamp.stale{color:var(--crit)}
+  @keyframes spin{to{transform:rotate(360deg)}}
   .clock .dot{width:9px;height:9px;border-radius:50%;background:var(--tungsten);align-self:center;
               animation:pulse 2.4s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--tungsten-soft)}50%{opacity:.55;box-shadow:0 0 0 7px transparent}}
@@ -190,10 +200,12 @@
     <div class="brand">Dance Annex · Front-of-Building Support</div>
     <h1 id="daytitle">FBS Studio Monitor</h1>
   </div>
-  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end">
-    <span id="freshness" style="font-size:11px;letter-spacing:.04em"></span>
-    <button id="refreshbtn" type="button" style="font:600 11px/1 var(--sans,sans-serif);letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:99px;border:1px solid var(--tungsten);background:var(--tungsten-soft);color:var(--tungsten);cursor:pointer">⟳ Refresh</button>
+  <div class="clockwrap">
     <div class="clock"><span class="dot" aria-hidden="true"></span><span id="clock">--:--</span><small>Toronto</small></div>
+    <button id="refreshbtn" class="datastamp" type="button" aria-label="Refresh data" title="Pull the newest edition">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg>
+      <span id="freshness">data —</span>
+    </button>
   </div>
 </header>
 
@@ -494,26 +506,52 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
   " · arrivals read from the FBS AI Support board (alarm disarm/arm)";
 
 /* Freshness + refresh. The page is a static edition rebuilt every 15 min by the
-   fbs-monitor-refresh task; Refresh pulls the newest pushed edition (cache-busted).
-   The button cannot rebuild data itself — freshness ceiling = the rebuild cadence. */
+   fbs-monitor-refresh task. Refresh fetches the newest pushed edition in the
+   background (cache-busted, works inside sandboxed embeds where navigation is
+   blocked) and swaps the whole document in via document.write, which re-runs
+   scripts. The button cannot rebuild data itself — ceiling = rebuild cadence. */
 (function(){
   const btn = document.getElementById('refreshbtn');
   const fresh = document.getElementById('freshness');
-  const reload = () => location.replace(location.pathname + '?r=' + Date.now());
-  btn.addEventListener('click', reload);
+  let flashTimer = null;
   function paintAge(){
-    if(!fresh) return;
     const iso = DATA.generatedAtISO;
-    if(!iso){ fresh.textContent = "Edition: " + (DATA.generatedAt||""); return; }
+    if(!iso){ fresh.textContent = "edition " + (DATA.generatedAt||"—"); return; }
     const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
     const stale = mins > 40;
-    fresh.textContent = "Data " + (mins<1 ? "just updated" : mins + " min old");
-    fresh.style.color = stale ? "var(--crit)" : "var(--chalk-dim, inherit)";
-    fresh.style.fontWeight = stale ? "700" : "400";
-    if(stale) fresh.textContent += " — rebuild may be down";
+    btn.classList.toggle('stale', stale);
+    fresh.textContent = stale ? "data " + mins + " min old — rebuild down?"
+                      : mins < 1 ? "data live" : "data " + mins + " min old";
   }
+  function flash(msg){
+    clearTimeout(flashTimer);
+    fresh.textContent = msg;
+    flashTimer = setTimeout(paintAge, 2200);
+  }
+  async function refresh(silent){
+    btn.classList.add('busy');
+    try{
+      const res = await fetch(location.pathname + '?r=' + Date.now(), {cache:'no-store'});
+      if(!res.ok) throw new Error(res.status);
+      const html = await res.text();
+      const m = html.match(/"generatedAtISO"\s*:\s*"([^"]+)"/);
+      if(m && DATA.generatedAtISO && m[1] === DATA.generatedAtISO){
+        if(!silent) flash("latest edition ✓");
+        return;
+      }
+      document.open(); document.write(html); document.close();
+    }catch(e){
+      if(!silent){
+        try{ location.replace(location.pathname + '?r=' + Date.now()); }
+        catch(_){ flash("refresh unavailable here"); }
+      }
+    }finally{
+      btn.classList.remove('busy');
+    }
+  }
+  btn.addEventListener('click', () => refresh(false));
   paintAge(); setInterval(paintAge, 30000);
-  setInterval(reload, 5*60000);           // auto-pull the newest edition every 5 min
+  setInterval(() => refresh(true), 5*60000);   // silent auto-pull every 5 min
 })();
 
 const E = DATA.events;
