@@ -241,8 +241,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, July 18, 2026",
-  "generatedAt": "Jul 18, 10:03 PM ET",
-  "generatedAtISO": "2026-07-18T22:03:36-04:00",
+  "generatedAt": "Jul 18, 10:10 PM ET",
+  "generatedAtISO": "2026-07-18T22:10:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -273,7 +273,7 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
-      "who": "Camila Avendano:",
+      "who": "Camila Avendano",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -285,7 +285,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509A",
-      "who": "Mia Vescarelli:",
+      "who": "Mia Vescarelli",
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
@@ -297,7 +297,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509A",
-      "who": "Desiree Joy: Desiree Joy",
+      "who": "Desiree Joy",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -309,7 +309,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "who": "Kristyan Calletor: Salsa Dance",
+      "who": "Kristyan Calletor — Salsa Dance",
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
@@ -321,7 +321,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "who": "Destiny Nwobosi:",
+      "who": "Destiny Nwobosi",
       "kind": "booking",
       "tier": "FBS",
       "gtg": true,
@@ -333,7 +333,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Kateryna Zozulia :",
+      "who": "Kateryna Zozulia",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -345,7 +345,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Roux Buciu: WCS Peer Practica",
+      "who": "Roux Buciu — WCS Peer Practica",
       "kind": "booking",
       "tier": "FBS",
       "gtg": true,
@@ -357,7 +357,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Kangbin Zhou (Versatile Dance): Versatile Dance [Facilitator: Steven Cheng]",
+      "who": "Kangbin Zhou (Versatile Dance) — Versatile Dance [Facilitator: Steven Cheng]",
       "kind": "booking",
       "tier": "FBS",
       "gtg": true,
@@ -369,7 +369,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Anastasia Markevitch :",
+      "who": "Anastasia Markevitch",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -381,7 +381,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Anastasia Markevitch : Kizomba social",
+      "who": "Anastasia Markevitch — Kizomba social",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -393,7 +393,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "693",
-      "who": "Tunde Ifafore:",
+      "who": "Tunde Ifafore",
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
@@ -429,7 +429,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "901",
-      "who": "Tufan Bhattarai: )",
+      "who": "Tufan Bhattarai",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -441,7 +441,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "901",
-      "who": "Laura Flores: )",
+      "who": "Laura Flores",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -453,7 +453,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "901",
-      "who": "Himanshi Mehta: )",
+      "who": "Himanshi Mehta",
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
@@ -465,7 +465,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "901",
-      "who": "Quynh Tran: Dropping off items )",
+      "who": "Quynh Tran — Dropping off items",
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
@@ -515,13 +515,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 15.75,
       "end": 16.25
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 15.75,
       "end": 16.25
     },
@@ -548,10 +548,11 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
   " · arrivals read from the FBS AI Support board (alarm disarm/arm)";
 
 /* Freshness + refresh. The page is a static edition rebuilt every 15 min by the
-   fbs-monitor-refresh task. Refresh fetches the newest pushed edition in the
-   background (cache-busted, works inside sandboxed embeds where navigation is
-   blocked) and swaps the whole document in via document.write, which re-runs
-   scripts. The button cannot rebuild data itself — ceiling = rebuild cadence. */
+   GitHub Actions cron. Refresh probes for a newer pushed edition in the background
+   (cache-busted fetch, compare generatedAtISO); when one exists it reloads the page
+   with a cache-buster. (document.write swap was abandoned: scripts in the written
+   document never execute, leaving a dead board — and the artifact sandbox that
+   needed it is retired.) The button cannot rebuild data — ceiling = rebuild cadence. */
 (function(){
   const btn = document.getElementById('refreshbtn');
   const fresh = document.getElementById('freshness');
@@ -581,12 +582,9 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
         if(!silent) flash("latest edition ✓");
         return;
       }
-      document.open(); document.write(html); document.close();
+      location.replace(location.pathname + '?r=' + Date.now());
     }catch(e){
-      if(!silent){
-        try{ location.replace(location.pathname + '?r=' + Date.now()); }
-        catch(_){ flash("refresh unavailable here"); }
-      }
+      if(!silent) flash("refresh unavailable here");
     }finally{
       btn.classList.remove('busy');
     }
