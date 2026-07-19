@@ -1,0 +1,52 @@
+name: Rebuild FBS Monitor
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 min (UTC); build.py gates to 07:00–24:00 America/Toronto
+  workflow_dispatch: {}       # manual "Run workflow" button — bypasses the time gate
+
+# Avoid overlapping runs stepping on each other's commit.
+concurrency:
+  group: rebuild
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Build index.html
+        env:
+          ICS_URLS: ${{ secrets.ICS_URLS }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          # Manual dispatch bypasses the 07:00–24:00 Toronto gate; cron respects it.
+          FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+        run: python build.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "fbs-monitor-bot"
+          git config user.email "actions@github.com"
+          if git diff --quiet -- index.html; then
+            echo "No change — skipping commit."
+          else
+            STAMP="$(date -u +'%Y-%m-%d %H:%MZ')"
+            MSG="FBS Monitor rebuild ${STAMP}"
+            if [ -n "${FALLBACK_NOTE:-}" ]; then MSG="${MSG} — ${FALLBACK_NOTE}"; fi
+            git add index.html
+            git commit -m "${MSG}"
+            git push
+          fi
