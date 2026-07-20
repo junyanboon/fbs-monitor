@@ -27,12 +27,12 @@
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --ink:#141210; --scrim:#1a1815; --scrim-2:#211e1a; --line:#33302b;
-      --chalk:#ece8e1; --chalk-dim:#979187; --chalk-faint:#6e6860;
-      --tungsten:#a685f0; --tungsten-soft:rgba(166,133,240,.14);
-      --ok:#6fbd92; --watch:#e2a552; --crit:#e8796a;
-      --ok-bg:#16291f; --watch-bg:#33270f; --crit-bg:#3a1c17;
-      --live-bg:#182420; --live-line:#2b463a;
+      --ink:#161412; --scrim:#1e1b18; --scrim-2:#2a2622; --line:#403b34;
+      --chalk:#f4f1ea; --chalk-dim:#beb7ab; --chalk-faint:#948d82;
+      --tungsten:#b598f5; --tungsten-soft:rgba(181,152,245,.18);
+      --ok:#82cda2; --watch:#eab365; --crit:#f08a7b;
+      --ok-bg:#1d3527; --watch-bg:#3d2f12; --crit-bg:#46221c;
+      --live-bg:#20312a; --live-line:#41604e;
       --shadow:0 8px 24px rgba(0,0,0,.4);
     }
   }
@@ -46,17 +46,17 @@
     --shadow:0 6px 18px rgba(25,23,21,.07);
   }
   :root[data-theme="dark"]{
-    --ink:#141210; --scrim:#1a1815; --scrim-2:#211e1a; --line:#33302b;
-    --chalk:#ece8e1; --chalk-dim:#979187; --chalk-faint:#6e6860;
-    --tungsten:#a685f0; --tungsten-soft:rgba(166,133,240,.14);
-    --ok:#6fbd92; --watch:#e2a552; --crit:#e8796a;
-    --ok-bg:#16291f; --watch-bg:#33270f; --crit-bg:#3a1c17;
-    --live-bg:#182420; --live-line:#2b463a;
+    --ink:#161412; --scrim:#1e1b18; --scrim-2:#2a2622; --line:#403b34;
+    --chalk:#f4f1ea; --chalk-dim:#beb7ab; --chalk-faint:#948d82;
+    --tungsten:#b598f5; --tungsten-soft:rgba(181,152,245,.18);
+    --ok:#82cda2; --watch:#eab365; --crit:#f08a7b;
+    --ok-bg:#1d3527; --watch-bg:#3d2f12; --crit-bg:#46221c;
+    --live-bg:#20312a; --live-line:#41604e;
     --shadow:0 8px 24px rgba(0,0,0,.4);
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{background:var(--ink);color:var(--chalk);font-family:var(--body);font-size:15px;line-height:1.5;
+  body{background:var(--ink);color:var(--chalk);font-family:var(--body);font-size:16.5px;line-height:1.5;
        -webkit-font-smoothing:antialiased;padding:0 0 64px}
 
   /* ── slim header: title · summary · clock+freshness ── */
@@ -69,7 +69,7 @@
   h1 em{font-style:normal;color:var(--tungsten)}
   h1 small{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--chalk-dim);
            text-transform:none;margin-left:10px}
-  .summary{font-size:13px;color:var(--chalk-dim);margin-left:auto;font-variant-numeric:tabular-nums}
+  .summary{font-size:14.5px;color:var(--chalk-dim);margin-left:auto;font-variant-numeric:tabular-nums}
   .summary b{color:var(--chalk);font-weight:700}
   .summary b.good{color:var(--ok)} .summary b.warn{color:var(--watch)} .summary b.bad{color:var(--crit)}
   .summary .sep{margin:0 7px;color:var(--chalk-faint)}
@@ -106,31 +106,31 @@
   .strip:last-child{border-bottom:none}
   .stu{padding:14px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;
        justify-content:center;gap:4px}
-  .stu .id{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:.02em;line-height:1}
-  .stu .occ{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .stu .id{font-family:var(--disp);font-weight:800;font-size:29px;letter-spacing:.02em;line-height:1}
+  .stu .occ{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
   .stu .occ.live{color:var(--ok)} .stu .occ.empty{color:var(--chalk-faint);font-weight:600}
   .lane{padding:11px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
-  .lane .quiet{font-size:12.5px;color:var(--chalk-faint);padding:4px 2px}
-  .ev{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:12px;align-items:center;
+  .lane .quiet{font-size:14px;color:var(--chalk-faint);padding:4px 2px}
+  .ev{display:grid;grid-template-columns:118px minmax(0,1fr) auto;gap:12px;align-items:center;
       padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--ink)}
   .ev.live{background:var(--live-bg);border-color:var(--live-line);box-shadow:inset 4px 0 0 var(--ok)}
   .ev.flagged{background:var(--crit-bg);border-color:var(--crit);box-shadow:inset 4px 0 0 var(--crit)}
-  .ev.done{opacity:.55}
+  .ev.done{opacity:.68}
   .ev.tier-t{border-left:4px solid var(--tungsten)}
   .ev.live.tier-t,.ev.flagged.tier-t{border-left-width:1px}  /* live/flag edge wins */
   .ev.cleaning{background:repeating-linear-gradient(-45deg,var(--scrim-2) 0 7px,var(--scrim) 7px 14px)}
-  .ev .tm{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;line-height:1.35}
-  .ev .tm .act{display:block;font-size:11px;color:var(--ok)}
+  .ev .tm{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;line-height:1.4}
+  .ev .tm .act{display:block;font-size:12.5px;color:var(--ok)}
   .ev .tm .act.dep{color:var(--chalk-dim)}
   .ev .tm .act.miss{color:var(--crit);font-family:var(--body);letter-spacing:.02em}
-  .ev .who{font-size:14px;font-weight:600;min-width:0}
+  .ev .who{font-size:16px;font-weight:600;min-width:0}
   .ev .who .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;
                max-width:100%;vertical-align:bottom}
   .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
-  .ev .cnt{font-family:var(--mono);font-size:12.5px;color:var(--chalk-dim);text-align:right;white-space:nowrap;
+  .ev .cnt{font-family:var(--mono);font-size:14px;color:var(--chalk-dim);text-align:right;white-space:nowrap;
            font-variant-numeric:tabular-nums}
   .ev .cnt b{color:var(--ok);font-weight:700}
-  .chip{font-family:var(--sans);font-size:10px;letter-spacing:.06em;padding:2px 7px;border-radius:99px;font-weight:600;
+  .chip{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;padding:2px 8px;border-radius:99px;font-weight:600;
         text-transform:uppercase;display:inline-block}
   .chip.ok{background:var(--ok-bg);color:var(--ok)}
   .chip.watch{background:var(--watch-bg);color:var(--watch)}
@@ -173,8 +173,8 @@
   .booking.done{opacity:.5}
   .booking.live{border-color:var(--tungsten);box-shadow:0 0 0 1px var(--tungsten),var(--shadow)}
   .booking.flagged{border-color:var(--crit);box-shadow:0 0 0 1px var(--crit),var(--shadow)}
-  .booking .who{font-weight:600;font-size:13px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .booking .when{font-family:var(--mono);font-size:11px;color:var(--chalk-dim);font-variant-numeric:tabular-nums}
+  .booking .who{font-weight:600;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .booking .when{font-family:var(--mono);font-size:12px;color:var(--chalk-dim);font-variant-numeric:tabular-nums}
   .booking .when .arr{color:var(--ok)} .booking .when .flag{color:var(--crit);font-family:var(--body)}
   .chips{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
   .nowline{position:absolute;left:0;right:0;height:0;border-top:2px solid var(--tungsten);z-index:8;pointer-events:none}
@@ -245,8 +245,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, July 19, 2026",
-  "generatedAt": "Jul 19, 11:37 PM ET",
-  "generatedAtISO": "2026-07-19T23:37:04-04:00",
+  "generatedAt": "Jul 19, 11:43 PM ET",
+  "generatedAtISO": "2026-07-19T23:43:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -367,7 +367,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "09:44",
-      "departed": null,
+      "departed": "13:10",
       "start": 10.0,
       "end": 13.0
     },
@@ -379,7 +379,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "arrived": "13:18",
-      "departed": null,
+      "departed": "13:10",
       "start": 13.0,
       "end": 13.25
     },
@@ -391,7 +391,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "17:12",
-      "departed": null,
+      "departed": "17:12",
       "start": 15.5,
       "end": 17.0
     },
@@ -403,7 +403,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "17:59",
-      "departed": null,
+      "departed": "20:06",
       "start": 18.0,
       "end": 20.0
     },
@@ -415,7 +415,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "20:07",
-      "departed": null,
+      "departed": "23:01",
       "start": 20.0,
       "end": 23.0
     }
