@@ -136,12 +136,11 @@ def clean_who(title):
     if ":" in t:
         lhs, rhs = (s.strip(" -–—:") for s in t.split(":", 1))
         t = lhs if (not rhs or rhs.lower() in lhs.lower()) else f"{lhs} — {rhs}"
-    # "Name (Name)" → "Name" (Skedda duplicates the renter name in parens; the
-    # closing paren may already be gone from the earlier strip)
-    if "(" in t:
-        lhs, rhs = t.split("(", 1)
-        if rhs.strip(" )").lower() == lhs.strip().lower():
-            t = lhs.strip()
+    # "Name (Name)" → "Name" (Skedda duplicates the renter name in parens),
+    # including with a trailing description ("Nicole Drury (Nicole Drury) — boxing")
+    # or with the closing paren already stripped.
+    t = re.sub(r"^([^(]+?)\s*\(\s*\1\s*\)", r"\1", t, flags=re.I)
+    t = re.sub(r"^([^(]+?)\s*\(\s*\1\s*$", r"\1", t, flags=re.I)
     return t
 
 
@@ -194,8 +193,9 @@ CLEANERS = ("stefan", "donny", "ela")
 
 def is_cleaning(summary):
     """Staff blocks on studio calendars: '<Cleaner> ... clean ...' or just the
-    cleaner's name alone ('Stefan')."""
-    s = summary.lower().strip()
+    cleaner's name alone — after dropping '(Studio …)' parentheticals, e.g.
+    'Stefan (Studio 901 (Elements))'."""
+    s = _strip_paren_groups(summary, ("studio",)).lower().strip()
     toks = s.split()
     if not toks or toks[0] not in CLEANERS:
         return False
