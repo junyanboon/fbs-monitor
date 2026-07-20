@@ -284,8 +284,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, July 20, 2026",
-  "generatedAt": "Jul 20, 5:37 PM ET",
-  "generatedAtISO": "2026-07-20T17:37:27-04:00",
+  "generatedAt": "Jul 20, 5:47 PM ET",
+  "generatedAtISO": "2026-07-20T17:47:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -630,14 +630,16 @@ function render(){
     if(st.flagged) act += `<span class="act miss">⚠ no arrival</span>`;
     // tags
     let tags = "";
-    if(e.kind==="cleaning") tags += `<span class="chip plain">Cleaning</span>`;
+    if(e.kind==="cleaning") tags += `<span class="chip plain">Staff</span>`;
     if(e.tier) tags += `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
     if(e.tier && e.tier!=="Viewing" && !e.gtg && !done)
       tags += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
     if(cv && !done){
-      if(cv.cls==="cov-ai") tags += `<span class="chip cov-ai">AI watch</span>`;
-      else if(cv.gap>0) tags += `<span class="chip cov-part">Gap ${cv.gap}m</span>`;
-      else tags += `<span class="chip cov-ok">Covered</span>`;
+      /* AI watch is the default state — showing it on every monitored card is noise.
+         Only staffed states (full or partial) earn a chip here; the Staff tab still
+         shows AI watch explicitly. */
+      if(cv.cls==="cov-part") tags += `<span class="chip cov-part">Gap ${cv.gap}m</span>`;
+      else if(cv.cls==="cov-ok") tags += `<span class="chip cov-ok">Covered</span>`;
     }
     // countdown
     let cnt = "";
