@@ -9,13 +9,16 @@
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="7" fill="%232c7a4e"/><polyline points="5,16 11,16 14,9 18,23 21,16 27,16" fill="none" stroke="%23f4f2ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
 <style>
   /* Palette: Day Sheet system (junyanboon.github.io/day-sheet) — paper ground,
-     purple brand, act/wait/hot/done semantics. Light-first, like the Day Sheet. */
+     purple brand, act/wait/hot/done semantics. Light-first, like the Day Sheet.
+     Layout: "Design C — studio strips" (approved 2026-07-19): one strip per studio,
+     occupancy stamped at the left edge, tier as a colored card edge. */
   :root{
     --ink:#f5f4f0; --scrim:#fbfaf7; --scrim-2:#edebe4; --line:#dedbd3;
     --chalk:#191715; --chalk-dim:#716c64; --chalk-faint:#a09a90;
     --tungsten:#5b2fd4; --tungsten-soft:rgba(91,47,212,.09);
     --ok:#2c7a4e; --watch:#b06c00; --crit:#c23a2b;
     --ok-bg:#e2efe7; --watch-bg:#f6ead6; --crit-bg:#f9e6e2;
+    --live-bg:#eef3ec; --live-line:#bcd4c2;
     --shadow:0 6px 18px rgba(25,23,21,.07);
     --disp:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
     --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
@@ -29,6 +32,7 @@
       --tungsten:#a685f0; --tungsten-soft:rgba(166,133,240,.14);
       --ok:#6fbd92; --watch:#e2a552; --crit:#e8796a;
       --ok-bg:#16291f; --watch-bg:#33270f; --crit-bg:#3a1c17;
+      --live-bg:#182420; --live-line:#2b463a;
       --shadow:0 8px 24px rgba(0,0,0,.4);
     }
   }
@@ -38,6 +42,7 @@
     --tungsten:#5b2fd4; --tungsten-soft:rgba(91,47,212,.09);
     --ok:#2c7a4e; --watch:#b06c00; --crit:#c23a2b;
     --ok-bg:#e2efe7; --watch-bg:#f6ead6; --crit-bg:#f9e6e2;
+    --live-bg:#eef3ec; --live-line:#bcd4c2;
     --shadow:0 6px 18px rgba(25,23,21,.07);
   }
   :root[data-theme="dark"]{
@@ -46,6 +51,7 @@
     --tungsten:#a685f0; --tungsten-soft:rgba(166,133,240,.14);
     --ok:#6fbd92; --watch:#e2a552; --crit:#e8796a;
     --ok-bg:#16291f; --watch-bg:#33270f; --crit-bg:#3a1c17;
+    --live-bg:#182420; --live-line:#2b463a;
     --shadow:0 8px 24px rgba(0,0,0,.4);
   }
   *{box-sizing:border-box}
@@ -53,91 +59,97 @@
   body{background:var(--ink);color:var(--chalk);font-family:var(--body);font-size:15px;line-height:1.5;
        -webkit-font-smoothing:antialiased;padding:0 0 64px}
 
-  header{position:sticky;top:0;z-index:30;background:linear-gradient(var(--ink) 82%,transparent);
-         padding:22px 28px 18px;display:flex;align-items:baseline;gap:26px;flex-wrap:wrap}
-  .brand{font-family:var(--sans);font-weight:600;letter-spacing:.3em;text-transform:uppercase;
-         font-size:11.5px;color:var(--chalk-dim)}
-  h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4.6vw,52px);margin:0;letter-spacing:.01em;
-     text-transform:uppercase;line-height:.95;text-wrap:balance}
+  /* ── slim header: title · summary · clock+freshness ── */
+  header{position:sticky;top:0;z-index:30;background:var(--ink);border-bottom:1px solid var(--line);
+         padding:12px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .brand{font-family:var(--sans);font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+         font-size:10px;color:var(--chalk-dim)}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(19px,2.6vw,26px);margin:0;letter-spacing:.02em;
+     text-transform:uppercase;line-height:1}
   h1 em{font-style:normal;color:var(--tungsten)}
-  .clock{margin-left:auto;font-family:var(--mono);font-size:clamp(20px,3vw,30px);font-variant-numeric:tabular-nums;
-         color:var(--chalk);display:flex;align-items:baseline;gap:10px}
-  .clock small{font-family:var(--body);font-size:12px;color:var(--chalk-dim);letter-spacing:.08em;text-transform:uppercase}
-  .clockwrap{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
-  .clockwrap .clock{margin-left:0}
-  .datastamp{display:inline-flex;align-items:center;gap:7px;background:none;border:0;padding:3px 0;cursor:pointer;
-             font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-             color:var(--chalk-dim);transition:color .15s ease}
+  h1 small{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--chalk-dim);
+           text-transform:none;margin-left:10px}
+  .summary{font-size:13px;color:var(--chalk-dim);margin-left:auto;font-variant-numeric:tabular-nums}
+  .summary b{color:var(--chalk);font-weight:700}
+  .summary b.good{color:var(--ok)} .summary b.warn{color:var(--watch)} .summary b.bad{color:var(--crit)}
+  .summary .sep{margin:0 7px;color:var(--chalk-faint)}
+  .clockwrap{display:flex;flex-direction:column;align-items:flex-end;gap:1px;
+             padding-left:18px;border-left:1px solid var(--line)}
+  .clock{font-family:var(--mono);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;
+         color:var(--chalk);display:flex;align-items:center;gap:8px;line-height:1.1}
+  .clock small{font-family:var(--body);font-size:10.5px;font-weight:400;color:var(--chalk-dim);
+               letter-spacing:.08em;text-transform:uppercase}
+  .clock .dot{width:8px;height:8px;border-radius:50%;background:var(--tungsten);
+              animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--tungsten-soft)}50%{opacity:.55;box-shadow:0 0 0 7px transparent}}
+  .datastamp{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:2px 0;cursor:pointer;
+             font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+             color:var(--ok);transition:color .15s ease}
   .datastamp:hover,.datastamp:focus-visible{color:var(--tungsten);outline:none}
-  .datastamp svg{width:13px;height:13px;flex:none}
+  .datastamp svg{width:12px;height:12px;flex:none}
   .datastamp.busy svg{animation:spin .8s linear infinite}
   .datastamp.stale{color:var(--crit)}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .clock .dot{width:9px;height:9px;border-radius:50%;background:var(--tungsten);align-self:center;
-              animation:pulse 2.4s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--tungsten-soft)}50%{opacity:.55;box-shadow:0 0 0 7px transparent}}
   @media (prefers-reduced-motion: reduce){ .clock .dot{animation:none} .nowline::after{animation:none} }
 
-  main{max-width:1320px;margin:0 auto;padding:0 28px}
-
-  .pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:6px 0 26px}
-  .stat{background:var(--scrim);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-  .stat b{display:block;font-family:var(--disp);font-size:32px;font-weight:800;line-height:1.1;
-          font-variant-numeric:tabular-nums}
-  .stat span{font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--chalk-dim)}
-  .stat.bad b{color:var(--crit)} .stat.good b{color:var(--ok)}
+  main{max-width:1140px;margin:0 auto;padding:0 24px}
 
   .lane-label{font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
               color:var(--chalk-dim);margin:26px 0 10px;display:flex;align-items:center;gap:10px}
   .lane-label::after{content:"";flex:1;height:1px;background:var(--line)}
   .lane-label .crit-note{color:var(--crit);letter-spacing:.06em}
 
-  /* now & next */
-  .nowlane{display:grid;gap:10px}
-  .now-card{display:grid;grid-template-columns:6px 1fr auto;gap:0 16px;background:var(--scrim);
-            border:1px solid var(--line);border-radius:10px;overflow:hidden;align-items:center}
-  .now-card .stripe{height:100%;background:var(--ok)}
-  .now-card.flagged .stripe{background:var(--crit)}
-  .now-card.next .stripe{background:var(--line)}
-  .now-card .txt{padding:11px 0}
-  .now-card .txt .row1{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
-  .now-card .studio-tag{font-family:var(--mono);font-size:11px;background:var(--scrim-2);
-                        border:1px solid var(--line);border-radius:5px;padding:1px 7px;color:var(--chalk-dim)}
-  .now-card strong{font-weight:600}
-  .now-card .txt .row2{font-family:var(--mono);font-size:11.5px;color:var(--chalk-dim);
-                       font-variant-numeric:tabular-nums;margin-top:2px}
-  .now-card .row2 .flag{color:var(--crit);font-family:var(--body);letter-spacing:.04em}
-  .now-card .count{padding:0 18px;text-align:right}
-  .now-card .count b{font-family:var(--disp);font-size:26px;font-weight:800;color:var(--ok);
-                     font-variant-numeric:tabular-nums;white-space:nowrap}
-  .now-card.next .count b{color:var(--chalk)}
-  .now-card.flagged .count b{color:var(--ok)}
-  .now-card .count span{display:block;font-size:10.5px;color:var(--chalk-faint);letter-spacing:.07em;text-transform:uppercase}
-  .all-clear{background:var(--ok-bg);border:1px solid var(--line);border-radius:10px;padding:14px 18px;color:var(--ok);
-             font-weight:600}
-
-  /* monitoring ledger */
-  .ledgerwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--scrim)}
-  table.ledger{width:100%;border-collapse:collapse;min-width:760px;font-size:13.5px}
-  .ledger th{font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--chalk-faint);
-             text-align:left;font-weight:600;padding:11px 14px;border-bottom:1px solid var(--line)}
-  .ledger td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
-  .ledger tr:last-child td{border-bottom:none}
-  .ledger .t{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .ledger .arr{color:var(--ok);font-weight:600} .ledger .dep{color:var(--chalk-dim)}
-  .ledger .dash{color:var(--chalk-faint)}
-  .ledger tr.flagged td{background:var(--crit-bg)}
-  .ledger .who-cell strong{font-weight:600}
-  .subflag{display:block;font-size:11px;color:var(--crit);letter-spacing:.04em;margin-top:1px}
-  .chip{font-family:var(--sans);font-size:10px;letter-spacing:.06em;padding:2px 7px;border-radius:99px;font-weight:600;text-transform:uppercase;
-        display:inline-block}
+  /* ── studio strips ── */
+  .strips{background:var(--scrim);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+          box-shadow:var(--shadow);margin-top:18px}
+  .strip{display:grid;grid-template-columns:104px 1fr;border-bottom:1px solid var(--line)}
+  .strip:last-child{border-bottom:none}
+  .stu{padding:14px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;
+       justify-content:center;gap:4px}
+  .stu .id{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:.02em;line-height:1}
+  .stu .occ{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .stu .occ.live{color:var(--ok)} .stu .occ.empty{color:var(--chalk-faint);font-weight:600}
+  .lane{padding:11px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .lane .quiet{font-size:12.5px;color:var(--chalk-faint);padding:4px 2px}
+  .ev{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:12px;align-items:center;
+      padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--ink)}
+  .ev.live{background:var(--live-bg);border-color:var(--live-line);box-shadow:inset 4px 0 0 var(--ok)}
+  .ev.flagged{background:var(--crit-bg);border-color:var(--crit);box-shadow:inset 4px 0 0 var(--crit)}
+  .ev.done{opacity:.55}
+  .ev.tier-t{border-left:4px solid var(--tungsten)}
+  .ev.live.tier-t,.ev.flagged.tier-t{border-left-width:1px}  /* live/flag edge wins */
+  .ev.cleaning{background:repeating-linear-gradient(-45deg,var(--scrim-2) 0 7px,var(--scrim) 7px 14px)}
+  .ev .tm{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;line-height:1.35}
+  .ev .tm .act{display:block;font-size:11px;color:var(--ok)}
+  .ev .tm .act.dep{color:var(--chalk-dim)}
+  .ev .tm .act.miss{color:var(--crit);font-family:var(--body);letter-spacing:.02em}
+  .ev .who{font-size:14px;font-weight:600;min-width:0}
+  .ev .who .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;
+               max-width:100%;vertical-align:bottom}
+  .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
+  .ev .cnt{font-family:var(--mono);font-size:12.5px;color:var(--chalk-dim);text-align:right;white-space:nowrap;
+           font-variant-numeric:tabular-nums}
+  .ev .cnt b{color:var(--ok);font-weight:700}
+  .chip{font-family:var(--sans);font-size:10px;letter-spacing:.06em;padding:2px 7px;border-radius:99px;font-weight:600;
+        text-transform:uppercase;display:inline-block}
   .chip.ok{background:var(--ok-bg);color:var(--ok)}
   .chip.watch{background:var(--watch-bg);color:var(--watch)}
   .chip.crit{background:var(--crit-bg);color:var(--crit)}
-  .chip.type{background:var(--tungsten-soft);color:var(--tungsten)}
+  .chip.type{background:var(--tungsten);color:#fff}
+  .chip.mon{background:var(--ok);color:#fff}
   .chip.plain{background:var(--scrim-2);border:1px solid var(--line);color:var(--chalk-dim)}
+  .chip.cov-ok{background:var(--ok-bg);color:var(--ok)}
+  .chip.cov-part{background:var(--watch-bg);color:var(--watch)}
+  .chip.cov-no{background:var(--crit-bg);color:var(--crit)}
+  .chip.cov-ai{background:var(--tungsten-soft);color:var(--tungsten)}
+  @media (max-width:640px){
+    .strip{grid-template-columns:72px 1fr}
+    .ev{grid-template-columns:88px minmax(0,1fr)}
+    .ev .cnt{grid-column:2;text-align:left}
+    .summary{width:100%;order:5;margin-left:0}
+  }
 
-  /* board */
+  /* ── board (timeline, unchanged mechanics) ── */
   .boardwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--scrim)}
   .board{display:grid;min-width:980px;position:relative}
   .studio-h{position:sticky;top:0;background:var(--scrim-2);border-bottom:1px solid var(--line);
@@ -170,6 +182,7 @@
                    background:var(--tungsten)}
   .nowline::after{content:"";position:absolute;inset:-2px 0 auto 0;height:2px;background:var(--tungsten);
                   filter:blur(4px);opacity:.7;animation:pulse 2.4s ease-in-out infinite}
+  .board .chip.type{background:var(--tungsten-soft);color:var(--tungsten)}   /* board keeps soft chips */
 
   /* staff coverage */
   .staffcol{position:relative;border-right:1px solid var(--line);background:var(--tungsten-soft)}
@@ -181,12 +194,8 @@
   .staffblock .when{font-family:var(--mono);font-size:10.5px;opacity:.85;font-variant-numeric:tabular-nums}
   .coverband{position:absolute;right:0;background:var(--tungsten-soft);pointer-events:none;z-index:1}
   .booking{z-index:2}
-  .chip.cov-ok{background:var(--ok-bg);color:var(--ok)}
-  .chip.cov-part{background:var(--watch-bg);color:var(--watch)}
-  .chip.cov-no{background:var(--crit-bg);color:var(--crit)}
-  .chip.cov-ai{background:var(--tungsten-soft);color:var(--tungsten)}
 
-  footer{max-width:1320px;margin:26px auto 0;padding:0 28px;color:var(--chalk-faint);font-size:12.5px;
+  footer{max-width:1140px;margin:26px auto 0;padding:0 24px;color:var(--chalk-faint);font-size:12.5px;
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .legend{display:flex;gap:16px;flex-wrap:wrap}
   .legend span{display:inline-flex;align-items:center;gap:7px}
@@ -198,8 +207,9 @@
 <header>
   <div>
     <div class="brand">Dance Annex · Front-of-Building Support</div>
-    <h1 id="daytitle">FBS Studio Monitor</h1>
+    <h1 id="daytitle">FBS <em>Monitor</em></h1>
   </div>
+  <div class="summary" id="summary"></div>
   <div class="clockwrap">
     <div class="clock"><span class="dot" aria-hidden="true"></span><span id="clock">--:--</span><small>Toronto</small></div>
     <button id="refreshbtn" class="datastamp" type="button" aria-label="Refresh data" title="Pull the newest edition">
@@ -210,13 +220,7 @@
 </header>
 
 <main>
-  <section class="pulse" id="pulse" aria-label="Day pulse"></section>
-
-  <p class="lane-label">Now &amp; next up</p>
-  <div class="nowlane" id="nowlane"></div>
-
-  <p class="lane-label">Arrivals &amp; departures <span class="crit-note" id="flagnote"></span></p>
-  <div class="ledgerwrap"><table class="ledger" id="ledger"></table></div>
+  <div class="strips" id="strips"></div>
 
   <p class="lane-label">Today's board</p>
   <div class="boardwrap"><div class="board" id="board"></div></div>
@@ -224,10 +228,10 @@
 
 <footer>
   <div class="legend">
-    <span><span class="swatch" style="background:var(--tungsten)"></span>Monitored (FBS · Monitor · Viewing)</span>
-    <span><span class="swatch" style="background:var(--chalk-faint)"></span>Regular booking</span>
+    <span><span class="swatch" style="background:var(--tungsten)"></span>FBS / Viewing (purple edge)</span>
+    <span><span class="swatch" style="background:var(--ok)"></span>Live now (green edge + tint)</span>
+    <span><span class="swatch" style="background:var(--crit)"></span>Flag — no arrival logged</span>
     <span><span class="swatch" style="background:repeating-linear-gradient(-45deg,var(--chalk-faint) 0 3px,transparent 3px 6px)"></span>Cleaning</span>
-    <span><span class="swatch" style="background:var(--tungsten-soft);border:1px solid var(--tungsten)"></span>Staff on-site (coverage)</span>
     <span>Coverage: <b>Covered</b> = staff present · <b>Partial</b> = staff for part of the window · <b>AI watch</b> = no staff on-site; the desk AI monitors remotely (default, not an error)</span>
     <span>↓ arrived · ↑ departed</span>
   </div>
@@ -235,14 +239,14 @@
 </footer>
 
 <script>
-/* DATA regenerated by the fbs-monitor-refresh scheduled task. Events merge the
-   five studio calendars (bookings + cleaning; Unavailable blocks excluded) with
-   the FBS AI Support board (tier, GTG/HTA, arrivals from alarm disarm/arm).
+/* DATA regenerated by build.py in GitHub Actions. Events merge the five studio
+   calendars (bookings + cleaning; Unavailable blocks excluded) with the FBS AI
+   Support board (tier, GTG/HTA) and Gmail ADT arrivals/departures.
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, July 19, 2026",
-  "generatedAt": "Jul 19, 9:37 PM ET",
-  "generatedAtISO": "2026-07-19T21:37:41-04:00",
+  "generatedAt": "Jul 19, 9:48 PM ET",
+  "generatedAtISO": "2026-07-19T21:48:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -429,16 +433,15 @@ const DATA = /*__DATA__*/{
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
-document.getElementById('daytitle').innerHTML = "FBS Studio <em>Monitor</em> — " + esc(DATA.date);
+document.getElementById('daytitle').innerHTML =
+  "FBS <em>Monitor</em><small>" + esc(DATA.date) + "</small>";
 document.getElementById('stamp').textContent = "Data refreshed " + DATA.generatedAt +
-  " · arrivals read from the FBS AI Support board (alarm disarm/arm)";
+  " · arrivals read from ADT alarm disarm/arm";
 
-/* Freshness + refresh. The page is a static edition rebuilt every 15 min by the
-   GitHub Actions cron. Refresh probes for a newer pushed edition in the background
-   (cache-busted fetch, compare generatedAtISO); when one exists it reloads the page
-   with a cache-buster. (document.write swap was abandoned: scripts in the written
-   document never execute, leaving a dead board — and the artifact sandbox that
-   needed it is retired.) The button cannot rebuild data — ceiling = rebuild cadence. */
+/* Freshness + refresh. The page is a static edition rebuilt every 15 min. Refresh
+   probes for a newer pushed edition in the background (cache-busted fetch, compare
+   generatedAtISO); when one exists it reloads the page with a cache-buster.
+   The button cannot rebuild data — ceiling = rebuild cadence. */
 (function(){
   const btn = document.getElementById('refreshbtn');
   const fresh = document.getElementById('freshness');
@@ -453,7 +456,7 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
     const quiet = etHour >= 3 && etHour < 7;
     const stale = !quiet && mins > 40;
     btn.classList.toggle('stale', stale);
-    fresh.textContent = quiet ? "overnight — rebuilds resume 7 AM"
+    fresh.textContent = quiet ? "overnight — resumes 7 AM"
                       : stale ? "data " + mins + " min old — rebuild down?"
                       : mins < 1 ? "data live" : "data " + mins + " min old";
   }
@@ -486,7 +489,7 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
 })();
 
 const E = DATA.events;
-const hm = t => `${String(Math.floor(t)).padStart(2,"0")}:${String(Math.round((t%1)*60)).padStart(2,"0")}`;
+const hm = t => `${String(Math.floor(t)%24).padStart(2,"0")}:${String(Math.round((t%1)*60)).padStart(2,"0")}`;
 const parseHM = s => { if(!s) return null; const m=s.match(/^(\d{1,2}):(\d{2})$/); return m? +m[1]+ +m[2]/60 : null; };
 const dur = h => { const m=Math.round(h*60); return m>=60? `${Math.floor(m/60)}h ${String(m%60).padStart(2,"0")}m` : `${m} min`; };
 const GRACE = 10/60; // minutes past start before a missing arrival flags
@@ -527,55 +530,64 @@ function render(){
   $('#clock').textContent = now.hhmm;
   const n = now.t;
 
-  /* pulse */
-  const inNow = E.filter(e=>e.start<=n && n<e.end).length;
+  /* header summary line (replaces the stat-card grid) */
+  const bookings = E.filter(e=>e.kind==="booking");
+  const inNow = E.filter(e=>e.start<=n && n<e.end && e.kind==="booking").length;
   const flags = E.filter(e=>stateOf(e,n).flagged).length;
-  const tier = t => E.filter(e=>e.tier===t).length;
-  $('#pulse').innerHTML = [
-    {n:inNow, l:"in studio now", cls: inNow?"good":""},
-    {n:E.filter(e=>e.kind==="booking").length, l:"bookings today"},
-    {n:tier("FBS"), l:"FBS"}, {n:tier("Monitor"), l:"monitor"}, {n:tier("Viewing"), l:"viewing"},
-    {n:E.filter(e=>{const c=coverageOf(e); return c && c.cls==="cov-ai";}).length, l:"on AI watch"},
-    {n:E.filter(e=>{const c=coverageOf(e); return c && c.cls==="cov-part";}).length, l:"partial staffing",
-     cls: E.some(e=>{const c=coverageOf(e); return c && c.cls==="cov-part";})?"bad":"good"},
-    {n:flags, l:"⚠ flags", cls: flags?"bad":"good"}
-  ].map(s=>`<div class="stat ${s.cls||""}"><b>${s.n}</b><span>${s.l}</span></div>`).join("");
+  const monitored = bookings.filter(e=>e.tier).length;
+  const gaps = E.filter(e=>{const c=coverageOf(e); return c && c.cls==="cov-part";}).length;
+  const seg=[];
+  seg.push(`<b class="${inNow?"good":""}">${inNow}</b> in studio`);
+  seg.push(`<b>${bookings.length}</b> today`);
+  if(monitored) seg.push(`<b>${monitored}</b> monitored`);
+  if(gaps) seg.push(`<b class="warn">${gaps}</b> staffing gap${gaps>1?"s":""}`);
+  seg.push(flags ? `<b class="bad">${flags}</b> flag${flags>1?"s":""}` : `<b class="good">0</b> flags`);
+  $('#summary').innerHTML = seg.join('<span class="sep">·</span>');
 
-  /* now & next */
-  const cur = E.filter(e=>e.start<=n && n<e.end).sort((a,b)=>a.end-b.end);
-  const nxt = E.filter(e=>e.start>n).sort((a,b)=>a.start-b.start).slice(0,2);
-  const card = (e, isNext) => {
+  /* studio strips */
+  const evCard = e => {
     const st = stateOf(e,n);
-    return `<div class="now-card ${isNext?"next":""} ${st.flagged?"flagged":""}">
-      <div class="stripe"></div>
-      <div class="txt">
-        <div class="row1"><span class="studio-tag">${e.studio}</span><strong>${esc(e.who)}</strong>
-          <span class="chip ${e.kind==="cleaning"?"plain":e.tier?"type":"plain"}">${e.kind==="cleaning"?"Cleaning":e.tier||"Booking"}</span></div>
-        <div class="row2">${hm(e.start)}–${hm(e.end)}${e.arrived?` · <span style="color:var(--ok)">↓ ${e.arrived}</span>`:""}${st.flagged?` · <span class="flag">⚠ no arrival logged</span>`:""}${(cv=>cv?` · <span class="chip ${cv.cls}">${esc(cv.label)}</span>`:"")(coverageOf(e))}</div>
-      </div>
-      <div class="count"><b>${isNext? dur(e.start-n) : dur(e.end-n)}</b><span>${isNext?"until start":"left"}</span></div>
+    const cv = coverageOf(e);
+    const live = e.start<=n && n<e.end;
+    const done = !live && n>=e.end;
+    const cls = ["ev", live&&!st.flagged?"live":"", st.flagged?"flagged":"", done?"done":"",
+                 e.kind==="cleaning"?"cleaning":"", e.tier&&e.tier!=="Monitor"?"tier-t":""].join(" ");
+    // time cell: schedule on top, actuals directly beneath it
+    let act = "";
+    if(e.arrived)  act += `<span class="act">↓ ${e.arrived} in</span>`;
+    if(e.departed) act += `<span class="act dep">↑ ${e.departed} out</span>`;
+    if(st.flagged) act += `<span class="act miss">⚠ no arrival</span>`;
+    // tags
+    let tags = "";
+    if(e.kind==="cleaning") tags += `<span class="chip plain">Cleaning</span>`;
+    if(e.tier) tags += `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
+    if(e.tier && e.tier!=="Viewing" && !e.gtg && !done)
+      tags += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
+    if(cv && !done){
+      if(cv.cls==="cov-ai") tags += `<span class="chip cov-ai">AI watch</span>`;
+      else if(cv.gap>0) tags += `<span class="chip cov-part">Gap ${cv.gap}m</span>`;
+      else tags += `<span class="chip cov-ok">Covered</span>`;
+    }
+    // countdown
+    let cnt = "";
+    if(live) cnt = `<b>${dur(e.end-n)} left</b>`;
+    else if(!done) cnt = e.start-n<6 ? `in ${dur(e.start-n)}` : `at ${hm(e.start)}`;
+    else cnt = st.label==="Complete" ? "done" : "ended";
+    return `<div class="${cls}">
+      <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
+      <div class="who"><span class="nm">${esc(e.who)}</span><span class="tags">${tags}</span></div>
+      <div class="cnt">${cnt}</div>
     </div>`;
   };
-  $('#nowlane').innerHTML = (cur.length||nxt.length)
-    ? cur.map(e=>card(e,false)).join("") + nxt.map(e=>card(e,true)).join("")
-    : `<div class="all-clear">Nothing running or upcoming — the day is done.</div>`;
-
-  /* ledger */
-  $('#flagnote').textContent = flags ? `⚠ ${flags} need attention` : "";
-  const rows = E.filter(e=>e.kind==="booking").sort((a,b)=>a.start-b.start).map(e=>{
-    const st = stateOf(e,n);
-    return `<tr class="${st.flagged?"flagged":""}">
-      <td class="t">${hm(e.start)}–${hm(e.end)}</td>
-      <td><span class="chip plain">${e.studio}</span></td>
-      <td class="who-cell"><strong>${esc(e.who)}</strong> <span class="chip ${e.tier?"type":"plain"}">${e.tier||"Booking"}</span>
-        ${e.tier&&e.tier!=="Viewing"&&!e.gtg?` <span class="chip ${st.label==="Complete"?"watch":"crit"}">No GTG</span>`:""}</td>
-      <td class="t">${e.arrived?`<span class="arr">↓ ${e.arrived}</span>`:`<span class="dash">—</span>`}</td>
-      <td class="t">${e.departed?`<span class="dep">↑ ${e.departed}</span>`:`<span class="dash">—</span>`}</td>
-      <td>${(cv=>cv?`<span class="chip ${cv.cls}">${esc(cv.label)}</span>`:`<span class="dash">—</span>`)(coverageOf(e))}</td>
-      <td><span class="chip ${st.cls}">${st.label}</span>${st.flagged?`<span class="subflag">⚠ no arrival logged</span>`:""}</td>
-    </tr>`;
+  $('#strips').innerHTML = DATA.studios.map(s=>{
+    const evs = E.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
+    const occupied = evs.some(e=>e.kind==="booking" && e.start<=n && n<e.end);
+    return `<div class="strip">
+      <div class="stu"><div class="id">${s.name}</div>
+        <div class="occ ${occupied?"live":"empty"}">${occupied?"● Occupied":"Empty"}</div></div>
+      <div class="lane">${evs.length? evs.map(evCard).join("") : `<div class="quiet">No bookings today</div>`}</div>
+    </div>`;
   }).join("");
-  $('#ledger').innerHTML = `<thead><tr><th>Time</th><th>Studio</th><th>Booking</th><th>Arrived</th><th>Departed</th><th>Coverage</th><th>Status</th></tr></thead><tbody>${rows}</tbody>`;
 
   /* board */
   const lo = Math.min(9, ...E.map(e=>Math.floor(e.start)));
