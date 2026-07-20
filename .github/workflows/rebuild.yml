@@ -32,7 +32,7 @@ jobs:
   rebuild:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Skip cleanly (green, not red) until secrets are configured, so scheduled runs
       # before setup don't email a failure every 15 minutes.
@@ -48,7 +48,7 @@ jobs:
             echo "ready=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         if: steps.gate.outputs.ready == 'true'
         with:
           python-version: "3.12"

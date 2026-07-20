@@ -136,6 +136,12 @@ def clean_who(title):
     if ":" in t:
         lhs, rhs = (s.strip(" -–—:") for s in t.split(":", 1))
         t = lhs if (not rhs or rhs.lower() in lhs.lower()) else f"{lhs} — {rhs}"
+    # "Name (Name)" → "Name" (Skedda duplicates the renter name in parens; the
+    # closing paren may already be gone from the earlier strip)
+    if "(" in t:
+        lhs, rhs = t.split("(", 1)
+        if rhs.strip(" )").lower() == lhs.strip().lower():
+            t = lhs.strip()
     return t
 
 
@@ -187,8 +193,13 @@ CLEANERS = ("stefan", "donny", "ela")
 
 
 def is_cleaning(summary):
-    s = summary.lower()
-    return "clean" in s and any(c in s for c in CLEANERS)
+    """Staff blocks on studio calendars: '<Cleaner> ... clean ...' or just the
+    cleaner's name alone ('Stefan')."""
+    s = summary.lower().strip()
+    toks = s.split()
+    if not toks or toks[0] not in CLEANERS:
+        return False
+    return "clean" in s or len(toks) <= 2
 
 
 def build_calendar_events(ics_map, win_start, win_end, base_day):
@@ -391,6 +402,8 @@ def _time_to_decimal(val):
 def join_notion(events, notion_rows):
     used = [False] * len(notion_rows)
     for e in events:
+        if e["kind"] != "booking":
+            continue   # a staff cleaning block must never absorb a booking's tier row
         best, best_i, best_gap = None, -1, 1e9
         for i, r in enumerate(notion_rows):
             if used[i] or r["studio"] != e["studio"]:
