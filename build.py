@@ -592,6 +592,13 @@ def apply_arm_events(events, arm_events):
             e["arrived"] = min(arrivals)[1]
         if not e["departed"] and departures:
             e["departed"] = max(departures)[1]
+
+    # A departure that precedes the arrival is a mis-claimed neighbour's arm
+    # (e.g. the main booking's 13:10 arm landing on its own 13:18 extension row).
+    for e in events:
+        arr, dep = _time_to_decimal(e.get("arrived")), _time_to_decimal(e.get("departed"))
+        if arr is not None and dep is not None and dep < arr:
+            e["departed"] = None
     return events
 
 
