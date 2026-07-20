@@ -486,6 +486,8 @@ def fetch_arm_events(win_start):
                 subject = hdr.get("value", "")
                 break
         parsed = parse_arm_subject(subject)
+        if os.environ.get("DEBUG_ARM") == "1":
+            print(f"ARM-DEBUG: {'PARSED ' + str(parsed) if parsed else 'DROPPED'} <- {subject!r}")
         if parsed:
             out.append(parsed)
     return out

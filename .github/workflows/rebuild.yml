@@ -14,7 +14,12 @@ on:
   # the primary. build.py gates execution to 07:00-02:59 America/Toronto.
   schedule:
     - cron: "3-59/15 * * * *"
-  workflow_dispatch: {}       # manual "Run workflow" button — bypasses the time gate
+  workflow_dispatch:          # manual "Run workflow" button — bypasses the time gate
+    inputs:
+      debug_arm:
+        description: "Log how each ADT subject parses (public logs — subjects only)"
+        default: false
+        type: boolean
 
 concurrency:
   group: rebuild
@@ -67,6 +72,7 @@ jobs:
           GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
           # Manual dispatch bypasses the 07:00–24:00 Toronto gate; cron respects it.
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+          DEBUG_ARM: ${{ github.event.inputs.debug_arm == 'true' && '1' || '0' }}
         run: python build.py
 
       - name: Commit if changed
