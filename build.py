@@ -211,6 +211,8 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
             summary = ev["summary"]
             if ev.get("cancelled") or "unavailable" in summary.lower():
                 continue
+            if os.environ.get("DEBUG_ARM") == "1" and not is_staff:
+                print(f"CAL-DEBUG: {key} {summary!r} cleaning={is_cleaning(summary)}")
             if is_staff:
                 s = parse_staff_row(summary, ev["dtstart"], ev["dtend"], base_day)
                 if s:
