@@ -413,9 +413,13 @@ def join_notion(events, notion_rows):
 RE_DISARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:\s*Studio\s+(\d+\w?)\s+was\s+Disarmed\s+by\s+(.+?)\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)", re.I)
 RE_ARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:\s*Studio\s+(\d+\w?)\s+was\s+Armed\s+Away\s+by\s+(.+?)\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)", re.I)
 RE_PANEL_DISARM = re.compile(r"Studio\s+(\d+\w?)\s+Panel\s+was\s+Disarmed\s+by\s+(.+?)\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)", re.I)
-# Panel arm has no "by <name>" — the name is in trailing parens: "… Armed Away at 9:16 PM (Shiela)".
-# Anchor the studio on the "Studio NNN:" subject prefix.
+# Panel arm comes in two forms: named ("Panel was Armed Away by Himanshi Mehta at
+# 5:12 PM" — 901's usual form; missing this dropped every 901 departure on 2026-07-19)
+# and nameless with the name in trailing parens ("… Armed Away at 9:16 PM (Shiela)").
+RE_PANEL_ARM_BY = re.compile(r"Studio\s+(\d+\w?)\s+Panel\s+was\s+Armed\s+Away\s+by\s+(.+?)\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)", re.I)
 RE_PANEL_ARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:.*?Panel\s+was\s+Armed\s+Away\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
+# Nameless panel disarm, name in parens ("Panel was Disarmed at 11:20 PM (info@danceannex.ca)").
+RE_PANEL_DISARM_AT = re.compile(r"Studio\s+(\d+\w?)[^:]*:.*?Panel\s+was\s+Disarmed\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
 IGNORE = ("motion", "pending", "image", "alarm")
 STAFF_REMOTE = "info@danceannex.ca"
 
@@ -506,9 +510,15 @@ def parse_arm_subject(subject):
     m = RE_PANEL_DISARM.search(subject)
     if m:
         return _arm_evt(m.group(1), m.group(2).strip(), m.group(3), "arrival")
+    m = RE_PANEL_ARM_BY.search(subject)
+    if m:
+        return _arm_evt(m.group(1), m.group(2).strip(), m.group(3), "departure")
     m = RE_PANEL_ARM.search(subject)
     if m:
         return _arm_evt(m.group(1), m.group(3).strip(), m.group(2), "departure")
+    m = RE_PANEL_DISARM_AT.search(subject)
+    if m:
+        return _arm_evt(m.group(1), m.group(3).strip(), m.group(2), "arrival")
     return None
 
 
