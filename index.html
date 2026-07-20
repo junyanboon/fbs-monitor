@@ -94,6 +94,34 @@
 
   main{max-width:1140px;margin:0 auto;padding:0 24px}
 
+  /* ── tabs ── */
+  .tabs{display:flex;gap:4px;margin-top:16px;border-bottom:1px solid var(--line)}
+  .tabs .tab{background:none;border:0;border-bottom:3px solid transparent;padding:10px 16px;cursor:pointer;
+             font-family:var(--sans);font-weight:700;font-size:13.5px;letter-spacing:.08em;
+             text-transform:uppercase;color:var(--chalk-dim)}
+  .tabs .tab.on{color:var(--chalk);border-bottom-color:var(--tungsten)}
+  .tabs .tab:hover{color:var(--chalk)}
+  .tabs .tab:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
+
+  /* staff-on-site bar (Studios tab) */
+  .staffbar{margin-top:16px;padding:10px 16px;border:1px solid var(--line);border-radius:10px;
+            background:var(--ok-bg);font-size:14.5px;color:var(--chalk-dim);
+            display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .staffbar b{color:var(--ok)}
+  .staffbar.none{background:var(--scrim)}
+  .staffbar .sep{color:var(--chalk-faint);margin:0 4px}
+
+  /* staff tab panels */
+  .panelwrap{background:var(--scrim);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+             box-shadow:var(--shadow)}
+  .shift{display:grid;grid-template-columns:132px 1fr auto auto;gap:12px;padding:11px 16px;
+         border-bottom:1px solid var(--line);align-items:center}
+  .shift:last-child{border-bottom:none}
+  .shift.live{background:var(--live-bg);box-shadow:inset 4px 0 0 var(--ok)}
+  .shift.done{opacity:.65}
+  .shift .tm{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+  .shift .nm{font-weight:600;font-size:15.5px;min-width:0}
+
   .lane-label{font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
               color:var(--chalk-dim);margin:26px 0 10px;display:flex;align-items:center;gap:10px}
   .lane-label::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -109,10 +137,10 @@
   .stu .id{font-family:var(--disp);font-weight:800;font-size:29px;letter-spacing:.02em;line-height:1}
   .stu .occ{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
   .stu .occ.live{color:var(--ok)} .stu .occ.empty{color:var(--chalk-faint);font-weight:600}
-  .lane{padding:11px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .lane{padding:10px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
   .lane .quiet{font-size:14px;color:var(--chalk-faint);padding:4px 2px}
   .ev{display:grid;grid-template-columns:118px minmax(0,1fr) auto;gap:12px;align-items:center;
-      padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--ink)}
+      padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--ink)}
   .ev.live{background:var(--live-bg);border-color:var(--live-line);box-shadow:inset 4px 0 0 var(--ok)}
   .ev.flagged{background:var(--crit-bg);border-color:var(--crit);box-shadow:inset 4px 0 0 var(--crit)}
   .ev.done{opacity:.68}
@@ -220,10 +248,21 @@
 </header>
 
 <main>
-  <div class="strips" id="strips"></div>
-
-  <p class="lane-label">Today's board</p>
-  <div class="boardwrap"><div class="board" id="board"></div></div>
+  <nav class="tabs" id="tabs" role="tablist">
+    <button class="tab on" data-tab="studios" role="tab" aria-selected="true">Studios</button>
+    <button class="tab" data-tab="board" role="tab" aria-selected="false">Today's board</button>
+    <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
+  </nav>
+  <section id="tab-studios">
+    <div id="staffnow"></div>
+    <div class="strips" id="strips"></div>
+  </section>
+  <section id="tab-board" hidden>
+    <div class="boardwrap" style="margin-top:16px"><div class="board" id="board"></div></div>
+  </section>
+  <section id="tab-staff" hidden>
+    <div id="staffpanel"></div>
+  </section>
 </main>
 
 <footer>
@@ -245,8 +284,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, July 20, 2026",
-  "generatedAt": "Jul 20, 5:09 PM ET",
-  "generatedAtISO": "2026-07-20T17:09:31-04:00",
+  "generatedAt": "Jul 20, 5:17 PM ET",
+  "generatedAtISO": "2026-07-20T17:17:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -451,6 +490,20 @@ const DATA = /*__DATA__*/{
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+/* Display just the artist's name: drop "*note*" annotations and any " — description" tail. */
+const shortWho = w => esc(String(w||"").replace(/\*[^*]*\*/g,"").split(/\s+—\s+/)[0].trim() || String(w||""));
+
+/* tabs */
+document.getElementById('tabs').addEventListener('click', ev => {
+  const b = ev.target.closest('.tab'); if(!b) return;
+  document.querySelectorAll('.tabs .tab').forEach(t => {
+    const on = t === b;
+    t.classList.toggle('on', on);
+    t.setAttribute('aria-selected', on);
+  });
+  for(const k of ['studios','board','staff'])
+    document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
+});
 document.getElementById('daytitle').innerHTML =
   "FBS <em>Monitor</em><small>" + esc(DATA.date) + "</small>";
 document.getElementById('stamp').textContent = "Data refreshed " + DATA.generatedAt +
@@ -591,21 +644,54 @@ function render(){
     if(live) cnt = `<b>${dur(e.end-n)} left</b>`;
     else if(!done) cnt = e.start-n<6 ? `in ${dur(e.start-n)}` : `at ${hm(e.start)}`;
     else cnt = st.label==="Complete" ? "done" : "ended";
-    return `<div class="${cls}">
+    return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${esc(e.who)}</span><span class="tags">${tags}</span></div>
+      <div class="who"><span class="nm">${shortWho(e.who)}</span><span class="tags">${tags}</span></div>
       <div class="cnt">${cnt}</div>
     </div>`;
   };
+  /* staff-on-site bar */
+  const staffNow = STAFF.filter(s=>s.start<=n && n<s.end);
+  $('#staffnow').innerHTML = staffNow.length
+    ? `<div class="staffbar">Staff on-site:${staffNow.map(s=>` <b>${esc(s.name)}</b> · ${esc(s.role)} until ${hm(s.end)}`).join('<span class="sep">·</span>')}</div>`
+    : `<div class="staffbar none">No staff on-site — desk AI watching monitored bookings</div>`;
+
   $('#strips').innerHTML = DATA.studios.map(s=>{
     const evs = E.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
     const occupied = evs.some(e=>e.kind==="booking" && e.start<=n && n<e.end);
     return `<div class="strip">
       <div class="stu"><div class="id">${s.name}</div>
-        <div class="occ ${occupied?"live":"empty"}">${occupied?"● Occupied":"Empty"}</div></div>
+        <div class="occ ${occupied?"live":"empty"}">${occupied?"Occupied":"Empty"}</div></div>
       <div class="lane">${evs.length? evs.map(evCard).join("") : `<div class="quiet">No bookings today</div>`}</div>
     </div>`;
   }).join("");
+
+  /* staff tab: shifts + monitored-booking coverage */
+  const shiftRow = s => {
+    const live = s.start<=n && n<s.end, sdone = n>=s.end;
+    return `<div class="shift ${live?"live":""} ${sdone?"done":""}">
+      <span class="tm">${hm(s.start)}–${hm(s.end)}</span>
+      <span class="nm">${esc(s.name)}</span>
+      <span class="chip ${s.role==="Open"||s.role==="Close"?"plain":"type"}">${esc(s.role)}</span>
+      <span class="chip ${live?"ok":sdone?"plain":"watch"}">${live?"On now":sdone?"Done":"Upcoming"}</span>
+    </div>`;
+  };
+  const covRow = e => {
+    const cv = coverageOf(e) || {cls:"cov-ai", label:"AI watch"};
+    const live = e.start<=n && n<e.end, cdone = n>=e.end;
+    return `<div class="shift ${live?"live":""} ${cdone?"done":""}" title="${esc(e.who)}">
+      <span class="tm">${hm(e.start)}–${hm(e.end)}</span>
+      <span class="nm">${shortWho(e.who)} <span class="chip plain">${e.studio}</span></span>
+      <span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>
+      <span class="chip ${cv.cls}">${esc(cv.label)}</span>
+    </div>`;
+  };
+  const monBk = bookings.filter(e=>e.tier).sort((a,b)=>a.start-b.start);
+  $('#staffpanel').innerHTML =
+    `<p class="lane-label">Staff shifts</p>
+     <div class="panelwrap">${STAFF.length? STAFF.map(shiftRow).join("") : '<div class="shift">No staff shifts today</div>'}</div>
+     <p class="lane-label">Monitored bookings — coverage</p>
+     <div class="panelwrap">${monBk.length? monBk.map(covRow).join("") : '<div class="shift">No monitored bookings today</div>'}</div>`;
 
   /* board */
   const lo = Math.min(9, ...E.map(e=>Math.floor(e.start)));
@@ -637,8 +723,8 @@ function render(){
         const done = n>=e.end;
         const cls = ["booking", e.kind==="cleaning"?"cleaning":(e.tier?(e.tier==="Monitor"?"monitor":""):"plain"),
                      done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":""].join(" ");
-        return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px">
-          <div class="who">${esc(e.who)}</div>
+        return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px" title="${esc(e.who)}">
+          <div class="who">${shortWho(e.who)}</div>
           <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr">↓${e.arrived}</span>`:""}${e.departed?` ↑${e.departed}`:""}${st.flagged?` <span class="flag">⚠</span>`:""}</div>
           ${e.tier?(cv=>`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${cv?(cv.gap>0?`<span class="chip ${cv.cls}">${cv.cls==="cov-ai"?"AI watch":`Gap ${cv.gap}m`}</span>`:`<span class="chip cov-ok">Cover ✓</span>`):""}</div>`)(coverageOf(e)):""}
         </div>`;
