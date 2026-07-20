@@ -88,5 +88,12 @@ jobs:
             if [ -n "${FALLBACK_NOTE:-}" ]; then MSG="${MSG} — ${FALLBACK_NOTE}"; fi
             git add index.html
             git commit -m "${MSG}"
-            git push
+            # Another run (or a local push) may have advanced main since checkout —
+            # rebase and retry so concurrent pushes don't fail the run red.
+            for i in 1 2 3; do
+              git push && break
+              [ "$i" = 3 ] && exit 1
+              # rebase -X theirs keeps the commit being replayed (our fresh index.html)
+              git pull --rebase -X theirs origin main
+            done
           fi
