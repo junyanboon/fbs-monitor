@@ -282,8 +282,12 @@ const DATA = /*__DATA__*/{
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
-/* Display just the artist's name: drop "*note*" annotations and any " — description" tail. */
-const shortWho = w => esc(String(w||"").replace(/\*[^*]*\*/g,"").split(/\s+—\s+/)[0].trim() || String(w||""));
+/* Display just the artist's name: drop "*note*" annotations, " — description" tails,
+   and "(Org …)" parentheticals — including unclosed ones like "(Toronto Bujinkan". */
+const shortWho = w => {
+  const s = String(w||"").replace(/\*[^*]*\*/g,"").split(/\s+—\s+/)[0].split(/\s+\(/)[0].trim();
+  return esc(s || String(w||""));
+};
 
 /* tabs */
 document.getElementById('tabs').addEventListener('click', ev => {
