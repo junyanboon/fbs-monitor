@@ -284,8 +284,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, July 22, 2026",
-  "generatedAt": "Jul 22, 12:45 PM ET",
-  "generatedAtISO": "2026-07-22T12:45:35-04:00",
+  "generatedAt": "Jul 22, 12:55 PM ET",
+  "generatedAtISO": "2026-07-22T12:55:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -466,8 +466,12 @@ const DATA = /*__DATA__*/{
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
-/* Display just the artist's name: drop "*note*" annotations and any " — description" tail. */
-const shortWho = w => esc(String(w||"").replace(/\*[^*]*\*/g,"").split(/\s+—\s+/)[0].trim() || String(w||""));
+/* Display just the artist's name: drop "*note*" annotations, " — description" tails,
+   and "(Org …)" parentheticals — including unclosed ones like "(Toronto Bujinkan". */
+const shortWho = w => {
+  const s = String(w||"").replace(/\*[^*]*\*/g,"").split(/\s+—\s+/)[0].split(/\s+\(/)[0].trim();
+  return esc(s || String(w||""));
+};
 
 /* tabs */
 document.getElementById('tabs').addEventListener('click', ev => {
