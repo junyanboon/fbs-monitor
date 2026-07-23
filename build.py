@@ -54,6 +54,7 @@ OUTPUT = os.path.join(HERE, "index.html")
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
 ARM_LABEL = "Artist Care - ADT"
+EPS = 1e-6
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -276,24 +277,69 @@ def merge_events(events):
 
 
 def _dedupe_same_slot(events):
-    """A studio can only hold one booking at a time, so two 'booking' events in
-    the same studio with identical start/end are the same booking under two
-    titles (seen with Peerspace: the synced 'Peerspace Booking, <First> <L>.'
-    event plus a manually created descriptive event). _renter_key can't link
-    them — the names share nothing — so dedupe on studio + exact time slot,
-    keeping the more descriptive title."""
+    """A studio can only hold one booking at a time, so overlapping 'booking'
+    events in the same studio are the same booking under two titles (seen with
+    Peerspace: the synced 'Peerspace Booking, <First> <L>.' event plus a manually
+    created descriptive event). _renter_key can't link them — the names share
+    nothing — so dedupe on studio + overlapping time window, unioning the window
+    and preferring a non-generic Peerspace title, otherwise the longer title."""
     out = []
     for e in events:
         dup = next((o for o in out
                     if o["studio"] == e["studio"] and o["kind"] == e["kind"] == "booking"
-                    and abs(o["start"] - e["start"]) < 1e-6
-                    and abs(o["end"] - e["end"]) < 1e-6), None)
+                    and e["start"] < o["end"] - EPS
+                    and o["start"] < e["end"] - EPS), None)
         if dup:
-            if len(e["who"] or "") > len(dup["who"] or ""):
+            dup["start"] = min(dup["start"], e["start"])
+            dup["end"] = max(dup["end"], e["end"])
+            dup_generic = re.match(r"^\s*(peerspace\s+)?booking,", dup["who"] or "", re.I)
+            e_generic = re.match(r"^\s*(peerspace\s+)?booking,", e["who"] or "", re.I)
+            if (dup_generic and not e_generic) or (
+                    bool(dup_generic) == bool(e_generic)
+                    and len(e["who"] or "") > len(dup["who"] or "")):
                 dup["who"] = e["who"]
+            for key in ("arrived", "departed"):
+                if not dup.get(key) and e.get(key):
+                    dup[key] = e[key]
         else:
             out.append(e)
     return out
+
+
+def _selftest_dedupe():
+    def event(studio, who, start, end, arrived=None):
+        return {
+            "studio": studio, "who": who, "kind": "booking",
+            "start": start, "end": end, "tier": None, "gtg": None,
+            "hta": None, "arrived": arrived, "departed": None,
+        }
+
+    qtrang = _dedupe_same_slot([
+        event("901", "Booking, QTrang T.", 18.0, 21.0),
+        event("901", "EVENT FBS QTrang Tran", 18.0, 19.25, arrived="18:32"),
+    ])
+    assert len(qtrang) == 1
+    assert qtrang[0]["start"] == 18.0 and qtrang[0]["end"] == 21.0
+    assert qtrang[0]["who"] == "EVENT FBS QTrang Tran"
+    assert qtrang[0]["arrived"] == "18:32"
+
+    adjacent = _dedupe_same_slot([
+        event("901", "Alice", 18.0, 19.0),
+        event("901", "Bob", 19.0, 20.0),
+    ])
+    assert len(adjacent) == 2
+
+    gapped = _dedupe_same_slot([
+        event("901", "Alice", 18.0, 19.0),
+        event("901", "Bob", 21.0, 22.0),
+    ])
+    assert len(gapped) == 2
+
+    different_studios = _dedupe_same_slot([
+        event("901", "Alice", 18.0, 20.0),
+        event("509A", "Bob", 18.0, 20.0),
+    ])
+    assert len(different_studios) == 2
 
 
 def _renter_key(who):
