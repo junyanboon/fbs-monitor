@@ -107,13 +107,15 @@
   .tabs .tab:hover{color:var(--chalk)}
   .tabs .tab:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
 
-  /* staff-on-site bar (Studios tab) */
-  .staffbar{margin-top:16px;padding:10px 16px;border:1px solid var(--line);border-radius:10px;
-            background:var(--ok-bg);font-size:14.5px;color:var(--chalk-dim);
-            display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .staffbar b{color:var(--ok)}
-  .staffbar.none{background:var(--scrim)}
-  .staffbar .sep{color:var(--chalk-faint);margin:0 4px}
+  /* alert bar (Studios tab) — short, plain-word heads-up derived from the schedule */
+  .alertbar{margin-top:16px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;
+            background:var(--watch-bg);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .alertbar.calm{background:var(--ok-bg)}
+  .alertitem{font-size:15px;font-weight:700;color:var(--chalk);background:var(--scrim);
+             border:1px solid var(--line);border-radius:99px;padding:4px 12px;
+             display:inline-flex;align-items:center;gap:7px}
+  .alertitem .w{color:var(--watch)} .alertitem .c{color:var(--crit)}
+  .alertbar.calm .alertitem{background:transparent;border:0;color:var(--ok);padding:2px 4px}
 
   /* staff tab panels */
   .panelwrap{background:var(--scrim);border:1px solid var(--line);border-radius:12px;overflow:hidden;
@@ -457,11 +459,25 @@ function render(){
       <div class="cnt">${cnt}</div>
     </div>`;
   };
-  /* staff-on-site bar */
-  const staffNow = STAFF.filter(s=>s.start<=n && n<s.end);
-  $('#staffnow').innerHTML = staffNow.length
-    ? `<div class="staffbar">Staff on-site:${staffNow.map(s=>` <b>${esc(s.name)}</b> · ${esc(s.role)} until ${hm(s.end)}`).join('<span class="sep">·</span>')}</div>`
-    : `<div class="staffbar none">No staff on-site — desk AI watching monitored bookings</div>`;
+  /* alert bar — only things worth a glance, in few plain words.
+     Tight change: a room's next booking starts <=15 min after the last one ends,
+     so there's almost no time to reset. No check-in: booking is past its start with
+     no arrival logged. Both are computed here; no separate analyst feed exists yet. */
+  const alerts = [];
+  for(const s of DATA.studios){
+    const evs = bookings.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
+    for(let i=1;i<evs.length;i++){
+      const gap = evs[i].start - evs[i-1].end;
+      if(gap <= 15/60 && evs[i].end > n)   // still ahead or running
+        alerts.push({k:"w", t:`Tight change · ${s.name} · ${hm(evs[i].start)}`});
+    }
+  }
+  E.filter(e=>stateOf(e,n).flagged).forEach(e=>
+    alerts.push({k:"c", t:`No check-in · ${e.studio} · ${shortWho(e.who)}`}));
+  $('#staffnow').innerHTML = alerts.length
+    ? `<div class="alertbar">${alerts.map(a=>
+        `<span class="alertitem"><span class="${a.k}">${a.k==="c"?"⚠":"⏱"}</span>${a.t}</span>`).join("")}</div>`
+    : `<div class="alertbar calm"><span class="alertitem">All good</span></div>`;
 
   $('#strips').innerHTML = DATA.studios.map(s=>{
     const evs = E.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
