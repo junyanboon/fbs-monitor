@@ -112,15 +112,26 @@
   .tabs .tab:hover{color:var(--chalk)}
   .tabs .tab:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
 
-  /* alert bar (Studios tab) — short, plain-word heads-up derived from the schedule */
-  .alertbar{margin-top:16px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;
-            background:var(--watch-bg);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .alertbar.calm{background:var(--ok-bg)}
-  .alertitem{font-size:15px;font-weight:700;color:var(--chalk);background:var(--scrim);
-             border:1px solid var(--line);border-radius:99px;padding:4px 12px;
-             display:inline-flex;align-items:center;gap:7px}
-  .alertitem .w{color:var(--watch)} .alertitem .c{color:var(--crit)}
-  .alertbar.calm .alertitem{background:transparent;border:0;color:var(--ok);padding:2px 4px}
+  /* status bar (Studios tab) — status.claude.com-style: one overall state, plus
+     any items from the analyst report. Grade-3 wording, colour = severity. */
+  .statusbar{margin-top:16px;padding:12px 16px;border-radius:10px;border:1px solid var(--line);
+             background:var(--scrim);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .statusbar .dot{width:11px;height:11px;border-radius:50%;flex:none}
+  .statusbar .head{font-weight:800;font-size:15.5px}
+  .statusbar.ok{background:var(--ok-bg);border-color:transparent}
+  .statusbar.ok .dot{background:var(--ok)}  .statusbar.ok .head{color:var(--ok)}
+  .statusbar.warn{background:var(--watch-bg);border-color:transparent}
+  .statusbar.warn .dot{background:var(--watch)} .statusbar.warn .head{color:var(--watch)}
+  .statusbar.crit{background:var(--crit-bg);border-color:transparent}
+  .statusbar.crit .dot{background:var(--crit)} .statusbar.crit .head{color:var(--crit)}
+  .statusbar .items{display:flex;gap:8px;flex-wrap:wrap}
+  .statusitem{display:inline-flex;align-items:center;gap:7px;background:var(--scrim);
+              border:1px solid var(--line);border-radius:99px;padding:4px 12px;
+              font-weight:700;font-size:14px;color:var(--chalk)}
+  .statusitem .sdot{width:8px;height:8px;border-radius:50%;flex:none}
+  .statusitem .sdot.info{background:var(--tungsten)}
+  .statusitem .sdot.warn{background:var(--watch)}
+  .statusitem .sdot.crit{background:var(--crit)}
 
   /* staff tab panels */
   .panelwrap{background:var(--scrim);border:1px solid var(--line);border-radius:12px;overflow:hidden;
@@ -295,8 +306,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 24, 2026",
-  "generatedAt": "Jul 24, 12:45 PM ET",
-  "generatedAtISO": "2026-07-24T12:45:49-04:00",
+  "generatedAt": "Jul 24, 12:46 PM ET",
+  "generatedAtISO": "2026-07-24T12:46:28-04:00",
   "studios": [
     {
       "id": "509A",
@@ -485,13 +496,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 19.25,
       "end": 19.75
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 19.25,
       "end": 19.75
     },
@@ -691,25 +702,38 @@ function render(){
       <div class="cnt">${cnt}</div>
     </div>`;
   };
-  /* alert bar — only things worth a glance, in few plain words.
-     Tight change: a room's next booking starts <=15 min after the last one ends,
-     so there's almost no time to reset. No check-in: booking is past its start with
-     no arrival logged. Both are computed here; no separate analyst feed exists yet. */
-  const alerts = [];
+  /* status bar — status.claude.com-style. Items come from the analyst report
+     (DATA.attention: [{level:"info"|"warn"|"crit", text}]) once that feed is wired;
+     until then we compute the two the schedule can already prove. `text` is escaped
+     at push time so every item string is HTML-safe by the time it's rendered. */
+  const items = [];
+  (DATA.attention || []).forEach(a => {
+    if(a && a.text){
+      const lvl = ["info","warn","crit"].includes(a.level) ? a.level : "info";
+      items.push({lvl, t: esc(a.text)});
+    }
+  });
+  // Tight change: next booking starts <=15 min after the last ends — almost no reset time.
   for(const s of DATA.studios){
     const evs = bookings.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
-    for(let i=1;i<evs.length;i++){
-      const gap = evs[i].start - evs[i-1].end;
-      if(gap <= 15/60 && evs[i].end > n)   // still ahead or running
-        alerts.push({k:"w", t:`Tight change · ${s.name} · ${hm(evs[i].start)}`});
-    }
+    for(let i=1;i<evs.length;i++)
+      if(evs[i].start - evs[i-1].end <= 15/60 && evs[i].end > n)
+        items.push({lvl:"warn", t:`Tight change · ${s.name} · ${hm(evs[i].start)}`});
   }
+  // No check-in: booking is past its start with no arrival logged.
   E.filter(e=>stateOf(e,n).flagged).forEach(e=>
-    alerts.push({k:"c", t:`No check-in · ${e.studio} · ${shortWho(e.who)}`}));
-  $('#staffnow').innerHTML = alerts.length
-    ? `<div class="alertbar">${alerts.map(a=>
-        `<span class="alertitem"><span class="${a.k}">${a.k==="c"?"⚠":"⏱"}</span>${a.t}</span>`).join("")}</div>`
-    : `<div class="alertbar calm"><span class="alertitem">All good</span></div>`;
+    items.push({lvl:"crit", t:`No check-in · ${e.studio} · ${shortWho(e.who)}`}));
+
+  const worst = items.some(i=>i.lvl==="crit") ? "crit"
+              : items.some(i=>i.lvl==="warn") ? "warn" : "ok";
+  const head = !items.length ? "All studios running"
+             : items.length===1 ? "1 thing to watch"
+             : `${items.length} things to watch`;
+  $('#staffnow').innerHTML =
+    `<div class="statusbar ${worst}"><span class="dot"></span><span class="head">${head}</span>` +
+    (items.length ? `<span class="items">${items.map(i=>
+      `<span class="statusitem"><span class="sdot ${i.lvl}"></span>${i.t}</span>`).join("")}</span>` : "") +
+    `</div>`;
 
   $('#strips').innerHTML = DATA.studios.map(s=>{
     const evs = E.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
