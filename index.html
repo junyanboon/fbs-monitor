@@ -114,21 +114,25 @@
 
   /* status bar (Studios tab) — status.claude.com-style: one overall state, plus
      any items from the analyst report. Grade-3 wording, colour = severity. */
+  /* Spacing uses margins, not flex `gap`: older iOS Safari (the home-screen web app)
+     ignores gap, which collapsed the dot onto the text. Margins work everywhere. */
   .statusbar{margin-top:16px;padding:12px 16px;border-radius:10px;border:1px solid var(--line);
-             background:var(--scrim);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .statusbar .dot{width:11px;height:11px;border-radius:50%;flex:none}
-  .statusbar .head{font-weight:800;font-size:15.5px}
+             background:var(--scrim);display:flex;flex-wrap:wrap;align-items:center}
+  .statusbar .dot{width:11px;height:11px;border-radius:50%;flex:none;display:inline-block;
+                  margin-right:10px}
+  .statusbar .head{font-weight:800;font-size:15.5px;white-space:nowrap;margin-right:12px}
   .statusbar.ok{background:var(--ok-bg);border-color:transparent}
   .statusbar.ok .dot{background:var(--ok)}  .statusbar.ok .head{color:var(--ok)}
   .statusbar.warn{background:var(--watch-bg);border-color:transparent}
   .statusbar.warn .dot{background:var(--watch)} .statusbar.warn .head{color:var(--watch)}
   .statusbar.crit{background:var(--crit-bg);border-color:transparent}
   .statusbar.crit .dot{background:var(--crit)} .statusbar.crit .head{color:var(--crit)}
-  .statusbar .items{display:flex;gap:8px;flex-wrap:wrap}
-  .statusitem{display:inline-flex;align-items:center;gap:7px;background:var(--scrim);
+  .statusbar .items{display:flex;flex-wrap:wrap}
+  .statusitem{display:inline-flex;align-items:center;background:var(--scrim);
               border:1px solid var(--line);border-radius:99px;padding:4px 12px;
-              font-weight:700;font-size:14px;color:var(--chalk)}
-  .statusitem .sdot{width:8px;height:8px;border-radius:50%;flex:none}
+              font-weight:700;font-size:14px;color:var(--chalk);margin:3px 8px 3px 0}
+  .statusitem .sdot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block;
+                    margin-right:7px}
   .statusitem .sdot.info{background:var(--tungsten)}
   .statusitem .sdot.warn{background:var(--watch)}
   .statusitem .sdot.crit{background:var(--crit)}
@@ -306,8 +310,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 24, 2026",
-  "generatedAt": "Jul 24, 4:30 PM ET",
-  "generatedAtISO": "2026-07-24T16:30:41-04:00",
+  "generatedAt": "Jul 24, 4:34 PM ET",
+  "generatedAtISO": "2026-07-24T16:34:59-04:00",
   "studios": [
     {
       "id": "509A",
