@@ -46,6 +46,8 @@ STUDIOS = [
 STUDIO_IDS = {s["id"] for s in STUDIOS}
 
 NOTION_DATA_SOURCE = "36475032-81c4-80d6-b18a-000b8d6f9421"
+# 🚥 Run Monitor DB (Staff Console) — robot heartbeat roster for the Robots tab.
+RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "template.html")
@@ -374,19 +376,23 @@ def _prop_text(prop):
     if t == "formula":
         inner = v.get("type")
         return _prop_text({"type": inner, inner: v.get(inner)})
+    if t == "rollup":
+        inner = v.get("type")
+        if inner == "array":
+            arr = v.get("array") or []
+            return _prop_text(arr[0]) if arr else None
+        return _prop_text({"type": inner, inner: v.get(inner)})
     if isinstance(v, str):
         return v
     return None
 
 
-def fetch_notion_rows(token, today_iso):
-    body = {
-        "filter": {"property": "Booking Date", "date": {"equals": today_iso}},
-        "page_size": 100,
-    }
+def _notion_query(token, ds_id, body):
+    """Query a Notion data source, trying the new then the legacy endpoint.
+    Raises RuntimeError on failure — callers decide fatal vs soft."""
     endpoints = [
-        (f"https://api.notion.com/v1/data_sources/{NOTION_DATA_SOURCE}/query", "2025-09-03"),
-        (f"https://api.notion.com/v1/databases/{NOTION_DATA_SOURCE}/query", "2022-06-28"),
+        (f"https://api.notion.com/v1/data_sources/{ds_id}/query", "2025-09-03"),
+        (f"https://api.notion.com/v1/databases/{ds_id}/query", "2022-06-28"),
     ]
     last_err = None
     for url, ver in endpoints:
@@ -412,7 +418,18 @@ def fetch_notion_rows(token, today_iso):
                 return rows
         except Exception as e:  # noqa: BLE001
             last_err = str(e)
-    die(f"Notion query failed: {last_err}")
+    raise RuntimeError(f"Notion query failed for {ds_id}: {last_err}")
+
+
+def fetch_notion_rows(token, today_iso):
+    body = {
+        "filter": {"property": "Booking Date", "date": {"equals": today_iso}},
+        "page_size": 100,
+    }
+    try:
+        return _notion_query(token, NOTION_DATA_SOURCE, body)
+    except RuntimeError as e:
+        die(str(e))
 
 
 def parse_notion(rows):
@@ -483,6 +500,10 @@ RE_PANEL_ARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:.*?Panel\s+was\s+Armed\s+Away
 RE_PANEL_DISARM_AT = re.compile(r"Studio\s+(\d+\w?)[^:]*:.*?Panel\s+was\s+Disarmed\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
 IGNORE = ("motion", "pending", "image", "alarm")
 STAFF_REMOTE = "info@danceannex.ca"
+# Alarm-trigger subjects (JOB 1 Step 3.5 pattern): a PENDING alarm email, then a
+# real Alarm email for the same studio. Parsed BEFORE the IGNORE list drops them.
+RE_ALARM_PENDING = re.compile(r"Studio\s+(\d+\w?).{0,80}?\bPENDING\s+Alarm\b", re.I | re.S)
+RE_ALARM_REAL = re.compile(r"Studio\s+(\d+\w?).{0,80}?\breported\s+an?\s+Alarm\b", re.I | re.S)
 
 
 def gmail_access_token():
@@ -516,7 +537,11 @@ def _resolve_label_id(h, name):
 
 
 def fetch_arm_events(win_start):
-    """Return [{studio, name, time 'HH:MM', kind}]. Raises on soft (non-auth) failures."""
+    """Return (arm_events, alarm_alerts).
+    arm_events: [{studio, name, time 'HH:MM', kind arrival|departure}]
+    alarm_alerts: [{studio, time 'HH:MM', stage 'PENDING'|'ALARM'}] — alarm-trigger
+    emails; time comes from the email's internalDate (their subjects carry none).
+    Raises on soft (non-auth) failures."""
     tok = gmail_access_token()
     h = {"Authorization": f"Bearer {tok}"}
     label_id = _resolve_label_id(h, ARM_LABEL)
@@ -536,26 +561,54 @@ def fetch_arm_events(win_start):
         if not page:
             break
     floor_ms = int(win_start.timestamp()) * 1000
-    out = []
+    out, alerts = [], []
     for mid in ids:
         r = requests.get(f"{GMAIL_API}/messages/{mid}", headers=h,
                          params={"format": "metadata", "metadataHeaders": "Subject"},
                          timeout=30)
         r.raise_for_status()
         msg = r.json()
-        if int(msg.get("internalDate", "0")) < floor_ms:
+        internal_ms = int(msg.get("internalDate", "0"))
+        if internal_ms < floor_ms:
             continue
         subject = ""
         for hdr in msg.get("payload", {}).get("headers", []):
             if hdr.get("name", "").lower() == "subject":
                 subject = hdr.get("value", "")
                 break
+        alert = parse_alarm_subject(subject, internal_ms)
+        if alert:
+            alerts.append(alert)
+            continue
         parsed = parse_arm_subject(subject)
         if os.environ.get("DEBUG_ARM") == "1":
             print(f"ARM-DEBUG: {'PARSED ' + str(parsed) if parsed else 'DROPPED'} <- {subject!r}")
         if parsed:
             out.append(parsed)
-    return out
+    return out, alerts
+
+
+def parse_alarm_subject(subject, internal_ms):
+    """PENDING/real alarm-trigger emails. Checked before the arm/disarm parse —
+    the IGNORE list would silently drop them (they contain 'pending'/'alarm')."""
+    low = subject.lower()
+    if "image" in low or "motion" in low:
+        return None
+    stage = None
+    m = RE_ALARM_PENDING.search(subject)
+    if m:
+        stage = "PENDING"
+    else:
+        m = RE_ALARM_REAL.search(subject)
+        if m:
+            stage = "ALARM"
+    if not stage:
+        return None
+    studio = norm_studio_label(m.group(1))
+    if not studio:
+        return None
+    t = datetime.fromtimestamp(internal_ms / 1000, TZ)
+    return {"studio": studio, "time": f"{t.hour:02d}:{t.minute:02d}", "stage": stage}
 
 
 def parse_arm_subject(subject):
@@ -673,6 +726,86 @@ def apply_board_fallback(events):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 4. Robot heartbeats — 🚥 Run Monitor DB (Notion)
+# ─────────────────────────────────────────────────────────────────────────────
+def _parse_notion_ts(iso):
+    """Notion date → aware datetime (Toronto). Date-only values become midnight."""
+    if not iso:
+        return None
+    try:
+        dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=TZ)
+    return dt.astimezone(TZ)
+
+
+def robot_status(r, now):
+    """Mirror the Run Monitor DB's Health formula semantics (see the DB's own
+    property descriptions): Paused/Not-reporting are un-watched; a Window
+    start/end pair means off-hours outside it; Daily-and-faster cadences go
+    yellow at 75% of Stale-after and red past it; Weekly reds past 7 days +
+    grace; Monthly must check in each calendar month."""
+    if r["monitoring"] == "Paused":
+        return "plain", "Paused"
+    if r["monitoring"] == "Not reporting":
+        return "plain", "Not reporting"
+    ws, we = r["window_start"], r["window_end"]
+    if ws is not None and we is not None and not (ws <= now.hour < we):
+        return "plain", "Off-hours"
+    last = max((t for t in (r["_self_hb"], r["_last_seen"]) if t), default=None)
+    if last is None:
+        return "crit", "Never checked in"
+    age_min = (now - last).total_seconds() / 60
+    stale = r["stale_after"] or 120
+    cadence = (r["cadence"] or "").lower()
+    if cadence == "monthly":
+        if last.year == now.year and last.month == now.month:
+            return "ok", "On time"
+        month_min = (now.day - 1) * 1440 + now.hour * 60 + now.minute
+        return ("crit", "Overdue") if month_min > stale else ("ok", "Due this month")
+    if cadence == "weekly":
+        limit = 7 * 1440 + stale
+        if age_min > limit:
+            return "crit", "Overdue"
+        return ("watch", "Due") if age_min > 0.75 * limit else ("ok", "On time")
+    if age_min > stale:
+        return "crit", "Overdue"
+    return ("watch", "Due") if age_min > 0.75 * stale else ("ok", "On time")
+
+
+def fetch_robots(token, now):
+    rows = _notion_query(token, RUN_MONITOR_DS, {"page_size": 100})
+    out = []
+    for row in rows:
+        p = row.get("properties", {})
+        r = {
+            "run": _prop_text(p.get("Run")) or "(unnamed)",
+            "cadence": _prop_text(p.get("Cadence")),
+            "expected": _prop_text(p.get("Expected")),
+            "produces": _prop_text(p.get("Produces")),
+            "monitoring": _prop_text(p.get("Monitoring")) or "Live",
+            "stale_after": _prop_text(p.get("Stale after (min)")),
+            "window_start": _prop_text(p.get("Window start")),
+            "window_end": _prop_text(p.get("Window end")),
+            "_self_hb": _parse_notion_ts(_prop_text(p.get("Self-heartbeat"))),
+            "_last_seen": _parse_notion_ts(_prop_text(p.get("Last seen"))),
+        }
+        cls, label = robot_status(r, now)
+        last = max((t for t in (r["_self_hb"], r["_last_seen"]) if t), default=None)
+        out.append({
+            "run": r["run"], "cadence": r["cadence"], "expected": r["expected"],
+            "produces": r["produces"], "monitoring": r["monitoring"],
+            "status": cls, "statusLabel": label,
+            "lastISO": last.replace(microsecond=0).isoformat() if last else None,
+        })
+    rank = {"crit": 0, "watch": 1, "ok": 2, "plain": 3}
+    out.sort(key=lambda x: (rank.get(x["status"], 9), x["run"].lower()))
+    return out
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # assemble + splice
 # ─────────────────────────────────────────────────────────────────────────────
 def build_data(now):
@@ -691,9 +824,11 @@ def build_data(now):
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
 
     used_fallback = False
+    arm_events, alarm_alerts = [], []
     if os.environ.get("GMAIL_REFRESH_TOKEN"):
         try:
-            events = apply_arm_events(events, fetch_arm_events(win_start))
+            arm_events, alarm_alerts = fetch_arm_events(win_start)
+            events = apply_arm_events(events, arm_events)
         except SystemExit:
             raise                       # auth failure already died RED
         except Exception as e:          # noqa: BLE001 — soft: fall back to board
@@ -712,6 +847,33 @@ def build_data(now):
         "start": round(e["start"], 4), "end": round(e["end"], 4),
     } for e in events]
 
+    # Alarms tab: full arm/disarm stream, chronological across midnight (times
+    # before 05:00 belong to the tail of the operating day).
+    def day_key(hhmm):
+        t = _time_to_decimal(hhmm)
+        return t + 24 if t is not None and t < 5 else (t if t is not None else 99)
+    arm_stream = sorted(
+        (a for a in arm_events if a.get("time")), key=lambda a: day_key(a["time"]))
+    alarm_alerts.sort(key=lambda a: day_key(a["time"]))
+
+    # Robots tab (soft source: page must never die because the roster is unreadable)
+    robots, robots_note = None, None
+    try:
+        robots = fetch_robots(token, now)
+    except Exception as e:  # noqa: BLE001
+        robots_note = "Run Monitor unreadable — share the 🚥 Run Monitor DB with the integration."
+        emit_fallback_note(f"Run Monitor fetch failed ({e}); Robots tab shows a notice.")
+
+    attention = []
+    for a in alarm_alerts:
+        lvl = "crit" if a["stage"] == "ALARM" else "warn"
+        attention.append({"level": lvl, "text": f"Alarm {a['stage'].lower()} · {a['studio']} · {a['time']}"})
+    if robots:
+        overdue = sum(1 for r in robots if r["status"] == "crit")
+        if overdue:
+            attention.append({"level": "warn",
+                              "text": f"{overdue} robot{'s' if overdue > 1 else ''} overdue — see Robots tab"})
+
     data = {
         "date": now.strftime("%A, %B %-d, %Y"),
         "generatedAt": now.strftime("%b %-d, %-I:%M %p ET"),
@@ -719,7 +881,12 @@ def build_data(now):
         "studios": STUDIOS,
         "events": clean,
         "staff": sorted(staff, key=lambda s: s["start"]),
-        "attention": [],
+        "attention": attention,
+        "armEvents": arm_stream,
+        "alarmAlerts": alarm_alerts,
+        "armFallback": used_fallback,
+        "robots": robots,
+        "robotsNote": robots_note,
     }
     return data, used_fallback
 
