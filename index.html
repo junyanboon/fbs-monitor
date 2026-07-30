@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, July 30, 2026",
-  "generatedAt": "Jul 30, 10:00 AM ET",
-  "generatedAtISO": "2026-07-30T10:00:49-04:00",
+  "generatedAt": "Jul 30, 10:15 AM ET",
+  "generatedAtISO": "2026-07-30T10:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -377,8 +377,8 @@ const DATA = /*__DATA__*/{
       "tier": "Viewing",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:03",
+      "departed": "10:11",
       "start": 10.0,
       "end": 10.25
     },
@@ -401,7 +401,7 @@ const DATA = /*__DATA__*/{
       "tier": "Viewing",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "10:12",
       "departed": null,
       "start": 10.0,
       "end": 10.25
@@ -532,23 +532,32 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "10:03",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "10:11",
+      "kind": "departure"
+    },
+    {
+      "studio": "509B",
+      "name": "Julie Marouze",
+      "time": "10:12",
+      "kind": "arrival"
+    }
+  ],
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Receptionist",
-      "cadence": "Hourly",
-      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
-      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-30T08:03:00-04:00"
-    },
     {
       "run": "The Sentinel",
       "cadence": "Hourly",
@@ -570,14 +579,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-30T07:33:00-04:00"
     },
     {
-      "run": "The Weatherman",
-      "cadence": "Daily",
-      "expected": "07:00",
-      "produces": "Nest setpoints (509 / 901)",
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-28T09:25:00-04:00"
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-30T08:24:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -598,16 +607,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-07-30T06:02:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-07-30T08:24:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -650,6 +649,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-29T19:33:00-04:00"
     },
     {
+      "run": "The Receptionist",
+      "cadence": "Hourly",
+      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
+      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-30T10:03:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -668,6 +677,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-07-01T17:56:00-04:00"
+    },
+    {
+      "run": "The Weatherman",
+      "cadence": "Daily",
+      "expected": "07:00",
+      "produces": "Nest setpoints (509 / 901)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-30T10:13:00-04:00"
     },
     {
       "run": "The Closer",
