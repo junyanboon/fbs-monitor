@@ -249,6 +249,28 @@
   .coverband{position:absolute;right:0;background:var(--tungsten-soft);pointer-events:none;z-index:1}
   .booking{z-index:2}
 
+  /* ── alarms + robots tabs ── */
+  .armgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+  .armcard{background:var(--scrim);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+           box-shadow:var(--shadow)}
+  .armcard .id{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:.02em}
+  .armcard .st{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;
+               text-transform:uppercase;margin-top:2px}
+  .armcard .st.open{color:var(--ok)} .armcard .st.locked{color:var(--chalk-dim)}
+  .armcard .st.unknown{color:var(--chalk-faint)}
+  .armcard.alarm{border-color:var(--crit);box-shadow:inset 0 0 0 1px var(--crit),var(--shadow)}
+  .armcard .last{font-size:12.5px;color:var(--chalk-dim);margin-top:6px;line-height:1.35}
+  .armcard .last b{font-family:var(--mono);font-weight:600;color:var(--chalk)}
+  .robot{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;padding:11px 16px;
+         border-bottom:1px solid var(--line);align-items:center}
+  .robot:last-child{border-bottom:none}
+  .robot .nm{font-weight:600;font-size:15.5px;min-width:0}
+  .robot .nm small{display:block;font-weight:400;font-size:12px;color:var(--chalk-dim)}
+  .robot .ago{font-family:var(--mono);font-size:13px;color:var(--chalk-dim);white-space:nowrap;
+              font-variant-numeric:tabular-nums;text-align:right}
+  .robot.dim{opacity:.55}
+  @media (max-width:640px){ .robot{grid-template-columns:minmax(0,1fr) auto} .robot .ago{grid-column:1;text-align:left} }
+
   footer{max-width:1140px;margin:26px auto 0;padding:0 24px;color:var(--chalk-faint);font-size:12.5px;
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .legend{display:flex;gap:16px;flex-wrap:wrap}
@@ -278,6 +300,8 @@
     <button class="tab on" data-tab="studios" role="tab" aria-selected="true">Studios</button>
     <button class="tab" data-tab="board" role="tab" aria-selected="false">Today's board</button>
     <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
+    <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
+    <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
@@ -288,6 +312,12 @@
   </section>
   <section id="tab-staff" hidden>
     <div id="staffpanel"></div>
+  </section>
+  <section id="tab-alarms" hidden>
+    <div id="alarmpanel"></div>
+  </section>
+  <section id="tab-robots" hidden>
+    <div id="robotpanel"></div>
   </section>
 </main>
 
@@ -310,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, July 29, 2026",
-  "generatedAt": "Jul 29, 10:00 PM ET",
-  "generatedAtISO": "2026-07-29T22:00:55-04:00",
+  "generatedAt": "Jul 29, 10:07 PM ET",
+  "generatedAtISO": "2026-07-29T22:07:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -505,7 +535,269 @@ const DATA = /*__DATA__*/{
       "end": 24.0
     }
   ],
-  "attention": []
+  "attention": [
+    {
+      "level": "warn",
+      "text": "Alarm pending · 901 · 18:26"
+    },
+    {
+      "level": "warn",
+      "text": "5 robots overdue — see Robots tab"
+    }
+  ],
+  "armEvents": [
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "12:45",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "15:10",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "16:01",
+      "kind": "departure"
+    },
+    {
+      "studio": "509A",
+      "name": "Mia Vescarelli",
+      "time": "17:10",
+      "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "17:52",
+      "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "17:52",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "18:00",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509A",
+      "name": "Mia Vescarelli",
+      "time": "18:18",
+      "kind": "departure"
+    },
+    {
+      "studio": "509A",
+      "name": "Francisco Delgado",
+      "time": "18:19",
+      "kind": "arrival"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "18:26",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "19:55",
+      "kind": "departure"
+    },
+    {
+      "studio": "509A",
+      "name": "Francisco Delgado",
+      "time": "20:11",
+      "kind": "departure"
+    },
+    {
+      "studio": "509A",
+      "name": "Fabio Hernandez",
+      "time": "20:25",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509B",
+      "name": "Marco Villa",
+      "time": "20:48",
+      "kind": "arrival"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "21:57",
+      "kind": "departure"
+    }
+  ],
+  "alarmAlerts": [
+    {
+      "studio": "901",
+      "time": "18:26",
+      "stage": "PENDING"
+    }
+  ],
+  "armFallback": false,
+  "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-07-29T08:14:00-04:00"
+    },
+    {
+      "run": "The Receptionist",
+      "cadence": "Hourly",
+      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
+      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-07-29T08:04:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly · 07–23",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-07-29T07:05:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-07-29T07:33:00-04:00"
+    },
+    {
+      "run": "The Weatherman",
+      "cadence": "Daily",
+      "expected": "07:00",
+      "produces": "Nest setpoints (509 / 901)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-07-28T09:25:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-29T09:41:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-29T04:18:00-04:00"
+    },
+    {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-29T06:02:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "08:00 (cloud)",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-29T06:07:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "~07:00",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-29T04:16:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-29T19:33:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-29T04:10:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month, 08:00 (cloud)",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-01T17:56:00-04:00"
+    },
+    {
+      "run": "The Closer",
+      "cadence": "Daily",
+      "expected": "RETIRED 2026-07-23 (ticket 007) — cloud trigger DELETED, persona dissolved. Do NOT set back to Live. Arm-and-sweep → The Doorman evening arm-check (23:35); day review → The Custodian 02:35 (ticket 027).",
+      "produces": "Day closed + next-day staff msgs",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-07-20T02:49:00-04:00"
+    },
+    {
+      "run": "The Opener",
+      "cadence": "Daily",
+      "expected": "RETIRED 2026-07-23 (ticket 007) — trigger disabled, persona dissolved. Do NOT set back to Live. Surfacing → Day Sheet/night-watch renderers; Ops lead processes Waiting-on-You; orphaned checks → ticket 035 (invariants).",
+      "produces": "Today prepped + escalations queued",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-07-23T08:04:00-04:00"
+    }
+  ],
+  "robotsNote": null
 }/*__END_DATA__*/;
 
 const $ = s => document.querySelector(s);
@@ -525,7 +817,7 @@ document.getElementById('tabs').addEventListener('click', ev => {
     t.classList.toggle('on', on);
     t.setAttribute('aria-selected', on);
   });
-  for(const k of ['studios','board','staff'])
+  for(const k of ['studios','board','staff','alarms','robots'])
     document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
 });
 document.getElementById('daytitle').innerHTML =
@@ -795,6 +1087,87 @@ function render(){
     board.appendChild(line);
   }
 }
+/* ── Alarms tab ─────────────────────────────────────────────────────────────
+   State is DERIVED from today's ADT emails (since 05:00): last event per studio
+   — disarm ⇒ open, arm ⇒ locked. No events yet ⇒ unknown (shown as such, never
+   guessed). PENDING/ALARM trigger emails get the red banner. */
+function renderAlarms(){
+  const evs = DATA.armEvents || [];
+  const alerts = DATA.alarmAlerts || [];
+  let html = "";
+  if(alerts.length){
+    const real = alerts.some(a=>a.stage==="ALARM");
+    html += `<div class="statusbar ${real?"crit":"warn"}" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">${real?"Alarm triggered":"Pending alarm"}</span><span class="items">${
+      alerts.map(a=>`<span class="statusitem"><span class="sdot ${a.stage==="ALARM"?"crit":"warn"}"></span>${esc(a.studio)} · ${esc(a.stage.toLowerCase())} · ${esc(a.time)}</span>`).join("")}</span></div>`;
+  }
+  if(DATA.armFallback)
+    html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">ADT email feed unavailable</span><span class="items"><span class="statusitem">Showing board fallback — no event stream this edition</span></span></div>`;
+  html += `<div class="armgrid">` + DATA.studios.map(s=>{
+    const mine = evs.filter(e=>e.studio===s.id);
+    const last = mine[mine.length-1];
+    const alarmed = alerts.some(a=>a.studio===s.id);
+    const st = !last ? ["unknown","No events yet"]
+             : last.kind==="arrival" ? ["open","🔓 Open"] : ["locked","🔒 Armed"];
+    return `<div class="armcard ${alarmed?"alarm":""}">
+      <div class="id">${esc(s.name)}</div>
+      <div class="st ${st[0]}">${st[1]}</div>
+      <div class="last">${last ? `<b>${esc(last.time)}</b> ${last.kind==="arrival"?"disarmed":"armed"} · ${esc(last.name||"")}` : "since 5 AM"}</div>
+    </div>`;
+  }).join("") + `</div>`;
+  html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +
+    (evs.length ? evs.slice().reverse().map(e=>`<div class="shift">
+        <span class="tm">${esc(e.time)}</span>
+        <span class="nm">${esc(e.name||"—")} <span class="chip plain">${esc(e.studio)}</span></span>
+        <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
+      </div>`).join("")
+     : `<div class="shift">No alarm events yet today</div>`) + `</div>`;
+  $('#alarmpanel').innerHTML = html;
+}
+
+/* ── Robots tab ─────────────────────────────────────────────────────────────
+   Read-only projection of the 🚥 Run Monitor DB. This page is a scoreboard,
+   not a watchdog — The Sentinel still does the alerting; check the header
+   freshness stamp before trusting a green board. */
+function agoTxt(iso){
+  if(!iso) return "never";
+  const m = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
+  if(m < 60) return m + "m ago";
+  if(m < 48*60) return Math.round(m/60) + "h ago";
+  return Math.round(m/1440) + "d ago";
+}
+function renderRobots(){
+  const R = DATA.robots;
+  if(!R){
+    $('#robotpanel').innerHTML = `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">Roster unavailable</span><span class="items"><span class="statusitem">${esc(DATA.robotsNote||"Run Monitor could not be read this edition")}</span></span></div>`;
+    return;
+  }
+  const overdue = R.filter(r=>r.status==="crit").length;
+  const watched = R.filter(r=>r.monitoring==="Live").length;
+  const head = overdue ? `${overdue} robot${overdue>1?"s":""} overdue` : "All robots reporting";
+  let html = `<div class="statusbar ${overdue?"crit":"ok"}" style="margin-top:16px"><span class="dot"></span>
+    <span class="head">${head}</span><span class="items"><span class="statusitem">${watched} watched · as of the last rebuild — The Sentinel does the paging, this is the glanceable view</span></span></div>`;
+  const row = r => {
+    const chip = {ok:"ok", watch:"watch", crit:"crit", plain:"plain"}[r.status] || "plain";
+    return `<div class="robot ${r.status==="plain"?"dim":""}">
+      <span class="nm">${esc(r.run)}<small>${esc(r.expected||r.cadence||"")}${r.produces?` · ${esc(r.produces)}`:""}</small></span>
+      <span class="chip ${chip}">${esc(r.statusLabel)}</span>
+      <span class="ago">${agoTxt(r.lastISO)}</span>
+    </div>`;
+  };
+  const live = R.filter(r=>r.monitoring==="Live");
+  const rest = R.filter(r=>r.monitoring!=="Live");
+  html += `<p class="lane-label">Watched runs</p><div class="panelwrap">` +
+    (live.length ? live.map(row).join("") : `<div class="robot">Nothing watched</div>`) + `</div>`;
+  if(rest.length)
+    html += `<p class="lane-label">Paused / not reporting</p><div class="panelwrap">${rest.map(row).join("")}</div>`;
+  $('#robotpanel').innerHTML = html;
+}
+
+const _renderBase = render;
+render = function(){ _renderBase(); renderAlarms(); renderRobots(); };
 render(); setInterval(render, 30000);
 </script>
 
