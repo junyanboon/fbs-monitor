@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, July 30, 2026",
-  "generatedAt": "Jul 30, 12:23 AM ET",
-  "generatedAtISO": "2026-07-30T00:23:45-04:00",
+  "generatedAt": "Jul 30, 1:27 AM ET",
+  "generatedAtISO": "2026-07-30T01:27:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -687,23 +687,13 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-28T09:25:00-04:00"
     },
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-07-29T04:18:00-04:00"
-    },
-    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-07-29T06:02:00-04:00"
     },
     {
@@ -712,9 +702,19 @@ const DATA = /*__DATA__*/{
       "expected": "08:00 (cloud)",
       "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
       "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-29T06:07:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-07-29T06:07:00-04:00"
+      "lastISO": "2026-07-29T04:18:00-04:00"
     },
     {
       "run": "The Host",
