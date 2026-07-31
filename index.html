@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 31, 2026",
-  "generatedAt": "Jul 31, 8:30 AM ET",
-  "generatedAtISO": "2026-07-31T08:30:49-04:00",
+  "generatedAt": "Jul 31, 8:46 AM ET",
+  "generatedAtISO": "2026-07-31T08:46:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -572,13 +572,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 20.25,
       "end": 20.75
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 20.25,
       "end": 20.75
     },
@@ -604,7 +604,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -627,9 +627,19 @@ const DATA = /*__DATA__*/{
       "expected": "hourly · 07–23",
       "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-07-31T07:04:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-07-31T07:04:00-04:00"
+      "lastISO": "2026-07-31T07:33:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -730,16 +740,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-07-01T17:56:00-04:00"
-    },
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-07-31T07:33:00-04:00"
     },
     {
       "run": "The Weatherman",
