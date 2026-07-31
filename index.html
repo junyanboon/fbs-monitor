@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 31, 2026",
-  "generatedAt": "Jul 31, 2:15 PM ET",
-  "generatedAtISO": "2026-07-31T14:15:57-04:00",
+  "generatedAt": "Jul 31, 2:30 PM ET",
+  "generatedAtISO": "2026-07-31T14:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -467,13 +467,25 @@ const DATA = /*__DATA__*/{
       "end": 20.5
     },
     {
+      "studio": "509B",
+      "who": "Ishfaaq Jookhun (C19 salsa",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 21.0,
+      "end": 21.75
+    },
+    {
       "studio": "527",
       "who": "Shannon Bennett — Rehearsal",
       "kind": "booking",
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "14:30",
       "departed": null,
       "start": 14.75,
       "end": 16.25
@@ -584,13 +596,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 20.25,
       "end": 20.75
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 20.25,
       "end": 20.75
     },
@@ -685,6 +697,18 @@ const DATA = /*__DATA__*/{
       "name": "Samara I",
       "time": "14:00",
       "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Shannon Bennett",
+      "time": "14:30",
+      "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Shannon Bennett",
+      "time": "14:30",
+      "kind": "arrival"
     }
   ],
   "alarmAlerts": [],
@@ -741,6 +765,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-31T07:33:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-30T19:33:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -789,16 +823,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-07-31T04:20:00-04:00"
-    },
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-07-30T19:33:00-04:00"
     },
     {
       "run": "The Timekeeper",
