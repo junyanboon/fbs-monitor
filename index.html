@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, July 30, 2026",
-  "generatedAt": "Jul 30, 10:45 PM ET",
-  "generatedAtISO": "2026-07-30T22:45:47-04:00",
+  "generatedAt": "Jul 30, 11:00 PM ET",
+  "generatedAtISO": "2026-07-30T23:00:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -438,7 +438,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "18:34",
-      "departed": "22:29",
+      "departed": "22:57",
       "start": 18.0,
       "end": 22.25
     },
@@ -532,7 +532,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -625,41 +625,35 @@ const DATA = /*__DATA__*/{
       "name": "Kateryna Zozulia",
       "time": "22:29",
       "kind": "departure"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "22:56",
+      "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "22:56",
+      "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "22:57",
+      "kind": "departure"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "22:57",
+      "kind": "departure"
     }
   ],
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-30T08:24:00-04:00"
-    },
-    {
-      "run": "The Receptionist",
-      "cadence": "Hourly",
-      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
-      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-30T21:02:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-30T08:25:00-04:00"
-    },
     {
       "run": "The Sentinel",
       "cadence": "Hourly",
@@ -669,26 +663,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-07-30T07:05:00-04:00"
-    },
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-30T07:33:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-07-30T09:41:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -781,6 +755,26 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-20T02:49:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-07-30T08:24:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-07-30T09:41:00-04:00"
+    },
+    {
       "run": "The Opener",
       "cadence": "Daily",
       "expected": "RETIRED 2026-07-23 (ticket 007) — trigger disabled, persona dissolved. Do NOT set back to Live. Surfacing → Day Sheet/night-watch renderers; Ops lead processes Waiting-on-You; orphaned checks → ticket 035 (invariants).",
@@ -789,6 +783,36 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-23T08:04:00-04:00"
+    },
+    {
+      "run": "The Receptionist",
+      "cadence": "Hourly",
+      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
+      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-07-30T21:02:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-07-30T08:25:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-07-30T07:33:00-04:00"
     }
   ],
   "robotsNote": null
