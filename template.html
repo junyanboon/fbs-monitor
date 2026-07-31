@@ -214,9 +214,10 @@
   .col .slot{border-top:1px dashed var(--line)}
   /* Board edge colours mirror Skedda: blue = recurring renter (contract),
      green = Artist Plan (AAP), yellow = one-off, red = missed booking. */
-  .booking{--sk:#f0b400;
+  .booking{--sk:#f0b400;--sk-fill:18%;
            position:absolute;left:7px;right:7px;border-radius:8px;padding:7px 10px 6px;overflow:hidden;
-           background:var(--scrim-2);border:1px solid var(--line);border-left:4px solid var(--sk);
+           background:color-mix(in srgb,var(--sk) var(--sk-fill),var(--scrim));
+           border:1px solid color-mix(in srgb,var(--sk) 55%,transparent);border-left:5px solid var(--sk);
            box-shadow:var(--shadow)}
   .booking.plan-contract{--sk:#2f6fd0}
   .booking.plan-aap{--sk:#17a673}
@@ -226,8 +227,13 @@
   .booking.cleaning{background:repeating-linear-gradient(-45deg,var(--scrim-2) 0 7px,var(--scrim) 7px 14px);
                     --sk:var(--chalk-faint);border-left-style:dotted;box-shadow:none}
   .booking.done{opacity:.5}
-  .booking.live{border-color:var(--sk);box-shadow:0 0 0 1px var(--sk),var(--shadow)}
+  .booking.live{--sk-fill:30%;border-color:var(--sk);box-shadow:0 0 0 1px var(--sk),var(--shadow)}
   .booking.flagged{--sk:#d93b30;border-color:#d93b30;box-shadow:0 0 0 1px #d93b30,var(--shadow)}
+  @media (prefers-color-scheme: dark){ .booking{--sk-fill:26%} .booking.live{--sk-fill:38%} }
+  :root[data-theme="dark"] .booking{--sk-fill:26%}
+  :root[data-theme="dark"] .booking.live{--sk-fill:38%}
+  :root[data-theme="light"] .booking{--sk-fill:18%}
+  :root[data-theme="light"] .booking.live{--sk-fill:30%}
   .booking .who{font-weight:600;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .booking .when{font-family:var(--mono);font-size:12px;color:var(--chalk-dim);font-variant-numeric:tabular-nums}
   .booking .when .arr{color:var(--ok)} .booking .when .flag{color:var(--crit);font-family:var(--body)}
@@ -456,12 +462,10 @@ function render(){
   const inNow = E.filter(e=>e.start<=n && n<e.end && e.kind==="booking").length;
   const flags = E.filter(e=>stateOf(e,n).flagged).length;
   const monitored = bookings.filter(e=>e.tier).length;
-  const gaps = E.filter(e=>{const c=coverageOf(e); return c && c.cls==="cov-part";}).length;
   const seg=[];
   seg.push(`<b class="${inNow?"good":""}">${inNow}</b> in studio`);
   seg.push(`<b>${bookings.length}</b> today`);
   if(monitored) seg.push(`<b>${monitored}</b> monitored`);
-  if(gaps) seg.push(`<b class="warn">${gaps}</b> staffing gap${gaps>1?"s":""}`);
   seg.push(flags ? `<b class="bad">${flags}</b> flag${flags>1?"s":""}` : `<b class="good">0</b> flags`);
   $('#summary').innerHTML = seg.join('<span class="sep">·</span>');
 

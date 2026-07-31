@@ -759,6 +759,13 @@ def _parse_notion_ts(iso):
     return dt.astimezone(TZ)
 
 
+def _last_checkin(r):
+    """Newest of every pulse the Run Monitor's Health formula considers."""
+    return max((t for t in (r.get("_self_hb"), r.get("_last_seen"),
+                            r.get("_last_completed"), r.get("_last_run")) if t),
+               default=None)
+
+
 def robot_status(r, now):
     """Mirror the Run Monitor DB's Health formula semantics (see the DB's own
     property descriptions): Paused/Not-reporting are un-watched; a Window
@@ -772,7 +779,7 @@ def robot_status(r, now):
     ws, we = r["window_start"], r["window_end"]
     if ws is not None and we is not None and not (ws <= now.hour < we):
         return "plain", "Off-hours"
-    last = max((t for t in (r["_self_hb"], r["_last_seen"]) if t), default=None)
+    last = _last_checkin(r)
     if last is None:
         return "crit", "Never checked in"
     age_min = (now - last).total_seconds() / 60
@@ -809,9 +816,15 @@ def fetch_robots(token, now):
             "window_end": _prop_text(p.get("Window end")),
             "_self_hb": _parse_notion_ts(_prop_text(p.get("Self-heartbeat"))),
             "_last_seen": _parse_notion_ts(_prop_text(p.get("Last seen"))),
+            # Rolling agents (Concierge, Receptionist, Responder…) create ONE report
+            # per day and refresh its Completed At each pass — "Last seen" (report
+            # created time) then reads hours old while the run is perfectly on time.
+            # The DB's own Health formula uses "Last run", so read that too.
+            "_last_completed": _parse_notion_ts(_prop_text(p.get("Last completed"))),
+            "_last_run": _parse_notion_ts(_prop_text(p.get("Last run"))),
         }
         cls, label = robot_status(r, now)
-        last = max((t for t in (r["_self_hb"], r["_last_seen"]) if t), default=None)
+        last = _last_checkin(r)
         out.append({
             "run": r["run"], "cadence": r["cadence"], "expected": r["expected"],
             "produces": r["produces"], "monitoring": r["monitoring"],
@@ -870,8 +883,22 @@ def build_data(now):
     def day_key(hhmm):
         t = _time_to_decimal(hhmm)
         return t + 24 if t is not None and t < 5 else (t if t is not None else 99)
-    arm_stream = sorted(
-        (a for a in arm_events if a.get("time")), key=lambda a: day_key(a["time"]))
+    # ADT emails one event more than once (a "disarmed by <name>" notice and the
+    # panel notification, sometimes a minute apart), so the raw stream shows the
+    # same arrival twice. Collapse anything with the same studio+kind inside a
+    # 2-minute window, keeping the earliest and the most descriptive name.
+    arm_stream = []
+    for a in sorted((a for a in arm_events if a.get("time")),
+                    key=lambda a: day_key(a["time"])):
+        t = day_key(a["time"])
+        dup = next((p for p in arm_stream
+                    if p["studio"] == a["studio"] and p["kind"] == a["kind"]
+                    and abs(day_key(p["time"]) - t) <= 2 / 60), None)
+        if dup:
+            if len(a.get("name") or "") > len(dup.get("name") or ""):
+                dup["name"] = a["name"]
+            continue
+        arm_stream.append(dict(a))
     alarm_alerts.sort(key=lambda a: day_key(a["time"]))
 
     # Robots tab (soft source: page must never die because the roster is unreadable)
