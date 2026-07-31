@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, July 30, 2026",
-  "generatedAt": "Jul 30, 9:00 PM ET",
-  "generatedAtISO": "2026-07-30T21:00:52-04:00",
+  "generatedAt": "Jul 30, 9:15 PM ET",
+  "generatedAtISO": "2026-07-30T21:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -532,7 +532,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -615,16 +615,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-07-30T08:24:00-04:00"
-    },
-    {
-      "run": "The Receptionist",
-      "cadence": "Hourly",
-      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
-      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-30T10:03:00-04:00"
     },
     {
       "run": "The Responder",
@@ -715,6 +705,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-07-30T19:33:00-04:00"
+    },
+    {
+      "run": "The Receptionist",
+      "cadence": "Hourly",
+      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
+      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-30T21:02:00-04:00"
     },
     {
       "run": "The Timekeeper",
