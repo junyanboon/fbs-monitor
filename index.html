@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 31, 2026",
-  "generatedAt": "Jul 31, 9:15 AM ET",
-  "generatedAtISO": "2026-07-31T09:15:50-04:00",
+  "generatedAt": "Jul 31, 9:30 AM ET",
+  "generatedAtISO": "2026-07-31T09:30:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -377,7 +377,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "09:15",
       "departed": null,
       "start": 9.5,
       "end": 10.5
@@ -607,7 +607,26 @@ const DATA = /*__DATA__*/{
       "text": "3 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "09:15",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Trina Sandler",
+      "time": "09:18",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Trina Sandler",
+      "time": "09:25",
+      "kind": "departure"
+    }
+  ],
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
