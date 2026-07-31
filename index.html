@@ -340,8 +340,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 31, 2026",
-  "generatedAt": "Jul 31, 10:30 AM ET",
-  "generatedAtISO": "2026-07-31T10:30:50-04:00",
+  "generatedAt": "Jul 31, 10:40 AM ET",
+  "generatedAtISO": "2026-07-31T10:40:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -535,13 +535,13 @@ const DATA = /*__DATA__*/{
       "end": 16.25
     },
     {
-      "name": "Ela",
+      "name": "Studio",
       "role": "Viewing",
       "start": 18.0,
       "end": 18.25
     },
     {
-      "name": "Studio",
+      "name": "Ela",
       "role": "Viewing",
       "start": 18.0,
       "end": 18.25
@@ -604,7 +604,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "5 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -630,6 +630,16 @@ const DATA = /*__DATA__*/{
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-07-31T08:15:00-04:00"
+    },
     {
       "run": "The Receptionist",
       "cadence": "Hourly",
@@ -669,16 +679,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-07-31T07:33:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-07-31T08:15:00-04:00"
     },
     {
       "run": "The Analyst",
