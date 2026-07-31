@@ -185,6 +185,7 @@ def fetch_ics(url, win_start, win_end):
         out.append({
             "summary": summary,
             "cancelled": status == "CANCELLED",
+            "recurring": bool(ev.get("RRULE")),
             "dtstart": dts.astimezone(TZ),
             "dtend": dte.astimezone(TZ),
         })
@@ -203,6 +204,22 @@ def is_cleaning(summary):
     if not toks or toks[0] not in CLEANERS:
         return False
     return "clean" in s or len(toks) <= 2
+
+
+def plan_of(summary, recurring):
+    """Skedda's colour convention, reconstructed from the booking title.
+
+    blue  = recurring renter (contract / Fixed Option)
+    green = Artist Plan (AAP / 1AP)
+    yellow = one-off booking, not on contract
+    (red is a runtime state — missed booking — decided in the page, not here.)
+    """
+    s = (summary or "").lower()
+    if re.search(r"\b(aap|1ap|artist plan)\b", s):
+        return "aap"
+    if recurring or "fixed option" in s:
+        return "contract"
+    return "oneoff"
 
 
 def build_calendar_events(ics_map, win_start, win_end, base_day):
@@ -225,6 +242,7 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
                 "studio": key,
                 "who": clean_who(summary),
                 "kind": "cleaning" if is_cleaning(summary) else "booking",
+                "plan": plan_of(summary, ev.get("recurring")),
                 "start": decimal_hours(ev["dtstart"], base_day),
                 "end": decimal_hours(ev["dtend"], base_day),
                 "tier": None, "gtg": True, "hta": None,
@@ -239,10 +257,10 @@ def parse_staff_row(summary, dtstart, dtend, base_day):
         return None
     start = decimal_hours(dtstart, base_day)
     end = decimal_hours(dtend, base_day)
-    if "open the studio" in low:
-        return {"name": "Staff", "role": "Open", "start": start, "end": end}
-    if "close the studio" in low:
-        return {"name": "Staff", "role": "Close", "start": start, "end": end}
+    # Open/Close the studio blocks carry no coverage information — they are dropped
+    # from the board entirely (the calendar side should stop creating them too).
+    if "open the studio" in low or "close the studio" in low:
+        return None
     m = re.search(r"^\s*([A-Za-z][A-Za-z'’-]*)\s+.*?\b(FBS|Monitoring|Monitor|Viewing)\b", summary, re.I)
     if m:
         role = m.group(2)

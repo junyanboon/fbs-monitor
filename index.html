@@ -217,16 +217,22 @@
   .col{position:relative;border-right:1px solid var(--line)}
   .col:last-child{border-right:none}
   .col .slot{border-top:1px dashed var(--line)}
-  .booking{position:absolute;left:7px;right:7px;border-radius:8px;padding:7px 10px 6px;overflow:hidden;
-           background:var(--scrim-2);border:1px solid var(--line);border-left:3px solid var(--tungsten);
+  /* Board edge colours mirror Skedda: blue = recurring renter (contract),
+     green = Artist Plan (AAP), yellow = one-off, red = missed booking. */
+  .booking{--sk:#f0b400;
+           position:absolute;left:7px;right:7px;border-radius:8px;padding:7px 10px 6px;overflow:hidden;
+           background:var(--scrim-2);border:1px solid var(--line);border-left:4px solid var(--sk);
            box-shadow:var(--shadow)}
-  .booking.plain{border-left-color:var(--chalk-faint)}
+  .booking.plan-contract{--sk:#2f6fd0}
+  .booking.plan-aap{--sk:#17a673}
+  .booking.plan-oneoff{--sk:#f0b400}
+  .booking.plain{--sk:var(--chalk-faint)}
   .booking.monitor{border-left-style:dashed}
   .booking.cleaning{background:repeating-linear-gradient(-45deg,var(--scrim-2) 0 7px,var(--scrim) 7px 14px);
-                    border-left-color:var(--chalk-faint);border-left-style:dotted;box-shadow:none}
+                    --sk:var(--chalk-faint);border-left-style:dotted;box-shadow:none}
   .booking.done{opacity:.5}
-  .booking.live{border-color:var(--tungsten);box-shadow:0 0 0 1px var(--tungsten),var(--shadow)}
-  .booking.flagged{border-color:var(--crit);box-shadow:0 0 0 1px var(--crit),var(--shadow)}
+  .booking.live{border-color:var(--sk);box-shadow:0 0 0 1px var(--sk),var(--shadow)}
+  .booking.flagged{--sk:#d93b30;border-color:#d93b30;box-shadow:0 0 0 1px #d93b30,var(--shadow)}
   .booking .who{font-weight:600;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .booking .when{font-family:var(--mono);font-size:12px;color:var(--chalk-dim);font-variant-numeric:tabular-nums}
   .booking .when .arr{color:var(--ok)} .booking .when .flag{color:var(--crit);font-family:var(--body)}
@@ -322,14 +328,6 @@
 </main>
 
 <footer>
-  <div class="legend">
-    <span><span class="swatch" style="background:var(--tungsten)"></span>FBS / Viewing (purple edge)</span>
-    <span><span class="swatch" style="background:var(--ok)"></span>Live now (green edge + tint)</span>
-    <span><span class="swatch" style="background:var(--crit)"></span>Flag — no arrival logged</span>
-    <span><span class="swatch" style="background:repeating-linear-gradient(-45deg,var(--chalk-faint) 0 3px,transparent 3px 6px)"></span>Cleaning</span>
-    <span>Coverage: <b>Covered</b> = staff present · <b>Partial</b> = staff for part of the window · <b>AI watch</b> = no staff on-site; the desk AI monitors remotely (default, not an error)</span>
-    <span>↓ arrived · ↑ departed</span>
-  </div>
   <div id="stamp"></div>
 </footer>
 
@@ -1028,13 +1026,8 @@ function render(){
     if(e.tier) tags += `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
     if(e.tier && e.tier!=="Viewing" && !e.gtg && !done)
       tags += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
-    if(cv && !done){
-      /* AI watch is the default state — showing it on every monitored card is noise.
-         Only staffed states (full or partial) earn a chip here; the Staff tab still
-         shows AI watch explicitly. */
-      if(cv.cls==="cov-part") tags += `<span class="chip cov-part">Gap ${cv.gap}m</span>`;
-      else if(cv.cls==="cov-ok") tags += `<span class="chip cov-ok">Covered</span>`;
-    }
+    /* Coverage pills (Gap Nm / Covered / AI watch) were noise on the cards — the
+       Staff tab still shows coverage per monitored booking. */
     // countdown
     let cnt = "";
     if(live) cnt = `<b>${dur(e.end-n)} left</b>`;
@@ -1144,12 +1137,13 @@ function render(){
         const st = stateOf(e,n);
         const live = e.start<=n && n<e.end;
         const done = n>=e.end;
-        const cls = ["booking", e.kind==="cleaning"?"cleaning":(e.tier?(e.tier==="Monitor"?"monitor":""):"plain"),
+        const cls = ["booking", e.kind==="cleaning"?"cleaning":`plan-${e.plan||"oneoff"}`,
+                     e.kind!=="cleaning"&&e.tier==="Monitor"?"monitor":"",
                      done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":""].join(" ");
         return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px" title="${esc(e.who)}">
           <div class="who">${shortWho(e.who)}</div>
           <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr">↓${e.arrived}</span>`:""}${e.departed?` ↑${e.departed}`:""}${st.flagged?` <span class="flag">⚠</span>`:""}</div>
-          ${e.tier?(cv=>`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${cv?(cv.gap>0?`<span class="chip ${cv.cls}">${cv.cls==="cov-ai"?"AI watch":`Gap ${cv.gap}m`}</span>`:`<span class="chip cov-ok">Cover ✓</span>`):""}</div>`)(coverageOf(e)):""}
+          ${e.tier?`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}</div>`:""}
         </div>`;
       }).join("") + `</div>`;
   }
