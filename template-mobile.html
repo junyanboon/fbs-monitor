@@ -258,11 +258,16 @@ function render(){
     const byp=alertsA.filter(a=>a.studio===s.id&&a.stage==="BYPASS");
     const real=trig.some(a=>a.stage==="ALARM");
     let stCls="plain",stTxt="No events yet",act="";
-    if(last){stCls=last.kind==="arrival"?"ok":"plain";
-             stTxt=last.kind==="arrival"?"🔓 Open":"🔒 Armed";}
+    const isOpen=last&&last.kind==="arrival";
+    if(last){stCls=isOpen?"ok":"plain";stTxt=isOpen?"🔓 Open":"🔒 Armed";}
     if(trig.length){stCls="crit";
       act=`<span class="chip crit">${real?"⚠ Clear alarm":"Pending"} · ${trig[trig.length-1].time}</span>`;}
     if(byp.length)act+=`<span class="chip watch">Bypass · ${byp[byp.length-1].time}</span>`;
+    // Open with nothing scheduled there (±30 min, cleaning counts) → should be armed.
+    if(isOpen&&!trig.length){
+      const occ=(DATA.events||[]).some(e=>e.studio===s.id&&e.start-0.5<=n&&n<e.end+0.5);
+      if(!occ)act+=`<span class="chip crit">⚠ Open · no booking</span>`;
+    }
     return `<div class="row" style="${trig.length?"border-color:var(--crit)":""}">
       <span class="tm" style="font-family:var(--disp);font-weight:800;font-size:17px">${esc(s.name)}</span>
       <span class="nm">${stTxt}<span class="st">${last?`${last.time} · ${esc(last.name||"")}`:"since 5 AM"}</span></span>

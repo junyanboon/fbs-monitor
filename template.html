@@ -656,11 +656,16 @@ function renderAlarms(){
     const byp = bypasses.filter(a=>a.studio===s.id);
     const st = !last ? ["unknown","No events yet"]
              : last.kind==="arrival" ? ["open","🔓 Open"] : ["locked","🔒 Armed"];
+    // Open with nothing scheduled there (±30 min, cleaning counts) → warn.
+    const nA = torontoNow().t;
+    const openEmpty = last && last.kind==="arrival" && !alarmed &&
+      !(DATA.events||[]).some(e=>e.studio===s.id && e.start-0.5<=nA && nA<e.end+0.5);
     return `<div class="armcard ${alarmed?"alarm":""}">
       <div class="id">${esc(s.name)}</div>
       <div class="st ${st[0]}">${st[1]}</div>
       <div class="last">${last ? `<b>${esc(last.time)}</b> ${last.kind==="arrival"?"disarmed":"armed"} · ${esc(last.name||"")}` : "since 5 AM"}</div>
       ${byp.length?`<div class="last" style="color:var(--watch)">Bypass seen · ${esc(byp[byp.length-1].time)}</div>`:""}
+      ${openEmpty?`<div class="last" style="color:var(--crit);font-weight:700">⚠ Open · no booking</div>`:""}
     </div>`;
   }).join("") + `</div>`;
   /* stream: arm/disarm + triggers/bypasses interleaved by time — the red rows
