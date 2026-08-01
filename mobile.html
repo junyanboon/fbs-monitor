@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>FBS Mobile — Dance Annex</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="7" fill="%235b2fd4"/><polyline points="5,16 11,16 14,9 18,23 21,16 27,16" fill="none" stroke="%23f4f2ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<link rel="manifest" href="manifest-mobile.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#5b2fd4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="FBS Mobile">
+<style>
+  /* FBS Mobile — agenda-first sister app of the FBS Monitor board.
+     Pattern: Jobber "Today's appointments" (filter chips) + Outlook agenda
+     (chronological list, sticky now) + the Monitor's own palette. */
+  :root{
+    --ink:#f5f4f0; --scrim:#fbfaf7; --scrim-2:#edebe4; --line:#dedbd3;
+    --chalk:#191715; --chalk-dim:#716c64; --chalk-faint:#a09a90;
+    --tungsten:#5b2fd4; --tungsten-soft:rgba(91,47,212,.09);
+    --ok:#2c7a4e; --watch:#b06c00; --crit:#c23a2b;
+    --ok-bg:#e2efe7; --watch-bg:#f6ead6; --crit-bg:#f9e6e2;
+    --sk-contract:#2f6fd0; --sk-aap:#17a673; --sk-oneoff:#f0b400; --sk-miss:#d93b30;
+    --shadow:0 4px 14px rgba(25,23,21,.08);
+    --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
+    --disp:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+    --mono:"SF Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#161412; --scrim:#1e1b18; --scrim-2:#2a2622; --line:#403b34;
+      --chalk:#f4f1ea; --chalk-dim:#beb7ab; --chalk-faint:#948d82;
+      --tungsten:#b598f5; --tungsten-soft:rgba(181,152,245,.18);
+      --ok:#82cda2; --watch:#eab365; --crit:#f08a7b;
+      --ok-bg:#1d3527; --watch-bg:#3d2f12; --crit-bg:#46221c;
+      --shadow:0 6px 18px rgba(0,0,0,.45);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink);color:var(--chalk);font-family:var(--sans);font-size:16px;line-height:1.45;
+       -webkit-font-smoothing:antialiased;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:var(--ink);border-bottom:1px solid var(--line);
+         padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:12px}
+  h1{font-family:var(--disp);font-weight:800;font-size:20px;margin:0;text-transform:uppercase;letter-spacing:.02em}
+  h1 em{font-style:normal;color:var(--tungsten)}
+  .hdate{font-size:12px;color:var(--chalk-dim)}
+  .clock{margin-left:auto;text-align:right}
+  .clock b{font-family:var(--mono);font-size:20px;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+  .clock small{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);font-weight:600}
+  .clock small.stale{color:var(--crit)}
+
+  /* summary strip */
+  .sum{display:flex;gap:14px;padding:10px 16px;font-size:13.5px;color:var(--chalk-dim);
+       border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+  .sum b{color:var(--chalk)} .sum b.good{color:var(--ok)} .sum b.bad{color:var(--crit)}
+
+  /* filter chips (Jobber pattern) */
+  .filters{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .fchip{flex:none;border:1px solid var(--line);background:var(--scrim);color:var(--chalk-dim);
+         border-radius:99px;padding:7px 15px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:var(--sans)}
+  .fchip.on{background:var(--tungsten);border-color:var(--tungsten);color:#fff}
+
+  main{padding:0 16px}
+  .grp{margin:14px 0 4px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+       color:var(--chalk-faint)}
+  .nowmark{display:flex;align-items:center;gap:8px;margin:14px 0;color:var(--tungsten);
+           font-family:var(--mono);font-size:12px;font-weight:700}
+  .nowmark::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--tungsten)}
+  .nowmark::after{content:"";flex:1;height:2px;background:var(--tungsten);opacity:.7;border-radius:2px}
+
+  /* booking card */
+  .card{--sk:var(--sk-oneoff);
+        display:grid;grid-template-columns:6px 1fr auto;gap:0 12px;align-items:center;
+        background:var(--scrim);border:1px solid var(--line);border-radius:12px;
+        padding:11px 14px 11px 0;margin:8px 0;box-shadow:var(--shadow);overflow:hidden}
+  .card .bar{grid-row:1/span 3;width:6px;height:100%;background:var(--sk);border-radius:0}
+  .card.plan-contract{--sk:var(--sk-contract)}
+  .card.plan-aap{--sk:var(--sk-aap)}
+  .card.plan-oneoff{--sk:var(--sk-oneoff)}
+  .card.flagged{--sk:var(--sk-miss);border-color:var(--sk-miss)}
+  .card.live{border-color:var(--ok)}
+  .card.done{opacity:.55}
+  .card .who{font-weight:700;font-size:15.5px;grid-column:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .meta{grid-column:2;font-family:var(--mono);font-size:13px;color:var(--chalk-dim);
+              font-variant-numeric:tabular-nums}
+  .card .meta .arr{color:var(--ok)} .card .meta .miss{color:var(--crit);font-family:var(--sans)}
+  .card .chips{grid-column:2;display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+  .card .right{grid-column:3;grid-row:1/span 3;text-align:right;font-size:12.5px;color:var(--chalk-dim);
+               display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+  .card .studio{font-family:var(--disp);font-weight:800;font-size:16px;color:var(--chalk);letter-spacing:.03em}
+  .card .cnt{font-family:var(--mono);font-size:12px;white-space:nowrap}
+  .card .cnt b{color:var(--ok)}
+  .chip{font-size:10.5px;letter-spacing:.05em;padding:2px 8px;border-radius:99px;font-weight:700;
+        text-transform:uppercase;display:inline-block}
+  .chip.type{background:var(--tungsten-soft);color:var(--tungsten)}
+  .chip.ok{background:var(--ok-bg);color:var(--ok)}
+  .chip.watch{background:var(--watch-bg);color:var(--watch)}
+  .chip.crit{background:var(--crit-bg);color:var(--crit)}
+  .chip.plain{background:var(--scrim-2);color:var(--chalk-dim)}
+  .quiet{color:var(--chalk-faint);text-align:center;padding:40px 0;font-size:14.5px}
+
+  /* alarms + staff panels reuse card look */
+  .row{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;
+       background:var(--scrim);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:8px 0}
+  .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
+  .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
+  .alert{background:var(--crit-bg);border:1px solid var(--crit);border-radius:12px;padding:12px 14px;margin:10px 0;
+         color:var(--crit);font-weight:700}
+
+  /* bottom tab bar */
+  nav{position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;
+      background:var(--ink);border-top:1px solid var(--line);
+      padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+  nav button{flex:1;background:none;border:0;color:var(--chalk-faint);font-family:var(--sans);
+             font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+             padding:7px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+  nav button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;
+                 stroke-linecap:round;stroke-linejoin:round}
+  nav button.on{color:var(--tungsten)}
+</style>
+</head>
+<body>
+
+<header>
+  <div><h1>FBS <em>Mobile</em></h1><div class="hdate" id="hdate"></div></div>
+  <div class="clock"><b id="clock">--:--</b><small id="fresh">·</small></div>
+</header>
+<div class="sum" id="sum"></div>
+
+<section id="tab-today">
+  <div class="filters" id="filters"></div>
+  <main id="agenda"></main>
+</section>
+<section id="tab-alarms" hidden><main id="alarms"></main></section>
+<section id="tab-staff" hidden><main id="staff"></main></section>
+
+<nav id="nav">
+  <button class="on" data-t="today"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Today</button>
+  <button data-t="alarms"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3.5l1.7 3a1 1 0 0 1-.9 1.5H5.2a1 1 0 0 1-.9-1.5l1.7-3V9a6 6 0 0 1 6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Alarms</button>
+  <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Staff</button>
+</nav>
+
+<script>
+const DATA = /*__DATA__*/{
+  "date": "Friday, July 31, 2026",
+  "generatedAt": "Jul 31, 9:45 PM ET",
+  "generatedAtISO": "2026-07-31T21:45:38-04:00",
+  "studios": [
+    {
+      "id": "509A",
+      "name": "509A",
+      "sub": "Main"
+    },
+    {
+      "id": "509B",
+      "name": "509B",
+      "sub": "Main"
+    },
+    {
+      "id": "527",
+      "name": "527",
+      "sub": "Loft"
+    },
+    {
+      "id": "693",
+      "name": "693",
+      "sub": "Annex"
+    },
+    {
+      "id": "901",
+      "name": "901",
+      "sub": "Elements"
+    }
+  ],
+  "events": [
+    {
+      "studio": "509A",
+      "who": "Brad Wong — Yoga Class",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
+      "arrived": "09:15",
+      "departed": "10:42",
+      "start": 9.5,
+      "end": 10.5
+    },
+    {
+      "studio": "509A",
+      "who": "Vladimir Sidorkin",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": true,
+      "hta": "Will Not Send",
+      "arrived": "12:16",
+      "departed": "13:31",
+      "start": 12.0,
+      "end": 13.5
+    },
+    {
+      "studio": "509A",
+      "who": "Juriza Nierva — WAGTD",
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "16:45",
+      "departed": "18:33",
+      "start": 16.5,
+      "end": 18.5
+    },
+    {
+      "studio": "509A",
+      "who": "Sarra Genevieve (iFemme) — iFemme Event",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "arrived": "18:58",
+      "departed": null,
+      "start": 18.75,
+      "end": 23.5
+    },
+    {
+      "studio": "509B",
+      "who": "Melisa Pustilnik — Shahdana",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "arrived": "11:27",
+      "departed": "13:43",
+      "start": 11.5,
+      "end": 13.5
+    },
+    {
+      "studio": "509B",
+      "who": "Samara I. Peerspace",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "14:00",
+      "departed": "15:50",
+      "start": 14.0,
+      "end": 16.0
+    },
+    {
+      "studio": "509B",
+      "who": "Salia Magno",
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "17:07",
+      "departed": "18:16",
+      "start": 17.0,
+      "end": 18.25
+    },
+    {
+      "studio": "509B",
+      "who": "Jessica T. Peerspace",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "18:21",
+      "departed": "20:30",
+      "start": 18.5,
+      "end": 20.5
+    },
+    {
+      "studio": "509B",
+      "who": "Ishfaaq Jookhun (C19 salsa",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": "20:55",
+      "departed": null,
+      "start": 21.0,
+      "end": 21.75
+    },
+    {
+      "studio": "527",
+      "who": "Shannon Bennett — Rehearsal",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
+      "arrived": "14:30",
+      "departed": "16:16",
+      "start": 14.75,
+      "end": 16.25
+    },
+    {
+      "studio": "527",
+      "who": "Alexander Senum — EVENT",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "arrived": "18:00",
+      "departed": null,
+      "start": 18.75,
+      "end": 23.25
+    },
+    {
+      "studio": "693",
+      "who": "Divine Mokuye — Studio Viewing",
+      "kind": "booking",
+      "tier": "Viewing",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "18:09",
+      "departed": "18:17",
+      "start": 18.0,
+      "end": 18.25
+    },
+    {
+      "studio": "693",
+      "who": "Amandeep Kaur — Mastaani's bhangra",
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "18:57",
+      "departed": "20:11",
+      "start": 19.0,
+      "end": 20.0
+    },
+    {
+      "studio": "901",
+      "who": "Nicole Drury — *early arrival*",
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "arrived": "18:33",
+      "departed": "20:28",
+      "start": 18.75,
+      "end": 20.5
+    }
+  ],
+  "staff": [
+    {
+      "name": "Junyan",
+      "role": "FBS",
+      "start": 13.75,
+      "end": 14.25
+    },
+    {
+      "name": "Junyan",
+      "role": "FBS",
+      "start": 15.75,
+      "end": 16.25
+    },
+    {
+      "name": "Ela",
+      "role": "Viewing",
+      "start": 18.0,
+      "end": 18.25
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 18.25,
+      "end": 18.75
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 18.5,
+      "end": 19.0
+    },
+    {
+      "name": "Ela",
+      "role": "Monitoring",
+      "start": 18.75,
+      "end": 19.25
+    },
+    {
+      "name": "Ela",
+      "role": "Monitoring",
+      "start": 19.75,
+      "end": 20.25
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 20.25,
+      "end": 20.75
+    },
+    {
+      "name": "Ela",
+      "role": "Monitoring",
+      "start": 20.25,
+      "end": 20.75
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 23.0,
+      "end": 23.5
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 23.25,
+      "end": 23.75
+    }
+  ],
+  "attention": [
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 693 · 18:20"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 693 · 18:20"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 901 · 18:23"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 901 · 18:23"
+    }
+  ],
+  "armEvents": [
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "09:15",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Trina Sandler",
+      "time": "09:18",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Trina Sandler",
+      "time": "09:25",
+      "kind": "departure"
+    },
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "10:42",
+      "kind": "departure"
+    },
+    {
+      "studio": "509B",
+      "name": "Melisa Pustilnik",
+      "time": "11:27",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509A",
+      "name": "Vladimir Sidorkin",
+      "time": "12:16",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509A",
+      "name": "Vladimir Sidorkin",
+      "time": "13:30",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509A",
+      "name": "Vladimir Sidorkin",
+      "time": "13:30",
+      "kind": "departure"
+    },
+    {
+      "studio": "509B",
+      "name": "Melisa Pustilnik",
+      "time": "13:43",
+      "kind": "departure"
+    },
+    {
+      "studio": "509B",
+      "name": "Samara I",
+      "time": "14:00",
+      "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Shannon Bennett",
+      "time": "14:30",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509B",
+      "name": "Samara I",
+      "time": "15:50",
+      "kind": "departure"
+    },
+    {
+      "studio": "527",
+      "name": "Shannon Bennett",
+      "time": "16:16",
+      "kind": "departure"
+    },
+    {
+      "studio": "509A",
+      "name": "Juriza Nierva",
+      "time": "16:45",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509B",
+      "name": "Salia Magno",
+      "time": "17:07",
+      "kind": "arrival"
+    },
+    {
+      "studio": "527",
+      "name": "Alexander Senum",
+      "time": "18:00",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Divine Mokuye",
+      "time": "18:09",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509B",
+      "name": "Salia Magno",
+      "time": "18:16",
+      "kind": "departure"
+    },
+    {
+      "studio": "693",
+      "name": "Divine Mokuye",
+      "time": "18:17",
+      "kind": "departure"
+    },
+    {
+      "studio": "509B",
+      "name": "Jessica T",
+      "time": "18:21",
+      "kind": "arrival"
+    },
+    {
+      "studio": "901",
+      "name": "Shiela",
+      "time": "18:28",
+      "kind": "departure"
+    },
+    {
+      "studio": "901",
+      "name": "Shiela",
+      "time": "18:28",
+      "kind": "arrival"
+    },
+    {
+      "studio": "509A",
+      "name": "Juriza Nierva",
+      "time": "18:33",
+      "kind": "departure"
+    },
+    {
+      "studio": "901",
+      "name": "NIcole Drury",
+      "time": "18:33",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "18:57",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "18:57",
+      "kind": "departure"
+    },
+    {
+      "studio": "509A",
+      "name": "Sarra Genevieve",
+      "time": "18:58",
+      "kind": "arrival"
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "20:11",
+      "kind": "departure"
+    },
+    {
+      "studio": "901",
+      "name": "NIcole Drury",
+      "time": "20:28",
+      "kind": "departure"
+    },
+    {
+      "studio": "509B",
+      "name": "Jessica T",
+      "time": "20:30",
+      "kind": "departure"
+    },
+    {
+      "studio": "509B",
+      "name": "Ishfaaq Jookhun",
+      "time": "20:55",
+      "kind": "arrival"
+    }
+  ],
+  "alarmAlerts": [
+    {
+      "studio": "693",
+      "time": "18:20",
+      "stage": "ALARM"
+    },
+    {
+      "studio": "693",
+      "time": "18:20",
+      "stage": "PENDING"
+    },
+    {
+      "studio": "901",
+      "time": "18:23",
+      "stage": "ALARM"
+    },
+    {
+      "studio": "901",
+      "time": "18:23",
+      "stage": "PENDING"
+    }
+  ],
+  "armFallback": false,
+  "robots": [
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-31T09:58:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T04:50:00-04:00"
+    },
+    {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T06:02:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T21:10:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "08:00 (cloud)",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T06:14:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "~07:00",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T04:22:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T19:44:00-04:00"
+    },
+    {
+      "run": "The Receptionist",
+      "cadence": "Hourly",
+      "expected": "Hourly :00, 08–22 Toronto. RETIREMENT REVERSED 2026-07-25 — the event-gate lane covers its ⚡ cards, but NOT its composed/courtesy replies (cancellation→move offers etc). Stays live until the Responder (sibling map tickets 003/007) lands.",
+      "produces": "Watchlist 9-card quick answers auto-sent (Mode 2) + emergency Staff Call Queue summons; every pass refreshes its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T21:01:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T21:23:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly · 07–23",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T21:02:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T04:13:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month, 08:00 (cloud)",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-01T18:15:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T21:32:00-04:00"
+    },
+    {
+      "run": "The Weatherman",
+      "cadence": "Daily",
+      "expected": "07:00",
+      "produces": "Nest setpoints (509 / 901)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-07-31T03:12:00-04:00"
+    },
+    {
+      "run": "The Closer",
+      "cadence": "Daily",
+      "expected": "RETIRED 2026-07-23 (ticket 007) — cloud trigger DELETED, persona dissolved. Do NOT set back to Live. Arm-and-sweep → The Doorman evening arm-check (23:35); day review → The Custodian 02:35 (ticket 027).",
+      "produces": "Day closed + next-day staff msgs",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Opener",
+      "cadence": "Daily",
+      "expected": "RETIRED 2026-07-23 (ticket 007) — trigger disabled, persona dissolved. Do NOT set back to Live. Surfacing → Day Sheet/night-watch renderers; Ops lead processes Waiting-on-You; orphaned checks → ticket 035 (invariants).",
+      "produces": "Today prepped + escalations queued",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-07-23T08:24:00-04:00"
+    }
+  ],
+  "robotsNote": null
+}/*__END_DATA__*/;
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const hm=t=>{const h=Math.floor(((t%24)+24)%24),m=Math.round((t-Math.floor(t))*60);
+  return String(h).padStart(2,"0")+":"+String(m%60).padStart(2,"0");};
+const dur=h=>{const m=Math.round(h*60);return m>=60?`${Math.floor(m/60)}h${m%60?` ${m%60}m`:""}`:`${m}m`;};
+const parseHM=s=>{if(!s)return null;const[a,b]=s.split(":").map(Number);return a+b/60;};
+const GRACE=0.25;
+const shortWho=w=>{let s=String(w||"");const i=s.indexOf(" — ");if(i>0)s=s.slice(0,i);return esc(s);};
+function torontoNow(){const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));
+  return {t:d.getHours()+d.getMinutes()/60,hhmm:String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};}
+function stateOf(e,now){
+  const arr=parseHM(e.arrived),dep=parseHM(e.departed);
+  const flagged=e.kind==="booking"&&!arr&&now>e.start+GRACE&&now<e.end+1;
+  if(dep&&dep>=e.start)return{done:true,flagged:false};
+  if(now>=e.end)return{done:true,flagged};
+  if(now>=e.start)return{live:true,flagged};
+  return{flagged:false};
+}
+
+const E=(DATA.events||[]).filter(e=>e.kind==="booking");
+let FILTER="all";
+
+/* tabs */
+document.getElementById('nav').addEventListener('click',ev=>{
+  const b=ev.target.closest('button');if(!b)return;
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  for(const k of['today','alarms','staff'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
+});
+document.getElementById('filters').addEventListener('click',ev=>{
+  const c=ev.target.closest('.fchip');if(!c)return;FILTER=c.dataset.f;render();
+});
+
+function chipRow(e,st){
+  let t="";
+  if(e.tier)t+=`<span class="chip type">${e.tier}</span>`;
+  if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
+  return t?`<div class="chips">${t}</div>`:"";
+}
+
+function render(){
+  const now=torontoNow(),n=now.t;
+  $('#clock').textContent=now.hhmm;
+  $('#hdate').textContent=DATA.date;
+
+  const live=E.filter(e=>e.start<=n&&n<e.end);
+  const flags=E.filter(e=>stateOf(e,n).flagged);
+  $('#sum').innerHTML=
+    `<span><b class="${live.length?"good":""}">${live.length}</b> in studio</span>`+
+    `<span><b>${E.length}</b> today</span>`+
+    `<span><b>${E.filter(e=>e.tier).length}</b> monitored</span>`+
+    `<span><b class="${flags.length?"bad":"good"}">${flags.length}</b> flags</span>`;
+
+  /* filter chips: All / Live / Upcoming / per-studio */
+  const f=[["all","All"],["live","Live now"],["next","Upcoming"],...DATA.studios.map(s=>[s.id,s.name])];
+  $('#filters').innerHTML=f.map(([k,l])=>`<button class="fchip ${FILTER===k?"on":""}" data-f="${k}">${l}</button>`).join("");
+
+  let list=[...E].sort((a,b)=>a.start-b.start||a.end-b.end);
+  if(FILTER==="live")list=list.filter(e=>e.start<=n&&n<e.end);
+  else if(FILTER==="next")list=list.filter(e=>e.start>n);
+  else if(FILTER!=="all")list=list.filter(e=>e.studio===FILTER);
+
+  const card=e=>{
+    const st=stateOf(e,n);
+    const plan=`plan-${e.plan||"oneoff"}`;
+    let meta=`${hm(e.start)}–${hm(e.end)}`;
+    if(e.arrived)meta+=` <span class="arr">↓${e.arrived}</span>`;
+    if(e.departed)meta+=` ↑${e.departed}`;
+    if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
+    let cnt="";
+    if(st.live)cnt=`<b>${dur(e.end-n)} left</b>`;
+    else if(!st.done)cnt=e.start-n<6?`in ${dur(e.start-n)}`:`at ${hm(e.start)}`;
+    else cnt="done";
+    return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
+      <div class="bar"></div>
+      <div class="who">${shortWho(e.who)}</div>
+      <div class="meta">${meta}</div>
+      ${chipRow(e,st)}
+      <div class="right"><span class="studio">${esc(e.studio)}</span><span class="cnt">${cnt}</span></div>
+    </div>`;
+  };
+
+  /* chronological agenda with a NOW divider (Outlook pattern) */
+  let html="",nowPlaced=false;
+  const done=list.filter(e=>stateOf(e,n).done),
+        rest=list.filter(e=>!stateOf(e,n).done);
+  if(done.length){html+=`<div class="grp">Earlier</div>`+done.map(card).join("");}
+  for(const e of rest){
+    if(!nowPlaced&&e.start>n){html+=`<div class="nowmark">${now.hhmm}</div>`;nowPlaced=true;}
+    html+=card(e);
+  }
+  if(!nowPlaced&&rest.length)html+=`<div class="nowmark">${now.hhmm}</div>`;
+  $('#agenda').innerHTML=html||`<div class="quiet">Nothing on the schedule.</div>`;
+
+  /* alarms */
+  const alerts=(DATA.alarmAlerts||[]).map(a=>`<div class="alert">Alarm ${a.stage.toLowerCase()} · ${esc(a.studio)} · ${a.time}</div>`).join("");
+  const arm=[...(DATA.armEvents||[])].reverse().map(a=>`<div class="row">
+    <span class="tm">${a.time}</span>
+    <span class="nm">${esc(a.name||"—")}<span class="st">${esc(a.studio)}</span></span>
+    <span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
+  </div>`).join("");
+  $('#alarms').innerHTML=(alerts||"")+(arm||`<div class="quiet">No alarm events yet today.</div>`);
+
+  /* staff */
+  const st=(DATA.staff||[]).map(s=>{
+    const on=s.start<=n&&n<s.end,past=n>=s.end;
+    return `<div class="row" style="${past?"opacity:.55":""}">
+      <span class="tm">${hm(s.start)}</span>
+      <span class="nm">${esc(s.name)}<span class="st">${esc(s.role||"")}</span></span>
+      <span class="chip ${on?"ok":past?"plain":"watch"}">${on?"On now":past?"Done":hm(s.start)+"–"+hm(s.end)}</span>
+    </div>`;
+  }).join("");
+  $('#staff').innerHTML=st||`<div class="quiet">No staff shifts today.</div>`;
+
+  /* freshness */
+  const gen=DATA.generatedAtISO?new Date(DATA.generatedAtISO):null;
+  if(gen){const age=Math.round((Date.now()-gen.getTime())/60000);
+    const el=$('#fresh');el.textContent=`data ${age} min old`;el.classList.toggle('stale',age>40);}
+}
+render();
+setInterval(render,30000);
+/* auto-reload a newer edition (page is a static build refreshed every 15 min) */
+setInterval(()=>{fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{
+  const m=t.match(/"generatedAtISO":\s*"([^"]+)"/);
+  if(m&&DATA.generatedAtISO&&m[1]!==DATA.generatedAtISO)location.reload();
+}).catch(()=>{});},5*60000);
+</script>
+
+</body>
+</html>

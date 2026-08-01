@@ -1,0 +1,274 @@
+<meta charset="utf-8">
+<title>FBS Mobile — Dance Annex</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="7" fill="%235b2fd4"/><polyline points="5,16 11,16 14,9 18,23 21,16 27,16" fill="none" stroke="%23f4f2ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<link rel="manifest" href="manifest-mobile.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#5b2fd4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="FBS Mobile">
+<style>
+  /* FBS Mobile — agenda-first sister app of the FBS Monitor board.
+     Pattern: Jobber "Today's appointments" (filter chips) + Outlook agenda
+     (chronological list, sticky now) + the Monitor's own palette. */
+  :root{
+    --ink:#f5f4f0; --scrim:#fbfaf7; --scrim-2:#edebe4; --line:#dedbd3;
+    --chalk:#191715; --chalk-dim:#716c64; --chalk-faint:#a09a90;
+    --tungsten:#5b2fd4; --tungsten-soft:rgba(91,47,212,.09);
+    --ok:#2c7a4e; --watch:#b06c00; --crit:#c23a2b;
+    --ok-bg:#e2efe7; --watch-bg:#f6ead6; --crit-bg:#f9e6e2;
+    --sk-contract:#2f6fd0; --sk-aap:#17a673; --sk-oneoff:#f0b400; --sk-miss:#d93b30;
+    --shadow:0 4px 14px rgba(25,23,21,.08);
+    --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
+    --disp:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+    --mono:"SF Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#161412; --scrim:#1e1b18; --scrim-2:#2a2622; --line:#403b34;
+      --chalk:#f4f1ea; --chalk-dim:#beb7ab; --chalk-faint:#948d82;
+      --tungsten:#b598f5; --tungsten-soft:rgba(181,152,245,.18);
+      --ok:#82cda2; --watch:#eab365; --crit:#f08a7b;
+      --ok-bg:#1d3527; --watch-bg:#3d2f12; --crit-bg:#46221c;
+      --shadow:0 6px 18px rgba(0,0,0,.45);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink);color:var(--chalk);font-family:var(--sans);font-size:16px;line-height:1.45;
+       -webkit-font-smoothing:antialiased;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:var(--ink);border-bottom:1px solid var(--line);
+         padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:12px}
+  h1{font-family:var(--disp);font-weight:800;font-size:20px;margin:0;text-transform:uppercase;letter-spacing:.02em}
+  h1 em{font-style:normal;color:var(--tungsten)}
+  .hdate{font-size:12px;color:var(--chalk-dim)}
+  .clock{margin-left:auto;text-align:right}
+  .clock b{font-family:var(--mono);font-size:20px;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+  .clock small{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);font-weight:600}
+  .clock small.stale{color:var(--crit)}
+
+  /* summary strip */
+  .sum{display:flex;gap:14px;padding:10px 16px;font-size:13.5px;color:var(--chalk-dim);
+       border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+  .sum b{color:var(--chalk)} .sum b.good{color:var(--ok)} .sum b.bad{color:var(--crit)}
+
+  /* filter chips (Jobber pattern) */
+  .filters{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .fchip{flex:none;border:1px solid var(--line);background:var(--scrim);color:var(--chalk-dim);
+         border-radius:99px;padding:7px 15px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:var(--sans)}
+  .fchip.on{background:var(--tungsten);border-color:var(--tungsten);color:#fff}
+
+  main{padding:0 16px}
+  .grp{margin:14px 0 4px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+       color:var(--chalk-faint)}
+  .nowmark{display:flex;align-items:center;gap:8px;margin:14px 0;color:var(--tungsten);
+           font-family:var(--mono);font-size:12px;font-weight:700}
+  .nowmark::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--tungsten)}
+  .nowmark::after{content:"";flex:1;height:2px;background:var(--tungsten);opacity:.7;border-radius:2px}
+
+  /* booking card */
+  .card{--sk:var(--sk-oneoff);
+        display:grid;grid-template-columns:6px 1fr auto;gap:0 12px;align-items:center;
+        background:var(--scrim);border:1px solid var(--line);border-radius:12px;
+        padding:11px 14px 11px 0;margin:8px 0;box-shadow:var(--shadow);overflow:hidden}
+  .card .bar{grid-row:1/span 3;width:6px;height:100%;background:var(--sk);border-radius:0}
+  .card.plan-contract{--sk:var(--sk-contract)}
+  .card.plan-aap{--sk:var(--sk-aap)}
+  .card.plan-oneoff{--sk:var(--sk-oneoff)}
+  .card.flagged{--sk:var(--sk-miss);border-color:var(--sk-miss)}
+  .card.live{border-color:var(--ok)}
+  .card.done{opacity:.55}
+  .card .who{font-weight:700;font-size:15.5px;grid-column:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .meta{grid-column:2;font-family:var(--mono);font-size:13px;color:var(--chalk-dim);
+              font-variant-numeric:tabular-nums}
+  .card .meta .arr{color:var(--ok)} .card .meta .miss{color:var(--crit);font-family:var(--sans)}
+  .card .chips{grid-column:2;display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+  .card .right{grid-column:3;grid-row:1/span 3;text-align:right;font-size:12.5px;color:var(--chalk-dim);
+               display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+  .card .studio{font-family:var(--disp);font-weight:800;font-size:16px;color:var(--chalk);letter-spacing:.03em}
+  .card .cnt{font-family:var(--mono);font-size:12px;white-space:nowrap}
+  .card .cnt b{color:var(--ok)}
+  .chip{font-size:10.5px;letter-spacing:.05em;padding:2px 8px;border-radius:99px;font-weight:700;
+        text-transform:uppercase;display:inline-block}
+  .chip.type{background:var(--tungsten-soft);color:var(--tungsten)}
+  .chip.ok{background:var(--ok-bg);color:var(--ok)}
+  .chip.watch{background:var(--watch-bg);color:var(--watch)}
+  .chip.crit{background:var(--crit-bg);color:var(--crit)}
+  .chip.plain{background:var(--scrim-2);color:var(--chalk-dim)}
+  .quiet{color:var(--chalk-faint);text-align:center;padding:40px 0;font-size:14.5px}
+
+  /* alarms + staff panels reuse card look */
+  .row{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;
+       background:var(--scrim);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:8px 0}
+  .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
+  .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
+  .alert{background:var(--crit-bg);border:1px solid var(--crit);border-radius:12px;padding:12px 14px;margin:10px 0;
+         color:var(--crit);font-weight:700}
+
+  /* bottom tab bar */
+  nav{position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;
+      background:var(--ink);border-top:1px solid var(--line);
+      padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+  nav button{flex:1;background:none;border:0;color:var(--chalk-faint);font-family:var(--sans);
+             font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+             padding:7px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+  nav button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;
+                 stroke-linecap:round;stroke-linejoin:round}
+  nav button.on{color:var(--tungsten)}
+</style>
+
+<header>
+  <div><h1>FBS <em>Mobile</em></h1><div class="hdate" id="hdate"></div></div>
+  <div class="clock"><b id="clock">--:--</b><small id="fresh">·</small></div>
+</header>
+<div class="sum" id="sum"></div>
+
+<section id="tab-today">
+  <div class="filters" id="filters"></div>
+  <main id="agenda"></main>
+</section>
+<section id="tab-alarms" hidden><main id="alarms"></main></section>
+<section id="tab-staff" hidden><main id="staff"></main></section>
+
+<nav id="nav">
+  <button class="on" data-t="today"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Today</button>
+  <button data-t="alarms"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3.5l1.7 3a1 1 0 0 1-.9 1.5H5.2a1 1 0 0 1-.9-1.5l1.7-3V9a6 6 0 0 1 6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Alarms</button>
+  <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Staff</button>
+</nav>
+
+<script>
+const DATA = /*__DATA__*/{
+  "date": "…", "generatedAt": "…",
+  "studios": [], "events": [], "staff": [], "attention": []
+}/*__END_DATA__*/;
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const hm=t=>{const h=Math.floor(((t%24)+24)%24),m=Math.round((t-Math.floor(t))*60);
+  return String(h).padStart(2,"0")+":"+String(m%60).padStart(2,"0");};
+const dur=h=>{const m=Math.round(h*60);return m>=60?`${Math.floor(m/60)}h${m%60?` ${m%60}m`:""}`:`${m}m`;};
+const parseHM=s=>{if(!s)return null;const[a,b]=s.split(":").map(Number);return a+b/60;};
+const GRACE=0.25;
+const shortWho=w=>{let s=String(w||"");const i=s.indexOf(" — ");if(i>0)s=s.slice(0,i);return esc(s);};
+function torontoNow(){const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));
+  return {t:d.getHours()+d.getMinutes()/60,hhmm:String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};}
+function stateOf(e,now){
+  const arr=parseHM(e.arrived),dep=parseHM(e.departed);
+  const flagged=e.kind==="booking"&&!arr&&now>e.start+GRACE&&now<e.end+1;
+  if(dep&&dep>=e.start)return{done:true,flagged:false};
+  if(now>=e.end)return{done:true,flagged};
+  if(now>=e.start)return{live:true,flagged};
+  return{flagged:false};
+}
+
+const E=(DATA.events||[]).filter(e=>e.kind==="booking");
+let FILTER="all";
+
+/* tabs */
+document.getElementById('nav').addEventListener('click',ev=>{
+  const b=ev.target.closest('button');if(!b)return;
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  for(const k of['today','alarms','staff'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
+});
+document.getElementById('filters').addEventListener('click',ev=>{
+  const c=ev.target.closest('.fchip');if(!c)return;FILTER=c.dataset.f;render();
+});
+
+function chipRow(e,st){
+  let t="";
+  if(e.tier)t+=`<span class="chip type">${e.tier}</span>`;
+  if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
+  return t?`<div class="chips">${t}</div>`:"";
+}
+
+function render(){
+  const now=torontoNow(),n=now.t;
+  $('#clock').textContent=now.hhmm;
+  $('#hdate').textContent=DATA.date;
+
+  const live=E.filter(e=>e.start<=n&&n<e.end);
+  const flags=E.filter(e=>stateOf(e,n).flagged);
+  $('#sum').innerHTML=
+    `<span><b class="${live.length?"good":""}">${live.length}</b> in studio</span>`+
+    `<span><b>${E.length}</b> today</span>`+
+    `<span><b>${E.filter(e=>e.tier).length}</b> monitored</span>`+
+    `<span><b class="${flags.length?"bad":"good"}">${flags.length}</b> flags</span>`;
+
+  /* filter chips: All / Live / Upcoming / per-studio */
+  const f=[["all","All"],["live","Live now"],["next","Upcoming"],...DATA.studios.map(s=>[s.id,s.name])];
+  $('#filters').innerHTML=f.map(([k,l])=>`<button class="fchip ${FILTER===k?"on":""}" data-f="${k}">${l}</button>`).join("");
+
+  let list=[...E].sort((a,b)=>a.start-b.start||a.end-b.end);
+  if(FILTER==="live")list=list.filter(e=>e.start<=n&&n<e.end);
+  else if(FILTER==="next")list=list.filter(e=>e.start>n);
+  else if(FILTER!=="all")list=list.filter(e=>e.studio===FILTER);
+
+  const card=e=>{
+    const st=stateOf(e,n);
+    const plan=`plan-${e.plan||"oneoff"}`;
+    let meta=`${hm(e.start)}–${hm(e.end)}`;
+    if(e.arrived)meta+=` <span class="arr">↓${e.arrived}</span>`;
+    if(e.departed)meta+=` ↑${e.departed}`;
+    if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
+    let cnt="";
+    if(st.live)cnt=`<b>${dur(e.end-n)} left</b>`;
+    else if(!st.done)cnt=e.start-n<6?`in ${dur(e.start-n)}`:`at ${hm(e.start)}`;
+    else cnt="done";
+    return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
+      <div class="bar"></div>
+      <div class="who">${shortWho(e.who)}</div>
+      <div class="meta">${meta}</div>
+      ${chipRow(e,st)}
+      <div class="right"><span class="studio">${esc(e.studio)}</span><span class="cnt">${cnt}</span></div>
+    </div>`;
+  };
+
+  /* chronological agenda with a NOW divider (Outlook pattern) */
+  let html="",nowPlaced=false;
+  const done=list.filter(e=>stateOf(e,n).done),
+        rest=list.filter(e=>!stateOf(e,n).done);
+  if(done.length){html+=`<div class="grp">Earlier</div>`+done.map(card).join("");}
+  for(const e of rest){
+    if(!nowPlaced&&e.start>n){html+=`<div class="nowmark">${now.hhmm}</div>`;nowPlaced=true;}
+    html+=card(e);
+  }
+  if(!nowPlaced&&rest.length)html+=`<div class="nowmark">${now.hhmm}</div>`;
+  $('#agenda').innerHTML=html||`<div class="quiet">Nothing on the schedule.</div>`;
+
+  /* alarms */
+  const alerts=(DATA.alarmAlerts||[]).map(a=>`<div class="alert">Alarm ${a.stage.toLowerCase()} · ${esc(a.studio)} · ${a.time}</div>`).join("");
+  const arm=[...(DATA.armEvents||[])].reverse().map(a=>`<div class="row">
+    <span class="tm">${a.time}</span>
+    <span class="nm">${esc(a.name||"—")}<span class="st">${esc(a.studio)}</span></span>
+    <span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
+  </div>`).join("");
+  $('#alarms').innerHTML=(alerts||"")+(arm||`<div class="quiet">No alarm events yet today.</div>`);
+
+  /* staff */
+  const st=(DATA.staff||[]).map(s=>{
+    const on=s.start<=n&&n<s.end,past=n>=s.end;
+    return `<div class="row" style="${past?"opacity:.55":""}">
+      <span class="tm">${hm(s.start)}</span>
+      <span class="nm">${esc(s.name)}<span class="st">${esc(s.role||"")}</span></span>
+      <span class="chip ${on?"ok":past?"plain":"watch"}">${on?"On now":past?"Done":hm(s.start)+"–"+hm(s.end)}</span>
+    </div>`;
+  }).join("");
+  $('#staff').innerHTML=st||`<div class="quiet">No staff shifts today.</div>`;
+
+  /* freshness */
+  const gen=DATA.generatedAtISO?new Date(DATA.generatedAtISO):null;
+  if(gen){const age=Math.round((Date.now()-gen.getTime())/60000);
+    const el=$('#fresh');el.textContent=`data ${age} min old`;el.classList.toggle('stale',age>40);}
+}
+render();
+setInterval(render,30000);
+/* auto-reload a newer edition (page is a static build refreshed every 15 min) */
+setInterval(()=>{fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{
+  const m=t.match(/"generatedAtISO":\s*"([^"]+)"/);
+  if(m&&DATA.generatedAtISO&&m[1]!==DATA.generatedAtISO)location.reload();
+}).catch(()=>{});},5*60000);
+</script>

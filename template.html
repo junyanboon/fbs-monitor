@@ -365,6 +365,12 @@ document.getElementById('tabs').addEventListener('click', ev => {
   });
   for(const k of ['studios','board','staff','alarms','robots'])
     document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
+  // Opening the board: bring the now-line into view (Fresha/Square pattern —
+  // land the user on "now", not on 09:00).
+  if(b.dataset.tab === 'board'){
+    const line = document.querySelector('#board .nowline');
+    if(line) line.scrollIntoView({block:'center', behavior:'instant'});
+  }
 });
 document.getElementById('daytitle').innerHTML =
   "FBS <em>Monitor</em><small>" + esc(DATA.date) + "</small>";

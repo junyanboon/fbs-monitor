@@ -52,6 +52,8 @@ RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "template.html")
 OUTPUT = os.path.join(HERE, "index.html")
+TEMPLATE_MOBILE = os.path.join(HERE, "template-mobile.html")   # sister PWA (agenda view)
+OUTPUT_MOBILE = os.path.join(HERE, "mobile.html")
 
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
@@ -251,26 +253,24 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
     return merge_events(events), staff
 
 
+# The staff rail shows PEOPLE only. Anything not led by a rostered staff name —
+# unassigned placeholders (Need FBS / Need Monitoring / Studio Viewing Support,
+# Open/Close the Studio) and any future placeholder title — never renders.
+STAFF_ROSTER = ("junyan", "kyjah", "ela", "stefan", "donny")
+
+
 def parse_staff_row(summary, dtstart, dtend, base_day):
     low = summary.lower().strip()
-    # "Studio Viewing Support" is an unassigned placeholder, not a person — it was
-    # rendering as a staff block named "Studio".
-    if low.startswith("studio viewing support"):
-        return None
-    if low.startswith("need ") or "meeting" in low or "payroll" in low or "ela morning" in low:
-        return None
-    start = decimal_hours(dtstart, base_day)
-    end = decimal_hours(dtend, base_day)
-    # Open/Close the studio blocks carry no coverage information — they are dropped
-    # from the board entirely (the calendar side should stop creating them too).
-    if "open the studio" in low or "close the studio" in low:
+    if "meeting" in low or "payroll" in low or "ela morning" in low:
         return None
     m = re.search(r"^\s*([A-Za-z][A-Za-z'’-]*)\s+.*?\b(FBS|Monitoring|Monitor|Viewing)\b", summary, re.I)
-    if m:
-        role = m.group(2)
-        role = {"monitor": "Monitoring"}.get(role.lower(), role[0].upper() + role[1:])
-        return {"name": m.group(1), "role": role, "start": start, "end": end}
-    return None
+    if not m or m.group(1).lower() not in STAFF_ROSTER:
+        return None
+    role = m.group(2)
+    role = {"monitor": "Monitoring"}.get(role.lower(), role[0].upper() + role[1:])
+    return {"name": m.group(1), "role": role,
+            "start": decimal_hours(dtstart, base_day),
+            "end": decimal_hours(dtend, base_day)}
 
 
 def merge_events(events):
@@ -940,8 +940,8 @@ def build_data(now):
     return data, used_fallback
 
 
-def splice(data):
-    tpl = open(TEMPLATE, encoding="utf-8").read()
+def splice(data, template=None):
+    tpl = open(template or TEMPLATE, encoding="utf-8").read()
     payload = json.dumps(data, indent=2, ensure_ascii=False)
     out = re.sub(r"/\*__DATA__\*/.*?/\*__END_DATA__\*/",
                  lambda _: "/*__DATA__*/" + payload + "/*__END_DATA__*/",
@@ -965,6 +965,7 @@ def main():
         return
     data, fallback = build_data(now)
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))
+    open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
     n = len(data["events"])
     arrived = sum(1 for e in data["events"] if e["arrived"])
     print(f"Built index.html — {n} bookings, {arrived} with arrivals"
