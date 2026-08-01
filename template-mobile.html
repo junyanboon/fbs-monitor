@@ -248,14 +248,34 @@ function render(){
   if(!nowPlaced&&rest.length)html+=`<div class="nowmark">${now.hhmm}</div>`;
   $('#agenda').innerHTML=html||`<div class="quiet">Nothing on the schedule.</div>`;
 
-  /* alarms */
-  const alerts=(DATA.alarmAlerts||[]).map(a=>`<div class="alert">Alarm ${a.stage.toLowerCase()} · ${esc(a.studio)} · ${a.time}</div>`).join("");
-  const arm=[...(DATA.armEvents||[])].reverse().map(a=>`<div class="row">
+  /* alarms — panel status first: one card per studio (armed/open, triggered
+     alarms to clear, bypasses seen today), then the raw event stream. */
+  const evsA=DATA.armEvents||[], alertsA=DATA.alarmAlerts||[];
+  const grid=DATA.studios.map(s=>{
+    const mine=evsA.filter(e=>e.studio===s.id);
+    const last=mine[mine.length-1];
+    const trig=alertsA.filter(a=>a.studio===s.id&&a.stage!=="BYPASS");
+    const byp=alertsA.filter(a=>a.studio===s.id&&a.stage==="BYPASS");
+    const real=trig.some(a=>a.stage==="ALARM");
+    let stCls="plain",stTxt="No events yet",act="";
+    if(last){stCls=last.kind==="arrival"?"ok":"plain";
+             stTxt=last.kind==="arrival"?"🔓 Open":"🔒 Armed";}
+    if(trig.length){stCls="crit";
+      act=`<span class="chip crit">${real?"⚠ Clear alarm":"Pending"} · ${trig[trig.length-1].time}</span>`;}
+    if(byp.length)act+=`<span class="chip watch">Bypass · ${byp[byp.length-1].time}</span>`;
+    return `<div class="row" style="${trig.length?"border-color:var(--crit)":""}">
+      <span class="tm" style="font-family:var(--disp);font-weight:800;font-size:17px">${esc(s.name)}</span>
+      <span class="nm">${stTxt}<span class="st">${last?`${last.time} · ${esc(last.name||"")}`:"since 5 AM"}</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${act||`<span class="chip ${stCls}">OK</span>`}</span>
+    </div>`;
+  }).join("");
+  const arm=[...evsA].reverse().map(a=>`<div class="row">
     <span class="tm">${a.time}</span>
     <span class="nm">${esc(a.name||"—")}<span class="st">${esc(a.studio)}</span></span>
     <span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
   </div>`).join("");
-  $('#alarms').innerHTML=(alerts||"")+(arm||`<div class="quiet">No alarm events yet today.</div>`);
+  $('#alarms').innerHTML=`<div class="grp">Panel status</div>`+grid+
+    `<div class="grp">Today's events</div>`+(arm||`<div class="quiet">No alarm events yet today.</div>`);
 
   /* staff */
   const st=(DATA.staff||[]).map(s=>{

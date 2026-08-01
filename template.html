@@ -637,7 +637,8 @@ function render(){
    guessed). PENDING/ALARM trigger emails get the red banner. */
 function renderAlarms(){
   const evs = DATA.armEvents || [];
-  const alerts = DATA.alarmAlerts || [];
+  const bypasses = (DATA.alarmAlerts || []).filter(a=>a.stage==="BYPASS");
+  const alerts = (DATA.alarmAlerts || []).filter(a=>a.stage!=="BYPASS");
   let html = "";
   if(alerts.length){
     const real = alerts.some(a=>a.stage==="ALARM");
@@ -652,12 +653,14 @@ function renderAlarms(){
     const mine = evs.filter(e=>e.studio===s.id);
     const last = mine[mine.length-1];
     const alarmed = alerts.some(a=>a.studio===s.id);
+    const byp = bypasses.filter(a=>a.studio===s.id);
     const st = !last ? ["unknown","No events yet"]
              : last.kind==="arrival" ? ["open","🔓 Open"] : ["locked","🔒 Armed"];
     return `<div class="armcard ${alarmed?"alarm":""}">
       <div class="id">${esc(s.name)}</div>
       <div class="st ${st[0]}">${st[1]}</div>
       <div class="last">${last ? `<b>${esc(last.time)}</b> ${last.kind==="arrival"?"disarmed":"armed"} · ${esc(last.name||"")}` : "since 5 AM"}</div>
+      ${byp.length?`<div class="last" style="color:var(--watch)">Bypass seen · ${esc(byp[byp.length-1].time)}</div>`:""}
     </div>`;
   }).join("") + `</div>`;
   html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +

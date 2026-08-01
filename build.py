@@ -526,6 +526,9 @@ STAFF_REMOTE = "info@danceannex.ca"
 # real Alarm email for the same studio. Parsed BEFORE the IGNORE list drops them.
 RE_ALARM_PENDING = re.compile(r"Studio\s+(\d+\w?).{0,80}?\bPENDING\s+Alarm\b", re.I | re.S)
 RE_ALARM_REAL = re.compile(r"Studio\s+(\d+\w?).{0,80}?\breported\s+an?\s+Alarm\b", re.I | re.S)
+# Sensor bypass notices ("… was Armed Away with sensors Bypassed", "Bypass on Front
+# Door …"). Loose on purpose: any ADT subject naming a studio + "bypass".
+RE_BYPASS = re.compile(r"Studio\s+(\d+\w?).{0,120}?\bbypass", re.I | re.S)
 
 
 def gmail_access_token():
@@ -616,6 +619,12 @@ def parse_alarm_subject(subject, internal_ms):
     low = subject.lower()
     if "image" in low or "motion" in low:
         return None
+    m = RE_BYPASS.search(subject)
+    if m:
+        studio = norm_studio_label(m.group(1))
+        if studio:
+            t = datetime.fromtimestamp(internal_ms / 1000, TZ)
+            return {"studio": studio, "time": f"{t.hour:02d}:{t.minute:02d}", "stage": "BYPASS"}
     stage = None
     m = RE_ALARM_PENDING.search(subject)
     if m:
