@@ -350,8 +350,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 1, 2026",
-  "generatedAt": "Aug 1, 2:15 PM ET",
-  "generatedAtISO": "2026-08-01T14:15:40-04:00",
+  "generatedAt": "Aug 1, 2:30 PM ET",
+  "generatedAtISO": "2026-08-01T14:30:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -417,6 +417,18 @@ const DATA = /*__DATA__*/{
       "end": 14.0
     },
     {
+      "studio": "509A",
+      "who": "Keerthana Vijay — * Moved to now be in Studio509A&B and moved to 2:15 PM start time*",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": "14:29",
+      "departed": null,
+      "start": 14.25,
+      "end": 16.25
+    },
+    {
       "studio": "509B",
       "who": "stefan",
       "kind": "cleaning",
@@ -430,15 +442,15 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "who": "Keerthana Vijay",
+      "who": "Keerthana Vijay — * Moved to now be in Studio509A&B and moved to 2:15 PM start time*",
       "kind": "booking",
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
       "arrived": "14:08",
       "departed": null,
-      "start": 14.0,
-      "end": 16.0
+      "start": 14.25,
+      "end": 16.25
     },
     {
       "studio": "527",
@@ -672,11 +684,27 @@ const DATA = /*__DATA__*/{
       "name": "Keerthana Vijay",
       "time": "14:08",
       "kind": "arrival"
+    },
+    {
+      "studio": "509A",
+      "name": "Keerthana Vijay",
+      "time": "14:29",
+      "kind": "arrival"
     }
   ],
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-31T19:44:00-04:00"
+    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -705,7 +733,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-01T12:47:00-04:00"
+      "lastISO": "2026-08-01T14:55:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -738,16 +766,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T04:32:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-07-31T19:44:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -755,7 +773,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-01T13:56:00-04:00"
+      "lastISO": "2026-08-01T14:21:00-04:00"
     },
     {
       "run": "The Sentinel",
