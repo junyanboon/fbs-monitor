@@ -202,7 +202,7 @@
   .boardwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--scrim)}
   .board{display:grid;min-width:980px;position:relative}
   .studio-h{position:sticky;top:0;background:var(--scrim-2);border-bottom:1px solid var(--line);
-            padding:12px 14px;z-index:5}
+            padding:12px 14px;z-index:5;text-align:center}
   .studio-h h2{margin:0;font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:.04em;text-transform:uppercase}
   .studio-h .sub{font-size:11.5px;color:var(--chalk-dim);letter-spacing:.07em;text-transform:uppercase}
   .timecol{border-right:1px solid var(--line)}
@@ -217,8 +217,7 @@
   .booking{--sk:#f0b400;--sk-fill:18%;
            position:absolute;left:7px;right:7px;border-radius:8px;padding:7px 10px 6px;overflow:hidden;
            background:color-mix(in srgb,var(--sk) var(--sk-fill),var(--scrim));
-           border:1px solid color-mix(in srgb,var(--sk) 55%,transparent);border-left:5px solid var(--sk);
-           box-shadow:var(--shadow)}
+           border:2px solid var(--sk);box-shadow:var(--shadow)}
   .booking.plan-contract{--sk:#2f6fd0}
   .booking.plan-aap{--sk:#17a673}
   .booking.plan-oneoff{--sk:#f0b400}
@@ -248,11 +247,16 @@
   /* staff coverage */
   .staffcol{position:relative;border-right:1px solid var(--line);background:var(--tungsten-soft)}
   .staffcol .slot{border-top:1px dashed var(--line)}
-  .staffblock{position:absolute;left:5px;right:5px;border-radius:8px;padding:6px 8px 5px;overflow:hidden;
+  /* Concurrent staff sit in side-by-side lanes (left/width set inline) so blocks
+     never stack on top of each other. Short blocks drop the time line rather
+     than clipping it into a row of half-glyphs. */
+  .staffblock{position:absolute;border-radius:8px;padding:4px 7px;overflow:hidden;
+              display:flex;flex-direction:column;justify-content:center;
               background:var(--tungsten);color:#fff;box-shadow:var(--shadow)}
-  .staffblock.shift{background:var(--scrim-2);color:var(--chalk-dim);border:1px dashed var(--tungsten);box-shadow:none}
-  .staffblock .who{font-weight:600;font-size:12.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .staffblock .when{font-family:var(--mono);font-size:10.5px;opacity:.85;font-variant-numeric:tabular-nums}
+  .staffblock .who{font-weight:700;font-size:12px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .staffblock .when{font-family:var(--mono);font-size:10.5px;line-height:1.25;opacity:.9;
+                    white-space:nowrap;overflow:hidden;font-variant-numeric:tabular-nums}
+  .staffblock.tight .when{display:none}
   .coverband{position:absolute;right:0;background:var(--tungsten-soft);pointer-events:none;z-index:1}
   .booking{z-index:2}
 
@@ -452,6 +456,21 @@ function stateOf(e, now){
   return {label:"Upcoming", cls:"plain", flagged:false};
 }
 
+/* Pack overlapping staff shifts into side-by-side lanes: each block goes in the
+   first lane that is already free at its start time. `lanes` is the global
+   column count so every block gets the same width. */
+function staffLanes(list){
+  const sorted = [...list].sort((a,b)=>a.start-b.start || a.end-b.end);
+  const ends = [];
+  const out = sorted.map(s=>{
+    let lane = ends.findIndex(e => e <= s.start + 1e-9);
+    if(lane === -1){ lane = ends.length; ends.push(s.end); } else { ends[lane] = s.end; }
+    return {s, lane};
+  });
+  const lanes = Math.max(ends.length, 1);
+  return out.map(o=>({...o, lanes}));
+}
+
 function render(){
   const now = torontoNow();
   $('#clock').textContent = now.hhmm;
@@ -577,7 +596,8 @@ function render(){
   const HRS=[]; for(let h=lo;h<=hi;h++) HRS.push(h);
   const SLOT=52, yOf = t => (t-lo)*SLOT+46;
   const board = document.getElementById('board');
-  const RAIL = STAFF.length ? 118 : 0;
+  const SLANES = STAFF.length ? staffLanes(STAFF)[0].lanes : 0;
+  const RAIL = STAFF.length ? Math.min(118 + (SLANES-1)*74, 340) : 0;   // widen for concurrent shifts
   board.style.gridTemplateColumns = `56px ${RAIL?RAIL+"px ":""}repeat(${DATA.studios.length}, minmax(170px,1fr))`;
   let html = `<div class="timecol"><div class="studio-h" style="height:46px"></div>` +
     HRS.map(h=>`<div class="cell">${String(h%24).padStart(2,"0")}:00</div>`).join("") + `</div>`;
@@ -585,11 +605,14 @@ function render(){
     html += `<div class="staffcol">
       <div class="studio-h" style="height:46px"><h2>Staff</h2><div class="sub">On-site</div></div>` +
       HRS.slice(0,-1).map(()=>`<div class="slot"></div>`).join("") +
-      STAFF.map(s=>`<div class="staffblock ${s.role==="Open"||s.role==="Close"?"shift":""}"
-          style="top:${yOf(s.start)}px;height:${Math.max((s.end-s.start)*SLOT-6,26)}px">
+      staffLanes(STAFF).map(({s,lane,lanes})=>{
+        const h = Math.max((s.end-s.start)*SLOT-6, 24);
+        const w = `calc((100% - 10px) / ${lanes})`;
+        return `<div class="staffblock ${h<34?"tight":""}" title="${esc(s.name)}${s.role?" · "+esc(s.role):""} ${hm(s.start)}–${hm(s.end)}"
+          style="top:${yOf(s.start)}px;height:${h}px;width:${w};left:calc(5px + ${lane} * ${w})">
         <div class="who">${esc(s.name)}${s.role?` · ${esc(s.role)}`:""}</div>
         <div class="when">${hm(s.start)}–${hm(s.end)}</div>
-      </div>`).join("") + `</div>`;
+      </div>`;}).join("") + `</div>`;
   }
   for(const s of DATA.studios){
     html += `<div class="col">

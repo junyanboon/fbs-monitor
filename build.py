@@ -253,6 +253,10 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
 
 def parse_staff_row(summary, dtstart, dtend, base_day):
     low = summary.lower().strip()
+    # "Studio Viewing Support" is an unassigned placeholder, not a person — it was
+    # rendering as a staff block named "Studio".
+    if low.startswith("studio viewing support"):
+        return None
     if low.startswith("need ") or "meeting" in low or "payroll" in low or "ela morning" in low:
         return None
     start = decimal_hours(dtstart, base_day)
