@@ -344,8 +344,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 31, 2026",
-  "generatedAt": "Jul 31, 9:00 PM ET",
-  "generatedAtISO": "2026-07-31T21:00:53-04:00",
+  "generatedAt": "Jul 31, 9:15 PM ET",
+  "generatedAtISO": "2026-07-31T21:15:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -848,6 +848,16 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-31T09:58:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -876,16 +886,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-07-31T21:10:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-07-31T09:58:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -925,7 +925,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-07-31T20:02:00-04:00"
+      "lastISO": "2026-07-31T21:01:00-04:00"
     },
     {
       "run": "The Responder",
@@ -945,7 +945,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-07-31T20:02:00-04:00"
+      "lastISO": "2026-07-31T21:02:00-04:00"
     },
     {
       "run": "The Timekeeper",
