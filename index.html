@@ -219,27 +219,27 @@
   .col .slot{border-top:1px dashed var(--line)}
   /* Board edge colours mirror Skedda: blue = recurring renter (contract),
      green = Artist Plan (AAP), yellow = one-off, red = missed booking. */
-  /* Solid Skedda colours: blue = recurring renter (contract), green = Artist
-     Plan (AAP), yellow = one-off, red = missed booking. No borders — the block
-     IS the colour; --sk-ink is the text colour that reads on it. */
-  .booking{--sk:#f0b400;--sk-ink:#231d05;
+  /* Skedda colours: blue = recurring renter (contract), green = Artist Plan
+     (AAP), yellow = one-off, red = missed booking. Tinted fill + an even 2px
+     solid border in the same colour (no dashed edges anywhere). */
+  .booking{--sk:#f0b400;--sk-fill:18%;
            position:absolute;left:7px;right:7px;border-radius:8px;padding:7px 10px 6px;overflow:hidden;
-           background:var(--sk);color:var(--sk-ink);border:0;box-shadow:var(--shadow)}
-  .booking.plan-contract{--sk:#2f6fd0;--sk-ink:#fff}
-  .booking.plan-aap{--sk:#17a673;--sk-ink:#04231a}
-  .booking.plan-oneoff{--sk:#f0b400;--sk-ink:#231d05}
-  .booking.plain{--sk:var(--chalk-faint);--sk-ink:var(--ink)}
+           background:color-mix(in srgb,var(--sk) var(--sk-fill),var(--scrim));
+           border:2px solid var(--sk);box-shadow:var(--shadow)}
+  .booking.plan-contract{--sk:#2f6fd0}
+  .booking.plan-aap{--sk:#17a673}
+  .booking.plan-oneoff{--sk:#f0b400}
+  .booking.plain{--sk:var(--chalk-faint)}
   .booking.cleaning{background:repeating-linear-gradient(-45deg,var(--scrim-2) 0 7px,var(--scrim) 7px 14px);
-                    color:var(--chalk-dim);box-shadow:none}
-  .booking.done{opacity:.85}
-  .booking.live{box-shadow:0 0 0 2px var(--chalk),var(--shadow)}
-  .booking.flagged{--sk:#d93b30;--sk-ink:#fff;box-shadow:0 0 0 2px var(--chalk),var(--shadow)}
-  /* card text + chips inherit the block's ink so every colour stays legible */
-  .booking .when{color:inherit;opacity:1}
-  .booking .when .arr,.booking .when .flag{color:inherit}
-  .booking .chip{background:color-mix(in srgb,var(--sk-ink) 16%,transparent);color:inherit;
-                 border:1px solid color-mix(in srgb,var(--sk-ink) 26%,transparent)}
-  .board .booking .chip.type{background:color-mix(in srgb,var(--sk-ink) 16%,transparent);color:inherit}
+                    --sk:var(--chalk-faint);box-shadow:none}
+  .booking.done{opacity:.6}
+  .booking.live{--sk-fill:30%;box-shadow:0 0 0 1px var(--sk),var(--shadow)}
+  .booking.flagged{--sk:#d93b30;box-shadow:0 0 0 1px #d93b30,var(--shadow)}
+  @media (prefers-color-scheme: dark){ .booking{--sk-fill:26%} .booking.live{--sk-fill:38%} }
+  :root[data-theme="dark"] .booking{--sk-fill:26%}
+  :root[data-theme="dark"] .booking.live{--sk-fill:38%}
+  :root[data-theme="light"] .booking{--sk-fill:18%}
+  :root[data-theme="light"] .booking.live{--sk-fill:30%}
   .booking .who{font-weight:600;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .booking .when{font-family:var(--mono);font-size:12px;color:var(--chalk-dim);font-variant-numeric:tabular-nums}
   .booking .when .arr{color:var(--ok)} .booking .when .flag{color:var(--crit);font-family:var(--body)}
