@@ -520,6 +520,12 @@ RE_PANEL_ARM_BY = re.compile(r"Studio\s+(\d+\w?)\s+Panel\s+was\s+Armed\s+Away\s+
 RE_PANEL_ARM = re.compile(r"Studio\s+(\d+\w?)[^:]*:.*?Panel\s+was\s+Armed\s+Away\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
 # Nameless panel disarm, name in parens ("Panel was Disarmed at 11:20 PM (info@danceannex.ca)").
 RE_PANEL_DISARM_AT = re.compile(r"Studio\s+(\d+\w?)[^:]*:.*?Panel\s+was\s+Disarmed\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
+# Same nameless form but WITHOUT the word "Panel" — 509's usual shape:
+#   "Studio 509: Studio 509B was Armed Away at 6:04 PM (info@danceannex.ca)"
+#   "Studio 509: Studio 509B was Disarmed at 4:29 PM (Panel User)"
+# Missing these left 509B stuck reading Open after it had been armed (2026-08-01).
+RE_ARM_AT = re.compile(r"Studio\s+(\d+\w?)[^:]*:\s*Studio\s+(\d+\w?)\s+was\s+Armed\s+Away\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
+RE_DISARM_AT = re.compile(r"Studio\s+(\d+\w?)[^:]*:\s*Studio\s+(\d+\w?)\s+was\s+Disarmed\s+at\s+(\d{1,2}:\d{2}\s*[AP]M)\s*\((.+?)\)", re.I)
 IGNORE = ("motion", "pending", "image", "alarm")
 STAFF_REMOTE = "info@danceannex.ca"
 # Alarm-trigger subjects (JOB 1 Step 3.5 pattern): a PENDING alarm email, then a
@@ -652,6 +658,12 @@ def parse_arm_subject(subject):
     m = RE_ARM.search(subject)
     if m:
         return _arm_evt(m.group(2), m.group(3).strip(), m.group(4), "departure")
+    m = RE_DISARM_AT.search(subject)
+    if m:
+        return _arm_evt(m.group(2), m.group(4).strip(), m.group(3), "arrival")
+    m = RE_ARM_AT.search(subject)
+    if m:
+        return _arm_evt(m.group(2), m.group(4).strip(), m.group(3), "departure")
     m = RE_PANEL_DISARM.search(subject)
     if m:
         return _arm_evt(m.group(1), m.group(2).strip(), m.group(3), "arrival")
@@ -679,9 +691,11 @@ def _arm_evt(studio_raw, name, time_raw, kind):
     studio = norm_studio_label(studio_raw)
     if not studio:
         return None
-    if STAFF_REMOTE in name.lower():
-        return None  # staff remote → attribute to no renter
-    return {"studio": studio, "name": name, "time": norm_hm(time_raw), "kind": kind}
+    # A remote arm/disarm by the studio account is still a real panel state change —
+    # keep it for the Alarms panel, but flag it so it is never attributed to a renter.
+    remote = STAFF_REMOTE in name.lower()
+    return {"studio": studio, "name": "Studio (remote)" if remote else name,
+            "time": norm_hm(time_raw), "kind": kind, "remote": remote}
 
 
 def _name_match(who, arm_name):
@@ -707,6 +721,8 @@ def apply_arm_events(events, arm_events):
 
     timed = []
     for a in arm_events:
+        if a.get("remote"):
+            continue                 # panel-state only, never a renter's arrival
         t = _time_to_decimal(a["time"]) if a["time"] else None
         if t is not None:
             timed.append({**a, "t": t, "claimed": False})
