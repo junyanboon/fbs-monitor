@@ -219,25 +219,27 @@
   .col .slot{border-top:1px dashed var(--line)}
   /* Board edge colours mirror Skedda: blue = recurring renter (contract),
      green = Artist Plan (AAP), yellow = one-off, red = missed booking. */
-  .booking{--sk:#f0b400;--sk-fill:18%;
+  /* Solid Skedda colours: blue = recurring renter (contract), green = Artist
+     Plan (AAP), yellow = one-off, red = missed booking. No borders — the block
+     IS the colour; --sk-ink is the text colour that reads on it. */
+  .booking{--sk:#f0b400;--sk-ink:#231d05;
            position:absolute;left:7px;right:7px;border-radius:8px;padding:7px 10px 6px;overflow:hidden;
-           background:color-mix(in srgb,var(--sk) var(--sk-fill),var(--scrim));
-           border:2px solid var(--sk);box-shadow:var(--shadow)}
-  .booking.plan-contract{--sk:#2f6fd0}
-  .booking.plan-aap{--sk:#17a673}
-  .booking.plan-oneoff{--sk:#f0b400}
-  .booking.plain{--sk:var(--chalk-faint)}
-  .booking.monitor{border-left-style:dashed}
+           background:var(--sk);color:var(--sk-ink);border:0;box-shadow:var(--shadow)}
+  .booking.plan-contract{--sk:#2f6fd0;--sk-ink:#fff}
+  .booking.plan-aap{--sk:#17a673;--sk-ink:#04231a}
+  .booking.plan-oneoff{--sk:#f0b400;--sk-ink:#231d05}
+  .booking.plain{--sk:var(--chalk-faint);--sk-ink:var(--ink)}
   .booking.cleaning{background:repeating-linear-gradient(-45deg,var(--scrim-2) 0 7px,var(--scrim) 7px 14px);
-                    --sk:var(--chalk-faint);border-left-style:dotted;box-shadow:none}
-  .booking.done{opacity:.5}
-  .booking.live{--sk-fill:30%;border-color:var(--sk);box-shadow:0 0 0 1px var(--sk),var(--shadow)}
-  .booking.flagged{--sk:#d93b30;border-color:#d93b30;box-shadow:0 0 0 1px #d93b30,var(--shadow)}
-  @media (prefers-color-scheme: dark){ .booking{--sk-fill:26%} .booking.live{--sk-fill:38%} }
-  :root[data-theme="dark"] .booking{--sk-fill:26%}
-  :root[data-theme="dark"] .booking.live{--sk-fill:38%}
-  :root[data-theme="light"] .booking{--sk-fill:18%}
-  :root[data-theme="light"] .booking.live{--sk-fill:30%}
+                    color:var(--chalk-dim);box-shadow:none}
+  .booking.done{opacity:.85}
+  .booking.live{box-shadow:0 0 0 2px var(--chalk),var(--shadow)}
+  .booking.flagged{--sk:#d93b30;--sk-ink:#fff;box-shadow:0 0 0 2px var(--chalk),var(--shadow)}
+  /* card text + chips inherit the block's ink so every colour stays legible */
+  .booking .when{color:inherit;opacity:1}
+  .booking .when .arr,.booking .when .flag{color:inherit}
+  .booking .chip{background:color-mix(in srgb,var(--sk-ink) 16%,transparent);color:inherit;
+                 border:1px solid color-mix(in srgb,var(--sk-ink) 26%,transparent)}
+  .board .booking .chip.type{background:color-mix(in srgb,var(--sk-ink) 16%,transparent);color:inherit}
   .booking .who{font-weight:600;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .booking .when{font-family:var(--mono);font-size:12px;color:var(--chalk-dim);font-variant-numeric:tabular-nums}
   .booking .when .arr{color:var(--ok)} .booking .when .flag{color:var(--crit);font-family:var(--body)}
@@ -255,7 +257,7 @@
   /* Concurrent staff sit in side-by-side lanes (left/width set inline) so blocks
      never stack on top of each other. Short blocks drop the time line rather
      than clipping it into a row of half-glyphs. */
-  .staffblock{position:absolute;border-radius:8px;padding:4px 7px;overflow:hidden;
+  .staffblock{position:absolute;left:5px;right:5px;border-radius:8px;padding:4px 7px;overflow:hidden;
               display:flex;flex-direction:column;justify-content:center;
               background:var(--tungsten);color:#fff;box-shadow:var(--shadow)}
   .staffblock .who{font-weight:700;font-size:12px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1121,19 +1123,27 @@ function stateOf(e, now){
   return {label:"Upcoming", cls:"plain", flagged:false};
 }
 
-/* Pack overlapping staff shifts into side-by-side lanes: each block goes in the
-   first lane that is already free at its start time. `lanes` is the global
-   column count so every block gets the same width. */
-function staffLanes(list){
-  const sorted = [...list].sort((a,b)=>a.start-b.start || a.end-b.end);
-  const ends = [];
-  const out = sorted.map(s=>{
-    let lane = ends.findIndex(e => e <= s.start + 1e-9);
-    if(lane === -1){ lane = ends.length; ends.push(s.end); } else { ends[lane] = s.end; }
-    return {s, lane};
-  });
-  const lanes = Math.max(ends.length, 1);
-  return out.map(o=>({...o, lanes}));
+/* One staff column: merge each person's overlapping / back-to-back shifts into a
+   single block so the rail never stacks blocks on top of each other. Ela's
+   18:00-18:15 + 18:15-18:45 + 18:30-19:00 becomes one 18:00-19:00 block. */
+function staffBlocks(list){
+  const by = new Map();
+  for(const s of list) (by.get(s.name) || by.set(s.name, []).get(s.name)).push(s);
+  const out = [];
+  for(const [name, shifts] of by){
+    shifts.sort((a,b)=>a.start-b.start);
+    let cur = null;
+    for(const s of shifts){
+      if(cur && s.start <= cur.end + 1e-9){
+        cur.end = Math.max(cur.end, s.end);
+        if(s.role && !cur.roles.includes(s.role)) cur.roles.push(s.role);
+      } else {
+        cur = {name, start:s.start, end:s.end, roles: s.role ? [s.role] : []};
+        out.push(cur);
+      }
+    }
+  }
+  return out.sort((a,b)=>a.start-b.start);
 }
 
 function render(){
@@ -1185,38 +1195,10 @@ function render(){
       <div class="cnt">${cnt}</div>
     </div>`;
   };
-  /* status bar — status.claude.com-style. Items come from the analyst report
-     (DATA.attention: [{level:"info"|"warn"|"crit", text}]) once that feed is wired;
-     until then we compute the two the schedule can already prove. `text` is escaped
-     at push time so every item string is HTML-safe by the time it's rendered. */
-  const items = [];
-  (DATA.attention || []).forEach(a => {
-    if(a && a.text){
-      const lvl = ["info","warn","crit"].includes(a.level) ? a.level : "info";
-      items.push({lvl, t: esc(a.text)});
-    }
-  });
-  // Tight change: next booking starts <=15 min after the last ends — almost no reset time.
-  for(const s of DATA.studios){
-    const evs = bookings.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
-    for(let i=1;i<evs.length;i++)
-      if(evs[i].start - evs[i-1].end <= 15/60 && evs[i].end > n)
-        items.push({lvl:"warn", t:`Tight change · ${s.name} · ${hm(evs[i].start)}`});
-  }
-  // No check-in: booking is past its start with no arrival logged.
-  E.filter(e=>stateOf(e,n).flagged).forEach(e=>
-    items.push({lvl:"crit", t:`No check-in · ${e.studio} · ${shortWho(e.who)}`}));
-
-  const worst = items.some(i=>i.lvl==="crit") ? "crit"
-              : items.some(i=>i.lvl==="warn") ? "warn" : "ok";
-  const head = !items.length ? "All studios running"
-             : items.length===1 ? "1 thing to watch"
-             : `${items.length} things to watch`;
-  $('#staffnow').innerHTML =
-    `<div class="statusbar ${worst}"><span class="dot"></span><span class="head">${head}</span>` +
-    (items.length ? `<span class="items">${items.map(i=>
-      `<span class="statusitem"><span class="sdot ${i.lvl}"></span>${i.t}</span>`).join("")}</span>` : "") +
-    `</div>`;
+  /* The "N things to watch" status bar was removed 2026-07-31 (Junyan) — alarms
+     live on the Alarms tab and robots on the Robots tab; the banner only
+     duplicated them at the top of every page. */
+  $('#staffnow').innerHTML = "";
 
   $('#strips').innerHTML = DATA.studios.map(s=>{
     const evs = E.filter(e=>e.studio===s.id).sort((a,b)=>a.start-b.start);
@@ -1261,27 +1243,26 @@ function render(){
   const HRS=[]; for(let h=lo;h<=hi;h++) HRS.push(h);
   const SLOT=52, yOf = t => (t-lo)*SLOT+46;
   const board = document.getElementById('board');
-  const SLANES = STAFF.length ? staffLanes(STAFF)[0].lanes : 0;
-  const RAIL = STAFF.length ? Math.min(118 + (SLANES-1)*74, 340) : 0;   // widen for concurrent shifts
+  const RAIL = STAFF.length ? 132 : 0;
   board.style.gridTemplateColumns = `56px ${RAIL?RAIL+"px ":""}repeat(${DATA.studios.length}, minmax(170px,1fr))`;
   let html = `<div class="timecol"><div class="studio-h" style="height:46px"></div>` +
     HRS.map(h=>`<div class="cell">${String(h%24).padStart(2,"0")}:00</div>`).join("") + `</div>`;
   if(RAIL){
     html += `<div class="staffcol">
-      <div class="studio-h" style="height:46px"><h2>Staff</h2><div class="sub">On-site</div></div>` +
+      <div class="studio-h" style="height:46px"><h2>Staff</h2></div>` +
       HRS.slice(0,-1).map(()=>`<div class="slot"></div>`).join("") +
-      staffLanes(STAFF).map(({s,lane,lanes})=>{
+      staffBlocks(STAFF).map(s=>{
         const h = Math.max((s.end-s.start)*SLOT-6, 24);
-        const w = `calc((100% - 10px) / ${lanes})`;
-        return `<div class="staffblock ${h<34?"tight":""}" title="${esc(s.name)}${s.role?" · "+esc(s.role):""} ${hm(s.start)}–${hm(s.end)}"
-          style="top:${yOf(s.start)}px;height:${h}px;width:${w};left:calc(5px + ${lane} * ${w})">
-        <div class="who">${esc(s.name)}${s.role?` · ${esc(s.role)}`:""}</div>
+        const role = s.roles.length===1 ? ` · ${esc(s.roles[0])}` : "";   // merged spans: name only
+        return `<div class="staffblock ${h<34?"tight":""}" title="${esc(s.name)}${role} ${hm(s.start)}–${hm(s.end)}"
+          style="top:${yOf(s.start)}px;height:${h}px">
+        <div class="who">${esc(s.name)}${role}</div>
         <div class="when">${hm(s.start)}–${hm(s.end)}</div>
       </div>`;}).join("") + `</div>`;
   }
   for(const s of DATA.studios){
     html += `<div class="col">
-      <div class="studio-h" style="height:46px"><h2>${s.name}</h2><div class="sub">${s.sub||""}</div></div>` +
+      <div class="studio-h" style="height:46px"><h2>${s.name}</h2></div>` +
       HRS.slice(0,-1).map(()=>`<div class="slot"></div>`).join("") +
       E.filter(e=>e.studio===s.id).map(e=>{
         const st = stateOf(e,n);
