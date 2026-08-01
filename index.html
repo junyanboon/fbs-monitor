@@ -350,8 +350,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 1, 2026",
-  "generatedAt": "Aug 1, 6:45 PM ET",
-  "generatedAtISO": "2026-08-01T18:45:41-04:00",
+  "generatedAt": "Aug 1, 7:00 PM ET",
+  "generatedAtISO": "2026-08-01T19:00:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -563,7 +563,16 @@ const DATA = /*__DATA__*/{
       "end": 22.25
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 693 · 19:00"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 693 · 19:00"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -722,7 +731,18 @@ const DATA = /*__DATA__*/{
       "kind": "departure"
     }
   ],
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "693",
+      "time": "19:00",
+      "stage": "ALARM"
+    },
+    {
+      "studio": "693",
+      "time": "19:00",
+      "stage": "PENDING"
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
@@ -813,7 +833,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-01T18:25:00-04:00"
+      "lastISO": "2026-08-01T18:57:00-04:00"
     },
     {
       "run": "The Sentinel",
