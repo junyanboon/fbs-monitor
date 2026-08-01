@@ -2,7 +2,7 @@
 <title>FBS Mobile — Dance Annex</title>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="7" fill="%235b2fd4"/><polyline points="5,16 11,16 14,9 18,23 21,16 27,16" fill="none" stroke="%23f4f2ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
 <link rel="manifest" href="manifest-mobile.webmanifest">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon-mobile.png">
 <meta name="theme-color" content="#5b2fd4">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -47,8 +47,15 @@
   .hdate{font-size:12px;color:var(--chalk-dim)}
   .clock{margin-left:auto;text-align:right}
   .clock b{font-family:var(--mono);font-size:20px;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
-  .clock small{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);font-weight:600}
-  .clock small.stale{color:var(--crit)}
+  /* freshness stamp doubles as the refresh button (44px touch target) */
+  .clock button{background:none;border:0;padding:6px 0 6px 12px;margin:-6px 0;cursor:pointer;
+                display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);
+                font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);font-weight:600}
+  .clock button.stale{color:var(--crit)}
+  .clock button svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;
+                    stroke-linecap:round;stroke-linejoin:round}
+  .clock button.busy svg{animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
 
   /* summary strip */
   .sum{display:flex;gap:14px;padding:10px 16px;font-size:13.5px;color:var(--chalk-dim);
@@ -123,7 +130,9 @@
 
 <header>
   <div><h1>FBS <em>Mobile</em></h1><div class="hdate" id="hdate"></div></div>
-  <div class="clock"><b id="clock">--:--</b><small id="fresh">·</small></div>
+  <div class="clock"><b id="clock">--:--</b>
+    <button id="fresh" aria-label="Refresh data"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4"/></svg><span id="freshtxt">·</span></button>
+  </div>
 </header>
 <div class="sum" id="sum"></div>
 
@@ -262,13 +271,35 @@ function render(){
   /* freshness */
   const gen=DATA.generatedAtISO?new Date(DATA.generatedAtISO):null;
   if(gen){const age=Math.round((Date.now()-gen.getTime())/60000);
-    const el=$('#fresh');el.textContent=`data ${age} min old`;el.classList.toggle('stale',age>40);}
+    $('#freshtxt').textContent=`data ${age} min old`;
+    $('#fresh').classList.toggle('stale',age>40);}
 }
 render();
 setInterval(render,30000);
-/* auto-reload a newer edition (page is a static build refreshed every 15 min) */
-setInterval(()=>{fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{
-  const m=t.match(/"generatedAtISO":\s*"([^"]+)"/);
-  if(m&&DATA.generatedAtISO&&m[1]!==DATA.generatedAtISO)location.reload();
-}).catch(()=>{});},5*60000);
+
+/* ── refresh: the page is a static edition rebuilt every ~15 min. checkEdition
+   probes for a newer pushed edition (cache-busted) and reloads onto it. Wired to
+   the header stamp button, pull-to-refresh, an auto 5-min poll, and app-resume. */
+let checking=false;
+function checkEdition(manual){
+  if(checking)return;checking=true;
+  const btn=$('#fresh');btn.classList.add('busy');
+  fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{
+    const m=t.match(/"generatedAtISO":\s*"([^"]+)"/);
+    if(m&&DATA.generatedAtISO&&m[1]!==DATA.generatedAtISO){location.reload();return;}
+    if(manual){const s=$('#freshtxt'),old=s.textContent;s.textContent="up to date";
+      setTimeout(()=>{s.textContent=old;},1600);}
+  }).catch(()=>{}).finally(()=>{checking=false;btn.classList.remove('busy');render();});
+}
+$('#fresh').addEventListener('click',()=>checkEdition(true));
+setInterval(()=>checkEdition(false),5*60000);
+/* re-check when the installed app comes back to the foreground */
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkEdition(false);});
+/* pull-to-refresh (standalone PWAs have no browser reload control) */
+let pullY=null;
+document.addEventListener('touchstart',e=>{if(window.scrollY===0)pullY=e.touches[0].clientY;},{passive:true});
+document.addEventListener('touchmove',e=>{
+  if(pullY!==null&&e.touches[0].clientY-pullY>90){pullY=null;checkEdition(true);}
+},{passive:true});
+document.addEventListener('touchend',()=>{pullY=null;},{passive:true});
 </script>
