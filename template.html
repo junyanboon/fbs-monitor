@@ -450,8 +450,16 @@ function coverageOf(e){
   return {cls:"cov-part", label:`Partial · ${gap}m gap`, gap, who};
 }
 
-function torontoNow(){ const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));
-  return {t: d.getHours()+d.getMinutes()/60, hhmm: String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}; }
+/* ALL times on this page are America/Toronto — the studios' clock — no matter
+   what timezone the device is in (Junyan reads this from Brazil). Built from
+   Intl parts rather than parsing toLocaleString(), which is engine-dependent. */
+const TOR = new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",
+  hour:"2-digit",minute:"2-digit",hour12:false});
+function torontoNow(){
+  const p = Object.fromEntries(TOR.formatToParts(new Date()).map(x=>[x.type,x.value]));
+  const h = (+p.hour)%24, m = +p.minute;
+  return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")};
+}
 
 function stateOf(e, now){
   const arr = parseHM(e.arrived), dep = parseHM(e.departed);

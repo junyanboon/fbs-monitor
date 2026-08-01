@@ -46,7 +46,10 @@
   h1 em{font-style:normal;color:var(--tungsten)}
   .hdate{font-size:12px;color:var(--chalk-dim)}
   .clock{margin-left:auto;text-align:right}
-  .clock b{font-family:var(--mono);font-size:20px;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+  .clock b{font-family:var(--mono);font-size:20px;font-variant-numeric:tabular-nums;line-height:1.1}
+  /* Every time on this page is Toronto — the studios' clock — no matter where the
+     phone is. Labelled so a Brazil/away timezone can never be mistaken for local. */
+  .clock .tz{font-size:9.5px;letter-spacing:.12em;font-weight:700;color:var(--chalk-faint);margin-left:5px}
   /* freshness stamp doubles as the refresh button (44px touch target) */
   .clock button{background:none;border:0;padding:6px 0 6px 12px;margin:-6px 0;cursor:pointer;
                 display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);
@@ -130,7 +133,7 @@
 
 <header>
   <div><h1>FBS <em>Mobile</em></h1><div class="hdate" id="hdate"></div></div>
-  <div class="clock"><b id="clock">--:--</b>
+  <div class="clock"><div><b id="clock">--:--</b><span class="tz">TORONTO</span></div>
     <button id="fresh" aria-label="Refresh data"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4"/></svg><span id="freshtxt">·</span></button>
   </div>
 </header>
@@ -163,8 +166,16 @@ const dur=h=>{const m=Math.round(h*60);return m>=60?`${Math.floor(m/60)}h${m%60?
 const parseHM=s=>{if(!s)return null;const[a,b]=s.split(":").map(Number);return a+b/60;};
 const GRACE=0.25;
 const shortWho=w=>{let s=String(w||"");const i=s.indexOf(" — ");if(i>0)s=s.slice(0,i);return esc(s);};
-function torontoNow(){const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));
-  return {t:d.getHours()+d.getMinutes()/60,hhmm:String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};}
+/* ALL times on this page are America/Toronto — the studios' clock — no matter
+   what timezone the device is in (Junyan reads this from Brazil). Built from
+   Intl parts rather than parsing toLocaleString(), which is engine-dependent. */
+const TOR = new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",
+  hour:"2-digit",minute:"2-digit",hour12:false});
+function torontoNow(){
+  const p = Object.fromEntries(TOR.formatToParts(new Date()).map(x=>[x.type,x.value]));
+  const h = (+p.hour)%24, m = +p.minute;
+  return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")};
+}
 function stateOf(e,now){
   const arr=parseHM(e.arrived),dep=parseHM(e.departed);
   const flagged=e.kind==="booking"&&!arr&&now>e.start+GRACE&&now<e.end+1;
