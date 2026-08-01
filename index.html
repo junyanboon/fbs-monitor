@@ -350,8 +350,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 1, 2026",
-  "generatedAt": "Aug 1, 8:31 AM ET",
-  "generatedAtISO": "2026-08-01T08:31:41-04:00",
+  "generatedAt": "Aug 1, 8:45 AM ET",
+  "generatedAtISO": "2026-08-01T08:45:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -387,7 +387,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "08:40",
       "departed": null,
       "start": 8.5,
       "end": 9.25
@@ -546,7 +546,14 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "08:40",
+      "kind": "arrival"
+    }
+  ],
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
@@ -678,7 +685,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-01T07:33:00-04:00"
+      "lastISO": "2026-08-01T08:32:00-04:00"
     },
     {
       "run": "The Weatherman",
