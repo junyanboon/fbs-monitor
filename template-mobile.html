@@ -269,13 +269,23 @@ function render(){
       <span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${act||`<span class="chip ${stCls}">OK</span>`}</span>
     </div>`;
   }).join("");
-  const arm=[...evsA].reverse().map(a=>`<div class="row">
-    <span class="tm">${a.time}</span>
-    <span class="nm">${esc(a.name||"—")}<span class="st">${esc(a.studio)}</span></span>
-    <span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
-  </div>`).join("");
+  /* stream = arm/disarm events + triggers/bypasses interleaved by time;
+     triggers and bypasses are actionable → red row */
+  const tkey=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
+  const stream=[
+    ...evsA.map(a=>({t:a.time,html:`<div class="row">
+      <span class="tm">${a.time}</span>
+      <span class="nm">${esc(a.name||"—")}<span class="st">${esc(a.studio)}</span></span>
+      <span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
+    </div>`})),
+    ...alertsA.map(a=>({t:a.time,html:`<div class="row" style="border-color:var(--crit);background:var(--crit-bg)">
+      <span class="tm">${a.time}</span>
+      <span class="nm" style="color:var(--crit)">${a.stage==="BYPASS"?"Sensor bypass":a.stage==="ALARM"?"Alarm triggered":"Alarm pending"}<span class="st">${esc(a.studio)}</span></span>
+      <span class="chip crit">⚠ Action</span>
+    </div>`})),
+  ].sort((a,b)=>tkey(b.t)-tkey(a.t)).map(x=>x.html).join("");
   $('#alarms').innerHTML=`<div class="grp">Panel status</div>`+grid+
-    `<div class="grp">Today's events</div>`+(arm||`<div class="quiet">No alarm events yet today.</div>`);
+    `<div class="grp">Today's events</div>`+(stream||`<div class="quiet">No alarm events yet today.</div>`);
 
   /* staff */
   const st=(DATA.staff||[]).map(s=>{

@@ -1206,13 +1206,23 @@ function renderAlarms(){
       ${byp.length?`<div class="last" style="color:var(--watch)">Bypass seen · ${esc(byp[byp.length-1].time)}</div>`:""}
     </div>`;
   }).join("") + `</div>`;
-  html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +
-    (evs.length ? evs.slice().reverse().map(e=>`<div class="shift">
+  /* stream: arm/disarm + triggers/bypasses interleaved by time — the red rows
+     are the ones that need actioning (clear the alarm / clear the bypass). */
+  const tkey=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
+  const stream=[
+    ...evs.map(e=>({t:e.time,html:`<div class="shift">
         <span class="tm">${esc(e.time)}</span>
         <span class="nm">${esc(e.name||"—")} <span class="chip plain">${esc(e.studio)}</span></span>
         <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
-      </div>`).join("")
-     : `<div class="shift">No alarm events yet today</div>`) + `</div>`;
+      </div>`})),
+    ...bypasses.concat(alerts).map(a=>({t:a.time,html:`<div class="shift" style="background:var(--crit-bg)">
+        <span class="tm">${esc(a.time)}</span>
+        <span class="nm" style="color:var(--crit)">${a.stage==="BYPASS"?"Sensor bypass":a.stage==="ALARM"?"Alarm triggered":"Alarm pending"} <span class="chip plain">${esc(a.studio)}</span></span>
+        <span class="chip crit">⚠ Action</span>
+      </div>`})),
+  ].sort((a,b)=>tkey(b.t)-tkey(a.t)).map(x=>x.html);
+  html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +
+    (stream.length ? stream.join("") : `<div class="shift">No alarm events yet today</div>`) + `</div>`;
   $('#alarmpanel').innerHTML = html;
 }
 
