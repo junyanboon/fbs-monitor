@@ -350,8 +350,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 31, 2026",
-  "generatedAt": "Jul 31, 10:15 PM ET",
-  "generatedAtISO": "2026-07-31T22:15:48-04:00",
+  "generatedAt": "Jul 31, 10:30 PM ET",
+  "generatedAtISO": "2026-07-31T22:30:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -594,13 +594,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 20.25,
       "end": 20.75
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 20.25,
       "end": 20.75
     },
@@ -901,7 +901,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-07-31T21:10:00-04:00"
+      "lastISO": "2026-07-31T22:35:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -951,7 +951,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-07-31T21:51:00-04:00"
+      "lastISO": "2026-07-31T22:30:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1036,6 +1036,12 @@ document.getElementById('tabs').addEventListener('click', ev => {
   });
   for(const k of ['studios','board','staff','alarms','robots'])
     document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
+  // Opening the board: bring the now-line into view (Fresha/Square pattern —
+  // land the user on "now", not on 09:00).
+  if(b.dataset.tab === 'board'){
+    const line = document.querySelector('#board .nowline');
+    if(line) line.scrollIntoView({block:'center', behavior:'instant'});
+  }
 });
 document.getElementById('daytitle').innerHTML =
   "FBS <em>Monitor</em><small>" + esc(DATA.date) + "</small>";
