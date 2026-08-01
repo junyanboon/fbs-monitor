@@ -159,8 +159,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 1, 2026",
-  "generatedAt": "Aug 1, 7:00 PM ET",
-  "generatedAtISO": "2026-08-01T19:00:58-04:00",
+  "generatedAt": "Aug 1, 7:14 PM ET",
+  "generatedAtISO": "2026-08-01T19:14:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -304,7 +304,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "19:03",
       "departed": null,
       "start": 19.0,
       "end": 22.0
@@ -380,6 +380,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm pending · 693 · 19:00"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 693 · 19:03"
     }
   ],
   "armEvents": [
@@ -538,6 +542,12 @@ const DATA = /*__DATA__*/{
       "name": "Keerthana Vijay",
       "time": "16:29",
       "kind": "departure"
+    },
+    {
+      "studio": "693",
+      "name": "Kimberly Rampersad",
+      "time": "19:03",
+      "kind": "arrival"
     }
   ],
   "alarmAlerts": [
@@ -550,6 +560,11 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "time": "19:00",
       "stage": "PENDING"
+    },
+    {
+      "studio": "693",
+      "time": "19:03",
+      "stage": "ALARM"
     }
   ],
   "armFallback": false,
@@ -652,7 +667,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-01T18:02:00-04:00"
+      "lastISO": "2026-08-01T19:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
