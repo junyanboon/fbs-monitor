@@ -159,8 +159,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 1, 2026",
-  "generatedAt": "Aug 1, 10:34 AM ET",
-  "generatedAtISO": "2026-08-01T10:34:59-04:00",
+  "generatedAt": "Aug 1, 10:37 AM ET",
+  "generatedAtISO": "2026-08-01T10:37:13-04:00",
   "studios": [
     {
       "id": "509A",
@@ -715,7 +715,10 @@ function checkEdition(manual){
   const btn=$('#fresh');btn.classList.add('busy');
   fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{
     const m=t.match(/"generatedAtISO":\s*"([^"]+)"/);
-    if(m&&DATA.generatedAtISO&&m[1]!==DATA.generatedAtISO){location.reload();return;}
+    // GitHub Pages serves this file with max-age=600, so a plain reload can be
+    // answered from cache with the OLD edition. Reload onto a unique URL instead.
+    if(m&&DATA.generatedAtISO&&m[1]!==DATA.generatedAtISO){
+      location.replace(location.pathname+"?e="+encodeURIComponent(m[1]));return;}
     if(manual){const s=$('#freshtxt'),old=s.textContent;s.textContent="up to date";
       setTimeout(()=>{s.textContent=old;},1600);}
   }).catch(()=>{}).finally(()=>{checking=false;btn.classList.remove('busy');render();});
