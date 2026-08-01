@@ -344,8 +344,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, July 31, 2026",
-  "generatedAt": "Jul 31, 8:15 PM ET",
-  "generatedAtISO": "2026-07-31T20:15:42-04:00",
+  "generatedAt": "Jul 31, 8:30 PM ET",
+  "generatedAtISO": "2026-07-31T20:30:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -538,7 +538,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "18:33",
-      "departed": null,
+      "departed": "20:28",
       "start": 18.75,
       "end": 20.5
     }
@@ -557,13 +557,13 @@ const DATA = /*__DATA__*/{
       "end": 16.25
     },
     {
-      "name": "Ela",
+      "name": "Studio",
       "role": "Viewing",
       "start": 18.0,
       "end": 18.25
     },
     {
-      "name": "Studio",
+      "name": "Ela",
       "role": "Viewing",
       "start": 18.0,
       "end": 18.25
@@ -803,6 +803,12 @@ const DATA = /*__DATA__*/{
       "name": "Amandeep Kaur",
       "time": "20:11",
       "kind": "departure"
+    },
+    {
+      "studio": "901",
+      "name": "NIcole Drury",
+      "time": "20:28",
+      "kind": "departure"
     }
   ],
   "alarmAlerts": [
@@ -830,6 +836,16 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-07-31T18:45:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -848,16 +864,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-07-31T06:02:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-07-31T18:45:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -917,7 +923,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-07-31T19:57:00-04:00"
+      "lastISO": "2026-07-31T20:35:00-04:00"
     },
     {
       "run": "The Sentinel",
