@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 2, 2026",
-  "generatedAt": "Aug 2, 12:03 AM ET",
-  "generatedAtISO": "2026-08-02T00:03:23-04:00",
+  "generatedAt": "Aug 2, 2:18 AM ET",
+  "generatedAtISO": "2026-08-02T02:18:33-04:00",
   "studios": [
     {
       "id": "509A",
@@ -907,6 +907,46 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-31T22:45:00-04:00"
     },
     {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-01T06:02:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "08:00 (cloud)",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-01T06:18:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "~07:00",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-01T04:32:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-01T04:09:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -917,36 +957,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T04:40:00-04:00"
     },
     {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T06:02:00-04:00"
-    },
-    {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "08:00 (cloud)",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T06:18:00-04:00"
-    },
-    {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "~07:00",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T04:32:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -955,16 +965,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T19:41:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T04:09:00-04:00"
     },
     {
       "run": "The Closer",
