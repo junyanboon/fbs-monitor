@@ -119,7 +119,7 @@
   .quiet{color:var(--chalk-faint);text-align:center;padding:40px 0;font-size:14.5px}
 
   /* alarms + staff panels reuse card look */
-  .row{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;
+  .row{display:grid;grid-template-columns:minmax(64px,auto) 1fr auto;gap:12px;align-items:center;
        background:var(--scrim);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:8px 0}
   .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
   .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1029,22 +1029,79 @@ function render(){
   $('#staff').innerHTML=st||`<div class="quiet">No staff shifts today.</div>`;
 
   /* robots — projection of the Run Monitor DB (same data as the desktop tab) */
+/* One-line job descriptions — the Notion "Produces" text is prose; this is the
+   glanceable version. Fallback: first 40 chars of Produces. */
+const ROBOT_DESC={"Concierge":"Inbox triage + alarm tracking","Weatherman":"Sets studio thermostats",
+  "Analyst":"Today's itinerary report","Bookkeeper":"Logs staff hours","Custodian":"Data housekeeping",
+  "Doorman":"Morning alarm preflight","Host":"Builds today's FBS board","Planner":"Stages tomorrow's prep",
+  "Responder":"Drafts held replies","Sentinel":"Pages if a run goes missing","Timekeeper":"Overtime report",
+  "Treasurer":"Monthly reconciliation","Watchman":"Watches the Sentinel"};
+function robotDesc(r){
+  const hit=Object.keys(ROBOT_DESC).find(k=>r.run.includes(k));
+  return hit?ROBOT_DESC[hit]:(r.produces||"").slice(0,40);
+}
+/* Predict the next fire from the human "Expected" string. Handles the roster's
+   actual shapes: "~05:30" / "07:00" (daily), "09:35 + 02:35" (2×/day),
+   ":20 + :50 · 08:20–22:50" (hourly minutes in a window), "hourly :30 · 07–23",
+   "every 2 h at :10 · 08:10–22:10", "1st of month, 08:00". Returns
+   {hhmm, mins} or null when it cannot tell. */
+function nextRun(r, nowT){
+  const e=(r.expected||"").split("(")[0];
+  if((r.cadence||"").toLowerCase()==="monthly"){
+    const m=e.match(/(\d{1,2}):(\d{2})/);
+    return m?{hhmm:`1st · ${m[0]}`,mins:null}:null;
+  }
+  const win=e.match(/(\d{1,2})(?::(\d{2}))?\s*[–-]\s*(\d{1,2})(?::(\d{2}))?/);
+  const ws=win? +win[1]+(+win[2]||0)/60 : 0, we=win? +win[3]+(+win[4]||0)/60 : 24;
+  const body=win? e.replace(win[0],"") : e;
+  let cands=[];
+  const every=e.match(/every\s+(\d+)\s*h(?:ours?)?\s*(?:at\s*)?:(\d{2})/i);
+  const hourly=e.match(/hourly(?:\s*:(\d{2}))?/i);
+  const mins=[...body.matchAll(/(?:^|[^\d])(?::(\d{2}))\b/g)].map(m=>+m[1]).filter(v=>!isNaN(v));
+  const daily=[...body.matchAll(/(\d{1,2}):(\d{2})/g)].map(m=>(+m[1])+(+m[2])/60);
+  const addHourly=(step,minute)=>{for(let h=0;h<48;h++){const t=h+minute/60;
+    const d=t%24; if(d>=ws-1e-9&&d<=we+1e-9&&(h-Math.floor(ws))%step===0)cands.push(t);}};
+  if(every)addHourly(+every[1],+every[2]);
+  else if(mins.length&&!daily.length)mins.forEach(mm=>addHourly(1,mm));
+  else if(hourly)addHourly(1,+(hourly[1]||0));
+  else if(daily.length)daily.forEach(t=>{cands.push(t);cands.push(t+24);});
+  else return null;
+  cands.sort((a,b)=>a-b);
+  const nxt=cands.find(t=>t>nowT+1/60);
+  if(nxt==null)return null;
+  const d=Math.round((nxt-nowT)*60);
+  const hh=String(Math.floor(nxt%24)).padStart(2,"0"), mm=String(Math.round((nxt%1)*60)%60).padStart(2,"0");
+  return {hhmm:`${hh}:${mm}`,mins:d};
+}
+function cdTxt(nr){
+  if(!nr)return"";
+  if(nr.mins==null)return nr.hhmm;
+  const c=nr.mins<60?`in ${nr.mins}m`:`in ${Math.floor(nr.mins/60)}h ${nr.mins%60}m`;
+  return `${nr.hhmm} · ${c}`;
+}
+
   const R=DATA.robots;
   const ago=iso=>{if(!iso)return"never";const m=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/60000));
     return m<60?`${m}m ago`:m<1440?`${Math.floor(m/60)}h ago`:`${Math.floor(m/1440)}d ago`;};
   if(!R){$('#robots').innerHTML=`<div class="quiet">${esc(DATA.robotsNote||"Run Monitor could not be read this edition")}</div>`;}
   else{
-    const robotRow=r=>`<div class="row" style="${r.status==="plain"?"opacity:.55":""} ${r.status==="crit"?"border-color:var(--crit)":""}">
-      <span class="tm" style="font-size:11px;color:var(--chalk-faint)">${ago(r.lastISO)}</span>
-      <span class="nm">${esc(r.run)}<span class="st">${esc(r.expected||r.cadence||"")}</span></span>
-      <span class="chip ${{ok:"ok",watch:"watch",crit:"crit"}[r.status]||"plain"}">${esc(r.statusLabel)}</span>
-    </div>`;
-    const liveR=R.filter(r=>r.monitoring==="Live"), restR=R.filter(r=>r.monitoring!=="Live");
+    /* Live rows only — retired/paused personas are Run-Monitor bookkeeping, not
+       operations. Next fire (with countdown) leads; last-seen sits in the corner. */
+    const robotRow=r=>{
+      const nr=nextRun(r,n);
+      return `<div class="row" style="${r.status==="crit"?"border-color:var(--crit)":""}">
+      <span class="tm" style="font-size:12px;${r.status==="crit"?"color:var(--crit)":"color:var(--ok)"};font-weight:700">${cdTxt(nr)||"—"}</span>
+      <span class="nm">${esc(r.run)}<span class="st">${esc(robotDesc(r))}</span></span>
+      <span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+        <span class="chip ${{ok:"ok",watch:"watch",crit:"crit"}[r.status]||"plain"}">${esc(r.statusLabel)}</span>
+        <span style="font-size:10px;color:var(--chalk-faint)">${ago(r.lastISO)}</span>
+      </span>
+    </div>`;};
+    const liveR=R.filter(r=>r.monitoring==="Live");
     const overdue=liveR.filter(r=>r.status==="crit").length;
     $('#robots').innerHTML=
       `<div class="grp">Watched runs${overdue?` — <span style="color:var(--crit)">${overdue} overdue</span>`:""}</div>`+
-      (liveR.map(robotRow).join("")||`<div class="quiet">Nothing watched.</div>`)+
-      (restR.length?`<div class="grp">Paused / not reporting</div>`+restR.map(robotRow).join(""):"");
+      (liveR.map(robotRow).join("")||`<div class="quiet">Nothing watched.</div>`);
   }
 
   /* freshness */
