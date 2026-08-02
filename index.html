@@ -1311,13 +1311,8 @@ function renderAlarms(){
   const evs = DATA.armEvents || [];
   const bypasses = (DATA.alarmAlerts || []).filter(a=>a.stage==="BYPASS");
   const alerts = (DATA.alarmAlerts || []).filter(a=>a.stage!=="BYPASS");
+  /* No banner: the studio cards + red stream rows already carry triggers. */
   let html = "";
-  if(alerts.length){
-    const real = alerts.some(a=>a.stage==="ALARM");
-    html += `<div class="statusbar ${real?"crit":"warn"}" style="margin-top:16px"><span class="dot"></span>
-      <span class="head">${real?"Alarm triggered":"Pending alarm"}</span><span class="items">${
-      alerts.map(a=>`<span class="statusitem"><span class="sdot ${a.stage==="ALARM"?"crit":"warn"}"></span>${esc(a.studio)} · ${esc(a.stage.toLowerCase())} · ${esc(a.time)}</span>`).join("")}</span></div>`;
-  }
   if(DATA.armFallback)
     html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
       <span class="head">ADT email feed unavailable</span><span class="items"><span class="statusitem">Showing board fallback — no event stream this edition</span></span></div>`;
