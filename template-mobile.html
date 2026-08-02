@@ -94,7 +94,10 @@
   .card .who{font-weight:700;font-size:15.5px;grid-column:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .card .meta{grid-column:2;font-family:var(--mono);font-size:13px;color:var(--chalk-dim);
               font-variant-numeric:tabular-nums}
-  .card .meta .arr{color:var(--ok)} .card .meta .miss{color:var(--crit);font-family:var(--sans)}
+  .card .meta .arr{color:var(--ok)} .card .meta .dep{color:var(--chalk-faint)}
+  .card .meta .miss{color:var(--crit);font-family:var(--sans)}
+  .card .meta .lbl{font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.08em;
+                   vertical-align:1.5px;margin-right:1px}
   .card .chips{grid-column:2;display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
   .card .right{grid-column:3;grid-row:1/span 3;text-align:right;font-size:12.5px;color:var(--chalk-dim);
                display:flex;flex-direction:column;align-items:flex-end;gap:4px}
@@ -232,8 +235,8 @@ function render(){
     const st=stateOf(e,n);
     const plan=`plan-${e.plan||"oneoff"}`;
     let meta=`${hm(e.start)}–${hm(e.end)}`;
-    if(e.arrived)meta+=` <span class="arr">↓${e.arrived}</span>`;
-    if(e.departed)meta+=` ↑${e.departed}`;
+    if(e.arrived)meta+=` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`;
+    if(e.departed)meta+=` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`;
     if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
     let cnt="";
     if(st.live)cnt=`<b>${dur(e.end-n)} left</b>`;
