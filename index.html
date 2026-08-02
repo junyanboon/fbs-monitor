@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 1, 2026",
-  "generatedAt": "Aug 1, 11:30 PM ET",
-  "generatedAtISO": "2026-08-01T23:30:50-04:00",
+  "generatedAt": "Aug 1, 11:45 PM ET",
+  "generatedAtISO": "2026-08-01T23:45:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -578,6 +578,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "text": "Alarm alarm · 693 · 19:03"
+    },
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -898,8 +902,8 @@ const DATA = /*__DATA__*/{
       "expected": "07:00",
       "produces": "Nest setpoints (509 / 901)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-07-31T22:45:00-04:00"
     },
     {
@@ -1050,7 +1054,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-01T22:32:00-04:00"
+      "lastISO": "2026-08-02T03:32:00-04:00"
     }
   ],
   "robotsNote": null
