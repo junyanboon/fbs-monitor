@@ -1091,16 +1091,20 @@ function renderAlarms(){
     const cleared = a => mine.some(e=>tk(e.time)>=tk(a.time));
     const alarmed = alerts.some(a=>a.studio===s.id && !cleared(a));
     const byp = bypasses.filter(a=>a.studio===s.id && !cleared(a));
-    const st = !last ? ["unknown","No events yet"]
-             : last.kind==="arrival" ? ["open","🔓 Open"] : ["locked","🔒 Armed"];
+    // Nothing today? Carry the last known event forward from a prior day —
+    // the panel does not reset at 05:00.
+    const prior = (DATA.panelPrior||{})[s.id];
+    const eff = last || prior;
+    const st = !eff ? ["unknown","Unknown"]
+             : eff.kind==="arrival" ? ["open","🔓 Open"] : ["locked","🔒 Armed"];
     // Open with nothing scheduled there (±30 min, cleaning counts) → warn.
     const nA = torontoNow().t;
-    const openEmpty = last && last.kind==="arrival" && !alarmed &&
+    const openEmpty = eff && eff.kind==="arrival" && !alarmed &&
       !(DATA.events||[]).some(e=>e.studio===s.id && e.start-0.5<=nA && nA<e.end+0.5);
     return `<div class="armcard ${alarmed?"alarm":""}">
       <div class="id">${esc(s.name)}</div>
       <div class="st ${st[0]}">${st[1]}</div>
-      <div class="last">${last ? `<b>${esc(last.time)}</b> ${last.kind==="arrival"?"disarmed":"armed"} · ${esc(last.name||"")}` : "since 5 AM"}</div>
+      <div class="last">${eff ? `<b>${esc(last?eff.time:(eff.when||eff.time))}</b> ${eff.kind==="arrival"?"disarmed":"armed"} · ${esc(eff.name||"")}` : "no events on record"}</div>
       ${byp.length?`<div class="last" style="color:var(--watch)">Bypass seen · ${esc(byp[byp.length-1].time)}</div>`:""}
       ${openEmpty?`<div class="last" style="color:var(--crit);font-weight:700">⚠ Open · no booking</div>`:""}
     </div>`;

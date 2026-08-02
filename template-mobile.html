@@ -279,9 +279,13 @@ function render(){
     const trig=alertsA.filter(a=>a.studio===s.id&&a.stage!=="BYPASS"&&!cleared(a));
     const byp=alertsA.filter(a=>a.studio===s.id&&a.stage==="BYPASS"&&!cleared(a));
     const real=trig.some(a=>a.stage==="ALARM");
-    let stCls="plain",stTxt="No events yet",act="";
-    const isOpen=last&&last.kind==="arrival";
-    if(last){stCls=isOpen?"ok":"plain";stTxt=isOpen?"🔓 Open":"🔒 Armed";}
+    // Nothing today? The panel didn't reset at 05:00 — carry the last known
+    // event forward from a prior day rather than claiming we know nothing.
+    const prior=(DATA.panelPrior||{})[s.id];
+    const eff=last||prior;
+    let stCls="plain",stTxt="Unknown",act="";
+    const isOpen=eff&&eff.kind==="arrival";
+    if(eff){stCls=isOpen?"ok":"plain";stTxt=isOpen?"🔓 Open":"🔒 Armed";}
     if(trig.length){stCls="crit";
       act=`<span class="chip crit">${real?"⚠ Clear alarm":"Pending"} · ${trig[trig.length-1].time}</span>`;}
     if(byp.length)act+=`<span class="chip watch">Bypass · ${byp[byp.length-1].time}</span>`;
@@ -292,7 +296,7 @@ function render(){
     }
     return `<div class="row" style="${trig.length?"border-color:var(--crit)":""}">
       <span class="tm" style="font-family:var(--disp);font-weight:800;font-size:17px">${esc(s.name)}</span>
-      <span class="nm">${stTxt}<span class="st">${last?`${last.time} · ${esc(last.name||"")}`:"since 5 AM"}</span></span>
+      <span class="nm">${stTxt}<span class="st">${eff?`${esc(last?eff.time:(eff.when||eff.time))} · ${esc(eff.name||"")}`:"no events on record"}</span></span>
       <span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${act||`<span class="chip ${stCls}">OK</span>`}</span>
     </div>`;
   }).join("");

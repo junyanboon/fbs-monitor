@@ -567,19 +567,24 @@ def _resolve_label_id(h, name):
     die(f'Gmail label "{name}" not found on this account — arrivals source is misconfigured.')
 
 
-def fetch_arm_events(win_start):
-    """Return (arm_events, alarm_alerts).
-    arm_events: [{studio, name, time 'HH:MM', kind arrival|departure}]
-    alarm_alerts: [{studio, time 'HH:MM', stage 'PENDING'|'ALARM'}] — alarm-trigger
-    emails; time comes from the email's internalDate (their subjects carry none).
-    Raises on soft (non-auth) failures."""
-    tok = gmail_access_token()
-    h = {"Authorization": f"Bearer {tok}"}
-    label_id = _resolve_label_id(h, ARM_LABEL)
-    after = int(win_start.timestamp())
+def _msg_subject_and_ts(h, mid):
+    r = requests.get(f"{GMAIL_API}/messages/{mid}", headers=h,
+                     params={"format": "metadata", "metadataHeaders": "Subject"},
+                     timeout=30)
+    r.raise_for_status()
+    msg = r.json()
+    subject = ""
+    for hdr in msg.get("payload", {}).get("headers", []):
+        if hdr.get("name", "").lower() == "subject":
+            subject = hdr.get("value", "")
+            break
+    return subject, int(msg.get("internalDate", "0"))
+
+
+def _gmail_ids(h, label_id, q):
     ids, page = [], None
     for _ in range(20):
-        params = {"labelIds": label_id, "q": f"after:{after}", "maxResults": 100}
+        params = {"labelIds": label_id, "q": q, "maxResults": 100}
         if page:
             params["pageToken"] = page
         r = requests.get(f"{GMAIL_API}/messages", headers=h, params=params, timeout=30)
@@ -591,6 +596,50 @@ def fetch_arm_events(win_start):
         page = data.get("nextPageToken")
         if not page:
             break
+    return ids
+
+
+def fetch_prior_state(h, label_id, missing, win_start, days=5):
+    """Last known arm/disarm for studios with NO event in today's window.
+
+    A panel does not reset at 05:00 — a studio armed last night is still armed
+    this morning, and reporting "No events yet" throws away state we can know.
+    Gmail lists newest-first, so we walk back and stop as soon as every missing
+    studio is resolved (usually a handful of messages)."""
+    missing = set(missing)
+    if not missing:
+        return {}
+    q = (f"after:{int((win_start - timedelta(days=days)).timestamp())} "
+         f"before:{int(win_start.timestamp())}")
+    out = {}
+    for mid in _gmail_ids(h, label_id, q):
+        if not missing:
+            break
+        try:
+            subject, ts = _msg_subject_and_ts(h, mid)
+        except Exception:  # noqa: BLE001 — a single unreadable message must not kill the build
+            continue
+        parsed = parse_arm_subject(subject)
+        if not parsed or parsed["studio"] not in missing:
+            continue
+        when = datetime.fromtimestamp(ts / 1000, TZ)
+        out[parsed["studio"]] = {**parsed, "ts": ts,
+                                 "when": f"{when:%a} {parsed['time']}"}
+        missing.discard(parsed["studio"])
+    return out
+
+
+def fetch_arm_events(win_start):
+    """Return (arm_events, alarm_alerts, panel_prior).
+    arm_events: [{studio, name, time 'HH:MM', kind arrival|departure}]
+    alarm_alerts: [{studio, time 'HH:MM', stage 'PENDING'|'ALARM'}] — alarm-trigger
+    emails; time comes from the email's internalDate (their subjects carry none).
+    panel_prior: {studio: last event BEFORE today's window} for studios silent today.
+    Raises on soft (non-auth) failures."""
+    tok = gmail_access_token()
+    h = {"Authorization": f"Bearer {tok}"}
+    label_id = _resolve_label_id(h, ARM_LABEL)
+    ids = _gmail_ids(h, label_id, f"after:{int(win_start.timestamp())}")
     floor_ms = int(win_start.timestamp()) * 1000
     out, alerts = [], []
     for mid in ids:
@@ -622,7 +671,9 @@ def fetch_arm_events(win_start):
             print(f"ARM-DEBUG: {'PARSED ' + str(parsed) if parsed else 'DROPPED'} <- {subject!r}")
         if parsed:
             out.append(parsed)
-    return out, alerts
+    prior = fetch_prior_state(h, label_id,
+                              STUDIO_IDS - {e["studio"] for e in out}, win_start)
+    return out, alerts, prior
 
 
 def parse_alarm_subject(subject, internal_ms):
@@ -890,10 +941,10 @@ def build_data(now):
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
 
     used_fallback = False
-    arm_events, alarm_alerts = [], []
+    arm_events, alarm_alerts, panel_prior = [], [], {}
     if os.environ.get("GMAIL_REFRESH_TOKEN"):
         try:
-            arm_events, alarm_alerts = fetch_arm_events(win_start)
+            arm_events, alarm_alerts, panel_prior = fetch_arm_events(win_start)
             events = apply_arm_events(events, arm_events)
         except SystemExit:
             raise                       # auth failure already died RED
@@ -963,6 +1014,7 @@ def build_data(now):
         "staff": sorted(staff, key=lambda s: s["start"]),
         "attention": attention,
         "armEvents": arm_stream,
+        "panelPrior": panel_prior,
         "alarmAlerts": alarm_alerts,
         "armFallback": used_fallback,
         "robots": robots,
