@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 1, 2026",
-  "generatedAt": "Aug 1, 8:16 PM ET",
-  "generatedAtISO": "2026-08-01T20:16:17-04:00",
+  "generatedAt": "Aug 1, 8:30 PM ET",
+  "generatedAtISO": "2026-08-01T20:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -390,8 +390,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "08:40",
+      "departed": "09:16",
       "start": 8.5,
       "end": 9.25
     },
@@ -426,7 +426,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": "14:08",
+      "arrived": "14:29",
       "departed": "16:29",
       "start": 14.25,
       "end": 16.25
@@ -438,8 +438,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:04",
+      "departed": "09:20",
       "start": 8.5,
       "end": 9.25
     },
@@ -450,7 +450,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "14:08",
       "departed": null,
       "start": 14.25,
       "end": 16.25
@@ -462,8 +462,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:23",
+      "departed": "09:52",
       "start": 9.25,
       "end": 10.0
     },
@@ -486,8 +486,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:01",
+      "departed": "10:56",
       "start": 10.25,
       "end": 11.0
     },
@@ -498,7 +498,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "19:03",
       "departed": null,
       "start": 19.0,
       "end": 22.0
@@ -522,8 +522,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:21",
+      "departed": "12:01",
       "start": 11.25,
       "end": 11.75
     },
@@ -566,11 +566,334 @@ const DATA = /*__DATA__*/{
       "end": 22.25
     }
   ],
-  "attention": [],
-  "armEvents": [],
-  "alarmAlerts": [],
-  "armFallback": true,
+  "attention": [
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 693 · 19:00"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 693 · 19:00"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 693 · 19:03"
+    }
+  ],
+  "armEvents": [
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "08:40",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785588018000
+    },
+    {
+      "studio": "901",
+      "name": "Tufan Bhattarai",
+      "time": "08:58",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785589095000
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "09:04",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785589489000
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "09:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785590193000
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "09:17",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785590255000
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "09:20",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785590450000
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "09:23",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785590582000
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "09:52",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785592353000
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:01",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785592874000
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "10:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785594771000
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "10:53",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785596036000
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:56",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785596207000
+    },
+    {
+      "studio": "901",
+      "name": "Tufan Bhattarai",
+      "time": "11:00",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785596413000
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "11:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785597694000
+    },
+    {
+      "studio": "509A",
+      "name": "Shiela",
+      "time": "11:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785599144000
+    },
+    {
+      "studio": "509A",
+      "name": "Shiela",
+      "time": "11:45",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785599146000
+    },
+    {
+      "studio": "509A",
+      "name": "Jake Maresca",
+      "time": "11:57",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785599857000
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "12:01",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785600117000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "12:08",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1785600506000
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "12:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785601723000
+    },
+    {
+      "studio": "901",
+      "name": "Julia S",
+      "time": "12:53",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785603217000
+    },
+    {
+      "studio": "509A",
+      "name": "Jake Maresca",
+      "time": "14:05",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785607505000
+    },
+    {
+      "studio": "509B",
+      "name": "Keerthana Vijay",
+      "time": "14:08",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785607730000
+    },
+    {
+      "studio": "509A",
+      "name": "Keerthana Vijay",
+      "time": "14:29",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785608988000
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "14:31",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1785609119000
+    },
+    {
+      "studio": "901",
+      "name": "Julia S",
+      "time": "15:27",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785612436000
+    },
+    {
+      "studio": "509A",
+      "name": "Keerthana Vijay",
+      "time": "16:24",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785615864000
+    },
+    {
+      "studio": "509A",
+      "name": "Keerthana Vijay",
+      "time": "16:26",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785615975000
+    },
+    {
+      "studio": "509A",
+      "name": "Keerthana Vijay",
+      "time": "16:26",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785615999000
+    },
+    {
+      "studio": "509B",
+      "name": "Panel User",
+      "time": "16:29",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785616183000
+    },
+    {
+      "studio": "509A",
+      "name": "Keerthana Vijay",
+      "time": "16:29",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785616183000
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "18:04",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1785621890000
+    },
+    {
+      "studio": "693",
+      "name": "Kimberly Rampersad",
+      "time": "19:03",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785625418000
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "19:36",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1785627367000
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "19:36",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1785627373000
+    }
+  ],
+  "alarmAlerts": [
+    {
+      "studio": "693",
+      "time": "19:00",
+      "stage": "ALARM",
+      "ts": 1785625251000
+    },
+    {
+      "studio": "693",
+      "time": "19:00",
+      "stage": "PENDING",
+      "ts": 1785625235000
+    },
+    {
+      "studio": "693",
+      "time": "19:03",
+      "stage": "ALARM",
+      "ts": 1785625412000
+    }
+  ],
+  "armFallback": false,
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-01T18:38:00-04:00"
+    },
     {
       "run": "The Weatherman",
       "cadence": "Daily",
@@ -600,16 +923,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T06:02:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T18:38:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -659,7 +972,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-01T19:52:00-04:00"
+      "lastISO": "2026-08-01T20:20:00-04:00"
     },
     {
       "run": "The Sentinel",
