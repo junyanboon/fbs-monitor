@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 2, 2026",
-  "generatedAt": "Aug 2, 8:15 AM ET",
-  "generatedAtISO": "2026-08-02T08:15:39-04:00",
+  "generatedAt": "Aug 2, 8:30 AM ET",
+  "generatedAtISO": "2026-08-02T08:30:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -311,23 +311,13 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-01T22:56:00-04:00"
-    },
     {
       "run": "The Weatherman",
       "cadence": "Daily",
@@ -366,7 +356,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-02T08:13:00-04:00"
+      "lastISO": "2026-08-02T08:55:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -407,6 +397,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T19:41:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-02T08:52:00-04:00"
     },
     {
       "run": "The Sentinel",
