@@ -140,7 +140,7 @@
   /* staff tab panels */
   .panelwrap{background:var(--scrim);border:1px solid var(--line);border-radius:12px;overflow:hidden;
              box-shadow:var(--shadow)}
-  .shift{display:grid;grid-template-columns:132px 1fr auto auto;gap:12px;padding:11px 16px;
+  .shift{display:grid;grid-template-columns:132px minmax(0,1fr) auto auto;gap:12px;padding:11px 16px;
          border-bottom:1px solid var(--line);align-items:center}
   .shift:last-child{border-bottom:none}
   .shift.live{background:var(--live-bg);box-shadow:inset 4px 0 0 var(--ok)}
@@ -1318,11 +1318,15 @@ function renderAlarms(){
   if(DATA.armFallback)
     html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
       <span class="head">ADT email feed unavailable</span><span class="items"><span class="statusitem">Showing board fallback — no event stream this edition</span></span></div>`;
+  const tk=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
+  const ordA=(a,b)=>(tk(a.time)-tk(b.time))||((a.ts||0)-(b.ts||0));
   html += `<div class="armgrid">` + DATA.studios.map(s=>{
-    const mine = evs.filter(e=>e.studio===s.id);
+    const mine = evs.filter(e=>e.studio===s.id).slice().sort(ordA);
     const last = mine[mine.length-1];
-    const alarmed = alerts.some(a=>a.studio===s.id);
-    const byp = bypasses.filter(a=>a.studio===s.id);
+    // outstanding only if nobody touched the panel at/after the alert
+    const cleared = a => mine.some(e=>tk(e.time)>=tk(a.time));
+    const alarmed = alerts.some(a=>a.studio===s.id && !cleared(a));
+    const byp = bypasses.filter(a=>a.studio===s.id && !cleared(a));
     const st = !last ? ["unknown","No events yet"]
              : last.kind==="arrival" ? ["open","🔓 Open"] : ["locked","🔒 Armed"];
     // Open with nothing scheduled there (±30 min, cleaning counts) → warn.
@@ -1337,21 +1341,25 @@ function renderAlarms(){
       ${openEmpty?`<div class="last" style="color:var(--crit);font-weight:700">⚠ Open · no booking</div>`:""}
     </div>`;
   }).join("") + `</div>`;
-  /* stream: arm/disarm + triggers/bypasses interleaved by time — the red rows
-     are the ones that need actioning (clear the alarm / clear the bypass). */
-  const tkey=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
+  /* stream: arm/disarm + triggers/bypasses interleaved, newest first. Studio is
+     its own chip beside the state chip so a long name never truncates it away. */
   const stream=[
-    ...evs.map(e=>({t:e.time,html:`<div class="shift">
+    ...evs.map(e=>({...e,html:`<div class="shift">
         <span class="tm">${esc(e.time)}</span>
-        <span class="nm">${esc(e.name||"—")} <span class="chip plain">${esc(e.studio)}</span></span>
+        <span class="nm">${esc(e.name||"—")}</span>
+        <span class="chip plain">${esc(e.studio)}</span>
         <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
       </div>`})),
-    ...bypasses.concat(alerts).map(a=>({t:a.time,html:`<div class="shift" style="background:var(--crit-bg)">
+    ...bypasses.concat(alerts).map(a=>{
+      const done=evs.some(e=>e.studio===a.studio&&tk(e.time)>=tk(a.time));
+      const label=a.stage==="BYPASS"?"Sensor bypass":a.stage==="ALARM"?"Alarm triggered":"Alarm pending";
+      return {...a,html:`<div class="shift" style="${done?"opacity:.6":"background:var(--crit-bg)"}">
         <span class="tm">${esc(a.time)}</span>
-        <span class="nm" style="color:var(--crit)">${a.stage==="BYPASS"?"Sensor bypass":a.stage==="ALARM"?"Alarm triggered":"Alarm pending"} <span class="chip plain">${esc(a.studio)}</span></span>
-        <span class="chip crit">⚠ Action</span>
-      </div>`})),
-  ].sort((a,b)=>tkey(b.t)-tkey(a.t)).map(x=>x.html);
+        <span class="nm" style="${done?"":"color:var(--crit)"}">${label}</span>
+        <span class="chip plain">${esc(a.studio)}</span>
+        <span class="chip ${done?"plain":"crit"}">${done?"Cleared":"⚠ Action"}</span>
+      </div>`};}),
+  ].sort((a,b)=>ordA(b,a)).map(x=>x.html);
   html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +
     (stream.length ? stream.join("") : `<div class="shift">No alarm events yet today</div>`) + `</div>`;
   $('#alarmpanel').innerHTML = html;

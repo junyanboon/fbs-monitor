@@ -609,9 +609,15 @@ def fetch_arm_events(win_start):
                 break
         alert = parse_alarm_subject(subject, internal_ms)
         if alert:
+            alert["ts"] = internal_ms
             alerts.append(alert)
             continue
         parsed = parse_arm_subject(subject)
+        if parsed:
+            # Gmail lists newest-first and the subject only carries HH:MM, so two
+            # events in the same minute (a disarm and an arm) cannot be ordered by
+            # the subject alone. The email receipt time breaks the tie.
+            parsed["ts"] = internal_ms
         if os.environ.get("DEBUG_ARM") == "1":
             print(f"ARM-DEBUG: {'PARSED ' + str(parsed) if parsed else 'DROPPED'} <- {subject!r}")
         if parsed:
@@ -918,7 +924,7 @@ def build_data(now):
     # 2-minute window, keeping the earliest and the most descriptive name.
     arm_stream = []
     for a in sorted((a for a in arm_events if a.get("time")),
-                    key=lambda a: day_key(a["time"])):
+                    key=lambda a: (day_key(a["time"]), a.get("ts") or 0)):
         t = day_key(a["time"])
         dup = next((p for p in arm_stream
                     if p["studio"] == a["studio"] and p["kind"] == a["kind"]

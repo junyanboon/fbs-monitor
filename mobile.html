@@ -121,6 +121,7 @@
   .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
   .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
+  .row .ev{display:flex;gap:5px;align-items:center;flex:none;white-space:nowrap}
   .alert{background:var(--crit-bg);border:1px solid var(--crit);border-radius:12px;padding:12px 14px;margin:10px 0;
          color:var(--crit);font-weight:700}
 
@@ -923,11 +924,16 @@ function render(){
   /* alarms — panel status first: one card per studio (armed/open, triggered
      alarms to clear, bypasses seen today), then the raw event stream. */
   const evsA=DATA.armEvents||[], alertsA=DATA.alarmAlerts||[];
+  const tkey=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
+  const ord=(a,b)=>(tkey(a.time)-tkey(b.time))||((a.ts||0)-(b.ts||0));
   const grid=DATA.studios.map(s=>{
-    const mine=evsA.filter(e=>e.studio===s.id);
+    const mine=evsA.filter(e=>e.studio===s.id).slice().sort(ord);
     const last=mine[mine.length-1];
-    const trig=alertsA.filter(a=>a.studio===s.id&&a.stage!=="BYPASS");
-    const byp=alertsA.filter(a=>a.studio===s.id&&a.stage==="BYPASS");
+    // An alarm is only outstanding if nobody touched the panel at/after it —
+    // a disarm after the trigger means someone was there and cleared it.
+    const cleared=a=>mine.some(e=>tkey(e.time)>=tkey(a.time));
+    const trig=alertsA.filter(a=>a.studio===s.id&&a.stage!=="BYPASS"&&!cleared(a));
+    const byp=alertsA.filter(a=>a.studio===s.id&&a.stage==="BYPASS"&&!cleared(a));
     const real=trig.some(a=>a.stage==="ALARM");
     let stCls="plain",stTxt="No events yet",act="";
     const isOpen=last&&last.kind==="arrival";
@@ -946,21 +952,25 @@ function render(){
       <span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${act||`<span class="chip ${stCls}">OK</span>`}</span>
     </div>`;
   }).join("");
-  /* stream = arm/disarm events + triggers/bypasses interleaved by time;
-     triggers and bypasses are actionable → red row */
-  const tkey=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
+
+  /* stream = arm/disarm events + triggers/bypasses interleaved, newest first.
+     The studio is its own chip so a long name can never truncate it away. */
   const stream=[
-    ...evsA.map(a=>({t:a.time,html:`<div class="row">
+    ...evsA.map(a=>({...a,html:`<div class="row">
       <span class="tm">${a.time}</span>
-      <span class="nm">${esc(a.name||"—")}<span class="st">${esc(a.studio)}</span></span>
-      <span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
+      <span class="nm">${esc(a.name||"—")}</span>
+      <span class="ev"><span class="chip plain">${esc(a.studio)}</span><span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span></span>
     </div>`})),
-    ...alertsA.map(a=>({t:a.time,html:`<div class="row" style="border-color:var(--crit);background:var(--crit-bg)">
+    ...alertsA.map(a=>{
+      // cleared = someone touched that studio's panel at/after the alert
+      const done=evsA.some(e=>e.studio===a.studio&&tkey(e.time)>=tkey(a.time));
+      const label=a.stage==="BYPASS"?"Sensor bypass":a.stage==="ALARM"?"Alarm triggered":"Alarm pending";
+      return {...a,html:`<div class="row" style="${done?"opacity:.6":"border-color:var(--crit);background:var(--crit-bg)"}">
       <span class="tm">${a.time}</span>
-      <span class="nm" style="color:var(--crit)">${a.stage==="BYPASS"?"Sensor bypass":a.stage==="ALARM"?"Alarm triggered":"Alarm pending"}<span class="st">${esc(a.studio)}</span></span>
-      <span class="chip crit">⚠ Action</span>
-    </div>`})),
-  ].sort((a,b)=>tkey(b.t)-tkey(a.t)).map(x=>x.html).join("");
+      <span class="nm" style="${done?"":"color:var(--crit)"}">${label}</span>
+      <span class="ev"><span class="chip plain">${esc(a.studio)}</span><span class="chip ${done?"plain":"crit"}">${done?"Cleared":"⚠ Action"}</span></span>
+    </div>`};}),
+  ].sort((a,b)=>ord(b,a)).map(x=>x.html).join("");
   $('#alarms').innerHTML=`<div class="grp">Panel status</div>`+grid+
     `<div class="grp">Today's events</div>`+(stream||`<div class="quiet">No alarm events yet today.</div>`);
 
