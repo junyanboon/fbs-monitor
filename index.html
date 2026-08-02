@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 2, 2026",
-  "generatedAt": "Aug 2, 2:15 PM ET",
-  "generatedAtISO": "2026-08-02T14:15:34-04:00",
+  "generatedAt": "Aug 2, 2:30 PM ET",
+  "generatedAtISO": "2026-08-02T14:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -400,7 +400,7 @@ const DATA = /*__DATA__*/{
       "who": "Salia Magno",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
+      "gtg": true,
       "hta": "Sent",
       "arrived": null,
       "departed": null,
@@ -486,7 +486,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "14:29",
       "departed": null,
       "start": 14.25,
       "end": 16.25
@@ -513,6 +513,14 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 901 · 14:27"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 901 · 14:27"
+    },
     {
       "level": "warn",
       "text": "2 robots overdue — see Robots tab"
@@ -622,6 +630,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1785693560000
+    },
+    {
+      "studio": "901",
+      "name": "Anchal Dahiya",
+      "time": "14:29",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785695347000
     }
   ],
   "panelPrior": {
@@ -635,7 +651,20 @@ const DATA = /*__DATA__*/{
       "when": "Sat 18:04"
     }
   },
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "901",
+      "time": "14:27",
+      "stage": "ALARM",
+      "ts": 1785695259000
+    },
+    {
+      "studio": "901",
+      "time": "14:27",
+      "stage": "PENDING",
+      "ts": 1785695229000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
@@ -657,6 +686,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-07-31T22:45:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-01T19:41:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -686,7 +725,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-02T12:58:00-04:00"
+      "lastISO": "2026-08-02T14:52:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -719,16 +758,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-02T04:16:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T19:41:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -736,7 +765,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-02T13:53:00-04:00"
+      "lastISO": "2026-08-02T14:25:00-04:00"
     },
     {
       "run": "The Sentinel",
