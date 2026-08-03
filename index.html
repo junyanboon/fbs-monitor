@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 3, 2026",
-  "generatedAt": "Aug 3, 8:30 AM ET",
-  "generatedAtISO": "2026-08-03T08:30:51-04:00",
+  "generatedAt": "Aug 3, 8:45 AM ET",
+  "generatedAtISO": "2026-08-03T08:45:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -385,6 +385,18 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 12.25,
+      "end": 12.5
+    },
+    {
+      "studio": "509A",
       "who": "Sierra Goulding — Rehearsal",
       "kind": "booking",
       "tier": "Monitor",
@@ -409,6 +421,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 12.25,
+      "end": 12.5
+    },
+    {
+      "studio": "509B",
       "who": "David Diep — Jul 31",
       "kind": "booking",
       "tier": null,
@@ -418,6 +442,18 @@ const DATA = /*__DATA__*/{
       "departed": null,
       "start": 20.0,
       "end": 22.0
+    },
+    {
+      "studio": "527",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 11.75,
+      "end": 12.25
     },
     {
       "studio": "527",
@@ -433,6 +469,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "693",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 11.25,
+      "end": 11.5
+    },
+    {
+      "studio": "693",
       "who": "Nina Li — *Additional time added at no charge so she can clean up the space*",
       "kind": "booking",
       "tier": null,
@@ -442,6 +490,18 @@ const DATA = /*__DATA__*/{
       "departed": null,
       "start": 18.25,
       "end": 22.5
+    },
+    {
+      "studio": "901",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 12.75,
+      "end": 13.25
     },
     {
       "studio": "901",
@@ -471,13 +531,13 @@ const DATA = /*__DATA__*/{
   "staff": [
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
@@ -576,6 +636,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-31T22:45:00-04:00"
     },
     {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-03T07:32:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -664,16 +734,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T09:05:00-04:00"
-    },
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-03T07:32:00-04:00"
     },
     {
       "run": "The Closer",
