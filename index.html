@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 3, 2026",
-  "generatedAt": "Aug 3, 5:16 PM ET",
-  "generatedAtISO": "2026-08-03T17:16:56-04:00",
+  "generatedAt": "Aug 3, 5:30 PM ET",
+  "generatedAtISO": "2026-08-03T17:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -543,13 +543,13 @@ const DATA = /*__DATA__*/{
   "staff": [
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
@@ -563,7 +563,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -687,16 +687,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-03T09:58:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-03T02:05:00-04:00"
-    },
-    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "hourly :30 · 07–23 (cloud)",
@@ -775,6 +765,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-03T03:48:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-03T17:29:00-04:00"
     },
     {
       "run": "The Sentinel",
