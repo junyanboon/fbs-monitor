@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 3, 2026",
-  "generatedAt": "Aug 3, 6:00 PM ET",
-  "generatedAtISO": "2026-08-03T18:00:50-04:00",
+  "generatedAt": "Aug 3, 6:15 PM ET",
+  "generatedAtISO": "2026-08-03T18:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -486,7 +486,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:11",
       "departed": null,
       "start": 18.25,
       "end": 22.5
@@ -563,7 +563,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -670,6 +670,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1785791235000
+    },
+    {
+      "studio": "693",
+      "name": "Nina Li",
+      "time": "18:11",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785795086000
     }
   ],
   "panelPrior": {},
@@ -687,6 +695,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-03T09:58:00-04:00"
     },
     {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-03T03:05:00-04:00"
+    },
+    {
       "run": "The Weatherman",
       "cadence": "Daily",
       "expected": "07:00",
@@ -695,16 +713,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-07-31T22:45:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-03T03:05:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -774,7 +782,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-03T17:07:00-04:00"
+      "lastISO": "2026-08-03T18:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
