@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 3, 2026",
-  "generatedAt": "Aug 3, 12:15 PM ET",
-  "generatedAtISO": "2026-08-03T12:15:36-04:00",
+  "generatedAt": "Aug 3, 12:30 PM ET",
+  "generatedAtISO": "2026-08-03T12:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -206,7 +206,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "arrived": "12:01",
-      "departed": null,
+      "departed": "12:27",
       "start": 12.25,
       "end": 12.5
     },
@@ -241,8 +241,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "12:18",
+      "departed": "12:23",
       "start": 12.25,
       "end": 12.5
     },
@@ -358,13 +358,13 @@ const DATA = /*__DATA__*/{
   "staff": [
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
@@ -378,7 +378,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "5 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -421,6 +421,30 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1785772893000
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "12:18",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785773911000
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "12:23",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785774184000
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "12:27",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785774458000
     }
   ],
   "panelPrior": {
@@ -432,20 +456,21 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1785716204000,
       "when": "Sun 20:16"
-    },
-    "509B": {
-      "studio": "509B",
-      "name": "Anneka K",
-      "time": "16:59",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1785704346000,
-      "when": "Sun 16:59"
     }
   },
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-03T09:58:00-04:00"
+    },
     {
       "run": "The Responder",
       "cadence": "Hourly",
@@ -485,16 +510,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-07-31T22:45:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-03T09:58:00-04:00"
     },
     {
       "run": "The Analyst",
