@@ -57,6 +57,13 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: pip install -r requirements.txt
 
+      # Guards the ADT subject parsing + panel-state derivation. TELUS has changed
+      # subject wording twice and each time a studio silently read the wrong state;
+      # this fails the run instead. Pure string work — no network, no secrets.
+      - name: ADT parsing regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_adt_parsing.py
+
       - name: Build index.html
         if: steps.gate.outputs.ready == 'true'
         env:
@@ -83,13 +90,13 @@ jobs:
           # Both editions are built from the same DATA — index.html (desktop board)
           # and mobile.html (the FBS Mobile PWA). Commit BOTH: staging only
           # index.html left the mobile app frozen on whatever was last pushed.
-          if git diff --quiet -- index.html mobile.html; then
+          if git diff --quiet -- index.html mobile.html panel-state.json; then
             echo "No change — skipping commit."
           else
             STAMP="$(date -u +'%Y-%m-%d %H:%MZ')"
             MSG="FBS Monitor rebuild ${STAMP}"
             if [ -n "${FALLBACK_NOTE:-}" ]; then MSG="${MSG} — ${FALLBACK_NOTE}"; fi
-            git add index.html mobile.html
+            git add index.html mobile.html panel-state.json
             git commit -m "${MSG}"
             # Another run (or a local push) may have advanced main since checkout —
             # rebase and retry so concurrent pushes don't fail the run red.

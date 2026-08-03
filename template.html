@@ -649,7 +649,8 @@ function render(){
 function renderAlarms(){
   const evs = DATA.armEvents || [];
   const bypasses = (DATA.alarmAlerts || []).filter(a=>a.stage==="BYPASS");
-  const alerts = (DATA.alarmAlerts || []).filter(a=>a.stage!=="BYPASS");
+  const troubles = (DATA.alarmAlerts || []).filter(a=>a.stage==="TROUBLE");
+  const alerts = (DATA.alarmAlerts || []).filter(a=>!["BYPASS","TROUBLE"].includes(a.stage));
   /* No banner: the studio cards + red stream rows already carry triggers. */
   let html = "";
   if(DATA.armFallback)
@@ -664,6 +665,7 @@ function renderAlarms(){
     const cleared = a => mine.some(e=>tk(e.time)>=tk(a.time));
     const alarmed = alerts.some(a=>a.studio===s.id && !cleared(a));
     const byp = bypasses.filter(a=>a.studio===s.id && !cleared(a));
+    const trb = troubles.filter(a=>a.studio===s.id);   // trouble clears only when ADT says so
     // Nothing today? Carry the last known event forward from a prior day —
     // the panel does not reset at 05:00.
     const prior = (DATA.panelPrior||{})[s.id];
@@ -674,12 +676,12 @@ function renderAlarms(){
     const nA = torontoNow().t;
     const openEmpty = eff && eff.kind==="arrival" && !alarmed &&
       !(DATA.events||[]).some(e=>e.studio===s.id && e.start-0.5<=nA && nA<e.end+0.5);
-    return `<div class="armcard ${alarmed?"alarm":""}">
+    return `<div class="armcard ${(alarmed||trb.length)?"alarm":""}">
       <div class="id">${esc(s.name)}</div>
       <div class="st ${st[0]}">${st[1]}</div>
-      <div class="last">${eff ? `<b>${esc(last?eff.time:(eff.when||eff.time))}</b> ${eff.kind==="arrival"?"disarmed":"armed"} · ${esc(eff.name||"")}` : "no events on record"}</div>
-      ${byp.length?`<div class="last" style="color:var(--watch)">Bypass seen · ${esc(byp[byp.length-1].time)}</div>`:""}
-      ${openEmpty?`<div class="last" style="color:var(--crit);font-weight:700">⚠ Open · no booking</div>`:""}
+      ${trb.length?`<div class="last" style="color:var(--crit);font-weight:700">⚠ ${esc(trb[trb.length-1].detail||"Panel trouble")}</div>`:""}
+      ${byp.length?`<div class="last" style="color:var(--watch);font-weight:700">Bypass</div>`:""}
+      ${openEmpty?`<div class="last" style="color:var(--crit);font-weight:700">⚠ No booking</div>`:""}
     </div>`;
   }).join("") + `</div>`;
   /* stream: arm/disarm + triggers/bypasses interleaved, newest first. Studio is
@@ -693,7 +695,8 @@ function renderAlarms(){
       </div>`})),
     ...bypasses.concat(alerts).map(a=>{
       const done=evs.some(e=>e.studio===a.studio&&tk(e.time)>=tk(a.time));
-      const label=a.stage==="BYPASS"?"Sensor bypass":a.stage==="ALARM"?"Alarm triggered":"Alarm pending";
+      const label=a.stage==="BYPASS"?"Sensor bypass":a.stage==="TROUBLE"?(a.detail||"Panel trouble")
+                 :a.stage==="ALARM"?"Alarm triggered":"Alarm pending";
       return {...a,html:`<div class="shift" style="${done?"opacity:.6":"background:var(--crit-bg)"}">
         <span class="tm">${esc(a.time)}</span>
         <span class="nm" style="${done?"":"color:var(--crit)"}">${label}</span>

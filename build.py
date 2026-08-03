@@ -54,6 +54,11 @@ TEMPLATE = os.path.join(HERE, "template.html")
 OUTPUT = os.path.join(HERE, "index.html")
 TEMPLATE_MOBILE = os.path.join(HERE, "template-mobile.html")   # sister PWA (agenda view)
 OUTPUT_MOBILE = os.path.join(HERE, "mobile.html")
+# Durable last-known panel state, committed with the page. The email lookback can
+# only see a few days back and dies with any Gmail hiccup; this file remembers
+# each studio's last arm/disarm indefinitely, so the board never regresses to
+# "Unknown" for a studio that simply had a quiet week.
+PANEL_STATE = os.path.join(HERE, "panel-state.json")
 
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
@@ -535,6 +540,12 @@ RE_ALARM_REAL = re.compile(r"Studio\s+(\d+\w?).{0,80}?\breported\s+an?\s+Alarm\b
 # Sensor bypass notices ("… was Armed Away with sensors Bypassed", "Bypass on Front
 # Door …"). Loose on purpose: any ADT subject naming a studio + "bypass".
 RE_BYPASS = re.compile(r"Studio\s+(\d+\w?).{0,120}?\bbypass", re.I | re.S)
+# Panel trouble conditions ADT emails about: tamper, malfunction, low battery,
+# AC/power loss, comms failure. These are "someone must go look at the panel"
+# states that the arm/disarm stream cannot express.
+RE_TROUBLE = re.compile(
+    r"Studio\s+(\d+\w?).{0,120}?\b(tamper|malfunction|trouble|low\s+battery|"
+    r"power\s+(?:loss|failure)|ac\s+(?:loss|failure)|communication\s+failure)", re.I | re.S)
 
 
 def gmail_access_token():
@@ -597,6 +608,38 @@ def _gmail_ids(h, label_id, q):
         if not page:
             break
     return ids
+
+
+def load_panel_state():
+    try:
+        with open(PANEL_STATE, encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:  # noqa: BLE001 — first run, or a corrupt file: start clean
+        return {}
+
+
+def save_panel_state(state):
+    with open(PANEL_STATE, "w", encoding="utf-8") as fh:
+        json.dump(state, fh, indent=2, ensure_ascii=False, sort_keys=True)
+        fh.write("\n")
+
+
+def merge_panel_state(prev, arm_events, prior):
+    """Newest known event per studio: this build's events win, then the email
+    lookback, then whatever we already had on file. Never forgets a studio."""
+    state = {k: dict(v) for k, v in (prev or {}).items() if isinstance(v, dict)}
+    for src in (prior or {}), {}:
+        for sid, ev in src.items():
+            if ev.get("ts", 0) >= state.get(sid, {}).get("ts", -1):
+                state[sid] = dict(ev)
+    for ev in arm_events:
+        sid = ev.get("studio")
+        if not sid:
+            continue
+        if ev.get("ts", 0) >= state.get(sid, {}).get("ts", -1):
+            when = datetime.fromtimestamp(ev["ts"] / 1000, TZ) if ev.get("ts") else None
+            state[sid] = {**ev, "when": f"{when:%a} {ev['time']}" if when else ev.get("time")}
+    return state
 
 
 def fetch_prior_state(h, label_id, missing, win_start, days=5):
@@ -676,33 +719,50 @@ def fetch_arm_events(win_start):
     return out, alerts, prior
 
 
+def studio_from_subject(text):
+    """The studio a subject refers to.
+
+    ADT prefixes every subject with the SITE ("Studio 509: Studio 509B was …")
+    and 509 alone is not a partition, so taking the first "Studio <n>" match
+    silently dropped 509B bypass/tamper/alarm mails. Scan every token and keep
+    the last valid one — the partition always follows the site prefix."""
+    found = [norm_studio_label(m.group(1))
+             for m in re.finditer(r"Studio\s+(\d+[AB]?)", text or "", re.I)]
+    found = [f for f in found if f]
+    return found[-1] if found else None
+
+
 def parse_alarm_subject(subject, internal_ms):
-    """PENDING/real alarm-trigger emails. Checked before the arm/disarm parse —
-    the IGNORE list would silently drop them (they contain 'pending'/'alarm')."""
+    """Non-arm/disarm panel conditions: alarms, sensor bypasses, trouble states.
+    Checked BEFORE the arm/disarm parse — the IGNORE list would drop them (they
+    contain 'pending'/'alarm'). Time comes from the email's internalDate; these
+    subjects carry none."""
     low = subject.lower()
     if "image" in low or "motion" in low:
         return None
-    m = RE_BYPASS.search(subject)
-    if m:
-        studio = norm_studio_label(m.group(1))
-        if studio:
-            t = datetime.fromtimestamp(internal_ms / 1000, TZ)
-            return {"studio": studio, "time": f"{t.hour:02d}:{t.minute:02d}", "stage": "BYPASS"}
-    stage = None
-    m = RE_ALARM_PENDING.search(subject)
-    if m:
+
+    stage, detail = None, None
+    if RE_ALARM_PENDING.search(subject):
         stage = "PENDING"
+    elif RE_ALARM_REAL.search(subject):
+        stage = "ALARM"
+    elif RE_BYPASS.search(subject):
+        stage, detail = "BYPASS", "Sensor bypass"
     else:
-        m = RE_ALARM_REAL.search(subject)
+        m = RE_TROUBLE.search(subject)
         if m:
-            stage = "ALARM"
+            stage, detail = "TROUBLE", m.group(2).strip().title()
     if not stage:
         return None
-    studio = norm_studio_label(m.group(1))
+
+    studio = studio_from_subject(subject)
     if not studio:
         return None
     t = datetime.fromtimestamp(internal_ms / 1000, TZ)
-    return {"studio": studio, "time": f"{t.hour:02d}:{t.minute:02d}", "stage": stage}
+    out = {"studio": studio, "time": f"{t.hour:02d}:{t.minute:02d}", "stage": stage}
+    if detail:
+        out["detail"] = detail
+    return out
 
 
 def parse_arm_subject(subject):
@@ -973,6 +1033,13 @@ def build_data(now):
     # panel notification, sometimes a minute apart), so the raw stream shows the
     # same arrival twice. Collapse anything with the same studio+kind inside a
     # 2-minute window, keeping the earliest and the most descriptive name.
+    panel_state = merge_panel_state(load_panel_state(), arm_events, panel_prior)
+    if arm_events or panel_prior:          # never blank the file on a Gmail fallback
+        save_panel_state(panel_state)
+    # A studio silent today falls back to its durable last-known event.
+    today_studios = {e["studio"] for e in arm_events}
+    panel_prior = {sid: ev for sid, ev in panel_state.items() if sid not in today_studios}
+
     arm_stream = []
     for a in sorted((a for a in arm_events if a.get("time")),
                     key=lambda a: (day_key(a["time"]), a.get("ts") or 0)):
