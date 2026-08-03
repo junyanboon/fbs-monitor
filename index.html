@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 3, 2026",
-  "generatedAt": "Aug 3, 12:02 AM ET",
-  "generatedAtISO": "2026-08-03T00:02:50-04:00",
+  "generatedAt": "Aug 3, 2:45 AM ET",
+  "generatedAtISO": "2026-08-03T02:45:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -737,8 +737,8 @@ const DATA = /*__DATA__*/{
       "expected": "~05:30",
       "produces": "IPR — today + tomorrow",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-02T04:35:00-04:00"
     },
     {
@@ -747,8 +747,8 @@ const DATA = /*__DATA__*/{
       "expected": "~05:30",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-02T06:02:00-04:00"
     },
     {
@@ -757,8 +757,8 @@ const DATA = /*__DATA__*/{
       "expected": "08:00 (cloud)",
       "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-02T06:22:00-04:00"
     },
     {
@@ -767,9 +767,19 @@ const DATA = /*__DATA__*/{
       "expected": "~07:00",
       "produces": "FBS itinerary built + board seeded",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-02T04:16:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-02T04:09:00-04:00"
     },
     {
       "run": "The Planner",
@@ -780,16 +790,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-02T22:45:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-02T04:09:00-04:00"
     },
     {
       "run": "The Closer",
@@ -809,7 +809,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-02T18:45:00-04:00"
+      "lastISO": "2026-08-03T01:32:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -819,7 +819,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-02T09:58:00-04:00"
+      "lastISO": "2026-08-03T03:05:00-04:00"
     },
     {
       "run": "The Opener",
@@ -849,7 +849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-03T00:02:00-04:00"
+      "lastISO": "2026-08-03T02:05:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -859,7 +859,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-02T19:02:00-04:00"
+      "lastISO": "2026-08-03T00:16:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -879,7 +879,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-02T19:32:00-04:00"
+      "lastISO": "2026-08-03T00:43:00-04:00"
     }
   ],
   "robotsNote": null
