@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 4, 2026",
-  "generatedAt": "Aug 4, 7:30 PM ET",
-  "generatedAtISO": "2026-08-04T19:30:42-04:00",
+  "generatedAt": "Aug 4, 7:45 PM ET",
+  "generatedAtISO": "2026-08-04T19:45:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -474,7 +474,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "19:31",
       "departed": null,
       "start": 19.5,
       "end": 21.5
@@ -641,22 +641,20 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1785886153000
+    },
+    {
+      "studio": "527",
+      "name": "Kyle FitzGerald",
+      "time": "19:31",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785886315000
     }
   ],
   "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-03T19:41:00-04:00"
-    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -718,6 +716,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-04T04:32:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-04T19:39:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -765,7 +773,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-04T18:32:00-04:00"
+      "lastISO": "2026-08-04T19:33:00-04:00"
     },
     {
       "run": "The Weatherman",
