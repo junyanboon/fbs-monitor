@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 4, 2026",
-  "generatedAt": "Aug 4, 12:33 AM ET",
-  "generatedAtISO": "2026-08-04T00:33:02-04:00",
+  "generatedAt": "Aug 4, 1:50 AM ET",
+  "generatedAtISO": "2026-08-04T01:50:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -543,13 +543,13 @@ const DATA = /*__DATA__*/{
   "staff": [
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
@@ -760,23 +760,13 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-03T04:30:00-04:00"
-    },
-    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-03T06:04:00-04:00"
     },
     {
@@ -785,9 +775,19 @@ const DATA = /*__DATA__*/{
       "expected": "08:00 (cloud)",
       "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
       "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-03T06:06:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-03T06:06:00-04:00"
+      "lastISO": "2026-08-03T04:30:00-04:00"
     },
     {
       "run": "The Host",
