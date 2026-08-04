@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 4, 2026",
-  "generatedAt": "Aug 4, 9:00 AM ET",
-  "generatedAtISO": "2026-08-04T09:00:51-04:00",
+  "generatedAt": "Aug 4, 9:15 AM ET",
+  "generatedAtISO": "2026-08-04T09:15:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -390,7 +390,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "09:11",
       "departed": null,
       "start": 8.5,
       "end": 10.5
@@ -537,17 +537,17 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
+  "armEvents": [
+    {
       "studio": "509A",
-      "name": "Sierra Goulding",
-      "time": "19:03",
-      "kind": "departure",
+      "name": "Eunyi C",
+      "time": "09:11",
+      "kind": "arrival",
       "remote": false,
-      "ts": 1785798199000,
-      "when": "Mon 19:03"
-    },
+      "ts": 1785849113000
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "studio": "509B",
       "name": "Tess English",
@@ -676,7 +676,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-04T08:06:00-04:00"
+      "lastISO": "2026-08-04T09:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
