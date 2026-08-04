@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 4, 2026",
-  "generatedAt": "Aug 4, 6:15 PM ET",
-  "generatedAtISO": "2026-08-04T18:15:36-04:00",
+  "generatedAt": "Aug 4, 6:31 PM ET",
+  "generatedAtISO": "2026-08-04T18:31:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -218,7 +218,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "16:22",
-      "departed": null,
+      "departed": "18:21",
       "start": 16.5,
       "end": 18.5
     },
@@ -253,7 +253,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "18:24",
       "departed": null,
       "start": 18.5,
       "end": 19.5
@@ -301,7 +301,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:30",
       "departed": null,
       "start": 18.75,
       "end": 22.0
@@ -408,41 +408,36 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1785880688000
+    },
+    {
+      "studio": "509A",
+      "name": "Kyle FitzGerald",
+      "time": "18:21",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785882086000
+    },
+    {
+      "studio": "509B",
+      "name": "Kyle FitzGerald",
+      "time": "18:24",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785882277000
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "18:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785882641000
     }
   ],
-  "panelPrior": {
-    "509B": {
-      "studio": "509B",
-      "name": "Tess English",
-      "time": "22:12",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1785809534000,
-      "when": "Mon 22:12"
-    },
-    "693": {
-      "studio": "693",
-      "name": "Nina Li",
-      "time": "22:39",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1785811164000,
-      "when": "Mon 22:39"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-04T16:30:00-04:00"
-    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -472,6 +467,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-04T06:12:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-04T19:12:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -511,7 +516,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-04T17:58:00-04:00"
+      "lastISO": "2026-08-04T18:24:00-04:00"
     },
     {
       "run": "The Sentinel",
