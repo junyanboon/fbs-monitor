@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 4, 2026",
-  "generatedAt": "Aug 4, 8:21 AM ET",
-  "generatedAtISO": "2026-08-04T08:21:08-04:00",
+  "generatedAt": "Aug 4, 8:30 AM ET",
+  "generatedAtISO": "2026-08-04T08:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -516,13 +516,27 @@ const DATA = /*__DATA__*/{
       "end": 20.0
     }
   ],
-  "staff": [],
-  "attention": [
+  "staff": [
     {
-      "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "name": "Ela",
+      "role": "Monitoring",
+      "start": 18.25,
+      "end": 18.75
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 19.25,
+      "end": 19.75
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 20.25,
+      "end": 20.75
     }
   ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -544,11 +558,11 @@ const DATA = /*__DATA__*/{
       "when": "Mon 22:12"
     },
     "527": {
-      "studio": "527",
-      "name": "Ishfaaq Jookhun",
-      "time": "22:05",
       "kind": "departure",
+      "name": "Ishfaaq Jookhun",
       "remote": false,
+      "studio": "527",
+      "time": "22:05",
       "ts": 1785809101000,
       "when": "Mon 22:05"
     },
@@ -575,26 +589,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-03T22:28:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-03T22:56:00-04:00"
-    },
-    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -613,6 +607,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-04T06:12:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-04T08:26:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -653,6 +657,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-03T19:41:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-04T08:41:00-04:00"
     },
     {
       "run": "The Sentinel",
