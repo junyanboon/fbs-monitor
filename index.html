@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 3, 2026",
-  "generatedAt": "Aug 3, 7:45 PM ET",
-  "generatedAtISO": "2026-08-03T19:45:47-04:00",
+  "generatedAt": "Aug 3, 8:00 PM ET",
+  "generatedAtISO": "2026-08-03T20:00:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -462,7 +462,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "19:59",
       "departed": null,
       "start": 20.0,
       "end": 22.0
@@ -543,13 +543,13 @@ const DATA = /*__DATA__*/{
   "staff": [
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
@@ -563,7 +563,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -694,22 +694,20 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1785798199000
+    },
+    {
+      "studio": "527",
+      "name": "Ishfaaq Jookhun",
+      "time": "19:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785801556000
     }
   ],
   "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-03T03:05:00-04:00"
-    },
     {
       "run": "The Weatherman",
       "cadence": "Daily",
@@ -751,6 +749,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-03T18:57:00-04:00"
     },
     {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-03T20:12:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "08:00 (cloud)",
@@ -788,7 +796,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-03T19:25:00-04:00"
+      "lastISO": "2026-08-03T19:55:00-04:00"
     },
     {
       "run": "The Sentinel",
