@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 3, 2026",
-  "generatedAt": "Aug 3, 8:00 PM ET",
-  "generatedAtISO": "2026-08-03T20:00:58-04:00",
+  "generatedAt": "Aug 3, 8:15 PM ET",
+  "generatedAtISO": "2026-08-03T20:15:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -438,7 +438,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "20:03",
       "departed": null,
       "start": 20.0,
       "end": 22.0
@@ -560,12 +560,7 @@ const DATA = /*__DATA__*/{
       "end": 21.25
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "693",
@@ -702,6 +697,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1785801556000
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "20:03",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1785801783000
     }
   ],
   "panelPrior": {},
@@ -714,9 +717,9 @@ const DATA = /*__DATA__*/{
       "expected": "07:00",
       "produces": "Nest setpoints (509 / 901)",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-07-31T22:45:00-04:00"
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-03T00:20:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -806,7 +809,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-03T19:04:00-04:00"
+      "lastISO": "2026-08-03T20:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
