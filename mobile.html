@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 5, 2026",
-  "generatedAt": "Aug 5, 9:18 AM ET",
-  "generatedAtISO": "2026-08-05T09:18:19-04:00",
+  "generatedAt": "Aug 5, 9:30 AM ET",
+  "generatedAtISO": "2026-08-05T09:30:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -200,6 +200,18 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 16.0,
+      "end": 16.5
+    },
+    {
+      "studio": "509A",
       "who": "Francisco Delgado — *Credit applied*",
       "kind": "booking",
       "tier": null,
@@ -224,6 +236,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 16.0,
+      "end": 16.5
+    },
+    {
+      "studio": "509B",
       "who": "Ishfaaq Jookhun (C19 salsa",
       "kind": "booking",
       "tier": null,
@@ -236,6 +260,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 15.5,
+      "end": 16.0
+    },
+    {
+      "studio": "527",
       "who": "Kyle FitzGerald",
       "kind": "booking",
       "tier": "FBS",
@@ -245,6 +281,18 @@ const DATA = /*__DATA__*/{
       "departed": null,
       "start": 16.5,
       "end": 20.5
+    },
+    {
+      "studio": "693",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": null,
+      "departed": null,
+      "start": 16.75,
+      "end": 17.25
     },
     {
       "studio": "693",
@@ -287,7 +335,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "7 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -342,6 +390,16 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-04T04:21:00-04:00"
+    },
+    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -382,6 +440,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-04T06:12:00-04:00"
     },
     {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-04T04:25:00-04:00"
+    },
+    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "hourly :30 · 07–23 (cloud)",
@@ -392,16 +460,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-04T22:32:00-04:00"
     },
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-04T04:21:00-04:00"
-    },
-    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "~07:00",
@@ -410,16 +468,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-04T04:32:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-04T04:25:00-04:00"
     },
     {
       "run": "The Planner",
@@ -439,7 +487,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-05T08:58:00-04:00"
+      "lastISO": "2026-08-05T09:27:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -469,7 +517,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-05T09:16:00-04:00"
+      "lastISO": "2026-08-05T09:20:00-04:00"
     },
     {
       "run": "The Closer",
