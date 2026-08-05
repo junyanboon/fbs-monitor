@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 4, 2026",
-  "generatedAt": "Aug 4, 11:30 PM ET",
-  "generatedAtISO": "2026-08-04T23:30:38-04:00",
+  "generatedAt": "Aug 4, 11:40 PM ET",
+  "generatedAtISO": "2026-08-04T23:40:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -314,7 +314,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": null,
-      "departed": null,
+      "departed": "23:37",
       "start": 22.0,
       "end": 23.5
     },
@@ -351,7 +351,12 @@ const DATA = /*__DATA__*/{
       "end": 20.75
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -520,6 +525,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1785896254000
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "23:37",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785901037000
     }
   ],
   "panelPrior": {},
@@ -532,8 +545,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly · 07–23",
       "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-04T22:03:00-04:00"
     },
     {
