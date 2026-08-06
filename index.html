@@ -353,8 +353,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 5, 2026",
-  "generatedAt": "Aug 5, 8:30 PM ET",
-  "generatedAtISO": "2026-08-05T20:30:43-04:00",
+  "generatedAt": "Aug 5, 8:45 PM ET",
+  "generatedAtISO": "2026-08-05T20:45:38-04:00",
   "studios": [
     {
       "id": "509A",
@@ -435,9 +435,9 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "who": "Ishfaaq Jookhun (C19 salsa",
       "kind": "booking",
-      "tier": null,
+      "tier": "Monitor",
       "gtg": true,
-      "hta": null,
+      "hta": "Will Not Send",
       "arrived": "17:57",
       "departed": null,
       "start": 18.25,
@@ -511,7 +511,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "18:19",
-      "departed": null,
+      "departed": "20:41",
       "start": 18.5,
       "end": 20.5
     }
@@ -527,7 +527,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -666,6 +666,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1785975179000
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "20:41",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1785976899000
     }
   ],
   "panelPrior": {},
@@ -673,14 +681,24 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly · 07–23",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-05T19:08:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
       "produces": "IPR — today + tomorrow",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-04T04:21:00-04:00"
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-05T20:58:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -688,39 +706,9 @@ const DATA = /*__DATA__*/{
       "expected": "~05:30",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-04T06:12:00-04:00"
-    },
-    {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "08:00 (cloud)",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-04T06:12:00-04:00"
-    },
-    {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "~07:00",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-04T04:32:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-04T04:25:00-04:00"
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-05T20:40:00-04:00"
     },
     {
       "run": "The Concierge",
@@ -728,19 +716,9 @@ const DATA = /*__DATA__*/{
       "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-05T18:35:00-04:00"
-    },
-    {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly · 07–23",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-05T19:08:00-04:00"
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-05T20:52:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -751,6 +729,26 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-05T10:02:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "08:00 (cloud)",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-05T20:37:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "~07:00",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-05T20:45:00-04:00"
     },
     {
       "run": "The Planner",
@@ -773,6 +771,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-05T20:26:00-04:00"
     },
     {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-05T20:50:00-04:00"
+    },
+    {
       "run": "The Treasurer",
       "cadence": "Monthly",
       "expected": "1st of month, 08:00 (cloud)",
@@ -790,7 +798,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-05T19:32:00-04:00"
+      "lastISO": "2026-08-05T20:33:00-04:00"
     },
     {
       "run": "The Weatherman",
