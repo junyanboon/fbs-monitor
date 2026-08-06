@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 6, 2026",
-  "generatedAt": "Aug 6, 11:36 AM ET",
-  "generatedAtISO": "2026-08-06T11:36:15-04:00",
+  "generatedAt": "Aug 6, 6:26 PM ET",
+  "generatedAtISO": "2026-08-06T18:26:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -200,12 +200,24 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
+      "who": "Melisa Pustilnik",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": "16:24",
+      "departed": "18:03",
+      "start": 16.0,
+      "end": 18.0
+    },
+    {
+      "studio": "509A",
       "who": "Anita Pandey",
       "kind": "booking",
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:18",
       "departed": null,
       "start": 18.5,
       "end": 20.5
@@ -253,7 +265,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "17:46",
       "departed": null,
       "start": 18.0,
       "end": 21.25
@@ -265,7 +277,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "17:30",
       "departed": null,
       "start": 17.75,
       "end": 22.0
@@ -289,7 +301,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "18:16",
       "departed": null,
       "start": 18.5,
       "end": 22.0
@@ -323,46 +335,73 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1786018654000
-    }
-  ],
-  "panelPrior": {
-    "509A": {
+    },
+    {
       "studio": "509A",
-      "name": "Fabio Hernandez",
-      "time": "22:28",
-      "kind": "departure",
+      "name": "Melisa Pustilnik",
+      "time": "16:24",
+      "kind": "arrival",
       "remote": false,
-      "ts": 1785983340000,
-      "when": "Wed 22:28"
+      "ts": 1786047865000
     },
-    "527": {
-      "studio": "527",
-      "name": "Kyle FitzGerald",
-      "time": "21:08",
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "17:11",
       "kind": "departure",
-      "remote": false,
-      "ts": 1785978501000,
-      "when": "Wed 21:08"
+      "remote": true,
+      "ts": 1786050691000
     },
-    "693": {
+    {
       "studio": "693",
       "name": "Angus Dirnbeck",
-      "time": "23:33",
-      "kind": "departure",
+      "time": "17:30",
+      "kind": "arrival",
       "remote": false,
-      "ts": 1785987200000,
-      "when": "Wed 23:33"
+      "ts": 1786051822000
     },
-    "901": {
-      "studio": "901",
-      "name": "Anita Pandey",
-      "time": "20:41",
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "17:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786052808000
+    },
+    {
+      "studio": "509A",
+      "name": "Melisa Pustilnik",
+      "time": "18:01",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786053717000
+    },
+    {
+      "studio": "509A",
+      "name": "Melisa Pustilnik",
+      "time": "18:03",
       "kind": "departure",
       "remote": false,
-      "ts": 1785976899000,
-      "when": "Wed 20:41"
+      "ts": 1786053833000
+    },
+    {
+      "studio": "901",
+      "name": "Dana Brookman",
+      "time": "18:16",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786054579000
+    },
+    {
+      "studio": "509A",
+      "name": "Anita Pandey",
+      "time": "18:18",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786054732000
     }
-  },
+  ],
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
@@ -375,6 +414,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-06T10:02:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-05T19:44:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -404,7 +453,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-06T10:35:00-04:00"
+      "lastISO": "2026-08-06T17:05:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -427,16 +476,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-06T04:47:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-05T19:44:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -444,7 +483,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-06T11:28:00-04:00"
+      "lastISO": "2026-08-06T18:38:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -454,7 +493,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-06T11:07:00-04:00"
+      "lastISO": "2026-08-06T18:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -484,7 +523,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-06T10:33:00-04:00"
+      "lastISO": "2026-08-06T17:32:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -494,7 +533,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-06T11:23:00-04:00"
+      "lastISO": "2026-08-06T18:11:00-04:00"
     },
     {
       "run": "The Closer",
