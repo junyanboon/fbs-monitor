@@ -380,9 +380,11 @@ document.getElementById('daytitle').innerHTML =
 document.getElementById('stamp').textContent = "Data refreshed " + DATA.generatedAt +
   " · arrivals read from ADT alarm disarm/arm";
 
-/* Freshness + refresh. The page is a static edition rebuilt every 15 min. Refresh
-   probes for a newer pushed edition in the background (cache-busted fetch, compare
-   generatedAtISO); when one exists it reloads the page with a cache-buster.
+/* Freshness + refresh. The page is a static edition; refresh probes for a newer
+   pushed edition and reloads onto it. The probe reads version.json (~60 bytes,
+   written by build.py) rather than refetching this whole page — that is what
+   makes a 30-second poll cheaper than the old 5-minute one, and it removes most
+   of the client's share of arrival latency.
    The button cannot rebuild data — ceiling = rebuild cadence. */
 (function(){
   const btn = document.getElementById('refreshbtn');
@@ -410,11 +412,11 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
   async function refresh(silent){
     btn.classList.add('busy');
     try{
-      const res = await fetch(location.pathname + '?r=' + Date.now(), {cache:'no-store'});
+      const base = location.pathname.replace(/[^/]*$/, '');
+      const res = await fetch(base + 'version.json?r=' + Date.now(), {cache:'no-store'});
       if(!res.ok) throw new Error(res.status);
-      const html = await res.text();
-      const m = html.match(/"generatedAtISO"\s*:\s*"([^"]+)"/);
-      if(m && DATA.generatedAtISO && m[1] === DATA.generatedAtISO){
+      const live = (await res.json()).generatedAtISO;
+      if(live && DATA.generatedAtISO && live === DATA.generatedAtISO){
         if(!silent) flash("latest edition ✓");
         return;
       }
@@ -427,7 +429,7 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
   }
   btn.addEventListener('click', () => refresh(false));
   paintAge(); setInterval(paintAge, 30000);
-  setInterval(() => refresh(true), 5*60000);   // silent auto-pull every 5 min
+  setInterval(() => refresh(true), 30000);     // silent version.json poll every 30 s
 })();
 
 const E = DATA.events;

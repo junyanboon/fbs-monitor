@@ -101,7 +101,22 @@ Skedda's tag colours don't travel through the ICS feed, so `plan_of()`
 reconstructs them from the booking title + recurrence. AAP and Fixed Option are
 explicit in titles; a recurring renter with neither marker is inferred from RRULE.
 
-### 9. Everything is Toronto time
+### 9. Clients poll `version.json`, not the page
+
+`build.py` writes `version.json` (~80 bytes) carrying the same `generatedAtISO`
+as the pages, and both editions poll **that** every 30 s to decide whether a
+newer edition exists. They used to refetch the whole page (59 KB / 39 KB) every
+5 minutes for the same one-field comparison.
+
+Two things follow, and both are easy to break:
+
+- **`version.json` must be committed by the workflow.** It is in the same
+  `git add` line as the pages. Drop it and every open client polls a 404
+  forever — silently, because the probe swallows errors by design.
+- **Write it last, after both pages.** It advertises an edition; if it lands
+  first, a client can reload onto a page that hasn't been written yet.
+
+### 10. Everything is Toronto time
 
 Junyan reads these from Brazil. Both pages derive "now" from
 `Intl.DateTimeFormat` parts in `America/Toronto` — never the device clock, never

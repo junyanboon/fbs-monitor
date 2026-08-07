@@ -59,6 +59,12 @@ OUTPUT_MOBILE = os.path.join(HERE, "mobile.html")
 # each studio's last arm/disarm indefinitely, so the board never regresses to
 # "Unknown" for a studio that simply had a quiet week.
 PANEL_STATE = os.path.join(HERE, "panel-state.json")
+# Poll target for the open pages. Both editions used to detect a new edition by
+# refetching the whole page (59 KB desktop / 39 KB mobile) every 5 minutes just
+# to compare one timestamp. This file carries the same timestamp in ~60 bytes,
+# so clients can poll every 30 s for a fraction of the bandwidth — faster AND
+# cheaper. Keep it byte-small; it is fetched far more often than the pages.
+VERSION = os.path.join(HERE, "version.json")
 
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
@@ -1116,6 +1122,11 @@ def main():
     data, fallback = build_data(now)
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))
     open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
+    # Written last, so it can never advertise an edition the pages don't carry yet.
+    with open(VERSION, "w", encoding="utf-8") as fh:
+        json.dump({"generatedAtISO": data["generatedAtISO"],
+                   "generatedAt": data["generatedAt"]}, fh, separators=(",", ":"))
+        fh.write("\n")
     n = len(data["events"])
     arrived = sum(1 for e in data["events"] if e["arrived"])
     print(f"Built index.html — {n} bookings, {arrived} with arrivals"
