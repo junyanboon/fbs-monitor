@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 7, 2026",
-  "generatedAt": "Aug 7, 1:17 AM ET",
-  "generatedAtISO": "2026-08-07T01:17:37-04:00",
+  "generatedAt": "Aug 7, 2:38 AM ET",
+  "generatedAtISO": "2026-08-07T02:38:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -481,6 +481,16 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-06T04:40:00-04:00"
+    },
+    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -501,24 +511,24 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-06T06:20:00-04:00"
     },
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-06T04:40:00-04:00"
-    },
-    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "~07:00",
       "produces": "FBS itinerary built + board seeded",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-06T04:47:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-06T04:20:00-04:00"
     },
     {
       "run": "The Planner",
@@ -529,16 +539,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-06T19:44:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-06T04:20:00-04:00"
     },
     {
       "run": "The Weatherman",
