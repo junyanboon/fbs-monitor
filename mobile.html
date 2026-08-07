@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 7, 2026",
-  "generatedAt": "Aug 7, 9:45 AM ET",
-  "generatedAtISO": "2026-08-07T09:45:47-04:00",
+  "generatedAt": "Aug 7, 9:51 AM ET",
+  "generatedAtISO": "2026-08-07T09:51:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -272,12 +272,7 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -286,6 +281,22 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786108649000
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "09:49",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786110549000
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "09:49",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786110553000
     }
   ],
   "panelPrior": {
@@ -315,30 +326,11 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1786073938000,
       "when": "Thu 23:38"
-    },
-    "901": {
-      "studio": "901",
-      "name": "Dana Brookman",
-      "time": "22:16",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786069000000,
-      "when": "Thu 22:16"
     }
   },
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-07T03:05:00-04:00"
-    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -368,6 +360,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-07T09:12:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-07T10:05:00-04:00"
     },
     {
       "run": "The Doorman",
