@@ -168,8 +168,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 7, 2026",
-  "generatedAt": "Aug 7, 5:30 PM ET",
-  "generatedAtISO": "2026-08-07T17:30:48-04:00",
+  "generatedAt": "Aug 7, 5:45 PM ET",
+  "generatedAtISO": "2026-08-07T17:45:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -330,6 +330,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786132862000
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "17:33",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786138431000
     }
   ],
   "panelPrior": {
@@ -473,7 +481,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-07T16:32:00-04:00"
+      "lastISO": "2026-08-07T17:33:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -774,25 +782,29 @@ function cdTxt(nr){
 render();
 setInterval(render,30000);
 
-/* ── refresh: the page is a static edition rebuilt every ~15 min. checkEdition
-   probes for a newer pushed edition (cache-busted) and reloads onto it. Wired to
-   the header stamp button, pull-to-refresh, an auto 5-min poll, and app-resume. */
+/* ── refresh: the page is a static edition. checkEdition probes version.json
+   (~60 bytes, cache-busted) for a newer edition and reloads onto it. Polling that
+   instead of refetching this 39 KB page is what lets the interval be 30 s while
+   using ~13× less data than the old 5-minute page poll — on a phone abroad that
+   difference is the whole point. Wired to the header stamp button,
+   pull-to-refresh, the 30 s poll, and app-resume. */
 let checking=false;
 function checkEdition(manual){
   if(checking)return;checking=true;
   const btn=$('#fresh');btn.classList.add('busy');
-  fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{
-    const m=t.match(/"generatedAtISO":\s*"([^"]+)"/);
+  const base=location.pathname.replace(/[^/]*$/,'');
+  fetch(base+"version.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(v=>{
+    const live=v.generatedAtISO;
     // GitHub Pages serves this file with max-age=600, so a plain reload can be
     // answered from cache with the OLD edition. Reload onto a unique URL instead.
-    if(m&&DATA.generatedAtISO&&m[1]!==DATA.generatedAtISO){
-      location.replace(location.pathname+"?e="+encodeURIComponent(m[1]));return;}
+    if(live&&DATA.generatedAtISO&&live!==DATA.generatedAtISO){
+      location.replace(location.pathname+"?e="+encodeURIComponent(live));return;}
     if(manual){const s=$('#freshtxt'),old=s.textContent;s.textContent="up to date";
       setTimeout(()=>{s.textContent=old;},1600);}
   }).catch(()=>{}).finally(()=>{checking=false;btn.classList.remove('busy');render();});
 }
 $('#fresh').addEventListener('click',()=>checkEdition(true));
-setInterval(()=>checkEdition(false),5*60000);
+setInterval(()=>checkEdition(false),30000);
 /* re-check when the installed app comes back to the foreground */
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkEdition(false);});
 /* pull-to-refresh (standalone PWAs have no browser reload control) */
