@@ -357,8 +357,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 8, 2026",
-  "generatedAt": "Aug 8, 4:24 PM ET",
-  "generatedAtISO": "2026-08-08T16:24:53-04:00",
+  "generatedAt": "Aug 8, 4:30 PM ET",
+  "generatedAtISO": "2026-08-08T16:30:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -492,7 +492,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "16:28",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -834,6 +834,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786216238000
+    },
+    {
+      "studio": "527",
+      "name": "Steven Cheng",
+      "time": "16:28",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786220898000
     }
   ],
   "panelPrior": {},
@@ -856,16 +864,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-08T10:05:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-08T14:35:00-04:00"
     },
     {
       "run": "The Planner",
@@ -898,6 +896,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-08T06:08:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-08T16:40:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "08:00 (cloud)",
@@ -925,7 +933,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T15:56:00-04:00"
+      "lastISO": "2026-08-08T16:27:00-04:00"
     },
     {
       "run": "The Sentinel",
