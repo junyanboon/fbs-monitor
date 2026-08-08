@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 8, 2026",
-  "generatedAt": "Aug 8, 12:15 PM ET",
-  "generatedAtISO": "2026-08-08T12:15:40-04:00",
+  "generatedAt": "Aug 8, 12:30 PM ET",
+  "generatedAtISO": "2026-08-08T12:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -263,7 +263,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "11:21",
-      "departed": null,
+      "departed": "12:22",
       "wrong_studio": null,
       "no_code": false,
       "start": 11.0,
@@ -291,7 +291,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "10:33",
-      "departed": null,
+      "departed": "12:28",
       "wrong_studio": null,
       "no_code": false,
       "start": 10.75,
@@ -562,6 +562,22 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786203675000
+    },
+    {
+      "studio": "509B",
+      "name": "Sara A Tagvenue",
+      "time": "12:22",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786206164000
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "12:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786206498000
     }
   ],
   "panelPrior": {},
@@ -586,16 +602,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-08T10:05:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-08T10:30:00-04:00"
-    },
-    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -614,6 +620,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-08T06:08:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-08T12:45:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -653,7 +669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T11:56:00-04:00"
+      "lastISO": "2026-08-08T12:31:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -703,7 +719,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T11:14:00-04:00"
+      "lastISO": "2026-08-08T12:15:00-04:00"
     },
     {
       "run": "The Closer",
