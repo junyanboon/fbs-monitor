@@ -357,8 +357,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 8, 2026",
-  "generatedAt": "Aug 8, 12:45 AM ET",
-  "generatedAtISO": "2026-08-08T00:45:42-04:00",
+  "generatedAt": "Aug 8, 1:00 AM ET",
+  "generatedAtISO": "2026-08-08T01:00:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -389,7 +389,7 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
-      "who": "Brad Wong — Yoga Class",
+      "who": "Brad Wong — (1/4) Yoga Class",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -634,23 +634,13 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-07T05:10:00-04:00"
-    },
-    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-07T06:05:00-04:00"
     },
     {
@@ -659,9 +649,19 @@ const DATA = /*__DATA__*/{
       "expected": "08:00 (cloud)",
       "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
       "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-07T06:14:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-07T06:14:00-04:00"
+      "lastISO": "2026-08-07T05:10:00-04:00"
     },
     {
       "run": "The Host",
