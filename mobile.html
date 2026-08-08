@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 8, 2026",
-  "generatedAt": "Aug 8, 11:00 AM ET",
-  "generatedAtISO": "2026-08-08T11:00:43-04:00",
+  "generatedAt": "Aug 8, 11:15 AM ET",
+  "generatedAtISO": "2026-08-08T11:15:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -220,7 +220,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "11:01",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -249,7 +249,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "09:00",
-      "departed": null,
+      "departed": "11:02",
       "wrong_studio": null,
       "no_code": false,
       "start": 9.0,
@@ -262,8 +262,8 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:09",
+      "departed": "11:09",
       "wrong_studio": null,
       "no_code": false,
       "start": 11.0,
@@ -346,7 +346,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "11:06",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -360,7 +360,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "11:02",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -410,7 +410,12 @@ const DATA = /*__DATA__*/{
       "end": 11.25
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "693",
@@ -467,19 +472,57 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786200912000
-    }
-  ],
-  "panelPrior": {
-    "901": {
-      "studio": "901",
-      "name": "Marco Villa",
-      "time": "21:55",
+    },
+    {
+      "studio": "509A",
+      "name": "Shiela",
+      "time": "11:01",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786201274000
+    },
+    {
+      "studio": "509B",
+      "name": "Jessica T",
+      "time": "11:02",
       "kind": "departure",
       "remote": false,
-      "ts": 1786154123000,
-      "when": "Fri 21:55"
+      "ts": 1786201332000
+    },
+    {
+      "studio": "901",
+      "name": "Laura Flores",
+      "time": "11:02",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786201357000
+    },
+    {
+      "studio": "693",
+      "name": "Jesse Giggster",
+      "time": "11:06",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786201618000
+    },
+    {
+      "studio": "509B",
+      "name": "Shiela",
+      "time": "11:09",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786201796000
+    },
+    {
+      "studio": "509B",
+      "name": "Shiela",
+      "time": "11:09",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786201799000
     }
-  },
+  ],
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
@@ -489,8 +532,8 @@ const DATA = /*__DATA__*/{
       "expected": "09:35 + 02:35 (cloud)",
       "produces": "Housekeeping: feedback · decay · backfill · self-heal",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-08T10:05:00-04:00"
     },
     {
@@ -571,7 +614,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T10:04:00-04:00"
+      "lastISO": "2026-08-08T11:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
