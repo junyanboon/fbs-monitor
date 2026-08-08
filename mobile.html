@@ -101,6 +101,7 @@
               font-variant-numeric:tabular-nums}
   .card .meta .arr{color:var(--ok)} .card .meta .dep{color:var(--chalk-faint)}
   .card .meta .miss{color:var(--crit);font-family:var(--sans)}
+  .card .meta .wrong{color:var(--watch);font-family:var(--sans)}
   .card .meta .lbl{font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.08em;
                    vertical-align:1.5px;margin-right:1px}
   .card .chips{grid-column:2;display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
@@ -168,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 7, 2026",
-  "generatedAt": "Aug 7, 8:45 PM ET",
-  "generatedAtISO": "2026-08-07T20:45:42-04:00",
+  "generatedAt": "Aug 7, 8:51 PM ET",
+  "generatedAtISO": "2026-08-07T20:51:38-04:00",
   "studios": [
     {
       "id": "509A",
@@ -207,6 +208,8 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "arrived": "09:17",
       "departed": "10:43",
+      "wrong_studio": null,
+      "no_code": false,
       "start": 9.5,
       "end": 10.5
     },
@@ -219,6 +222,8 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "arrived": "16:01",
       "departed": null,
+      "wrong_studio": null,
+      "no_code": false,
       "start": 15.75,
       "end": 17.25
     },
@@ -231,6 +236,8 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "arrived": "19:48",
       "departed": null,
+      "wrong_studio": null,
+      "no_code": false,
       "start": 20.0,
       "end": 23.0
     },
@@ -243,6 +250,11 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "arrived": null,
       "departed": null,
+      "wrong_studio": {
+        "studio": "693",
+        "at": "17:47"
+      },
+      "no_code": false,
       "start": 18.0,
       "end": 19.25
     },
@@ -255,6 +267,8 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "arrived": null,
       "departed": null,
+      "wrong_studio": null,
+      "no_code": false,
       "start": 13.25,
       "end": 13.5
     },
@@ -267,6 +281,8 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "arrived": "18:53",
       "departed": "20:14",
+      "wrong_studio": null,
+      "no_code": false,
       "start": 19.0,
       "end": 20.0
     },
@@ -279,6 +295,8 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "arrived": "18:58",
       "departed": null,
+      "wrong_studio": null,
+      "no_code": false,
       "start": 19.0,
       "end": 22.0
     }
@@ -610,6 +628,9 @@ function chipRow(e,st){
   let t="";
   if(e.tier)t+=`<span class="chip type">${e.tier}</span>`;
   if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
+  /* No code on file = this renter cannot get in. Shown even after the booking
+     ends — an unresolved code is tomorrow's lockout too. */
+  if(e.no_code)t+=`<span class="chip crit">No code</span>`;
   return t?`<div class="chips">${t}</div>`:"";
 }
 
@@ -641,7 +662,9 @@ function render(){
     let meta=`${hm(e.start)}–${hm(e.end)}`;
     if(e.arrived)meta+=` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`;
     if(e.departed)meta+=` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`;
-    if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
+    /* In the building but in the wrong room — a different job from a no-show. */
+    if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
+    else if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
     let cnt="";
     if(st.live)cnt=`<b>${dur(e.end-n)} left</b>`;
     else if(!st.done)cnt=e.start-n<6?`in ${dur(e.start-n)}`:`at ${hm(e.start)}`;
