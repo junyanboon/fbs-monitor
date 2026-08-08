@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 8, 2026",
-  "generatedAt": "Aug 8, 11:37 AM ET",
-  "generatedAtISO": "2026-08-08T11:37:41-04:00",
+  "generatedAt": "Aug 8, 11:45 AM ET",
+  "generatedAtISO": "2026-08-08T11:45:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -220,8 +220,8 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": "11:01",
-      "departed": "11:35",
+      "arrived": "11:41",
+      "departed": null,
       "wrong_studio": null,
       "no_code": false,
       "start": 11.0,
@@ -413,6 +413,10 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
+      "text": "Alarm pending · 509A · 11:40"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -544,10 +548,25 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786203333000
+    },
+    {
+      "studio": "509A",
+      "name": "Linxin Li",
+      "time": "11:41",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786203675000
     }
   ],
   "panelPrior": {},
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "509A",
+      "time": "11:40",
+      "stage": "PENDING",
+      "ts": 1786203659000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
