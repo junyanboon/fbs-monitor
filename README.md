@@ -77,20 +77,50 @@ name token legitimately booked that other studio, pass 1 claims the event first 
 no flag is raised. `arrived` is never set from a foreign studio — the person did not
 arrive where they were supposed to be, and the board must not imply they did.
 
-### 5. Same-minute events order by email receipt
+### 5. The alarm code is a boolean here, never a value
+
+`Alarm Code` on 🛎️ FBS AI Support is a rollup of the renter's real PIN.
+**This board is a public GitHub Pages site.** `parse_notion()` reads that
+property, collapses it to `has_code` on the same line, and lets the string go;
+only `no_code: true/false` ever reaches DATA. Canon masks PINs for exactly this
+reason — display name and access window are AI-readable, the PIN is `[STAFF]`.
+An edit that "helpfully" surfaces the value to save a lookup publishes every
+renter's door code to the internet.
+
+A renter with no code cannot get in, and normally nobody finds out until they
+are at the door. The Doorman raises these each morning as `Access / PIN — <name>
+… — no alarm code on file` rows, but that is a Notion queue nobody reads
+mid-shift; the board is what's open when the call comes.
+
+Two guards in `apply_missing_codes()`:
+
+- **Unknown is not missing.** Only bookings that matched a Notion row are
+  eligible. An unmatched booking has no code information either way and must
+  never render as a lockout.
+- **All-codeless is suppressed.** If every tiered booking reads as codeless,
+  that is a renamed property or a permissions change far more often than a day
+  where nobody can get in. A board of false alarms is how a real one gets
+  ignored, so it emits a fallback note instead of flagging them all.
+
+What this check **cannot** see: a renter who has a code on file but no matching
+live Alarm.com user, or a window that has expired. Verifying those needs the
+alarm connector, which the cloud build cannot reach (see rule 8). Only the
+Doorman catches that class.
+
+### 6. Same-minute events order by email receipt
 
 Subjects carry `HH:MM` only, and Gmail lists newest-first. When a disarm and an
 arm share a minute, the panel card and the event stream disagreed. Every ordering
 sorts on `(panel minute, email receipt ts)`.
 
-### 6. Panel state is durable, not derived-per-build
+### 7. Panel state is durable, not derived-per-build
 
 `panel-state.json` is committed with each build and remembers every studio's last
 known arm/disarm **indefinitely**. Precedence: today's events → the 5-day Gmail
 lookback → the stored file. It is never blanked on a Gmail fallback. A studio
 quiet for a week must not regress the board to "Unknown".
 
-### 7. Alarms clear; troubles do not
+### 8. Alarms clear; troubles do not
 
 An **alarm** is outstanding only if nobody touched that panel at/after it — a
 disarm means someone was there. A **trouble** (tamper / malfunction / low battery
@@ -101,7 +131,7 @@ disarm means someone was there. A **trouble** (tamper / malfunction / low batter
 > alarm connector, which the cloud build cannot reach. Getting that into the
 > build would need the Alarm.com credentials in Actions — not done.
 
-### 8. The staff rail is people only
+### 9. The staff rail is people only
 
 Only rostered names render: **Junyan, KyJah, Ela, Stefan, Donny**
 (`STAFF_ROSTER`). Unassigned placeholders — `Need FBS`, `Need Monitoring`,
@@ -109,7 +139,7 @@ Only rostered names render: **Junyan, KyJah, Ela, Stefan, Donny**
 they are coverage bookkeeping, not a person on site. Open/Close blocks were also
 retired at the source (🗓️ Skill: Staff Time Blocker, 2026-07-31).
 
-### 9. Colours follow Skedda
+### 10. Colours follow Skedda
 
 | Colour | Meaning |
 |---|---|
@@ -122,7 +152,7 @@ Skedda's tag colours don't travel through the ICS feed, so `plan_of()`
 reconstructs them from the booking title + recurrence. AAP and Fixed Option are
 explicit in titles; a recurring renter with neither marker is inferred from RRULE.
 
-### 10. Clients poll `version.json`, not the page
+### 11. Clients poll `version.json`, not the page
 
 `build.py` writes `version.json` (~80 bytes) carrying the same `generatedAtISO`
 as the pages, and both editions poll **that** every 30 s to decide whether a
@@ -137,7 +167,7 @@ Two things follow, and both are easy to break:
 - **Write it last, after both pages.** It advertises an edition; if it lands
   first, a client can reload onto a page that hasn't been written yet.
 
-### 11. Everything is Toronto time
+### 12. Everything is Toronto time
 
 Junyan reads these from Brazil. Both pages derive "now" from
 `Intl.DateTimeFormat` parts in `America/Toronto` — never the device clock, never

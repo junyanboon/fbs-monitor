@@ -477,12 +477,21 @@ def parse_notion(rows):
         tier = {"fbs": "FBS", "monitor only": "Monitor",
                 "studio viewing": "Viewing"}.get(tob.lower())
         gtg = (_prop_text(p.get("GTG")) or "").strip().lower() == "yes"
+        # ⚠ NEVER put the code itself anywhere near the payload. `Alarm Code` is
+        # a rollup of the renter's real PIN and this board is a PUBLIC GitHub
+        # Pages site. Read it here, collapse it to a boolean on this line, and
+        # let the string go. Canon (capture-sop-update) masks PINs for the same
+        # reason: the display name and access window are AI-readable, the PIN is
+        # [STAFF]. A future edit that "helpfully" surfaces the value to save a
+        # lookup publishes every renter's door code to the internet.
+        has_code = bool((_prop_text(p.get("Alarm Code")) or "").strip())
         out.append({
             "studio": studio,
             "start": _prop_text(p.get("Start Time")),
             "tier": tier,
             "gtg": gtg if tier else True,
             "hta": _prop_text(p.get("HTA")),
+            "has_code": has_code,
             "board_disarmed": norm_hm(_prop_text(p.get("Disarmed"))),
             "board_armed": norm_hm(_prop_text(p.get("Armed"))),
         })
@@ -513,8 +522,43 @@ def join_notion(events, notion_rows):
         if best and best_gap <= 2.0:
             used[best_i] = True
             e["tier"], e["gtg"], e["hta"] = best["tier"], best["gtg"], best["hta"]
+            e["_has_code"] = best["has_code"]
             e["_board_disarmed"] = best["board_disarmed"]
             e["_board_armed"] = best["board_armed"]
+    return events
+
+
+def apply_missing_codes(events):
+    """Flag bookings whose renter has no alarm code on file.
+
+    A renter with no code cannot get in, and nobody finds out until they are
+    standing at the door. The Doorman raises these each morning as `Access / PIN
+    — <name> … — no alarm code on file` rows, but that is a Notion queue nobody
+    reads mid-shift; the board is what is actually open when the door call comes.
+
+    Only bookings that matched a Notion row are eligible — an unmatched booking
+    has no code information either way, and "unknown" must never render as
+    "missing". Self-serve/untiered bookings are skipped for the same reason the
+    GTG chip skips them: they are not ours to let in.
+
+    Suppression guard: if EVERY eligible booking reads as codeless, that is far
+    more likely a renamed property, a broken rollup, or a permissions change than
+    a day where nobody can get in. Flagging all of them would be a page full of
+    false alarms, which is how a real one gets ignored. Emit nothing and say so.
+    """
+    eligible = [e for e in events
+                if e["kind"] == "booking" and e["tier"] and "_has_code" in e]
+    if not eligible:
+        return events
+    missing = [e for e in eligible if not e["_has_code"]]
+    if len(missing) == len(eligible) and len(eligible) > 1:
+        emit_fallback_note(
+            f"Alarm-code check suppressed — all {len(eligible)} tiered bookings read "
+            "as codeless, which is a schema/permissions failure far more often than "
+            "a real one. Check the 'Alarm Code' rollup on 🛎️ FBS AI Support.")
+        return events
+    for e in missing:
+        e["no_code"] = True
     return events
 
 
@@ -1032,6 +1076,7 @@ def build_data(now):
     if not token:
         die("NOTION_TOKEN missing.")
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
+    events = apply_missing_codes(events)
 
     used_fallback = False
     arm_events, alarm_alerts, panel_prior = [], [], {}
@@ -1055,6 +1100,8 @@ def build_data(now):
         "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
         "arrived": e.get("arrived"), "departed": e.get("departed"),
         "wrong_studio": e.get("wrong_studio"),
+        # Boolean only — see parse_notion(). The code never leaves the builder.
+        "no_code": bool(e.get("no_code")),
         "start": round(e["start"], 4), "end": round(e["end"], 4),
     } for e in events]
 
