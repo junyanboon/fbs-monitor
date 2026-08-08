@@ -883,6 +883,33 @@ def apply_arm_events(events, arm_events):
         arr, dep = _time_to_decimal(e.get("arrived")), _time_to_decimal(e.get("departed"))
         if arr is not None and dep is not None and dep < arr:
             e["departed"] = None
+
+    # pass 3 — wrong studio.
+    #
+    # A booking with no arrival in its OWN studio, whose renter disarmed a
+    # DIFFERENT studio inside the same window, is not a no-show: the person is
+    # in the building, in the wrong room. Those two situations need opposite
+    # responses — a no-show is a billing question, a wrong studio is someone to
+    # go move right now, often before the room's real booking walks in.
+    #
+    # 2026-08-07: Ayden Mauro booked 527 18:00-19:15 (30 attendees, paid) and
+    # ran the session in 693, which nobody had booked. The board showed only
+    # "no arrival" on 527, so it read as a no-show. He armed 693 at 18:52, one
+    # minute before Amandeep Kaur's class disarmed the same room.
+    #
+    # Only unclaimed events qualify. If a booking in that other studio already
+    # name-matched the event in pass 1, the person belongs there and this is a
+    # coincidence of shared name tokens, not a misplaced renter.
+    for e in events:
+        if e["kind"] != "booking" or e.get("arrived"):
+            continue
+        for a in timed:
+            if a["claimed"] or a["kind"] != "arrival" or a["studio"] == e["studio"]:
+                continue
+            if in_window(e, a["t"]) and _name_match(e["who"], a["name"]):
+                e["wrong_studio"] = {"studio": a["studio"], "at": a["time"]}
+                a["claimed"] = True
+                break
     return events
 
 
@@ -1027,6 +1054,7 @@ def build_data(now):
         "studio": e["studio"], "who": e["who"], "kind": e["kind"],
         "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
         "arrived": e.get("arrived"), "departed": e.get("departed"),
+        "wrong_studio": e.get("wrong_studio"),
         "start": round(e["start"], 4), "end": round(e["end"], 4),
     } for e in events]
 

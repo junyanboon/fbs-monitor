@@ -56,20 +56,41 @@ An arm/disarm by `info@danceannex.ca` is a real panel change, so it counts for
 panel state — but it is **not** a renter arriving. Those events carry
 `remote: true` and are excluded from booking attribution.
 
-### 4. Same-minute events order by email receipt
+### 4. A renter in the wrong studio is not a no-show
+
+If a booking has no arrival in its own studio, but the renter disarmed a
+**different** studio inside the same window, `apply_arm_events()` pass 3 sets
+`wrong_studio: {studio, at}` on the booking and both editions render
+`⚠ in <studio> at <HH:MM>` in place of `⚠ no arrival`.
+
+The two need opposite responses. A no-show is a billing question answered later;
+a wrong studio is a person to go move **now**, usually before the room's real
+booking walks in.
+
+> 2026-08-07: Ayden Mauro booked 527 18:00–19:15 (30 attendees, paid) and ran the
+> session in 693, which nobody had booked. The board said only "no arrival", which
+> reads as a no-show, so nothing prompted anyone to go look. He armed 693 at 18:52 —
+> one minute before Amandeep Kaur's class disarmed the same room.
+
+Pass 3 only considers events **no booking has claimed**. If someone with a shared
+name token legitimately booked that other studio, pass 1 claims the event first and
+no flag is raised. `arrived` is never set from a foreign studio — the person did not
+arrive where they were supposed to be, and the board must not imply they did.
+
+### 5. Same-minute events order by email receipt
 
 Subjects carry `HH:MM` only, and Gmail lists newest-first. When a disarm and an
 arm share a minute, the panel card and the event stream disagreed. Every ordering
 sorts on `(panel minute, email receipt ts)`.
 
-### 5. Panel state is durable, not derived-per-build
+### 6. Panel state is durable, not derived-per-build
 
 `panel-state.json` is committed with each build and remembers every studio's last
 known arm/disarm **indefinitely**. Precedence: today's events → the 5-day Gmail
 lookback → the stored file. It is never blanked on a Gmail fallback. A studio
 quiet for a week must not regress the board to "Unknown".
 
-### 6. Alarms clear; troubles do not
+### 7. Alarms clear; troubles do not
 
 An **alarm** is outstanding only if nobody touched that panel at/after it — a
 disarm means someone was there. A **trouble** (tamper / malfunction / low battery
@@ -80,7 +101,7 @@ disarm means someone was there. A **trouble** (tamper / malfunction / low batter
 > alarm connector, which the cloud build cannot reach. Getting that into the
 > build would need the Alarm.com credentials in Actions — not done.
 
-### 7. The staff rail is people only
+### 8. The staff rail is people only
 
 Only rostered names render: **Junyan, KyJah, Ela, Stefan, Donny**
 (`STAFF_ROSTER`). Unassigned placeholders — `Need FBS`, `Need Monitoring`,
@@ -88,7 +109,7 @@ Only rostered names render: **Junyan, KyJah, Ela, Stefan, Donny**
 they are coverage bookkeeping, not a person on site. Open/Close blocks were also
 retired at the source (🗓️ Skill: Staff Time Blocker, 2026-07-31).
 
-### 8. Colours follow Skedda
+### 9. Colours follow Skedda
 
 | Colour | Meaning |
 |---|---|
@@ -101,7 +122,7 @@ Skedda's tag colours don't travel through the ICS feed, so `plan_of()`
 reconstructs them from the booking title + recurrence. AAP and Fixed Option are
 explicit in titles; a recurring renter with neither marker is inferred from RRULE.
 
-### 9. Clients poll `version.json`, not the page
+### 10. Clients poll `version.json`, not the page
 
 `build.py` writes `version.json` (~80 bytes) carrying the same `generatedAtISO`
 as the pages, and both editions poll **that** every 30 s to decide whether a
@@ -116,7 +137,7 @@ Two things follow, and both are easy to break:
 - **Write it last, after both pages.** It advertises an edition; if it lands
   first, a client can reload onto a page that hasn't been written yet.
 
-### 10. Everything is Toronto time
+### 11. Everything is Toronto time
 
 Junyan reads these from Brazil. Both pages derive "now" from
 `Intl.DateTimeFormat` parts in `America/Toronto` — never the device clock, never

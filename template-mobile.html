@@ -96,6 +96,7 @@
               font-variant-numeric:tabular-nums}
   .card .meta .arr{color:var(--ok)} .card .meta .dep{color:var(--chalk-faint)}
   .card .meta .miss{color:var(--crit);font-family:var(--sans)}
+  .card .meta .wrong{color:var(--watch);font-family:var(--sans)}
   .card .meta .lbl{font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.08em;
                    vertical-align:1.5px;margin-right:1px}
   .card .chips{grid-column:2;display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
@@ -239,7 +240,9 @@ function render(){
     let meta=`${hm(e.start)}–${hm(e.end)}`;
     if(e.arrived)meta+=` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`;
     if(e.departed)meta+=` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`;
-    if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
+    /* In the building but in the wrong room — a different job from a no-show. */
+    if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
+    else if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
     let cnt="";
     if(st.live)cnt=`<b>${dur(e.end-n)} left</b>`;
     else if(!st.done)cnt=e.start-n<6?`in ${dur(e.start-n)}`:`at ${hm(e.start)}`;

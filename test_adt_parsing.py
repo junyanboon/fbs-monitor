@@ -109,7 +109,47 @@ def main():
         {"studio": "509B", "kind": "arrival", "time": "18:04", "remote": True, "name": "Studio (remote)"}])
     fails += check("remote never becomes an arrival", out[0]["arrived"], None)
 
-    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 5} checks passed")
+    # Wrong studio: the renter is in the building, in a room they didn't book.
+    # Real case 2026-08-07 — Ayden Mauro booked 527 18:00-19:15 and disarmed 693
+    # at 17:47, ran the session there, and armed 693 at 18:52, one minute before
+    # the class that HAD booked 693 arrived. The board showed only "no arrival",
+    # which reads as a no-show and sends nobody to move him.
+    def booking(studio, who, start, end):
+        return {"studio": studio, "who": who, "kind": "booking", "start": start, "end": end,
+                "tier": None, "gtg": True, "hta": None, "arrived": None, "departed": None}
+
+    out = build.apply_arm_events([booking("527", "Ayden Mauro", 18.0, 19.25)], [
+        {"studio": "693", "kind": "arrival", "time": "17:47", "remote": False, "name": "Ayden Mauro"},
+        {"studio": "693", "kind": "departure", "time": "18:52", "remote": False, "name": "Ayden Mauro"}])
+    fails += check("wrong studio is flagged", (out[0].get("wrong_studio") or {}).get("studio"), "693")
+    fails += check("wrong studio carries the time", (out[0].get("wrong_studio") or {}).get("at"), "17:47")
+    fails += check("wrong studio is not an arrival", out[0]["arrived"], None)
+
+    # An arrival in the booked studio outranks any foreign event — someone who
+    # showed up where they belong is never "in the wrong studio", whatever else
+    # their name touched that hour.
+    out = build.apply_arm_events([booking("527", "Ayden Mauro", 18.0, 19.25)], [
+        {"studio": "527", "kind": "arrival", "time": "18:02", "remote": False, "name": "Ayden Mauro"},
+        {"studio": "693", "kind": "arrival", "time": "17:47", "remote": False, "name": "Ayden Mauro"}])
+    fails += check("right studio wins", out[0].get("wrong_studio"), None)
+    fails += check("right studio still records arrival", out[0]["arrived"], "18:02")
+
+    # A name token shared with someone who legitimately booked that other studio
+    # must not manufacture a wrong-studio flag. Pass 1 claims the event for the
+    # booking that owns the room; pass 3 only ever considers unclaimed events.
+    out = build.apply_arm_events(
+        [booking("527", "Ayden Mauro", 18.0, 19.25), booking("693", "Ayden Smith", 17.5, 19.0)],
+        [{"studio": "693", "kind": "arrival", "time": "17:47", "remote": False, "name": "Ayden Smith"}])
+    fails += check("claimed event is not a wrong studio", out[0].get("wrong_studio"), None)
+    fails += check("the real booking keeps its arrival", out[1]["arrived"], "17:47")
+
+    # Out of window is out of scope — a disarm hours from the booking is a
+    # different visit, not a misplaced renter.
+    out = build.apply_arm_events([booking("527", "Ayden Mauro", 18.0, 19.25)], [
+        {"studio": "693", "kind": "arrival", "time": "09:15", "remote": False, "name": "Ayden Mauro"}])
+    fails += check("far-off event is not a wrong studio", out[0].get("wrong_studio"), None)
+
+    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 13} checks passed")
     return 1 if fails else 0
 
 
