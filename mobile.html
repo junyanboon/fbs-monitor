@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 6:00 PM ET",
-  "generatedAtISO": "2026-08-09T18:00:47-04:00",
+  "generatedAt": "Aug 9, 6:15 PM ET",
+  "generatedAtISO": "2026-08-09T18:15:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -388,7 +388,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:02",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -433,6 +433,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 17:57"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 18:02"
     },
     {
       "level": "warn",
@@ -631,6 +635,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786312576000
+    },
+    {
+      "studio": "901",
+      "name": "Megan Cartwright",
+      "time": "18:02",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786312941000
     }
   ],
   "panelPrior": {},
@@ -696,6 +708,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786312623000
+    },
+    {
+      "studio": "901",
+      "time": "18:02",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786312942000
     }
   ],
   "armFallback": false,
@@ -741,6 +760,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-09T15:33:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-09T16:25:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -769,16 +798,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-09T06:06:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-09T16:25:00-04:00"
     },
     {
       "run": "The Doorman",
