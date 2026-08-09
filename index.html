@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 4:31 PM ET",
-  "generatedAtISO": "2026-08-09T16:31:29-04:00",
+  "generatedAt": "Aug 9, 4:44 PM ET",
+  "generatedAtISO": "2026-08-09T16:44:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -434,7 +434,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "14:13",
-      "departed": null,
+      "departed": "16:37",
       "wrong_studio": null,
       "no_code": false,
       "start": 14.25,
@@ -518,7 +518,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "13:24",
-      "departed": null,
+      "departed": "16:31",
       "wrong_studio": null,
       "no_code": false,
       "start": 13.5,
@@ -616,6 +616,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 527 · 13:24"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 527 · 16:32"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 16:37"
     },
     {
       "level": "warn",
@@ -774,6 +782,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786304704000
+    },
+    {
+      "studio": "527",
+      "name": "Nabil Fairbairn",
+      "time": "16:31",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786307495000
+    },
+    {
+      "studio": "509A",
+      "name": "Wanetta Chu",
+      "time": "16:37",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786307826000
     }
   ],
   "panelPrior": {},
@@ -811,6 +835,20 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786296263000
+    },
+    {
+      "studio": "527",
+      "time": "16:32",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786307541000
+    },
+    {
+      "studio": "509A",
+      "time": "16:37",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786307874000
     }
   ],
   "armFallback": false,
@@ -834,6 +872,16 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-08T19:43:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-09T15:33:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -924,16 +972,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T09:05:00-04:00"
-    },
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-09T15:33:00-04:00"
     },
     {
       "run": "The Weatherman",
