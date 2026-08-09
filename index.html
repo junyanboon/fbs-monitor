@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 6:40 PM ET",
-  "generatedAtISO": "2026-08-09T18:40:59-04:00",
+  "generatedAt": "Aug 9, 6:45 PM ET",
+  "generatedAtISO": "2026-08-09T18:45:36-04:00",
   "studios": [
     {
       "id": "509A",
@@ -639,7 +639,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "5 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -919,6 +919,16 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-09T16:25:00-04:00"
+    },
+    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "09:35 + 02:35 (cloud)",
@@ -957,16 +967,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-09T15:33:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-09T16:25:00-04:00"
     },
     {
       "run": "The Planner",
