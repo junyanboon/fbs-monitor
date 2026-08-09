@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 10:55 AM ET",
-  "generatedAtISO": "2026-08-09T10:55:17-04:00",
+  "generatedAt": "Aug 9, 11:00 AM ET",
+  "generatedAtISO": "2026-08-09T11:00:29-04:00",
   "studios": [
     {
       "id": "509A",
@@ -532,7 +532,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "09:46",
-      "departed": null,
+      "departed": "10:56",
       "wrong_studio": null,
       "no_code": false,
       "start": 10.0,
@@ -545,7 +545,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "10:56",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -600,6 +600,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "text": "Alarm alarm · 509A · 09:51"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 10:56"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 10:56"
     }
   ],
   "armEvents": [
@@ -666,6 +674,22 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786286870000
+    },
+    {
+      "studio": "693",
+      "name": "Risa Waldman",
+      "time": "10:56",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786287365000
+    },
+    {
+      "studio": "693",
+      "name": "Dana Brookman",
+      "time": "10:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786287418000
     }
   ],
   "panelPrior": {
@@ -685,6 +709,20 @@ const DATA = /*__DATA__*/{
       "time": "09:51",
       "stage": "ALARM",
       "ts": 1786283489000
+    },
+    {
+      "studio": "693",
+      "time": "10:56",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786287418000
+    },
+    {
+      "studio": "693",
+      "time": "10:56",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786287411000
     }
   ],
   "armFallback": false,
@@ -767,7 +805,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-09T10:30:00-04:00"
+      "lastISO": "2026-08-09T11:00:00-04:00"
     },
     {
       "run": "The Sentinel",
