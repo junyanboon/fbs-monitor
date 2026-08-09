@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 9:45 AM ET",
-  "generatedAtISO": "2026-08-09T09:45:40-04:00",
+  "generatedAt": "Aug 9, 10:00 AM ET",
+  "generatedAtISO": "2026-08-09T10:00:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -405,7 +405,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "09:51",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -531,7 +531,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "09:46",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -596,7 +596,12 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
-  "attention": [],
+  "attention": [
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 509A · 09:51"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -605,36 +610,33 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786280482000
+    },
+    {
+      "studio": "693",
+      "name": "Risa Waldman",
+      "time": "09:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786283182000
+    },
+    {
+      "studio": "509A",
+      "name": "Eri Tagawa",
+      "time": "09:51",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786283490000
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "09:56",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786283768000
     }
   ],
   "panelPrior": {
-    "509A": {
-      "studio": "509A",
-      "name": "Studio (remote)",
-      "time": "14:46",
-      "kind": "departure",
-      "remote": true,
-      "ts": 1786214762000,
-      "when": "Sat 14:46"
-    },
-    "509B": {
-      "studio": "509B",
-      "name": "Marielle Torrefranca",
-      "time": "21:15",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786238104000,
-      "when": "Sat 21:15"
-    },
-    "693": {
-      "studio": "693",
-      "name": "Jesse Giggster",
-      "time": "14:03",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786212217000,
-      "when": "Sat 14:03"
-    },
     "901": {
       "studio": "901",
       "name": "Marco Villa",
@@ -645,7 +647,14 @@ const DATA = /*__DATA__*/{
       "when": "Sat 18:00"
     }
   },
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "509A",
+      "time": "09:51",
+      "stage": "ALARM",
+      "ts": 1786283489000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
@@ -726,7 +735,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-09T09:25:00-04:00"
+      "lastISO": "2026-08-09T09:58:00-04:00"
     },
     {
       "run": "The Sentinel",
