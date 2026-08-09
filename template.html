@@ -273,7 +273,16 @@
   .armgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
   .armcard{background:var(--scrim);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
            box-shadow:var(--shadow)}
-  .armcard .id{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:.02em}
+  .armcard .id{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:.02em;
+               display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  /* Panel-error pill, beside the studio name. Alarm.com's System Event
+     Notifications land in the same ADT label as the arm/disarm stream, so a
+     fault shows up here within a rebuild. Credentials-in-conflict is filtered
+     out in build.py — see TROUBLE_IGNORE. */
+  .armcard .id .err{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.06em;
+                    text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;
+                    background:var(--crit);color:#fff}
+  .armcard .id .err.warn{background:var(--watch);color:#1a1408}
   .armcard .st{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;
                text-transform:uppercase;margin-top:2px}
   .armcard .st.open{color:var(--ok)} .armcard .st.locked{color:var(--chalk-dim)}
@@ -688,11 +697,16 @@ function renderAlarms(){
     const nA = torontoNow().t;
     const openEmpty = eff && eff.kind==="arrival" && !alarmed &&
       !(DATA.events||[]).some(e=>e.studio===s.id && e.start-0.5<=nA && nA<e.end+0.5);
+    // The newest outstanding fault becomes a pill beside the name. A bypass is
+    // real but routine (a renter arms around a propped door), so it takes the
+    // amber pill and yields to a genuine trouble condition.
+    const err = trb.length ? {t:esc(trb[trb.length-1].detail||"Panel trouble"), w:false}
+              : byp.length ? {t:"Bypass", w:true} : null;
     return `<div class="armcard ${(alarmed||trb.length)?"alarm":""}">
-      <div class="id">${esc(s.name)}</div>
+      <div class="id">${esc(s.name)}${err?`<span class="err${err.w?" warn":""}">⚠ ${err.t}</span>`:""}</div>
       <div class="st ${st[0]}">${st[1]}</div>
-      ${trb.length?`<div class="last" style="color:var(--crit);font-weight:700">⚠ ${esc(trb[trb.length-1].detail||"Panel trouble")}</div>`:""}
-      ${byp.length?`<div class="last" style="color:var(--watch);font-weight:700">Bypass</div>`:""}
+      ${trb.length>1?`<div class="last" style="color:var(--crit)">+${trb.length-1} more panel error${trb.length>2?"s":""}</div>`:""}
+      ${trb.length&&byp.length?`<div class="last" style="color:var(--watch)">Sensor bypass also outstanding</div>`:""}
       ${openEmpty?`<div class="last" style="color:var(--crit);font-weight:700">⚠ No booking</div>`:""}
     </div>`;
   }).join("") + `</div>`;

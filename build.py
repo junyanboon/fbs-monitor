@@ -593,9 +593,35 @@ RE_BYPASS = re.compile(r"Studio\s+(\d+\w?).{0,120}?\bbypass", re.I | re.S)
 # Panel trouble conditions ADT emails about: tamper, malfunction, low battery,
 # AC/power loss, comms failure. These are "someone must go look at the panel"
 # states that the arm/disarm stream cannot express.
+#
+# 2026-08-08: Junyan turned on Alarm.com's own System Event Notifications and
+# pointed them at this same label, which adds four conditions ADT never mailed
+# about — "System is unable to arm", "My panel is not communicating", "My panel
+# has been shut down", "My property loses power". Their wording is Alarm.com's,
+# not TELUS's, so the alternation carries both.
 RE_TROUBLE = re.compile(
     r"Studio\s+(\d+\w?).{0,120}?\b(tamper|malfunction|trouble|low\s+battery|"
-    r"power\s+(?:loss|failure)|ac\s+(?:loss|failure)|communication\s+failure)", re.I | re.S)
+    r"power\s+(?:loss|failure)|ac\s+(?:loss|failure)|communication\s+failure|"
+    r"unable\s+to\s+arm|not\s+communicating|no\s+communication|"
+    r"(?:panel\s+)?shut\s*down|lost\s+power|offline)", re.I | re.S)
+
+# Subjects that name a studio and read like a problem but must NEVER reach the
+# board. Matched case-insensitively as substrings against the whole subject.
+#
+#   credentials in conflict — Alarm.com raises one per duplicate PIN across the
+#     168 rotating codes. Four are standing right now. It is a housekeeping
+#     notice, not a fault; Junyan asked for it excluded by name, and the
+#     alarm-monitor's own filer has skipped it since 2026-06 for the same reason.
+#   user codes have been changed — every code we issue mails one of these.
+#   post-disarm / images uploaded — camera traffic, already covered by the
+#     "image" guard, listed here so the intent survives a refactor.
+TROUBLE_IGNORE = (
+    "credentials in conflict",
+    "credential conflict",
+    "user codes have been changed",
+    "post-disarm",
+    "images uploaded",
+)
 
 
 def gmail_access_token():
@@ -789,6 +815,8 @@ def parse_alarm_subject(subject, internal_ms):
     subjects carry none."""
     low = subject.lower()
     if "image" in low or "motion" in low:
+        return None
+    if any(phrase in low for phrase in TROUBLE_IGNORE):
         return None
 
     stage, detail = None, None

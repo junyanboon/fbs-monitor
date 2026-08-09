@@ -54,6 +54,22 @@ ALERT_CASES = [
     ("Studio 527: Studio 527 Front Door malfunction", "TROUBLE", "Malfunction"),
     ("Studio 901: Studio 901 Panel low battery", "TROUBLE", "Low Battery"),
     ("Studio 509: Studio 509A was Disarmed by Jake Maresca at 2:00 PM", None, None),
+    # Alarm.com System Event Notifications, pointed at this label 2026-08-08.
+    # ADT never mailed about these four, so before that day the board could show
+    # a panel that could not arm as simply "Armed" and nobody would know.
+    ("Studio 693: Studio 693 System is unable to arm", "TROUBLE", "Unable To Arm"),
+    ("Studio 901: Studio 901 Panel is not communicating", "TROUBLE", "Not Communicating"),
+    ("Studio 527: Studio 527 Panel has been shut down", "TROUBLE", "Shut Down"),
+    ("Studio 509: Studio 509B lost power", "TROUBLE", "Lost Power"),
+    # Must NEVER surface. Junyan asked for credentials-in-conflict out by name:
+    # Alarm.com raises one per duplicate PIN across the 168 rotating codes, so
+    # several stand permanently (4 live on 2026-08-08) and a pill for them would
+    # be on every day forever — which is how the pill that matters gets ignored.
+    ("Studio 693: Studio 693 Credentials In Conflict", None, None),
+    ("Studio 901: Credential Conflict on Studio 901 Panel", None, None),
+    # Routine mail that names a studio and reads like trouble but is not.
+    ("Your Security System User Codes Have Been Changed for Studio 901", None, None),
+    ("Studio 901: Post-Disarm images uploaded by Panel Camera from 3:10 PM", None, None),
 ]
 
 
