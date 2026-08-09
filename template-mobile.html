@@ -294,10 +294,10 @@ function render(){
     const stTxt=eff?(isOpen?"🔓 Open":"🔒 Armed"):"Unknown";
     let act="";
     if(trig.length)act+=`<span class="chip crit">${real?"⚠ Clear alarm":"Alarm pending"}</span>`;
-    // Panel errors ride BESIDE the studio name, not in the trailing chip run —
-    // the right-hand run is where routine state lives, and a fault read as just
-    // another chip there is a fault nobody acts on. Bypass is real but routine,
-    // so it takes amber and yields to a genuine trouble condition.
+    // Panel errors ride on the state line beside the lock, not in the trailing
+    // chip run — the right-hand run is where routine state lives, and a fault
+    // read as just another chip there is a fault nobody acts on. Bypass is
+    // real but routine, so it takes amber and yields to a real trouble.
     const err=trb.length?{t:esc(trb[trb.length-1].detail||"Panel trouble"),w:false}
              :byp.length?{t:"Bypass",w:true}:null;
     if(trb.length&&byp.length)act+=`<span class="chip watch">Bypass</span>`;
@@ -307,8 +307,8 @@ function render(){
       if(!occ)act+=`<span class="chip crit">⚠ No booking</span>`;
     }
     return `<div class="row" style="${(trig.length||trb.length)?"border-color:var(--crit)":""}">
-      <span class="tm" style="font-family:var(--disp);font-weight:800;font-size:17px">${esc(s.name)}${err?`<span class="chip ${err.w?"watch":"crit"}" style="margin-left:6px;font-family:var(--sans);font-size:10px;vertical-align:middle">⚠ ${err.t}</span>`:""}</span>
-      <span class="nm">${stTxt}</span>
+      <span class="tm" style="font-family:var(--disp);font-weight:800;font-size:17px">${esc(s.name)}</span>
+      <span class="nm">${stTxt}${err?`<span class="chip ${err.w?"watch":"crit"}" style="margin-left:6px;font-family:var(--sans);font-size:10px;vertical-align:middle">⚠ ${err.t}</span>`:""}</span>
       <span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${act}</span>
     </div>`;
   }).join("");
