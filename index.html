@@ -280,7 +280,18 @@
            box-shadow:var(--shadow)}
   .armcard .id{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:.02em}
   .armcard .st{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;
-               text-transform:uppercase;margin-top:2px}
+               text-transform:uppercase;margin-top:2px;
+               display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  /* Panel-error pill, on the state line beside the lock. Alarm.com's System
+     Event Notifications land in the same ADT label as the arm/disarm stream, so
+     a fault shows up here within a rebuild. It rides next to 🔒 Armed rather
+     than the studio name because the contradiction is the point: the lock says
+     the room is fine and the pill says it is not. Credentials-in-conflict is
+     filtered out in build.py — see TROUBLE_IGNORE. */
+  .armcard .st .err{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.06em;
+                    text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;
+                    background:var(--crit);color:#fff}
+  .armcard .st .err.warn{background:var(--watch);color:#1a1408}
   .armcard .st.open{color:var(--ok)} .armcard .st.locked{color:var(--chalk-dim)}
   .armcard .st.unknown{color:var(--chalk-faint)}
   .armcard.alarm{border-color:var(--crit);box-shadow:inset 0 0 0 1px var(--crit),var(--shadow)}
@@ -357,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 8, 2026",
-  "generatedAt": "Aug 8, 8:00 PM ET",
-  "generatedAtISO": "2026-08-08T20:00:57-04:00",
+  "generatedAt": "Aug 8, 8:15 PM ET",
+  "generatedAtISO": "2026-08-08T20:15:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -456,6 +467,20 @@ const DATA = /*__DATA__*/{
       "no_code": false,
       "start": 11.0,
       "end": 12.5
+    },
+    {
+      "studio": "509B",
+      "who": "Marielle Torrefranca",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "arrived": null,
+      "departed": null,
+      "wrong_studio": null,
+      "no_code": false,
+      "start": 21.5,
+      "end": 23.25
     },
     {
       "studio": "527",
@@ -983,7 +1008,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T19:04:00-04:00"
+      "lastISO": "2026-08-08T20:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1023,7 +1048,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T19:13:00-04:00"
+      "lastISO": "2026-08-08T20:13:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1394,11 +1419,16 @@ function renderAlarms(){
     const nA = torontoNow().t;
     const openEmpty = eff && eff.kind==="arrival" && !alarmed &&
       !(DATA.events||[]).some(e=>e.studio===s.id && e.start-0.5<=nA && nA<e.end+0.5);
+    // The newest outstanding fault becomes a pill on the state line. A bypass is
+    // real but routine (a renter arms around a propped door), so it takes the
+    // amber pill and yields to a genuine trouble condition.
+    const err = trb.length ? {t:esc(trb[trb.length-1].detail||"Panel trouble"), w:false}
+              : byp.length ? {t:"Bypass", w:true} : null;
     return `<div class="armcard ${(alarmed||trb.length)?"alarm":""}">
       <div class="id">${esc(s.name)}</div>
-      <div class="st ${st[0]}">${st[1]}</div>
-      ${trb.length?`<div class="last" style="color:var(--crit);font-weight:700">⚠ ${esc(trb[trb.length-1].detail||"Panel trouble")}</div>`:""}
-      ${byp.length?`<div class="last" style="color:var(--watch);font-weight:700">Bypass</div>`:""}
+      <div class="st ${st[0]}">${st[1]}${err?`<span class="err${err.w?" warn":""}">⚠ ${err.t}</span>`:""}</div>
+      ${trb.length>1?`<div class="last" style="color:var(--crit)">+${trb.length-1} more panel error${trb.length>2?"s":""}</div>`:""}
+      ${trb.length&&byp.length?`<div class="last" style="color:var(--watch)">Sensor bypass also outstanding</div>`:""}
       ${openEmpty?`<div class="last" style="color:var(--crit);font-weight:700">⚠ No booking</div>`:""}
     </div>`;
   }).join("") + `</div>`;

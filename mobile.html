@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 8, 2026",
-  "generatedAt": "Aug 8, 8:00 PM ET",
-  "generatedAtISO": "2026-08-08T20:00:57-04:00",
+  "generatedAt": "Aug 8, 8:15 PM ET",
+  "generatedAtISO": "2026-08-08T20:15:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -268,6 +268,20 @@ const DATA = /*__DATA__*/{
       "no_code": false,
       "start": 11.0,
       "end": 12.5
+    },
+    {
+      "studio": "509B",
+      "who": "Marielle Torrefranca",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "arrived": null,
+      "departed": null,
+      "wrong_studio": null,
+      "no_code": false,
+      "start": 21.5,
+      "end": 23.25
     },
     {
       "studio": "527",
@@ -795,7 +809,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T19:04:00-04:00"
+      "lastISO": "2026-08-08T20:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -835,7 +849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-08T19:13:00-04:00"
+      "lastISO": "2026-08-08T20:13:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1000,15 +1014,21 @@ function render(){
     const stTxt=eff?(isOpen?"🔓 Open":"🔒 Armed"):"Unknown";
     let act="";
     if(trig.length)act+=`<span class="chip crit">${real?"⚠ Clear alarm":"Alarm pending"}</span>`;
-    if(trb.length)act+=`<span class="chip crit">⚠ ${esc(trb[trb.length-1].detail||"Panel trouble")}</span>`;
-    if(byp.length)act+=`<span class="chip watch">Bypass</span>`;
+    // Panel errors ride on the state line beside the lock, not in the trailing
+    // chip run — the right-hand run is where routine state lives, and a fault
+    // read as just another chip there is a fault nobody acts on. Bypass is
+    // real but routine, so it takes amber and yields to a real trouble.
+    const err=trb.length?{t:esc(trb[trb.length-1].detail||"Panel trouble"),w:false}
+             :byp.length?{t:"Bypass",w:true}:null;
+    if(trb.length&&byp.length)act+=`<span class="chip watch">Bypass</span>`;
+    if(trb.length>1)act+=`<span class="chip crit">+${trb.length-1}</span>`;
     if(isOpen&&!trig.length){
       const occ=(DATA.events||[]).some(e=>e.studio===s.id&&e.start-0.5<=n&&n<e.end+0.5);
       if(!occ)act+=`<span class="chip crit">⚠ No booking</span>`;
     }
     return `<div class="row" style="${(trig.length||trb.length)?"border-color:var(--crit)":""}">
       <span class="tm" style="font-family:var(--disp);font-weight:800;font-size:17px">${esc(s.name)}</span>
-      <span class="nm">${stTxt}</span>
+      <span class="nm">${stTxt}${err?`<span class="chip ${err.w?"watch":"crit"}" style="margin-left:6px;font-family:var(--sans);font-size:10px;vertical-align:middle">⚠ ${err.t}</span>`:""}</span>
       <span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${act}</span>
     </div>`;
   }).join("");
@@ -1022,8 +1042,13 @@ function render(){
       <span class="ev"><span class="chip plain">${esc(a.studio)}</span><span class="chip ${a.kind==="arrival"?"ok":"plain"}">${a.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span></span>
     </div>`})),
     ...alertsA.map(a=>{
-      // cleared = someone touched that studio's panel at/after the alert
-      const done=evsA.some(e=>e.studio===a.studio&&tkey(e.time)>=tkey(a.time));
+      // cleared = someone touched that studio's panel at/after the alert.
+      // Trouble conditions are the exception: a disarm does not repair a tamper,
+      // a dead battery or a panel that can't reach the monitoring centre, and
+      // the card above already refuses to clear them. Marking them "Cleared"
+      // here said the opposite of the card on the same screen.
+      const done=a.stage!=="TROUBLE"&&
+        evsA.some(e=>e.studio===a.studio&&tkey(e.time)>=tkey(a.time));
       const label=a.stage==="BYPASS"?"Sensor bypass":a.stage==="TROUBLE"?(a.detail||"Panel trouble")
                  :a.stage==="ALARM"?"Alarm triggered":"Alarm pending";
       return {...a,html:`<div class="row" style="${done?"opacity:.6":"border-color:var(--crit);background:var(--crit-bg)"}">
