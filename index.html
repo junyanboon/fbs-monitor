@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 11:00 AM ET",
-  "generatedAtISO": "2026-08-09T11:00:57-04:00",
+  "generatedAt": "Aug 9, 11:15 AM ET",
+  "generatedAtISO": "2026-08-09T11:15:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -608,6 +608,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 10:56"
+    },
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -733,8 +737,8 @@ const DATA = /*__DATA__*/{
       "expected": "09:35 + 02:35 (cloud)",
       "produces": "Housekeeping: feedback · decay · backfill · self-heal",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-09T10:02:00-04:00"
     },
     {
@@ -815,7 +819,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-09T10:04:00-04:00"
+      "lastISO": "2026-08-09T11:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
