@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 10, 2026",
-  "generatedAt": "Aug 10, 12:45 PM ET",
-  "generatedAtISO": "2026-08-10T12:45:43-04:00",
+  "generatedAt": "Aug 10, 1:00 PM ET",
+  "generatedAtISO": "2026-08-10T13:00:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -475,7 +475,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "12:58",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -531,7 +531,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "12:56",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -629,18 +629,25 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786379591000
+    },
+    {
+      "studio": "901",
+      "name": "Ali Ahmad",
+      "time": "12:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786380991000
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "12:58",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786381103000
     }
   ],
   "panelPrior": {
-    "527": {
-      "studio": "527",
-      "name": "Studio (remote)",
-      "time": "20:52",
-      "kind": "departure",
-      "remote": true,
-      "ts": 1786323164000,
-      "when": "Sun 20:52"
-    },
     "693": {
       "studio": "693",
       "name": "Studio (remote)",
@@ -752,7 +759,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T12:27:00-04:00"
+      "lastISO": "2026-08-10T12:59:00-04:00"
     },
     {
       "run": "The Timekeeper",
