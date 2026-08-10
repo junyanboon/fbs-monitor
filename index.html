@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 8:30 PM ET",
-  "generatedAtISO": "2026-08-09T20:30:46-04:00",
+  "generatedAt": "Aug 9, 8:45 PM ET",
+  "generatedAtISO": "2026-08-09T20:45:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -476,7 +476,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "17:38",
-      "departed": null,
+      "departed": "20:40",
       "wrong_studio": null,
       "no_code": false,
       "start": 17.5,
@@ -639,7 +639,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "6 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -850,6 +850,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786321767000
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "20:40",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786322430000
     }
   ],
   "panelPrior": {},
@@ -947,6 +955,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-09T10:02:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-08T19:43:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -975,16 +993,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-09T15:33:00-04:00"
-    },
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-08T19:43:00-04:00"
     },
     {
       "run": "The Analyst",
