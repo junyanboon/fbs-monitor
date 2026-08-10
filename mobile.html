@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 10, 2026",
-  "generatedAt": "Aug 10, 4:08 PM ET",
-  "generatedAtISO": "2026-08-10T16:08:08-04:00",
+  "generatedAt": "Aug 10, 4:15 PM ET",
+  "generatedAtISO": "2026-08-10T16:15:34-04:00",
   "studios": [
     {
       "id": "509A",
@@ -347,7 +347,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "14:50",
-      "departed": null,
+      "departed": "16:08",
       "wrong_studio": null,
       "no_code": false,
       "start": 15.0,
@@ -395,6 +395,10 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 16:09"
+    },
     {
       "level": "warn",
       "text": "7 robots overdue — see Robots tab"
@@ -504,10 +508,26 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786388724000
+    },
+    {
+      "studio": "901",
+      "name": "Grace Lim",
+      "time": "16:08",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786392521000
     }
   ],
   "panelPrior": {},
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "901",
+      "time": "16:09",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786392582000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
