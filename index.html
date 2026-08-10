@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 9, 2026",
-  "generatedAt": "Aug 9, 8:45 PM ET",
-  "generatedAtISO": "2026-08-09T20:45:37-04:00",
+  "generatedAt": "Aug 9, 9:00 PM ET",
+  "generatedAtISO": "2026-08-09T21:00:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -639,6 +639,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 509A · 20:51"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 527 · 20:52"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 20:52"
+    },
+    {
+      "level": "warn",
       "text": "6 robots overdue — see Robots tab"
     }
   ],
@@ -858,6 +870,54 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786322430000
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "20:51",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786323094000
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "20:51",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786323097000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "20:52",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786323149000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "20:52",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786323153000
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "20:52",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786323161000
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "20:52",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786323163000
     }
   ],
   "panelPrior": {},
@@ -930,6 +990,27 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786312942000
+    },
+    {
+      "studio": "509A",
+      "time": "20:51",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786323094000
+    },
+    {
+      "studio": "527",
+      "time": "20:52",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786323161000
+    },
+    {
+      "studio": "693",
+      "time": "20:52",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786323149000
     }
   ],
   "armFallback": false,
