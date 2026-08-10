@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 10, 2026",
-  "generatedAt": "Aug 10, 6:15 PM ET",
-  "generatedAtISO": "2026-08-10T18:15:57-04:00",
+  "generatedAt": "Aug 10, 6:30 PM ET",
+  "generatedAtISO": "2026-08-10T18:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -401,7 +401,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -531,16 +531,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-10T08:44:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "09:35 + 02:35 (cloud)",
@@ -601,6 +591,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-10T01:27:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-10T18:28:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -608,7 +608,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T18:05:00-04:00"
+      "lastISO": "2026-08-10T18:25:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -658,7 +658,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T17:12:00-04:00"
+      "lastISO": "2026-08-10T18:13:00-04:00"
     },
     {
       "run": "The Closer",
