@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 10, 2026",
-  "generatedAt": "Aug 10, 7:18 PM ET",
-  "generatedAtISO": "2026-08-10T19:18:28-04:00",
+  "generatedAt": "Aug 10, 7:30 PM ET",
+  "generatedAtISO": "2026-08-10T19:30:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -559,7 +559,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "19:21",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -597,6 +597,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 901 · 16:09"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 19:21"
     },
     {
       "level": "warn",
@@ -739,6 +743,22 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786403413000
+    },
+    {
+      "studio": "901",
+      "name": "Janet Zamora",
+      "time": "19:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786404077000
+    },
+    {
+      "studio": "509B",
+      "name": "Melissa Lee",
+      "time": "19:25",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786404359000
     }
   ],
   "panelPrior": {},
@@ -749,6 +769,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786392582000
+    },
+    {
+      "studio": "901",
+      "time": "19:21",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786404077000
     }
   ],
   "armFallback": false,
@@ -831,7 +858,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T18:55:00-04:00"
+      "lastISO": "2026-08-10T19:24:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -881,7 +908,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T18:13:00-04:00"
+      "lastISO": "2026-08-10T19:12:00-04:00"
     },
     {
       "run": "The Closer",
