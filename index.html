@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 10, 2026",
-  "generatedAt": "Aug 10, 7:00 PM ET",
-  "generatedAtISO": "2026-08-10T19:00:48-04:00",
+  "generatedAt": "Aug 10, 7:15 PM ET",
+  "generatedAtISO": "2026-08-10T19:15:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -419,7 +419,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "19:10",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -462,7 +462,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "18:59",
-      "departed": null,
+      "departed": "19:01",
       "wrong_studio": null,
       "no_code": false,
       "start": 19.5,
@@ -723,6 +723,22 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786402794000
+    },
+    {
+      "studio": "509B",
+      "name": "Melissa Lee",
+      "time": "19:01",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786402884000
+    },
+    {
+      "studio": "509A",
+      "name": "Ivanka Moskaliuk",
+      "time": "19:10",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786403413000
     }
   ],
   "panelPrior": {},
@@ -825,7 +841,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T18:08:00-04:00"
+      "lastISO": "2026-08-10T19:11:00-04:00"
     },
     {
       "run": "The Timekeeper",
