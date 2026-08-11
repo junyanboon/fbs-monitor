@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 11, 2026",
-  "generatedAt": "Aug 11, 9:45 AM ET",
-  "generatedAtISO": "2026-08-11T09:45:49-04:00",
+  "generatedAt": "Aug 11, 9:57 AM ET",
+  "generatedAtISO": "2026-08-11T09:57:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -206,7 +206,7 @@ const DATA = /*__DATA__*/{
       "tier": "Viewing",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "09:57",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -372,20 +372,36 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "Alarm bypass · 901 · 09:52"
     }
   ],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "studio": "509A",
-      "name": "David Garzon",
-      "time": "23:09",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786417790000,
-      "when": "Mon 23:09"
+  "armEvents": [
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "09:52",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786456366000
     },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "09:53",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786456380000
+    },
+    {
+      "studio": "509A",
+      "name": "Kate Keenan",
+      "time": "09:57",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786456628000
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "studio": "509B",
       "name": "Melissa Lee",
@@ -412,30 +428,19 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1786388724000,
       "when": "Mon 15:05"
-    },
-    "901": {
-      "studio": "901",
-      "name": "Janet Zamora",
-      "time": "22:38",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786415936000,
-      "when": "Mon 22:38"
     }
   },
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "901",
+      "time": "09:52",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786456366000
+    }
+  ],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-11T03:05:00-04:00"
-    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -465,6 +470,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-11T08:52:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-11T10:05:00-04:00"
     },
     {
       "run": "The Doorman",
