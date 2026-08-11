@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 10, 2026",
-  "generatedAt": "Aug 10, 8:00 PM ET",
-  "generatedAtISO": "2026-08-10T20:00:48-04:00",
+  "generatedAt": "Aug 10, 8:15 PM ET",
+  "generatedAtISO": "2026-08-10T20:15:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -819,23 +819,13 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-09T04:38:00-04:00"
     },
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-10T08:53:00-04:00"
-    },
-    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-10T01:27:00-04:00"
     },
     {
@@ -844,9 +834,19 @@ const DATA = /*__DATA__*/{
       "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-10T18:28:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T18:28:00-04:00"
+      "lastISO": "2026-08-10T08:53:00-04:00"
     },
     {
       "run": "The Planner",
@@ -876,7 +876,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T19:11:00-04:00"
+      "lastISO": "2026-08-10T20:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -916,7 +916,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T19:12:00-04:00"
+      "lastISO": "2026-08-10T20:13:00-04:00"
     },
     {
       "run": "The Closer",
