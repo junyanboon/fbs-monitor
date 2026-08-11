@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 11, 2026",
-  "generatedAt": "Aug 11, 3:15 PM ET",
-  "generatedAtISO": "2026-08-11T15:15:44-04:00",
+  "generatedAt": "Aug 11, 3:18 PM ET",
+  "generatedAtISO": "2026-08-11T15:18:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -476,7 +476,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "12:53",
-      "departed": null,
+      "departed": "15:16",
       "wrong_studio": null,
       "no_code": false,
       "start": 12.5,
@@ -576,6 +576,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 527 · 13:58"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509B · 15:17"
     },
     {
       "level": "warn",
@@ -694,6 +698,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": true,
       "ts": 1786474307000
+    },
+    {
+      "studio": "509B",
+      "name": "Tamina Paris",
+      "time": "15:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786475787000
     }
   ],
   "panelPrior": {
@@ -721,6 +733,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786471088000
+    },
+    {
+      "studio": "509B",
+      "time": "15:17",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786475833000
     }
   ],
   "armFallback": false,
