@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 11, 2026",
-  "generatedAt": "Aug 11, 1:45 PM ET",
-  "generatedAtISO": "2026-08-11T13:45:50-04:00",
+  "generatedAt": "Aug 11, 2:00 PM ET",
+  "generatedAtISO": "2026-08-11T14:00:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -376,6 +376,10 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 527 · 13:58"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -467,18 +471,25 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786468067000
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "13:58",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786471088000
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "13:58",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786471091000
     }
   ],
   "panelPrior": {
-    "527": {
-      "studio": "527",
-      "name": "Ishfaaq Jookhun",
-      "time": "22:59",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786417171000,
-      "when": "Mon 22:59"
-    },
     "693": {
       "studio": "693",
       "name": "Stefan Lovecchio",
@@ -496,6 +507,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786456366000
+    },
+    {
+      "studio": "527",
+      "time": "13:58",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786471088000
     }
   ],
   "armFallback": false,
@@ -578,7 +596,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-11T13:26:00-04:00"
+      "lastISO": "2026-08-11T13:57:00-04:00"
     },
     {
       "run": "The Sentinel",
