@@ -496,6 +496,8 @@ def parse_notion(rows):
         # lookup publishes every renter's door code to the internet.
         has_code = bool((_prop_text(p.get("Alarm Code")) or "").strip())
         out.append({
+            "id": row.get("id"),
+            "status": (_prop_text(p.get("Booking Status")) or "").strip(),
             "studio": studio,
             "start": _prop_text(p.get("Start Time")),
             "tier": tier,
@@ -535,6 +537,8 @@ def join_notion(events, notion_rows):
             e["_has_code"] = best["has_code"]
             e["_board_disarmed"] = best["board_disarmed"]
             e["_board_armed"] = best["board_armed"]
+            e["_notion_id"] = best["id"]
+            e["_board_status"] = best["status"]
     return events
 
 
@@ -1250,6 +1254,84 @@ def write_booking_state(data, fallback):
         fh.write("\n")
 
 
+def sync_booking_status(data, fallback, now):
+    """Flip `Booking Status` to Complete for bookings the panel says are done.
+
+    WHY THIS LIVES HERE. `Booking Status` is agent-written (Concierge JOB 1
+    Step 4) while arrival/departure is machine-derived from the alarm panel on
+    this ~15-minute rebuild. That gap is not cosmetic: The Responder's PBF only
+    becomes due once the status reads Complete, and a PBF more than 1 day past
+    its booking is never sent — so a slow flip does not delay the follow-up, it
+    destroys it. Observed 2026-08-11: Kristel San Jose armed and left at 13:07,
+    this file had `departed` by 13:12, and the board still read `In Studio` 75
+    minutes later. The panel already knew; only the board did not.
+
+    THE ONLY CASE WRITTEN IS THE UNAMBIGUOUS ONE — arrived AND departed AND the
+    booking's end time has passed. Everything requiring judgment stays the
+    Concierge's: no-shows, bookings with an arrival but no departure, anything
+    already Cancelled / Missed Booking / Complete. Two writers on one field is
+    how you get flapping, so the split is by certainty, not by convenience.
+
+    NEVER RUNS ON FALLBACK DATA. When `armFallback` is set, arrival/departure
+    came from the board's own Disarmed/Armed columns rather than the panel —
+    writing that back would be laundering the board's guess into a fact.
+    """
+    if os.environ.get("BOOKING_STATUS_SYNC_DISABLED") == "1":
+        print("Booking Status sync: disabled by kill switch.")
+        return
+    if fallback:
+        print("Booking Status sync: skipped (arm data is board fallback).")
+        return
+    token = os.environ.get("NOTION_TOKEN")
+    if not token:
+        return
+    dry = os.environ.get("BOOKING_STATUS_SYNC_DRYRUN") == "1"
+    headers = {"Authorization": f"Bearer {token}",
+               "Notion-Version": "2022-06-28",
+               "Content-Type": "application/json"}
+    # `end` is decimal hours from the window's base day, so a 2:15 AM finish is
+    # 26.25 — compare against a `now` measured the same way or post-midnight
+    # bookings never qualify.
+    base_day = now.date() if now.hour >= 5 else (now - timedelta(days=1)).date()
+    now_dec = decimal_hours(now, base_day)
+    flipped, failed = 0, 0
+    for e in data["events"]:
+        if e.get("kind") != "booking":
+            continue
+        if not (e.get("_notion_id") and e.get("arrived") and e.get("departed")):
+            continue
+        if e.get("_board_status") not in ("In Studio", "Upcoming"):
+            continue
+        end = e.get("end")
+        if end is None or now_dec < end:
+            continue               # still inside the window; they may return
+        if dry:
+            flipped += 1
+            print(f"  [dry run] would set Complete: {e.get('who')} "
+                  f"({e.get('studio')}, departed {e.get('departed')})")
+            continue
+        try:
+            r = requests.patch(
+                f"https://api.notion.com/v1/pages/{e['_notion_id']}",
+                headers=headers,
+                json={"properties": {"Booking Status": {"select": {"name": "Complete"}}}},
+                timeout=30,
+            )
+            if r.status_code >= 300:
+                failed += 1
+                print(f"  ! Booking Status sync failed for {e.get('who')}: "
+                      f"{r.status_code} {r.text[:200]}")
+            else:
+                flipped += 1
+                print(f"  Booking Status → Complete: {e.get('who')} "
+                      f"({e.get('studio')}, departed {e.get('departed')})")
+        except Exception as exc:      # a write hiccup must not kill the board
+            failed += 1
+            print(f"  ! Booking Status sync error for {e.get('who')}: {exc}")
+    if flipped or failed:
+        print(f"Booking Status sync: {flipped} flipped, {failed} failed.")
+
+
 def main():
     now = datetime.now(TZ)
     force = os.environ.get("FORCE_BUILD") == "1"
@@ -1263,6 +1345,7 @@ def main():
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))
     open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
     write_booking_state(data, fallback)
+    sync_booking_status(data, fallback, now)
     # Written last, so it can never advertise an edition the pages don't carry yet.
     with open(VERSION, "w", encoding="utf-8") as fh:
         json.dump({"generatedAtISO": data["generatedAtISO"],
