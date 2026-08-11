@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 11, 2026",
-  "generatedAt": "Aug 11, 4:45 PM ET",
-  "generatedAtISO": "2026-08-11T16:45:47-04:00",
+  "generatedAt": "Aug 11, 4:57 PM ET",
+  "generatedAtISO": "2026-08-11T16:57:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -597,6 +597,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 509B · 16:53"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 527 · 16:54"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 527 · 16:54"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -720,6 +732,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786475787000
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "16:53",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786481634000
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "16:54",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786481695000
     }
   ],
   "panelPrior": {
@@ -754,6 +782,25 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786475833000
+    },
+    {
+      "studio": "509B",
+      "time": "16:53",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786481635000
+    },
+    {
+      "studio": "527",
+      "time": "16:54",
+      "stage": "PENDING",
+      "ts": 1786481692000
+    },
+    {
+      "studio": "527",
+      "time": "16:54",
+      "stage": "PENDING",
+      "ts": 1786481692000
     }
   ],
   "armFallback": false,
@@ -836,7 +883,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-11T16:35:00-04:00"
+      "lastISO": "2026-08-11T16:55:00-04:00"
     },
     {
       "run": "The Sentinel",
