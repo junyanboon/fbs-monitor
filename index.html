@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 10, 2026",
-  "generatedAt": "Aug 10, 10:30 PM ET",
-  "generatedAtISO": "2026-08-10T22:30:41-04:00",
+  "generatedAt": "Aug 10, 10:45 PM ET",
+  "generatedAtISO": "2026-08-10T22:45:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -574,7 +574,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "19:21",
-      "departed": null,
+      "departed": "22:38",
       "wrong_studio": null,
       "no_code": false,
       "start": 19.5,
@@ -621,6 +621,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 901 · 19:21"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 22:39"
     },
     {
       "level": "warn",
@@ -811,6 +815,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786410218000
+    },
+    {
+      "studio": "901",
+      "name": "Janet Zamora",
+      "time": "22:38",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786415936000
     }
   ],
   "panelPrior": {},
@@ -828,6 +840,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786404077000
+    },
+    {
+      "studio": "901",
+      "time": "22:39",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786415996000
     }
   ],
   "armFallback": false,
@@ -950,7 +969,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-10T21:32:00-04:00"
+      "lastISO": "2026-08-10T22:33:00-04:00"
     },
     {
       "run": "The Weatherman",
