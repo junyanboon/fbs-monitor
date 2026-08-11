@@ -15,6 +15,26 @@ Sources: studio + staff calendars (secret ICS), the FBS AI Support board (Notion
 ADT arm/disarm mail (Gmail API, label `Artist Care - ADT`), and the 🚥 Run Monitor
 DB (Notion) for the Robots tab.
 
+Three JSON files ship beside the pages. They are a published interface, not
+build scratch — something else reads each one, so a field rename is a breaking
+change. The workflow's `git add` list is explicit: a new build output that isn't
+added there is built every run and published never.
+
+| File | Read by | Carries |
+|---|---|---|
+| `version.json` | both pages (30 s poll) | the build timestamp, ~60 bytes |
+| `panel-state.json` | the builder itself, next run | last arm/disarm per **studio**, durable |
+| `booking-state.json` | the event gate | arrival/departure per **booking**, today |
+
+`booking-state.json` exists so the event gate can answer "is this renter still
+in the studio?" before it sends a canned how-to reply. It publishes the
+attribution this builder already does — remote events excluded, wrong-studio
+handled, subject shapes parsed — so no consumer re-derives any of it from the
+ADT mail. Per-booking, not per-studio: `panel-state.json` cannot answer the
+question, because a back-to-back renter's arrival overwrites the previous
+renter's departure. Same fields the pages already render publicly; no PINs (see
+rule 5).
+
 ---
 
 ## Rules that are easy to break

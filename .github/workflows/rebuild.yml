@@ -90,13 +90,15 @@ jobs:
           # Both editions are built from the same DATA — index.html (desktop board)
           # and mobile.html (the FBS Mobile PWA). Commit BOTH: staging only
           # index.html left the mobile app frozen on whatever was last pushed.
-          if git diff --quiet -- index.html mobile.html panel-state.json version.json; then
+          # The file list is explicit, so anything build.py starts writing must
+          # be added here too or it is built every run and published never.
+          if git diff --quiet -- index.html mobile.html panel-state.json booking-state.json version.json; then
             echo "No change — skipping commit."
           else
             STAMP="$(date -u +'%Y-%m-%d %H:%MZ')"
             MSG="FBS Monitor rebuild ${STAMP}"
             if [ -n "${FALLBACK_NOTE:-}" ]; then MSG="${MSG} — ${FALLBACK_NOTE}"; fi
-            git add index.html mobile.html panel-state.json version.json
+            git add index.html mobile.html panel-state.json booking-state.json version.json
             git commit -m "${MSG}"
             # Another run (or a local push) may have advanced main since checkout —
             # rebase and retry so concurrent pushes don't fail the run red.

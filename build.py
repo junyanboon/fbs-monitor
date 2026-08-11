@@ -65,6 +65,16 @@ PANEL_STATE = os.path.join(HERE, "panel-state.json")
 # so clients can poll every 30 s for a fraction of the bandwidth — faster AND
 # cheaper. Keep it byte-small; it is fetched far more often than the pages.
 VERSION = os.path.join(HERE, "version.json")
+# Per-booking arrival/departure, published for machines rather than for the two
+# pages. The event gate reads it to answer one question before it sends a canned
+# how-to reply: is this renter still in the studio? panel-state.json cannot
+# answer that — it holds one row per STUDIO, so a back-to-back renter's arrival
+# overwrites the previous renter's departure, and a text arriving after someone
+# has gone home reads as "occupied". These rows are per BOOKING and already
+# carry the builder's attribution (remote events excluded, wrong-studio handled),
+# so a consumer needs no name matching of its own. Same fields the pages already
+# publish — no PINs, no codes (see parse_notion()).
+BOOKING_STATE = os.path.join(HERE, "booking-state.json")
 
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
@@ -1213,6 +1223,33 @@ def splice(data, template=None):
     return out
 
 
+def write_booking_state(data, fallback):
+    """Publish per-booking presence for machine consumers (the event gate).
+
+    Only the fields a presence question needs. `armFallback` is carried through
+    deliberately: on a Gmail failure the builder falls back to the board's
+    Armed/Disarmed columns, which lag the panel by up to a Concierge pass, and a
+    consumer deciding whether someone is still in the room must be able to tell
+    a live read from a degraded one rather than trusting both equally.
+    """
+    payload = {
+        "generatedAtISO": data["generatedAtISO"],
+        "dateISO": data["generatedAtISO"][:10],
+        "armFallback": bool(fallback),
+        "bookings": [{
+            "studio": e["studio"],
+            "who": e["who"],
+            "start": e["start"],
+            "end": e["end"],
+            "arrived": e.get("arrived"),
+            "departed": e.get("departed"),
+        } for e in data["events"] if e.get("kind") == "booking"],
+    }
+    with open(BOOKING_STATE, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+
+
 def main():
     now = datetime.now(TZ)
     force = os.environ.get("FORCE_BUILD") == "1"
@@ -1225,6 +1262,7 @@ def main():
     data, fallback = build_data(now)
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))
     open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
+    write_booking_state(data, fallback)
     # Written last, so it can never advertise an edition the pages don't carry yet.
     with open(VERSION, "w", encoding="utf-8") as fh:
         json.dump({"generatedAtISO": data["generatedAtISO"],
