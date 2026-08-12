@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 12, 2026",
-  "generatedAt": "Aug 12, 9:45 AM ET",
-  "generatedAtISO": "2026-08-12T09:45:49-04:00",
+  "generatedAt": "Aug 12, 10:00 AM ET",
+  "generatedAtISO": "2026-08-12T10:00:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -354,13 +354,15 @@ const DATA = /*__DATA__*/{
       "end": 21.5
     }
   ],
-  "staff": [],
-  "attention": [
+  "staff": [
     {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "name": "Ela",
+      "role": "Viewing",
+      "start": 12.5,
+      "end": 12.75
     }
   ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -413,16 +415,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-12T03:40:00-04:00"
-    },
-    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -451,6 +443,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-12T09:05:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-12T10:05:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -490,7 +492,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-12T09:29:00-04:00"
+      "lastISO": "2026-08-12T09:54:00-04:00"
     },
     {
       "run": "The Sentinel",
