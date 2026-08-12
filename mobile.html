@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 12, 2026",
-  "generatedAt": "Aug 12, 11:45 AM ET",
-  "generatedAtISO": "2026-08-12T11:45:46-04:00",
+  "generatedAt": "Aug 12, 12:00 PM ET",
+  "generatedAtISO": "2026-08-12T12:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -365,10 +365,23 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
+      "text": "Alarm bypass · 901 · 12:00"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "12:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786550447000
+    }
+  ],
   "panelPrior": {
     "509A": {
       "studio": "509A",
@@ -405,18 +418,17 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1786505747000,
       "when": "Tue 23:35"
-    },
-    "901": {
-      "studio": "901",
-      "name": "Dee Adelubi Brown",
-      "time": "20:08",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786493324000,
-      "when": "Tue 20:08"
     }
   },
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "901",
+      "time": "12:00",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786550447000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
@@ -497,7 +509,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-12T11:41:00-04:00"
+      "lastISO": "2026-08-12T12:01:00-04:00"
     },
     {
       "run": "The Sentinel",
