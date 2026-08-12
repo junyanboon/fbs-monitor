@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 12, 2026",
-  "generatedAt": "Aug 12, 2:30 AM ET",
-  "generatedAtISO": "2026-08-12T02:30:51-04:00",
+  "generatedAt": "Aug 12, 2:45 AM ET",
+  "generatedAtISO": "2026-08-12T02:45:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -987,6 +987,16 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-11T04:50:00-04:00"
+    },
+    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1007,6 +1017,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-11T06:16:00-04:00"
     },
     {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "~07:00",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-11T04:55:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1015,26 +1035,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-11T04:40:00-04:00"
-    },
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-11T04:50:00-04:00"
-    },
-    {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "~07:00",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-11T04:55:00-04:00"
     },
     {
       "run": "The Planner",
