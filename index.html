@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 12, 2026",
-  "generatedAt": "Aug 12, 2:40 PM ET",
-  "generatedAtISO": "2026-08-12T14:40:33-04:00",
+  "generatedAt": "Aug 12, 2:45 PM ET",
+  "generatedAtISO": "2026-08-12T14:45:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -475,7 +475,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "14:45",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -586,6 +586,10 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 509B · 14:45"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -637,6 +641,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786559449000
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "14:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786560320000
     }
   ],
   "panelPrior": {
@@ -673,6 +685,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786559495000
+    },
+    {
+      "studio": "509B",
+      "time": "14:45",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786560320000
     }
   ],
   "armFallback": false,
