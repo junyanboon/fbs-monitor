@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 13, 2026",
-  "generatedAt": "Aug 13, 6:15 PM ET",
-  "generatedAtISO": "2026-08-13T18:15:37-04:00",
+  "generatedAt": "Aug 13, 6:30 PM ET",
+  "generatedAtISO": "2026-08-13T18:30:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -419,7 +419,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:19",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -573,7 +573,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:24",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -676,19 +676,25 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786657837000
+    },
+    {
+      "studio": "509A",
+      "name": "Anita Pandey",
+      "time": "18:19",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786659586000
+    },
+    {
+      "studio": "901",
+      "name": "Dana Brookman",
+      "time": "18:24",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786659849000
     }
   ],
-  "panelPrior": {
-    "901": {
-      "studio": "901",
-      "name": "Anita Pandey",
-      "time": "21:44",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786585916000,
-      "when": "Wed 21:44"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
@@ -740,7 +746,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-13T16:52:00-04:00"
+      "lastISO": "2026-08-13T18:30:00-04:00"
     },
     {
       "run": "The Doorman",
