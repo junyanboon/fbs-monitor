@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 13, 2026",
-  "generatedAt": "Aug 13, 9:30 AM ET",
-  "generatedAtISO": "2026-08-13T09:30:46-04:00",
+  "generatedAt": "Aug 13, 9:45 AM ET",
+  "generatedAtISO": "2026-08-13T09:45:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -369,12 +369,7 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -427,16 +422,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-13T03:20:00-04:00"
-    },
-    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -465,6 +450,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-13T08:36:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-13T10:05:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -504,7 +499,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-13T09:00:00-04:00"
+      "lastISO": "2026-08-13T09:32:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -544,7 +539,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-13T08:44:00-04:00"
+      "lastISO": "2026-08-13T09:34:00-04:00"
     },
     {
       "run": "The Weatherman",
