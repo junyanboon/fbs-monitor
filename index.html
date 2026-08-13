@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 12, 2026",
-  "generatedAt": "Aug 12, 7:57 PM ET",
-  "generatedAtISO": "2026-08-12T19:57:07-04:00",
+  "generatedAt": "Aug 12, 8:00 PM ET",
+  "generatedAtISO": "2026-08-12T20:00:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -419,8 +419,8 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": "17:00",
-      "departed": "18:18",
+      "arrived": null,
+      "departed": null,
       "wrong_studio": null,
       "no_code": false,
       "start": 17.25,
@@ -433,7 +433,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": "18:20",
+      "arrived": null,
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -476,7 +476,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "14:45",
-      "departed": "19:52",
+      "departed": null,
       "wrong_studio": null,
       "no_code": false,
       "start": 15.0,
@@ -489,7 +489,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": "19:54",
+      "arrived": null,
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -503,7 +503,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": "19:54",
+      "arrived": null,
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -517,8 +517,8 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": "18:04",
-      "departed": "19:02",
+      "arrived": null,
+      "departed": null,
       "wrong_studio": null,
       "no_code": false,
       "start": 18.25,
@@ -531,7 +531,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": "17:55",
+      "arrived": null,
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -545,7 +545,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": "18:22",
+      "arrived": null,
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -564,212 +564,59 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "Alarm bypass · 901 · 12:00"
-    },
-    {
-      "level": "warn",
-      "text": "Alarm bypass · 509B · 14:31"
-    },
-    {
-      "level": "warn",
-      "text": "Alarm bypass · 509B · 14:45"
-    },
-    {
-      "level": "warn",
-      "text": "Alarm pending · 693 · 17:54"
-    },
-    {
-      "level": "crit",
-      "text": "Alarm alarm · 693 · 17:55"
-    },
-    {
-      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
-  "armEvents": [
-    {
-      "studio": "901",
-      "name": "Studio (remote)",
-      "time": "12:00",
+  "armEvents": [],
+  "panelPrior": {
+    "509A": {
       "kind": "arrival",
-      "remote": true,
-      "ts": 1786550447000
-    },
-    {
-      "studio": "901",
-      "name": "Studio (remote)",
-      "time": "12:01",
-      "kind": "departure",
-      "remote": true,
-      "ts": 1786550469000
-    },
-    {
-      "studio": "509A",
-      "name": "Dana Hufe",
-      "time": "12:30",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786552244000
-    },
-    {
-      "studio": "509A",
-      "name": "Dana Hufe",
-      "time": "12:48",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786553283000
-    },
-    {
-      "studio": "509B",
-      "name": "Tamina Paris",
-      "time": "13:01",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786554100000
-    },
-    {
-      "studio": "509B",
-      "name": "Tamina Paris",
-      "time": "14:30",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786559449000
-    },
-    {
-      "studio": "509B",
-      "name": "Maggie Morrison",
-      "time": "14:45",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786560320000
-    },
-    {
-      "studio": "509A",
-      "name": "Kate Keenan",
-      "time": "17:00",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786568415000
-    },
-    {
-      "studio": "693",
-      "name": "Panel User",
-      "time": "17:55",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786571748000
-    },
-    {
-      "studio": "693",
-      "name": "Studio (remote)",
-      "time": "17:56",
-      "kind": "departure",
-      "remote": true,
-      "ts": 1786571760000
-    },
-    {
-      "studio": "693",
-      "name": "Angus Dirnbeck",
-      "time": "18:00",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786572041000
-    },
-    {
-      "studio": "527",
-      "name": "Ishfaaq Jookhun",
-      "time": "18:04",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786572265000
-    },
-    {
-      "studio": "509A",
-      "name": "Kate Keenan",
-      "time": "18:18",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786573117000
-    },
-    {
-      "studio": "509A",
       "name": "Francisco Delgado",
+      "remote": false,
+      "studio": "509A",
       "time": "18:20",
+      "ts": 1786573208000,
+      "when": "Wed 18:20"
+    },
+    "509B": {
       "kind": "arrival",
-      "remote": false,
-      "ts": 1786573208000
-    },
-    {
-      "studio": "901",
-      "name": "Anita Pandey",
-      "time": "18:22",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1786573357000
-    },
-    {
-      "studio": "527",
-      "name": "Ishfaaq Jookhun",
-      "time": "19:02",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786575751000
-    },
-    {
-      "studio": "509B",
-      "name": "Maggie Morrison",
-      "time": "19:52",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786578761000
-    },
-    {
-      "studio": "509B",
       "name": "Tess English",
-      "time": "19:54",
-      "kind": "arrival",
       "remote": false,
-      "ts": 1786578845000
-    }
-  ],
-  "panelPrior": {},
-  "alarmAlerts": [
-    {
+      "studio": "509B",
+      "time": "19:54",
+      "ts": 1786578845000,
+      "when": "Wed 19:54"
+    },
+    "527": {
+      "kind": "departure",
+      "name": "Ishfaaq Jookhun",
+      "remote": false,
+      "studio": "527",
+      "time": "19:02",
+      "ts": 1786575752000,
+      "when": "Wed 19:02"
+    },
+    "693": {
+      "kind": "arrival",
+      "name": "Angus Dirnbeck",
+      "remote": false,
+      "studio": "693",
+      "time": "18:00",
+      "ts": 1786572041000,
+      "when": "Wed 18:00"
+    },
+    "901": {
+      "kind": "arrival",
+      "name": "Anita Pandey",
+      "remote": false,
       "studio": "901",
-      "time": "12:00",
-      "stage": "BYPASS",
-      "detail": "Sensor bypass",
-      "ts": 1786550447000
-    },
-    {
-      "studio": "509B",
-      "time": "14:31",
-      "stage": "BYPASS",
-      "detail": "Sensor bypass",
-      "ts": 1786559495000
-    },
-    {
-      "studio": "509B",
-      "time": "14:45",
-      "stage": "BYPASS",
-      "detail": "Sensor bypass",
-      "ts": 1786560320000
-    },
-    {
-      "studio": "693",
-      "time": "17:54",
-      "stage": "PENDING",
-      "ts": 1786571694000
-    },
-    {
-      "studio": "693",
-      "time": "17:55",
-      "stage": "ALARM",
-      "ts": 1786571709000
+      "time": "18:22",
+      "ts": 1786573357000,
+      "when": "Wed 18:22"
     }
-  ],
-  "armFallback": false,
+  },
+  "alarmAlerts": [],
+  "armFallback": true,
   "robots": [
     {
       "run": "The Custodian",
