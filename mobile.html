@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 5:30 PM ET",
-  "generatedAtISO": "2026-08-14T17:30:45-04:00",
+  "generatedAt": "Aug 14, 5:33 PM ET",
+  "generatedAtISO": "2026-08-14T17:33:36-04:00",
   "studios": [
     {
       "id": "509A",
@@ -276,7 +276,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "17:31",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -367,6 +367,12 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
+      "role": "Monitoring",
+      "start": 18.75,
+      "end": 19.25
+    },
+    {
+      "name": "Ela",
       "role": "FBS",
       "start": 18.75,
       "end": 19.25
@@ -380,12 +386,6 @@ const DATA = /*__DATA__*/{
     {
       "name": "Ela",
       "role": "Monitoring",
-      "start": 18.75,
-      "end": 19.25
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
       "start": 19.75,
       "end": 20.25
     },
@@ -397,7 +397,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 19.75,
       "end": 20.25
     },
@@ -582,19 +582,17 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1786737242000
+    },
+    {
+      "studio": "527",
+      "name": "Tanisha Chakma",
+      "time": "17:31",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786743110000
     }
   ],
-  "panelPrior": {
-    "527": {
-      "studio": "527",
-      "name": "Kateryna Zozulia",
-      "time": "22:28",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786674488000,
-      "when": "Thu 22:28"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [
     {
       "studio": "901",
@@ -770,7 +768,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T16:33:00-04:00"
+      "lastISO": "2026-08-14T17:33:00-04:00"
     },
     {
       "run": "The Weatherman",
