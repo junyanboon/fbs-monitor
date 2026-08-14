@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 13, 2026",
-  "generatedAt": "Aug 13, 10:00 PM ET",
-  "generatedAtISO": "2026-08-13T22:00:46-04:00",
+  "generatedAt": "Aug 13, 10:08 PM ET",
+  "generatedAtISO": "2026-08-13T22:08:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -574,7 +574,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "18:24",
-      "departed": null,
+      "departed": "22:07",
       "wrong_studio": null,
       "no_code": false,
       "start": 18.5,
@@ -590,6 +590,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509A · 20:56"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 22:08"
     },
     {
       "level": "warn",
@@ -740,6 +744,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786670737000
+    },
+    {
+      "studio": "901",
+      "name": "Dana Brookman",
+      "time": "22:07",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786673240000
     }
   ],
   "panelPrior": {},
@@ -757,6 +769,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786668998000
+    },
+    {
+      "studio": "901",
+      "time": "22:08",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786673300000
     }
   ],
   "armFallback": false,
