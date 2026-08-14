@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 3:00 PM ET",
-  "generatedAtISO": "2026-08-14T15:00:50-04:00",
+  "generatedAt": "Aug 14, 3:15 PM ET",
+  "generatedAtISO": "2026-08-14T15:15:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -434,7 +434,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "13:46",
-      "departed": null,
+      "departed": "15:09",
       "wrong_studio": null,
       "no_code": false,
       "start": 14.0,
@@ -504,7 +504,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "12:35",
-      "departed": null,
+      "departed": "15:13",
       "wrong_studio": null,
       "no_code": false,
       "start": 12.5,
@@ -566,13 +566,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
@@ -654,6 +654,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 509A · 15:14"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 15:14"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -721,6 +729,38 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786729583000
+    },
+    {
+      "studio": "509B",
+      "name": "Shaka Lee",
+      "time": "15:09",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786734564000
+    },
+    {
+      "studio": "693",
+      "name": "Adalia Knight",
+      "time": "15:13",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786734825000
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "15:14",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786734885000
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "15:14",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786734898000
     }
   ],
   "panelPrior": {
@@ -766,6 +806,20 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786728998000
+    },
+    {
+      "studio": "509A",
+      "time": "15:14",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786734885000
+    },
+    {
+      "studio": "693",
+      "time": "15:14",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786734875000
     }
   ],
   "armFallback": false,
@@ -858,7 +912,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T14:03:00-04:00"
+      "lastISO": "2026-08-14T15:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
