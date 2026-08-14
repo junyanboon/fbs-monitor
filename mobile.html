@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 6:48 PM ET",
-  "generatedAtISO": "2026-08-14T18:48:29-04:00",
+  "generatedAt": "Aug 14, 7:00 PM ET",
+  "generatedAtISO": "2026-08-14T19:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -318,7 +318,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "18:56",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -332,7 +332,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "18:54",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -373,13 +373,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
@@ -464,6 +464,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 15:53"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 901 · 18:52"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 901 · 18:53"
     },
     {
       "level": "warn",
@@ -606,6 +614,22 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786746788000
+    },
+    {
+      "studio": "901",
+      "name": "Shiela",
+      "time": "18:54",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786748073000
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "18:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786748206000
     }
   ],
   "panelPrior": {},
@@ -662,6 +686,18 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786737233000
+    },
+    {
+      "studio": "901",
+      "time": "18:52",
+      "stage": "PENDING",
+      "ts": 1786747964000
+    },
+    {
+      "studio": "901",
+      "time": "18:53",
+      "stage": "ALARM",
+      "ts": 1786747994000
     }
   ],
   "armFallback": false,
@@ -744,7 +780,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T18:32:00-04:00"
+      "lastISO": "2026-08-14T18:58:00-04:00"
     },
     {
       "run": "The Sentinel",
