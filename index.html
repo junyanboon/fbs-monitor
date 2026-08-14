@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 10:47 AM ET",
-  "generatedAtISO": "2026-08-14T10:47:23-04:00",
+  "generatedAt": "Aug 14, 11:00 AM ET",
+  "generatedAtISO": "2026-08-14T11:00:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -641,6 +641,16 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-14T10:05:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -669,16 +679,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-14T11:05:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-14T10:05:00-04:00"
     },
     {
       "run": "The Doorman",
