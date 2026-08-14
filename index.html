@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 13, 2026",
-  "generatedAt": "Aug 13, 8:45 PM ET",
-  "generatedAtISO": "2026-08-13T20:45:39-04:00",
+  "generatedAt": "Aug 13, 9:00 PM ET",
+  "generatedAtISO": "2026-08-13T21:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -420,7 +420,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "18:19",
-      "departed": null,
+      "departed": "20:45",
       "wrong_studio": null,
       "no_code": false,
       "start": 18.5,
@@ -433,7 +433,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "20:56",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -585,6 +585,14 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
+      "text": "Alarm bypass · 509A · 20:46"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 20:56"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -708,10 +716,41 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786663185000
+    },
+    {
+      "studio": "509A",
+      "name": "Anita Pandey",
+      "time": "20:45",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786668349000
+    },
+    {
+      "studio": "509A",
+      "name": "David Garzon",
+      "time": "20:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786668998000
     }
   ],
   "panelPrior": {},
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "509A",
+      "time": "20:46",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786668397000
+    },
+    {
+      "studio": "509A",
+      "time": "20:56",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786668998000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
@@ -792,7 +831,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-13T20:33:00-04:00"
+      "lastISO": "2026-08-13T21:00:00-04:00"
     },
     {
       "run": "The Sentinel",
