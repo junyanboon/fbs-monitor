@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 1:30 PM ET",
-  "generatedAtISO": "2026-08-14T13:30:47-04:00",
+  "generatedAt": "Aug 14, 1:40 PM ET",
+  "generatedAtISO": "2026-08-14T13:40:36-04:00",
   "studios": [
     {
       "id": "509A",
@@ -207,7 +207,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "11:11",
-      "departed": "11:11",
+      "departed": "13:35",
       "wrong_studio": null,
       "no_code": false,
       "start": 11.25,
@@ -387,6 +387,10 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 509A · 13:36"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -438,6 +442,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786725347000
+    },
+    {
+      "studio": "509A",
+      "name": "Manuel Hernandez",
+      "time": "13:35",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786728951000
     }
   ],
   "panelPrior": {
@@ -485,6 +497,13 @@ const DATA = /*__DATA__*/{
       "time": "11:19",
       "stage": "ALARM",
       "ts": 1786720748000
+    },
+    {
+      "studio": "509A",
+      "time": "13:36",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786728998000
     }
   ],
   "armFallback": false,
@@ -607,7 +626,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T12:46:00-04:00"
+      "lastISO": "2026-08-14T13:33:00-04:00"
     },
     {
       "run": "The Weatherman",
