@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 11:15 AM ET",
-  "generatedAtISO": "2026-08-14T11:15:44-04:00",
+  "generatedAt": "Aug 14, 11:30 AM ET",
+  "generatedAtISO": "2026-08-14T11:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -578,6 +578,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm pending · 509A · 11:18"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 509A · 11:19"
+    },
+    {
+      "level": "warn",
       "text": "1 robot overdue — see Robots tab"
     }
   ],
@@ -613,6 +621,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786720265000
+    },
+    {
+      "studio": "509A",
+      "name": "Panel User",
+      "time": "11:19",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786720771000
     }
   ],
   "panelPrior": {
@@ -657,6 +673,18 @@ const DATA = /*__DATA__*/{
       "time": "11:10",
       "stage": "PENDING",
       "ts": 1786720218000
+    },
+    {
+      "studio": "509A",
+      "time": "11:18",
+      "stage": "PENDING",
+      "ts": 1786720703000
+    },
+    {
+      "studio": "509A",
+      "time": "11:19",
+      "stage": "ALARM",
+      "ts": 1786720748000
     }
   ],
   "armFallback": false,
@@ -789,7 +817,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T10:15:00-04:00"
+      "lastISO": "2026-08-14T11:15:00-04:00"
     },
     {
       "run": "The Closer",
