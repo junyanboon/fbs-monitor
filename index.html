@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 11:00 AM ET",
-  "generatedAtISO": "2026-08-14T11:00:51-04:00",
+  "generatedAt": "Aug 14, 11:15 AM ET",
+  "generatedAtISO": "2026-08-14T11:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -405,8 +405,8 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:11",
+      "departed": "11:11",
       "wrong_studio": null,
       "no_code": false,
       "start": 12.0,
@@ -571,6 +571,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 901 · 09:50"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 509A · 11:10"
+    },
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -589,18 +597,25 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1786715455000
+    },
+    {
+      "studio": "509A",
+      "name": "Shiela",
+      "time": "11:11",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786720261000
+    },
+    {
+      "studio": "509A",
+      "name": "Shiela",
+      "time": "11:11",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786720265000
     }
   ],
   "panelPrior": {
-    "509A": {
-      "studio": "509A",
-      "name": "David Garzon",
-      "time": "22:50",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786675817000,
-      "when": "Thu 22:50"
-    },
     "509B": {
       "studio": "509B",
       "name": "Tess English",
@@ -636,6 +651,12 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786715426000
+    },
+    {
+      "studio": "509A",
+      "time": "11:10",
+      "stage": "PENDING",
+      "ts": 1786720218000
     }
   ],
   "armFallback": false,
@@ -646,8 +667,8 @@ const DATA = /*__DATA__*/{
       "expected": "09:35 + 02:35 (cloud)",
       "produces": "Housekeeping: feedback · decay · backfill · self-heal",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-14T10:05:00-04:00"
     },
     {
@@ -718,7 +739,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T10:50:00-04:00"
+      "lastISO": "2026-08-14T11:12:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -728,7 +749,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T10:09:00-04:00"
+      "lastISO": "2026-08-14T11:08:00-04:00"
     },
     {
       "run": "The Timekeeper",
