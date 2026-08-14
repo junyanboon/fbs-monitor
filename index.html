@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 3:45 PM ET",
-  "generatedAtISO": "2026-08-14T15:45:48-04:00",
+  "generatedAt": "Aug 14, 4:00 PM ET",
+  "generatedAtISO": "2026-08-14T16:00:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -590,13 +590,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 19.75,
       "end": 20.25
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 19.75,
       "end": 20.25
     },
@@ -659,6 +659,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 15:14"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 15:53"
     },
     {
       "level": "warn",
@@ -761,6 +765,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1786734898000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "15:53",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786737233000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "15:54",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786737242000
     }
   ],
   "panelPrior": {
@@ -820,6 +840,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786734875000
+    },
+    {
+      "studio": "693",
+      "time": "15:53",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786737233000
     }
   ],
   "armFallback": false,
@@ -902,7 +929,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T15:24:00-04:00"
+      "lastISO": "2026-08-14T15:56:00-04:00"
     },
     {
       "run": "The Sentinel",
