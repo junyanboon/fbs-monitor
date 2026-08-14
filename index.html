@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 6:18 PM ET",
-  "generatedAtISO": "2026-08-14T18:18:35-04:00",
+  "generatedAt": "Aug 14, 6:30 PM ET",
+  "generatedAtISO": "2026-08-14T18:30:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -419,7 +419,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "18:26",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -566,25 +566,25 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
+      "role": "FBS",
+      "start": 18.75,
+      "end": 19.25
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 18.75,
+      "end": 19.25
+    },
+    {
+      "name": "Ela",
       "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "FBS",
-      "start": 18.75,
-      "end": 19.25
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
-      "start": 18.75,
-      "end": 19.25
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 19.75,
       "end": 20.25
     },
@@ -596,7 +596,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 19.75,
       "end": 20.25
     },
@@ -666,7 +666,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -789,6 +789,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786743110000
+    },
+    {
+      "studio": "509A",
+      "name": "Manuel Hernandez",
+      "time": "18:26",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786746367000
     }
   ],
   "panelPrior": {},
@@ -850,16 +858,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-14T14:58:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "09:35 + 02:35 (cloud)",
@@ -900,6 +898,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-14T06:08:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-14T18:55:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "08:00 (cloud)",
@@ -927,7 +935,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T17:58:00-04:00"
+      "lastISO": "2026-08-14T18:32:00-04:00"
     },
     {
       "run": "The Sentinel",
