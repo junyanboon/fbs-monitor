@@ -169,8 +169,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
-  "generatedAt": "Aug 15, 3:30 PM ET",
-  "generatedAtISO": "2026-08-15T15:30:44-04:00",
+  "generatedAt": "Aug 15, 3:38 PM ET",
+  "generatedAtISO": "2026-08-15T15:38:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -332,7 +332,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "15:35",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -409,6 +409,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509A · 13:45"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 15:35"
     },
     {
       "level": "warn",
@@ -535,6 +539,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786821510000
+    },
+    {
+      "studio": "693",
+      "name": "Himanshi Mehta",
+      "time": "15:35",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786822537000
     }
   ],
   "panelPrior": {},
@@ -559,6 +571,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786815932000
+    },
+    {
+      "studio": "693",
+      "time": "15:35",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786822540000
     }
   ],
   "armFallback": false,
@@ -681,7 +700,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-15T14:32:00-04:00"
+      "lastISO": "2026-08-15T15:33:00-04:00"
     },
     {
       "run": "The Weatherman",
