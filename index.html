@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
-  "generatedAt": "Aug 15, 1:39 PM ET",
-  "generatedAtISO": "2026-08-15T13:39:01-04:00",
+  "generatedAt": "Aug 15, 1:45 PM ET",
+  "generatedAtISO": "2026-08-15T13:45:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -433,7 +433,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": false,
       "hta": "Unsent",
-      "arrived": null,
+      "arrived": "13:45",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -574,7 +574,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "11:05",
-      "departed": null,
+      "departed": "13:44",
       "wrong_studio": null,
       "no_code": false,
       "start": 11.25,
@@ -604,6 +604,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509A · 11:03"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 13:45"
     },
     {
       "level": "warn",
@@ -690,6 +694,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786814131000
+    },
+    {
+      "studio": "901",
+      "name": "Laura Flores",
+      "time": "13:44",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786815862000
+    },
+    {
+      "studio": "509A",
+      "name": "Julia S",
+      "time": "13:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786815931000
     }
   ],
   "panelPrior": {},
@@ -707,6 +727,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786806216000
+    },
+    {
+      "studio": "509A",
+      "time": "13:45",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786815932000
     }
   ],
   "armFallback": false,
