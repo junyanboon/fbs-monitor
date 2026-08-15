@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 9:45 PM ET",
-  "generatedAtISO": "2026-08-14T21:45:39-04:00",
+  "generatedAt": "Aug 14, 10:00 PM ET",
+  "generatedAtISO": "2026-08-14T22:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -580,13 +580,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
@@ -713,6 +713,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509A · 20:52"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 21:56"
     },
     {
       "level": "warn",
@@ -951,6 +955,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786758141000
+    },
+    {
+      "studio": "509A",
+      "name": "Shiela",
+      "time": "21:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786759017000
     }
   ],
   "panelPrior": {},
@@ -1068,6 +1080,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786755152000
+    },
+    {
+      "studio": "509A",
+      "time": "21:56",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786759018000
     }
   ],
   "armFallback": false,
@@ -1150,7 +1169,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T21:35:00-04:00"
+      "lastISO": "2026-08-14T21:55:00-04:00"
     },
     {
       "run": "The Sentinel",
