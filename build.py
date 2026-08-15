@@ -48,6 +48,9 @@ STUDIO_IDS = {s["id"] for s in STUDIOS}
 NOTION_DATA_SOURCE = "36475032-81c4-80d6-b18a-000b8d6f9421"
 # 🚥 Run Monitor DB (Staff Console) — robot heartbeat roster for the Robots tab.
 RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
+# 📊 Workflow Reports — one row per fleet run, rendered as the Reports tab.
+# Read title-only; see fetch_reports() for why bodies must stay off this board.
+WORKFLOW_REPORTS_DS = "469a877b-83fa-4387-ac97-94aa656481dd"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "template.html")
@@ -1148,6 +1151,48 @@ def robot_status(r, now):
     return ("watch", "Due") if age_min > 0.75 * stale else ("ok", "On time")
 
 
+def fetch_reports(token, now, days=3, limit=40):
+    """Recent 📊 Workflow Reports rows — the Reports tab.
+
+    Deliberately title-only. Every fleet job already writes its headline into
+    the `Run` title (`🔑 Code Mirror — Fri Aug 15 · checked 696 · matched 162 …`),
+    so one query renders the whole tab and no row's body is ever fetched. That
+    is not just a speed choice: **this board is public** (rule 5). Bodies carry
+    renter names and, on some runs, specifics that have no business on a public
+    page. Titles are written to be safe to publish; bodies are not. Do not
+    "improve" this by pulling body text in.
+    """
+    since = (now - timedelta(days=days)).isoformat()  # already Toronto-aware
+    rows = _notion_query(token, WORKFLOW_REPORTS_DS, {
+        "filter": {"timestamp": "created_time", "created_time": {"on_or_after": since}},
+        "sorts": [{"timestamp": "created_time", "direction": "descending"}],
+        "page_size": 100,
+    })
+    out = []
+    for row in rows:
+        p = row.get("properties", {})
+        title = _prop_text(p.get("Run")) or "(unnamed run)"
+        status = _prop_text(p.get("Status")) or ""
+        when = _parse_notion_ts(_prop_text(p.get("Completed At"))) \
+            or _parse_notion_ts(row.get("created_time"))
+        out.append({
+            "run": title,
+            "status": status,
+            # crit/watch/ok mirror the Robots tab's classes so one stylesheet
+            # covers both; an abandoned run must not read the same as a clean one.
+            "level": {"Ended Early": "crit", "Skipped Steps": "watch",
+                      "In Progress": "watch"}.get(status, "ok"),
+            "when": when.strftime("%a %-I:%M %p") if when else "",
+            "whenISO": when.replace(microsecond=0).isoformat() if when else None,
+        })
+    # Sort on the time actually SHOWN, not on created_time. A rolling daily
+    # report is created once in the morning and its Completed At advances all
+    # day, so ordering by creation renders the column out of sequence
+    # (10:45, 11:05, 11:58, 11:33 …) and the tab reads as unsorted.
+    out.sort(key=lambda r: r["whenISO"] or "", reverse=True)
+    return out[:limit]
+
+
 def fetch_robots(token, now):
     rows = _notion_query(token, RUN_MONITOR_DS, {"page_size": 100})
     out = []
@@ -1269,6 +1314,15 @@ def build_data(now):
         robots_note = "Run Monitor unreadable — share the 🚥 Run Monitor DB with the integration."
         emit_fallback_note(f"Run Monitor fetch failed ({e}); Robots tab shows a notice.")
 
+    # Reports tab — same soft posture: an unreadable Workflow Reports DB shows a
+    # notice, it never takes the board down.
+    reports, reports_note = None, None
+    try:
+        reports = fetch_reports(token, now)
+    except Exception as e:  # noqa: BLE001
+        reports_note = "Workflow Reports unreadable — share the 📊 Workflow Reports DB with the integration."
+        emit_fallback_note(f"Workflow Reports fetch failed ({e}); Reports tab shows a notice.")
+
     attention = []
     for a in alarm_alerts:
         lvl = "crit" if a["stage"] == "ALARM" else "warn"
@@ -1293,6 +1347,8 @@ def build_data(now):
         "armFallback": used_fallback,
         "robots": robots,
         "robotsNote": robots_note,
+        "reports": reports,
+        "reportsNote": reports_note,
     }
     return data, used_fallback
 

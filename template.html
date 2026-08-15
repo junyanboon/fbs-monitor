@@ -335,6 +335,7 @@
     <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
+    <button class="tab" data-tab="reports" role="tab" aria-selected="false">Reports</button>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
@@ -351,6 +352,9 @@
   </section>
   <section id="tab-robots" hidden>
     <div id="robotpanel"></div>
+  </section>
+  <section id="tab-reports" hidden>
+    <div id="reportpanel"></div>
   </section>
 </main>
 
@@ -385,7 +389,7 @@ document.getElementById('tabs').addEventListener('click', ev => {
     t.classList.toggle('on', on);
     t.setAttribute('aria-selected', on);
   });
-  for(const k of ['studios','board','staff','alarms','robots'])
+  for(const k of ['studios','board','staff','alarms','robots','reports'])
     document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
   // Opening the board: bring the now-line into view (Fresha/Square pattern —
   // land the user on "now", not on 09:00).
@@ -450,6 +454,12 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
   paintAge(); setInterval(paintAge, 30000);
   setInterval(() => refresh(true), 30000);     // silent version.json poll every 30 s
 })();
+
+/* Offline copy. The worker is network-first for this page and never caches
+   version.json, so registering it cannot pin the board to an old edition — it
+   only decides what you see when the network is gone. See sw.js. */
+if('serviceWorker' in navigator)
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
 
 const E = DATA.events;
 const hm = t => `${String(Math.floor(t)%24).padStart(2,"0")}:${String(Math.round((t%1)*60)).padStart(2,"0")}`;
@@ -837,7 +847,35 @@ function renderRobots(){
   $('#robotpanel').innerHTML = html;
 }
 
+/* ── Reports tab ─────────────────────────────────────────────────────────────
+   What the fleet's runs reported, newest first. The Robots tab answers "did it
+   run?"; this answers "what did it say?" — the two are not the same question,
+   and a job can check in on time having found something wrong.
+
+   Titles only, by design. build.py never fetches a report's body, so nothing
+   here can leak a renter's details onto a public page — see fetch_reports(). */
+function renderReports(){
+  const R = DATA.reports;
+  if(!R){
+    $('#reportpanel').innerHTML = `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">Reports unavailable</span><span class="items"><span class="statusitem">${esc(DATA.reportsNote||"Workflow Reports could not be read this edition")}</span></span></div>`;
+    return;
+  }
+  const bad = R.filter(r=>r.level==="crit").length;
+  const head = bad ? `${bad} run${bad>1?"s":""} ended early` : `${R.length} run${R.length===1?"":"s"} in the last 3 days`;
+  let html = `<div class="statusbar ${bad?"crit":"ok"}" style="margin-top:16px"><span class="dot"></span>
+    <span class="head">${head}</span><span class="items"><span class="statusitem">Newest first · headline only — open the row in Notion for the detail</span></span></div>`;
+  const row = r => `<div class="robot">
+      <span class="nm">${esc(r.run)}</span>
+      <span class="chip ${r.level}">${esc(r.status||"—")}</span>
+      <span class="ago">${esc(r.when)}</span>
+    </div>`;
+  html += `<p class="lane-label">Recent runs</p><div class="panelwrap">` +
+    (R.length ? R.map(row).join("") : `<div class="robot">No runs filed in the last 3 days</div>`) + `</div>`;
+  $('#reportpanel').innerHTML = html;
+}
+
 const _renderBase = render;
-render = function(){ _renderBase(); renderAlarms(); renderRobots(); };
+render = function(){ _renderBase(); renderAlarms(); renderRobots(); renderReports(); };
 render(); setInterval(render, 30000);
 </script>

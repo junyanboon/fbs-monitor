@@ -12,8 +12,14 @@ Two static editions, rebuilt from the same DATA every ~15 min by GitHub Actions:
 **Edit the templates, never the built HTML** — the next build overwrites it.
 
 Sources: studio + staff calendars (secret ICS), the FBS AI Support board (Notion),
-ADT arm/disarm mail (Gmail API, label `Artist Care - ADT`), and the 🚥 Run Monitor
-DB (Notion) for the Robots tab.
+ADT arm/disarm mail (Gmail API, label `Artist Care - ADT`), the 🚥 Run Monitor
+DB (Notion) for the Robots tab, and 📊 Workflow Reports (Notion) for the Reports
+tab.
+
+`sw.js` is a service worker, registered by both editions, so the board stays
+readable when the connection drops — Junyan reads it from Brazil and on the
+move. It is **network-first for the pages and never caches `version.json`**;
+both properties are load-bearing and the reasoning is in the file's own header.
 
 Three JSON files ship beside the pages. They are a published interface, not
 build scratch — something else reads each one, so a field rename is a breaking
@@ -193,6 +199,32 @@ Junyan reads these from Brazil. Both pages derive "now" from
 `Intl.DateTimeFormat` parts in `America/Toronto` — never the device clock, never
 `toLocaleString()` parsing (engine-dependent). The mobile clock is labelled
 TORONTO. `America/Toronto` (not a fixed EST offset) so DST follows automatically.
+
+### 13. The Reports tab reads titles, never bodies
+
+`fetch_reports()` pulls the `Run` title out of 📊 Workflow Reports and nothing
+else. That is a safety rule wearing a performance rule's clothes.
+
+Report **titles** are written to be published — each fleet job puts its headline
+there (`🔑 Code Mirror — Sat Aug 15 · checked 696 · matched 162 · corrected 0 ·
+needs a human 0`). Report **bodies** are not: they carry renter names, booking
+specifics, and whatever a run happened to find. **This board is a public GitHub
+Pages site** (see rule 5). Pulling body text in to "add detail" would publish all
+of it. Open the row in Notion for the detail — that is what the tab's own
+subtitle tells the reader to do.
+
+It also means the whole tab is one query with no per-row fetch, which is why it
+adds nothing measurable to a 15-minute rebuild.
+
+### 14. Robots and Reports answer different questions
+
+The Robots tab asks **did it run?** — heartbeats against the 🚥 Run Monitor
+roster. The Reports tab asks **what did it say?**
+
+A job can check in perfectly on time having found something badly wrong. Before
+the Reports tab existed, that answer lived only in Notion, and the board that is
+actually open when a call comes in showed a green robot. Do not merge the two
+tabs on the grounds that they both list runs.
 
 ---
 

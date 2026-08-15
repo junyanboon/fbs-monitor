@@ -154,12 +154,14 @@
 <section id="tab-alarms" hidden><main id="alarms"></main></section>
 <section id="tab-staff" hidden><main id="staff"></main></section>
 <section id="tab-robots" hidden><main id="robots"></main></section>
+<section id="tab-reports" hidden><main id="reports"></main></section>
 
 <nav id="nav">
   <button class="on" data-t="today"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Today</button>
   <button data-t="alarms"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3.5l1.7 3a1 1 0 0 1-.9 1.5H5.2a1 1 0 0 1-.9-1.5l1.7-3V9a6 6 0 0 1 6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Alarms</button>
   <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Staff</button>
   <button data-t="robots"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/><path d="M9.5 16.5h5"/></svg>Robots</button>
+  <button data-t="reports"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Reports</button>
 </nav>
 
 <script>
@@ -202,7 +204,7 @@ let FILTER="all";
 document.getElementById('nav').addEventListener('click',ev=>{
   const b=ev.target.closest('button');if(!b)return;
   document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
-  for(const k of['today','alarms','staff','robots'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
+  for(const k of['today','alarms','staff','robots','reports'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
 });
 document.getElementById('filters').addEventListener('click',ev=>{
   const c=ev.target.closest('.fchip');if(!c)return;FILTER=c.dataset.f;render();
@@ -432,6 +434,31 @@ function cdTxt(nr){
       (liveR.map(robotRow).join("")||`<div class="quiet">Nothing watched.</div>`);
   }
 
+  /* reports — what the fleet's runs SAID. Robots answers "did it run?"; a job
+     can check in perfectly on time having found something wrong. Headline only:
+     build.py never reads a report's body, so nothing private reaches this
+     public page (see fetch_reports). */
+  const RP=DATA.reports;
+  if(!RP){$('#reports').innerHTML=`<div class="quiet">${esc(DATA.reportsNote||"Workflow Reports could not be read this edition")}</div>`;}
+  else{
+    const badRuns=RP.filter(r=>r.level==="crit").length;
+    $('#reports').innerHTML=
+      `<div class="grp">Last 3 days${badRuns?` — <span style="color:var(--crit)">${badRuns} ended early</span>`:""}</div>`+
+      /* The headline gets its own full-width line and is allowed to WRAP. The
+         .row grid truncates its name column, which is fine for a booking (the
+         renter's name is the whole content) and wrong here — a run's title
+         carries the findings, e.g. "🔑 Code Mirror — Fri Aug 15 · checked 696 ·
+         matched 162 · corrected 0 · needs a human 0". Truncating that shows the
+         name of the job and hides its answer. */
+      (RP.map(r=>`<div class="row" style="display:block;${r.level==="crit"?"border-color:var(--crit)":""}">
+        <div class="nm" style="white-space:normal;overflow:visible;line-height:1.35">${esc(r.run)}</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+          <span class="tm" style="font-size:12px">${esc(r.when)}</span>
+          <span class="chip ${r.level}">${esc(r.status||"—")}</span>
+        </div>
+      </div>`).join("")||`<div class="quiet">No runs filed in the last 3 days.</div>`);
+  }
+
   /* freshness */
   const gen=DATA.generatedAtISO?new Date(DATA.generatedAtISO):null;
   if(gen){const age=Math.round((Date.now()-gen.getTime())/60000);
@@ -447,6 +474,12 @@ setInterval(render,30000);
    using ~13× less data than the old 5-minute page poll — on a phone abroad that
    difference is the whole point. Wired to the header stamp button,
    pull-to-refresh, the 30 s poll, and app-resume. */
+/* Offline copy. The worker is network-first for this page and never caches
+   version.json, so registering it cannot pin the app to an old edition — it only
+   decides what you see when the network is gone. See sw.js. */
+if('serviceWorker' in navigator)
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+
 let checking=false;
 function checkEdition(manual){
   if(checking)return;checking=true;
