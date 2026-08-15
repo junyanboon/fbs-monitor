@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
-  "generatedAt": "Aug 15, 11:01 AM ET",
-  "generatedAtISO": "2026-08-15T11:01:32-04:00",
+  "generatedAt": "Aug 15, 11:15 AM ET",
+  "generatedAtISO": "2026-08-15T11:15:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -406,7 +406,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "09:26",
-      "departed": null,
+      "departed": "11:02",
       "wrong_studio": null,
       "no_code": false,
       "start": 9.5,
@@ -447,7 +447,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "11:05",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -518,7 +518,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "arrived": "08:58",
-      "departed": null,
+      "departed": "11:02",
       "wrong_studio": null,
       "no_code": false,
       "start": 9.0,
@@ -573,7 +573,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "11:05",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -596,7 +596,20 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 11:02"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 11:03"
+    },
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "901",
@@ -629,20 +642,57 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786801026000
-    }
-  ],
-  "panelPrior": {
-    "509B": {
-      "studio": "509B",
-      "name": "Isabella Alves",
-      "time": "21:42",
+    },
+    {
+      "studio": "693",
+      "name": "Jessica T",
+      "time": "11:02",
       "kind": "departure",
       "remote": false,
-      "ts": 1786758141000,
-      "when": "Fri 21:42"
+      "ts": 1786806121000
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "11:02",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786806167000
+    },
+    {
+      "studio": "901",
+      "name": "Laura Flores",
+      "time": "11:05",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786806300000
+    },
+    {
+      "studio": "509B",
+      "name": "Jake Maresca",
+      "time": "11:05",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786806304000
     }
-  },
-  "alarmAlerts": [],
+  ],
+  "panelPrior": {},
+  "alarmAlerts": [
+    {
+      "studio": "693",
+      "time": "11:02",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786806167000
+    },
+    {
+      "studio": "509A",
+      "time": "11:03",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786806216000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
@@ -651,8 +701,8 @@ const DATA = /*__DATA__*/{
       "expected": "09:35 + 02:35 (cloud)",
       "produces": "Housekeeping: feedback · decay · backfill · self-heal",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-15T10:15:00-04:00"
     },
     {
@@ -733,7 +783,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-15T10:03:00-04:00"
+      "lastISO": "2026-08-15T11:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
