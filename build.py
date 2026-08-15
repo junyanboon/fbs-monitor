@@ -186,9 +186,20 @@ def ics_map_from_env():
     return m
 
 
+def _bust_cache(url):
+    """Skedda's per-space ICS feeds sit behind caches that can serve a booking's
+    OLD space for a while after it is moved — the board then shows the renter in
+    two studios at once (2026-08-15: Jessica T. Peerspace on 509B and 693).
+    Studio identity here comes only from which feed an event arrived in, so a
+    stale feed is a wrong studio, not just a late one. Ask for a fresh copy."""
+    stamp = int(datetime.now(TZ).timestamp())
+    return f"{url}{'&' if '?' in url else '?'}_cb={stamp}"
+
+
 def fetch_ics(url, win_start, win_end):
     try:
-        r = requests.get(url, timeout=30)
+        r = requests.get(_bust_cache(url), timeout=30,
+                         headers={"Cache-Control": "no-cache", "Pragma": "no-cache"})
         r.raise_for_status()
         cal = icalendar.Calendar.from_ical(r.text)
         occ = recurring_ical_events.of(cal).between(win_start, win_end)
@@ -318,7 +329,31 @@ def merge_events(events):
         if cur:
             merged.append(cur)
     merged.sort(key=lambda x: (x["studio"], x["start"]))
-    return _dedupe_same_slot(merged)
+    return _mark_cross_studio_dupes(_dedupe_same_slot(merged))
+
+
+def _mark_cross_studio_dupes(events):
+    """One renter cannot be in two studios at once — when that shows on the
+    board, one of the rows is a ghost of a moved booking still living in the old
+    studio's ICS feed (see _bust_cache). Neither row can be deleted here: the
+    feeds are the only source of studio identity, so the builder cannot tell
+    which one Skedda now considers real.
+
+    So mark, never drop. Each row learns its siblings' studios; the page renders
+    that instead of a red 'no arrival' on the ghost. The alert stays on screen
+    and stays counted — it just stops claiming a no-show that isn't one."""
+    for i, e in enumerate(events):
+        if e["kind"] != "booking" or not e.get("who"):
+            continue
+        for o in events[i + 1:]:
+            if (o["kind"] != "booking" or o["studio"] == e["studio"]
+                    or not o.get("who")
+                    or not _same_renter(e["who"], o["who"])):
+                continue
+            if e["start"] < o["end"] - EPS and o["start"] < e["end"] - EPS:
+                e.setdefault("dup_studios", []).append(o["studio"])
+                o.setdefault("dup_studios", []).append(e["studio"])
+    return events
 
 
 def _dedupe_same_slot(events):
@@ -385,6 +420,54 @@ def _selftest_dedupe():
         event("509A", "Bob", 18.0, 20.0),
     ])
     assert len(different_studios) == 2
+
+    # A moved Peerspace booking still alive in the old studio's feed: two rows,
+    # each pointing at the other. Both survive — the page shows the conflict.
+    moved = _mark_cross_studio_dupes([
+        event("509B", "Peerspace Booking, Jessica T.", 9.0, 11.0),
+        event("693", "Jessica T. Peerspace", 9.0, 11.0),
+    ])
+    assert len(moved) == 2
+    assert moved[0]["dup_studios"] == ["693"]
+    assert moved[1]["dup_studios"] == ["509B"]
+
+    # One shared first name is not a person match — a real no-show keeps its red
+    # flag.
+    namesake = _mark_cross_studio_dupes([
+        event("509B", "Jessica Tran", 9.0, 11.0),
+        event("693", "Jessica Okonkwo", 9.0, 11.0),
+    ])
+    assert not any(e.get("dup_studios") for e in namesake)
+
+    # Same renter, two studios, no overlap — back-to-back rooms are legal.
+    sequential = _mark_cross_studio_dupes([
+        event("509B", "Jessica Tran", 9.0, 11.0),
+        event("693", "Jessica Tran", 11.0, 13.0),
+    ])
+    assert not any(e.get("dup_studios") for e in sequential)
+
+
+GENERIC_TITLE_TOKENS = {
+    "peerspace", "booking", "bookings", "giggster", "splacer", "event", "fbs",
+    "studio", "viewing", "rehearsal", "class", "session", "the", "and",
+}
+
+
+def _same_renter(a, b):
+    """Cross-studio person match. _renter_key is positional — it takes the first
+    two tokens — so it cannot link 'Peerspace Booking, Jessica T.' (the synced
+    title) to 'Jessica T. Peerspace' (the manual one) even though both name the
+    same person. Compare token SETS instead, minus the platform/activity words
+    every such title carries.
+
+    Two shared name tokens are required, not one: a lone shared first name would
+    quietly recast a real no-show by another Jessica as a moved booking, and a
+    missed no-show costs more than a missed ghost."""
+    def toks(who):
+        name = re.split(r"\s+—\s+", who or "")[0]
+        return {t for t in re.findall(r"[a-z]+", name.lower())
+                if t not in GENERIC_TITLE_TOKENS}
+    return len(toks(a) & toks(b)) >= 2
 
 
 def _renter_key(who):
@@ -1142,6 +1225,7 @@ def build_data(now):
         "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
         "arrived": e.get("arrived"), "departed": e.get("departed"),
         "wrong_studio": e.get("wrong_studio"),
+        "dup_studios": e.get("dup_studios"),
         # Boolean only — see parse_notion(). The code never leaves the builder.
         "no_code": bool(e.get("no_code")),
         "start": round(e["start"], 4), "end": round(e["end"], 4),
