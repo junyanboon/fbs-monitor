@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 8:45 PM ET",
-  "generatedAtISO": "2026-08-14T20:45:41-04:00",
+  "generatedAt": "Aug 14, 9:00 PM ET",
+  "generatedAtISO": "2026-08-14T21:00:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -434,7 +434,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "arrived": "20:22",
-      "departed": "20:29",
+      "departed": "20:51",
       "wrong_studio": null,
       "no_code": false,
       "start": 20.25,
@@ -503,12 +503,12 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "20:59",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
-      "start": 20.5,
-      "end": 23.5
+      "start": 21.0,
+      "end": 24.0
     },
     {
       "studio": "693",
@@ -546,7 +546,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "18:54",
-      "departed": null,
+      "departed": "20:58",
       "wrong_studio": null,
       "no_code": false,
       "start": 19.0,
@@ -586,12 +586,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "FBS",
-      "start": 18.75,
-      "end": 19.25
-    },
-    {
-      "name": "Ela",
       "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
@@ -599,12 +593,18 @@ const DATA = /*__DATA__*/{
     {
       "name": "Ela",
       "role": "FBS",
+      "start": 18.75,
+      "end": 19.25
+    },
+    {
+      "name": "Ela",
+      "role": "Monitoring",
       "start": 19.75,
       "end": 20.25
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 19.75,
       "end": 20.25
     },
@@ -709,6 +709,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509A · 20:29"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 20:52"
     },
     {
       "level": "warn",
@@ -915,6 +919,30 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786753743000
+    },
+    {
+      "studio": "509A",
+      "name": "Jessica T",
+      "time": "20:51",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786755104000
+    },
+    {
+      "studio": "901",
+      "name": "Aaron AquinoAnnobil",
+      "time": "20:58",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786755520000
+    },
+    {
+      "studio": "527",
+      "name": "Dante Paolo De Real",
+      "time": "20:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786755573000
     }
   ],
   "panelPrior": {},
@@ -1025,6 +1053,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786753740000
+    },
+    {
+      "studio": "509A",
+      "time": "20:52",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786755152000
     }
   ],
   "armFallback": false,
@@ -1107,7 +1142,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T20:28:00-04:00"
+      "lastISO": "2026-08-14T20:57:00-04:00"
     },
     {
       "run": "The Sentinel",
