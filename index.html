@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
-  "generatedAt": "Aug 15, 7:17 PM ET",
-  "generatedAtISO": "2026-08-15T19:17:04-04:00",
+  "generatedAt": "Aug 15, 7:28 PM ET",
+  "generatedAtISO": "2026-08-15T19:28:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -554,7 +554,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "693",
-      "who": "Himanshi Mehta — Himanshi Mehta — dance workshop",
+      "who": "Himanshi Mehta — Had issues with the sound system and lighting and needed to start late *additional time added at no charge*",
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
@@ -564,7 +564,7 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "no_code": false,
       "start": 15.5,
-      "end": 17.0
+      "end": 17.5
     },
     {
       "studio": "693",
@@ -573,7 +573,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "19:18",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -654,6 +654,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 15:35"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 693 · 19:18"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 693 · 19:18"
     },
     {
       "level": "warn",
@@ -812,6 +820,30 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786835751000
+    },
+    {
+      "studio": "693",
+      "name": "Panel User",
+      "time": "19:18",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786835938000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "19:20",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786836030000
+    },
+    {
+      "studio": "693",
+      "name": "Welton R",
+      "time": "19:26",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786836401000
     }
   ],
   "panelPrior": {},
@@ -843,6 +875,18 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786822540000
+    },
+    {
+      "studio": "693",
+      "time": "19:18",
+      "stage": "ALARM",
+      "ts": 1786835928000
+    },
+    {
+      "studio": "693",
+      "time": "19:18",
+      "stage": "PENDING",
+      "ts": 1786835912000
     }
   ],
   "armFallback": false,
@@ -925,7 +969,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-15T19:00:00-04:00"
+      "lastISO": "2026-08-15T19:30:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -975,7 +1019,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-15T18:15:00-04:00"
+      "lastISO": "2026-08-15T19:15:00-04:00"
     },
     {
       "run": "The Closer",
