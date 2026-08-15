@@ -369,7 +369,7 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
   "generatedAt": "Aug 15, 8:45 AM ET",
-  "generatedAtISO": "2026-08-15T08:45:23-04:00",
+  "generatedAtISO": "2026-08-15T08:45:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -559,7 +559,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "08:45",
       "departed": null,
       "wrong_studio": null,
       "no_code": false,
@@ -602,7 +602,16 @@ const DATA = /*__DATA__*/{
       "text": "1 robot overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "901",
+      "name": "Tufan Bhattarai",
+      "time": "08:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786797947000
+    }
+  ],
   "panelPrior": {
     "509A": {
       "studio": "509A",
@@ -639,15 +648,6 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1786752625000,
       "when": "Fri 20:10"
-    },
-    "901": {
-      "studio": "901",
-      "name": "Aaron AquinoAnnobil",
-      "time": "20:58",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786755520000,
-      "when": "Fri 20:58"
     }
   },
   "alarmAlerts": [],
