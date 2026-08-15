@@ -368,8 +368,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 14, 2026",
-  "generatedAt": "Aug 14, 8:00 PM ET",
-  "generatedAtISO": "2026-08-14T20:00:52-04:00",
+  "generatedAt": "Aug 14, 8:15 PM ET",
+  "generatedAtISO": "2026-08-14T20:15:38-04:00",
   "studios": [
     {
       "id": "509A",
@@ -420,7 +420,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "18:26",
-      "departed": null,
+      "departed": "20:08",
       "wrong_studio": null,
       "no_code": false,
       "start": 18.5,
@@ -532,7 +532,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "18:56",
-      "departed": null,
+      "departed": "20:10",
       "wrong_studio": null,
       "no_code": false,
       "start": 19.0,
@@ -580,25 +580,25 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
+      "role": "FBS",
+      "start": 18.75,
+      "end": 19.25
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 18.75,
+      "end": 19.25
+    },
+    {
+      "name": "Ela",
       "role": "Monitoring",
       "start": 18.75,
       "end": 19.25
     },
     {
       "name": "Ela",
-      "role": "FBS",
-      "start": 18.75,
-      "end": 19.25
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
-      "start": 18.75,
-      "end": 19.25
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 19.75,
       "end": 20.25
     },
@@ -610,7 +610,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Ela",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 19.75,
       "end": 20.25
     },
@@ -685,6 +685,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "text": "Alarm alarm · 901 · 18:53"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 20:09"
     },
     {
       "level": "warn",
@@ -851,6 +855,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786748500000
+    },
+    {
+      "studio": "509A",
+      "name": "Manuel Hernandez",
+      "time": "20:08",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786752514000
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "20:10",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786752625000
     }
   ],
   "panelPrior": {},
@@ -919,6 +939,13 @@ const DATA = /*__DATA__*/{
       "time": "18:53",
       "stage": "ALARM",
       "ts": 1786747994000
+    },
+    {
+      "studio": "509A",
+      "time": "20:09",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786752561000
     }
   ],
   "armFallback": false,
@@ -1011,7 +1038,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-14T19:03:00-04:00"
+      "lastISO": "2026-08-14T20:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
