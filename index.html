@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 7:45 PM ET",
-  "generatedAtISO": "2026-08-16T19:45:38-04:00",
+  "generatedAt": "Aug 16, 7:49 PM ET",
+  "generatedAtISO": "2026-08-16T19:49:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -521,8 +521,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "19:47",
+      "departed": "19:47",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -641,6 +641,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 18:02"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 527 · 19:47"
     }
   ],
   "armEvents": [
@@ -731,6 +735,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786921152000
+    },
+    {
+      "studio": "527",
+      "name": "Himanshi Mehta",
+      "time": "19:47",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786924031000
+    },
+    {
+      "studio": "527",
+      "name": "Himanshi Mehta",
+      "time": "19:47",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786924056000
     }
   ],
   "panelPrior": {},
@@ -760,6 +780,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786917779000
+    },
+    {
+      "studio": "527",
+      "time": "19:47",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786924031000
     }
   ],
   "armFallback": false,
