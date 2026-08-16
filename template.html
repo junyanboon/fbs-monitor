@@ -304,10 +304,24 @@
   .robot .ago{font-family:var(--mono);font-size:13px;color:var(--chalk-dim);white-space:nowrap;
               font-variant-numeric:tabular-nums;text-align:right}
   .robot.dim{opacity:.55}
-  /* Reports tab: the run's few-words answer, full row width, allowed to wrap —
-     truncating it would show which job ran and hide what it said. */
-  .robot .headline{grid-column:1/-1;font-size:13.5px;color:var(--chalk-dim);line-height:1.4;margin-top:-4px}
-  .robot .headline.alert{color:var(--watch);font-weight:600}
+  /* Issues tab — one line each, scanned in a second, no wrapping games. The
+     tag says the class, the text says the thing, the age says how stale. */
+  .issue{display:grid;grid-template-columns:82px minmax(0,1fr) auto;gap:12px;padding:11px 16px;
+         border-bottom:1px solid var(--line);align-items:baseline}
+  .issue:last-child{border-bottom:none}
+  .issue .tag{font-family:var(--sans);font-weight:700;font-size:10.5px;letter-spacing:.09em;
+              text-transform:uppercase;color:var(--chalk-dim)}
+  .issue.crit .tag{color:var(--crit)}
+  .issue.watch .tag{color:var(--watch)}
+  .issue .txt{font-size:15px;line-height:1.35;min-width:0}
+  .issue.crit .txt{font-weight:600}
+  .issue .ago{font-family:var(--mono);font-size:12.5px;color:var(--chalk-faint);white-space:nowrap;
+              font-variant-numeric:tabular-nums;text-align:right}
+  @media (max-width:640px){
+    .issue{grid-template-columns:minmax(0,1fr) auto}
+    .issue .tag{grid-column:1;font-size:10px}
+    .issue .txt{grid-column:1/-1}
+  }
   @media (max-width:640px){ .robot{grid-template-columns:minmax(0,1fr) auto} .robot .ago{grid-column:1;text-align:left} }
 
   footer{max-width:1140px;margin:26px auto 0;padding:0 24px;color:var(--chalk-faint);font-size:12.5px;
@@ -339,7 +353,7 @@
     <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
-    <button class="tab" data-tab="reports" role="tab" aria-selected="false">Reports</button>
+    <button class="tab" data-tab="reports" role="tab" aria-selected="false">Issues</button>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
@@ -851,42 +865,49 @@ function renderRobots(){
   $('#robotpanel').innerHTML = html;
 }
 
-/* ── Reports tab ─────────────────────────────────────────────────────────────
-   What the fleet's runs reported, newest first. The Robots tab answers "did it
-   run?"; this answers "what did it say?" — the two are not the same question,
-   and a job can check in on time having found something wrong.
+/* ── Issues tab ──────────────────────────────────────────────────────────────
+   What needs Junyan, today or tomorrow, FBS only: a door someone cannot open,
+   a robot that broke, a run that died. NOT a list of runs — the Robots tab
+   answers "did it run?" and this answers "is anything wrong that needs me?".
 
-   Titles only, by design. build.py never fetches a report's body, so nothing
-   here can leak a renter's details onto a public page — see fetch_reports(). */
-function renderReports(){
-  const R = DATA.reports;
-  if(!R){
+   Cleared in Notion, gone from here: build.py asks only for Pending Review
+   rows, so a Processed or Cancelled one is simply never returned. No state is
+   kept on this side to fall out of sync.
+
+   Everything rendered here is redacted and class-limited in build.py — the
+   board is public. See fetch_issues() before adding a field to this row. */
+function renderIssues(){
+  const I = DATA.issues;
+  if(!I){
     $('#reportpanel').innerHTML = `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
-      <span class="head">Reports unavailable</span><span class="items"><span class="statusitem">${esc(DATA.reportsNote||"Workflow Reports could not be read this edition")}</span></span></div>`;
+      <span class="head">Issues unavailable</span><span class="items"><span class="statusitem">${esc(DATA.issuesNote||"Actions to Perform could not be read this edition")}</span></span></div>`;
     return;
   }
-  const bad = R.filter(r=>r.level==="crit").length;
-  const warn = R.filter(r=>r.level==="watch" && (r.headline||"").trim().startsWith("⚠")).length;
-  const head = bad ? `${bad} run${bad>1?"s":""} ended early`
-             : warn ? `${warn} run${warn>1?"s":""} flagged something`
-             : `${R.length} run${R.length===1?"":"s"} in the last 3 days`;
-  let html = `<div class="statusbar ${bad?"crit":warn?"warn":"ok"}" style="margin-top:16px"><span class="dot"></span>
-    <span class="head">${head}</span><span class="items"><span class="statusitem">Newest first · headline only — open the row in Notion for the detail</span></span></div>`;
-  /* The headline is the tab's whole point: the run's few-words answer, from a
-     dedicated public-safe Notion property — never the report body. A ⚠ one is
-     the "needs a human" signal and is tinted like the flag it is. */
-  const row = r => `<div class="robot">
-      <span class="nm">${esc(r.run)}</span>
-      <span class="chip ${r.level}">${esc(r.status||"—")}</span>
-      <span class="ago">${esc(r.when)}</span>
-      ${r.headline?`<span class="headline${(r.headline.trim().startsWith("⚠"))?" alert":""}">${esc(r.headline)}</span>`:""}
+  const crit = I.filter(i=>i.level==="crit").length;
+  const head = !I.length ? "Nothing needs you"
+             : crit ? `${crit} urgent`
+             : `${I.length} open`;
+  let html = `<div class="statusbar ${I.length?(crit?"crit":"warn"):"ok"}" style="margin-top:16px"><span class="dot"></span>
+    <span class="head">${head}</span><span class="items"><span class="statusitem">Today and tomorrow · clears itself when the row is Processed in Notion</span></span></div>`;
+  const ago = iso => {
+    if(!iso) return "";
+    const h = (Date.now() - new Date(iso).getTime())/3600000;
+    return h < 1 ? "now" : h < 24 ? `${Math.floor(h)}h` : `${Math.floor(h/24)}d`;
+  };
+  const row = i => `<div class="issue ${i.level}">
+      <span class="tag">${esc(i.label)}</span>
+      <span class="txt">${esc(i.text)}</span>
+      <span class="ago">${esc(ago(i.whenISO))}</span>
     </div>`;
-  html += `<p class="lane-label">Recent runs</p><div class="panelwrap">` +
-    (R.length ? R.map(row).join("") : `<div class="robot">No runs filed in the last 3 days</div>`) + `</div>`;
+  html += `<div class="panelwrap" style="margin-top:14px">` +
+    (I.length ? I.map(row).join("")
+              : `<div class="issue"><span class="txt">Nothing open for today or tomorrow.</span></div>`) + `</div>`;
+  const hidden = (DATA.issuesTotal||0) - I.length;
+  if(hidden > 0) html += `<p class="lane-label">+${hidden} more open — see ✅ Actions to Perform</p>`;
   $('#reportpanel').innerHTML = html;
 }
 
 const _renderBase = render;
-render = function(){ _renderBase(); renderAlarms(); renderRobots(); renderReports(); };
+render = function(){ _renderBase(); renderAlarms(); renderRobots(); renderIssues(); };
 render(); setInterval(render, 30000);
 </script>

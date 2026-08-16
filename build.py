@@ -53,6 +53,9 @@ RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
 # 📊 Workflow Reports — one row per fleet run, rendered as the Reports tab.
 # Read title-only; see fetch_reports() for why bodies must stay off this board.
 WORKFLOW_REPORTS_DS = "469a877b-83fa-4387-ac97-94aa656481dd"
+# ✅ Actions to Perform — the fleet's human worklist, source of the Issues tab.
+# Only the FBS-shaped classes are published; see fetch_issues().
+ACTIONS_DS = "20df225d-382f-4bb8-9c15-c31571c9f4e0"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "template.html")
@@ -1371,6 +1374,163 @@ def robot_status(r, now):
     return ("watch", "Due") if age_min > 0.75 * stale else ("ok", "On time")
 
 
+MONTHS = {m: i for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun",
+     "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
+
+
+def redact(text):
+    """Strip the things that must never reach a public page.
+
+    THIS BOARD IS PUBLIC — public repo, public Pages, index.html carries its
+    whole DATA blob. Renter names and booking times are already published by
+    design; phone numbers, money and door codes are not, and Action titles are
+    internal text written with no thought for publication ("… his number
+    +51 915 027 018 is PERU", "… the $259.90 August invoice").
+
+    Order matters: phone patterns first (they are the longest), then money,
+    then any remaining 4-8 digit run, which is the shape of an alarm code.
+    Years are exempt so dates survive; studio numbers are three digits and are
+    never touched. Redaction is a second line of defence, not the first — the
+    first is fetch_issues() refusing to publish money-shaped classes at all."""
+    t = text or ""
+    t = re.sub(r"\+?\d[\d\s().\-]{7,}\d", "•••", t)             # phone numbers
+    t = re.sub(r"\$\s?\d[\d,]*(?:\.\d+)?", "$•••", t)           # amounts
+    t = re.sub(r"\b(?!(?:19|20)\d{2}\b)\d{4,8}\b", "••••", t)   # codes / PINs
+    return t
+
+
+def _lead(text, limit=88):
+    """First clause of an issue title — the part that says what it is.
+
+    Action titles run to 200+ characters with the reasoning attached. The tab
+    exists to be read at a glance, so cut at the first natural break and let
+    Notion hold the rest."""
+    t = re.sub(r"\s+", " ", (text or "").strip())
+    # A sentence break, but NOT the dot in an initial — half these titles are
+    # about people called "ALVIN W." or "Jessica T.", and splitting there cuts
+    # the name in half.
+    cuts = [t.split(sep)[0] for sep in (" — ", " – ", ": ", " (")]
+    m = re.search(r"(?<![A-Z])\.\s", t)
+    if m:
+        cuts.append(t[:m.start()])
+    usable = [c for c in cuts if 20 <= len(c) < len(t)]
+    if usable:
+        t = min(usable, key=len)
+    return t if len(t) <= limit else t[:limit - 1].rstrip(" ,;–—") + "…"
+
+
+def _dates_in(text, year):
+    """Every 'Aug 22' / 'October' style date mentioned in a title."""
+    out = []
+    for m in re.finditer(r"\b([A-Za-z]{3,9})\.?\s+(\d{1,2})\b", text or ""):
+        mon = MONTHS.get(m.group(1)[:3].lower())
+        if mon:
+            try:
+                out.append(datetime(year, mon, int(m.group(2)), tzinfo=TZ).date())
+            except ValueError:
+                pass
+    for m in re.finditer(r"\b([A-Za-z]{3,9})\b", text or ""):
+        mon = MONTHS.get(m.group(1)[:3].lower())
+        if mon and len(m.group(1)) > 3:      # spelled out: "(October)"
+            out.append(datetime(year, mon, 28, tzinfo=TZ).date())
+    return out
+
+
+def _is_near_term(row, today, horizon):
+    """Today and tomorrow only (Junyan, 2026-08-15) — a door problem three
+    weeks out is not something to read off the wall this evening.
+
+    A row is far-off if it says so: a `Process on/after` date past the horizon,
+    or every date named in its title past the horizon. A row that names no date
+    at all is near-term by default — silence must never hide a live problem."""
+    if row["process_after"] and row["process_after"] > horizon:
+        return False
+    dates = _dates_in(row["request"], today.year)
+    if dates and all(d > horizon for d in dates):
+        return False
+    return True
+
+
+FBS_ACTION_TYPES = ("Access / PIN", "Run Error")
+
+
+def fetch_issues(token, now, reports, limit=12):
+    """The Issues tab — what needs Junyan, today or tomorrow, FBS only.
+
+    Sources, in the order they matter:
+      1. Open ✅ Actions to Perform rows of an FBS shape — a door someone cannot
+         open (`Access / PIN`) or a robot that broke (`Run Error`).
+      2. Runs that ended early, from the reports already fetched. A run that
+         dies mid-pass cannot file its own Action row, so nothing else would
+         ever surface it.
+      3. `⚠` report headlines — an agent saying, in a field written to be
+         public, that something needs a human.
+
+    DELIBERATELY EXCLUDED, and this is the load-bearing decision: money. Charge,
+    Invoice and Platform-charge rows never reach this page. They are the rows
+    whose titles carry amounts and who-owes-what, they are not FBS, and the
+    board is public. Scope and privacy happen to point the same way here.
+
+    A `Run Error` publishes only its class and which robot raised it. The titles
+    describe how the desk's safety machinery failed ("the ALARM lane did not
+    fire … nobody was paged") — true, useful to Junyan, and nobody else's
+    business on a public page. The detail is one click away in Notion.
+
+    Everything cleared in Notion vanishes here on the next build: the query asks
+    for `Pending Review`, so Processed and Cancelled rows are simply not
+    returned. There is no separate state to keep in sync."""
+    today = now.date()
+    horizon = today + timedelta(days=1)
+    issues = []
+
+    rows = _notion_query(token, ACTIONS_DS, {
+        "filter": {"property": "Status", "select": {"equals": "Pending Review"}},
+        "page_size": 100,
+    })
+    for row in rows:
+        p = row.get("properties", {})
+        r = {
+            "request": _prop_text(p.get("Request")) or "",
+            "type": _prop_text(p.get("Type")) or "",
+            "by": _prop_text(p.get("Raised by")) or "",
+            "process_after": None,
+        }
+        after = _prop_text(p.get("Process on/after"))
+        if after:
+            d = _parse_notion_ts(after)
+            r["process_after"] = d.date() if d else None
+        urgent = r["request"].lstrip().startswith("🚨")
+        if r["type"] not in FBS_ACTION_TYPES and not urgent:
+            continue
+        if not _is_near_term(r, today, horizon):
+            continue
+        when = _parse_notion_ts(_prop_text(p.get("Requested"))) \
+            or _parse_notion_ts(row.get("created_time"))
+        if r["type"] == "Run Error":
+            issues.append({"level": "crit", "label": "Run error",
+                           "text": f"{r['by'] or 'a robot'} — see Notion",
+                           "whenISO": when.isoformat() if when else None})
+        else:
+            issues.append({"level": "crit" if urgent else "watch",
+                           "label": "Access" if r["type"] == "Access / PIN" else "Urgent",
+                           "text": redact(_lead(r["request"])),
+                           "whenISO": when.isoformat() if when else None})
+
+    for rep in reports or []:
+        if rep.get("status") == "Ended Early":
+            issues.append({"level": "crit", "label": "Run died",
+                           "text": _lead(rep["run"]), "whenISO": rep.get("whenISO")})
+        elif (rep.get("headline") or "").lstrip().startswith("⚠"):
+            issues.append({"level": "watch", "label": "Report",
+                           "text": redact(rep["headline"].lstrip("⚠ ").strip()),
+                           "whenISO": rep.get("whenISO")})
+
+    order = {"crit": 0, "watch": 1}
+    issues.sort(key=lambda i: (order.get(i["level"], 2), i["whenISO"] or ""))
+    return issues[:limit], len(issues)
+
+
 def fetch_reports(token, now, days=3, limit=40):
     """Recent 📊 Workflow Reports rows — the Reports tab.
 
@@ -1557,6 +1717,15 @@ def build_data(now):
         reports_note = "Workflow Reports unreadable — share the 📊 Workflow Reports DB with the integration."
         emit_fallback_note(f"Workflow Reports fetch failed ({e}); Reports tab shows a notice.")
 
+    # Issues tab — the worklist. Reports are one of its inputs, so it runs after
+    # them and inherits the same soft posture.
+    issues, issues_total, issues_note = None, 0, None
+    try:
+        issues, issues_total = fetch_issues(token, now, reports)
+    except Exception as e:  # noqa: BLE001
+        issues_note = "Actions to Perform unreadable — share the ✅ Actions to Perform DB with the integration."
+        emit_fallback_note(f"Actions fetch failed ({e}); Issues tab shows a notice.")
+
     attention = []
     for a in alarm_alerts:
         lvl = "crit" if a["stage"] == "ALARM" else "warn"
@@ -1581,8 +1750,9 @@ def build_data(now):
         "armFallback": used_fallback,
         "robots": robots,
         "robotsNote": robots_note,
-        "reports": reports,
-        "reportsNote": reports_note,
+        "issues": issues,
+        "issuesTotal": issues_total,
+        "issuesNote": issues_note,
     }
     return data, used_fallback
 

@@ -161,7 +161,7 @@
   <button data-t="alarms"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3.5l1.7 3a1 1 0 0 1-.9 1.5H5.2a1 1 0 0 1-.9-1.5l1.7-3V9a6 6 0 0 1 6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Alarms</button>
   <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Staff</button>
   <button data-t="robots"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/><path d="M9.5 16.5h5"/></svg>Robots</button>
-  <button data-t="reports"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Reports</button>
+  <button data-t="reports"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Issues</button>
 </nav>
 
 <script>
@@ -434,30 +434,28 @@ function cdTxt(nr){
       (liveR.map(robotRow).join("")||`<div class="quiet">Nothing watched.</div>`);
   }
 
-  /* reports — what the fleet's runs SAID. Robots answers "did it run?"; a job
-     can check in perfectly on time having found something wrong. Headline only:
-     build.py never reads a report's body, so nothing private reaches this
-     public page (see fetch_reports). */
-  const RP=DATA.reports;
-  if(!RP){$('#reports').innerHTML=`<div class="quiet">${esc(DATA.reportsNote||"Workflow Reports could not be read this edition")}</div>`;}
+  /* issues — what needs Junyan today or tomorrow: a door nobody can open, a
+     robot that broke, a run that died. Not a list of runs; Robots answers "did
+     it run?". Cleared in Notion means gone here on the next build — build.py
+     asks only for Pending Review rows. Everything here is redacted and
+     class-limited on the build side; this page is public (see fetch_issues). */
+  const IS=DATA.issues;
+  if(!IS){$('#reports').innerHTML=`<div class="quiet">${esc(DATA.issuesNote||"Actions to Perform could not be read this edition")}</div>`;}
   else{
-    const badRuns=RP.filter(r=>r.level==="crit").length;
+    const critN=IS.filter(i=>i.level==="crit").length;
+    const agoOf=iso=>{if(!iso)return"";const h=(Date.now()-new Date(iso).getTime())/3600000;
+      return h<1?"now":h<24?`${Math.floor(h)}h`:`${Math.floor(h/24)}d`;};
+    const hidden=(DATA.issuesTotal||0)-IS.length;
     $('#reports').innerHTML=
-      `<div class="grp">Last 3 days${badRuns?` — <span style="color:var(--crit)">${badRuns} ended early</span>`:""}</div>`+
-      /* The headline gets its own full-width line and is allowed to WRAP. The
-         .row grid truncates its name column, which is fine for a booking (the
-         renter's name is the whole content) and wrong here — a run's title
-         carries the findings, e.g. "🔑 Code Mirror — Fri Aug 15 · checked 696 ·
-         matched 162 · corrected 0 · needs a human 0". Truncating that shows the
-         name of the job and hides its answer. */
-      (RP.map(r=>`<div class="row" style="display:block;${r.level==="crit"?"border-color:var(--crit)":""}">
-        <div class="nm" style="white-space:normal;overflow:visible;line-height:1.35">${esc(r.run)}</div>
-        ${r.headline?`<div style="white-space:normal;line-height:1.4;font-size:13px;margin-top:4px;${r.headline.trim().startsWith("⚠")?"color:var(--watch);font-weight:600":"color:var(--chalk-dim)"}">${esc(r.headline)}</div>`:""}
-        <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
-          <span class="tm" style="font-size:12px">${esc(r.when)}</span>
-          <span class="chip ${r.level}">${esc(r.status||"—")}</span>
+      `<div class="grp">${IS.length?(critN?`<span style="color:var(--crit)">${critN} urgent</span> · ${IS.length} open`:`${IS.length} open`):"Nothing needs you"}</div>`+
+      (IS.map(i=>`<div class="row" style="display:block;${i.level==="crit"?"border-color:var(--crit)":""}">
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span style="font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--${i.level==="crit"?"crit":"watch"})">${esc(i.label)}</span>
+          <span class="tm" style="font-size:11px;margin-left:auto">${esc(agoOf(i.whenISO))}</span>
         </div>
-      </div>`).join("")||`<div class="quiet">No runs filed in the last 3 days.</div>`);
+        <div style="white-space:normal;line-height:1.35;font-size:14px;margin-top:3px;${i.level==="crit"?"font-weight:600":""}">${esc(i.text)}</div>
+      </div>`).join("")||`<div class="quiet">Nothing open for today or tomorrow.</div>`)+
+      (hidden>0?`<div class="quiet">+${hidden} more open — see ✅ Actions to Perform</div>`:"");
   }
 
   /* freshness */
