@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 5:49 PM ET",
-  "generatedAtISO": "2026-08-16T17:49:04-04:00",
+  "generatedAt": "Aug 16, 5:57 PM ET",
+  "generatedAtISO": "2026-08-16T17:57:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -596,7 +596,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "17:53",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -629,6 +629,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 527 · 17:08"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 901 · 17:52"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 901 · 17:53"
     },
     {
       "level": "warn",
@@ -699,6 +707,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786914841000
+    },
+    {
+      "studio": "901",
+      "name": "Megan Cartwright",
+      "time": "17:53",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786917218000
     }
   ],
   "panelPrior": {
@@ -719,6 +735,18 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786914532000
+    },
+    {
+      "studio": "901",
+      "time": "17:52",
+      "stage": "PENDING",
+      "ts": 1786917158000
+    },
+    {
+      "studio": "901",
+      "time": "17:53",
+      "stage": "ALARM",
+      "ts": 1786917189000
     }
   ],
   "armFallback": false,
