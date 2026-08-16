@@ -1482,7 +1482,7 @@ def fetch_issues(token, now, reports, limit=12):
     returned. There is no separate state to keep in sync."""
     today = now.date()
     horizon = today + timedelta(days=1)
-    issues = []
+    issues, run_errors = [], []
 
     rows = _notion_query(token, ACTIONS_DS, {
         "filter": {"property": "Status", "select": {"equals": "Pending Review"}},
@@ -1508,14 +1508,25 @@ def fetch_issues(token, now, reports, limit=12):
         when = _parse_notion_ts(_prop_text(p.get("Requested"))) \
             or _parse_notion_ts(row.get("created_time"))
         if r["type"] == "Run Error":
-            issues.append({"level": "crit", "label": "Run error",
-                           "text": f"{r['by'] or 'a robot'} — see Notion",
-                           "whenISO": when.isoformat() if when else None})
+            run_errors.append((r["by"] or "unattributed", when))
         else:
             issues.append({"level": "crit" if urgent else "watch",
                            "label": "Access" if r["type"] == "Access / PIN" else "Urgent",
                            "text": redact(_lead(r["request"])),
                            "whenISO": when.isoformat() if when else None})
+
+    # One line per robot, not per row. On 2026-08-15 there were twelve open Run
+    # Errors across four robots; rendered individually they filled the tab with
+    # "The Custodian — see Notion" three times over and pushed every door
+    # problem off the page. The count is the signal; the detail is in Notion.
+    for robot in sorted({r for r, _ in run_errors}):
+        mine = [w for r, w in run_errors if r == robot]
+        n = len(mine)
+        issues.append({
+            "level": "crit", "label": "Run error",
+            "text": f"{robot}{f' ×{n}' if n > 1 else ''} — see Notion",
+            "whenISO": min((w.isoformat() for w in mine if w), default=None),
+        })
 
     for rep in reports or []:
         if rep.get("status") == "Ended Early":
@@ -1526,9 +1537,14 @@ def fetch_issues(token, now, reports, limit=12):
                            "text": redact(rep["headline"].lstrip("⚠ ").strip()),
                            "whenISO": rep.get("whenISO")})
 
+    # Oldest first inside each severity — a door problem does not get less
+    # urgent by sitting, and the stale ones are the ones that rot.
     order = {"crit": 0, "watch": 1}
     issues.sort(key=lambda i: (order.get(i["level"], 2), i["whenISO"] or ""))
-    return issues[:limit], len(issues)
+    # The total counts open ROWS, not rendered lines, so "+N more" stays true
+    # even though the Run Errors collapse to one line per robot.
+    total = len(issues) - len({r for r, _ in run_errors}) + len(run_errors)
+    return issues[:limit], total
 
 
 def fetch_reports(token, now, days=3, limit=40):
