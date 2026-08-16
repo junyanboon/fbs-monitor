@@ -16,6 +16,19 @@ ADT arm/disarm mail (Gmail API, label `Artist Care - ADT`), the 🚥 Run Monitor
 DB (Notion) for the Robots tab, and 📊 Workflow Reports (Notion) for the Reports
 tab.
 
+One optional source: **Skedda, read-only, for renter names only**
+(`skedda_names.py`). Marketplace-synced ICS summaries name the platform rather
+than the person — Giggster sends `Booking on Giggster.com https://…`, so the
+board read "Giggster Booking" while Skedda held "Welton R. Giggster". The
+lookup fills in nameless platform titles and touches nothing else. It needs the
+`GCP_SA_KEY` repo secret (a service account with `secretAccessor` on
+`skedda-cookie` in project `danceannex-skedda`, refilled daily by the
+`skedda-refresh` Cloud Run job). **Without that secret the workflow skips the
+lookup and the board builds exactly as before** — this is a nicety, never a
+dependency. Canon for the Skedda API is
+[`skedda-cli`](https://github.com/junyanboon/skedda-cli); `skedda_names.py` is a
+deliberate read-only partial copy, so the builder cannot write to Skedda.
+
 `sw.js` is a service worker, registered by both editions, so the board stays
 readable when the connection drops — Junyan reads it from Brazil and on the
 move. It is **network-first for the pages and never caches `version.json`**;

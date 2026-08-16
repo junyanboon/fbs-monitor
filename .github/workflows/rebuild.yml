@@ -27,10 +27,15 @@ concurrency:
 
 permissions:
   contents: write
+  id-token: write        # google-github-actions/auth
 
 jobs:
   rebuild:
     runs-on: ubuntu-latest
+    # Mirrored here because the `secrets` context is not available to a step's
+    # `if:` — the Skedda steps need to test whether the key was ever configured.
+    env:
+      GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
     steps:
       - uses: actions/checkout@v5
 
@@ -64,10 +69,45 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_adt_parsing.py
 
+      # Guards booking-title cleanup and the duplicate passes. A mangled title
+      # is a renter nobody recognises at the door; a mishandled duplicate is a
+      # false no-show. Pure string work — no network, no secrets.
+      - name: Title / dedupe regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_titles.py
+
+      # Renter names for marketplace bookings. Giggster/Peerspace ICS summaries
+      # name the platform, not the person, so the board reads "Giggster Booking"
+      # while Skedda holds "Welton R. Giggster". The cookie lives in Secret
+      # Manager, refilled daily by the skedda-refresh Cloud Run job, so nothing
+      # here expires on a two-week clock.
+      #
+      # Optional by design: with no GCP_SA_KEY the steps are skipped, build.py
+      # finds no cookie and leaves platform titles as they are. The board never
+      # depends on this. `secrets` is not available to a step `if`, hence the
+      # job-level env mirror.
+      - name: Authenticate to GCP (Skedda cookie)
+        id: gcp
+        if: ${{ steps.gate.outputs.ready == 'true' && env.GCP_SA_KEY != '' }}
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Read Skedda cookie
+        id: cookie
+        if: ${{ steps.gcp.outcome == 'success' }}
+        uses: google-github-actions/get-secretmanager-secrets@v2
+        with:
+          secrets: |-
+            skedda_cookie:danceannex-skedda/skedda-cookie
+
       - name: Build index.html
         if: steps.gate.outputs.ready == 'true'
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          # Empty when the GCP steps were skipped — build.py treats that as
+          # "no enrichment", not as an error.
+          SKEDDA_COOKIE: ${{ steps.cookie.outputs.skedda_cookie }}
           ICS_URL_509A: ${{ secrets.ICS_URL_509A }}
           ICS_URL_509B: ${{ secrets.ICS_URL_509B }}
           ICS_URL_527: ${{ secrets.ICS_URL_527 }}

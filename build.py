@@ -34,6 +34,8 @@ import requests
 import icalendar
 import recurring_ical_events
 
+import skedda_names   # read-only renter-name lookup; soft-fails to no enrichment
+
 TZ = ZoneInfo("America/Toronto")
 
 STUDIOS = [
@@ -156,6 +158,13 @@ def clean_who(title):
     t = re.sub(r"\[(?:Un)?Paid\]", "", t, flags=re.I)
     t = re.sub(r"\bBooking Extension Request\b", "", t, flags=re.I)
     t = re.sub(r"moved from\s+\S+", "", t, flags=re.I)   # bare form: "moved from 9:30am"
+    # Platform-synced events carry their booking URL in the summary
+    # ("Booking on Giggster.com https://giggster.com/…"). Strip it before the
+    # "Name: Description" split below, or the scheme's own colon splits the
+    # title there and the board shows a renter called "… .com https".
+    t = re.sub(r"\bhttps?://\S+", "", t, flags=re.I)
+    t = re.sub(r"\bbooking on ([a-z0-9-]+)\.(?:com|co|io|net)\b",
+               lambda m: f"{m.group(1).title()} Booking", t, flags=re.I)
     t = re.sub(r"\(\s*\)", "", t)
     t = re.sub(r"\s+#?\d+/\d+\b", "", t)          # session counters "2/8"
     t = re.sub(r"\s{2,}", " ", t)
@@ -335,6 +344,65 @@ def merge_events(events):
     return _mark_cross_studio_dupes(_dedupe_same_slot(merged))
 
 
+def _is_nameless_title(who):
+    """True when a cleaned title names a platform instead of a person.
+
+    Marketplace-synced ICS summaries carry no renter at all — Giggster sends
+    "Booking on Giggster.com https://…", which clean_who reduces to "Giggster
+    Booking". Skedda knows the person; the feed never did. Titles that DO carry
+    a name ("Peerspace Booking, Jessica T.", "ALVIN W. Peerspace") are not this
+    and must never be overwritten."""
+    name_part = re.split(r"\s+—\s+", who or "")[0].strip()
+    return bool(re.fullmatch(r"(?:[A-Za-z0-9.-]+\s+)?[Bb]ooking[,.]?", name_part))
+
+
+def enrich_names_from_skedda(events, win_start, win_end):
+    """Fill in renter names the ICS feeds omit, using Skedda as the name source.
+
+    Touches ONLY nameless platform titles, and only on an unambiguous match:
+    one studio, one overlapping Skedda booking. Two candidates means the read
+    cannot tell them apart, and a confidently wrong name at the door is worse
+    than an honest "Giggster Booking". Any failure is soft — the board is not
+    worth losing over a nicety."""
+    targets = [e for e in events
+               if e["kind"] == "booking" and _is_nameless_title(e.get("who"))]
+    if not targets:
+        return events, None
+    try:
+        rows = skedda_names.fetch_named_bookings(win_start, win_end)
+    except skedda_names.SkeddaUnavailable as e:
+        return events, f"Skedda name lookup skipped ({e}); platform titles left as-is."
+    except Exception as e:  # noqa: BLE001 — never let a nicety fail the build
+        return events, f"Skedda name lookup failed ({type(e).__name__}: {e})."
+
+    base_day = win_start.date()
+    for r in rows:
+        r["_start"] = decimal_hours(r["start"], base_day)
+        r["_end"] = decimal_hours(r["end"], base_day)
+
+    filled = 0
+    for e in targets:
+        hits = [r for r in rows
+                if r["studio"] == e["studio"]
+                and e["start"] < r["_end"] - EPS and r["_start"] < e["end"] - EPS]
+        if len(hits) != 1:
+            continue
+        # The booking's own Skedda title is the renter for marketplace bookings
+        # (no venue user exists); a registered holder's name wins when present.
+        name = hits[0]["user_name"] or hits[0]["title"]
+        if not name or _is_nameless_title(name):
+            continue
+        rest = re.split(r"\s+—\s+", e["who"] or "", 1)
+        e["who"] = f"{name} — {rest[1]}" if len(rest) > 1 else name
+        filled += 1
+    if filled:
+        # A renamed row can now be recognised as its own ghost in another
+        # studio — the placeholder title matched nothing.
+        _mark_cross_studio_dupes(events)
+    return events, (f"Skedda supplied {filled} renter name(s) the ICS feeds omitted."
+                    if filled else None)
+
+
 def _mark_cross_studio_dupes(events):
     """One renter cannot be in two studios at once — when that shows on the
     board, one of the rows is a ghost of a moved booking still living in the old
@@ -345,6 +413,8 @@ def _mark_cross_studio_dupes(events):
     So mark, never drop. Each row learns its siblings' studios; the page renders
     that instead of a red 'no arrival' on the ghost. The alert stays on screen
     and stays counted — it just stops claiming a no-show that isn't one."""
+    for e in events:
+        e.pop("dup_studios", None)      # idempotent: safe to re-run after enrichment
     for i, e in enumerate(events):
         if e["kind"] != "booking" or not e.get("who"):
             continue
@@ -1241,6 +1311,9 @@ def build_data(now):
     if not any(k in STUDIO_IDS for k in ics_map):
         die("No ICS_URL_<studio> secrets set — cannot build bookings.")
     events, staff = build_calendar_events(ics_map, win_start, win_end, base_day)
+    events, skedda_note = enrich_names_from_skedda(events, win_start, win_end)
+    if skedda_note:
+        print(f"NOTE: {skedda_note}")
 
     token = os.environ.get("NOTION_TOKEN")
     if not token:
