@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 6:52 PM ET",
-  "generatedAtISO": "2026-08-16T18:52:39-04:00",
+  "generatedAt": "Aug 16, 7:00 PM ET",
+  "generatedAtISO": "2026-08-16T19:00:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -227,7 +227,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "arrived": "16:47",
-      "departed": null,
+      "departed": "18:59",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -503,6 +503,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786917734000
+    },
+    {
+      "studio": "509A",
+      "name": "Salia Magno",
+      "time": "18:59",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786921152000
     }
   ],
   "panelPrior": {},
@@ -536,16 +544,6 @@ const DATA = /*__DATA__*/{
   ],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-15T19:46:00-04:00"
-    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -605,6 +603,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-16T04:22:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-16T18:54:00-04:00"
     },
     {
       "run": "The Responder",
