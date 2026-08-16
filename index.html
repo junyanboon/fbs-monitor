@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 7:59 AM ET",
-  "generatedAtISO": "2026-08-16T07:59:04-04:00",
+  "generatedAt": "Aug 16, 8:00 AM ET",
+  "generatedAtISO": "2026-08-16T08:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -598,7 +598,12 @@ const DATA = /*__DATA__*/{
       "end": 12.25
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "2 robots overdue — see Robots tab"
+    }
+  ],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -651,6 +656,26 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-15T22:35:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-15T22:56:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -669,6 +694,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-16T06:05:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-16T03:35:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -721,6 +756,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-16T04:20:00-04:00"
     },
     {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month, 08:00 (cloud)",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-01T09:05:00-04:00"
+    },
+    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "hourly :30 · 07–23 (cloud)",
@@ -751,26 +796,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-20T02:58:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-15T22:35:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-16T03:35:00-04:00"
-    },
-    {
       "run": "The Opener",
       "cadence": "Daily",
       "expected": "RETIRED 2026-07-23 (ticket 007) — trigger disabled, persona dissolved. Do NOT set back to Live. Surfacing → Day Sheet/night-watch renderers; Ops lead processes Waiting-on-You; orphaned checks → ticket 035 (invariants).",
@@ -789,26 +814,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-08-01T10:01:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-15T22:56:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month, 08:00 (cloud)",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-01T09:05:00-04:00"
     }
   ],
   "robotsNote": null,
