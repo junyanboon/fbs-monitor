@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
-  "generatedAt": "Aug 15, 11:00 PM ET",
-  "generatedAtISO": "2026-08-15T23:00:52-04:00",
+  "generatedAt": "Aug 15, 11:08 PM ET",
+  "generatedAtISO": "2026-08-15T23:08:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -377,7 +377,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "19:26",
-      "departed": null,
+      "departed": "23:06",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -396,8 +396,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
-      "start": 22.75,
-      "end": 23.75
+      "start": 23.25,
+      "end": 24.0
     },
     {
       "studio": "901",
@@ -470,6 +470,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm pending · 693 · 19:18"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 23:07"
     }
   ],
   "armEvents": [
@@ -688,6 +692,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786848928000
+    },
+    {
+      "studio": "693",
+      "name": "Welton R",
+      "time": "23:06",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786849606000
     }
   ],
   "panelPrior": {},
@@ -731,6 +743,13 @@ const DATA = /*__DATA__*/{
       "time": "19:18",
       "stage": "PENDING",
       "ts": 1786835912000
+    },
+    {
+      "studio": "693",
+      "time": "23:07",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786849652000
     }
   ],
   "armFallback": false,
@@ -793,7 +812,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-15T22:02:00-04:00"
+      "lastISO": "2026-08-15T23:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
