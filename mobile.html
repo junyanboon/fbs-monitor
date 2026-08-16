@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 7:30 PM ET",
-  "generatedAtISO": "2026-08-16T19:30:41-04:00",
+  "generatedAt": "Aug 16, 7:43 PM ET",
+  "generatedAtISO": "2026-08-16T19:43:27-04:00",
   "studios": [
     {
       "id": "509A",
@@ -555,6 +555,26 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-16T18:20:00-04:00"
     },
     {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly · 07–23",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-16T18:27:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-16T18:24:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -582,7 +602,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-16T19:13:00-04:00"
+      "lastISO": "2026-08-16T19:33:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -625,16 +645,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-16T18:54:00-04:00"
     },
     {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly · 07–23",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-16T18:27:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -653,16 +663,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T09:05:00-04:00"
-    },
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-16T18:24:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -716,8 +716,8 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "label": "Run error",
-      "text": "The Concierge ×2 — see Notion",
-      "whenISO": "2026-08-16T12:20:00-04:00"
+      "text": "The Concierge — see Notion",
+      "whenISO": "2026-08-16T16:21:00-04:00"
     },
     {
       "level": "crit",
@@ -776,11 +776,11 @@ const DATA = /*__DATA__*/{
     {
       "level": "watch",
       "label": "Report",
-      "text": "Dhan Giggster equipment/capacity decision queued · 527 + 693 doors still bypassed · no active alarm",
-      "whenISO": "2026-08-16T19:13:00-04:00"
+      "text": "527 + 693 doors still bypassed · no active alarm · JOB 3 reconcile backlog 146",
+      "whenISO": "2026-08-16T19:33:00-04:00"
     }
   ],
-  "issuesTotal": 13,
+  "issuesTotal": 12,
   "issuesNote": null
 }/*__END_DATA__*/;
 
