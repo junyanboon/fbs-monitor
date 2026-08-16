@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
-  "generatedAt": "Aug 15, 11:08 PM ET",
-  "generatedAtISO": "2026-08-15T23:08:14-04:00",
+  "generatedAt": "Aug 15, 11:15 PM ET",
+  "generatedAtISO": "2026-08-15T23:15:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -391,7 +391,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "23:15",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -474,6 +474,18 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 23:07"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 509B · 23:12"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 509B · 23:12"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 693 · 23:15"
     }
   ],
   "armEvents": [
@@ -700,6 +712,14 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786849606000
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "23:15",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786850100000
     }
   ],
   "panelPrior": {},
@@ -750,6 +770,25 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786849652000
+    },
+    {
+      "studio": "509B",
+      "time": "23:12",
+      "stage": "ALARM",
+      "ts": 1786849979000
+    },
+    {
+      "studio": "509B",
+      "time": "23:12",
+      "stage": "PENDING",
+      "ts": 1786849934000
+    },
+    {
+      "studio": "693",
+      "time": "23:15",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786850100000
     }
   ],
   "armFallback": false,
@@ -842,7 +881,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-15T22:11:00-04:00"
+      "lastISO": "2026-08-15T23:11:00-04:00"
     },
     {
       "run": "The Closer",
