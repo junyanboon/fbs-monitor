@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 8:15 AM ET",
-  "generatedAtISO": "2026-08-16T08:15:39-04:00",
+  "generatedAt": "Aug 16, 8:30 AM ET",
+  "generatedAtISO": "2026-08-16T08:30:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -598,12 +598,7 @@ const DATA = /*__DATA__*/{
       "end": 12.25
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -656,26 +651,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-15T22:35:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-15T22:56:00-04:00"
-    },
-    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -694,6 +669,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-16T06:05:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-16T08:52:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -734,6 +719,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-15T19:46:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-16T08:34:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -847,9 +842,15 @@ const DATA = /*__DATA__*/{
       "label": "Report",
       "text": "Zero staff hours logged for Sat Aug 15 — all 14 Staff Scheduling events were unassigned placeholders (12 × Need FBS, 2 × Need Monitoring). No shift was ever assigned to a named staff member.",
       "whenISO": "2026-08-16T06:05:00-04:00"
+    },
+    {
+      "level": "watch",
+      "label": "Report",
+      "text": "509B alarmed 23:12, ADT called and got voicemail — door still open before the 09:15 booking · Kyle said yes",
+      "whenISO": "2026-08-16T08:52:00-04:00"
     }
   ],
-  "issuesTotal": 5,
+  "issuesTotal": 6,
   "issuesNote": null
 }/*__END_DATA__*/;
 
