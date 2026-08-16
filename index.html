@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 7:49 PM ET",
-  "generatedAtISO": "2026-08-16T19:49:10-04:00",
+  "generatedAt": "Aug 16, 7:57 PM ET",
+  "generatedAtISO": "2026-08-16T19:57:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -645,6 +645,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 527 · 19:47"
+    },
+    {
+      "level": "warn",
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -797,8 +801,8 @@ const DATA = /*__DATA__*/{
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
       "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-16T18:20:00-04:00"
     },
     {
@@ -807,8 +811,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly · 07–23",
       "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-16T18:27:00-04:00"
     },
     {
@@ -817,8 +821,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly :30 · 07–23 (cloud)",
       "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-16T18:24:00-04:00"
     },
     {
