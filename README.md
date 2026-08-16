@@ -16,6 +16,16 @@ ADT arm/disarm mail (Gmail API, label `Artist Care - ADT`), the 🚥 Run Monitor
 DB (Notion) for the Robots tab, and 📊 Workflow Reports (Notion) for the Reports
 tab.
 
+**Each studio calendar is written by two syncs, and they are not equal.** The
+Skedda→Google mirror (`Spaces: Studio NNN` in the description) is the system of
+record for *which room* a booking is in. The marketplace feeds (Peerspace,
+Giggster) write their own event on whichever studio their listing names, and
+never learn about a move — moves happen in Skedda. `lane_of()` tells them apart,
+and a marketplace row contradicting a Skedda row about the studio is dropped as
+out of date (logged as a `NOTE:` line in the run). Everything else stays on the
+board and asks the reader. If the marketplace→Google sync is ever switched off,
+nothing on the board is lost: every marketplace booking also exists in Skedda.
+
 One optional source: **Skedda, read-only, for renter names only**
 (`skedda_names.py`). Marketplace-synced ICS summaries name the platform rather
 than the person — Giggster sends `Booking on Giggster.com https://…`, so the
