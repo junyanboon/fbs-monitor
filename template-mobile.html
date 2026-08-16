@@ -452,6 +452,7 @@ function cdTxt(nr){
          name of the job and hides its answer. */
       (RP.map(r=>`<div class="row" style="display:block;${r.level==="crit"?"border-color:var(--crit)":""}">
         <div class="nm" style="white-space:normal;overflow:visible;line-height:1.35">${esc(r.run)}</div>
+        ${r.headline?`<div style="white-space:normal;line-height:1.4;font-size:13px;margin-top:4px;${r.headline.trim().startsWith("⚠")?"color:var(--watch);font-weight:600":"color:var(--chalk-dim)"}">${esc(r.headline)}</div>`:""}
         <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
           <span class="tm" style="font-size:12px">${esc(r.when)}</span>
           <span class="chip ${r.level}">${esc(r.status||"—")}</span>

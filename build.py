@@ -1224,13 +1224,19 @@ def robot_status(r, now):
 def fetch_reports(token, now, days=3, limit=40):
     """Recent 📊 Workflow Reports rows — the Reports tab.
 
-    Deliberately title-only. Every fleet job already writes its headline into
-    the `Run` title (`🔑 Code Mirror — Fri Aug 15 · checked 696 · matched 162 …`),
-    so one query renders the whole tab and no row's body is ever fetched. That
-    is not just a speed choice: **this board is public** (rule 5). Bodies carry
-    renter names and, on some runs, specifics that have no business on a public
-    page. Titles are written to be safe to publish; bodies are not. Do not
-    "improve" this by pulling body text in.
+    Properties only — never bodies. That is not just a speed choice: **this
+    board is public** (rule 5). Bodies carry renter names and, on some runs,
+    specifics that have no business on a public page. Do not "improve" this by
+    pulling body text in.
+
+    The few-words answer lives in the `Headline` property (added 2026-08-15;
+    contract in dc-canon library/autonomy.md §Output): one public-safe line,
+    "what happened · what needs you", prefixed "⚠" when something needs a human
+    now. A ⚠ headline lifts the row to `watch` so it reads as a problem at a
+    glance even on a Completed run — a job can finish cleanly having FOUND
+    something wrong; status and findings are different axes. Rows from before
+    the property (or from a bot not yet filling it) have no headline and render
+    as before, so the tab degrades to exactly its old shape.
     """
     since = (now - timedelta(days=days)).isoformat()  # already Toronto-aware
     rows = _notion_query(token, WORKFLOW_REPORTS_DS, {
@@ -1243,15 +1249,20 @@ def fetch_reports(token, now, days=3, limit=40):
         p = row.get("properties", {})
         title = _prop_text(p.get("Run")) or "(unnamed run)"
         status = _prop_text(p.get("Status")) or ""
+        headline = _prop_text(p.get("Headline"))
         when = _parse_notion_ts(_prop_text(p.get("Completed At"))) \
             or _parse_notion_ts(row.get("created_time"))
+        # crit/watch/ok mirror the Robots tab's classes so one stylesheet
+        # covers both; an abandoned run must not read the same as a clean one.
+        level = {"Ended Early": "crit", "Skipped Steps": "watch",
+                 "In Progress": "watch"}.get(status, "ok")
+        if headline and headline.lstrip().startswith("⚠") and level == "ok":
+            level = "watch"
         out.append({
             "run": title,
             "status": status,
-            # crit/watch/ok mirror the Robots tab's classes so one stylesheet
-            # covers both; an abandoned run must not read the same as a clean one.
-            "level": {"Ended Early": "crit", "Skipped Steps": "watch",
-                      "In Progress": "watch"}.get(status, "ok"),
+            "headline": headline,
+            "level": level,
             "when": when.strftime("%a %-I:%M %p") if when else "",
             "whenISO": when.replace(microsecond=0).isoformat() if when else None,
         })

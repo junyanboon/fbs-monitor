@@ -304,6 +304,10 @@
   .robot .ago{font-family:var(--mono);font-size:13px;color:var(--chalk-dim);white-space:nowrap;
               font-variant-numeric:tabular-nums;text-align:right}
   .robot.dim{opacity:.55}
+  /* Reports tab: the run's few-words answer, full row width, allowed to wrap —
+     truncating it would show which job ran and hide what it said. */
+  .robot .headline{grid-column:1/-1;font-size:13.5px;color:var(--chalk-dim);line-height:1.4;margin-top:-4px}
+  .robot .headline.alert{color:var(--watch);font-weight:600}
   @media (max-width:640px){ .robot{grid-template-columns:minmax(0,1fr) auto} .robot .ago{grid-column:1;text-align:left} }
 
   footer{max-width:1140px;margin:26px auto 0;padding:0 24px;color:var(--chalk-faint);font-size:12.5px;
@@ -862,13 +866,20 @@ function renderReports(){
     return;
   }
   const bad = R.filter(r=>r.level==="crit").length;
-  const head = bad ? `${bad} run${bad>1?"s":""} ended early` : `${R.length} run${R.length===1?"":"s"} in the last 3 days`;
-  let html = `<div class="statusbar ${bad?"crit":"ok"}" style="margin-top:16px"><span class="dot"></span>
+  const warn = R.filter(r=>r.level==="watch" && (r.headline||"").trim().startsWith("⚠")).length;
+  const head = bad ? `${bad} run${bad>1?"s":""} ended early`
+             : warn ? `${warn} run${warn>1?"s":""} flagged something`
+             : `${R.length} run${R.length===1?"":"s"} in the last 3 days`;
+  let html = `<div class="statusbar ${bad?"crit":warn?"warn":"ok"}" style="margin-top:16px"><span class="dot"></span>
     <span class="head">${head}</span><span class="items"><span class="statusitem">Newest first · headline only — open the row in Notion for the detail</span></span></div>`;
+  /* The headline is the tab's whole point: the run's few-words answer, from a
+     dedicated public-safe Notion property — never the report body. A ⚠ one is
+     the "needs a human" signal and is tinted like the flag it is. */
   const row = r => `<div class="robot">
       <span class="nm">${esc(r.run)}</span>
       <span class="chip ${r.level}">${esc(r.status||"—")}</span>
       <span class="ago">${esc(r.when)}</span>
+      ${r.headline?`<span class="headline${(r.headline.trim().startsWith("⚠"))?" alert":""}">${esc(r.headline)}</span>`:""}
     </div>`;
   html += `<p class="lane-label">Recent runs</p><div class="panelwrap">` +
     (R.length ? R.map(row).join("") : `<div class="robot">No runs filed in the last 3 days</div>`) + `</div>`;
