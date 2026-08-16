@@ -328,6 +328,16 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
                 "arrived": None, "departed": None,
                 "lane": lane_of(summary, ev.get("description")),
             })
+    events, mirrored, orphans = drop_marketplace_mirrors(events)
+    for ghost, twin in mirrored:
+        moved = " — MOVED" if ghost["studio"] != twin["studio"] else ""
+        print(f"NOTE: {ghost['lane']} mirror of {twin['who']!r} on {ghost['studio']} "
+              f"ignored; Skedda has it in {twin['studio']}{moved}.")
+    for o in orphans:
+        # Loud on purpose: a marketplace booking with no Skedda record is a hole
+        # in the system of record, not a rendering detail. It stays on the board.
+        print(f"NOTE: ⚠ {o['who']!r} on {o['studio']} came from {o['lane']} with NO "
+              f"Skedda booking — kept on the board; check it exists in Skedda.")
     return merge_events(events), staff
 
 
@@ -375,11 +385,7 @@ def merge_events(events):
         if cur:
             merged.append(cur)
     merged.sort(key=lambda x: (x["studio"], x["start"]))
-    resolved, dropped = _resolve_cross_studio_dupes(_dedupe_same_slot(merged))
-    for ghost, real_studio in dropped:
-        print(f"NOTE: dropped stale {ghost['lane']} row "
-              f"{ghost['who']!r} on {ghost['studio']} — Skedda has it in {real_studio}.")
-    return resolved
+    return _mark_cross_studio_dupes(_dedupe_same_slot(merged))
 
 
 def _is_nameless_title(who):
@@ -436,45 +442,67 @@ def enrich_names_from_skedda(events, win_start, win_end):
     if filled:
         # A renamed row can now be recognised as its own ghost in another
         # studio — the placeholder title matched nothing.
-        events, _ = _resolve_cross_studio_dupes(events)
+        _mark_cross_studio_dupes(events)
     return events, (f"Skedda supplied {filled} renter name(s) the ICS feeds omitted."
                     if filled else None)
 
 
-def _resolve_cross_studio_dupes(events):
-    """One renter cannot be in two studios at once. When that shows on the
-    board, the pair is one booking written twice by two different syncs — see
-    lane_of. Resolve it where the evidence allows, mark it where it doesn't.
+def drop_marketplace_mirrors(events):
+    """Skedda is the board's only booking source (Junyan, 2026-08-15).
 
-    RESOLVED: exactly one row in the pair came from the Skedda lane. Skedda is
-    the system of record for which room a booking is in, so the marketplace
-    row is simply out of date and is DROPPED. This is not a guess between two
-    equal claims; it is one source that tracks moves and one that cannot.
+    A marketplace booking is written to the studio calendars TWICE — once by
+    Peerspace/Giggster's own feed and once by the Skedda→Google mirror (see
+    lane_of). The Skedda copy carries the room, the price and the paid status,
+    and it tracks moves; the marketplace copy carries a confirmation number and
+    cannot move. Taking both is what produced a renter in two studios at once
+    and a renter named "Booking on Giggster.com https". So take Skedda's.
 
-    MARKED: any other shape (two Skedda rows, two marketplace rows, unknown
-    lanes). The builder genuinely cannot tell, so both rows stay and each
-    learns the other's studio — the page renders "moved? verify" instead of a
-    red no-arrival, and the flag stays counted. Never silently pick a winner
-    without the lane evidence.
+    ONE guard, and it is the important part: a marketplace row is dropped only
+    when a Skedda row for the same renter overlaps it SOMEWHERE that day. A
+    marketplace booking with no Skedda counterpart at all is kept and reported
+    loudly — that is a booking missing from the system of record, and the door
+    is the worst possible place to discover it. Silence would turn a sync gap
+    into an empty studio on the board.
 
-    Returns (events, dropped) — dropped rows are logged by the caller so a
-    disappearing booking is always traceable to a reason."""
-    dropped = []
+    Returns (kept, mirrored, orphans) — the caller logs both lists, so any row
+    that leaves the board is traceable to a reason."""
+    skedda = [e for e in events if e.get("lane") == "skedda" and e["kind"] == "booking"]
+    kept, mirrored, orphans = [], [], []
+    for e in events:
+        if e.get("lane") != "marketplace" or e["kind"] != "booking":
+            kept.append(e)
+            continue
+        # Two ways to recognise the same booking, and both are needed. By NAME,
+        # because a moved booking's mirror sits in the wrong room ("Peerspace
+        # Booking, Jessica T." on 509B ↔ "Jessica T. Peerspace" on 693). By
+        # ROOM, because a marketplace title often carries no name at all
+        # ("Giggster Booking") and a studio holds one booking at a time.
+        twin = next((s for s in skedda
+                     if e["start"] < s["end"] - EPS and s["start"] < e["end"] - EPS
+                     and (_same_renter(s.get("who"), e.get("who"))
+                          or s["studio"] == e["studio"])), None)
+        if twin:
+            mirrored.append((e, twin))
+        else:
+            orphans.append(e)
+            kept.append(e)
+    return kept, mirrored, orphans
+
+
+def _mark_cross_studio_dupes(events):
+    """One renter cannot be in two studios at once. With the marketplace mirrors
+    already gone (see drop_marketplace_mirrors), a pair that still shows here is
+    something the builder genuinely cannot adjudicate: two Skedda rows, or a
+    hand-made event that means something to staff.
+
+    So mark, never drop. Each row learns its siblings' studios; the page renders
+    that instead of a red 'no arrival' on one of them. The alert stays on screen
+    and stays counted — it just stops claiming a no-show that isn't one."""
     for group in _cross_studio_groups(events):
-        skedda = [e for e in group if e.get("lane") == "skedda"]
-        if len(skedda) == 1 and len(group) > 1:
-            ghosts = [e for e in group if e is not skedda[0]]
-            # Only marketplace rows may be dropped. An unknown-lane row could
-            # be a manually created event that means something to staff.
-            if all(g.get("lane") == "marketplace" for g in ghosts):
-                for g in ghosts:
-                    g["_drop"] = True
-                    dropped.append((g, skedda[0]["studio"]))
-                continue
         for e in group:
             e["dup_studios"] = sorted({o["studio"] for o in group
                                        if o["studio"] != e["studio"]})
-    return [e for e in events if not e.get("_drop")], dropped
+    return events
 
 
 def _cross_studio_groups(events):
@@ -571,52 +599,61 @@ def _selftest_dedupe():
 
     # A moved Peerspace booking still alive in the old studio's feed: two rows,
     # each pointing at the other. Both survive — the page shows the conflict.
+    # ── Skedda-only policy (Junyan, 2026-08-15) ──────────────────────────────
     # The real 2026-08-15 shape: Skedda moved Jessica T. to 693; the Peerspace
-    # feed still says 509B. One Skedda row in the pair, so it is resolved, not
-    # put to the reader — the marketplace row is dropped and logged.
-    moved, dropped = _resolve_cross_studio_dupes([
+    # feed still says 509B. The mirror is ignored, wherever it landed.
+    kept, mirrored, orphans = drop_marketplace_mirrors([
         event("509B", "Peerspace Booking, Jessica T.", 9.0, 11.0, lane="marketplace"),
         event("693", "Jessica T. Peerspace", 9.0, 11.0, lane="skedda"),
     ])
-    assert len(moved) == 1 and moved[0]["studio"] == "693"
-    assert not moved[0].get("dup_studios")
-    assert len(dropped) == 1 and dropped[0][0]["studio"] == "509B"
+    assert [e["studio"] for e in kept] == ["693"]
+    assert len(mirrored) == 1 and mirrored[0][0]["studio"] == "509B" and not orphans
 
-    # No lane evidence — the builder cannot tell which room is real, so BOTH
-    # rows stay and the reader is asked. Never guess a winner without a lane.
-    ambiguous, dropped = _resolve_cross_studio_dupes([
-        event("509B", "Peerspace Booking, Jessica T.", 9.0, 11.0),
-        event("693", "Jessica T. Peerspace", 9.0, 11.0),
+    # Same booking, same room, both lanes — the ordinary marketplace case. The
+    # mirror goes too, so the Skedda title is what renders.
+    kept, mirrored, orphans = drop_marketplace_mirrors([
+        event("693", "Giggster Booking", 19.5, 22.5, lane="marketplace"),
+        event("693", "Welton R. Giggster", 19.5, 22.5, lane="skedda"),
     ])
-    assert len(ambiguous) == 2 and not dropped
-    assert ambiguous[0]["dup_studios"] == ["693"]
-    assert ambiguous[1]["dup_studios"] == ["509B"]
+    assert [e["who"] for e in kept] == ["Welton R. Giggster"] and not orphans
 
-    # Two Skedda rows disagreeing is a genuine double-booking, not a ghost.
-    both_skedda, dropped = _resolve_cross_studio_dupes([
+    # NO Skedda counterpart: the booking exists only on the marketplace. Keep it
+    # and shout — an empty studio on the board is how that becomes a door
+    # incident.
+    kept, mirrored, orphans = drop_marketplace_mirrors([
+        event("527", "Peerspace Booking, Nadia K.", 14.0, 16.0, lane="marketplace"),
+        event("693", "Someone Else", 14.0, 16.0, lane="skedda"),
+    ])
+    assert len(kept) == 2 and not mirrored
+    assert len(orphans) == 1 and orphans[0]["who"] == "Peerspace Booking, Nadia K."
+
+    # A Skedda booking for the same renter at a DIFFERENT hour is not a twin.
+    kept, mirrored, orphans = drop_marketplace_mirrors([
+        event("509B", "Peerspace Booking, Jessica T.", 9.0, 11.0, lane="marketplace"),
+        event("693", "Jessica T. Peerspace", 14.0, 16.0, lane="skedda"),
+    ])
+    assert len(kept) == 2 and len(orphans) == 1 and not mirrored
+
+    # ── What still reaches the reader ────────────────────────────────────────
+    # Two Skedda rows disagreeing is a genuine double-booking, not a mirror.
+    both_skedda = _mark_cross_studio_dupes([
         event("509B", "Jessica Tran", 9.0, 11.0, lane="skedda"),
         event("693", "Jessica Tran", 9.0, 11.0, lane="skedda"),
     ])
-    assert len(both_skedda) == 2 and not dropped
-
-    # An unknown-lane row may be a hand-made event that means something to
-    # staff — mark it, never drop it.
-    handmade, dropped = _resolve_cross_studio_dupes([
-        event("509B", "Jessica Tran — hold for setup", 9.0, 11.0),
-        event("693", "Jessica Tran", 9.0, 11.0, lane="skedda"),
-    ])
-    assert len(handmade) == 2 and not dropped
+    assert len(both_skedda) == 2
+    assert both_skedda[0]["dup_studios"] == ["693"]
+    assert both_skedda[1]["dup_studios"] == ["509B"]
 
     # One shared first name is not a person match — a real no-show keeps its red
     # flag.
-    namesake, _ = _resolve_cross_studio_dupes([
+    namesake = _mark_cross_studio_dupes([
         event("509B", "Jessica Tran", 9.0, 11.0),
         event("693", "Jessica Okonkwo", 9.0, 11.0),
     ])
     assert not any(e.get("dup_studios") for e in namesake)
 
     # Same renter, two studios, no overlap — back-to-back rooms are legal.
-    sequential, _ = _resolve_cross_studio_dupes([
+    sequential = _mark_cross_studio_dupes([
         event("509B", "Jessica Tran", 9.0, 11.0),
         event("693", "Jessica Tran", 11.0, 13.0),
     ])

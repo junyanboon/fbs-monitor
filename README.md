@@ -16,15 +16,24 @@ ADT arm/disarm mail (Gmail API, label `Artist Care - ADT`), the 🚥 Run Monitor
 DB (Notion) for the Robots tab, and 📊 Workflow Reports (Notion) for the Reports
 tab.
 
-**Each studio calendar is written by two syncs, and they are not equal.** The
-Skedda→Google mirror (`Spaces: Studio NNN` in the description) is the system of
-record for *which room* a booking is in. The marketplace feeds (Peerspace,
-Giggster) write their own event on whichever studio their listing names, and
-never learn about a move — moves happen in Skedda. `lane_of()` tells them apart,
-and a marketplace row contradicting a Skedda row about the studio is dropped as
-out of date (logged as a `NOTE:` line in the run). Everything else stays on the
-board and asks the reader. If the marketplace→Google sync is ever switched off,
-nothing on the board is lost: every marketplace booking also exists in Skedda.
+**Each studio calendar is written by two syncs, and the board takes only one.**
+The Skedda→Google mirror (`Spaces: Studio NNN` in the description) is the system
+of record: room, price, paid status, and it tracks moves. The marketplace feeds
+(Peerspace, Giggster) write their own event on whichever studio their *listing*
+names and never learn about a move. Taking both is what put one renter in two
+studios and named another "Booking on Giggster.com https".
+
+**Skedda only** (Junyan, 2026-08-15): `lane_of()` classifies each event and
+`drop_marketplace_mirrors()` ignores any marketplace event whose Skedda
+counterpart overlaps it — matched by renter name (catches a moved booking, whose
+mirror sits in the wrong room) or by room (catches a nameless mirror like
+"Giggster Booking", since a studio holds one booking at a time). Every ignored
+row prints a `NOTE:` line.
+
+**The one thing that is never dropped:** a marketplace booking with *no* Skedda
+counterpart. That is a hole in the system of record, so it stays on the board and
+the run prints `⚠ … NO Skedda booking`. An empty studio on the board is how a
+sync gap becomes someone standing at a locked door.
 
 One optional source: **Skedda, read-only, for renter names only**
 (`skedda_names.py`). Marketplace-synced ICS summaries name the platform rather
