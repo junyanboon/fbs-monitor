@@ -169,6 +169,9 @@
       padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--ink)}
   .ev.live{background:var(--live-bg);border-color:var(--live-line);box-shadow:inset 4px 0 0 var(--ok)}
   .ev.flagged{background:var(--crit-bg);border-color:var(--crit);box-shadow:inset 4px 0 0 var(--crit)}
+  /* Same renter in two studios: still a flag, still counted — amber, because
+     red here would assert a no-show the builder cannot actually confirm. */
+  .ev.flagged.dupe{background:transparent;border-color:var(--watch);box-shadow:inset 4px 0 0 var(--watch)}
   .ev.done{opacity:.68}
   .ev.tier-t{border-left:4px solid var(--tungsten)}
   .ev.live.tier-t,.ev.flagged.tier-t{border-left-width:1px}  /* live/flag edge wins */
@@ -238,6 +241,7 @@
   .booking.done{opacity:.6}
   .booking.live{--sk-fill:30%;box-shadow:0 0 0 1px var(--sk),var(--shadow)}
   .booking.flagged{--sk:#d93b30;box-shadow:0 0 0 1px #d93b30,var(--shadow)}
+  .booking.flagged.dupe{--sk:var(--watch);box-shadow:0 0 0 1px var(--watch),var(--shadow)}
   @media (prefers-color-scheme: dark){ .booking{--sk-fill:26%} .booking.live{--sk-fill:38%} }
   :root[data-theme="dark"] .booking{--sk-fill:26%}
   :root[data-theme="dark"] .booking.live{--sk-fill:38%}
@@ -338,6 +342,7 @@
     <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
+    <button class="tab" data-tab="reports" role="tab" aria-selected="false">Reports</button>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
@@ -355,6 +360,9 @@
   <section id="tab-robots" hidden>
     <div id="robotpanel"></div>
   </section>
+  <section id="tab-reports" hidden>
+    <div id="reportpanel"></div>
+  </section>
 </main>
 
 <footer>
@@ -368,8 +376,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 15, 2026",
-  "generatedAt": "Aug 15, 8:00 PM ET",
-  "generatedAtISO": "2026-08-15T20:00:54-04:00",
+  "generatedAt": "Aug 15, 8:13 PM ET",
+  "generatedAtISO": "2026-08-15T20:13:16-04:00",
   "studios": [
     {
       "id": "509A",
@@ -408,6 +416,7 @@ const DATA = /*__DATA__*/{
       "arrived": "09:26",
       "departed": "11:02",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 9.5,
       "end": 10.75
@@ -422,6 +431,7 @@ const DATA = /*__DATA__*/{
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 12.0,
       "end": 13.5
@@ -436,6 +446,7 @@ const DATA = /*__DATA__*/{
       "arrived": "13:45",
       "departed": "15:18",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 13.5,
       "end": 15.5
@@ -450,6 +461,7 @@ const DATA = /*__DATA__*/{
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 22.5,
       "end": 22.75
@@ -464,6 +476,9 @@ const DATA = /*__DATA__*/{
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": [
+        "693"
+      ],
       "no_code": false,
       "start": 9.0,
       "end": 11.0
@@ -478,6 +493,7 @@ const DATA = /*__DATA__*/{
       "arrived": "11:05",
       "departed": "13:15",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 11.25,
       "end": 13.25
@@ -492,6 +508,7 @@ const DATA = /*__DATA__*/{
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 21.0,
       "end": 23.0
@@ -506,6 +523,7 @@ const DATA = /*__DATA__*/{
       "arrived": "09:37",
       "departed": "12:25",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 9.75,
       "end": 12.25
@@ -520,6 +538,7 @@ const DATA = /*__DATA__*/{
       "arrived": "16:23",
       "departed": "19:15",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 16.5,
       "end": 19.0
@@ -534,6 +553,7 @@ const DATA = /*__DATA__*/{
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 22.0,
       "end": 22.5
@@ -548,6 +568,9 @@ const DATA = /*__DATA__*/{
       "arrived": "08:58",
       "departed": "11:02",
       "wrong_studio": null,
+      "dup_studios": [
+        "509B"
+      ],
       "no_code": false,
       "start": 9.0,
       "end": 11.0
@@ -562,20 +585,22 @@ const DATA = /*__DATA__*/{
       "arrived": "15:35",
       "departed": "17:44",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 15.5,
       "end": 17.5
     },
     {
       "studio": "693",
-      "who": "Booking on Giggster.com https — //giggster.com/bookings/428f556c-6ebf-46ae-ad60-8309d3f5ee06",
+      "who": "Welton R. Giggster",
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": "19:18",
+      "arrived": "19:26",
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 19.5,
       "end": 22.5
@@ -590,6 +615,7 @@ const DATA = /*__DATA__*/{
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 22.75,
       "end": 23.75
@@ -604,6 +630,7 @@ const DATA = /*__DATA__*/{
       "arrived": "08:45",
       "departed": null,
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 9.0,
       "end": 11.0
@@ -618,6 +645,7 @@ const DATA = /*__DATA__*/{
       "arrived": "11:05",
       "departed": "13:44",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 11.25,
       "end": 13.5
@@ -632,6 +660,7 @@ const DATA = /*__DATA__*/{
       "arrived": "13:51",
       "departed": "14:40",
       "wrong_studio": null,
+      "dup_studios": null,
       "no_code": false,
       "start": 14.25,
       "end": 14.75
@@ -979,7 +1008,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-15T19:03:00-04:00"
+      "lastISO": "2026-08-15T20:05:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1052,7 +1081,290 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     }
   ],
-  "robotsNote": null
+  "robotsNote": null,
+  "reports": [
+    {
+      "run": "The Sentinel — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 8:05 PM",
+      "whenISO": "2026-08-15T20:05:00-04:00"
+    },
+    {
+      "run": "The Responder — Rolling Daily 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 7:55 PM",
+      "whenISO": "2026-08-15T19:55:00-04:00"
+    },
+    {
+      "run": "The Planner — Aug 15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 7:46 PM",
+      "whenISO": "2026-08-15T19:46:00-04:00"
+    },
+    {
+      "run": "The Watchman — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 7:33 PM",
+      "whenISO": "2026-08-15T19:33:00-04:00"
+    },
+    {
+      "run": "The Weatherman — 2026-08-15",
+      "status": "In Progress",
+      "level": "watch",
+      "when": "Sat 7:15 PM",
+      "whenISO": "2026-08-15T19:15:00-04:00"
+    },
+    {
+      "run": "The Concierge — Rolling Daily 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 6:45 PM",
+      "whenISO": "2026-08-15T18:45:00-04:00"
+    },
+    {
+      "run": "The Loop — Rolling Daily 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 3:52 PM",
+      "whenISO": "2026-08-15T15:52:00-04:00"
+    },
+    {
+      "run": "The Custodian — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 10:15 AM",
+      "whenISO": "2026-08-15T10:15:00-04:00"
+    },
+    {
+      "run": "The Doorman — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 6:35 AM",
+      "whenISO": "2026-08-15T06:35:00-04:00"
+    },
+    {
+      "run": "The Bookkeeper — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 6:05 AM",
+      "whenISO": "2026-08-15T06:05:00-04:00"
+    },
+    {
+      "run": "Issues Report — 2026-08-16",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 4:45 AM",
+      "whenISO": "2026-08-15T04:45:00-04:00"
+    },
+    {
+      "run": "Issues Report — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 4:45 AM",
+      "whenISO": "2026-08-15T04:45:00-04:00"
+    },
+    {
+      "run": "The Host — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 4:30 AM",
+      "whenISO": "2026-08-15T04:30:00-04:00"
+    },
+    {
+      "run": "Overtime — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 4:30 AM",
+      "whenISO": "2026-08-15T04:30:00-04:00"
+    },
+    {
+      "run": "Fixer Report — 2026-08-15",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Sat 3:20 AM",
+      "whenISO": "2026-08-15T03:20:00-04:00"
+    },
+    {
+      "run": "The Concierge — Rolling Daily 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 11:57 PM",
+      "whenISO": "2026-08-14T23:57:00-04:00"
+    },
+    {
+      "run": "The Watchman — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 11:33 PM",
+      "whenISO": "2026-08-14T23:33:00-04:00"
+    },
+    {
+      "run": "The Weatherman — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 11:10 PM",
+      "whenISO": "2026-08-14T23:10:00-04:00"
+    },
+    {
+      "run": "The Sentinel — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 11:04 PM",
+      "whenISO": "2026-08-14T23:04:00-04:00"
+    },
+    {
+      "run": "The Responder — Rolling Daily 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 10:50 PM",
+      "whenISO": "2026-08-14T22:50:00-04:00"
+    },
+    {
+      "run": "The Planner — Aug 14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 7:42 PM",
+      "whenISO": "2026-08-14T19:42:00-04:00"
+    },
+    {
+      "run": "The Custodian — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 10:05 AM",
+      "whenISO": "2026-08-14T10:05:00-04:00"
+    },
+    {
+      "run": "The Doorman — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 6:35 AM",
+      "whenISO": "2026-08-14T06:35:00-04:00"
+    },
+    {
+      "run": "The Bookkeeper — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 6:08 AM",
+      "whenISO": "2026-08-14T06:08:00-04:00"
+    },
+    {
+      "run": "The Host — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 5:10 AM",
+      "whenISO": "2026-08-14T05:10:00-04:00"
+    },
+    {
+      "run": "Issues Report — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 4:07 AM",
+      "whenISO": "2026-08-14T04:07:00-04:00"
+    },
+    {
+      "run": "Fixer Report — 2026-08-14",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 3:55 AM",
+      "whenISO": "2026-08-14T03:55:00-04:00"
+    },
+    {
+      "run": "Overtime — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Fri 3:20 AM",
+      "whenISO": "2026-08-14T03:20:00-04:00"
+    },
+    {
+      "run": "The Watchman — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 11:33 PM",
+      "whenISO": "2026-08-13T23:33:00-04:00"
+    },
+    {
+      "run": "The Weatherman — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 11:13 PM",
+      "whenISO": "2026-08-13T23:13:00-04:00"
+    },
+    {
+      "run": "The Sentinel — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 11:03 PM",
+      "whenISO": "2026-08-13T23:03:00-04:00"
+    },
+    {
+      "run": "The Responder — Rolling Daily 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 10:55 PM",
+      "whenISO": "2026-08-13T22:55:00-04:00"
+    },
+    {
+      "run": "The Concierge — Rolling Daily 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 10:52 PM",
+      "whenISO": "2026-08-13T22:52:00-04:00"
+    },
+    {
+      "run": "The Planner — Aug 13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 7:52 PM",
+      "whenISO": "2026-08-13T19:52:00-04:00"
+    },
+    {
+      "run": "The Custodian — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 10:05 AM",
+      "whenISO": "2026-08-13T10:05:00-04:00"
+    },
+    {
+      "run": "The Doorman — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 6:18 AM",
+      "whenISO": "2026-08-13T06:18:00-04:00"
+    },
+    {
+      "run": "The Bookkeeper — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 6:05 AM",
+      "whenISO": "2026-08-13T06:05:00-04:00"
+    },
+    {
+      "run": "The Host — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 4:42 AM",
+      "whenISO": "2026-08-13T04:42:00-04:00"
+    },
+    {
+      "run": "Overtime — 2026-08-12",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 4:20 AM",
+      "whenISO": "2026-08-13T04:20:00-04:00"
+    },
+    {
+      "run": "Fixer Report — 2026-08-13",
+      "status": "Completed",
+      "level": "ok",
+      "when": "Thu 3:20 AM",
+      "whenISO": "2026-08-13T03:20:00-04:00"
+    }
+  ],
+  "reportsNote": null
 }/*__END_DATA__*/;
 
 const $ = s => document.querySelector(s);
@@ -1072,7 +1384,7 @@ document.getElementById('tabs').addEventListener('click', ev => {
     t.classList.toggle('on', on);
     t.setAttribute('aria-selected', on);
   });
-  for(const k of ['studios','board','staff','alarms','robots'])
+  for(const k of ['studios','board','staff','alarms','robots','reports'])
     document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
   // Opening the board: bring the now-line into view (Fresha/Square pattern —
   // land the user on "now", not on 09:00).
@@ -1137,6 +1449,12 @@ document.getElementById('stamp').textContent = "Data refreshed " + DATA.generate
   paintAge(); setInterval(paintAge, 30000);
   setInterval(() => refresh(true), 30000);     // silent version.json poll every 30 s
 })();
+
+/* Offline copy. The worker is network-first for this page and never caches
+   version.json, so registering it cannot pin the board to an old edition — it
+   only decides what you see when the network is gone. See sw.js. */
+if('serviceWorker' in navigator)
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
 
 const E = DATA.events;
 const hm = t => `${String(Math.floor(t)%24).padStart(2,"0")}:${String(Math.round((t%1)*60)).padStart(2,"0")}`;
@@ -1229,7 +1547,8 @@ function render(){
     const cv = coverageOf(e);
     const live = e.start<=n && n<e.end;
     const done = !live && n>=e.end;
-    const cls = ["ev", live&&!st.flagged?"live":"", st.flagged?"flagged":"", done?"done":"",
+    const cls = ["ev", live&&!st.flagged?"live":"", st.flagged?"flagged":"",
+                 e.dup_studios?"dupe":"", done?"done":"",
                  e.kind==="cleaning"?"cleaning":"", e.tier&&e.tier!=="Monitor"?"tier-t":""].join(" ");
     // time cell: schedule on top, actuals directly beneath it
     let act = "";
@@ -1238,6 +1557,10 @@ function render(){
     /* A renter who disarmed a different studio is in the building, in the wrong
        room — a different job from a no-show, so it gets its own line. */
     if(e.wrong_studio) act += `<span class="act wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
+    /* Same renter in two studios at once: one row is a ghost of a moved booking
+       still in the old studio's feed. Which one is real cannot be decided here,
+       so say so — a red "no arrival" on the ghost would invent a no-show. */
+    else if(e.dup_studios) act += `<span class="act wrong">⚠ also in ${e.dup_studios.join(", ")} — moved? verify</span>`;
     else if(st.flagged) act += `<span class="act miss">⚠ no arrival</span>`;
     // tags
     let tags = "";
@@ -1336,10 +1659,11 @@ function render(){
         const done = n>=e.end;
         const cls = ["booking", e.kind==="cleaning"?"cleaning":`plan-${e.plan||"oneoff"}`,
                      e.kind!=="cleaning"&&e.tier==="Monitor"?"monitor":"",
-                     done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":""].join(" ");
+                     done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":"",
+                     e.dup_studios?"dupe":""].join(" ");
         return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px" title="${esc(e.who)}">
           <div class="who">${shortWho(e.who)}</div>
-          <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`:""}${e.departed?` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`:""}${e.wrong_studio?` <span class="wrongflag">⚠ ${e.wrong_studio.studio}</span>`:st.flagged?` <span class="flag">⚠</span>`:""}</div>
+          <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`:""}${e.departed?` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`:""}${e.wrong_studio?` <span class="wrongflag">⚠ ${e.wrong_studio.studio}</span>`:e.dup_studios?` <span class="wrongflag">⚠ also ${e.dup_studios.join(", ")}</span>`:st.flagged?` <span class="flag">⚠</span>`:""}</div>
           ${e.tier?`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${e.no_code?`<span class="chip crit">No code</span>`:""}</div>`:""}
         </div>`;
       }).join("") + `</div>`;
@@ -1518,8 +1842,36 @@ function renderRobots(){
   $('#robotpanel').innerHTML = html;
 }
 
+/* ── Reports tab ─────────────────────────────────────────────────────────────
+   What the fleet's runs reported, newest first. The Robots tab answers "did it
+   run?"; this answers "what did it say?" — the two are not the same question,
+   and a job can check in on time having found something wrong.
+
+   Titles only, by design. build.py never fetches a report's body, so nothing
+   here can leak a renter's details onto a public page — see fetch_reports(). */
+function renderReports(){
+  const R = DATA.reports;
+  if(!R){
+    $('#reportpanel').innerHTML = `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">Reports unavailable</span><span class="items"><span class="statusitem">${esc(DATA.reportsNote||"Workflow Reports could not be read this edition")}</span></span></div>`;
+    return;
+  }
+  const bad = R.filter(r=>r.level==="crit").length;
+  const head = bad ? `${bad} run${bad>1?"s":""} ended early` : `${R.length} run${R.length===1?"":"s"} in the last 3 days`;
+  let html = `<div class="statusbar ${bad?"crit":"ok"}" style="margin-top:16px"><span class="dot"></span>
+    <span class="head">${head}</span><span class="items"><span class="statusitem">Newest first · headline only — open the row in Notion for the detail</span></span></div>`;
+  const row = r => `<div class="robot">
+      <span class="nm">${esc(r.run)}</span>
+      <span class="chip ${r.level}">${esc(r.status||"—")}</span>
+      <span class="ago">${esc(r.when)}</span>
+    </div>`;
+  html += `<p class="lane-label">Recent runs</p><div class="panelwrap">` +
+    (R.length ? R.map(row).join("") : `<div class="robot">No runs filed in the last 3 days</div>`) + `</div>`;
+  $('#reportpanel').innerHTML = html;
+}
+
 const _renderBase = render;
-render = function(){ _renderBase(); renderAlarms(); renderRobots(); };
+render = function(){ _renderBase(); renderAlarms(); renderRobots(); renderReports(); };
 render(); setInterval(render, 30000);
 </script>
 
