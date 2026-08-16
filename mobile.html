@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 6:00 PM ET",
-  "generatedAtISO": "2026-08-16T18:00:47-04:00",
+  "generatedAt": "Aug 16, 6:15 PM ET",
+  "generatedAtISO": "2026-08-16T18:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -332,7 +332,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": null,
-      "departed": null,
+      "departed": "18:02",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -420,6 +420,10 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 693 · 18:02"
+    },
+    {
+      "level": "warn",
       "text": "4 robots overdue — see Robots tab"
     }
   ],
@@ -495,19 +499,17 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786917218000
-    }
-  ],
-  "panelPrior": {
-    "693": {
+    },
+    {
       "studio": "693",
-      "name": "Stefan Lovecchio",
-      "time": "00:04",
+      "name": "Dana Brookman",
+      "time": "18:02",
       "kind": "departure",
       "remote": false,
-      "ts": 1786853061000,
-      "when": "Sun 00:04"
+      "ts": 1786917734000
     }
-  },
+  ],
+  "panelPrior": {},
   "alarmAlerts": [
     {
       "studio": "527",
@@ -527,6 +529,13 @@ const DATA = /*__DATA__*/{
       "time": "17:53",
       "stage": "ALARM",
       "ts": 1786917189000
+    },
+    {
+      "studio": "693",
+      "time": "18:02",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786917779000
     }
   ],
   "armFallback": false,
