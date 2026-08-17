@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 9:26 AM ET",
-  "generatedAtISO": "2026-08-17T09:26:00-04:00",
+  "generatedAt": "Aug 17, 9:30 AM ET",
+  "generatedAtISO": "2026-08-17T09:30:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -352,7 +352,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "9 robots overdue — see Robots tab"
+      "text": "10 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -427,6 +427,16 @@ const DATA = /*__DATA__*/{
   ],
   "armFallback": false,
   "robots": [
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-16T04:30:00-04:00"
+    },
     {
       "run": "The Bookkeeper",
       "cadence": "Daily",
@@ -516,16 +526,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-16T18:24:00-04:00"
-    },
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-16T04:30:00-04:00"
     },
     {
       "run": "The Planner",
