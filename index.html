@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 7:33 PM ET",
-  "generatedAtISO": "2026-08-17T19:33:18-04:00",
+  "generatedAt": "Aug 17, 7:45 PM ET",
+  "generatedAtISO": "2026-08-17T19:45:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -522,7 +522,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "18:24",
-      "departed": null,
+      "departed": "19:35",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -862,6 +862,14 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1787008604000
+    },
+    {
+      "studio": "509B",
+      "name": "Sierra Goulding",
+      "time": "19:35",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787009722000
     }
   ],
   "panelPrior": {},
@@ -962,16 +970,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-16T04:20:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-16T18:54:00-04:00"
-    },
-    {
       "run": "The Concierge",
       "cadence": "Hourly",
       "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
@@ -980,6 +978,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-17T18:55:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-17T19:47:00-04:00"
     },
     {
       "run": "The Responder",
