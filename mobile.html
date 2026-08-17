@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 5:30 PM ET",
-  "generatedAtISO": "2026-08-17T17:30:49-04:00",
+  "generatedAt": "Aug 17, 5:39 PM ET",
+  "generatedAtISO": "2026-08-17T17:39:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -435,7 +435,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "8 robots overdue — see Robots tab"
+      "text": "Alarm bypass · 509B · 17:37"
+    },
+    {
+      "level": "warn",
+      "text": "7 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -574,6 +578,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786998745000
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "17:37",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787002626000
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "17:37",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787002631000
     }
   ],
   "panelPrior": {},
@@ -602,6 +622,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786998790000
+    },
+    {
+      "studio": "509B",
+      "time": "17:37",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787002626000
     }
   ],
   "armFallback": false,
@@ -677,16 +704,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-16T04:20:00-04:00"
     },
     {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-16T18:24:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -725,6 +742,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T09:05:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-17T17:33:00-04:00"
     },
     {
       "run": "The Weatherman",
