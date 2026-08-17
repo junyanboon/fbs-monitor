@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 9:02 AM ET",
-  "generatedAtISO": "2026-08-17T09:02:33-04:00",
+  "generatedAt": "Aug 17, 9:15 AM ET",
+  "generatedAtISO": "2026-08-17T09:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -575,7 +575,24 @@ const DATA = /*__DATA__*/{
       "text": "7 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "09:02",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786971754000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "09:02",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786971758000
+    }
+  ],
   "panelPrior": {
     "509A": {
       "studio": "509A",
@@ -603,15 +620,6 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1786924057000,
       "when": "Sun 19:47"
-    },
-    "693": {
-      "studio": "693",
-      "name": "Studio (remote)",
-      "time": "19:58",
-      "kind": "departure",
-      "remote": true,
-      "ts": 1786924689000,
-      "when": "Sun 19:58"
     },
     "901": {
       "studio": "901",
