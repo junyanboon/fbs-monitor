@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 8:15 AM ET",
-  "generatedAtISO": "2026-08-17T08:15:39-04:00",
+  "generatedAt": "Aug 17, 8:30 AM ET",
+  "generatedAtISO": "2026-08-17T08:30:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -344,6 +344,14 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
+      "text": "Alarm pending · 693 · 08:19"
+    },
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 693 · 08:20"
+    },
+    {
+      "level": "warn",
       "text": "7 robots overdue — see Robots tab"
     }
   ],
@@ -395,7 +403,20 @@ const DATA = /*__DATA__*/{
       "when": "Sun 20:22"
     }
   },
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "693",
+      "time": "08:19",
+      "stage": "PENDING",
+      "ts": 1786969189000
+    },
+    {
+      "studio": "693",
+      "time": "08:20",
+      "stage": "ALARM",
+      "ts": 1786969205000
+    }
+  ],
   "armFallback": false,
   "robots": [
     {
