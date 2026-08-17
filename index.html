@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 16, 2026",
-  "generatedAt": "Aug 16, 7:57 PM ET",
-  "generatedAtISO": "2026-08-16T19:57:49-04:00",
+  "generatedAt": "Aug 16, 8:00 PM ET",
+  "generatedAtISO": "2026-08-16T20:00:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -648,6 +648,10 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 693 · 19:58"
+    },
+    {
+      "level": "warn",
       "text": "3 robots overdue — see Robots tab"
     }
   ],
@@ -755,6 +759,22 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1786924056000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "19:58",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1786924684000
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "19:58",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1786924689000
     }
   ],
   "panelPrior": {},
@@ -791,6 +811,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1786924031000
+    },
+    {
+      "studio": "693",
+      "time": "19:58",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786924684000
     }
   ],
   "armFallback": false,
