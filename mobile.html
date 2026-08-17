@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 4:30 PM ET",
-  "generatedAtISO": "2026-08-17T16:30:54-04:00",
+  "generatedAt": "Aug 17, 4:33 PM ET",
+  "generatedAtISO": "2026-08-17T16:33:27-04:00",
   "studios": [
     {
       "id": "509A",
@@ -287,7 +287,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "15:04",
-      "departed": null,
+      "departed": "16:32",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -427,6 +427,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm pending · 509B · 16:31"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509B · 16:33"
+    },
+    {
+      "level": "warn",
       "text": "10 robots overdue — see Robots tab"
     }
   ],
@@ -550,6 +558,22 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786996588000
+    },
+    {
+      "studio": "509B",
+      "name": "Tamina Paris",
+      "time": "16:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786998732000
+    },
+    {
+      "studio": "509B",
+      "name": "Tamina Paris",
+      "time": "16:32",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786998745000
     }
   ],
   "panelPrior": {},
@@ -565,6 +589,19 @@ const DATA = /*__DATA__*/{
       "time": "08:20",
       "stage": "ALARM",
       "ts": 1786969205000
+    },
+    {
+      "studio": "509B",
+      "time": "16:31",
+      "stage": "PENDING",
+      "ts": 1786998715000
+    },
+    {
+      "studio": "509B",
+      "time": "16:33",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1786998790000
     }
   ],
   "armFallback": false,
