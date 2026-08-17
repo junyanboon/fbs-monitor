@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 1:15 PM ET",
-  "generatedAtISO": "2026-08-17T13:15:39-04:00",
+  "generatedAt": "Aug 17, 1:30 PM ET",
+  "generatedAtISO": "2026-08-17T13:30:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -431,13 +431,13 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "13:21",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
-      "start": 12.75,
-      "end": 13.25
+      "start": 13.5,
+      "end": 14.0
     },
     {
       "studio": "509A",
@@ -491,13 +491,13 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "13:30",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
-      "start": 12.75,
-      "end": 13.25
+      "start": 13.5,
+      "end": 14.0
     },
     {
       "studio": "509B",
@@ -552,7 +552,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "arrived": "12:02",
-      "departed": null,
+      "departed": "13:19",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -616,8 +616,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
-      "start": 13.5,
-      "end": 14.25
+      "start": 14.25,
+      "end": 15.0
     },
     {
       "studio": "901",
@@ -690,27 +690,33 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1786982564000
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "13:19",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1786987151000
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "13:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786987280000
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "13:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1786987834000
     }
   ],
   "panelPrior": {
-    "509A": {
-      "studio": "509A",
-      "name": "Salia Magno",
-      "time": "18:59",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786921152000,
-      "when": "Sun 18:59"
-    },
-    "509B": {
-      "studio": "509B",
-      "name": "Hannah Cho",
-      "time": "16:09",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1786910984000,
-      "when": "Sun 16:09"
-    },
     "901": {
       "studio": "901",
       "name": "Megan Cartwright",
