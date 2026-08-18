@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 18, 2026",
-  "generatedAt": "Aug 18, 12:34 PM ET",
-  "generatedAtISO": "2026-08-18T12:34:47-04:00",
+  "generatedAt": "Aug 18, 12:40 PM ET",
+  "generatedAtISO": "2026-08-18T12:40:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -588,16 +588,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-18T10:36:00-04:00"
-    },
-    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -616,6 +606,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-18T06:05:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-18T12:45:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -759,7 +759,7 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "label": "Run error",
-      "text": "The Concierge ×2 — see Notion",
+      "text": "The Concierge ×3 — see Notion",
       "whenISO": "2026-08-16T16:21:00-04:00"
     },
     {
@@ -794,6 +794,12 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "watch",
+      "label": "Access",
+      "text": "Two panel-side steps only Junyan can do, to close the ~520 orphaned alarm-code reservat…",
+      "whenISO": "2026-08-08T21:29:00-04:00"
+    },
+    {
+      "level": "watch",
       "label": "Report",
       "text": "509B door reads CLOSED now — no site visit needed · Keti's T3 still unreleased, she starts 12:00 · 1/1 Review cleared",
       "whenISO": "2026-08-16T10:05:00-04:00"
@@ -815,15 +821,9 @@ const DATA = /*__DATA__*/{
       "label": "Report",
       "text": "Claude fleet outage known · monitored rows healthy under Codex bridge",
       "whenISO": "2026-08-16T18:27:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
-      "text": "527 + 693 doors still bypassed · no active alarm · JOB 3 reconcile backlog 146",
-      "whenISO": "2026-08-16T19:33:00-04:00"
     }
   ],
-  "issuesTotal": 29,
+  "issuesTotal": 31,
   "issuesNote": null
 }/*__END_DATA__*/;
 
