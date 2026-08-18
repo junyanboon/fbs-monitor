@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 10:44 PM ET",
-  "generatedAtISO": "2026-08-17T22:44:01-04:00",
+  "generatedAt": "Aug 17, 10:45 PM ET",
+  "generatedAtISO": "2026-08-17T22:45:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -675,7 +675,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1010,16 +1010,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-16T04:30:00-04:00"
-    },
-    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1050,14 +1040,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-16T06:22:00-04:00"
     },
     {
-      "run": "The Host",
+      "run": "The Analyst",
       "cadence": "Daily",
-      "expected": "~07:00",
-      "produces": "FBS itinerary built + board seeded",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-16T04:22:00-04:00"
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-17T23:10:00-04:00"
     },
     {
       "run": "The Concierge",
@@ -1068,6 +1058,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-17T22:23:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "~07:00",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-17T23:12:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1107,7 +1107,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-17T23:05:00-04:00"
+      "lastISO": "2026-08-17T22:47:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1245,7 +1245,7 @@ const DATA = /*__DATA__*/{
       "whenISO": "2026-08-16T18:27:00-04:00"
     }
   ],
-  "issuesTotal": 16,
+  "issuesTotal": 17,
   "issuesNote": null
 }/*__END_DATA__*/;
 
