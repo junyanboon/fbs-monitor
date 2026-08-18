@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 18, 2026",
-  "generatedAt": "Aug 18, 8:14 AM ET",
-  "generatedAtISO": "2026-08-18T08:14:11-04:00",
+  "generatedAt": "Aug 18, 8:15 AM ET",
+  "generatedAtISO": "2026-08-18T08:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -526,7 +526,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -581,16 +581,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-17T22:23:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -619,6 +609,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-18T06:05:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-18T08:14:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -782,12 +782,6 @@ const DATA = /*__DATA__*/{
     {
       "level": "watch",
       "label": "Report",
-      "text": "HTA renderer mismatch — the SOP's HTA Step 4 template does not match the format the Send Engine actually dispatches; Hannah Cho's pending 509B HTA was rewritten before its 08:00 send or she'd have arrived at 14:00 with no walkthrough. Otherwise clean: Aug 17 itinerary built, 6 tomorrow rows seeded, 13 messages queued, board fully in sync.",
-      "whenISO": "2026-08-16T04:21:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
       "text": "Zero staff hours logged for Sat Aug 15 — all 14 Staff Scheduling events were unassigned placeholders (12 × Need FBS, 2 × Need Monitoring). No shift was ever assigned to a named staff member.",
       "whenISO": "2026-08-16T06:05:00-04:00"
     },
@@ -814,9 +808,15 @@ const DATA = /*__DATA__*/{
       "label": "Report",
       "text": "Claude fleet outage known · monitored rows healthy under Codex bridge",
       "whenISO": "2026-08-16T18:27:00-04:00"
+    },
+    {
+      "level": "watch",
+      "label": "Report",
+      "text": "527 + 693 doors still bypassed · no active alarm · JOB 3 reconcile backlog 146",
+      "whenISO": "2026-08-16T19:33:00-04:00"
     }
   ],
-  "issuesTotal": 26,
+  "issuesTotal": 25,
   "issuesNote": null
 }/*__END_DATA__*/;
 
