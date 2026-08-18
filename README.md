@@ -78,7 +78,35 @@ rule 5).
 ## Rules that are easy to break
 
 These are the ones that have actually cost us a wrong board. Each is covered by
-`test_adt_parsing.py`, which runs in CI **before** every build.
+`test_adt_parsing.py` / `test_arm_history.py`, both of which run in CI **before**
+every build.
+
+### 0. Arrivals have TWO sources, and an empty stream is not "nobody came"
+
+Arrival/departure times come from `alarm-mcp`'s `/arm-history` — the arm-state
+ledger its watchdog tick writes every minute (`armed -> disarmed` = arrival).
+The ADT email feed is the **second** source, and its job is now the **actor
+names**, which panel state cannot provide, plus any sub-tick event state
+polling misses. `enrich_arm_names()` lends a mail event's name to the panel
+event of the same studio and kind within two minutes.
+
+Why it changed, 2026-08-18: the email feed was the *only* source, it died
+overnight, and the board rendered Kiah Francis' finished 07:30 booking as a red
+"no arrival". A dead feed and a real no-show produce the identical
+`arrived: null`, so the board accused a renter on no evidence at all.
+
+So `feed_is_down()` exists, and **it is not optional decoration**. Zero events
+across all five studios, five hours into the operating day, with no healthy
+panel feed = a broken pipe. The page then suppresses every no-arrival flag and
+says so. Three conditions, each load-bearing:
+
+* one event **anywhere** clears it — studios do not all sit idle while the feed works
+* a **healthy** panel feed returning nothing is believed — it genuinely holds no
+  events before the day's first disarm, and suppressing then would hide real no-shows
+* the five-hour delay stops it firing every morning before the studios open
+
+Unset `ALARM_HISTORY_URL` and the builder behaves exactly as it did before —
+Gmail-only — with the guard still armed. Covered by `test_arm_history.py`.
 
 ### 1. The site prefix is not the partition
 

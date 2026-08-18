@@ -27,7 +27,7 @@ import re
 import sys
 import json
 import base64
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import requests
@@ -87,6 +87,11 @@ BOOKING_STATE = os.path.join(HERE, "booking-state.json")
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
 ARM_LABEL = "Artist Care - ADT"
+# alarm-mcp's /arm-history — the PRIMARY arrival/departure source since
+# 2026-08-18. See fetch_arm_history() for why it displaced the Gmail feed and
+# what the Gmail feed is still for.
+ARM_HISTORY_URL = (os.environ.get("ALARM_HISTORY_URL") or "").strip()
+ARM_HISTORY_TOKEN = (os.environ.get("ALARM_HISTORY_TOKEN") or "").strip()
 EPS = 1e-6
 
 
@@ -1118,6 +1123,126 @@ def fetch_arm_events(win_start):
     return out, alerts, prior
 
 
+def fetch_arm_history(win_start):
+    """Arrival/departure events from the PANEL, via alarm-mcp's /arm-history.
+
+    Returns (arm_events, updated_at) in the same shape fetch_arm_events()
+    returns, so apply_arm_events() cannot tell the two apart.
+
+    WHY THIS IS THE PRIMARY SOURCE. Until 2026-08-18 arrivals came only from
+    TELUS notification emails. That feed died twice, and when it dies the board
+    does not go blank — every ended booking renders a red "no arrival", which
+    reads as a renter no-show. Kiah Francis' 07:30-09:30 in 509A was flagged
+    that way while the feed had been silent since 23:31 the night before. The
+    panel ledger is the same fact one hop upstream, written every minute by the
+    watchdog tick off a cross-panel read that has never been the thing to break.
+
+    WHAT IT CANNOT DO. Panel state has no ACTOR, so `name` comes back empty and
+    `remote` is unknowable here. enrich_arm_names() re-attaches both from the
+    email feed when that feed is alive. An empty name is not a lie the matcher
+    trips over: _name_match() returns False for it, so pass 1 skips the event
+    and pass 2's time-window matching takes it — which is exactly how the
+    builder has always handled ADT's own nameless panel notices.
+
+    Raises on any failure. The caller decides what a failure means; this
+    function never returns a partial answer that could read as "nobody came".
+    """
+    r = requests.get(ARM_HISTORY_URL,
+                     headers={"Authorization": f"Bearer {ARM_HISTORY_TOKEN}"},
+                     params={"since": win_start.astimezone(timezone.utc)
+                             .strftime("%Y-%m-%dT%H:%M:%S+00:00")},
+                     timeout=30)
+    r.raise_for_status()
+    payload = r.json()
+    out = []
+    for ev in payload.get("events") or []:
+        studio = norm_studio_label(ev.get("studio"))
+        kind = ev.get("kind")
+        if not studio or kind not in ("arrival", "departure"):
+            continue
+        try:
+            at = datetime.fromisoformat(str(ev["at"]).replace("Z", "+00:00"))
+        except (KeyError, ValueError):
+            continue
+        local = at.astimezone(TZ)
+        if local < win_start:
+            continue
+        out.append({
+            "studio": studio,
+            "name": "",                 # the panel does not say who
+            "time": f"{local.hour:02d}:{local.minute:02d}",
+            "kind": kind,
+            "remote": False,            # unknowable from state alone
+            "ts": int(at.timestamp() * 1000),
+            "source": "panel",
+        })
+    return out, payload.get("updated_at")
+
+
+def feed_is_down(arm_events, arm_feed, now, win_start, quiet_hours=5):
+    """Is the silence an outage rather than a quiet morning?
+
+    Zero arm/disarm events across ALL FIVE studios, hours into the operating
+    day, is not something the studios do — it is what a broken pipe looks like.
+    Saying so is the whole point: on 2026-08-18 the board had no events at all
+    and rendered that as a no-show against Kiah Francis, because a dead feed and
+    an absent renter produce the identical `arrived: null`.
+
+    Three conditions, and each one is load-bearing:
+
+    `not arm_events` — one event anywhere means something is watching. Studios
+    do not all sit idle while the feed works.
+
+    `panel != "ok"` — a healthy panel ledger that legitimately returns nothing
+    is the ONE case where empty is trustworthy, and it is not rare: the ledger
+    genuinely holds no events before the first booking of the day disarms
+    anything. Suppressing flags then would hide real no-shows on quiet days.
+
+    `quiet_hours` past the window — the board's window opens at 05:00 and the
+    studios open at 07:00. Firing before then would cry wolf every morning, and
+    a banner that appears daily is a banner nobody reads by the second week.
+    """
+    if arm_events:
+        return False
+    if arm_feed.get("panel") == "ok":
+        return False
+    return now >= win_start + timedelta(hours=quiet_hours)
+
+
+def enrich_arm_names(panel_events, mail_events):
+    """Put the ADT feed's actor names onto the panel's timeline.
+
+    The panel owns the TIMELINE (it is the source that stays up); the emails own
+    the NAMES (the only source that has them). A mail event is matched to a
+    panel event of the same studio and kind within two minutes — the same
+    tolerance the Alarms tab already uses to collapse ADT's duplicate notices,
+    and comfortably wider than the tick interval that bounds panel resolution.
+
+    `remote` rides along with the name. A studio-account arm/disarm is a real
+    panel change but never a renter's arrival, and without the email there is
+    nothing in arm state that could tell the difference — so an unmatched panel
+    event stays attributed to nobody rather than to whoever was booked.
+    """
+    used = set()
+    for p in panel_events:
+        best, best_gap = None, None
+        for i, m in enumerate(mail_events):
+            if i in used or m["studio"] != p["studio"] or m["kind"] != p["kind"]:
+                continue
+            gap = abs((m.get("ts") or 0) - (p.get("ts") or 0))
+            if gap <= 2 * 60 * 1000 and (best_gap is None or gap < best_gap):
+                best, best_gap = i, gap
+        if best is not None:
+            used.add(best)
+            p["name"] = mail_events[best].get("name") or ""
+            p["remote"] = bool(mail_events[best].get("remote"))
+    # A mail event with no panel counterpart is still real — a disarm and
+    # re-arm inside one tick is invisible to state polling, and the ledger is
+    # blind to anything before its first write. Keep them.
+    extra = [m for i, m in enumerate(mail_events) if i not in used]
+    return panel_events + extra
+
+
 def studio_from_subject(text):
     """The studio a subject refers to.
 
@@ -1658,22 +1783,68 @@ def build_data(now):
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
     events = apply_missing_codes(events)
 
+    # ---- Arrivals: panel ledger first, ADT email second ---------------------
+    #
+    # TWO SOURCES, DIFFERENT JOBS, AND NEITHER IS DECORATIVE.
+    #   panel  (alarm-mcp /arm-history) — the TIMELINE. Written every minute off
+    #          a cross-panel read that has never been the thing to break.
+    #   email  (Gmail label "Artist Care - ADT") — the NAMES, which panel state
+    #          cannot provide, and the sub-tick events state polling misses.
+    #
+    # Before 2026-08-18 there was only the email feed, and its second death that
+    # month put a red "no arrival" on Kiah Francis' finished 07:30 booking while
+    # the pipe had been silent for fourteen hours. A dead feed and a real
+    # no-show produced the identical output — `arrived: null` — so the board
+    # asserted a no-show on the strength of no evidence at all.
+    #
+    # Hence `arm_feed`: the build now knows WHICH sources answered, and says so
+    # in the data. The page suppresses no-arrival flags when nothing answered.
     used_fallback = False
     arm_events, alarm_alerts, panel_prior = [], [], {}
+    panel_events, mail_events = [], []
+    arm_feed = {"panel": None, "mail": None, "updatedAt": None}
+
+    if ARM_HISTORY_URL and ARM_HISTORY_TOKEN:
+        try:
+            panel_events, arm_feed["updatedAt"] = fetch_arm_history(win_start)
+            arm_feed["panel"] = "ok"
+        except Exception as e:          # noqa: BLE001 — soft: the email feed may still answer
+            arm_feed["panel"] = "failed"
+            print(f"NOTE: panel arm-history failed ({e}); leaning on the ADT email feed.")
+    else:
+        arm_feed["panel"] = "unconfigured"
+
     if os.environ.get("GMAIL_REFRESH_TOKEN"):
         try:
-            arm_events, alarm_alerts, panel_prior = fetch_arm_events(win_start)
-            events = apply_arm_events(events, arm_events)
+            mail_events, alarm_alerts, panel_prior = fetch_arm_events(win_start)
+            arm_feed["mail"] = "ok"
         except SystemExit:
             raise                       # auth failure already died RED
-        except Exception as e:          # noqa: BLE001 — soft: fall back to board
-            used_fallback = True
-            emit_fallback_note(f"Gmail fetch failed ({e}); used board Armed/Disarmed fallback.")
-            events = apply_board_fallback(events)
+        except Exception as e:          # noqa: BLE001
+            arm_feed["mail"] = "failed"
+            print(f"NOTE: Gmail arm fetch failed ({e}).")
     else:
+        arm_feed["mail"] = "unconfigured"
+
+    if panel_events or mail_events:
+        arm_events = (enrich_arm_names(panel_events, mail_events)
+                      if panel_events else mail_events)
+        events = apply_arm_events(events, arm_events)
+    else:
+        # Nothing answered. The board's own Armed/Disarmed columns are a weaker
+        # record (one row per studio, no actor) but they are a record.
         used_fallback = True
-        emit_fallback_note("GMAIL_* secrets missing; used board Armed/Disarmed fallback.")
+        emit_fallback_note(
+            "No arrival source answered "
+            f"(panel: {arm_feed['panel']}, mail: {arm_feed['mail']}); "
+            "used board Armed/Disarmed fallback.")
         events = apply_board_fallback(events)
+
+    arm_feed["down"] = feed_is_down(arm_events, arm_feed, datetime.now(TZ), win_start)
+    if arm_feed["down"]:
+        emit_fallback_note(
+            "ARRIVAL FEED DOWN — no arm/disarm events from either source; "
+            "no-arrival flags suppressed on the board.")
 
     clean = [{
         "studio": e["studio"], "who": e["who"], "kind": e["kind"],
@@ -1764,6 +1935,7 @@ def build_data(now):
         "panelPrior": panel_prior,
         "alarmAlerts": alarm_alerts,
         "armFallback": used_fallback,
+        "armFeed": arm_feed,
         "robots": robots,
         "robotsNote": robots_note,
         "issues": issues,

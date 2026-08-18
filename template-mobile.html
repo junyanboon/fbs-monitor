@@ -188,9 +188,14 @@ function torontoNow(){
   const h = (+p.hour)%24, m = +p.minute;
   return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")};
 }
+/* No arrival source answered this build ⇒ `arrived` is null for EVERY booking
+   because nothing was watching, not because nobody came. Flagging then invents
+   a no-show per finished renter. Suppress, and say why in the summary. */
+const FEED_DOWN = !!(DATA.armFeed && DATA.armFeed.down);
+
 function stateOf(e,now){
   const arr=parseHM(e.arrived),dep=parseHM(e.departed);
-  const flagged=e.kind==="booking"&&!arr&&now>e.start+GRACE&&now<e.end+1;
+  const flagged=!FEED_DOWN&&e.kind==="booking"&&!arr&&now>e.start+GRACE&&now<e.end+1;
   if(dep&&dep>=e.start)return{done:true,flagged:false};
   if(now>=e.end)return{done:true,flagged};
   if(now>=e.start)return{live:true,flagged};
@@ -231,7 +236,9 @@ function render(){
     `<span><b class="${live.length?"good":""}">${live.length}</b> in studio</span>`+
     `<span><b>${E.length}</b> today</span>`+
     `<span><b>${E.filter(e=>e.tier).length}</b> monitored</span>`+
-    `<span><b class="${flags.length?"bad":"good"}">${flags.length}</b> flags</span>`;
+    (FEED_DOWN
+      ? `<span class="bad"><b>⚠</b> arrival feed down</span>`
+      : `<span><b class="${flags.length?"bad":"good"}">${flags.length}</b> flags</span>`);
 
   /* filter chips: All / Live / Upcoming / per-studio */
   const f=[["all","All"],["live","Live now"],["next","Upcoming"],...DATA.studios.map(s=>[s.id,s.name])];

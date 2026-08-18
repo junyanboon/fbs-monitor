@@ -76,6 +76,14 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_titles.py
 
+      # Guards the PANEL arrival source and the feed-down guard. The email feed
+      # has died twice, and each time the board rendered the outage as a red
+      # "no arrival" against whoever had a finished booking. Pure logic — no
+      # network, no secrets.
+      - name: Arrival source / feed-down tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_arm_history.py
+
       # Renter names for marketplace bookings. Giggster/Peerspace ICS summaries
       # name the platform, not the person, so the board reads "Giggster Booking"
       # while Skedda holds "Welton R. Giggster". The cookie lives in Secret
@@ -117,6 +125,11 @@ jobs:
           GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
           GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
           GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+          # PRIMARY arrival source: alarm-mcp's /arm-history, the arm-state
+          # ledger its watchdog tick writes every minute. Unset = the old
+          # Gmail-only behaviour exactly, with the feed-down guard still armed.
+          ALARM_HISTORY_URL: ${{ secrets.ALARM_HISTORY_URL }}
+          ALARM_HISTORY_TOKEN: ${{ secrets.ALARM_HISTORY_TOKEN }}
           # Manual dispatch bypasses the 07:00–24:00 Toronto gate; cron respects it.
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
           DEBUG_ARM: ${{ github.event.inputs.debug_arm == 'true' && '1' || '0' }}

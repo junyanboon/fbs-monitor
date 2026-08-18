@@ -513,9 +513,17 @@ function torontoNow(){
   return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")};
 }
 
+/* When no arrival source answered this build, `arrived` is null for EVERY
+   booking — not because nobody came, but because nothing was watching. A
+   no-arrival flag then accuses each finished renter of a no-show on the
+   strength of no evidence (2026-08-18: Kiah Francis, while the ADT feed had
+   been dead fourteen hours). Suppress the flags and let the banner say why. */
+const FEED_DOWN = !!(DATA.armFeed && DATA.armFeed.down);
+
 function stateOf(e, now){
   const arr = parseHM(e.arrived), dep = parseHM(e.departed);
-  const flagged = e.kind==="booking" && !arr && now > e.start + GRACE && now < e.end + 1;
+  const flagged = !FEED_DOWN && e.kind==="booking" && !arr
+                  && now > e.start + GRACE && now < e.end + 1;
   if(dep && dep >= e.start) return {label:"Complete", cls:"ok", flagged:false};
   if(now >= e.end) return arr ? {label:"Complete", cls:"ok", flagged:false}
                               : {label:"Ended", cls:"plain", flagged};
@@ -714,7 +722,12 @@ function renderAlarms(){
   const alerts = (DATA.alarmAlerts || []).filter(a=>!["BYPASS","TROUBLE"].includes(a.stage));
   /* No banner: the studio cards + red stream rows already carry triggers. */
   let html = "";
-  if(DATA.armFallback)
+  if(FEED_DOWN)
+    html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">Arrival feed down</span><span class="items"><span class="statusitem">
+      No arm/disarm events from the panel ledger or the ADT email feed — arrival times
+      are unknown, not absent. No-arrival flags are suppressed.</span></span></div>`;
+  else if(DATA.armFallback)
     html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
       <span class="head">ADT email feed unavailable</span><span class="items"><span class="statusitem">Showing board fallback — no event stream this edition</span></span></div>`;
   const tk=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
