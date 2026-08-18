@@ -727,9 +727,22 @@ function renderAlarms(){
       <span class="head">Arrival feed down</span><span class="items"><span class="statusitem">
       No arm/disarm events from the panel ledger or the ADT email feed — arrival times
       are unknown, not absent. No-arrival flags are suppressed.</span></span></div>`;
-  else if(DATA.armFallback)
-    html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
-      <span class="head">ADT email feed unavailable</span><span class="items"><span class="statusitem">Showing board fallback — no event stream this edition</span></span></div>`;
+  /* armFallback means only "arrival times came from the board's own columns",
+     which happens for TWO different reasons — a feed that broke, and a feed
+     that is simply empty before the day's first disarm. Naming the email feed
+     unconditionally accused it of an outage on quiet mornings when both
+     sources had answered perfectly well. Say which actually happened. */
+  else if(DATA.armFallback){
+    const f = DATA.armFeed || {};
+    const broke = ["panel","mail"].filter(k => f[k] && f[k] !== "ok" && f[k] !== "unconfigured");
+    html += broke.length
+      ? `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+        <span class="head">${broke.includes("mail")?"ADT email feed":"Panel ledger"} unavailable</span>
+        <span class="items"><span class="statusitem">Showing board fallback — no event stream this edition</span></span></div>`
+      : `<div class="statusbar" style="margin-top:16px"><span class="dot"></span>
+        <span class="head">No panel activity yet</span><span class="items"><span class="statusitem">
+        Both sources are healthy and report nothing — normal before the day&rsquo;s first disarm</span></span></div>`;
+  }
   const tk=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
   const ordA=(a,b)=>(tk(a.time)-tk(b.time))||((a.ts||0)-(b.ts||0));
   html += `<div class="armgrid">` + DATA.studios.map(s=>{
