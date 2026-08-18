@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 18, 2026",
-  "generatedAt": "Aug 18, 8:15 AM ET",
-  "generatedAtISO": "2026-08-18T08:15:42-04:00",
+  "generatedAt": "Aug 18, 8:30 AM ET",
+  "generatedAtISO": "2026-08-18T08:30:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -459,7 +459,7 @@ const DATA = /*__DATA__*/{
       "who": "Saskia Liu",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
+      "gtg": true,
       "hta": "Sent",
       "arrived": null,
       "departed": null,
@@ -523,12 +523,7 @@ const DATA = /*__DATA__*/{
       "end": 19.75
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -580,16 +575,6 @@ const DATA = /*__DATA__*/{
   "alarmAlerts": [],
   "armFallback": false,
   "robots": [
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-17T22:58:00-04:00"
-    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -659,6 +644,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-17T19:47:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-18T08:40:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -764,7 +759,7 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "label": "Run error",
-      "text": "Other ×2 — see Notion",
+      "text": "Other ×3 — see Notion",
       "whenISO": "2026-08-17T17:40:00-04:00"
     },
     {
@@ -778,12 +773,6 @@ const DATA = /*__DATA__*/{
       "label": "Run died",
       "text": "The Doorman — 2026-08-17",
       "whenISO": "2026-08-17T23:20:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
-      "text": "Zero staff hours logged for Sat Aug 15 — all 14 Staff Scheduling events were unassigned placeholders (12 × Need FBS, 2 × Need Monitoring). No shift was ever assigned to a named staff member.",
-      "whenISO": "2026-08-16T06:05:00-04:00"
     },
     {
       "level": "watch",
@@ -814,6 +803,12 @@ const DATA = /*__DATA__*/{
       "label": "Report",
       "text": "527 + 693 doors still bypassed · no active alarm · JOB 3 reconcile backlog 146",
       "whenISO": "2026-08-16T19:33:00-04:00"
+    },
+    {
+      "level": "watch",
+      "label": "Report",
+      "text": "Kiah unanswered on 3 channels, arrives 07:30 — access text still held · 5 PBFs expire tonight · inbox zero",
+      "whenISO": "2026-08-17T22:23:00-04:00"
     }
   ],
   "issuesTotal": 25,
