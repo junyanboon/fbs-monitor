@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 18, 2026",
-  "generatedAt": "Aug 18, 5:45 PM ET",
-  "generatedAtISO": "2026-08-18T17:45:48-04:00",
+  "generatedAt": "Aug 18, 5:47 PM ET",
+  "generatedAtISO": "2026-08-18T17:47:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -461,7 +461,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "17:47",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -530,7 +530,17 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "17:47",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787089621000,
+      "source": "panel"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "studio": "509A",
@@ -540,15 +550,6 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787023021000,
       "when": "Mon 23:17"
-    },
-    "509B": {
-      "studio": "509B",
-      "name": "Tess English",
-      "time": "22:05",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1787018730000,
-      "when": "Mon 22:05"
     },
     "527": {
       "studio": "527",
@@ -579,11 +580,11 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
-    "updatedAt": "2026-08-18T20:14:01+00:00",
+    "updatedAt": "2026-08-18T21:47:01+00:00",
     "down": false
   },
   "robots": [
