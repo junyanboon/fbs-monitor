@@ -1834,9 +1834,15 @@ def build_data(now):
         # Nothing answered. The board's own Armed/Disarmed columns are a weaker
         # record (one row per studio, no actor) but they are a record.
         used_fallback = True
+        # Distinguish "answered with nothing" from "did not answer" — they look
+        # identical here and mean opposite things, and a note that says "no
+        # source answered (panel: ok)" is the kind of self-contradiction that
+        # costs an hour at 2am. `feed_is_down` already draws the same line.
+        answered = [k for k in ("panel", "mail") if arm_feed[k] == "ok"]
         emit_fallback_note(
-            "No arrival source answered "
-            f"(panel: {arm_feed['panel']}, mail: {arm_feed['mail']}); "
+            (f"No arm events yet — {' and '.join(answered)} answered with an "
+             "empty stream" if answered else "No arrival source answered")
+            + f" (panel: {arm_feed['panel']}, mail: {arm_feed['mail']}); "
             "used board Armed/Disarmed fallback.")
         events = apply_board_fallback(events)
 
