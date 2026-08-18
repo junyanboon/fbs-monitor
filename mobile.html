@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 11:00 PM ET",
-  "generatedAtISO": "2026-08-17T23:00:53-04:00",
+  "generatedAt": "Aug 17, 11:15 PM ET",
+  "generatedAtISO": "2026-08-17T23:15:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -456,10 +456,6 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 693 · 22:57"
-    },
-    {
-      "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -817,26 +813,6 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "robots": [
     {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-16T06:05:00-04:00"
-    },
-    {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "08:00 (cloud)",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-16T06:22:00-04:00"
-    },
-    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -845,6 +821,26 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-17T23:15:00-04:00"
+    },
+    {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-17T23:15:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "08:00 (cloud)",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-17T23:20:00-04:00"
     },
     {
       "run": "The Host",
@@ -874,7 +870,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-17T22:41:00-04:00"
+      "lastISO": "2026-08-17T23:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -904,7 +900,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-17T22:43:00-04:00"
+      "lastISO": "2026-08-17T23:15:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1010,6 +1006,12 @@ const DATA = /*__DATA__*/{
       "whenISO": "2026-08-17T22:47:00-04:00"
     },
     {
+      "level": "crit",
+      "label": "Run died",
+      "text": "The Doorman — 2026-08-17",
+      "whenISO": "2026-08-17T23:20:00-04:00"
+    },
+    {
       "level": "watch",
       "label": "Report",
       "text": "Alvin EOB gap closed for 22:45 · inbox zero · Dante $••• settled→Review · Keti T3 still held for tomorrow's 901 handover",
@@ -1044,15 +1046,9 @@ const DATA = /*__DATA__*/{
       "label": "Report",
       "text": "Tonight's 0-min 901 handover still unmarked at 18:00 — re-proposed after the verify tick falsely closed it · Kyle Sep 6 + Aakanksha done by hand, no money owed · deployed event-gate ≠ main still outstanding",
       "whenISO": "2026-08-16T11:05:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
-      "text": "Sentinel stalled since 12:05 · alert queued; Codex bridge covering",
-      "whenISO": "2026-08-16T18:24:00-04:00"
     }
   ],
-  "issuesTotal": 20,
+  "issuesTotal": 25,
   "issuesNote": null
 }/*__END_DATA__*/;
 
