@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 17, 2026",
-  "generatedAt": "Aug 17, 9:46 PM ET",
-  "generatedAtISO": "2026-08-17T21:46:34-04:00",
+  "generatedAt": "Aug 17, 10:00 PM ET",
+  "generatedAtISO": "2026-08-17T22:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -656,6 +656,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509B · 17:37"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm trouble · 693 · 21:48"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm trouble · 693 · 21:58"
     },
     {
       "level": "warn",
@@ -937,6 +945,20 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1787002626000
+    },
+    {
+      "studio": "693",
+      "time": "21:48",
+      "stage": "TROUBLE",
+      "detail": "Power Failure",
+      "ts": 1787017708000
+    },
+    {
+      "studio": "693",
+      "time": "21:58",
+      "stage": "TROUBLE",
+      "detail": "Power Failure",
+      "ts": 1787018312000
     }
   ],
   "armFallback": false,
@@ -1029,7 +1051,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-17T21:28:00-04:00"
+      "lastISO": "2026-08-17T22:05:00-04:00"
     },
     {
       "run": "The Sentinel",
