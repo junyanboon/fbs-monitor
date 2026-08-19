@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 18, 2026",
-  "generatedAt": "Aug 18, 8:15 PM ET",
-  "generatedAtISO": "2026-08-18T20:15:38-04:00",
+  "generatedAt": "Aug 18, 8:30 PM ET",
+  "generatedAtISO": "2026-08-18T20:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -287,7 +287,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "18:50",
-      "departed": null,
+      "departed": "20:25",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -364,6 +364,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787098322000,
       "source": "panel"
+    },
+    {
+      "studio": "901",
+      "name": "",
+      "time": "20:25",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787099102000,
+      "source": "panel"
     }
   ],
   "panelPrior": {
@@ -382,10 +391,20 @@ const DATA = /*__DATA__*/{
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
-    "updatedAt": "2026-08-19T00:12:02+00:00",
+    "updatedAt": "2026-08-19T00:25:02+00:00",
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-18T18:35:00-04:00"
+    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -405,16 +424,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-18T06:05:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-18T18:35:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -464,7 +473,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-18T20:05:00-04:00"
+      "lastISO": "2026-08-18T20:31:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -514,7 +523,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-18T19:12:00-04:00"
+      "lastISO": "2026-08-18T20:14:00-04:00"
     },
     {
       "run": "The Closer",
