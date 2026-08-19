@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 19, 2026",
-  "generatedAt": "Aug 19, 12:45 AM ET",
-  "generatedAtISO": "2026-08-19T00:45:40-04:00",
+  "generatedAt": "Aug 19, 1:00 AM ET",
+  "generatedAtISO": "2026-08-19T01:00:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -414,23 +414,13 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-18T04:50:00-04:00"
-    },
-    {
       "run": "The Bookkeeper",
       "cadence": "Daily",
       "expected": "~05:30",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-08-18T06:05:00-04:00"
     },
     {
@@ -439,9 +429,19 @@ const DATA = /*__DATA__*/{
       "expected": "08:00 (cloud)",
       "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
       "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-18T06:12:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-18T06:12:00-04:00"
+      "lastISO": "2026-08-18T04:50:00-04:00"
     },
     {
       "run": "The Host",
