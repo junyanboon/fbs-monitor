@@ -174,8 +174,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 19, 2026",
-  "generatedAt": "Aug 19, 8:13 AM ET",
-  "generatedAtISO": "2026-08-19T08:13:48-04:00",
+  "generatedAt": "Aug 19, 8:15 AM ET",
+  "generatedAtISO": "2026-08-19T08:15:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -329,7 +329,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -394,16 +394,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-18T22:45:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -432,6 +422,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-19T06:05:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-19T08:15:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -613,12 +613,6 @@ const DATA = /*__DATA__*/{
     {
       "level": "watch",
       "label": "Report",
-      "text": "Kiah unanswered on 3 channels, arrives 07:30 — access text still held · 5 PBFs expire tonight · inbox zero",
-      "whenISO": "2026-08-17T22:23:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
       "text": "Skedda WRITE path still 401 across passes — pilot can execute nothing; Camila move attempted + failed again · Thu Aug 20 Jillia viewing block proposed, awaits review · 9 tickets named and refused (money/physical)",
       "whenISO": "2026-08-17T22:52:00-04:00"
     },
@@ -627,9 +621,15 @@ const DATA = /*__DATA__*/{
       "label": "Report",
       "text": "Kiah Francis 509A 07:30 HTA still held — human must release tonight · Host did not run at all on Aug 17 (fleet outage) · late 22:36 catch-up: itinerary built, 4 board rows seeded, Saskia HTA + Nicole Returning Access queued for 08:00 · today's EOB/AVA unrecoverable",
       "whenISO": "2026-08-17T23:12:00-04:00"
+    },
+    {
+      "level": "watch",
+      "label": "Report",
+      "text": "Kiah's 07:30 access text still held — release tonight · 14/15 Review cleared, 1 bounced · Skedda money reads blind",
+      "whenISO": "2026-08-17T23:15:00-04:00"
     }
   ],
-  "issuesTotal": 29,
+  "issuesTotal": 28,
   "issuesNote": null
 }/*__END_DATA__*/;
 
