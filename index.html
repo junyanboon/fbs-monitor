@@ -392,8 +392,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 4:15 PM ET",
-  "generatedAtISO": "2026-08-20T16:15:44-04:00",
+  "generatedAt": "Aug 20, 4:30 PM ET",
+  "generatedAtISO": "2026-08-20T16:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -567,7 +567,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Sent",
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
@@ -727,6 +727,16 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-20T14:45:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -765,16 +775,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-20T06:05:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-20T14:45:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -824,7 +824,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T15:54:00-04:00"
+      "lastISO": "2026-08-20T16:21:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -874,7 +874,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T15:20:00-04:00"
+      "lastISO": "2026-08-20T16:20:00-04:00"
     },
     {
       "run": "watchlist-refresh (GitHub Actions)",
@@ -884,7 +884,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T16:01:00-04:00"
+      "lastISO": "2026-08-20T16:16:00-04:00"
     },
     {
       "run": "The Closer",
