@@ -392,8 +392,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 2:15 PM ET",
-  "generatedAtISO": "2026-08-20T14:15:48-04:00",
+  "generatedAt": "Aug 20, 2:30 PM ET",
+  "generatedAtISO": "2026-08-20T14:30:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -702,6 +702,26 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-19T19:41:00-04:00"
+    },
+    {
+      "run": "qa-review (GitHub Actions)",
+      "cadence": "Hourly",
+      "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
+      "produces": "Releases held QA- rows in the Message Queue to Ready to Send (backstop to event-gate's inline review)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-20T14:19:00-04:00"
+    },
+    {
       "run": "The Analyst",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -729,7 +749,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T13:15:00-04:00"
+      "lastISO": "2026-08-20T14:45:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -762,14 +782,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-20T04:33:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-19T19:41:00-04:00"
+      "lastISO": "2026-08-20T14:22:00-04:00"
     },
     {
       "run": "The Responder",
@@ -779,7 +799,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T13:55:00-04:00"
+      "lastISO": "2026-08-20T14:27:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -829,7 +849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T13:20:00-04:00"
+      "lastISO": "2026-08-20T14:20:00-04:00"
     },
     {
       "run": "watchlist-refresh (GitHub Actions)",
@@ -839,7 +859,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T14:09:00-04:00"
+      "lastISO": "2026-08-20T14:16:00-04:00"
     },
     {
       "run": "The Closer",
@@ -947,7 +967,7 @@ const DATA = /*__DATA__*/{
       "whenISO": "2026-08-18T06:09:00-04:00"
     }
   ],
-  "issuesTotal": 37,
+  "issuesTotal": 36,
   "issuesNote": null
 }/*__END_DATA__*/;
 
