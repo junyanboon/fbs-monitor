@@ -245,6 +245,18 @@
   :root[data-theme="dark"] .booking.live{--sk-fill:38%}
   :root[data-theme="light"] .booking{--sk-fill:18%}
   :root[data-theme="light"] .booking.live{--sk-fill:30%}
+  /* Cards whose BOXES collide sit in side-by-side lanes (left/width set inline
+     by bookingLayout). Without this a 15-minute viewing — 13px of real slot,
+     floored to a 42px readable minimum — draws straight over the booking that
+     follows it, which reads as a double-booking that isn't there. */
+  .booking.laned{left:auto;right:auto}
+  /* A short box that still has to carry chips: shrink the type rather than
+     clip the chip row into a row of half-glyphs. */
+  .booking.tight{padding:5px 8px 4px}
+  .booking.tight .who{font-size:12.5px}
+  .booking.tight .when{font-size:11px}
+  .booking.tight .chips{margin-top:3px;gap:4px}
+  .booking.tight .chip{font-size:9.5px;padding:1px 6px}
   .booking .who{font-weight:600;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .booking .when{font-family:var(--mono);font-size:12px;color:var(--chalk-dim);font-variant-numeric:tabular-nums}
   .booking .when .arr{color:var(--ok)} .booking .when .dep{color:var(--chalk-faint)}
@@ -392,8 +404,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 4:46 PM ET",
-  "generatedAtISO": "2026-08-20T16:46:18-04:00",
+  "generatedAt": "Aug 20, 5:00 PM ET",
+  "generatedAtISO": "2026-08-20T17:00:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -762,7 +774,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T16:00:00-04:00"
+      "lastISO": "2026-08-20T17:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -832,7 +844,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T15:58:00-04:00"
+      "lastISO": "2026-08-20T17:02:00-04:00"
     },
     {
       "run": "The Responder",
@@ -842,7 +854,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T16:21:00-04:00"
+      "lastISO": "2026-08-20T16:56:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1179,6 +1191,42 @@ function staffBlocks(list){
   return out.sort((a,b)=>a.start-b.start);
 }
 
+/* Board card geometry. Height is real duration, but floored at MIN so a
+   15-minute viewing stays readable — which means a short card can reach past
+   the start of the next booking. Rather than let it draw over its neighbour
+   (a phantom double-booking), any run of cards whose BOXES collide is split
+   into side-by-side lanes, the same trick the staff column uses. Real times
+   still set every card's top edge, so the grid stays honest. */
+function bookingLayout(list, SLOT, yOf){
+  const MIN = 42, GAP = 3;
+  const box = list.map(e => ({e, top: yOf(e.start),
+                              h: Math.max((e.end - e.start) * SLOT - 6, MIN)}))
+                  .sort((a, b) => a.top - b.top || b.h - a.h);
+  let i = 0;
+  while(i < box.length){
+    // Grow the cluster while any later card starts before the cluster ends.
+    let j = i + 1, end = box[i].top + box[i].h;
+    while(j < box.length && box[j].top < end - 0.5){
+      end = Math.max(end, box[j].top + box[j].h);
+      j++;
+    }
+    const cluster = box.slice(i, j);
+    if(cluster.length > 1){
+      // Greedy: reuse the first lane whose last card has already ended.
+      const laneEnd = [];
+      for(const b of cluster){
+        let k = laneEnd.findIndex(t => b.top >= t - 0.5);
+        if(k < 0){ k = laneEnd.length; laneEnd.push(0); }
+        laneEnd[k] = b.top + b.h;
+        b.lane = k;
+      }
+      if(laneEnd.length > 1) for(const b of cluster) b.lanes = laneEnd.length;
+    }
+    i = j;
+  }
+  return box;
+}
+
 function render(){
   const now = torontoNow();
   $('#clock').textContent = now.hhmm;
@@ -1311,14 +1359,21 @@ function render(){
     html += `<div class="col">
       <div class="studio-h" style="height:46px"><h2>${s.name}</h2></div>` +
       HRS.slice(0,-1).map(()=>`<div class="slot"></div>`).join("") +
-      E.filter(e=>e.studio===s.id).map(e=>{
+      bookingLayout(E.filter(e=>e.studio===s.id), SLOT, yOf).map(b=>{
+        const e = b.e;
         const st = stateOf(e,n);
         const live = e.start<=n && n<e.end;
         const done = n>=e.end;
         const cls = ["booking", e.kind==="cleaning"?"cleaning":`plan-${e.plan||"oneoff"}`,
                      e.kind!=="cleaning"&&e.tier==="Monitor"?"monitor":"",
-                     done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":""].join(" ");
-        return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px" title="${esc(e.who)}">
+                     done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":"",
+                     b.lanes?"laned":"", b.h<80&&e.tier?"tight":""].join(" ");
+        // Lanes divide the column's usable width (7px gutters, 3px between).
+        const pos = b.lanes
+          ? `left:calc(7px + ${(b.lane*100/b.lanes).toFixed(4)}% - ${(b.lane*14/b.lanes).toFixed(2)}px);`
+            + `width:calc(${(100/b.lanes).toFixed(4)}% - ${(14/b.lanes + 3).toFixed(2)}px);`
+          : "";
+        return `<div class="${cls}" style="${pos}top:${b.top}px;height:${b.h}px" title="${esc(e.who)}">
           <div class="who">${shortWho(e.who)}</div>
           <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`:""}${e.departed?` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`:""}${e.wrong_studio?` <span class="wrongflag">⚠ ${e.wrong_studio.studio}</span>`:e.dup_studios?"":st.flagged?` <span class="flag">⚠</span>`:""}</div>
           ${e.tier?`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${e.no_code?`<span class="chip crit">No code</span>`:""}</div>`:""}
