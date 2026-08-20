@@ -91,7 +91,6 @@
   .card.flagged{--sk:var(--sk-miss);border-color:var(--sk-miss)}
   /* Two studios, one renter: flag stays, colour drops to amber — the builder
      cannot tell which row is the ghost, so it must not assert a no-show. */
-  .card.flagged.dupe{--sk:var(--watch);border-color:var(--watch)}
   .card.live{border-color:var(--ok)}
   .card.done{opacity:.55}
   .card .who{font-weight:700;font-size:15.5px;grid-column:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -257,14 +256,16 @@ function render(){
     if(e.departed)meta+=` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`;
     /* In the building but in the wrong room — a different job from a no-show. */
     if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
-    /* Same renter in two studios — one row is a moved booking's ghost. */
-    else if(e.dup_studios)meta+=` <span class="wrong">⚠ also in ${e.dup_studios.join(", ")} — moved?</span>`;
+    /* Two studios at once is legal (both halves of 509, say) — no warning.
+       dup_studios only suppresses the false "no arrival"; a person in a room
+       they did not book is wrong_studio, above. See template.html. */
+    else if(e.dup_studios);
     else if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
     let cnt="";
     if(st.live)cnt=`<b>${dur(e.end-n)} left</b>`;
     else if(!st.done)cnt=e.start-n<6?`in ${dur(e.start-n)}`:`at ${hm(e.start)}`;
     else cnt="done";
-    return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""} ${e.dup_studios?"dupe":""}">
+    return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
       <div class="who">${shortWho(e.who)}</div>
       <div class="meta">${meta}</div>

@@ -166,7 +166,6 @@
   .ev.flagged{background:var(--crit-bg);border-color:var(--crit);box-shadow:inset 4px 0 0 var(--crit)}
   /* Same renter in two studios: still a flag, still counted — amber, because
      red here would assert a no-show the builder cannot actually confirm. */
-  .ev.flagged.dupe{background:transparent;border-color:var(--watch);box-shadow:inset 4px 0 0 var(--watch)}
   .ev.done{opacity:.68}
   .ev.tier-t{border-left:4px solid var(--tungsten)}
   .ev.live.tier-t,.ev.flagged.tier-t{border-left-width:1px}  /* live/flag edge wins */
@@ -236,7 +235,6 @@
   .booking.done{opacity:.6}
   .booking.live{--sk-fill:30%;box-shadow:0 0 0 1px var(--sk),var(--shadow)}
   .booking.flagged{--sk:#d93b30;box-shadow:0 0 0 1px #d93b30,var(--shadow)}
-  .booking.flagged.dupe{--sk:var(--watch);box-shadow:0 0 0 1px var(--watch),var(--shadow)}
   @media (prefers-color-scheme: dark){ .booking{--sk-fill:26%} .booking.live{--sk-fill:38%} }
   :root[data-theme="dark"] .booking{--sk-fill:26%}
   :root[data-theme="dark"] .booking.live{--sk-fill:38%}
@@ -579,7 +577,7 @@ function render(){
     const live = e.start<=n && n<e.end;
     const done = !live && n>=e.end;
     const cls = ["ev", live&&!st.flagged?"live":"", st.flagged?"flagged":"",
-                 e.dup_studios?"dupe":"", done?"done":"",
+                 done?"done":"",
                  e.kind==="cleaning"?"cleaning":"", e.tier&&e.tier!=="Monitor"?"tier-t":""].join(" ");
     // time cell: schedule on top, actuals directly beneath it
     let act = "";
@@ -588,10 +586,13 @@ function render(){
     /* A renter who disarmed a different studio is in the building, in the wrong
        room — a different job from a no-show, so it gets its own line. */
     if(e.wrong_studio) act += `<span class="act wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
-    /* Same renter in two studios at once: one row is a ghost of a moved booking
-       still in the old studio's feed. Which one is real cannot be decided here,
-       so say so — a red "no arrival" on the ghost would invent a no-show. */
-    else if(e.dup_studios) act += `<span class="act wrong">⚠ also in ${e.dup_studios.join(", ")} — moved? verify</span>`;
+    /* Same renter in two studios at once is NOT an alert (2026-08-20): a renter
+       who books both halves of 509 is doing something legal and common, and the
+       old "moved? verify" line nagged about every one of them, hours before
+       anyone could be in a room. dup_studios now only suppresses the red "no
+       arrival" — a second calendar row is not evidence of a no-show. Someone
+       physically in a room they did not book is wrong_studio, above. */
+    else if(e.dup_studios) ;
     else if(st.flagged) act += `<span class="act miss">⚠ no arrival</span>`;
     // tags
     let tags = "";
@@ -690,11 +691,10 @@ function render(){
         const done = n>=e.end;
         const cls = ["booking", e.kind==="cleaning"?"cleaning":`plan-${e.plan||"oneoff"}`,
                      e.kind!=="cleaning"&&e.tier==="Monitor"?"monitor":"",
-                     done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":"",
-                     e.dup_studios?"dupe":""].join(" ");
+                     done?"done":"", live&&!st.flagged?"live":"", st.flagged?"flagged":""].join(" ");
         return `<div class="${cls}" style="top:${yOf(e.start)}px;height:${Math.max((e.end-e.start)*SLOT-6,42)}px" title="${esc(e.who)}">
           <div class="who">${shortWho(e.who)}</div>
-          <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`:""}${e.departed?` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`:""}${e.wrong_studio?` <span class="wrongflag">⚠ ${e.wrong_studio.studio}</span>`:e.dup_studios?` <span class="wrongflag">⚠ also ${e.dup_studios.join(", ")}</span>`:st.flagged?` <span class="flag">⚠</span>`:""}</div>
+          <div class="when">${hm(e.start)}–${hm(e.end)}${e.arrived?` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`:""}${e.departed?` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`:""}${e.wrong_studio?` <span class="wrongflag">⚠ ${e.wrong_studio.studio}</span>`:e.dup_studios?"":st.flagged?` <span class="flag">⚠</span>`:""}</div>
           ${e.tier?`<div class="chips"><span class="chip type">${e.tier}</span>${e.tier!=="Viewing"?(e.gtg?`<span class="chip ok">GTG ✓</span>`:`<span class="chip watch">No GTG</span>`):""}${e.no_code?`<span class="chip crit">No code</span>`:""}</div>`:""}
         </div>`;
       }).join("") + `</div>`;
