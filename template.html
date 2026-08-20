@@ -868,7 +868,8 @@ function renderAlarms(){
     html += `<p class="hintnote">Renter names are unavailable. The ADT/TELUS email feed
       — the only source that named who armed or disarmed — was retired 2026-08-20;
       the panel ledger behind these rows records the event, not the actor. Only remote
-      arms show a name. The way back is the Alarm.com Past Events relay.</p>`;
+      arms show a name. The replacement is built and awaiting deploy — alarm-mcp&rsquo;s
+      websocket listener (<code>alarm-events</code>), ticket 106.</p>`;
   $('#alarmpanel').innerHTML = html;
 }
 
