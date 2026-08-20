@@ -147,6 +147,10 @@
   .shift.done{opacity:.65}
   .shift .tm{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
   .shift .nm{font-weight:600;font-size:15.5px;min-width:0}
+  /* The panel ledger records WHEN, never WHO. A bare em-dash read as a
+     broken renderer, so say what is actually missing and why. */
+  .hintnote{margin:10px 2px 0;font-size:12.5px;line-height:1.5;color:var(--chalk-faint);max-width:78ch}
+  .shift .nm.none{font-weight:400;font-size:13px;color:var(--chalk-faint);font-style:italic}
 
   .lane-label{font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
               color:var(--chalk-dim);margin:26px 0 10px;display:flex;align-items:center;gap:10px}
@@ -404,8 +408,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 5:00 PM ET",
-  "generatedAtISO": "2026-08-20T17:00:52-04:00",
+  "generatedAt": "Aug 20, 5:12 PM ET",
+  "generatedAtISO": "2026-08-20T17:12:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -864,7 +868,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T16:04:00-04:00"
+      "lastISO": "2026-08-20T17:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -914,7 +918,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T16:46:00-04:00"
+      "lastISO": "2026-08-20T17:01:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1055,7 +1059,8 @@ document.getElementById('tabs').addEventListener('click', ev => {
 document.getElementById('daytitle').innerHTML =
   "FBS <em>Monitor</em><small>" + esc(DATA.date) + "</small>";
 document.getElementById('stamp').textContent = "Data refreshed " + DATA.generatedAt +
-  " · arrivals read from ADT alarm disarm/arm";
+  " · arrivals read from the alarm panel ledger (times only — the named " +
+  "ADT/TELUS feed was retired 2026-08-20)";
 
 /* Freshness + refresh. The page is a static edition; refresh probes for a newer
    pushed edition and reloads onto it. The probe reads version.json (~60 bytes,
@@ -1393,7 +1398,7 @@ function render(){
   }
 }
 /* ── Alarms tab ─────────────────────────────────────────────────────────────
-   State is DERIVED from today's ADT emails (since 05:00): last event per studio
+   State is DERIVED from today's panel ledger (since 05:00): last event per studio
    — disarm ⇒ open, arm ⇒ locked. No events yet ⇒ unknown (shown as such, never
    guessed). PENDING/ALARM trigger emails get the red banner. */
 function renderAlarms(){
@@ -1462,7 +1467,8 @@ function renderAlarms(){
   const stream=[
     ...evs.map(e=>({...e,html:`<div class="shift">
         <span class="tm">${esc(e.time)}</span>
-        <span class="nm">${esc(e.name||"—")}</span>
+        ${e.name ? `<span class="nm">${esc(e.name)}</span>`
+                 : `<span class="nm none" title="The panel ledger records the event, not the actor. Named arm/disarm came from the ADT/TELUS email feed, retired 2026-08-20.">no name on this source</span>`}
         <span class="chip plain">${esc(e.studio)}</span>
         <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
       </div>`})),
@@ -1479,6 +1485,17 @@ function renderAlarms(){
   ].sort((a,b)=>ordA(b,a)).map(x=>x.html);
   html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +
     (stream.length ? stream.join("") : `<div class="shift">No alarm events yet today</div>`) + `</div>`;
+  /* Names went missing on 2026-08-20 when the ADT/TELUS email feed was retired
+     fleet-wide — the panel ledger this board now reads records the event, not
+     the actor. Only remote arms made through alarm-mcp still carry one. Without
+     this line a column of blanks reads as a rendering bug, and someone spends
+     an evening looking for one. */
+  if(evs.some(e=>!e.name))
+    html += `<p class="hintnote">Renter names are unavailable. The ADT/TELUS email feed
+      — the only source that named who armed or disarmed — was retired 2026-08-20;
+      the panel ledger behind these rows records the event, not the actor. Only remote
+      arms show a name. The replacement is built and awaiting deploy — alarm-mcp&rsquo;s
+      websocket listener (<code>alarm-events</code>), ticket 106.</p>`;
   $('#alarmpanel').innerHTML = html;
 }
 
