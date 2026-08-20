@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 8:15 AM ET",
-  "generatedAtISO": "2026-08-20T08:15:58-04:00",
+  "generatedAt": "Aug 20, 8:30 AM ET",
+  "generatedAtISO": "2026-08-20T08:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -476,7 +476,7 @@ const DATA = /*__DATA__*/{
       "who": "Dillan Mendonca — Yofukai Toronto",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
+      "gtg": true,
       "hta": "Sent",
       "arrived": null,
       "departed": null,
@@ -611,7 +611,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -677,16 +677,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-19T22:35:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -715,6 +705,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-20T06:05:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-20T08:52:00-04:00"
     },
     {
       "run": "The Custodian",
