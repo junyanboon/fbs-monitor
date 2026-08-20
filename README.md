@@ -105,6 +105,14 @@ says so. Three conditions, each load-bearing:
   events before the day's first disarm, and suppressing then would hide real no-shows
 * the five-hour delay stops it firing every morning before the studios open
 
+**Arrival times run about 4–7 minutes late, and that is not fixable here.**
+Audited 2026-08-20 against Alarm.com's own exported log for 693: three real
+transitions, all three captured, all three late (+6m37s, +3m49s, +4m06s). The
+watchdog tick was verified at exact 60-second intervals over the same window,
+so this is Alarm.com's partition *state* trailing its own *event log*, not our
+polling. Good enough for "did they show up" and "are they still in the room";
+**not** good enough for "were they late" or a billing dispute over minutes.
+
 Unset `ALARM_HISTORY_URL` and the builder behaves exactly as it did before —
 Gmail-only — with the guard still armed. Covered by `test_arm_history.py`.
 
