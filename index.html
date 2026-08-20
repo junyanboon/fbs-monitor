@@ -394,8 +394,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 1:00 PM ET",
-  "generatedAtISO": "2026-08-20T13:00:59-04:00",
+  "generatedAt": "Aug 20, 1:06 PM ET",
+  "generatedAtISO": "2026-08-20T13:06:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -493,7 +493,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "13:01",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": [
@@ -510,7 +510,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "13:01",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -624,7 +624,17 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "13:01",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787245268000,
+      "source": "panel"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -635,16 +645,6 @@ const DATA = /*__DATA__*/{
       "time": "22:36",
       "ts": 1787193370000,
       "when": "Wed 22:36"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "509B",
-      "time": "22:06",
-      "ts": 1787191572000,
-      "when": "Wed 22:06"
     },
     "527": {
       "kind": "departure",
@@ -678,11 +678,11 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
-    "updatedAt": "2026-08-20T03:40:02+00:00",
+    "updatedAt": "2026-08-20T17:01:08+00:00",
     "down": false
   },
   "robots": [
@@ -774,7 +774,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T12:06:00-04:00"
+      "lastISO": "2026-08-20T13:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
