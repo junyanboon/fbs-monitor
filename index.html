@@ -408,8 +408,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 6:30 PM ET",
-  "generatedAtISO": "2026-08-20T18:30:47-04:00",
+  "generatedAt": "Aug 20, 6:45 PM ET",
+  "generatedAtISO": "2026-08-20T18:45:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -477,7 +477,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:32",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -655,7 +655,12 @@ const DATA = /*__DATA__*/{
       "end": 22.0
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -772,6 +777,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787264825000,
       "source": "panel"
+    },
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "18:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787265132000,
+      "source": "panel"
+    },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "18:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787265132000,
+      "source": "panel"
     }
   ],
   "panelPrior": {},
@@ -780,19 +803,19 @@ const DATA = /*__DATA__*/{
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
-    "updatedAt": "2026-08-20T22:27:05+00:00",
+    "updatedAt": "2026-08-20T22:32:12+00:00",
     "down": false
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "run": "watchlist-refresh (GitHub Actions)",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-20T16:40:00-04:00"
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-20T17:46:00-04:00"
     },
     {
       "run": "The Planner",
@@ -803,16 +826,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-19T19:41:00-04:00"
-    },
-    {
-      "run": "watchlist-refresh (GitHub Actions)",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-20T17:46:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -843,6 +856,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-20T06:05:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-20T18:56:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -932,7 +955,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-20T17:32:00-04:00"
+      "lastISO": "2026-08-20T18:33:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -1050,7 +1073,7 @@ const DATA = /*__DATA__*/{
       "whenISO": "2026-08-18T06:09:00-04:00"
     }
   ],
-  "issuesTotal": 39,
+  "issuesTotal": 38,
   "issuesNote": null
 }/*__END_DATA__*/;
 
