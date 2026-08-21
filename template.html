@@ -106,12 +106,13 @@
   .tabs .tab.on{color:var(--chalk);border-bottom-color:var(--tungsten)}
   .tabs .tab:hover{color:var(--chalk)}
   .tabs .tab:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
-  /* External surface, not a panel — the Deck runs as a Claude artifact because it
-     writes to Notion with the viewer's own login; it cannot be hosted on Pages. */
-  .tabs .tabx{margin-left:auto;align-self:center;padding:10px 16px;font-family:var(--sans);
-              font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;
-              color:var(--tungsten);text-decoration:none;border-bottom:3px solid transparent}
+  /* External surfaces styled as ordinary tabs — the Deck/Docket run as Claude
+     artifacts because they write to Notion with the viewer's own login; they
+     cannot be hosted on Pages, so these tabs open them in a new browser tab. */
+  .tabs .tabx{display:inline-block;padding:10px 16px;font:inherit;font-family:inherit;
+              color:var(--chalk-dim);text-decoration:none;border-bottom:3px solid transparent}
   .tabs .tabx:hover{color:var(--chalk)}
+  .tabs .tabx:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
 
   /* status bar (Studios tab) — status.claude.com-style: one overall state, plus
      any items from the analyst report. Grade-3 wording, colour = severity. */
@@ -375,7 +376,7 @@
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
     <button class="tab" data-tab="reports" role="tab" aria-selected="false">Issues</button>
     <a class="tabx" href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener">Deck ↗</a>
-    <a class="tabx" style="margin-left:0" href="https://claude.ai/code/artifact/eef6b32c-5545-4374-bfbe-287f527334c8" target="_blank" rel="noopener">Docket ↗</a>
+    <a class="tabx" href="https://claude.ai/code/artifact/eef6b32c-5545-4374-bfbe-287f527334c8" target="_blank" rel="noopener">Docket ↗</a>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
