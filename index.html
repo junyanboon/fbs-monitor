@@ -408,8 +408,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 21, 2026",
-  "generatedAt": "Aug 21, 9:16 AM ET",
-  "generatedAtISO": "2026-08-21T09:16:19-04:00",
+  "generatedAt": "Aug 21, 9:30 AM ET",
+  "generatedAtISO": "2026-08-21T09:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -445,7 +445,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "09:28",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -460,7 +460,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "09:22",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -475,7 +475,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "09:22",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -576,28 +576,27 @@ const DATA = /*__DATA__*/{
   ],
   "staff": [],
   "attention": [],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "509A",
-      "time": "21:59",
-      "ts": 1787277543000,
-      "when": "Thu 21:59"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
+  "armEvents": [
+    {
       "studio": "509B",
-      "time": "22:15",
-      "ts": 1787278502000,
-      "when": "Thu 22:15"
+      "name": "",
+      "time": "09:22",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787318522000,
+      "source": "panel"
     },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "09:28",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787318882000,
+      "source": "panel"
+    }
+  ],
+  "panelPrior": {
     "527": {
       "kind": "departure",
       "name": "",
@@ -630,11 +629,11 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
-    "updatedAt": "2026-08-21T02:20:03+00:00",
+    "updatedAt": "2026-08-21T13:28:02+00:00",
     "down": false
   },
   "robots": [
@@ -736,7 +735,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T08:53:00-04:00"
+      "lastISO": "2026-08-21T09:25:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -786,7 +785,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T03:15:00-04:00"
+      "lastISO": "2026-08-21T09:15:00-04:00"
     },
     {
       "run": "watchlist-refresh (GitHub Actions)",
@@ -796,7 +795,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T09:16:00-04:00"
+      "lastISO": "2026-08-21T09:31:00-04:00"
     },
     {
       "run": "The Closer",
