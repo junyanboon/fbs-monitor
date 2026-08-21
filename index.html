@@ -408,8 +408,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 20, 2026",
-  "generatedAt": "Aug 20, 11:30 PM ET",
-  "generatedAtISO": "2026-08-20T23:30:49-04:00",
+  "generatedAt": "Aug 20, 11:45 PM ET",
+  "generatedAtISO": "2026-08-20T23:45:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -670,7 +670,12 @@ const DATA = /*__DATA__*/{
       "end": 22.0
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -895,8 +900,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly · 07–23",
       "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-20T22:02:00-04:00"
     },
     {
@@ -1067,7 +1072,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-20T22:33:00-04:00"
+      "lastISO": "2026-08-20T23:33:00-04:00"
     },
     {
       "run": "watchlist-refresh (GitHub Actions)",
