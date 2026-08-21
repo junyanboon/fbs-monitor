@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 21, 2026",
-  "generatedAt": "Aug 21, 7:20 PM ET",
-  "generatedAtISO": "2026-08-21T19:20:21-04:00",
+  "generatedAt": "Aug 21, 7:30 PM ET",
+  "generatedAtISO": "2026-08-21T19:30:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -495,29 +495,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "who": "alice hamman",
+      "who": "Jessica T. Peerspace",
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
-      "departed": null,
-      "wrong_studio": {
-        "studio": "901",
-        "at": "16:27"
-      },
-      "dup_studios": null,
-      "no_code": false,
-      "start": 16.5,
-      "end": 17.5
-    },
-    {
-      "studio": "509B",
-      "who": "Jessica T. Peerspace",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
       "arrived": "18:29",
       "departed": null,
       "wrong_studio": null,
@@ -585,6 +567,21 @@ const DATA = /*__DATA__*/{
       "no_code": false,
       "start": 19.0,
       "end": 20.0
+    },
+    {
+      "studio": "901",
+      "who": "alice hamman — 509B *24.86 authorized but not charged*",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "arrived": "16:27",
+      "departed": "17:35",
+      "wrong_studio": null,
+      "dup_studios": null,
+      "no_code": false,
+      "start": 16.5,
+      "end": 17.5
     },
     {
       "studio": "901",
@@ -1461,6 +1458,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-21T23:19:00.883955Z",
         "until": "2026-08-21T23:19:10.320231Z"
+      },
+      {
+        "since": "2026-08-21T23:24:46.754200Z",
+        "until": "2026-08-21T23:24:52.196528Z"
+      },
+      {
+        "since": "2026-08-21T23:30:00.591525Z",
+        "until": "2026-08-21T23:30:10.047002Z"
       }
     ],
     "down": false
@@ -1564,7 +1569,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T18:57:00-04:00"
+      "lastISO": "2026-08-21T19:26:00-04:00"
     },
     {
       "run": "The Sentinel",
