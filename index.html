@@ -111,6 +111,12 @@
   .tabs .tab.on{color:var(--chalk);border-bottom-color:var(--tungsten)}
   .tabs .tab:hover{color:var(--chalk)}
   .tabs .tab:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
+  /* External surface, not a panel — the Deck runs as a Claude artifact because it
+     writes to Notion with the viewer's own login; it cannot be hosted on Pages. */
+  .tabs .tabx{margin-left:auto;align-self:center;padding:10px 16px;font-family:var(--sans);
+              font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;
+              color:var(--tungsten);text-decoration:none;border-bottom:3px solid transparent}
+  .tabs .tabx:hover{color:var(--chalk)}
 
   /* status bar (Studios tab) — status.claude.com-style: one overall state, plus
      any items from the analyst report. Grade-3 wording, colour = severity. */
@@ -375,6 +381,7 @@
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
     <button class="tab" data-tab="reports" role="tab" aria-selected="false">Issues</button>
+    <a class="tabx" href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener">Deck ↗</a>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
@@ -408,8 +415,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 21, 2026",
-  "generatedAt": "Aug 21, 6:50 PM ET",
-  "generatedAtISO": "2026-08-21T18:50:00-04:00",
+  "generatedAt": "Aug 21, 7:00 PM ET",
+  "generatedAtISO": "2026-08-21T19:00:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -445,8 +452,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": "09:28",
-      "departed": "09:54",
+      "arrived": "09:26",
+      "departed": "09:52",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -460,8 +467,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": "09:22",
-      "departed": "09:32",
+      "arrived": "09:20",
+      "departed": "09:29",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -475,8 +482,8 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": "09:22",
-      "departed": "12:42",
+      "arrived": "09:41",
+      "departed": "12:36",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -490,9 +497,12 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": "18:31",
+      "arrived": null,
       "departed": null,
-      "wrong_studio": null,
+      "wrong_studio": {
+        "studio": "901",
+        "at": "16:27"
+      },
       "dup_studios": null,
       "no_code": false,
       "start": 16.5,
@@ -505,7 +515,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": "18:31",
+      "arrived": "18:29",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -521,7 +531,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "arrived": "09:59",
-      "departed": "10:20",
+      "departed": "10:19",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -535,7 +545,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": "15:17",
+      "arrived": "15:15",
       "departed": "17:29",
       "wrong_studio": null,
       "dup_studios": null,
@@ -550,8 +560,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": "10:30",
-      "departed": "11:07",
+      "arrived": "10:27",
+      "departed": "11:06",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -565,7 +575,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:56",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -580,7 +590,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "18:57",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -619,48 +629,48 @@ const DATA = /*__DATA__*/{
   "armEvents": [
     {
       "studio": "509B",
-      "name": "",
-      "time": "09:22",
+      "name": "Stefan Lovecchio",
+      "time": "09:20",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787318522000,
-      "source": "panel"
+      "ts": 1787318416477,
+      "source": "doors"
     },
     {
       "studio": "509A",
-      "name": "",
-      "time": "09:28",
+      "name": "Stefan Lovecchio",
+      "time": "09:26",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787318882000,
-      "source": "panel"
+      "ts": 1787318785094,
+      "source": "doors"
     },
     {
       "studio": "509B",
-      "name": "",
-      "time": "09:32",
+      "name": "Stefan Lovecchio",
+      "time": "09:29",
       "kind": "departure",
       "remote": false,
-      "ts": 1787319129000,
-      "source": "panel"
+      "ts": 1787318989554,
+      "source": "doors"
     },
     {
       "studio": "509B",
-      "name": "",
-      "time": "09:44",
+      "name": "Chris Giggster",
+      "time": "09:41",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787319842000,
-      "source": "panel"
+      "ts": 1787319664757,
+      "source": "doors"
     },
     {
       "studio": "509A",
-      "name": "",
-      "time": "09:54",
+      "name": "Stefan Lovecchio",
+      "time": "09:52",
       "kind": "departure",
       "remote": false,
-      "ts": 1787320442000,
-      "source": "panel"
+      "ts": 1787320343493,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -668,70 +678,62 @@ const DATA = /*__DATA__*/{
       "time": "09:59",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787320747000
-    },
-    {
-      "studio": "527",
-      "name": "",
-      "time": "10:03",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1787320990000,
-      "source": "panel"
+      "ts": 1787320747409,
+      "source": "doors"
     },
     {
       "studio": "527",
       "name": "Stefan Lovecchio",
-      "time": "10:20",
+      "time": "10:19",
       "kind": "departure",
       "remote": false,
-      "ts": 1787322003000,
-      "source": "panel"
+      "ts": 1787321958707,
+      "source": "doors"
     },
     {
       "studio": "693",
-      "name": "",
-      "time": "10:30",
+      "name": "Stefan Lovecchio",
+      "time": "10:27",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787322604000,
-      "source": "panel"
+      "ts": 1787322453947,
+      "source": "doors"
     },
     {
       "studio": "693",
-      "name": "",
-      "time": "11:07",
+      "name": "Stefan Lovecchio",
+      "time": "11:06",
       "kind": "departure",
       "remote": false,
-      "ts": 1787324825000,
-      "source": "panel"
+      "ts": 1787324761778,
+      "source": "doors"
     },
     {
       "studio": "509B",
-      "name": "",
-      "time": "12:42",
+      "name": "Chris Giggster",
+      "time": "12:36",
       "kind": "departure",
       "remote": false,
-      "ts": 1787330522000,
-      "source": "panel"
+      "ts": 1787330201440,
+      "source": "doors"
     },
     {
       "studio": "527",
       "name": "Shannon Bennett",
-      "time": "15:17",
+      "time": "15:15",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787339822000,
-      "source": "panel"
+      "ts": 1787339747649,
+      "source": "doors"
     },
     {
       "studio": "901",
-      "name": "",
-      "time": "16:28",
+      "name": "alice hamman",
+      "time": "16:27",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787344082000,
-      "source": "panel"
+      "ts": 1787344037287,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -739,33 +741,88 @@ const DATA = /*__DATA__*/{
       "time": "17:29",
       "kind": "departure",
       "remote": false,
-      "ts": 1787347798000
+      "ts": 1787347797924,
+      "source": "doors"
     },
     {
-      "studio": "527",
-      "name": "",
-      "time": "17:32",
+      "studio": "901",
+      "name": "alice hamman",
+      "time": "17:34",
       "kind": "departure",
       "remote": false,
-      "ts": 1787347931000,
-      "source": "panel"
+      "ts": 1787348073603,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "alice hamman",
+      "time": "17:35",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787348102192,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "17:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787348705872,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "17:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787348708888,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jessica T",
+      "time": "18:29",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787351356432,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "18:29",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787351394050,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "18:29",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787351397303,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "18:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787352961521,
+      "source": "doors"
     },
     {
       "studio": "901",
       "name": "",
-      "time": "17:40",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1787348403000,
-      "source": "panel"
-    },
-    {
-      "studio": "509B",
-      "name": "",
-      "time": "18:31",
+      "time": "18:57",
       "kind": "arrival",
       "remote": false,
-      "ts": 1787351463000,
+      "ts": 1787353022000,
       "source": "panel"
     }
   ],
@@ -775,7 +832,618 @@ const DATA = /*__DATA__*/{
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
-    "updatedAt": "2026-08-21T22:31:03+00:00",
+    "doors": "ok",
+    "updatedAt": "2026-08-21T22:58:03+00:00",
+    "doorGaps": [
+      {
+        "since": "2026-08-21T09:05:15.818025Z",
+        "until": "2026-08-21T09:05:27.253578Z"
+      },
+      {
+        "since": "2026-08-21T09:11:13.675355Z",
+        "until": "2026-08-21T09:11:27.098788Z"
+      },
+      {
+        "since": "2026-08-21T09:16:41.300999Z",
+        "until": "2026-08-21T09:16:47.789194Z"
+      },
+      {
+        "since": "2026-08-21T09:22:03.432411Z",
+        "until": "2026-08-21T09:22:15.937078Z"
+      },
+      {
+        "since": "2026-08-21T09:27:43.110975Z",
+        "until": "2026-08-21T09:27:50.406807Z"
+      },
+      {
+        "since": "2026-08-21T09:32:57.456227Z",
+        "until": "2026-08-21T09:33:07.873048Z"
+      },
+      {
+        "since": "2026-08-21T09:38:43.132592Z",
+        "until": "2026-08-21T09:38:58.588425Z"
+      },
+      {
+        "since": "2026-08-21T09:44:15.750041Z",
+        "until": "2026-08-21T09:44:24.164483Z"
+      },
+      {
+        "since": "2026-08-21T09:50:15.788017Z",
+        "until": "2026-08-21T09:50:23.305767Z"
+      },
+      {
+        "since": "2026-08-21T09:56:03.401450Z",
+        "until": "2026-08-21T09:56:16.824821Z"
+      },
+      {
+        "since": "2026-08-21T09:57:22.471615Z",
+        "until": "2026-08-21T09:57:27.446936Z"
+      },
+      {
+        "since": "2026-08-21T10:03:03.304354Z",
+        "until": "2026-08-21T10:03:11.720662Z"
+      },
+      {
+        "since": "2026-08-21T10:08:15.855131Z",
+        "until": "2026-08-21T10:08:30.286060Z"
+      },
+      {
+        "since": "2026-08-21T10:13:57.392426Z",
+        "until": "2026-08-21T10:14:02.854986Z"
+      },
+      {
+        "since": "2026-08-21T10:19:43.164307Z",
+        "until": "2026-08-21T10:19:57.663922Z"
+      },
+      {
+        "since": "2026-08-21T10:25:14.137833Z",
+        "until": "2026-08-21T10:25:26.600496Z"
+      },
+      {
+        "since": "2026-08-21T10:30:57.376473Z",
+        "until": "2026-08-21T10:31:06.830007Z"
+      },
+      {
+        "since": "2026-08-21T10:36:43.093350Z",
+        "until": "2026-08-21T10:36:49.337348Z"
+      },
+      {
+        "since": "2026-08-21T10:42:14.281891Z",
+        "until": "2026-08-21T10:42:21.929029Z"
+      },
+      {
+        "since": "2026-08-21T10:48:15.915484Z",
+        "until": "2026-08-21T10:48:22.346863Z"
+      },
+      {
+        "since": "2026-08-21T10:53:57.288316Z",
+        "until": "2026-08-21T10:54:04.747885Z"
+      },
+      {
+        "since": "2026-08-21T10:59:43.068526Z",
+        "until": "2026-08-21T10:59:56.368717Z"
+      },
+      {
+        "since": "2026-08-21T11:04:57.328834Z",
+        "until": "2026-08-21T11:05:06.907171Z"
+      },
+      {
+        "since": "2026-08-21T11:10:15.711339Z",
+        "until": "2026-08-21T11:10:21.193396Z"
+      },
+      {
+        "since": "2026-08-21T11:15:57.306857Z",
+        "until": "2026-08-21T11:16:08.692362Z"
+      },
+      {
+        "since": "2026-08-21T11:21:14.508075Z",
+        "until": "2026-08-21T11:21:21.911505Z"
+      },
+      {
+        "since": "2026-08-21T11:26:41.929775Z",
+        "until": "2026-08-21T11:26:50.343969Z"
+      },
+      {
+        "since": "2026-08-21T11:32:15.852777Z",
+        "until": "2026-08-21T11:32:31.291332Z"
+      },
+      {
+        "since": "2026-08-21T11:37:41.956039Z",
+        "until": "2026-08-21T11:37:55.392976Z"
+      },
+      {
+        "since": "2026-08-21T11:42:57.271302Z",
+        "until": "2026-08-21T11:43:04.536402Z"
+      },
+      {
+        "since": "2026-08-21T11:48:14.693158Z",
+        "until": "2026-08-21T11:48:23.156733Z"
+      },
+      {
+        "since": "2026-08-21T11:54:03.192311Z",
+        "until": "2026-08-21T11:54:16.822902Z"
+      },
+      {
+        "since": "2026-08-21T11:59:15.552067Z",
+        "until": "2026-08-21T11:59:24.016700Z"
+      },
+      {
+        "since": "2026-08-21T12:05:03.163896Z",
+        "until": "2026-08-21T12:05:12.891783Z"
+      },
+      {
+        "since": "2026-08-21T12:10:27.676340Z",
+        "until": "2026-08-21T12:10:39.072366Z"
+      },
+      {
+        "since": "2026-08-21T12:15:42.184484Z",
+        "until": "2026-08-21T12:15:52.602651Z"
+      },
+      {
+        "since": "2026-08-21T12:21:15.496767Z",
+        "until": "2026-08-21T12:21:25.904329Z"
+      },
+      {
+        "since": "2026-08-21T12:27:15.550021Z",
+        "until": "2026-08-21T12:27:20.990585Z"
+      },
+      {
+        "since": "2026-08-21T12:32:42.251614Z",
+        "until": "2026-08-21T12:32:51.669816Z"
+      },
+      {
+        "since": "2026-08-21T12:38:43.582436Z",
+        "until": "2026-08-21T12:38:53.021316Z"
+      },
+      {
+        "since": "2026-08-21T12:44:42.890386Z",
+        "until": "2026-08-21T12:44:51.342723Z"
+      },
+      {
+        "since": "2026-08-21T12:50:15.465486Z",
+        "until": "2026-08-21T12:50:24.932262Z"
+      },
+      {
+        "since": "2026-08-21T12:55:57.157548Z",
+        "until": "2026-08-21T12:56:01.513866Z"
+      },
+      {
+        "since": "2026-08-21T13:01:03.026288Z",
+        "until": "2026-08-21T13:01:10.431116Z"
+      },
+      {
+        "since": "2026-08-21T13:06:42.602775Z",
+        "until": "2026-08-21T13:06:55.031569Z"
+      },
+      {
+        "since": "2026-08-21T13:12:03.073952Z",
+        "until": "2026-08-21T13:12:07.682688Z"
+      },
+      {
+        "since": "2026-08-21T13:17:57.120128Z",
+        "until": "2026-08-21T13:18:07.603729Z"
+      },
+      {
+        "since": "2026-08-21T13:23:42.781302Z",
+        "until": "2026-08-21T13:23:52.186465Z"
+      },
+      {
+        "since": "2026-08-21T13:28:58.315453Z",
+        "until": "2026-08-21T13:29:09.736351Z"
+      },
+      {
+        "since": "2026-08-21T13:34:57.115443Z",
+        "until": "2026-08-21T13:35:02.494827Z"
+      },
+      {
+        "since": "2026-08-21T13:40:42.722369Z",
+        "until": "2026-08-21T13:40:48.691861Z"
+      },
+      {
+        "since": "2026-08-21T13:46:42.856781Z",
+        "until": "2026-08-21T13:46:50.854722Z"
+      },
+      {
+        "since": "2026-08-21T13:52:42.788605Z",
+        "until": "2026-08-21T13:52:53.047360Z"
+      },
+      {
+        "since": "2026-08-21T13:57:57.014045Z",
+        "until": "2026-08-21T13:58:02.449172Z"
+      },
+      {
+        "since": "2026-08-21T14:03:42.832810Z",
+        "until": "2026-08-21T14:03:49.331144Z"
+      },
+      {
+        "since": "2026-08-21T14:09:43.904630Z",
+        "until": "2026-08-21T14:09:50.334352Z"
+      },
+      {
+        "since": "2026-08-21T14:10:36.183029Z",
+        "until": "2026-08-21T14:10:49.672245Z"
+      },
+      {
+        "since": "2026-08-21T14:15:57.905123Z",
+        "until": "2026-08-21T14:16:08.299857Z"
+      },
+      {
+        "since": "2026-08-21T14:21:42.729395Z",
+        "until": "2026-08-21T14:21:47.381475Z"
+      },
+      {
+        "since": "2026-08-21T14:27:35.231943Z",
+        "until": "2026-08-21T14:27:42.553265Z"
+      },
+      {
+        "since": "2026-08-21T14:33:35.240660Z",
+        "until": "2026-08-21T14:33:46.678139Z"
+      },
+      {
+        "since": "2026-08-21T14:38:57.341335Z",
+        "until": "2026-08-21T14:39:00.445787Z"
+      },
+      {
+        "since": "2026-08-21T14:44:47.545593Z",
+        "until": "2026-08-21T14:45:01.042507Z"
+      },
+      {
+        "since": "2026-08-21T14:50:35.536205Z",
+        "until": "2026-08-21T14:50:47.842517Z"
+      },
+      {
+        "since": "2026-08-21T14:55:47.470951Z",
+        "until": "2026-08-21T14:56:00.936528Z"
+      },
+      {
+        "since": "2026-08-21T14:56:01.225567Z",
+        "until": "2026-08-21T14:56:14.438367Z"
+      },
+      {
+        "since": "2026-08-21T15:01:35.226492Z",
+        "until": "2026-08-21T15:01:47.498495Z"
+      },
+      {
+        "since": "2026-08-21T15:06:57.535074Z",
+        "until": "2026-08-21T15:07:10.913750Z"
+      },
+      {
+        "since": "2026-08-21T15:13:03.647760Z",
+        "until": "2026-08-21T15:13:15.183921Z"
+      },
+      {
+        "since": "2026-08-21T15:17:37.907448Z",
+        "until": "2026-08-21T15:17:47.200178Z"
+      },
+      {
+        "since": "2026-08-21T15:23:35.199419Z",
+        "until": "2026-08-21T15:23:49.511573Z"
+      },
+      {
+        "since": "2026-08-21T15:29:42.077510Z",
+        "until": "2026-08-21T15:29:51.916479Z"
+      },
+      {
+        "since": "2026-08-21T15:35:42.113855Z",
+        "until": "2026-08-21T15:35:51.382595Z"
+      },
+      {
+        "since": "2026-08-21T15:41:03.809082Z",
+        "until": "2026-08-21T15:41:17.214035Z"
+      },
+      {
+        "since": "2026-08-21T15:46:57.804107Z",
+        "until": "2026-08-21T15:47:13.254240Z"
+      },
+      {
+        "since": "2026-08-21T15:52:15.163186Z",
+        "until": "2026-08-21T15:52:29.583470Z"
+      },
+      {
+        "since": "2026-08-21T15:57:42.068803Z",
+        "until": "2026-08-21T15:57:55.434108Z"
+      },
+      {
+        "since": "2026-08-21T16:03:42.160693Z",
+        "until": "2026-08-21T16:03:57.791986Z"
+      },
+      {
+        "since": "2026-08-21T16:09:03.995678Z",
+        "until": "2026-08-21T16:09:14.490257Z"
+      },
+      {
+        "since": "2026-08-21T16:15:04.046976Z",
+        "until": "2026-08-21T16:15:10.381334Z"
+      },
+      {
+        "since": "2026-08-21T16:20:47.368885Z",
+        "until": "2026-08-21T16:20:53.679201Z"
+      },
+      {
+        "since": "2026-08-21T16:26:47.366996Z",
+        "until": "2026-08-21T16:27:02.805973Z"
+      },
+      {
+        "since": "2026-08-21T16:32:47.421466Z",
+        "until": "2026-08-21T16:33:01.856672Z"
+      },
+      {
+        "since": "2026-08-21T16:38:47.402472Z",
+        "until": "2026-08-21T16:38:50.015055Z"
+      },
+      {
+        "since": "2026-08-21T16:44:35.092739Z",
+        "until": "2026-08-21T16:44:47.857123Z"
+      },
+      {
+        "since": "2026-08-21T16:50:15.120830Z",
+        "until": "2026-08-21T16:50:24.701295Z"
+      },
+      {
+        "since": "2026-08-21T16:55:35.004924Z",
+        "until": "2026-08-21T16:55:41.538401Z"
+      },
+      {
+        "since": "2026-08-21T17:00:41.992111Z",
+        "until": "2026-08-21T17:00:50.455865Z"
+      },
+      {
+        "since": "2026-08-21T17:06:15.104421Z",
+        "until": "2026-08-21T17:06:26.537726Z"
+      },
+      {
+        "since": "2026-08-21T17:11:34.987948Z",
+        "until": "2026-08-21T17:11:47.465399Z"
+      },
+      {
+        "since": "2026-08-21T17:16:47.295379Z",
+        "until": "2026-08-21T17:16:54.713323Z"
+      },
+      {
+        "since": "2026-08-21T17:22:34.951235Z",
+        "until": "2026-08-21T17:22:38.707557Z"
+      },
+      {
+        "since": "2026-08-21T17:28:04.437698Z",
+        "until": "2026-08-21T17:28:11.273742Z"
+      },
+      {
+        "since": "2026-08-21T17:33:15.443485Z",
+        "until": "2026-08-21T17:33:23.872224Z"
+      },
+      {
+        "since": "2026-08-21T17:38:34.958438Z",
+        "until": "2026-08-21T17:38:41.392097Z"
+      },
+      {
+        "since": "2026-08-21T17:44:34.912384Z",
+        "until": "2026-08-21T17:44:45.432636Z"
+      },
+      {
+        "since": "2026-08-21T17:49:41.912067Z",
+        "until": "2026-08-21T17:49:54.330490Z"
+      },
+      {
+        "since": "2026-08-21T17:55:41.907700Z",
+        "until": "2026-08-21T17:55:57.330817Z"
+      },
+      {
+        "since": "2026-08-21T18:01:04.643640Z",
+        "until": "2026-08-21T18:01:11.128812Z"
+      },
+      {
+        "since": "2026-08-21T18:06:41.854221Z",
+        "until": "2026-08-21T18:06:49.281639Z"
+      },
+      {
+        "since": "2026-08-21T18:11:58.753704Z",
+        "until": "2026-08-21T18:12:04.190253Z"
+      },
+      {
+        "since": "2026-08-21T18:17:34.933057Z",
+        "until": "2026-08-21T18:17:44.403806Z"
+      },
+      {
+        "since": "2026-08-21T18:22:47.232331Z",
+        "until": "2026-08-21T18:22:57.708688Z"
+      },
+      {
+        "since": "2026-08-21T18:28:14.992732Z",
+        "until": "2026-08-21T18:28:29.316177Z"
+      },
+      {
+        "since": "2026-08-21T18:33:34.841236Z",
+        "until": "2026-08-21T18:33:48.294009Z"
+      },
+      {
+        "since": "2026-08-21T18:38:59.232364Z",
+        "until": "2026-08-21T18:39:09.807771Z"
+      },
+      {
+        "since": "2026-08-21T18:44:41.780571Z",
+        "until": "2026-08-21T18:44:49.358357Z"
+      },
+      {
+        "since": "2026-08-21T18:49:58.963553Z",
+        "until": "2026-08-21T18:50:12.438351Z"
+      },
+      {
+        "since": "2026-08-21T18:55:59.400403Z",
+        "until": "2026-08-21T18:56:07.840855Z"
+      },
+      {
+        "since": "2026-08-21T19:01:14.934317Z",
+        "until": "2026-08-21T19:01:29.352608Z"
+      },
+      {
+        "since": "2026-08-21T19:06:59.382829Z",
+        "until": "2026-08-21T19:07:06.480640Z"
+      },
+      {
+        "since": "2026-08-21T19:12:47.149379Z",
+        "until": "2026-08-21T19:13:00.628792Z"
+      },
+      {
+        "since": "2026-08-21T19:18:47.157191Z",
+        "until": "2026-08-21T19:18:56.560429Z"
+      },
+      {
+        "since": "2026-08-21T19:24:05.136623Z",
+        "until": "2026-08-21T19:24:15.938522Z"
+      },
+      {
+        "since": "2026-08-21T19:29:59.168311Z",
+        "until": "2026-08-21T19:30:08.593993Z"
+      },
+      {
+        "since": "2026-08-21T19:35:14.881565Z",
+        "until": "2026-08-21T19:35:26.372867Z"
+      },
+      {
+        "since": "2026-08-21T19:40:34.713397Z",
+        "until": "2026-08-21T19:40:46.152349Z"
+      },
+      {
+        "since": "2026-08-21T19:45:47.073279Z",
+        "until": "2026-08-21T19:45:54.720688Z"
+      },
+      {
+        "since": "2026-08-21T19:51:41.728111Z",
+        "until": "2026-08-21T19:51:50.208827Z"
+      },
+      {
+        "since": "2026-08-21T19:57:34.735958Z",
+        "until": "2026-08-21T19:57:44.046391Z"
+      },
+      {
+        "since": "2026-08-21T20:02:42.042271Z",
+        "until": "2026-08-21T20:02:53.514930Z"
+      },
+      {
+        "since": "2026-08-21T20:08:47.008162Z",
+        "until": "2026-08-21T20:08:56.444818Z"
+      },
+      {
+        "since": "2026-08-21T20:13:59.432365Z",
+        "until": "2026-08-21T20:14:10.892231Z"
+      },
+      {
+        "since": "2026-08-21T20:19:59.466141Z",
+        "until": "2026-08-21T20:20:13.708705Z"
+      },
+      {
+        "since": "2026-08-21T20:26:05.490337Z",
+        "until": "2026-08-21T20:26:17.189494Z"
+      },
+      {
+        "since": "2026-08-21T20:32:06.014270Z",
+        "until": "2026-08-21T20:32:12.906258Z"
+      },
+      {
+        "since": "2026-08-21T20:38:05.604050Z",
+        "until": "2026-08-21T20:38:15.045769Z"
+      },
+      {
+        "since": "2026-08-21T20:43:14.742531Z",
+        "until": "2026-08-21T20:43:19.719423Z"
+      },
+      {
+        "since": "2026-08-21T20:48:59.647165Z",
+        "until": "2026-08-21T20:49:14.218174Z"
+      },
+      {
+        "since": "2026-08-21T20:55:06.221215Z",
+        "until": "2026-08-21T20:55:13.339916Z"
+      },
+      {
+        "since": "2026-08-21T21:01:05.695639Z",
+        "until": "2026-08-21T21:01:19.173767Z"
+      },
+      {
+        "since": "2026-08-21T21:06:34.570441Z",
+        "until": "2026-08-21T21:06:42.018287Z"
+      },
+      {
+        "since": "2026-08-21T21:12:05.719835Z",
+        "until": "2026-08-21T21:12:16.176251Z"
+      },
+      {
+        "since": "2026-08-21T21:18:05.787777Z",
+        "until": "2026-08-21T21:18:16.254765Z"
+      },
+      {
+        "since": "2026-08-21T21:23:59.885889Z",
+        "until": "2026-08-21T21:24:07.327304Z"
+      },
+      {
+        "since": "2026-08-21T21:29:34.509610Z",
+        "until": "2026-08-21T21:29:44.981083Z"
+      },
+      {
+        "since": "2026-08-21T21:35:06.456262Z",
+        "until": "2026-08-21T21:35:17.930082Z"
+      },
+      {
+        "since": "2026-08-21T21:40:46.911896Z",
+        "until": "2026-08-21T21:40:58.413435Z"
+      },
+      {
+        "since": "2026-08-21T21:46:34.565667Z",
+        "until": "2026-08-21T21:46:45.756055Z"
+      },
+      {
+        "since": "2026-08-21T21:52:05.987717Z",
+        "until": "2026-08-21T21:52:17.820899Z"
+      },
+      {
+        "since": "2026-08-21T21:58:06.023559Z",
+        "until": "2026-08-21T21:58:16.646121Z"
+      },
+      {
+        "since": "2026-08-21T22:03:41.541678Z",
+        "until": "2026-08-21T22:03:52.948246Z"
+      },
+      {
+        "since": "2026-08-21T22:09:06.067231Z",
+        "until": "2026-08-21T22:09:13.721641Z"
+      },
+      {
+        "since": "2026-08-21T22:15:06.114732Z",
+        "until": "2026-08-21T22:15:12.411103Z"
+      },
+      {
+        "since": "2026-08-21T22:20:14.564640Z",
+        "until": "2026-08-21T22:20:25.940241Z"
+      },
+      {
+        "since": "2026-08-21T22:26:00.657113Z",
+        "until": "2026-08-21T22:26:13.134498Z"
+      },
+      {
+        "since": "2026-08-21T22:31:41.410759Z",
+        "until": "2026-08-21T22:31:47.789266Z"
+      },
+      {
+        "since": "2026-08-21T22:37:00.322101Z",
+        "until": "2026-08-21T22:37:05.765996Z"
+      },
+      {
+        "since": "2026-08-21T22:42:41.745849Z",
+        "until": "2026-08-21T22:42:54.506691Z"
+      },
+      {
+        "since": "2026-08-21T22:48:00.764276Z",
+        "until": "2026-08-21T22:48:10.204309Z"
+      },
+      {
+        "since": "2026-08-21T22:54:00.412974Z",
+        "until": "2026-08-21T22:54:08.835815Z"
+      },
+      {
+        "since": "2026-08-21T22:59:06.358635Z",
+        "until": "2026-08-21T22:59:14.713012Z"
+      }
+    ],
     "down": false
   },
   "robots": [
@@ -797,7 +1465,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T18:00:00-04:00"
+      "lastISO": "2026-08-21T19:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -867,7 +1535,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T18:02:00-04:00"
+      "lastISO": "2026-08-21T18:58:00-04:00"
     },
     {
       "run": "The Responder",
@@ -877,7 +1545,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T18:24:00-04:00"
+      "lastISO": "2026-08-21T18:57:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1078,8 +1746,9 @@ document.getElementById('tabs').addEventListener('click', ev => {
 document.getElementById('daytitle').innerHTML =
   "FBS <em>Monitor</em><small>" + esc(DATA.date) + "</small>";
 document.getElementById('stamp').textContent = "Data refreshed " + DATA.generatedAt +
-  " · arrivals read from the alarm panel ledger (times only — the named " +
-  "ADT/TELUS feed was retired 2026-08-20)";
+  ((DATA.armFeed||{}).doors === "ok"
+    ? " · arrivals from the alarm event stream (named, second precision) with the panel ledger as backstop"
+    : " · arrivals read from the alarm panel ledger (times only — event stream unavailable this build)");
 
 /* Freshness + refresh. The page is a static edition; refresh probes for a newer
    pushed edition and reloads onto it. The probe reads version.json (~60 bytes,
@@ -1487,7 +2156,7 @@ function renderAlarms(){
     ...evs.map(e=>({...e,html:`<div class="shift">
         <span class="tm">${esc(e.time)}</span>
         ${e.name ? `<span class="nm">${esc(e.name)}</span>`
-                 : `<span class="nm none" title="The panel ledger records the event, not the actor. Named arm/disarm came from the ADT/TELUS email feed, retired 2026-08-20.">no name on this source</span>`}
+                 : `<span class="nm none" title="No actor on this event — it reached the board through the panel ledger backstop (which records the event, not the actor) or was a remote arm. Keypad events on the live event stream carry names.">no name on this source</span>`}
         <span class="chip plain">${esc(e.studio)}</span>
         <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
       </div>`})),
@@ -1504,17 +2173,17 @@ function renderAlarms(){
   ].sort((a,b)=>ordA(b,a)).map(x=>x.html);
   html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +
     (stream.length ? stream.join("") : `<div class="shift">No alarm events yet today</div>`) + `</div>`;
-  /* Names went missing on 2026-08-20 when the ADT/TELUS email feed was retired
-     fleet-wide — the panel ledger this board now reads records the event, not
-     the actor. Only remote arms made through alarm-mcp still carry one. Without
-     this line a column of blanks reads as a rendering bug, and someone spends
-     an evening looking for one. */
-  if(evs.some(e=>!e.name))
-    html += `<p class="hintnote">Renter names are unavailable. The ADT/TELUS email feed
-      — the only source that named who armed or disarmed — was retired 2026-08-20;
-      the panel ledger behind these rows records the event, not the actor. Only remote
-      arms show a name. The replacement is built and awaiting deploy — alarm-mcp&rsquo;s
-      websocket listener (<code>alarm-events</code>), ticket 106.</p>`;
+  /* Names come from the websocket event stream (alarm-events, live since
+     2026-08-21 — canon studio-activity.md). When THAT feed did not answer a
+     build, the board falls back to the nameless panel ledger, and a column of
+     blanks reads as a rendering bug unless the page says why. Only shown when
+     the stream was actually down — scattered nameless rows with the stream up
+     are normal (panel-backstop events inside socket gaps, remote arms). */
+  if(evs.some(e=>!e.name) && (DATA.armFeed||{}).doors !== "ok")
+    html += `<p class="hintnote">Renter names are unavailable this build: the alarm
+      event stream (<code>alarm-events</code>) did not answer, so these rows come from
+      the panel ledger backstop, which records the event, not the actor. Names return
+      when the stream does.</p>`;
   $('#alarmpanel').innerHTML = html;
 }
 
