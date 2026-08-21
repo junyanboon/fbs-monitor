@@ -408,8 +408,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 21, 2026",
-  "generatedAt": "Aug 21, 8:16 AM ET",
-  "generatedAtISO": "2026-08-21T08:16:19-04:00",
+  "generatedAt": "Aug 21, 8:30 AM ET",
+  "generatedAtISO": "2026-08-21T08:30:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -575,12 +575,7 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -644,16 +639,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-20T22:58:00-04:00"
-    },
-    {
       "run": "qa-review (GitHub Actions)",
       "cadence": "Hourly",
       "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
@@ -691,7 +676,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T08:14:00-04:00"
+      "lastISO": "2026-08-21T09:05:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -742,6 +727,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-20T19:39:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-21T08:45:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -905,11 +900,11 @@ const DATA = /*__DATA__*/{
     {
       "level": "watch",
       "label": "Access",
-      "text": "Booking sweep — access unresolved for alice hamman at 509B Aug 21 16:30 [sweep:509B:202…",
-      "whenISO": "2026-08-19T23:02:00-04:00"
+      "text": "Booking sweep — access unresolved for Marcy Tran at 509B Aug 24 14:00 [sweep:509B:2026-…",
+      "whenISO": "2026-08-19T23:04:00-04:00"
     }
   ],
-  "issuesTotal": 32,
+  "issuesTotal": 31,
   "issuesNote": null
 }/*__END_DATA__*/;
 
