@@ -408,8 +408,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 21, 2026",
-  "generatedAt": "Aug 21, 8:01 AM ET",
-  "generatedAtISO": "2026-08-21T08:01:05-04:00",
+  "generatedAt": "Aug 21, 8:15 AM ET",
+  "generatedAtISO": "2026-08-21T08:15:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -578,7 +578,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -644,16 +644,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-20T22:35:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -662,16 +652,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-20T22:58:00-04:00"
-    },
-    {
-      "run": "watchlist-refresh (GitHub Actions)",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-20T17:46:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -702,6 +682,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-21T06:12:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-21T08:14:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -761,7 +751,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T07:07:00-04:00"
+      "lastISO": "2026-08-21T08:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -802,6 +792,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-21T03:15:00-04:00"
+    },
+    {
+      "run": "watchlist-refresh (GitHub Actions)",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-21T08:03:00-04:00"
     },
     {
       "run": "The Closer",
