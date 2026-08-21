@@ -109,8 +109,9 @@
   /* External surfaces styled as ordinary tabs — the Deck/Docket run as Claude
      artifacts because they write to Notion with the viewer's own login; they
      cannot be hosted on Pages, so these tabs open them in a new browser tab. */
-  .tabs .tabx{display:inline-block;padding:10px 16px;font:inherit;font-family:inherit;
-              color:var(--chalk-dim);text-decoration:none;border-bottom:3px solid transparent}
+  .tabs .tabx{display:inline-block;padding:10px 16px;border-bottom:3px solid transparent;
+              font-family:var(--sans);font-weight:700;font-size:13.5px;letter-spacing:.08em;
+              text-transform:uppercase;color:var(--chalk-dim);text-decoration:none}
   .tabs .tabx:hover{color:var(--chalk)}
   .tabs .tabx:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
 
