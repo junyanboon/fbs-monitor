@@ -92,6 +92,13 @@ ARM_LABEL = "Artist Care - ADT"
 # what the Gmail feed is still for.
 ARM_HISTORY_URL = (os.environ.get("ALARM_HISTORY_URL") or "").strip()
 ARM_HISTORY_TOKEN = (os.environ.get("ALARM_HISTORY_TOKEN") or "").strip()
+# alarm-mcp's /door-history — the websocket event ledger (canon
+# studio-activity.md). NAMED keypad arm/disarm at second precision, plus the
+# coverage verdict the arm-state ledger cannot give. Same service and bearer
+# as /arm-history, so no new secret: derive the URL unless overridden.
+DOOR_HISTORY_URL = (os.environ.get("DOOR_HISTORY_URL") or "").strip() or (
+    ARM_HISTORY_URL.replace("/arm-history", "/door-history")
+    if "/arm-history" in ARM_HISTORY_URL else "")
 EPS = 1e-6
 
 
@@ -1179,6 +1186,80 @@ def fetch_arm_history(win_start):
     return out, payload.get("updated_at")
 
 
+def fetch_door_events(win_start):
+    """NAMED arm/disarm events from alarm-mcp's /door-history (the websocket
+    event ledger — canon studio-activity.md).
+
+    This is what replaced the dead ADT/TELUS email feed: keypad arm/disarm
+    with the actor's name and a stable contact id, at second precision. It
+    plays the role the emails played in enrich_arm_names() — the NAME source
+    laid over the panel ledger's timeline — and more, since its events are
+    also better-timed than the panel ledger's minute tick (509 events ran 1-6
+    minutes late on 2026-08-20; the websocket saw the same events live).
+
+    Returns (events, coverage_gaps):
+      events: the arm_events shape apply_arm_events() expects, plus ts/source.
+        * keypad arm/disarm  -> named, remote=False — attributable to a renter.
+        * remote arm/disarm  -> remote=True. actor_source "remote" proves a
+          button was pressed somewhere, not that anyone was in the building
+          (canon: never attribute a remote event to a renter).
+        * door/motion events are NOT returned — the board's stream renders
+          arm state; presence-without-identity belongs to the departure
+          verdict, which this builder does not compute (yet).
+      coverage_gaps: [{since, until}] ISO pairs where the listener was NOT
+        recording. "No event in a gap" means "was not listening", never
+        "nobody came" — the caller must not let a window containing a gap
+        render as a no-show. Same ruling that retired the ADT feed.
+
+    Raises on any failure, like fetch_arm_history — the caller records which
+    feeds answered, and a partial answer that looks complete is the one thing
+    this file must never produce.
+    """
+    r = requests.get(DOOR_HISTORY_URL,
+                     headers={"Authorization": f"Bearer {ARM_HISTORY_TOKEN}"},
+                     params={"since": win_start.astimezone(timezone.utc)
+                             .strftime("%Y-%m-%dT%H:%M:%S+00:00")},
+                     timeout=30)
+    r.raise_for_status()
+    payload = r.json()
+    out = []
+    for ev in payload.get("events") or []:
+        studio = norm_studio_label(ev.get("studio"))
+        kind = {"disarm": "arrival", "arm": "departure"}.get(ev.get("kind"))
+        if not studio or not kind:
+            continue                     # door/motion — not arm state
+        try:
+            at = datetime.fromisoformat(str(ev["at"]).replace("Z", "+00:00"))
+        except (KeyError, ValueError):
+            continue
+        local = at.astimezone(TZ)
+        if local < win_start:
+            continue
+        remote = ev.get("actor_source") != "keypad"
+        out.append({
+            "studio": studio,
+            "name": "Studio (remote)" if remote else (ev.get("actor") or ""),
+            "time": f"{local.hour:02d}:{local.minute:02d}",
+            "kind": kind,
+            "remote": remote,
+            "ts": int(at.timestamp() * 1000),
+            "source": "doors",
+        })
+    gaps = []
+    for g in payload.get("gaps") or []:
+        since, until = _parse_iso_utc(g.get("since")), _parse_iso_utc(g.get("until"))
+        if since and until and until.astimezone(TZ) >= win_start:
+            gaps.append({"since": g["since"], "until": g["until"]})
+    return out, gaps
+
+
+def _parse_iso_utc(s):
+    try:
+        return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        return None
+
+
 def feed_is_down(arm_events, arm_feed, now, win_start, quiet_hours=5):
     """Is the silence an outage rather than a quiet morning?
 
@@ -1383,19 +1464,42 @@ def apply_arm_events(events, arm_events):
         if departures:
             e["departed"] = max(departures)[1]
 
-    # pass 2 — unclaimed events for still-unmatched bookings
-    for e in events:
-        if e["arrived"] and e["departed"]:
+    # pass 2 — unclaimed events for still-unmatched bookings.
+    #
+    # Each event is spent ON ONE BOOKING. The first version looped over
+    # bookings and never marked events claimed, so one nameless disarm was
+    # credited to every in-window booking: on 2026-08-20 Anneka's 13:26
+    # arrival in 509A rendered as HER arrival AND as Vanessa Zavatti's, whose
+    # 2-minute viewing the panel tick had missed entirely — a phantom
+    # "in 13:29" against a booking nobody attended in that room.
+    #
+    # The assignment is event-centric: each unclaimed event goes to the
+    # candidate booking whose OWN INTERVAL it lies closest to (distance 0 when
+    # inside [start, end]). Window-centre distance gets the same case wrong —
+    # 13:29 sits nearer the centre of a 13:00-13:15 viewing than of a
+    # 13:30-15:30 booking, but it is 1 minute before the latter's start and
+    # 14 minutes after the former's end. Losers stay honestly blank.
+    def _iv_dist(e, t):
+        return max(e["start"] - t, t - e["end"], 0.0)
+
+    # Arrivals ascending (earliest disarm is the arrival), departures
+    # DESCENDING (last arm is the departure — a mid-booking arm/disarm pair
+    # must not read as leaving), preserving pass 1's earliest/latest rule.
+    ordered = sorted((a for a in timed if a["kind"] == "arrival"),
+                     key=lambda a: a["t"]) + \
+              sorted((a for a in timed if a["kind"] == "departure"),
+                     key=lambda a: -a["t"])
+    for a in ordered:
+        if a["claimed"]:
             continue
-        arrivals, departures = [], []
-        for a in timed:
-            if a["claimed"] or a["studio"] != e["studio"] or not in_window(e, a["t"]):
-                continue
-            (arrivals if a["kind"] == "arrival" else departures).append((a["t"], a["time"]))
-        if not e["arrived"] and arrivals:
-            e["arrived"] = min(arrivals)[1]
-        if not e["departed"] and departures:
-            e["departed"] = max(departures)[1]
+        want = "arrived" if a["kind"] == "arrival" else "departed"
+        cands = [e for e in events
+                 if e["studio"] == a["studio"] and not e[want] and in_window(e, a["t"])]
+        if not cands:
+            continue
+        best = min(cands, key=lambda e: (_iv_dist(e, a["t"]), e["start"]))
+        best[want] = a["time"]
+        a["claimed"] = True
 
     # A departure that precedes the arrival is a mis-claimed neighbour's arm
     # (e.g. the main booking's 13:10 arm landing on its own 13:18 extension row).
@@ -1801,8 +1905,21 @@ def build_data(now):
     # in the data. The page suppresses no-arrival flags when nothing answered.
     used_fallback = False
     arm_events, alarm_alerts, panel_prior = [], [], {}
-    panel_events, mail_events = [], []
-    arm_feed = {"panel": None, "mail": None, "updatedAt": None}
+    panel_events, mail_events, door_events, door_gaps = [], [], [], []
+    arm_feed = {"panel": None, "mail": None, "doors": None, "updatedAt": None}
+
+    # doors — the websocket event ledger (/door-history). The NAME source, and
+    # better-timed than the panel tick. It can have recorded outage gaps, which
+    # is why the panel ledger below stays on as the timeline backstop.
+    if DOOR_HISTORY_URL and ARM_HISTORY_TOKEN:
+        try:
+            door_events, door_gaps = fetch_door_events(win_start)
+            arm_feed["doors"] = "ok"
+        except Exception as e:          # noqa: BLE001 — soft: panel ledger still answers
+            arm_feed["doors"] = "failed"
+            print(f"NOTE: door-history failed ({e}); events will be nameless.")
+    else:
+        arm_feed["doors"] = "unconfigured"
 
     if ARM_HISTORY_URL and ARM_HISTORY_TOKEN:
         try:
@@ -1826,7 +1943,26 @@ def build_data(now):
     else:
         arm_feed["mail"] = "unconfigured"
 
-    if panel_events or mail_events:
+    # When the door feed answered, IT is the timeline — named and true-timed.
+    # The panel ledger's minute tick reports the same arm changes 1-6 minutes
+    # late (measured 2026-08-20: 13:26:24 -> 13:29), which is wider than
+    # enrich_arm_names' 2-minute match window — so laying one over the other
+    # would keep both copies. Instead, a panel event survives only if no door
+    # event of the same studio+kind sits within 8 minutes: those survivors are
+    # exactly the events the websocket missed (its gaps are real — the panel
+    # poll is immune to them), which is the backstop role canon gives it.
+    # Mail events ride along for the rare account still emailing.
+    if door_events:
+        def _door_twin(p):
+            return any(d["studio"] == p["studio"] and d["kind"] == p["kind"]
+                       and abs((d.get("ts") or 0) - (p.get("ts") or 0)) <= 8 * 60 * 1000
+                       for d in door_events)
+        backstop = [p for p in panel_events if not _door_twin(p)]
+        arm_events = sorted(door_events + backstop, key=lambda e: e.get("ts") or 0)
+        if mail_events:
+            arm_events = enrich_arm_names(arm_events, mail_events)
+        events = apply_arm_events(events, arm_events)
+    elif panel_events or mail_events:
         arm_events = (enrich_arm_names(panel_events, mail_events)
                       if panel_events else mail_events)
         events = apply_arm_events(events, arm_events)
@@ -1838,14 +1974,20 @@ def build_data(now):
         # identical here and mean opposite things, and a note that says "no
         # source answered (panel: ok)" is the kind of self-contradiction that
         # costs an hour at 2am. `feed_is_down` already draws the same line.
-        answered = [k for k in ("panel", "mail") if arm_feed[k] == "ok"]
+        answered = [k for k in ("doors", "panel", "mail") if arm_feed[k] == "ok"]
         emit_fallback_note(
             (f"No arm events yet — {' and '.join(answered)} answered with an "
              "empty stream" if answered else "No arrival source answered")
-            + f" (panel: {arm_feed['panel']}, mail: {arm_feed['mail']}); "
+            + f" (doors: {arm_feed['doors']}, panel: {arm_feed['panel']}, mail: {arm_feed['mail']}); "
             "used board Armed/Disarmed fallback.")
         events = apply_board_fallback(events)
 
+    # Carried in the data so a reader can see WHEN the door feed was deaf.
+    # No flag logic keys off these: the panel ledger polls and is immune to
+    # socket gaps, so arm state survives them — but a "who was it" question
+    # about a gap window has to fall back to nameless evidence, and the page
+    # saying so beats an agent re-deriving it.
+    arm_feed["doorGaps"] = door_gaps
     arm_feed["down"] = feed_is_down(arm_events, arm_feed, datetime.now(TZ), win_start)
     if arm_feed["down"]:
         emit_fallback_note(

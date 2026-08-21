@@ -167,7 +167,37 @@ def main():
                                       late, win_start),
                    True)
 
-    print("FAILED" if fails else "ok — 25 checks passed")
+    # ---- pass 2 must not spend one event on two bookings ------------------
+    # The 2026-08-20 case verbatim: Vanessa's 13:00-13:15 viewing in 509A went
+    # unseen by the panel tick (2m24s visit, inside one tick), Anneka's 13:30
+    # booking followed. Her nameless 13:29 disarm must land on Anneka ONLY —
+    # it sits 1 min before Anneka's start but 14 min after Vanessa's end —
+    # and her 15:34 arm likewise. Vanessa's row stays honestly blank.
+    def ev(studio, who, start, end):
+        return {"studio": studio, "who": who, "start": start, "end": end,
+                "kind": "booking", "hta": None, "arrived": None,
+                "departed": None, "lane": "unknown"}
+    vanessa = ev("509A", "Vanessa Zavatti — Studio Viewing", 13.0, 13.25)
+    anneka = ev("509A", "Anneka K. Peerspace — 509B", 13.5, 15.5)
+    arm = [{"studio": "509A", "name": "", "time": "13:29", "kind": "arrival"},
+           {"studio": "509A", "name": "", "time": "15:34", "kind": "departure"}]
+    build.apply_arm_events([vanessa, anneka], arm)
+    fails += check("phantom arrival not written", vanessa["arrived"], None)
+    fails += check("phantom departure not written", vanessa["departed"], None)
+    fails += check("real booking gets the arrival", anneka["arrived"], "13:29")
+    fails += check("real booking gets the departure", anneka["departed"], "15:34")
+
+    # A mid-booking arm/disarm pair must not read as leaving: last arm wins.
+    solo = ev("693", "Angus Dirnbeck", 18.0, 20.0)
+    arm = [{"studio": "693", "name": "", "time": "18:02", "kind": "arrival"},
+           {"studio": "693", "name": "", "time": "19:00", "kind": "departure"},
+           {"studio": "693", "name": "", "time": "19:05", "kind": "arrival"},
+           {"studio": "693", "name": "", "time": "20:01", "kind": "departure"}]
+    build.apply_arm_events([solo], arm)
+    fails += check("earliest disarm is the arrival", solo["arrived"], "18:02")
+    fails += check("last arm is the departure", solo["departed"], "20:01")
+
+    print("FAILED" if fails else "ok — 31 checks passed")
     return 1 if fails else 0
 
 

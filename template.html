@@ -433,8 +433,9 @@ document.getElementById('tabs').addEventListener('click', ev => {
 document.getElementById('daytitle').innerHTML =
   "FBS <em>Monitor</em><small>" + esc(DATA.date) + "</small>";
 document.getElementById('stamp').textContent = "Data refreshed " + DATA.generatedAt +
-  " · arrivals read from the alarm panel ledger (times only — the named " +
-  "ADT/TELUS feed was retired 2026-08-20)";
+  ((DATA.armFeed||{}).doors === "ok"
+    ? " · arrivals from the alarm event stream (named, second precision) with the panel ledger as backstop"
+    : " · arrivals read from the alarm panel ledger (times only — event stream unavailable this build)");
 
 /* Freshness + refresh. The page is a static edition; refresh probes for a newer
    pushed edition and reloads onto it. The probe reads version.json (~60 bytes,
@@ -842,7 +843,7 @@ function renderAlarms(){
     ...evs.map(e=>({...e,html:`<div class="shift">
         <span class="tm">${esc(e.time)}</span>
         ${e.name ? `<span class="nm">${esc(e.name)}</span>`
-                 : `<span class="nm none" title="The panel ledger records the event, not the actor. Named arm/disarm came from the ADT/TELUS email feed, retired 2026-08-20.">no name on this source</span>`}
+                 : `<span class="nm none" title="No actor on this event — it reached the board through the panel ledger backstop (which records the event, not the actor) or was a remote arm. Keypad events on the live event stream carry names.">no name on this source</span>`}
         <span class="chip plain">${esc(e.studio)}</span>
         <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
       </div>`})),
@@ -859,17 +860,17 @@ function renderAlarms(){
   ].sort((a,b)=>ordA(b,a)).map(x=>x.html);
   html += `<p class="lane-label">Today's arm / disarm events</p><div class="panelwrap">` +
     (stream.length ? stream.join("") : `<div class="shift">No alarm events yet today</div>`) + `</div>`;
-  /* Names went missing on 2026-08-20 when the ADT/TELUS email feed was retired
-     fleet-wide — the panel ledger this board now reads records the event, not
-     the actor. Only remote arms made through alarm-mcp still carry one. Without
-     this line a column of blanks reads as a rendering bug, and someone spends
-     an evening looking for one. */
-  if(evs.some(e=>!e.name))
-    html += `<p class="hintnote">Renter names are unavailable. The ADT/TELUS email feed
-      — the only source that named who armed or disarmed — was retired 2026-08-20;
-      the panel ledger behind these rows records the event, not the actor. Only remote
-      arms show a name. The replacement is built and awaiting deploy — alarm-mcp&rsquo;s
-      websocket listener (<code>alarm-events</code>), ticket 106.</p>`;
+  /* Names come from the websocket event stream (alarm-events, live since
+     2026-08-21 — canon studio-activity.md). When THAT feed did not answer a
+     build, the board falls back to the nameless panel ledger, and a column of
+     blanks reads as a rendering bug unless the page says why. Only shown when
+     the stream was actually down — scattered nameless rows with the stream up
+     are normal (panel-backstop events inside socket gaps, remote arms). */
+  if(evs.some(e=>!e.name) && (DATA.armFeed||{}).doors !== "ok")
+    html += `<p class="hintnote">Renter names are unavailable this build: the alarm
+      event stream (<code>alarm-events</code>) did not answer, so these rows come from
+      the panel ledger backstop, which records the event, not the actor. Names return
+      when the stream does.</p>`;
   $('#alarmpanel').innerHTML = html;
 }
 
