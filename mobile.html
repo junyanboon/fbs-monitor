@@ -173,8 +173,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 21, 2026",
-  "generatedAt": "Aug 21, 7:21 AM ET",
-  "generatedAtISO": "2026-08-21T07:21:38-04:00",
+  "generatedAt": "Aug 21, 7:45 AM ET",
+  "generatedAtISO": "2026-08-21T07:45:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -280,12 +280,7 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -348,16 +343,6 @@ const DATA = /*__DATA__*/{
     "down": false
   },
   "robots": [
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-20T23:33:00-04:00"
-    },
     {
       "run": "qa-review (GitHub Actions)",
       "cadence": "Hourly",
@@ -447,6 +432,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-21T06:50:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-21T07:33:00-04:00"
     },
     {
       "run": "The Weatherman",
