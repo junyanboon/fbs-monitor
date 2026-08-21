@@ -111,12 +111,14 @@
   .tabs .tab.on{color:var(--chalk);border-bottom-color:var(--tungsten)}
   .tabs .tab:hover{color:var(--chalk)}
   .tabs .tab:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
-  /* External surface, not a panel — the Deck runs as a Claude artifact because it
-     writes to Notion with the viewer's own login; it cannot be hosted on Pages. */
-  .tabs .tabx{margin-left:auto;align-self:center;padding:10px 16px;font-family:var(--sans);
-              font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;
-              color:var(--tungsten);text-decoration:none;border-bottom:3px solid transparent}
+  /* External surfaces styled as ordinary tabs — the Deck/Docket run as Claude
+     artifacts because they write to Notion with the viewer's own login; they
+     cannot be hosted on Pages, so these tabs open them in a new browser tab. */
+  .tabs .tabx{display:inline-block;padding:10px 16px;border-bottom:3px solid transparent;
+              font-family:var(--sans);font-weight:700;font-size:13.5px;letter-spacing:.08em;
+              text-transform:uppercase;color:var(--chalk-dim);text-decoration:none}
   .tabs .tabx:hover{color:var(--chalk)}
+  .tabs .tabx:focus-visible{outline:2px solid var(--tungsten);outline-offset:-2px}
 
   /* status bar (Studios tab) — status.claude.com-style: one overall state, plus
      any items from the analyst report. Grade-3 wording, colour = severity. */
@@ -382,6 +384,7 @@
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
     <button class="tab" data-tab="reports" role="tab" aria-selected="false">Issues</button>
     <a class="tabx" href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener">Deck ↗</a>
+    <a class="tabx" href="https://claude.ai/code/artifact/eef6b32c-5545-4374-bfbe-287f527334c8" target="_blank" rel="noopener">Docket ↗</a>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
@@ -415,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 21, 2026",
-  "generatedAt": "Aug 21, 7:03 PM ET",
-  "generatedAtISO": "2026-08-21T19:03:07-04:00",
+  "generatedAt": "Aug 21, 7:15 PM ET",
+  "generatedAtISO": "2026-08-21T19:15:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1446,6 +1449,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-21T23:02:27.545744Z",
         "until": "2026-08-21T23:02:45.973668Z"
+      },
+      {
+        "since": "2026-08-21T23:07:46.792385Z",
+        "until": "2026-08-21T23:07:54.202426Z"
+      },
+      {
+        "since": "2026-08-21T23:13:47.550316Z",
+        "until": "2026-08-21T23:13:51.200591Z"
       }
     ],
     "down": false
@@ -1559,7 +1570,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T18:05:00-04:00"
+      "lastISO": "2026-08-21T19:02:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1599,7 +1610,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-21T18:12:00-04:00"
+      "lastISO": "2026-08-21T19:12:00-04:00"
     },
     {
       "run": "watchlist-refresh (GitHub Actions)",
