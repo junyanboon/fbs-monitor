@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 6:31 PM ET",
-  "generatedAtISO": "2026-08-22T18:31:38-04:00",
+  "generatedAt": "Aug 22, 6:45 PM ET",
+  "generatedAtISO": "2026-08-22T18:45:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -549,8 +549,8 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
-      "departed": null,
+      "arrived": "18:32",
+      "departed": "18:35",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -896,27 +896,34 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787437888208,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Cara Butler",
+      "time": "18:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787437924719,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Cara Butler",
+      "time": "18:35",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787438115113,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "527": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "527",
-      "time": "17:32",
-      "ts": 1787347931000,
-      "when": "Fri 17:32"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-22T22:28:01+00:00",
+    "updatedAt": "2026-08-22T22:40:02+00:00",
     "doorGaps": [
       {
         "since": "2026-08-22T09:00:10.038735Z",
@@ -1493,6 +1500,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-22T22:28:45.348476Z",
         "until": "2026-08-22T22:28:51.628221Z"
+      },
+      {
+        "since": "2026-08-22T22:34:15.732214Z",
+        "until": "2026-08-22T22:34:28.117960Z"
+      },
+      {
+        "since": "2026-08-22T22:39:40.070511Z",
+        "until": "2026-08-22T22:39:53.507247Z"
       }
     ],
     "down": false
@@ -1517,6 +1532,16 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-21T19:41:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-22T17:33:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1627,16 +1652,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-01T09:05:00-04:00"
-    },
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-22T17:33:00-04:00"
     },
     {
       "run": "The Weatherman",
