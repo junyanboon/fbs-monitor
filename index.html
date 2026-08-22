@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 7:30 AM ET",
-  "generatedAtISO": "2026-08-22T07:30:59-04:00",
+  "generatedAt": "Aug 22, 7:44 AM ET",
+  "generatedAtISO": "2026-08-22T07:44:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -547,12 +547,7 @@ const DATA = /*__DATA__*/{
       "end": 12.25
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509B",
@@ -730,21 +725,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-22T11:29:46.288680Z",
         "until": "2026-08-22T11:29:52.601775Z"
+      },
+      {
+        "since": "2026-08-22T11:35:32.981428Z",
+        "until": "2026-08-22T11:35:44.428656Z"
+      },
+      {
+        "since": "2026-08-22T11:41:10.785765Z",
+        "until": "2026-08-22T11:41:20.232724Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-21T23:33:00-04:00"
-    },
     {
       "run": "qa-review (GitHub Actions)",
       "cadence": "Hourly",
@@ -834,6 +827,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-22T04:25:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-22T07:33:00-04:00"
     },
     {
       "run": "The Weatherman",
