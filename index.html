@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 2:15 AM ET",
-  "generatedAtISO": "2026-08-22T02:15:39-04:00",
+  "generatedAt": "Aug 22, 2:30 AM ET",
+  "generatedAtISO": "2026-08-22T02:30:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1777,11 +1777,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-22T06:13:40.685668Z",
         "until": "2026-08-22T06:13:47.978417Z"
+      },
+      {
+        "since": "2026-08-22T06:18:46.751620Z",
+        "until": "2026-08-22T06:18:57.484432Z"
+      },
+      {
+        "since": "2026-08-22T06:24:08.918335Z",
+        "until": "2026-08-22T06:24:58.481420Z"
+      },
+      {
+        "since": "2026-08-22T06:30:08.972851Z",
+        "until": "2026-08-22T06:30:22.387831Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-21T04:45:00-04:00"
+    },
     {
       "run": "The Bookkeeper",
       "cadence": "Daily",
@@ -1821,16 +1843,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-22T02:00:00-04:00"
-    },
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-21T04:45:00-04:00"
     },
     {
       "run": "The Mechanic",
