@@ -179,8 +179,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 12:19 PM ET",
-  "generatedAtISO": "2026-08-22T12:19:15-04:00",
+  "generatedAt": "Aug 22, 12:30 PM ET",
+  "generatedAtISO": "2026-08-22T12:30:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -276,7 +276,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "12:20",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -426,6 +426,33 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1787415214842,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Hanano I",
+      "time": "12:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787415604030,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "12:22",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787415757592,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Hanano I",
+      "time": "12:23",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787415789238,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -438,16 +465,6 @@ const DATA = /*__DATA__*/{
       "time": "17:32",
       "ts": 1787347931000,
       "when": "Fri 17:32"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Amandeep Kaur",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "20:14",
-      "ts": 1787357650059,
-      "when": "Fri 20:14"
     }
   },
   "alarmAlerts": [],
@@ -456,7 +473,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-22T16:15:01+00:00",
+    "updatedAt": "2026-08-22T16:27:02+00:00",
     "doorGaps": [
       {
         "since": "2026-08-22T09:00:10.038735Z",
@@ -769,11 +786,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-22T16:18:45.760224Z",
         "until": "2026-08-22T16:18:55.619400Z"
+      },
+      {
+        "since": "2026-08-22T16:24:12.572192Z",
+        "until": "2026-08-22T16:24:20.817944Z"
+      },
+      {
+        "since": "2026-08-22T16:29:46.070874Z",
+        "until": "2026-08-22T16:30:00.562565Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-22T10:38:00-04:00"
+    },
     {
       "run": "qa-review (GitHub Actions)",
       "cadence": "Hourly",
@@ -803,16 +838,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-22T06:03:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-22T10:38:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -872,7 +897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-22T11:57:00-04:00"
+      "lastISO": "2026-08-22T12:28:00-04:00"
     },
     {
       "run": "The Sentinel",
