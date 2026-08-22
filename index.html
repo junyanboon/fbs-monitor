@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 1:02 PM ET",
-  "generatedAtISO": "2026-08-22T13:02:31-04:00",
+  "generatedAt": "Aug 22, 1:15 PM ET",
+  "generatedAtISO": "2026-08-22T13:15:38-04:00",
   "studios": [
     {
       "id": "509A",
@@ -691,6 +691,24 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1787415789238,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "13:14",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787418847942,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "13:14",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787418849445,
       "source": "doors"
     }
   ],
@@ -1053,6 +1071,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-22T16:57:25.972343Z",
         "until": "2026-08-22T16:57:32.355088Z"
+      },
+      {
+        "since": "2026-08-22T17:02:45.669744Z",
+        "until": "2026-08-22T17:02:55.088919Z"
+      },
+      {
+        "since": "2026-08-22T17:08:45.662071Z",
+        "until": "2026-08-22T17:08:55.919263Z"
+      },
+      {
+        "since": "2026-08-22T17:14:12.864327Z",
+        "until": "2026-08-22T17:14:26.245410Z"
       }
     ],
     "down": false
@@ -1166,7 +1196,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-22T12:03:00-04:00"
+      "lastISO": "2026-08-22T13:02:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1206,7 +1236,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-22T12:10:00-04:00"
+      "lastISO": "2026-08-22T13:10:00-04:00"
     },
     {
       "run": "watchlist-refresh (GitHub Actions)",
