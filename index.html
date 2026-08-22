@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 8:00 AM ET",
-  "generatedAtISO": "2026-08-22T08:00:51-04:00",
+  "generatedAt": "Aug 22, 8:15 AM ET",
+  "generatedAtISO": "2026-08-22T08:15:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -550,7 +550,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -749,6 +749,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-22T11:57:10.909154Z",
         "until": "2026-08-22T11:57:20.361047Z"
+      },
+      {
+        "since": "2026-08-22T12:02:46.172873Z",
+        "until": "2026-08-22T12:02:58.468929Z"
+      },
+      {
+        "since": "2026-08-22T12:08:46.161350Z",
+        "until": "2026-08-22T12:08:54.455322Z"
+      },
+      {
+        "since": "2026-08-22T12:14:46.420347Z",
+        "until": "2026-08-22T12:14:52.672648Z"
       }
     ],
     "down": false
@@ -773,16 +785,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-21T22:51:00-04:00"
-    },
-    {
-      "run": "watchlist-refresh (GitHub Actions)",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-21T22:45:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -872,7 +874,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-22T07:04:00-04:00"
+      "lastISO": "2026-08-22T08:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -913,6 +915,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-22T03:16:00-04:00"
+    },
+    {
+      "run": "watchlist-refresh (GitHub Actions)",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-22T08:01:00-04:00"
     },
     {
       "run": "The Closer",
