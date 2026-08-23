@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 7:00 PM ET",
-  "generatedAtISO": "2026-08-23T19:00:49-04:00",
+  "generatedAt": "Aug 23, 7:15 PM ET",
+  "generatedAtISO": "2026-08-23T19:15:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -648,7 +648,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1472,6 +1472,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T22:58:48.998354Z",
         "until": "2026-08-23T22:58:57.523371Z"
+      },
+      {
+        "since": "2026-08-23T23:04:23.270263Z",
+        "until": "2026-08-23T23:04:31.579164Z"
+      },
+      {
+        "since": "2026-08-23T23:10:04.999698Z",
+        "until": "2026-08-23T23:10:11.486790Z"
+      },
+      {
+        "since": "2026-08-23T23:15:23.205497Z",
+        "until": "2026-08-23T23:15:38.652047Z"
       }
     ],
     "down": false
@@ -1486,16 +1498,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-23T16:05:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-23T15:53:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1516,6 +1518,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-23T15:32:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-23T17:26:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1546,16 +1558,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-23T14:36:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-23T17:26:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1598,6 +1600,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-23T14:47:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-23T19:11:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1635,7 +1647,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T18:46:00-04:00"
+      "lastISO": "2026-08-23T19:01:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1681,12 +1693,6 @@ const DATA = /*__DATA__*/{
       "label": "Run error",
       "text": "Other — see Notion",
       "whenISO": "2026-08-20T09:14:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Two panel-side steps only Junyan can do, to close the ~520 orphaned alarm-code reservat…",
-      "whenISO": "2026-08-08T21:29:00-04:00"
     },
     {
       "level": "watch",
@@ -1741,6 +1747,12 @@ const DATA = /*__DATA__*/{
       "label": "Report",
       "text": "Night pass never ran (no Fixer Report for today) · 8 of 9 Review tickets audited clean and closed · Nina Li's $••• credit does not verify — 2 bookings still unpaid in Skedda",
       "whenISO": "2026-08-23T15:05:00-04:00"
+    },
+    {
+      "level": "watch",
+      "label": "Report",
+      "text": "Julia mirror + Mark access + 901 bypass need staff · inbox clear",
+      "whenISO": "2026-08-23T17:26:00-04:00"
     }
   ],
   "issuesTotal": 14,
