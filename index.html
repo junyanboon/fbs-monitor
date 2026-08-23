@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 8:28 PM ET",
-  "generatedAtISO": "2026-08-22T20:28:09-04:00",
+  "generatedAt": "Aug 22, 8:30 PM ET",
+  "generatedAtISO": "2026-08-22T20:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -895,6 +895,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787438115113,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "20:28",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787444921368,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -904,7 +913,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-22T22:40:02+00:00",
+    "updatedAt": "2026-08-23T00:30:08+00:00",
     "doorGaps": [
       {
         "since": "2026-08-22T09:00:10.038735Z",
@@ -1728,7 +1737,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-22T20:16:00-04:00"
+      "lastISO": "2026-08-22T20:31:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1768,12 +1777,6 @@ const DATA = /*__DATA__*/{
       "label": "Urgent",
       "text": "🚨 NOBODY WAS PAGED for either real Studio 693 alarm on Aug 15",
       "whenISO": "2026-08-16T02:42:00-04:00"
-    },
-    {
-      "level": "crit",
-      "label": "Run error",
-      "text": "The Concierge — see Notion",
-      "whenISO": "2026-08-16T16:21:00-04:00"
     },
     {
       "level": "crit",
@@ -1834,9 +1837,15 @@ const DATA = /*__DATA__*/{
       "label": "Access",
       "text": "🔒 Provision Keegan Shim's alarm code",
       "whenISO": "2026-08-20T12:29:00-04:00"
+    },
+    {
+      "level": "watch",
+      "label": "Access",
+      "text": "Alarm code needs a person",
+      "whenISO": "2026-08-21T06:10:00-04:00"
     }
   ],
-  "issuesTotal": 26,
+  "issuesTotal": 25,
   "issuesNote": null
 }/*__END_DATA__*/;
 
