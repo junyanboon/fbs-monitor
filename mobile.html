@@ -179,8 +179,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 5:18 PM ET",
-  "generatedAtISO": "2026-08-23T17:18:11-04:00",
+  "generatedAt": "Aug 23, 5:30 PM ET",
+  "generatedAtISO": "2026-08-23T17:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -300,21 +300,6 @@ const DATA = /*__DATA__*/{
       "end": 10.25
     },
     {
-      "studio": "527",
-      "who": "Stefan",
-      "kind": "cleaning",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "arrived": null,
-      "departed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "no_code": false,
-      "start": 18.0,
-      "end": 18.5
-    },
-    {
       "studio": "693",
       "who": "Risa Waldman (Making Music Together Inc",
       "kind": "booking",
@@ -343,21 +328,6 @@ const DATA = /*__DATA__*/{
       "no_code": false,
       "start": 11.25,
       "end": 18.25
-    },
-    {
-      "studio": "693",
-      "who": "Stefan",
-      "kind": "cleaning",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "arrived": null,
-      "departed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "no_code": false,
-      "start": 19.0,
-      "end": 19.75
     },
     {
       "studio": "901",
@@ -439,7 +409,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1124,11 +1094,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T21:12:48.700229Z",
         "until": "2026-08-23T21:12:56.183888Z"
+      },
+      {
+        "since": "2026-08-23T21:18:05.110239Z",
+        "until": "2026-08-23T21:18:10.381514Z"
+      },
+      {
+        "since": "2026-08-23T21:23:23.369727Z",
+        "until": "2026-08-23T21:23:34.794981Z"
+      },
+      {
+        "since": "2026-08-23T21:29:11.072577Z",
+        "until": "2026-08-23T21:29:21.340775Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-23T15:53:00-04:00"
+    },
     {
       "run": "The Sentinel",
       "cadence": "Hourly",
@@ -1158,16 +1150,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-23T16:05:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-23T15:53:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1207,7 +1189,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T16:03:00-04:00"
+      "lastISO": "2026-08-23T17:26:00-04:00"
     },
     {
       "run": "The Custodian",
