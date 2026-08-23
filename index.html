@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 9:15 AM ET",
-  "generatedAtISO": "2026-08-23T09:15:47-04:00",
+  "generatedAt": "Aug 23, 9:30 AM ET",
+  "generatedAtISO": "2026-08-23T09:30:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -678,7 +678,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "9 robots overdue — see Robots tab"
+      "text": "10 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -929,6 +929,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T13:15:24.145856Z",
         "until": "2026-08-23T13:15:33.596056Z"
+      },
+      {
+        "since": "2026-08-23T13:21:11.911560Z",
+        "until": "2026-08-23T13:21:19.308663Z"
+      },
+      {
+        "since": "2026-08-23T13:26:45.492620Z",
+        "until": "2026-08-23T13:26:58.917381Z"
       }
     ],
     "down": false
@@ -1015,6 +1023,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-22T18:05:00-04:00"
     },
     {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-22T04:25:00-04:00"
+    },
+    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "hourly :30 · 07–23 (cloud)",
@@ -1043,16 +1061,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-22T04:40:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-22T04:25:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1092,7 +1100,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T09:01:00-04:00"
+      "lastISO": "2026-08-23T09:16:00-04:00"
     },
     {
       "run": "The Closer",
