@@ -133,7 +133,7 @@ def test_an_arrived_and_departed_past_end_row_attempts_exactly_one_patch(monkeyp
     assert len(calls) == 1
     url, payload = calls[0]
     assert url.endswith("/notion-row-509b")
-    assert payload["properties"]["Booking Status"]["select"]["name"] == "Complete"
+    assert payload["properties"]["Booking Status"]["status"]["name"] == "Complete"
 
 
 def test_internal_fields_never_reach_the_published_page():

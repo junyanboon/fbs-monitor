@@ -2223,7 +2223,7 @@ def sync_booking_status(data, fallback, now):
             r = requests.patch(
                 f"https://api.notion.com/v1/pages/{e['_notion_id']}",
                 headers=headers,
-                json={"properties": {"Booking Status": {"select": {"name": "Complete"}}}},
+                json={"properties": {"Booking Status": {"status": {"name": "Complete"}}}},
                 timeout=30,
             )
             if r.status_code >= 300:
