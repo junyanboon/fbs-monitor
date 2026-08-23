@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 6:45 PM ET",
-  "generatedAtISO": "2026-08-23T18:45:42-04:00",
+  "generatedAt": "Aug 23, 6:53 PM ET",
+  "generatedAtISO": "2026-08-23T18:53:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -470,7 +470,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "18:51",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -848,6 +848,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1787523310237,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Julia S",
+      "time": "18:51",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787525485099,
       "source": "doors"
     }
   ],
@@ -1451,6 +1460,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T22:41:48.877353Z",
         "until": "2026-08-23T22:42:02.305554Z"
+      },
+      {
+        "since": "2026-08-23T22:47:48.928137Z",
+        "until": "2026-08-23T22:48:01.370521Z"
+      },
+      {
+        "since": "2026-08-23T22:53:10.925106Z",
+        "until": "2026-08-23T22:53:18.356017Z"
       }
     ],
     "down": false
@@ -1614,7 +1631,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T18:31:00-04:00"
+      "lastISO": "2026-08-23T18:46:00-04:00"
     },
     {
       "run": "The Closer",
