@@ -179,8 +179,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 4:00 PM ET",
-  "generatedAtISO": "2026-08-23T16:00:49-04:00",
+  "generatedAt": "Aug 23, 4:15 PM ET",
+  "generatedAtISO": "2026-08-23T16:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -436,12 +436,7 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "527",
@@ -1045,20 +1040,28 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T19:59:48.301277Z",
         "until": "2026-08-23T19:59:56.879585Z"
+      },
+      {
+        "since": "2026-08-23T20:05:23.519998Z",
+        "until": "2026-08-23T20:05:31.916183Z"
+      },
+      {
+        "since": "2026-08-23T20:11:23.414010Z",
+        "until": "2026-08-23T20:11:29.880779Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "The Concierge",
+      "run": "The Sentinel",
       "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "expected": "hourly · 07–23",
+      "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-22T14:35:00-04:00"
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-23T15:06:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1089,6 +1092,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-23T14:36:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-23T16:03:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1151,16 +1164,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-23T15:53:00-04:00"
     },
     {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly · 07–23",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-23T15:06:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1208,7 +1211,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T15:46:00-04:00"
+      "lastISO": "2026-08-23T16:01:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1252,7 +1255,7 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "label": "Run error",
-      "text": "Other ×2 — see Notion",
+      "text": "Other — see Notion",
       "whenISO": "2026-08-20T09:14:00-04:00"
     },
     {
