@@ -82,3 +82,63 @@ def test_never_writes_back_board_fallback_data():
 def test_kill_switch_stops_all_writes(monkeypatch):
     monkeypatch.setenv("BOOKING_STATUS_SYNC_DISABLED", "1")
     assert would_flip(booking()) is False
+
+
+# ────────────────────────────────────────────────────────────────────────────
+# The pipeline seam
+# ───────────────────────────────────────────────────────────────────────────────
+# Every test above hands sync_booking_status a hand-built event, so all of them
+# passed while the real board flipped nothing for weeks: build_data projected
+# its events through a clean dict that dropped `_notion_id`, and the sync's
+# first guard skips — without logging — when it is missing. Reproduced
+# 2026-08-16 with Hannah Cho in 509B: arrived 14:00, departed 16:09, row still
+# In Studio, rebuild printed no sync attempt at all. These tests walk the real
+# path: join_notion → prepare_board_events → sync.
+
+def _joined_event(status="In Studio"):
+    """One booking, matched to a Notion row the way build_data matches it."""
+    events = [{
+        "kind": "booking", "who": "Hannah Cho", "studio": "509B",
+        "start": 14.0, "end": 16.0, "arrived": "14:00", "departed": "16:09",
+        "tier": None, "gtg": None, "hta": None,
+    }]
+    rows = [{
+        "id": "notion-row-509b", "studio": "509B", "start": "2:00 PM",
+        "tier": None, "gtg": None, "hta": None, "has_code": True,
+        "board_disarmed": None, "board_armed": None, "status": status,
+    }]
+    return build.prepare_board_events(build.join_notion(events, rows))[0]
+
+
+def test_prepared_board_event_still_carries_its_notion_row_for_sync():
+    e = _joined_event()
+    assert e["_notion_id"] == "notion-row-509b"
+    assert e["_board_status"] == "In Studio"
+
+
+def test_an_arrived_and_departed_past_end_row_attempts_exactly_one_patch(monkeypatch):
+    """The end-to-end claim: one PATCH to Complete, for that row, and only it."""
+    monkeypatch.delenv("BOOKING_STATUS_SYNC_DRYRUN", raising=False)
+    calls = []
+
+    def fake_patch(url, headers=None, json=None, timeout=None):
+        calls.append((url, json))
+        return type("R", (), {"status_code": 200, "text": ""})()
+
+    monkeypatch.setattr(build.requests, "patch", fake_patch)
+    data = {"events": [_joined_event(), {"kind": "staff", "who": "Cleaner"}]}
+    with contextlib.redirect_stdout(io.StringIO()):
+        build.sync_booking_status(data, False, datetime(2026, 8, 16, 16, 20, tzinfo=build.TZ))
+
+    assert len(calls) == 1
+    url, payload = calls[0]
+    assert url.endswith("/notion-row-509b")
+    assert payload["properties"]["Booking Status"]["select"]["name"] == "Complete"
+
+
+def test_internal_fields_never_reach_the_published_page():
+    data = {"events": [_joined_event()], "date": "Sunday, August 16, 2026"}
+    published = build.public_data(data)["events"][0]
+    assert "_notion_id" not in published and "_board_status" not in published
+    assert published["who"] == "Hannah Cho"      # the real fields survive
+    assert data["events"][0]["_notion_id"]       # and the sync's copy is untouched

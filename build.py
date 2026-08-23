@@ -1865,7 +1865,32 @@ def fetch_robots(token, now):
     return out
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+def prepare_board_events(events):
+    """The per-event dicts the board carries.
+
+    Fields with a leading underscore are internal — they exist so the
+    post-write Booking Status sync can find the Notion row this event
+    matched, and public_data() strips them before anything is published."""
+    return [{
+        "studio": e["studio"], "who": e["who"], "kind": e["kind"],
+        "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
+        "arrived": e.get("arrived"), "departed": e.get("departed"),
+        "wrong_studio": e.get("wrong_studio"),
+        "dup_studios": e.get("dup_studios"),
+        # Boolean only — see parse_notion(). The code never leaves the builder.
+        "no_code": bool(e.get("no_code")),
+        "start": round(e["start"], 4), "end": round(e["end"], 4),
+        # Internal, never published: sync_booking_status() runs off this list
+        # after the page is written and needs the Notion row it matched. Before
+        # 2026-08-21 these were dropped here, so every event failed the sync's
+        # `_notion_id` guard and no row ever flipped to Complete — silently, as
+        # the guard `continue`s before any log line. splice() strips them.
+        "_notion_id": e.get("_notion_id"),
+        "_board_status": e.get("_board_status"),
+    } for e in events]
+
+
+# ──────────────────────────────────────────────────────────────────────────────
 # assemble + splice
 # ─────────────────────────────────────────────────────────────────────────────
 def build_data(now):
@@ -1994,16 +2019,7 @@ def build_data(now):
             "ARRIVAL FEED DOWN — no arm/disarm events from either source; "
             "no-arrival flags suppressed on the board.")
 
-    clean = [{
-        "studio": e["studio"], "who": e["who"], "kind": e["kind"],
-        "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
-        "arrived": e.get("arrived"), "departed": e.get("departed"),
-        "wrong_studio": e.get("wrong_studio"),
-        "dup_studios": e.get("dup_studios"),
-        # Boolean only — see parse_notion(). The code never leaves the builder.
-        "no_code": bool(e.get("no_code")),
-        "start": round(e["start"], 4), "end": round(e["end"], 4),
-    } for e in events]
+    board_events = prepare_board_events(events)
 
     # Alarms tab: full arm/disarm stream, chronological across midnight (times
     # before 05:00 belong to the tail of the operating day).
@@ -2076,7 +2092,7 @@ def build_data(now):
         "generatedAt": now.strftime("%b %-d, %-I:%M %p ET"),
         "generatedAtISO": now.replace(microsecond=0).isoformat(),
         "studios": STUDIOS,
-        "events": clean,
+        "events": board_events,
         "staff": sorted(staff, key=lambda s: s["start"]),
         "attention": attention,
         "armEvents": arm_stream,
@@ -2093,9 +2109,22 @@ def build_data(now):
     return data, used_fallback
 
 
+def public_data(data):
+    """`data` minus the builder's internal per-event fields.
+
+    Everything under a leading underscore is machinery for the write-back and
+    has no business on a public page. Strip at the publishing boundary rather
+    than at construction, so the sync that runs after the page is written can
+    still see what row each event came from."""
+    out = dict(data)
+    out["events"] = [{k: v for k, v in e.items() if not k.startswith("_")}
+                     for e in data["events"]]
+    return out
+
+
 def splice(data, template=None):
     tpl = open(template or TEMPLATE, encoding="utf-8").read()
-    payload = json.dumps(data, indent=2, ensure_ascii=False)
+    payload = json.dumps(public_data(data), indent=2, ensure_ascii=False)
     out = re.sub(r"/\*__DATA__\*/.*?/\*__END_DATA__\*/",
                  lambda _: "/*__DATA__*/" + payload + "/*__END_DATA__*/",
                  tpl, count=1, flags=re.S)
