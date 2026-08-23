@@ -179,8 +179,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 5:00 PM ET",
-  "generatedAtISO": "2026-08-23T17:00:44-04:00",
+  "generatedAt": "Aug 23, 5:02 PM ET",
+  "generatedAtISO": "2026-08-23T17:02:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -439,7 +439,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -577,7 +577,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-23T19:30:04+00:00",
+    "updatedAt": "2026-08-23T21:01:01+00:00",
     "doorGaps": [
       {
         "since": "2026-08-23T09:00:24.718421Z",
@@ -1094,6 +1094,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T20:55:23.692469Z",
         "until": "2026-08-23T20:55:36.277826Z"
+      },
+      {
+        "since": "2026-08-23T21:01:23.478900Z",
+        "until": "2026-08-23T21:01:33.932040Z"
       }
     ],
     "down": false
@@ -1110,6 +1114,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-23T15:06:00-04:00"
     },
     {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-23T15:32:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -1118,16 +1132,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-23T15:53:00-04:00"
-    },
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-23T15:32:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1257,7 +1261,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T16:46:00-04:00"
+      "lastISO": "2026-08-23T17:01:00-04:00"
     },
     {
       "run": "The Closer",
