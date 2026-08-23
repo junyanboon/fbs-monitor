@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 22, 2026",
-  "generatedAt": "Aug 22, 10:00 PM ET",
-  "generatedAtISO": "2026-08-22T22:00:52-04:00",
+  "generatedAt": "Aug 22, 10:15 PM ET",
+  "generatedAtISO": "2026-08-22T22:15:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -595,7 +595,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "6 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1638,6 +1638,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T01:56:41.297050Z",
         "until": "2026-08-23T01:56:45.106924Z"
+      },
+      {
+        "since": "2026-08-23T02:02:06.961972Z",
+        "until": "2026-08-23T02:02:12.318661Z"
+      },
+      {
+        "since": "2026-08-23T02:07:16.983620Z",
+        "until": "2026-08-23T02:07:29.430426Z"
+      },
+      {
+        "since": "2026-08-23T02:13:17.024716Z",
+        "until": "2026-08-23T02:13:31.531401Z"
       }
     ],
     "down": false
@@ -1699,8 +1711,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly :30 · 07–23 (cloud)",
       "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-22T20:32:00-04:00"
     },
     {
@@ -1801,7 +1813,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-22T21:45:00-04:00"
+      "lastISO": "2026-08-22T22:01:00-04:00"
     },
     {
       "run": "The Closer",
