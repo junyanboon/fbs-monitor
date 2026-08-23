@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 2:45 PM ET",
-  "generatedAtISO": "2026-08-23T14:45:40-04:00",
+  "generatedAt": "Aug 23, 3:00 PM ET",
+  "generatedAtISO": "2026-08-23T15:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -650,7 +650,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "14:49",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -678,7 +678,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -771,6 +771,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787509459891,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Bella Zhou",
+      "time": "14:49",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787510958156,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -780,7 +789,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-23T18:25:02+00:00",
+    "updatedAt": "2026-08-23T18:54:02+00:00",
     "doorGaps": [
       {
         "since": "2026-08-23T09:00:24.718421Z",
@@ -1201,6 +1210,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T18:40:22.838531Z",
         "until": "2026-08-23T18:40:34.331985Z"
+      },
+      {
+        "since": "2026-08-23T18:46:11.328876Z",
+        "until": "2026-08-23T18:46:23.773676Z"
+      },
+      {
+        "since": "2026-08-23T18:51:47.501296Z",
+        "until": "2026-08-23T18:52:01.894586Z"
+      },
+      {
+        "since": "2026-08-23T18:57:47.522313Z",
+        "until": "2026-08-23T18:57:52.777107Z"
       }
     ],
     "down": false
@@ -1215,36 +1236,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-22T14:35:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-22T10:05:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-22T17:58:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-22T17:58:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1274,7 +1265,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T14:00:00-04:00"
+      "lastISO": "2026-08-23T15:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1297,6 +1288,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-23T14:36:00-04:00"
     },
     {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-23T15:05:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "08:00 (cloud)",
@@ -1317,6 +1318,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-23T14:50:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-23T15:10:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -1325,6 +1336,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-23T14:47:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-23T15:05:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1364,7 +1385,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T14:31:00-04:00"
+      "lastISO": "2026-08-23T14:46:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1414,7 +1435,7 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "label": "Run error",
-      "text": "Other — see Notion",
+      "text": "Other ×2 — see Notion",
       "whenISO": "2026-08-20T09:14:00-04:00"
     },
     {
@@ -1422,6 +1443,12 @@ const DATA = /*__DATA__*/{
       "label": "Run error",
       "text": "The Planner — see Notion",
       "whenISO": "2026-08-23T14:39:00-04:00"
+    },
+    {
+      "level": "crit",
+      "label": "Run error",
+      "text": "The Custodian — see Notion",
+      "whenISO": "2026-08-23T14:56:00-04:00"
     },
     {
       "level": "watch",
@@ -1464,15 +1491,9 @@ const DATA = /*__DATA__*/{
       "label": "Access",
       "text": "🔒 Provision Keegan Shim's alarm code",
       "whenISO": "2026-08-20T12:29:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Alarm code needs a person",
-      "whenISO": "2026-08-21T06:10:00-04:00"
     }
   ],
-  "issuesTotal": 16,
+  "issuesTotal": 20,
   "issuesNote": null
 }/*__END_DATA__*/;
 
