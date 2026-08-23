@@ -179,8 +179,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 8:55 AM ET",
-  "generatedAtISO": "2026-08-23T08:55:55-04:00",
+  "generatedAt": "Aug 23, 9:00 AM ET",
+  "generatedAtISO": "2026-08-23T09:00:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -291,7 +291,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "09:00",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -442,7 +442,17 @@ const DATA = /*__DATA__*/{
       "text": "9 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "527",
+      "name": "Scott Vandenberg",
+      "time": "09:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787490015062,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -463,16 +473,6 @@ const DATA = /*__DATA__*/{
       "time": "18:32",
       "ts": 1787437927000,
       "when": "Sat 18:32"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "527",
-      "time": "18:40",
-      "ts": 1787438402000,
-      "when": "Sat 18:40"
     },
     "693": {
       "kind": "departure",
@@ -496,7 +496,7 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
@@ -674,6 +674,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-23T12:54:20.769178Z",
         "until": "2026-08-23T12:54:28.181691Z"
+      },
+      {
+        "since": "2026-08-23T12:59:43.657235Z",
+        "until": "2026-08-23T12:59:53.087935Z"
       }
     ],
     "down": false
@@ -807,7 +811,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T08:00:00-04:00"
+      "lastISO": "2026-08-23T09:00:00-04:00"
     },
     {
       "run": "The Treasurer",
