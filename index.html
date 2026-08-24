@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 3:01 PM ET",
-  "generatedAtISO": "2026-08-24T15:01:11-04:00",
+  "generatedAt": "Aug 24, 3:05 PM ET",
+  "generatedAtISO": "2026-08-24T15:05:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -636,7 +636,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "arrived": "12:47",
-      "departed": null,
+      "departed": "15:03",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -668,6 +668,10 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 15:04"
+    },
     {
       "level": "warn",
       "text": "4 robots overdue — see Robots tab"
@@ -824,16 +828,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787594890217,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Mark Jennings",
+      "time": "15:03",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787598198942,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "901",
+      "time": "15:04",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787598259000
+    }
+  ],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-24T18:13:11+00:00",
+    "updatedAt": "2026-08-24T19:05:15+00:00",
     "doorGaps": [
       {
         "since": "2026-08-24T09:04:18.174511Z",
@@ -1266,6 +1287,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T18:59:17.266281Z",
         "until": "2026-08-24T18:59:26.676285Z"
+      },
+      {
+        "since": "2026-08-24T19:04:34.542583Z",
+        "until": "2026-08-24T19:04:42.842899Z"
       }
     ],
     "down": false
