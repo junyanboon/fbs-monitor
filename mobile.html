@@ -179,8 +179,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 5:45 PM ET",
-  "generatedAtISO": "2026-08-24T17:45:53-04:00",
+  "generatedAt": "Aug 24, 6:00 PM ET",
+  "generatedAtISO": "2026-08-24T18:00:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -366,7 +366,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "17:58",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -439,7 +439,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -629,6 +629,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787601355254,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Nabil Fairbairn",
+      "time": "17:58",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787608727178,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -653,7 +662,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-24T20:00:06+00:00",
+    "updatedAt": "2026-08-24T21:59:03+00:00",
     "doorGaps": [
       {
         "since": "2026-08-24T09:04:18.174511Z",
@@ -1202,6 +1211,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T21:42:49.957383Z",
         "until": "2026-08-24T21:43:01.373329Z"
+      },
+      {
+        "since": "2026-08-24T21:48:49.977870Z",
+        "until": "2026-08-24T21:48:55.637466Z"
+      },
+      {
+        "since": "2026-08-24T21:54:49.541213Z",
+        "until": "2026-08-24T21:54:57.966055Z"
+      },
+      {
+        "since": "2026-08-24T22:00:16.859711Z",
+        "until": "2026-08-24T22:00:23.341103Z"
       }
     ],
     "down": false
@@ -1218,16 +1239,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-23T15:05:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-23T16:05:00-04:00"
-    },
-    {
       "run": "qa-review (GitHub Actions)",
       "cadence": "Hourly",
       "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
@@ -1235,7 +1246,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T17:00:00-04:00"
+      "lastISO": "2026-08-24T18:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1288,6 +1299,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-24T10:22:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-24T18:05:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -1305,7 +1326,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T17:24:00-04:00"
+      "lastISO": "2026-08-24T17:51:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1407,6 +1428,12 @@ const DATA = /*__DATA__*/{
       "whenISO": "2026-08-16T02:42:00-04:00"
     },
     {
+      "level": "crit",
+      "label": "Run error",
+      "text": "Other — see Notion",
+      "whenISO": "2026-08-24T17:56:00-04:00"
+    },
+    {
       "level": "watch",
       "label": "Access",
       "text": "Retire alarm code — Brady Lang",
@@ -1465,15 +1492,9 @@ const DATA = /*__DATA__*/{
       "label": "Access",
       "text": "David Diep starts within the same-day window at 509B Aug 23 17:45 with NO verified acce…",
       "whenISO": "2026-08-23T19:33:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
-      "text": "15:35: 0 exec/0 proposed, queue unchanged in an hour · Mark Jennings 901 Mon 13:00 — NO live panel user at all, guarded create failed closed, HTA code already sent · Nina Li $••• credit reads unpaid in Skedda · 25 proposals unreviewed, none ever approved",
-      "whenISO": "2026-08-23T20:00:00-04:00"
     }
   ],
-  "issuesTotal": 15,
+  "issuesTotal": 16,
   "issuesNote": null
 }/*__END_DATA__*/;
 
