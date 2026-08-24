@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 12:32 PM ET",
-  "generatedAtISO": "2026-08-24T12:32:47-04:00",
+  "generatedAt": "Aug 24, 12:45 PM ET",
+  "generatedAtISO": "2026-08-24T12:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -621,7 +621,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "arrived": "12:08",
-      "departed": null,
+      "departed": "12:44",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -670,7 +670,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "5 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -725,6 +725,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1787587681165,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "12:44",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787589888413,
       "source": "doors"
     }
   ],
@@ -1075,6 +1084,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T16:30:49.726551Z",
         "until": "2026-08-24T16:30:57.235084Z"
+      },
+      {
+        "since": "2026-08-24T16:36:49.734867Z",
+        "until": "2026-08-24T16:36:57.193641Z"
+      },
+      {
+        "since": "2026-08-24T16:42:17.490160Z",
+        "until": "2026-08-24T16:42:25.964897Z"
       }
     ],
     "down": false
@@ -1099,6 +1116,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-23T16:05:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-24T11:07:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1129,16 +1156,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-08-24T10:34:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-24T11:07:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1238,7 +1255,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T12:31:00-04:00"
+      "lastISO": "2026-08-24T12:45:00-04:00"
     },
     {
       "run": "The Closer",
