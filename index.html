@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 8:16 AM ET",
-  "generatedAtISO": "2026-08-24T08:16:18-04:00",
+  "generatedAt": "Aug 24, 8:30 AM ET",
+  "generatedAtISO": "2026-08-24T08:30:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -670,7 +670,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -873,21 +873,27 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T12:15:17.840105Z",
         "until": "2026-08-24T12:15:25.389501Z"
+      },
+      {
+        "since": "2026-08-24T12:16:59.956424Z",
+        "until": "2026-08-24T12:17:06.324686Z"
+      },
+      {
+        "since": "2026-08-24T12:17:36.398778Z",
+        "until": "2026-08-24T12:17:44.524136Z"
+      },
+      {
+        "since": "2026-08-24T12:23:03.698102Z",
+        "until": "2026-08-24T12:23:10.497595Z"
+      },
+      {
+        "since": "2026-08-24T12:28:59.738876Z",
+        "until": "2026-08-24T12:29:11.159682Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-23T21:28:00-04:00"
-    },
     {
       "run": "The Mechanic",
       "cadence": "Hourly",
@@ -957,6 +963,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-23T14:36:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-24T08:21:00-04:00"
     },
     {
       "run": "The Doorman",
