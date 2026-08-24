@@ -179,8 +179,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 10:46 AM ET",
-  "generatedAtISO": "2026-08-24T10:46:01-04:00",
+  "generatedAt": "Aug 24, 11:00 AM ET",
+  "generatedAtISO": "2026-08-24T11:00:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -351,13 +351,13 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "10:48",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
-      "start": 11.25,
-      "end": 12.0
+      "start": 10.75,
+      "end": 11.5
     },
     {
       "studio": "693",
@@ -386,8 +386,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
-      "start": 12.25,
-      "end": 12.75
+      "start": 11.75,
+      "end": 12.5
     },
     {
       "studio": "901",
@@ -434,7 +434,17 @@ const DATA = /*__DATA__*/{
       "text": "3 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787582920564,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -466,16 +476,6 @@ const DATA = /*__DATA__*/{
       "ts": 1787494032661,
       "when": "Sun 10:07"
     },
-    "693": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "693",
-      "time": "19:29",
-      "ts": 1787527788879,
-      "when": "Sun 19:29"
-    },
     "901": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -488,12 +488,12 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-24T01:09:02+00:00",
+    "updatedAt": "2026-08-24T14:53:05+00:00",
     "doorGaps": [
       {
         "since": "2026-08-24T09:04:18.174511Z",
@@ -746,6 +746,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T14:44:17.636581Z",
         "until": "2026-08-24T14:44:26.118318Z"
+      },
+      {
+        "since": "2026-08-24T14:49:50.193264Z",
+        "until": "2026-08-24T14:49:58.639995Z"
+      },
+      {
+        "since": "2026-08-24T14:55:01.048730Z",
+        "until": "2026-08-24T14:55:13.555811Z"
       }
     ],
     "down": false
@@ -789,7 +797,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T10:00:00-04:00"
+      "lastISO": "2026-08-24T11:00:00-04:00"
     },
     {
       "run": "The Analyst",
