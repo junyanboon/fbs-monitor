@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 9:15 AM ET",
-  "generatedAtISO": "2026-08-24T09:15:43-04:00",
+  "generatedAt": "Aug 24, 9:24 AM ET",
+  "generatedAtISO": "2026-08-24T09:24:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -921,6 +921,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T13:14:17.707031Z",
         "until": "2026-08-24T13:14:31.071256Z"
+      },
+      {
+        "since": "2026-08-24T13:20:17.987338Z",
+        "until": "2026-08-24T13:20:33.292116Z"
       }
     ],
     "down": false
@@ -957,6 +961,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-23T15:32:00-04:00"
     },
     {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-23T14:36:00-04:00"
+    },
+    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
@@ -985,16 +999,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-23T14:50:00-04:00"
-    },
-    {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-23T14:36:00-04:00"
     },
     {
       "run": "The Concierge",
@@ -1084,7 +1088,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T09:01:00-04:00"
+      "lastISO": "2026-08-24T09:16:00-04:00"
     },
     {
       "run": "The Closer",
