@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 3:05 PM ET",
-  "generatedAtISO": "2026-08-24T15:05:44-04:00",
+  "generatedAt": "Aug 24, 3:15 PM ET",
+  "generatedAtISO": "2026-08-24T15:15:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -674,6 +674,10 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
+      "text": "Alarm bypass · 901 · 15:15"
+    },
+    {
+      "level": "warn",
       "text": "4 robots overdue — see Robots tab"
     }
   ],
@@ -837,6 +841,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787598198942,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "15:15",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787598919722,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "15:15",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787598922099,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -847,6 +869,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1787598259000
+    },
+    {
+      "studio": "901",
+      "time": "15:15",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787598920000
     }
   ],
   "armFallback": false,
@@ -1291,6 +1320,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T19:04:34.542583Z",
         "until": "2026-08-24T19:04:42.842899Z"
+      },
+      {
+        "since": "2026-08-24T19:10:17.371767Z",
+        "until": "2026-08-24T19:10:26.814176Z"
       }
     ],
     "down": false
@@ -1335,6 +1368,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-23T15:32:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-24T14:07:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1405,16 +1448,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-24T10:12:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-24T14:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
