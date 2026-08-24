@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 11:55 AM ET",
-  "generatedAtISO": "2026-08-24T11:55:25-04:00",
+  "generatedAt": "Aug 24, 12:01 PM ET",
+  "generatedAtISO": "2026-08-24T12:01:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -708,6 +708,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787586547000,
       "source": "panel"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "12:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787587225948,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -720,16 +729,6 @@ const DATA = /*__DATA__*/{
       "time": "21:08",
       "ts": 1787533701611,
       "when": "Sun 21:08"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "Scott Vandenberg",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "10:07",
-      "ts": 1787494032661,
-      "when": "Sun 10:07"
     },
     "901": {
       "kind": "departure",
@@ -1049,6 +1048,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T15:51:03.365459Z",
         "until": "2026-08-24T15:51:09.976852Z"
+      },
+      {
+        "since": "2026-08-24T15:56:49.796999Z",
+        "until": "2026-08-24T15:56:57.126813Z"
       }
     ],
     "down": false
@@ -1102,7 +1105,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T11:00:00-04:00"
+      "lastISO": "2026-08-24T12:00:00-04:00"
     },
     {
       "run": "The Analyst",
