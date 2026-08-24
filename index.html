@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 1:00 PM ET",
-  "generatedAtISO": "2026-08-24T13:00:54-04:00",
+  "generatedAt": "Aug 24, 1:15 PM ET",
+  "generatedAtISO": "2026-08-24T13:15:38-04:00",
   "studios": [
     {
       "id": "509A",
@@ -455,7 +455,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "13:11",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -500,7 +500,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
-      "arrived": null,
+      "arrived": "13:12",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -762,27 +762,34 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787590695027,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "13:11",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787591517442,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "13:12",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787591571836,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Julia S",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "21:08",
-      "ts": 1787533701611,
-      "when": "Sun 21:08"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-24T16:57:09+00:00",
+    "updatedAt": "2026-08-24T17:13:08+00:00",
     "doorGaps": [
       {
         "since": "2026-08-24T09:04:18.174511Z",
@@ -1131,6 +1138,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T16:59:49.729978Z",
         "until": "2026-08-24T17:00:01.190991Z"
+      },
+      {
+        "since": "2026-08-24T17:05:49.654699Z",
+        "until": "2026-08-24T17:06:00.135106Z"
+      },
+      {
+        "since": "2026-08-24T17:11:48.381586Z",
+        "until": "2026-08-24T17:12:01.793693Z"
       }
     ],
     "down": false
@@ -1254,7 +1269,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T12:52:00-04:00"
+      "lastISO": "2026-08-24T13:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1294,7 +1309,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T12:45:00-04:00"
+      "lastISO": "2026-08-24T13:01:00-04:00"
     },
     {
       "run": "The Closer",
