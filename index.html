@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 1:57 PM ET",
-  "generatedAtISO": "2026-08-24T13:57:11-04:00",
+  "generatedAt": "Aug 24, 2:00 PM ET",
+  "generatedAtISO": "2026-08-24T14:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -515,7 +515,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "arrived": null,
+      "arrived": "14:00",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -806,6 +806,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1787593210000
+    },
+    {
+      "studio": "509B",
+      "name": "Marcy Tran",
+      "time": "14:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787594404935,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1200,6 +1209,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T17:52:17.301954Z",
         "until": "2026-08-24T17:52:31.941353Z"
+      },
+      {
+        "since": "2026-08-24T17:58:17.285226Z",
+        "until": "2026-08-24T17:58:31.605529Z"
       }
     ],
     "down": false
@@ -1253,7 +1266,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T13:00:00-04:00"
+      "lastISO": "2026-08-24T14:00:00-04:00"
     },
     {
       "run": "The Analyst",
