@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 23, 2026",
-  "generatedAt": "Aug 23, 8:45 PM ET",
-  "generatedAtISO": "2026-08-23T20:45:39-04:00",
+  "generatedAt": "Aug 23, 9:00 PM ET",
+  "generatedAtISO": "2026-08-23T21:00:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -516,7 +516,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "17:45",
-      "departed": null,
+      "departed": "20:49",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -636,12 +636,12 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "17:49",
-      "departed": "20:21",
+      "departed": "20:46",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
       "start": 18.0,
-      "end": 20.25
+      "end": 20.75
     }
   ],
   "staff": [],
@@ -912,6 +912,42 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787531770980,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Megan Cartwright",
+      "time": "20:46",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787532390309,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "20:49",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787532591014,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "21:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787533206343,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "21:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787533209502,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -921,7 +957,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-24T00:38:04+00:00",
+    "updatedAt": "2026-08-24T00:51:02+00:00",
     "doorGaps": [
       {
         "since": "2026-08-23T09:00:24.718421Z",
@@ -1602,6 +1638,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-24T00:45:04.772561Z",
         "until": "2026-08-24T00:45:13.169163Z"
+      },
+      {
+        "since": "2026-08-24T00:50:49.706392Z",
+        "until": "2026-08-24T00:51:01.023351Z"
+      },
+      {
+        "since": "2026-08-24T00:56:10.656402Z",
+        "until": "2026-08-24T00:56:19.038534Z"
       }
     ],
     "down": false
@@ -1645,7 +1689,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T20:00:00-04:00"
+      "lastISO": "2026-08-23T21:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1765,7 +1809,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-23T20:31:00-04:00"
+      "lastISO": "2026-08-23T20:46:00-04:00"
     },
     {
       "run": "The Closer",
