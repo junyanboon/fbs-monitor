@@ -1,137 +1,69 @@
-"""The Issues tab is the human interface — burial here is the failure.
+"""The red access pill — the app's ONE access surface (Junyan, 2026-08-25).
 
-Pinned by the 2026-08-24 board: five "Retire alarm code" housekeeping rows
-rendered while the only row about a renter who actually could not get in
-(Akira Huang, NO Alarm.com user, 509B Fri Aug 28 — raised with 5 days of lead)
-was filtered out by the today+tomorrow horizon, because it carried a date.
-These tests assert the inversion of that: dated door gaps always show, with
-their fuse; housekeeping collapses to one line that sorts after them.
+The Issues tab this file used to test is gone; its history is the reason this
+matcher is tested hard. An open Access / PIN row must light up exactly the
+booking it is about: a false pill cries wolf on a public wall, a missed pill
+is a renter at a locked door. Matching is build-side and publishes a boolean
+only — the row titles are internal text.
 """
-from datetime import datetime
+from datetime import date
 
 import build
 
-NOW = datetime(2026, 8, 24, 21, 15, tzinfo=build.TZ)      # the real board's clock
+DAY = date(2026, 8, 24)
 
 
-def _row(request, rtype="Access / PIN", by="The Doorman", requested="2026-08-23T10:00:00Z"):
-    return {
-        "created_time": requested,
-        "properties": {
-            "Request": {"type": "title", "title": [{"plain_text": request}]},
-            "Type": {"type": "select", "select": {"name": rtype}},
-            "Raised by": {"type": "select", "select": {"name": by}},
-            "Requested": {"type": "created_time", "created_time": requested},
-        },
-    }
+def booking(who, studio="509B"):
+    return {"kind": "booking", "who": who, "studio": studio,
+            "start": 14.0, "end": 16.0}
 
 
-def issues_for(rows, monkeypatch, reports=None):
-    monkeypatch.setattr(build, "_notion_query", lambda token, ds, body: rows)
-    return build.fetch_issues("fake-token", NOW, reports)
+def flag(events, requests):
+    return build.flag_access_gaps(events, requests, DAY)
 
 
-# ── the regression itself ────────────────────────────────────────────────────
-
-def test_a_dated_forward_gap_is_never_buried(monkeypatch):
-    """Akira Huang, Aug 28, raised Aug 23 — the row the 2026-08-24 board hid."""
-    issues, total = issues_for(
-        [_row("Booking sweep — access unresolved for Akira Huang at 509B Aug 28 14:00")],
-        monkeypatch)
-    assert total == 1
-    (i,) = issues
-    assert "Akira Huang" in i["text"]
-    assert "4d" in i["text"]                  # the fuse is on the wall
-    assert i["level"] == "watch"              # four days out is not yet a siren
+def test_sweep_row_lights_exactly_its_booking():
+    events = flag([booking("Akira Huang"), booking("Marcy Tran")],
+                  ["Booking sweep — access unresolved for Akira Huang at 509B "
+                   "Aug 24 14:00 [sweep:509B:2026-08-24T14:00:access]"])
+    assert events[0].get("access_gap") is True
+    assert "access_gap" not in events[1]
 
 
-def test_housekeeping_collapses_and_sorts_after_real_gaps(monkeypatch):
-    rows = [_row(f"Retire alarm code — Renter {n} (idle 30d+, no future bookings)")
-            for n in range(5)]
-    rows.append(_row("Booking sweep — access unresolved for Akira Huang at 509B Aug 28 14:00"))
-    issues, total = issues_for(rows, monkeypatch)
-    assert [i["label"] for i in issues] == ["Access", "Housekeeping"]
-    assert "×5" in issues[1]["text"]
-    assert total == 6                         # "+N more" still counts rows
+def test_sweep_row_for_another_day_lights_nothing():
+    """Akira's Friday gap is the Doorman's lead time, not today's pill."""
+    events = flag([booking("Akira Huang")],
+                  ["Booking sweep — access unresolved for Akira Huang at 509B "
+                   "Aug 28 14:00 [sweep:509B:2026-08-28T14:00:access]"])
+    assert "access_gap" not in events[0]
 
 
-# ── the fuse burning down ────────────────────────────────────────────────────
-
-def test_gap_due_tomorrow_is_crit(monkeypatch):
-    issues, _ = issues_for(
-        [_row("Access unresolved for A. Renter at 693 Aug 25 19:00")], monkeypatch)
-    assert issues[0]["level"] == "crit"
-    assert "tomorrow" in issues[0]["text"]
+def test_sweep_row_for_another_studio_lights_nothing():
+    events = flag([booking("Akira Huang", studio="901")],
+                  ["Booking sweep — access unresolved for Akira Huang at 509B "
+                   "Aug 24 14:00 [sweep:509B:2026-08-24T14:00:access]"])
+    assert "access_gap" not in events[0]
 
 
-def test_overdue_gap_stays_crit_and_says_so(monkeypatch):
-    """Megan Cartwright's compromised code does not go quiet past Aug 30."""
-    issues, _ = issues_for(
-        [_row("🔑 Rotate compromised alarm code before Aug 23; do not decommission")],
-        monkeypatch)
-    assert issues[0]["level"] == "crit"
-    assert "OVERDUE 1d" in issues[0]["text"]
+def test_unkeyed_row_matches_on_the_person():
+    """"Alarm code needs a person — Aahuti Dave" is about her, not a slot."""
+    events = flag([booking("Aahuti Dave — rehearsal", studio="693")],
+                  ["Alarm code needs a person — Aahuti Dave [Tagvenue] "
+                   "(panel user exists but has no code)"])
+    assert events[0].get("access_gap") is True
 
 
-def test_soonest_fuse_sorts_first(monkeypatch):
-    issues, _ = issues_for([
-        _row("Access unresolved for Far Gap at 901 Sep 06 13:30"),
-        _row("Access unresolved for Near Gap at 509B Aug 27 14:00"),
-    ], monkeypatch)
-    assert "Near Gap" in issues[0]["text"]
-    assert "Far Gap" in issues[1]["text"]
+def test_unrelated_rows_and_staff_blocks_stay_dark():
+    events = flag(
+        [booking("Marcy Tran"), {"kind": "cleaning", "who": "Stefan", "studio": "527"}],
+        ["Retire alarm code — Brady Lang (idle 30d+, no future bookings)",
+         "🔑 Rotate Megan Cartwright's compromised alarm code before Aug 30"])
+    assert all("access_gap" not in e for e in events)
 
 
-# ── what must not change ─────────────────────────────────────────────────────
-
-def test_undated_access_row_still_shows(monkeypatch):
-    """Silence must never hide a live problem — no date, still on the wall."""
-    issues, _ = issues_for(
-        [_row("Alarm code needs a person — Aahuti Dave [Tagvenue]")], monkeypatch)
-    assert len(issues) == 1
-    assert issues[0]["level"] == "watch"
-
-
-def test_money_shaped_rows_never_reach_the_public_page(monkeypatch):
-    issues, total = issues_for(
-        [_row("Charge Kristel San Jose $86.75 for overtime", rtype="Charge")],
-        monkeypatch)
-    assert issues == [] and total == 0
-
-
-# ── two kinds of overdue (Junyan, 2026-08-25) ────────────────────────────────
-
-def test_a_passed_booking_demotes_and_says_process_me(monkeypatch):
-    """David Diep's Aug 23 same-day row on the Aug 24 board: the booking is
-    over (his was literally moved) — nothing is preventable, so it must not
-    scream crit. It demotes, names the passed date, and asks to be processed."""
-    issues, _ = issues_for(
-        [_row("David Diep starts within the same-day window at 509B Aug 23 17:45 "
-              "with NO verified access [sweep:509B:2026-08-23T17:45:sameday-gap]")],
-        monkeypatch)
-    (i,) = issues
-    assert i["level"] == "watch"
-    assert "booking passed" in i["text"] and "process the row" in i["text"]
-
-
-def test_passed_bookings_sink_below_live_gaps_and_above_housekeeping(monkeypatch):
-    issues, _ = issues_for([
-        _row("Kristyan Calletor starts within the same-day window at 509B Aug 23 "
-             "13:00 with NO verified access [sweep:509B:2026-08-23T13:00:sameday-gap]"),
-        _row("Retire alarm code — Brady Lang (idle 30d+, no future bookings)"),
-        _row("Booking sweep — access unresolved for Akira Huang at 509B Aug 28 14:00 "
-             "[sweep:509B:2026-08-28T14:00:access]"),
-    ], monkeypatch)
-    assert ["Akira" in issues[0]["text"],
-            "Kristyan" in issues[1]["text"],
-            issues[2]["label"] == "Housekeeping"] == [True, True, True]
-
-
-def test_a_missed_do_by_deadline_still_screams(monkeypatch):
-    """Megan's compromised code past its rotate-by date is MORE urgent, not
-    moot — only booking-anchored rows demote."""
-    issues, _ = issues_for(
-        [_row("🔑 Rotate compromised alarm code before Aug 23; do not decommission")],
-        monkeypatch)
-    assert issues[0]["level"] == "crit"
-    assert "OVERDUE" in issues[0]["text"]
+def test_the_flag_is_a_plain_boolean():
+    """Public page: build_data casts this with bool() into the payload — the
+    pill is true/false, never the row's text."""
+    e = flag([booking("Akira Huang")],
+             ["access unresolved for Akira Huang [sweep:509B:2026-08-24T14:00:x]"])
+    assert e[0]["access_gap"] is True

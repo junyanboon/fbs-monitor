@@ -83,16 +83,9 @@ def test_issue_lead():
         .endswith("phone number")
 
 
-def test_near_term_window():
-    """Today and tomorrow only — a door problem three weeks out is not wall
-    reading, and an undated row is near-term because silence must not hide it."""
-    today, horizon = date(2026, 8, 15), date(2026, 8, 16)
-    near = lambda req, after=None: build._is_near_term(
-        {"request": req, "process_after": after}, today, horizon)
-    assert near("TOMORROW 14:00 — Hannah Cho cannot enter 509B")
-    assert near("Alarm Code mirror holds codes for 11 deleted panel users")
-    assert not near("Aug 22 13:00 — Hanano I. cannot enter 693")
-    assert not near("Recheck retirement — Jason Ng (October)", date(2026, 10, 1))
+# test_near_term_window() removed 2026-08-25 with the Issues tab itself —
+# _is_near_term() is gone; the one access surface is the card pill
+# (flag_access_gaps, tested in test_issues.py).
 
 
 def main():
@@ -101,7 +94,6 @@ def main():
     test_nameless_titles()
     test_redaction()
     test_issue_lead()
-    test_near_term_window()
     build._selftest_dedupe()      # same-studio dedupe + cross-studio marking
     print("title/dedupe regression tests: OK")
     return 0

@@ -53,8 +53,8 @@ RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
 # 📊 Workflow Reports — one row per fleet run, rendered as the Reports tab.
 # Read title-only; see fetch_reports() for why bodies must stay off this board.
 WORKFLOW_REPORTS_DS = "469a877b-83fa-4387-ac97-94aa656481dd"
-# ✅ Actions to Perform — the fleet's human worklist, source of the Issues tab.
-# Only the FBS-shaped classes are published; see fetch_issues().
+# ✅ Actions to Perform — the fleet's human worklist. Only open Access / PIN
+# row titles are read, and only a boolean reaches the page; see flag_access_gaps().
 ACTIONS_DS = "20df225d-382f-4bb8-9c15-c31571c9f4e0"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -874,8 +874,8 @@ def join_notion(events, notion_rows):
 # ("no duplicates, all under the Doorman") already settled which one survives.
 #
 # If the board should show missing access again, RENDER THE DOORMAN'S ROWS —
-# fetch_issues() already reads ✅ Actions to Perform and `Access / PIN` is
-# already in FBS_ACTION_TYPES. Do not re-derive the answer here.
+# flag_access_gaps() reads ✅ Actions to Perform and pins them to today's
+# cards. Do not re-derive the answer here.
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 3. Arrivals / departures — Gmail API (OAuth refresh token)
@@ -1601,7 +1601,8 @@ def redact(text):
     then any remaining 4-8 digit run, which is the shape of an alarm code.
     Years are exempt so dates survive; studio numbers are three digits and are
     never touched. Redaction is a second line of defence, not the first — the
-    first is fetch_issues() refusing to publish money-shaped classes at all."""
+    first is the build refusing to publish money-shaped classes at all (only
+    ⚠ report headlines pass through here since the Issues tab was removed)."""
     t = text or ""
     t = re.sub(r"\+?\d[\d\s().\-]{7,}\d", "•••", t)             # phone numbers
     t = re.sub(r"\$\s?\d[\d,]*(?:\.\d+)?", "$•••", t)           # amounts
@@ -1629,217 +1630,57 @@ def _lead(text, limit=88):
     return t if len(t) <= limit else t[:limit - 1].rstrip(" ,;–—") + "…"
 
 
-def _dates_in(text, year):
-    """Every 'Aug 22' / 'October' style date mentioned in a title."""
-    out = []
-    for m in re.finditer(r"\b([A-Za-z]{3,9})\.?\s+(\d{1,2})\b", text or ""):
-        mon = MONTHS.get(m.group(1)[:3].lower())
-        if mon:
-            try:
-                out.append(datetime(year, mon, int(m.group(2)), tzinfo=TZ).date())
-            except ValueError:
-                pass
-    for m in re.finditer(r"\b([A-Za-z]{3,9})\b", text or ""):
-        mon = MONTHS.get(m.group(1)[:3].lower())
-        if mon and len(m.group(1)) > 3:      # spelled out: "(October)"
-            out.append(datetime(year, mon, 28, tzinfo=TZ).date())
-    return out
+# THE ISSUES TAB IS GONE — deleted 2026-08-25 on Junyan's call, one day after
+# it was built out ("these issues are not really useful"). What it tried to be
+# is served better elsewhere: forward door gaps live in the Doorman's report
+# and ✅ Actions to Perform; run health is the Robots tab; and the one thing
+# this app genuinely needs to say about access — THIS renter, TODAY, cannot
+# get in — now renders as a red pill on the booking card itself, where eyes
+# actually are during a shift. fetch_issues(), its deadline/housekeeping
+# machinery and the tab in both templates went with it.
+
+RE_SWEEP_KEY = re.compile(r"\[sweep:(\w+):(\d{4}-\d{2}-\d{2})")
 
 
-def _is_near_term(row, today, horizon):
-    """Today and tomorrow only (Junyan, 2026-08-15) — a door problem three
-    weeks out is not something to read off the wall this evening.
-
-    A row is far-off if it says so: a `Process on/after` date past the horizon,
-    or every date named in its title past the horizon. A row that names no date
-    at all is near-term by default — silence must never hide a live problem."""
-    if row["process_after"] and row["process_after"] > horizon:
-        return False
-    dates = _dates_in(row["request"], today.year)
-    if dates and all(d > horizon for d in dates):
-        return False
-    return True
-
-
-FBS_ACTION_TYPES = ("Access / PIN", "Run Error")
-
-# Doorman housekeeping, not a door problem. These titles are conventions the
-# Doorman's prompt writes verbatim; five of them once outshouted the only row
-# about a renter who actually could not get in (2026-08-24 board).
-HOUSEKEEPING_PREFIXES = ("Retire alarm code", "Recheck Alarm.com retirement")
-
-
-def _is_code_housekeeping(request):
-    return (request or "").lstrip().startswith(HOUSEKEEPING_PREFIXES)
-
-
-def _access_due(request, process_after, today):
-    """The deadline an Access / PIN row carries, if it carries one.
-
-    The Doorman raises door gaps with days of lead ("… 509B Fri Aug 28 14:00"),
-    and lead time only helps if the wall shows it BEFORE the day arrives. The
-    date is wherever the title mentions it; `Process on/after` is the fallback.
-    Rows naming several days (a two-day booking) are due on the first."""
-    dates = [d for d in _dates_in(request, today.year)
-             if d >= today - timedelta(days=7)]     # last week's "Aug 23" is a
-    if dates:                                       # deadline; last YEAR's isn't
-        return min(dates)
-    return process_after
-
-
-def fetch_issues(token, now, reports, limit=12):
-    """The Issues tab — what needs Junyan, today or tomorrow, FBS only.
-
-    Sources, in the order they matter:
-      1. Open ✅ Actions to Perform rows of an FBS shape — a door someone cannot
-         open (`Access / PIN`) or a robot that broke (`Run Error`).
-      2. Runs that ended early, from the reports already fetched. A run that
-         dies mid-pass cannot file its own Action row, so nothing else would
-         ever surface it.
-      3. `⚠` report headlines — an agent saying, in a field written to be
-         public, that something needs a human.
-
-    DELIBERATELY EXCLUDED, and this is the load-bearing decision: money. Charge,
-    Invoice and Platform-charge rows never reach this page. They are the rows
-    whose titles carry amounts and who-owes-what, they are not FBS, and the
-    board is public. Scope and privacy happen to point the same way here.
-
-    A `Run Error` publishes only its class and which robot raised it. The titles
-    describe how the desk's safety machinery failed ("the ALARM lane did not
-    fire … nobody was paged") — true, useful to Junyan, and nobody else's
-    business on a public page. The detail is one click away in Notion.
-
-    Everything cleared in Notion vanishes here on the next build: the query asks
-    for `Pending Review`, so Processed and Cancelled rows are simply not
-    returned. There is no separate state to keep in sync.
-
-    REVISED 2026-08-25 (Junyan: "the Doorman's protests get completely buried").
-    The today+tomorrow horizon (2026-08-15 ruling) no longer applies to DATED
-    Access / PIN rows — a gap with a date is a fuse with a known length, not "a
-    problem three weeks out", and hiding it until T-1 spends the exact lead the
-    Doorman raised it early to buy. Dated gaps render with a countdown, soonest
-    first, crit from T-1 and while overdue. Code-retirement housekeeping
-    collapses to one line, the same way Run Errors already do. The horizon
-    still governs everything else."""
-    today = now.date()
-    horizon = today + timedelta(days=1)
-    issues, run_errors, housekeeping = [], [], []
-
+def fetch_open_access_rows(token):
+    """Open Access / PIN rows, title text only — input to flag_access_gaps()."""
     rows = _notion_query(token, ACTIONS_DS, {
-        "filter": {"property": "Status", "select": {"equals": "Pending Review"}},
+        "filter": {"and": [
+            {"property": "Status", "select": {"equals": "Pending Review"}},
+            {"property": "Type", "select": {"equals": "Access / PIN"}},
+        ]},
         "page_size": 100,
     })
-    for row in rows:
-        p = row.get("properties", {})
-        r = {
-            "request": _prop_text(p.get("Request")) or "",
-            "type": _prop_text(p.get("Type")) or "",
-            "by": _prop_text(p.get("Raised by")) or "",
-            "process_after": None,
-        }
-        after = _prop_text(p.get("Process on/after"))
-        if after:
-            d = _parse_notion_ts(after)
-            r["process_after"] = d.date() if d else None
-        urgent = r["request"].lstrip().startswith("🚨")
-        if r["type"] not in FBS_ACTION_TYPES and not urgent:
+    return [_prop_text(r.get("properties", {}).get("Request")) or "" for r in rows]
+
+
+def flag_access_gaps(events, requests, base_day):
+    """Red pill on today's booking when an open Access / PIN row names it.
+
+    The card is the ONLY access surface on this app (Junyan, 2026-08-25): a
+    renter whose code will not work shows as a red chip on their booking, and
+    nothing else here talks about access. Matching is deliberately narrow —
+    a sweep-keyed row must match studio AND today's date AND the renter's
+    name; an unkeyed row (e.g. "Alarm code needs a person — <name>") matches
+    on the name alone, because it is about the person, not a slot. Only a
+    boolean crosses into the payload: this page is public, and the row titles
+    are internal text (see redact()).
+    """
+    day = base_day.isoformat()
+    for e in events:
+        if e.get("kind") != "booking":
             continue
-        when = _parse_notion_ts(_prop_text(p.get("Requested"))) \
-            or _parse_notion_ts(row.get("created_time"))
-        if r["type"] == "Run Error":
-            if _is_near_term(r, today, horizon):
-                run_errors.append((r["by"] or "unattributed", when))
-        elif r["type"] == "Access / PIN" and not urgent:
-            if _is_code_housekeeping(r["request"]):
-                housekeeping.append(when)
+        who = (e.get("who") or "").split(" — ")[0].strip().lower()
+        if not who:
+            continue
+        for req in requests:
+            m = RE_SWEEP_KEY.search(req)
+            if m and (m.group(1) != e["studio"] or m.group(2) != day):
                 continue
-            due = _access_due(r["request"], r["process_after"], today)
-            days = (due - today).days if due else None
-            # Two kinds of overdue, opposite treatments (Junyan, 2026-08-25:
-            # "clearly David Diep and Kristyan can get in"). A BOOKING-anchored
-            # gap whose date has passed is moot — the fuse burned, nothing is
-            # preventable, the row just needs processing — so it demotes and
-            # sinks. A DO-BY deadline (Megan's "rotate compromised code before
-            # Aug 30") is MORE urgent once missed and keeps screaming. Sweep
-            # rows self-identify as booking-anchored by construction.
-            passed = (days is not None and days < 0
-                      and ("[sweep:" in r["request"]
-                           or "same-day window" in r["request"]))
-            if days is None:
-                tag = None                       # undated: near-term by default
-            elif passed:
-                tag = f"booking passed {due:%a %b %-d} — process the row"
-            elif days < 0:
-                tag = f"OVERDUE {-days}d"
-            elif days == 0:
-                tag = "TODAY"
-            elif days == 1:
-                tag = "tomorrow"
-            else:
-                tag = f"{due:%a %b %-d} · {days}d"
-            level = "crit" if days is not None and days <= 1 and not passed else "watch"
-            # Sort: live dated gaps by fuse ("0:"), then undated by age ("1:",
-            # the default), then passed bookings ("1~", after every "1:"), then
-            # housekeeping ("2:").
-            k = (f"1~{due.isoformat()}" if passed
-                 else f"0:{due.isoformat()}" if due else None)
-            issues.append({"level": level,
-                           "label": "Access",
-                           "text": redact(_lead(r["request"])) + (f" — {tag}" if tag else ""),
-                           "whenISO": when.isoformat() if when else None,
-                           "_k": k})
-        else:
-            if not _is_near_term(r, today, horizon):
-                continue
-            issues.append({"level": "crit" if urgent else "watch",
-                           "label": "Access" if r["type"] == "Access / PIN" else "Urgent",
-                           "text": redact(_lead(r["request"])),
-                           "whenISO": when.isoformat() if when else None})
-
-    # One line per robot, not per row. On 2026-08-15 there were twelve open Run
-    # Errors across four robots; rendered individually they filled the tab with
-    # "The Custodian — see Notion" three times over and pushed every door
-    # problem off the page. The count is the signal; the detail is in Notion.
-    for robot in sorted({r for r, _ in run_errors}):
-        mine = [w for r, w in run_errors if r == robot]
-        n = len(mine)
-        issues.append({
-            "level": "crit", "label": "Run error",
-            "text": f"{robot}{f' ×{n}' if n > 1 else ''} — see Notion",
-            "whenISO": min((w.isoformat() for w in mine if w), default=None),
-        })
-
-    if housekeeping:
-        n = len(housekeeping)
-        issues.append({
-            "level": "watch", "label": "Housekeeping",
-            "text": f"Code retirements{f' ×{n}' if n > 1 else ''} — see Notion",
-            "whenISO": min((w.isoformat() for w in housekeeping if w), default=None),
-            "_k": "2:",           # always after real door problems of its level
-        })
-
-    for rep in reports or []:
-        if rep.get("status") == "Ended Early":
-            issues.append({"level": "crit", "label": "Run died",
-                           "text": _lead(rep["run"]), "whenISO": rep.get("whenISO")})
-        elif (rep.get("headline") or "").lstrip().startswith("⚠"):
-            issues.append({"level": "watch", "label": "Report",
-                           "text": redact(rep["headline"].lstrip("⚠ ").strip()),
-                           "whenISO": rep.get("whenISO")})
-
-    # Inside each severity: dated door gaps first, soonest fuse first (an
-    # overdue one sorts before everything); then the undated, oldest first —
-    # a door problem does not get less urgent by sitting; housekeeping last.
-    order = {"crit": 0, "watch": 1}
-    issues.sort(key=lambda i: (order.get(i["level"], 2),
-                               i.get("_k") or f"1:{i['whenISO'] or ''}"))
-    for i in issues:
-        i.pop("_k", None)
-    # The total counts open ROWS, not rendered lines, so "+N more" stays true
-    # even though Run Errors (per robot) and housekeeping collapse.
-    total = (len(issues) - len({r for r, _ in run_errors}) + len(run_errors)
-             - (1 if housekeeping else 0) + len(housekeeping))
-    return issues[:limit], total
+            if who in req.lower():
+                e["access_gap"] = True
+                break
+    return events
 
 
 def fetch_reports(token, now, days=3, limit=40):
@@ -1944,6 +1785,9 @@ def prepare_board_events(events):
         "wrong_studio": e.get("wrong_studio"),
         "dup_studios": e.get("dup_studios"),
         "start": round(e["start"], 4), "end": round(e["end"], 4),
+        # Boolean only — the Access / PIN row titles are internal text and this
+        # page is public. See flag_access_gaps().
+        "access_gap": bool(e.get("access_gap")),
         # Internal, never published: sync_booking_status() runs off this list
         # after the page is written and needs the Notion row it matched. Before
         # 2026-08-21 these were dropped here, so every event failed the sync's
@@ -1974,6 +1818,12 @@ def build_data(now):
     if not token:
         die("NOTION_TOKEN missing.")
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
+    # Access pills — soft source, same posture as Robots/Reports: an unreadable
+    # Actions DB costs the pills, never the board.
+    try:
+        events = flag_access_gaps(events, fetch_open_access_rows(token), base_day)
+    except Exception as e:  # noqa: BLE001
+        emit_fallback_note(f"Actions fetch failed ({e}); access pills absent this edition.")
 
     # ---- Arrivals: panel ledger first, ADT email second ---------------------
     #
@@ -2131,15 +1981,6 @@ def build_data(now):
         reports_note = "Workflow Reports unreadable — share the 📊 Workflow Reports DB with the integration."
         emit_fallback_note(f"Workflow Reports fetch failed ({e}); Reports tab shows a notice.")
 
-    # Issues tab — the worklist. Reports are one of its inputs, so it runs after
-    # them and inherits the same soft posture.
-    issues, issues_total, issues_note = None, 0, None
-    try:
-        issues, issues_total = fetch_issues(token, now, reports)
-    except Exception as e:  # noqa: BLE001
-        issues_note = "Actions to Perform unreadable — share the ✅ Actions to Perform DB with the integration."
-        emit_fallback_note(f"Actions fetch failed ({e}); Issues tab shows a notice.")
-
     attention = []
     for a in alarm_alerts:
         lvl = "crit" if a["stage"] == "ALARM" else "warn"
@@ -2165,9 +2006,6 @@ def build_data(now):
         "armFeed": arm_feed,
         "robots": robots,
         "robotsNote": robots_note,
-        "issues": issues,
-        "issuesTotal": issues_total,
-        "issuesNote": issues_note,
     }
     return data, used_fallback
 

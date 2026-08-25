@@ -375,7 +375,6 @@
     <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
-    <button class="tab" data-tab="reports" role="tab" aria-selected="false">Issues</button>
     <a class="tabx" href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener">Deck ↗</a>
   </nav>
   <section id="tab-studios">
@@ -393,9 +392,6 @@
   </section>
   <section id="tab-robots" hidden>
     <div id="robotpanel"></div>
-  </section>
-  <section id="tab-reports" hidden>
-    <div id="reportpanel"></div>
   </section>
 </main>
 
@@ -663,8 +659,10 @@ function render(){
     if(e.tier) tags += `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
     if(e.tier && e.tier!=="Viewing" && !e.gtg && !done)
       tags += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
-    /* No code on file = this renter cannot get in. Stays visible after the
-       booking ends: an unresolved code is tomorrow's lockout too. */
+    /* An open Access / PIN row names this renter for today: their code will
+       not work. THE one access surface on this app (2026-08-25). Stays after
+       the booking ends — an unresolved code is tomorrow's lockout too. */
+    if(e.access_gap) tags += `<span class="chip crit">Code ✗</span>`;
     /* Coverage pills (Gap Nm / Covered / AI watch) were noise on the cards — the
        Staff tab still shows coverage per monitored booking. */
     // countdown
@@ -972,49 +970,9 @@ function renderRobots(){
   $('#robotpanel').innerHTML = html;
 }
 
-/* ── Issues tab ──────────────────────────────────────────────────────────────
-   What needs Junyan, today or tomorrow, FBS only: a door someone cannot open,
-   a robot that broke, a run that died. NOT a list of runs — the Robots tab
-   answers "did it run?" and this answers "is anything wrong that needs me?".
-
-   Cleared in Notion, gone from here: build.py asks only for Pending Review
-   rows, so a Processed or Cancelled one is simply never returned. No state is
-   kept on this side to fall out of sync.
-
-   Everything rendered here is redacted and class-limited in build.py — the
-   board is public. See fetch_issues() before adding a field to this row. */
-function renderIssues(){
-  const I = DATA.issues;
-  if(!I){
-    $('#reportpanel').innerHTML = `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
-      <span class="head">Issues unavailable</span><span class="items"><span class="statusitem">${esc(DATA.issuesNote||"Actions to Perform could not be read this edition")}</span></span></div>`;
-    return;
-  }
-  const crit = I.filter(i=>i.level==="crit").length;
-  const head = !I.length ? "Nothing needs you"
-             : crit ? `${crit} urgent`
-             : `${I.length} open`;
-  let html = `<div class="statusbar ${I.length?(crit?"crit":"warn"):"ok"}" style="margin-top:16px"><span class="dot"></span>
-    <span class="head">${head}</span><span class="items"><span class="statusitem">Door gaps by deadline, everything else today/tomorrow · clears when Processed in Notion</span></span></div>`;
-  const ago = iso => {
-    if(!iso) return "";
-    const h = (Date.now() - new Date(iso).getTime())/3600000;
-    return h < 1 ? "now" : h < 24 ? `${Math.floor(h)}h` : `${Math.floor(h/24)}d`;
-  };
-  const row = i => `<div class="issue ${i.level}">
-      <span class="tag">${esc(i.label)}</span>
-      <span class="txt">${esc(i.text)}</span>
-      <span class="ago">${esc(ago(i.whenISO))}</span>
-    </div>`;
-  html += `<div class="panelwrap" style="margin-top:14px">` +
-    (I.length ? I.map(row).join("")
-              : `<div class="issue"><span class="txt">Nothing open for today or tomorrow.</span></div>`) + `</div>`;
-  const hidden = (DATA.issuesTotal||0) - I.length;
-  if(hidden > 0) html += `<p class="lane-label">+${hidden} more open — see ✅ Actions to Perform</p>`;
-  $('#reportpanel').innerHTML = html;
-}
-
-const _renderBase = render;
-render = function(){ _renderBase(); renderAlarms(); renderRobots(); renderIssues(); };
+/* The Issues tab was removed 2026-08-25 (Junyan: "these issues are not really
+   useful") — access problems render as a red pill on the booking card in the
+   Studios tab instead, and the rest lives in Notion / the Doorman's report. */
+render = function(){ _renderBase(); renderAlarms(); renderRobots(); };
 render(); setInterval(render, 30000);
 </script>
