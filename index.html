@@ -418,8 +418,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 8:30 PM ET",
-  "generatedAtISO": "2026-08-24T20:30:53-04:00",
+  "generatedAt": "Aug 24, 8:45 PM ET",
+  "generatedAtISO": "2026-08-24T20:45:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -471,7 +471,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "arrived": "19:05",
-      "departed": null,
+      "departed": "20:43",
       "wrong_studio": null,
       "dup_studios": null,
       "no_code": false,
@@ -678,7 +678,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -912,6 +912,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1787616030713,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Ivanka Moskaliuk",
+      "time": "20:43",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787618627064,
       "source": "doors"
     }
   ],
@@ -1606,11 +1615,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-25T00:30:16.621400Z",
         "until": "2026-08-25T00:30:28.100251Z"
+      },
+      {
+        "since": "2026-08-25T00:35:34.076312Z",
+        "until": "2026-08-25T00:35:49.404173Z"
+      },
+      {
+        "since": "2026-08-25T00:40:58.786510Z",
+        "until": "2026-08-25T00:41:07.192034Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-24T18:23:00-04:00"
+    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1620,16 +1647,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-23T15:05:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-24T18:23:00-04:00"
     },
     {
       "run": "qa-review (GitHub Actions)",
@@ -1749,7 +1766,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T19:32:00-04:00"
+      "lastISO": "2026-08-24T20:32:00-04:00"
     },
     {
       "run": "The Weatherman",
