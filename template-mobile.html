@@ -225,7 +225,6 @@ function chipRow(e,st){
   if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
   /* No code on file = this renter cannot get in. Shown even after the booking
      ends — an unresolved code is tomorrow's lockout too. */
-  if(e.no_code)t+=`<span class="chip crit">No code</span>`;
   return t?`<div class="chips">${t}</div>`:"";
 }
 

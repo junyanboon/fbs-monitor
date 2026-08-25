@@ -165,39 +165,12 @@ def main():
         {"studio": "693", "kind": "arrival", "time": "09:15", "remote": False, "name": "Ayden Mauro"}])
     fails += check("far-off event is not a wrong studio", out[0].get("wrong_studio"), None)
 
-    # Missing alarm code. The renter cannot get in and nobody finds out until
-    # they are at the door, so the board says so on the booking itself.
-    def tiered(who, has_code, tier="FBS"):
-        e = booking("527", who, 18.0, 19.25)
-        e["tier"] = tier
-        if has_code is not None:
-            e["_has_code"] = has_code
-        return e
+    # The missing-alarm-code chip was REMOVED 2026-08-25 — it never once fired
+    # in 17 days of production, and it duplicated the Doorman's live-panel check
+    # against a weaker source. Its cases lived here; see the tombstone above
+    # join_notion() in build.py for why they are not coming back.
 
-    out = build.apply_missing_codes([tiered("A", True), tiered("B", False)])
-    fails += check("code on file is not flagged", out[0].get("no_code"), None)
-    fails += check("no code on file is flagged", out[1].get("no_code"), True)
-
-    # Unknown is not missing. A booking that never matched a Notion row has no
-    # code information at all, and must not render as a lockout.
-    out = build.apply_missing_codes([tiered("A", None), tiered("B", False)])
-    fails += check("unmatched booking is never flagged", out[0].get("no_code"), None)
-
-    # All-codeless is a broken rollup far more often than a real outage, and a
-    # board of false alarms is how the real one gets ignored.
-    out = build.apply_missing_codes([tiered("A", False), tiered("B", False)])
-    fails += check("all-codeless is suppressed", [e.get("no_code") for e in out], [None, None])
-
-    # One booking, no code — a real single lockout must still show. The guard
-    # only fires on a whole-day wipeout.
-    out = build.apply_missing_codes([tiered("A", False)])
-    fails += check("lone missing code still flags", out[0].get("no_code"), True)
-
-    # Untiered bookings are not ours to let in — same reasoning as the GTG chip.
-    out = build.apply_missing_codes([tiered("A", False, tier=None)])
-    fails += check("untiered booking is skipped", out[0].get("no_code"), None)
-
-    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 19} checks passed")
+    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 13} checks passed")
     return 1 if fails else 0
 
 

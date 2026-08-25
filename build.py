@@ -808,14 +808,11 @@ def parse_notion(rows):
         tier = {"fbs": "FBS", "monitor only": "Monitor",
                 "studio viewing": "Viewing"}.get(tob.lower())
         gtg = (_prop_text(p.get("GTG")) or "").strip().lower() == "yes"
-        # ⚠ NEVER put the code itself anywhere near the payload. `Alarm Code` is
-        # a rollup of the renter's real PIN and this board is a PUBLIC GitHub
-        # Pages site. Read it here, collapse it to a boolean on this line, and
-        # let the string go. Canon (capture-sop-update) masks PINs for the same
-        # reason: the display name and access window are AI-readable, the PIN is
-        # [STAFF]. A future edit that "helpfully" surfaces the value to save a
-        # lookup publishes every renter's door code to the internet.
-        has_code = bool((_prop_text(p.get("Alarm Code")) or "").strip())
+        # ⚠ DO NOT read `Alarm Code` here. It is a rollup of the renter's real
+        # PIN and this board is a PUBLIC GitHub Pages site. The missing-code chip
+        # that used to read it (as a boolean, never the string) was removed
+        # 2026-08-25 — see the tombstone above join_notion(). Nothing on this
+        # board needs the code, so the safest read is no read at all.
         out.append({
             "id": row.get("id"),
             "status": (_prop_text(p.get("Booking Status")) or "").strip(),
@@ -824,7 +821,6 @@ def parse_notion(rows):
             "tier": tier,
             "gtg": gtg if tier else True,
             "hta": _prop_text(p.get("HTA")),
-            "has_code": has_code,
             "board_disarmed": norm_hm(_prop_text(p.get("Disarmed"))),
             "board_armed": norm_hm(_prop_text(p.get("Armed"))),
         })
@@ -855,7 +851,6 @@ def join_notion(events, notion_rows):
         if best and best_gap <= 2.0:
             used[best_i] = True
             e["tier"], e["gtg"], e["hta"] = best["tier"], best["gtg"], best["hta"]
-            e["_has_code"] = best["has_code"]
             e["_board_disarmed"] = best["board_disarmed"]
             e["_board_armed"] = best["board_armed"]
             e["_notion_id"] = best["id"]
@@ -863,39 +858,24 @@ def join_notion(events, notion_rows):
     return events
 
 
-def apply_missing_codes(events):
-    """Flag bookings whose renter has no alarm code on file.
-
-    A renter with no code cannot get in, and nobody finds out until they are
-    standing at the door. The Doorman raises these each morning as `Access / PIN
-    — <name> … — no alarm code on file` rows, but that is a Notion queue nobody
-    reads mid-shift; the board is what is actually open when the door call comes.
-
-    Only bookings that matched a Notion row are eligible — an unmatched booking
-    has no code information either way, and "unknown" must never render as
-    "missing". Self-serve/untiered bookings are skipped for the same reason the
-    GTG chip skips them: they are not ours to let in.
-
-    Suppression guard: if EVERY eligible booking reads as codeless, that is far
-    more likely a renamed property, a broken rollup, or a permissions change than
-    a day where nobody can get in. Flagging all of them would be a page full of
-    false alarms, which is how a real one gets ignored. Emit nothing and say so.
-    """
-    eligible = [e for e in events
-                if e["kind"] == "booking" and e["tier"] and "_has_code" in e]
-    if not eligible:
-        return events
-    missing = [e for e in eligible if not e["_has_code"]]
-    if len(missing) == len(eligible) and len(eligible) > 1:
-        emit_fallback_note(
-            f"Alarm-code check suppressed — all {len(eligible)} tiered bookings read "
-            "as codeless, which is a schema/permissions failure far more often than "
-            "a real one. Check the 'Alarm Code' rollup on 🛎️ FBS AI Support.")
-        return events
-    for e in missing:
-        e["no_code"] = True
-    return events
-
+# REMOVED 2026-08-25 — `apply_missing_codes()`, the missing-alarm-code chip.
+#
+# It never worked. Added 2026-08-07; from 2026-08-08 onward its own all-codeless
+# suppression guard fired on 1,924 consecutive rebuilds, so the chip was never
+# once rendered and every rebuild carried a warning that was not true. The codes
+# were there the whole time (656 of 855 non-closed artists hold one); the builder
+# could not see them through the `Alarm Code` rollup.
+#
+# It is not coming back, because it was the WEAKER of two checks. The Doorman
+# verifies every upcoming renter against the LIVE Alarm.com panel on its ~06:00
+# pass, 7 days ahead, and raises an `Access / PIN` row with days of lead — real
+# door state, not a Notion record of it. This read a second-hand copy and would
+# have disagreed with the panel sooner or later. Junyan's 2026-08-15 ruling
+# ("no duplicates, all under the Doorman") already settled which one survives.
+#
+# If the board should show missing access again, RENDER THE DOORMAN'S ROWS —
+# fetch_issues() already reads ✅ Actions to Perform and `Access / PIN` is
+# already in FBS_ACTION_TYPES. Do not re-derive the answer here.
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 3. Arrivals / departures — Gmail API (OAuth refresh token)
@@ -1877,8 +1857,6 @@ def prepare_board_events(events):
         "arrived": e.get("arrived"), "departed": e.get("departed"),
         "wrong_studio": e.get("wrong_studio"),
         "dup_studios": e.get("dup_studios"),
-        # Boolean only — see parse_notion(). The code never leaves the builder.
-        "no_code": bool(e.get("no_code")),
         "start": round(e["start"], 4), "end": round(e["end"], 4),
         # Internal, never published: sync_booking_status() runs off this list
         # after the page is written and needs the Notion row it matched. Before
@@ -1910,7 +1888,6 @@ def build_data(now):
     if not token:
         die("NOTION_TOKEN missing.")
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
-    events = apply_missing_codes(events)
 
     # ---- Arrivals: panel ledger first, ADT email second ---------------------
     #
