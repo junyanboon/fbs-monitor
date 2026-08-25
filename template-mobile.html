@@ -510,12 +510,16 @@ function nextRun(r, nowT){
   const body=win? e.replace(win[0],"") : e;
   let cands=[];
   const every=e.match(/every\s+(\d+)\s*h(?:ours?)?\s*(?:at\s*)?:(\d{2})/i);
+  const everyMin=e.match(/every\s+(\d+)\s*min/i);
   const hourly=e.match(/hourly(?:\s*:(\d{2}))?/i);
   const mins=[...body.matchAll(/(?:^|[^\d])(?::(\d{2}))\b/g)].map(m=>+m[1]).filter(v=>!isNaN(v));
   const daily=[...body.matchAll(/(\d{1,2}):(\d{2})/g)].map(m=>(+m[1])+(+m[2])/60);
   const addHourly=(step,minute)=>{for(let h=0;h<48;h++){const t=h+minute/60;
     const d=t%24; if(d>=ws-1e-9&&d<=we+1e-9&&(h-Math.floor(ws))%step===0)cands.push(t);}};
-  if(every)addHourly(+every[1],+every[2]);
+  if(everyMin){const step=+everyMin[1];
+    for(let t=0;t<48;t+=step/60){const d=t%24;
+      if(d>=ws-1e-9&&d<=we+1e-9)cands.push(t);}}
+  else if(every)addHourly(+every[1],+every[2]);
   else if(mins.length&&!daily.length)mins.forEach(mm=>addHourly(1,mm));
   else if(hourly)addHourly(1,+(hourly[1]||0));
   else if(daily.length)daily.forEach(t=>{cands.push(t);cands.push(t+24);});

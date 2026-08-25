@@ -1901,6 +1901,16 @@ def fetch_reports(token, now, days=3, limit=40):
     return out[:limit]
 
 
+# Board-only display names. The Run Monitor rows keep their technical titles
+# (heartbeat writers reference them by name); the board shows what the job
+# actually does. Requested by Junyan 2026-08-25 — "watchlist-refresh (GitHub
+# Actions)" tells a staff member nothing.
+ROBOT_DISPLAY = {
+    "watchlist-refresh (GitHub Actions)": "Watchlist sync",
+    "qa-review (GitHub Actions)": "QA release check",
+}
+
+
 def fetch_robots(token, now):
     rows = _notion_query(token, RUN_MONITOR_DS, {"page_size": 100})
     out = []
@@ -1927,7 +1937,8 @@ def fetch_robots(token, now):
         cls, label = robot_status(r, now)
         last = _last_checkin(r)
         out.append({
-            "run": r["run"], "cadence": r["cadence"], "expected": r["expected"],
+            "run": ROBOT_DISPLAY.get(r["run"], r["run"]),
+            "cadence": r["cadence"], "expected": r["expected"],
             "produces": r["produces"], "monitoring": r["monitoring"],
             "status": cls, "statusLabel": label,
             "lastISO": last.replace(microsecond=0).isoformat() if last else None,
