@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 25, 2026",
-  "generatedAt": "Aug 25, 7:22 PM ET",
-  "generatedAtISO": "2026-08-25T19:22:21-04:00",
+  "generatedAt": "Aug 25, 7:24 PM ET",
+  "generatedAtISO": "2026-08-25T19:24:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -265,6 +265,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "heard": false,
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
@@ -280,6 +281,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "heard": true,
       "arrived": "18:57",
       "departed": null,
       "wrong_studio": null,
@@ -295,6 +297,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "heard": false,
       "arrived": "19:00",
       "departed": null,
       "wrong_studio": null,
@@ -310,6 +313,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "heard": false,
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
@@ -325,6 +329,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
+      "heard": true,
       "arrived": "18:48",
       "departed": null,
       "wrong_studio": null,
@@ -340,6 +345,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": null,
+      "heard": false,
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
@@ -1230,7 +1236,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T19:02:00-04:00"
+      "lastISO": "2026-08-25T19:26:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1380,7 +1386,9 @@ document.getElementById('sfilters').addEventListener('click',ev=>{
 const FLAG_MIN=16/60;   // within 16 min of the window = plain green (Junyan)
 function warnChips(e,st){
   let t="";
-  if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
+  // e.heard = the renter has texted us today; that IS the confirmation, so the
+  // chip clears on it without waiting for the desk to flip GTG.
+  if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!e.heard&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
   /* Open Access / PIN row names this renter today: code will not work.
      Shown even after the booking ends — tomorrow's lockout too. */
   if(e.access_gap)t+=`<span class="chip crit">Code ✗</span>`;
