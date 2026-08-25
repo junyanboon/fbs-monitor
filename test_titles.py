@@ -101,3 +101,72 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+def test_mail_doors_reconciliation():
+    """The ADT email as a SECOND WITNESS to the websocket — added 2026-08-25
+    when the 'permanently dead' feed turned out to be delivering again.
+
+    Only one of the three outcomes is a finding, and the two that are not
+    matter just as much: a gap-covered miss is the coverage machinery being
+    honest, and a pre-ledger event is unanswerable rather than clean."""
+    import build
+    MS = 1000
+
+    def ev(studio, kind, ts, name="Ivanka Moskaliuk", remote=False):
+        return {"studio": studio, "kind": kind, "ts": ts, "time": "19:05",
+                "name": name, "remote": remote}
+
+    base = 1787612722 * MS          # 2026-08-24T23:05:22Z, a real disarm
+    covers = "2026-08-22T19:32:00Z"
+
+    # Both saw it — the expected case. Seconds apart still matches.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", base)], [ev("509A", "arrival", base + 3 * MS)],
+        [], covers)
+    assert r == {"matched": 1, "inGap": 0, "missed": [], "missedCount": 0}, r
+
+    # Mail saw it, socket did not, and a recorded gap covers that second.
+    # Not a defect — this is the proof the gap machinery is telling the truth.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", base)], [],
+        [{"since": "2026-08-24T23:05:00Z", "until": "2026-08-24T23:05:40Z"}],
+        covers)
+    assert r["inGap"] == 1 and r["missedCount"] == 0, r
+
+    # Mail saw it, socket did not, and the socket claimed to be listening.
+    # The one loud case: a hole inside a window reported as clean.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", base)], [], [], covers)
+    assert r["missedCount"] == 1 and "509A arrival" in r["missed"][0], r
+    assert "Ivanka Moskaliuk" in r["missed"][0], r
+
+    # A different studio is not a twin, however close in time.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", base)], [ev("693", "arrival", base)], [], covers)
+    assert r["missedCount"] == 1, r
+
+    # Neither is the opposite kind — an arm never satisfies a disarm.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", base)], [ev("509A", "departure", base)], [],
+        covers)
+    assert r["missedCount"] == 1, r
+
+    # Before the ledger existed: unanswerable, so silent. The ledger prunes at
+    # 72h and must never be read as "clean" for time it never held.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", 1787000000 * MS)], [], [], covers)
+    assert r == {"matched": 0, "inGap": 0, "missed": [], "missedCount": 0}, r
+
+    # Remote and nameless events are not human-attributable — never judged.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", base, name="Studio (remote)", remote=True),
+         ev("509A", "arrival", base, name="")], [], [], covers)
+    assert r["missedCount"] == 0, r
+
+    # Errs quiet: 4 minutes drift still matches, so a slow mail delivery does
+    # not manufacture a hole. A false alarm here costs an investigation.
+    r = build.reconcile_mail_against_doors(
+        [ev("509A", "arrival", base)], [ev("509A", "arrival", base + 240 * MS)],
+        [], covers)
+    assert r["matched"] == 1, r

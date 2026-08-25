@@ -1244,6 +1244,8 @@ def fetch_door_events(win_start):
         * door/motion events are NOT returned — the board's stream renders
           arm state; presence-without-identity belongs to the departure
           verdict, which this builder does not compute (yet).
+      covers_since: ISO instant the ledger's memory starts. A question about
+        anything earlier is unanswerable, not clean — the ledger prunes at 72h.
       coverage_gaps: [{since, until}] ISO pairs where the listener was NOT
         recording. "No event in a gap" means "was not listening", never
         "nobody came" — the caller must not let a window containing a gap
@@ -1288,7 +1290,73 @@ def fetch_door_events(win_start):
         since, until = _parse_iso_utc(g.get("since")), _parse_iso_utc(g.get("until"))
         if since and until and until.astimezone(TZ) >= win_start:
             gaps.append({"since": g["since"], "until": g["until"]})
-    return out, gaps
+    return out, gaps, payload.get("covers_since")
+
+
+def reconcile_mail_against_doors(mail_events, door_events, door_gaps,
+                                 covers_since, tolerance_s=300):
+    """Cross-check the ADT/TELUS email feed against the websocket ledger.
+
+    WHY THIS EXISTS. The email feed was ruled permanently dead on 2026-08-20
+    and is delivering again — ~200 named messages in the seven days to
+    2026-08-25, agreeing with the websocket to the second (509A disarmed by
+    Ivanka Moskaliuk, 2026-08-24 23:05:22Z, both sources). That makes it a
+    genuine second witness to the one fact the board cannot re-derive: WHO.
+
+    It is a CHECK, never a layer. Two reasons nothing may depend on it:
+    it carries no door open/close — so it cannot recover what a socket blink
+    actually loses, which is the departure — and it throttles itself without
+    warning ("High activity ... blocked or limited for up to 24 hours", four
+    such notices on 2026-08-24/25 alone), precisely when activity is high.
+    A backstop that disappears under load is not a backstop.
+
+    WHAT IT ANSWERS. For every named arm/disarm the mail reports, did the
+    websocket see it too? Three outcomes, and only one is a finding:
+
+      matched  — both saw it. The expected case.
+      in_gap   — mail saw it, the socket did not, and a RECORDED gap covers
+                 that moment. Not a defect: this is the gap machinery being
+                 honest, and it is the only routine proof that it works.
+      missed   — mail saw it, the socket did not, and the socket claimed to
+                 be listening. That is a hole in a window reported as clean,
+                 which is the failure mode the whole coverage guard exists to
+                 prevent. Loud.
+
+    Deliberately one-directional. Door-only events are NOT reported: the
+    socket legitimately sees more than the mail (remote arms, door, motion),
+    and mail silence is as likely to be a throttle as a miss, so that
+    direction is all noise. Mail before `covers_since` is skipped for the
+    same reason — the ledger cannot speak for time it never held.
+
+    Tolerance is 5 minutes, far wider than the observed 0 s, because a false
+    "the socket missed one" costs an investigation while a missed detection
+    costs one more pass. Errs quiet, on purpose."""
+    floor = _parse_iso_utc(covers_since)
+    gaps = [(_parse_iso_utc(g["since"]), _parse_iso_utc(g["until"]))
+            for g in door_gaps or []]
+    gaps = [(a, b) for a, b in gaps if a and b]
+    matched, in_gap, missed = 0, 0, []
+    for m in mail_events or []:
+        if m.get("remote") or not m.get("name"):
+            continue                     # only named, human-attributable events
+        ts = m.get("ts")
+        if not ts:
+            continue
+        when = datetime.fromtimestamp(ts / 1000, timezone.utc)
+        if floor and when < floor:
+            continue                     # older than the ledger's memory
+        twin = any(d["studio"] == m["studio"] and d["kind"] == m["kind"]
+                   and abs((d.get("ts") or 0) - ts) <= tolerance_s * 1000
+                   for d in door_events or [])
+        if twin:
+            matched += 1
+        elif any(a <= when <= b for a, b in gaps):
+            in_gap += 1
+        else:
+            missed.append(f"{m['studio']} {m['kind']} {m.get('time')} "
+                          f"({m.get('name')})")
+    return {"matched": matched, "inGap": in_gap,
+            "missed": missed[:12], "missedCount": len(missed)}
 
 
 def _parse_iso_utc(s):
@@ -1956,6 +2024,7 @@ def build_data(now):
     used_fallback = False
     arm_events, alarm_alerts, panel_prior = [], [], {}
     panel_events, mail_events, door_events, door_gaps = [], [], [], []
+    door_covers_since = None
     arm_feed = {"panel": None, "mail": None, "doors": None, "updatedAt": None}
 
     # doors — the websocket event ledger (/door-history). The NAME source, and
@@ -1963,7 +2032,7 @@ def build_data(now):
     # is why the panel ledger below stays on as the timeline backstop.
     if DOOR_HISTORY_URL and ARM_HISTORY_TOKEN:
         try:
-            door_events, door_gaps = fetch_door_events(win_start)
+            door_events, door_gaps, door_covers_since = fetch_door_events(win_start)
             arm_feed["doors"] = "ok"
         except Exception as e:          # noqa: BLE001 — soft: panel ledger still answers
             arm_feed["doors"] = "failed"
@@ -2037,6 +2106,20 @@ def build_data(now):
     # socket gaps, so arm state survives them — but a "who was it" question
     # about a gap window has to fall back to nameless evidence, and the page
     # saying so beats an agent re-deriving it.
+    # Second witness. The mail feed is a check on the websocket, never a
+    # source it leans on — see reconcile_mail_against_doors.
+    if door_events and mail_events:
+        check = reconcile_mail_against_doors(mail_events, door_events,
+                                             door_gaps, door_covers_since)
+        arm_feed["mailCheck"] = check
+        if check["missedCount"]:
+            emit_fallback_note(
+                f"DOOR LEDGER HOLE — the ADT email reports "
+                f"{check['missedCount']} named arm/disarm event(s) the "
+                f"websocket did not record, in windows it claimed to cover: "
+                + "; ".join(check["missed"]) + ". Treat those windows as "
+                "uncovered for billing.")
+
     arm_feed["doorGaps"] = door_gaps
     arm_feed["down"] = feed_is_down(arm_events, arm_feed, datetime.now(TZ), win_start)
     if arm_feed["down"]:
