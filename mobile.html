@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 25, 2026",
-  "generatedAt": "Aug 25, 6:45 PM ET",
-  "generatedAtISO": "2026-08-25T18:45:44-04:00",
+  "generatedAt": "Aug 25, 6:48 PM ET",
+  "generatedAtISO": "2026-08-25T18:48:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -394,7 +394,16 @@ const DATA = /*__DATA__*/{
       "created": "Aug 25 · 18:32"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "crit",
+      "text": "Alarm alarm · 901 · 18:47"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm pending · 901 · 18:47"
+    }
+  ],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -448,7 +457,20 @@ const DATA = /*__DATA__*/{
       "when": "Mon 21:30"
     }
   },
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "901",
+      "time": "18:47",
+      "stage": "ALARM",
+      "ts": 1787698062000
+    },
+    {
+      "studio": "901",
+      "time": "18:47",
+      "stage": "PENDING",
+      "ts": 1787698032000
+    }
+  ],
   "armFallback": true,
   "armFeed": {
     "panel": "ok",
@@ -1047,6 +1069,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-25T22:41:33.497320Z",
         "until": "2026-08-25T22:41:44.897914Z"
+      },
+      {
+        "since": "2026-08-25T22:47:33.604466Z",
+        "until": "2026-08-25T22:47:47.097375Z"
       }
     ],
     "down": false
@@ -1210,7 +1236,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T18:31:00-04:00"
+      "lastISO": "2026-08-25T18:46:00-04:00"
     },
     {
       "run": "The Closer",
