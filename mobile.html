@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 25, 2026",
-  "generatedAt": "Aug 25, 7:32 PM ET",
-  "generatedAtISO": "2026-08-25T19:32:24-04:00",
+  "generatedAt": "Aug 25, 7:45 PM ET",
+  "generatedAtISO": "2026-08-25T19:45:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -314,7 +314,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "19:45",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -359,6 +359,38 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 10.75,
+      "end": 11.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 12.25,
+      "end": 12.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 13.75,
+      "end": 14.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
       "studio": "509B",
       "day_offset": 1,
       "start": 14.75,
@@ -372,6 +404,38 @@ const DATA = /*__DATA__*/{
       "start": 16.25,
       "end": 16.75,
       "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 2,
+      "start": 18.25,
+      "end": 18.75,
+      "day": "Thu Aug 27"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 2,
+      "start": 21.25,
+      "end": 21.75,
+      "day": "Thu Aug 27"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 3,
+      "start": 13.75,
+      "end": 14.25,
+      "day": "Fri Aug 28"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 3,
+      "start": 15.25,
+      "end": 15.75,
+      "day": "Fri Aug 28"
     }
   ],
   "messages": [
@@ -463,6 +527,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1787698854000
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "19:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787701524974,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -475,16 +548,6 @@ const DATA = /*__DATA__*/{
       "time": "20:49",
       "ts": 1787618941000,
       "when": "Mon 20:49"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "693",
-      "time": "21:08",
-      "ts": 1787620087000,
-      "when": "Mon 21:08"
     }
   },
   "alarmAlerts": [
@@ -508,7 +571,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-08-25T23:04:06+00:00",
     "mailCheck": {
-      "matched": 6,
+      "matched": 7,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1141,21 +1204,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-25T23:31:19.768633Z",
         "until": "2026-08-25T23:31:33.142586Z"
+      },
+      {
+        "since": "2026-08-25T23:36:33.837965Z",
+        "until": "2026-08-25T23:36:35.658135Z"
+      },
+      {
+        "since": "2026-08-25T23:42:17.253636Z",
+        "until": "2026-08-25T23:42:29.780344Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-24T19:47:00-04:00"
-    },
     {
       "run": "QA release check",
       "cadence": "Hourly",
@@ -1237,6 +1298,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-25T18:57:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-25T19:42:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -1284,7 +1355,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T18:33:00-04:00"
+      "lastISO": "2026-08-25T19:32:00-04:00"
     },
     {
       "run": "The Weatherman",
