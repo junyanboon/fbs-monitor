@@ -973,6 +973,7 @@ function renderRobots(){
 /* The Issues tab was removed 2026-08-25 (Junyan: "these issues are not really
    useful") — access problems render as a red pill on the booking card in the
    Studios tab instead, and the rest lives in Notion / the Doorman's report. */
+const _renderBase = render;
 render = function(){ _renderBase(); renderAlarms(); renderRobots(); };
 render(); setInterval(render, 30000);
 </script>
