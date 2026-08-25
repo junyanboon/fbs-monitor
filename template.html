@@ -711,7 +711,9 @@ function render(){
     if(e.kind==="cleaning") tag = `<span class="chip plain">Staff</span>`;
     else if(e.tier) tag = `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
     let warns = "";
-    if(e.tier && e.tier!=="Viewing" && !e.gtg && !done)
+    // e.heard = the renter has texted us today; that IS the confirmation, so the
+    // chip clears on it without waiting for the desk to flip GTG.
+    if(e.tier && e.tier!=="Viewing" && !e.gtg && !e.heard && !done)
       warns += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
     /* An open Access / PIN row names this renter for today: their code will
        not work. THE one access surface on this app (2026-08-25). Stays after

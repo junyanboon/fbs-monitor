@@ -278,7 +278,9 @@ document.getElementById('sfilters').addEventListener('click',ev=>{
 const FLAG_MIN=16/60;   // within 16 min of the window = plain green (Junyan)
 function warnChips(e,st){
   let t="";
-  if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
+  // e.heard = the renter has texted us today; that IS the confirmation, so the
+  // chip clears on it without waiting for the desk to flip GTG.
+  if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!e.heard&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
   /* Open Access / PIN row names this renter today: code will not work.
      Shown even after the booking ends — tomorrow's lockout too. */
   if(e.access_gap)t+=`<span class="chip crit">Code ✗</span>`;

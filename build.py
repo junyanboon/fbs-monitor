@@ -58,6 +58,16 @@ WORKFLOW_REPORTS_DS = "469a877b-83fa-4387-ac97-94aa656481dd"
 ACTIONS_DS = "20df225d-382f-4bb8-9c15-c31571c9f4e0"
 # 📤 Message Queue — feeds the Messages tab (rows awaiting a human).
 MESSAGES_DS = "df37abce-2222-4e68-8452-9457a4de32df"
+# 📬 Correspondence Log — the J28 ledger's Notion projection. Read for ONE
+# question only: has this renter texted us today? A `No GTG` chip means "nobody
+# has confirmed with this renter"; an inbound text is that confirmation arriving,
+# and the chip should clear on it without waiting for a human to flip GTG.
+# Only artist page-ids and timestamps are read — never `Content`, never a
+# Subject. See fetch_inbound_texts().
+CORRESPONDENCE_DS = "defec0fd-e817-4191-8a50-b69ad3e72b59"
+# Mediums that count as "they texted us". Email is deliberately excluded: an
+# inbound email is not what Junyan asked to clear the chip on (2026-08-25).
+TEXT_MEDIUMS = ("SMS", "WhatsApp", "RCS / Off-system text")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "template.html")
@@ -809,6 +819,16 @@ def _prop_text(prop):
     return None
 
 
+def _relation_id(prop):
+    """First related page id from a relation property, dashes stripped."""
+    if not prop or prop.get("type") != "relation":
+        return None
+    rel = prop.get("relation") or []
+    if not rel:
+        return None
+    return (rel[0].get("id") or "").replace("-", "") or None
+
+
 def _notion_query(token, ds_id, body):
     """Query a Notion data source, trying the new then the legacy endpoint.
     Raises RuntimeError on failure — callers decide fatal vs soft."""
@@ -873,6 +893,7 @@ def parse_notion(rows):
         # board needs the code, so the safest read is no read at all.
         out.append({
             "id": row.get("id"),
+            "artist": _relation_id(p.get("🎨 Artist Database")),
             "status": (_prop_text(p.get("Booking Status")) or "").strip(),
             "studio": studio,
             "start": _prop_text(p.get("Start Time")),
@@ -912,6 +933,7 @@ def join_notion(events, notion_rows):
             e["_board_disarmed"] = best["board_disarmed"]
             e["_board_armed"] = best["board_armed"]
             e["_notion_id"] = best["id"]
+            e["_artist_id"] = best["artist"]
             e["_board_status"] = best["status"]
     return events
 
@@ -1780,6 +1802,47 @@ def fetch_open_access_rows(token):
     return [_prop_text(r.get("properties", {}).get("Request")) or "" for r in rows]
 
 
+def fetch_inbound_texts(token, since_dt):
+    """Artist page-ids who have texted US since `since_dt`.
+
+    Returns a SET OF IDS and nothing else — no subjects, no bodies, no phone
+    numbers. `Content` on this DB is verbatim customer message text and must
+    never be read here; this board is public.
+
+    Window is the board's own day (05:00 → 05:00, same base_day the rest of the
+    page runs on). Yesterday's chatter must not suppress today's chip.
+    """
+    rows = _notion_query(token, CORRESPONDENCE_DS, {
+        "filter": {"and": [
+            {"property": "Direction", "select": {"equals": "→ Us"}},
+            {"property": "Date & Time", "date": {"on_or_after": since_dt.isoformat()}},
+            {"or": [{"property": "Medium", "select": {"equals": m}}
+                    for m in TEXT_MEDIUMS]},
+        ]},
+        "page_size": 100,
+    })
+    out = set()
+    for r in rows:
+        aid = _relation_id(r.get("properties", {}).get("Artist"))
+        if aid:
+            out.add(aid)
+    return out
+
+
+def apply_heard(events, texted_ids):
+    """Mark bookings whose renter has texted us today.
+
+    Junyan, 2026-08-25: "the No GTG needs to disappear the moment we see a text
+    message from them." GTG itself stays truthful — it is the Notion board's
+    value and the desk still has to flip it — this only decides whether the
+    board WARNS about it. Matching is by Artist page-id (the FBS row and the
+    ledger row both relate to the same Artist page), never by name."""
+    for e in events:
+        aid = e.get("_artist_id")
+        e["heard"] = bool(aid and aid in texted_ids)
+    return events
+
+
 # Statuses that mean "a human still has to act on this row", in display order.
 MSG_PENDING_STATUSES = ("Error", "Pending Review", "Ready to Send")
 
@@ -1957,6 +2020,9 @@ def prepare_board_events(events):
     return [{
         "studio": e["studio"], "who": e["who"], "kind": e["kind"],
         "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
+        # Boolean only: "this renter has texted us today". Suppresses the No GTG
+        # chip — see apply_heard(). No content of any kind crosses.
+        "heard": bool(e.get("heard")),
         "arrived": e.get("arrived"), "departed": e.get("departed"),
         "wrong_studio": e.get("wrong_studio"),
         "dup_studios": e.get("dup_studios"),
@@ -2008,6 +2074,13 @@ def build_data(now):
         events = flag_access_gaps(events, fetch_open_access_rows(token), base_day)
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Actions fetch failed ({e}); access pills absent this edition.")
+    # Heard-from-them — soft: if the ledger is unreadable, the No GTG chip simply
+    # behaves as it did before this existed (shown), never the reverse. Failing
+    # this read must not HIDE a warning.
+    try:
+        events = apply_heard(events, fetch_inbound_texts(token, win_start))
+    except Exception as e:  # noqa: BLE001
+        emit_fallback_note(f"Correspondence fetch failed ({e}); No GTG chips not text-cleared.")
     # Messages tab — same soft posture: an unreadable queue costs the tab's
     # list this edition, never the board.
     try:
