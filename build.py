@@ -1663,6 +1663,29 @@ def _is_near_term(row, today, horizon):
 
 FBS_ACTION_TYPES = ("Access / PIN", "Run Error")
 
+# Doorman housekeeping, not a door problem. These titles are conventions the
+# Doorman's prompt writes verbatim; five of them once outshouted the only row
+# about a renter who actually could not get in (2026-08-24 board).
+HOUSEKEEPING_PREFIXES = ("Retire alarm code", "Recheck Alarm.com retirement")
+
+
+def _is_code_housekeeping(request):
+    return (request or "").lstrip().startswith(HOUSEKEEPING_PREFIXES)
+
+
+def _access_due(request, process_after, today):
+    """The deadline an Access / PIN row carries, if it carries one.
+
+    The Doorman raises door gaps with days of lead ("… 509B Fri Aug 28 14:00"),
+    and lead time only helps if the wall shows it BEFORE the day arrives. The
+    date is wherever the title mentions it; `Process on/after` is the fallback.
+    Rows naming several days (a two-day booking) are due on the first."""
+    dates = [d for d in _dates_in(request, today.year)
+             if d >= today - timedelta(days=7)]     # last week's "Aug 23" is a
+    if dates:                                       # deadline; last YEAR's isn't
+        return min(dates)
+    return process_after
+
 
 def fetch_issues(token, now, reports, limit=12):
     """The Issues tab — what needs Junyan, today or tomorrow, FBS only.
@@ -1688,10 +1711,19 @@ def fetch_issues(token, now, reports, limit=12):
 
     Everything cleared in Notion vanishes here on the next build: the query asks
     for `Pending Review`, so Processed and Cancelled rows are simply not
-    returned. There is no separate state to keep in sync."""
+    returned. There is no separate state to keep in sync.
+
+    REVISED 2026-08-25 (Junyan: "the Doorman's protests get completely buried").
+    The today+tomorrow horizon (2026-08-15 ruling) no longer applies to DATED
+    Access / PIN rows — a gap with a date is a fuse with a known length, not "a
+    problem three weeks out", and hiding it until T-1 spends the exact lead the
+    Doorman raised it early to buy. Dated gaps render with a countdown, soonest
+    first, crit from T-1 and while overdue. Code-retirement housekeeping
+    collapses to one line, the same way Run Errors already do. The horizon
+    still governs everything else."""
     today = now.date()
     horizon = today + timedelta(days=1)
-    issues, run_errors = [], []
+    issues, run_errors, housekeeping = [], [], []
 
     rows = _notion_query(token, ACTIONS_DS, {
         "filter": {"property": "Status", "select": {"equals": "Pending Review"}},
@@ -1712,13 +1744,35 @@ def fetch_issues(token, now, reports, limit=12):
         urgent = r["request"].lstrip().startswith("🚨")
         if r["type"] not in FBS_ACTION_TYPES and not urgent:
             continue
-        if not _is_near_term(r, today, horizon):
-            continue
         when = _parse_notion_ts(_prop_text(p.get("Requested"))) \
             or _parse_notion_ts(row.get("created_time"))
         if r["type"] == "Run Error":
-            run_errors.append((r["by"] or "unattributed", when))
+            if _is_near_term(r, today, horizon):
+                run_errors.append((r["by"] or "unattributed", when))
+        elif r["type"] == "Access / PIN" and not urgent:
+            if _is_code_housekeeping(r["request"]):
+                housekeeping.append(when)
+                continue
+            due = _access_due(r["request"], r["process_after"], today)
+            days = (due - today).days if due else None
+            if days is None:
+                tag = None                       # undated: near-term by default
+            elif days < 0:
+                tag = f"OVERDUE {-days}d"
+            elif days == 0:
+                tag = "TODAY"
+            elif days == 1:
+                tag = "tomorrow"
+            else:
+                tag = f"{due:%a %b %-d} · {days}d"
+            issues.append({"level": "crit" if days is not None and days <= 1 else "watch",
+                           "label": "Access",
+                           "text": redact(_lead(r["request"])) + (f" — {tag}" if tag else ""),
+                           "whenISO": when.isoformat() if when else None,
+                           "_k": f"0:{due.isoformat()}" if due else None})
         else:
+            if not _is_near_term(r, today, horizon):
+                continue
             issues.append({"level": "crit" if urgent else "watch",
                            "label": "Access" if r["type"] == "Access / PIN" else "Urgent",
                            "text": redact(_lead(r["request"])),
@@ -1737,6 +1791,15 @@ def fetch_issues(token, now, reports, limit=12):
             "whenISO": min((w.isoformat() for w in mine if w), default=None),
         })
 
+    if housekeeping:
+        n = len(housekeeping)
+        issues.append({
+            "level": "watch", "label": "Housekeeping",
+            "text": f"Code retirements{f' ×{n}' if n > 1 else ''} — see Notion",
+            "whenISO": min((w.isoformat() for w in housekeeping if w), default=None),
+            "_k": "2:",           # always after real door problems of its level
+        })
+
     for rep in reports or []:
         if rep.get("status") == "Ended Early":
             issues.append({"level": "crit", "label": "Run died",
@@ -1746,13 +1809,18 @@ def fetch_issues(token, now, reports, limit=12):
                            "text": redact(rep["headline"].lstrip("⚠ ").strip()),
                            "whenISO": rep.get("whenISO")})
 
-    # Oldest first inside each severity — a door problem does not get less
-    # urgent by sitting, and the stale ones are the ones that rot.
+    # Inside each severity: dated door gaps first, soonest fuse first (an
+    # overdue one sorts before everything); then the undated, oldest first —
+    # a door problem does not get less urgent by sitting; housekeeping last.
     order = {"crit": 0, "watch": 1}
-    issues.sort(key=lambda i: (order.get(i["level"], 2), i["whenISO"] or ""))
+    issues.sort(key=lambda i: (order.get(i["level"], 2),
+                               i.get("_k") or f"1:{i['whenISO'] or ''}"))
+    for i in issues:
+        i.pop("_k", None)
     # The total counts open ROWS, not rendered lines, so "+N more" stays true
-    # even though the Run Errors collapse to one line per robot.
-    total = len(issues) - len({r for r, _ in run_errors}) + len(run_errors)
+    # even though Run Errors (per robot) and housekeeping collapse.
+    total = (len(issues) - len({r for r, _ in run_errors}) + len(run_errors)
+             - (1 if housekeeping else 0) + len(housekeeping))
     return issues[:limit], total
 
 

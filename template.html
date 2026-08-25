@@ -995,7 +995,7 @@ function renderIssues(){
              : crit ? `${crit} urgent`
              : `${I.length} open`;
   let html = `<div class="statusbar ${I.length?(crit?"crit":"warn"):"ok"}" style="margin-top:16px"><span class="dot"></span>
-    <span class="head">${head}</span><span class="items"><span class="statusitem">Today and tomorrow · clears itself when the row is Processed in Notion</span></span></div>`;
+    <span class="head">${head}</span><span class="items"><span class="statusitem">Door gaps by deadline, everything else today/tomorrow · clears when Processed in Notion</span></span></div>`;
   const ago = iso => {
     if(!iso) return "";
     const h = (Date.now() - new Date(iso).getTime())/3600000;
