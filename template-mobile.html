@@ -70,6 +70,7 @@
   .fchip{flex:none;border:1px solid var(--line);background:var(--scrim);color:var(--chalk-dim);
          border-radius:99px;padding:7px 15px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:var(--sans)}
   .fchip.on{background:var(--tungsten);border-color:var(--tungsten);color:#fff}
+  .fchip .n{font-family:var(--mono);font-size:11px;margin-left:4px;opacity:.75}
 
   main{padding:0 16px}
   .grp{margin:14px 0 4px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
@@ -135,9 +136,15 @@
   .chip.plain{background:var(--scrim-2);color:var(--chalk-dim)}
   .quiet{color:var(--chalk-faint);text-align:center;padding:40px 0;font-size:14.5px}
 
-  /* alarms + staff panels reuse card look */
+  /* alarms + shifts panels reuse card look */
   .row{display:grid;grid-template-columns:minmax(64px,auto) 1fr auto;gap:12px;align-items:center;
        background:var(--scrim);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:8px 0}
+  /* open (claimable) shift rows — amber + dashed so they can't be misread as
+     someone's scheduled shift. Display only; claiming happens on the Notion
+     Open Shifts board, not here. */
+  .row.orow{border:1px dashed var(--watch);background:var(--watch-bg)}
+  .row.orow .nm{color:var(--watch)}
+  .grp.open{color:var(--watch)}
   .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
   .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
@@ -174,13 +181,13 @@
   <main id="agenda"></main>
 </section>
 <section id="tab-alarms" hidden><main id="alarms"></main></section>
-<section id="tab-staff" hidden><main id="staff"></main></section>
+<section id="tab-staff" hidden><div class="filters" id="sfilters"></div><main id="staff"></main></section>
 <section id="tab-robots" hidden><main id="robots"></main></section>
 
 <nav id="nav">
   <button class="on" data-t="today"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Today</button>
   <button data-t="alarms"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3.5l1.7 3a1 1 0 0 1-.9 1.5H5.2a1 1 0 0 1-.9-1.5l1.7-3V9a6 6 0 0 1 6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Alarms</button>
-  <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Staff</button>
+  <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Shifts</button>
   <button data-t="robots"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/><path d="M9.5 16.5h5"/></svg>Robots</button>
   <a href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="13" height="17" rx="2"/><path d="M17 7l3 1-4 13-3-1"/></svg>Deck</a>
 </nav>
@@ -188,7 +195,7 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "…", "generatedAt": "…",
-  "studios": [], "events": [], "staff": [], "attention": []
+  "studios": [], "events": [], "staff": [], "openShifts": [], "attention": []
 }/*__END_DATA__*/;
 
 const $=s=>document.querySelector(s);
@@ -236,6 +243,10 @@ document.getElementById('nav').addEventListener('click',ev=>{
 });
 document.getElementById('filters').addEventListener('click',ev=>{
   const c=ev.target.closest('.fchip');if(!c)return;FILTER=c.dataset.f;render();
+});
+let SFILTER="all";   // Shifts tab has its own chip row, same pattern as Today's
+document.getElementById('sfilters').addEventListener('click',ev=>{
+  const c=ev.target.closest('.fchip');if(!c)return;SFILTER=c.dataset.f;render();
 });
 
 const FLAG_MIN=16/60;   // within 16 min of the window = plain green (Junyan)
@@ -400,8 +411,20 @@ function render(){
   $('#alarms').innerHTML=`<div class="grp">Panel status</div>`+grid+
     `<div class="grp">Today's events</div>`+(stream||`<div class="quiet">No alarm events yet today.</div>`);
 
-  /* staff */
-  const st=(DATA.staff||[]).map(s=>{
+  /* shifts: open (claimable) placeholders pinned on top, then today's roster.
+     Chips mirror the Today-tab filter pattern: All / Open / one per person. */
+  const OPEN=DATA.openShifts||[];
+  const names=[...new Set((DATA.staff||[]).map(s=>s.name))];
+  const sf=[["all","All"],["open",`Open <span class="n">${OPEN.length}</span>`],...names.map(x=>[x,esc(x)])];
+  $('#sfilters').innerHTML=sf.map(([k,l])=>`<button class="fchip ${SFILTER===k?"on":""}" data-f="${esc(k)}">${l}</button>`).join("");
+  const showOpen=SFILTER==="all"||SFILTER==="open";
+  const openRows=showOpen?OPEN.map(o=>`<div class="row orow">
+      <span class="tm">${hm(o.start)}</span>
+      <span class="nm">${esc(o.role)}${o.studio?`<span class="st">${esc(o.studio)}</span>`:""}</span>
+      <span class="ev"><span class="chip watch">${esc(o.day)} · ${hm(o.start)}–${hm(o.end)}</span></span>
+    </div>`).join(""):"";
+  const roster=SFILTER==="open"?[]:(DATA.staff||[]).filter(s=>SFILTER==="all"||s.name===SFILTER);
+  const st=roster.map(s=>{
     const on=s.start<=n&&n<s.end,past=n>=s.end;
     return `<div class="row" style="${past?"opacity:.55":""}">
       <span class="tm">${hm(s.start)}</span>
@@ -409,7 +432,11 @@ function render(){
       <span class="chip ${on?"ok":past?"plain":"watch"}">${on?"On now":past?"Done":hm(s.start)+"–"+hm(s.end)}</span>
     </div>`;
   }).join("");
-  $('#staff').innerHTML=st||`<div class="quiet">No staff shifts today.</div>`;
+  $('#staff').innerHTML=
+    (openRows?`<div class="grp open">Open — can be claimed</div>`+openRows
+             :SFILTER==="open"?`<div class="quiet">No open shifts right now.</div>`:"")+
+    (SFILTER!=="open"?`<div class="grp">Scheduled today</div>`+
+      (st||`<div class="quiet">No staff shifts today.</div>`):"");
 
   /* robots — projection of the Run Monitor DB (same data as the desktop tab) */
 /* One-line job descriptions — the Notion "Produces" text is prose; this is the

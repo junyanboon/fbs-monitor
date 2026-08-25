@@ -76,6 +76,13 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_titles.py
 
+      # Guards open-shift placeholder parsing for the Shifts tab. Placeholders
+      # must never read as a person's coverage, and nothing from an event
+      # description except the studio number may reach the public page.
+      - name: Open-shift regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_open_shifts.py
+
       # Guards the PANEL arrival source and the feed-down guard. The email feed
       # has died twice, and each time the board rendered the outage as a red
       # "no arrival" against whoever had a finished booking. Pure logic — no

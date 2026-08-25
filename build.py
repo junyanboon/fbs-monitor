@@ -358,7 +358,9 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
 
 # The staff rail shows PEOPLE only. Anything not led by a rostered staff name —
 # unassigned placeholders (Need FBS / Need Monitoring / Studio Viewing Support,
-# Open/Close the Studio) and any future placeholder title — never renders.
+# Open/Close the Studio) and any future placeholder title — never renders as
+# staff. The unassigned placeholders surface separately as OPEN SHIFTS on the
+# Shifts tab (fetch_open_shifts below), never as coverage.
 STAFF_ROSTER = ("junyan", "kyjah", "ela", "stefan", "donny")
 
 
@@ -374,6 +376,60 @@ def parse_staff_row(summary, dtstart, dtend, base_day):
     return {"name": m.group(1), "role": role,
             "start": decimal_hours(dtstart, base_day),
             "end": decimal_hours(dtend, base_day)}
+
+
+# Open (claimable) shifts — the unassigned placeholder blocks staff put on the
+# Staff Scheduling calendar. Claiming itself happens on the ☑️ Open Shifts
+# Notion board; the public page only ADVERTISES the gaps. The event description
+# carries renter names and [Paid] markers, so only the studio number may be
+# read out of it — nothing else from a description ever reaches the page.
+OPEN_SHIFT_ROLES = (
+    (re.compile(r"^\s*need\s+fbs\b", re.I), "FBS"),
+    (re.compile(r"^\s*need\s+monitor(?:ing)?\b", re.I), "Monitoring"),
+    (re.compile(r"^\s*(?:need\s+)?studio\s+viewing\b", re.I), "Viewing"),
+    (re.compile(r"^\s*open\s*/\s*close\b|^\s*open\s+the\s+studio\b", re.I), "Open/Close"),
+    (re.compile(r"^\s*close\s+the\s+studio\b", re.I), "Close"),
+)
+RE_SHIFT_STUDIO = re.compile(r"\bstudio\s+(\d{3}[AB]?)\b", re.I)
+OPEN_SHIFT_LOOKAHEAD_DAYS = 3   # matches how far out The Planner posts shifts
+
+
+def parse_open_shift(summary, description, dtstart, dtend, base_day):
+    for rx, role in OPEN_SHIFT_ROLES:
+        if rx.search(summary or ""):
+            m = RE_SHIFT_STUDIO.search(description or "")
+            day = dtstart.astimezone(TZ).date() if dtstart.tzinfo else dtstart.date()
+            return {"role": role,
+                    "studio": m.group(1).upper() if m else None,
+                    "day_offset": (day - base_day).days,
+                    "start": decimal_hours(dtstart, day),
+                    "end": decimal_hours(dtend, day)}
+    return None
+
+
+def fetch_open_shifts(ics_map, win_start, base_day):
+    """Unassigned placeholders from the Staff calendar, today + the posting
+    lookahead. Separate fetch because the board window is today-only, while
+    claimable shifts are posted days ahead. Own fetch also means an outage
+    here costs the Shifts list, never the board (caller soft-fails)."""
+    url = ics_map.get("Staff")
+    if not url:
+        return []
+    win_end = win_start + timedelta(days=OPEN_SHIFT_LOOKAHEAD_DAYS + 1)
+    out = []
+    for ev in fetch_ics(url, win_start, win_end):
+        if ev.get("cancelled"):
+            continue
+        o = parse_open_shift(ev["summary"], ev.get("description"),
+                             ev["dtstart"], ev["dtend"], base_day)
+        if o and o["day_offset"] >= 0:
+            d = base_day + timedelta(days=o["day_offset"])
+            o["day"] = ("Today" if o["day_offset"] == 0 else
+                        "Tomorrow" if o["day_offset"] == 1 else
+                        d.strftime("%a %b %-d"))
+            out.append(o)
+    out.sort(key=lambda o: (o["day_offset"], o["start"]))
+    return out
 
 
 def merge_events(events):
@@ -1810,6 +1866,14 @@ def build_data(now):
     if not any(k in STUDIO_IDS for k in ics_map):
         die("No ICS_URL_<studio> secrets set — cannot build bookings.")
     events, staff = build_calendar_events(ics_map, win_start, win_end, base_day)
+    # Shifts tab: open placeholders, today + lookahead. Soft source — a failed
+    # fetch costs the Open list this edition, never the board. fetch_ics exits
+    # via die() on failure, so SystemExit must be absorbed here too.
+    try:
+        open_shifts = fetch_open_shifts(ics_map, win_start, base_day)
+    except (Exception, SystemExit) as e:  # noqa: BLE001
+        open_shifts = []
+        emit_fallback_note(f"Staff ICS lookahead failed ({e}); open shifts absent this edition.")
     events, skedda_note = enrich_names_from_skedda(events, win_start, win_end)
     if skedda_note:
         print(f"NOTE: {skedda_note}")
@@ -1998,6 +2062,7 @@ def build_data(now):
         "studios": STUDIOS,
         "events": board_events,
         "staff": sorted(staff, key=lambda s: s["start"]),
+        "openShifts": open_shifts,
         "attention": attention,
         "armEvents": arm_stream,
         "panelPrior": panel_prior,
