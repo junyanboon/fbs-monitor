@@ -93,7 +93,9 @@
      cannot tell which row is the ghost, so it must not assert a no-show. */
   .card.live{border-color:var(--ok)}
   .card.done{opacity:.55}
-  .card .who{font-weight:700;font-size:15.5px;grid-column:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .who{grid-column:2;display:flex;align-items:center;gap:7px;min-width:0}
+  .card .who .nm{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .who .chip{flex:0 0 auto}
   .card .meta{grid-column:2;font-family:var(--mono);font-size:13px;color:var(--chalk-dim);
               font-variant-numeric:tabular-nums}
   .card .meta .arr{color:var(--ok)} .card .meta .dep{color:var(--chalk-faint)}
@@ -101,9 +103,26 @@
   .card .meta .wrong{color:var(--watch);font-family:var(--sans)}
   .card .meta .lbl{font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.08em;
                    vertical-align:1.5px;margin-right:1px}
-  .card .chips{grid-column:2;display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+  /* Mini timeline (2026-08-25): the bordered track IS the booked window —
+     identical length on every card; presence >16 min outside the window is an
+     amber stub OUTSIDE the track, so the window never shrinks. */
+  .card .tl{grid-column:2;margin-top:3px}
+  .card .tl .strip{display:flex;align-items:stretch;height:6px;width:fit-content}
+  .card .tl .track{position:relative;width:200px;border-radius:99px;background:var(--scrim-2);
+                   border:1px solid var(--line)}
+  .card .tl .fill{position:absolute;top:-1px;bottom:-1px;border-radius:99px;background:var(--ok)}
+  .card .tl .fill.liveseg{background:linear-gradient(90deg,var(--ok),var(--ok) 70%,transparent)}
+  .card .tl .over{background:var(--watch);border-radius:99px;width:20px}
+  .card .tl .over.pre{margin-right:2px}
+  .card .tl .over.post{margin-left:2px}
+  .card .tl .ends{display:flex;justify-content:space-between;gap:8px;font-family:var(--mono);
+                  font-size:11px;color:var(--chalk-faint);margin-top:2px;
+                  font-variant-numeric:tabular-nums;max-width:222px}
+  .card .tl .ends span{white-space:nowrap}
+  .card .tl .ends .a{color:var(--ok)} .card .tl .ends .w{color:var(--watch)} .card .tl .ends .x{color:var(--crit)}
   .card .right{grid-column:3;grid-row:1/span 3;text-align:right;font-size:12.5px;color:var(--chalk-dim);
                display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+  .card .right .chip{flex:0 0 auto}
   .card .studio{font-family:var(--disp);font-weight:800;font-size:16px;color:var(--chalk);letter-spacing:.03em}
   .card .cnt{font-family:var(--mono);font-size:12px;white-space:nowrap}
   .card .cnt b{color:var(--ok)}
@@ -179,7 +198,9 @@ const hm=t=>{const h=Math.floor(((t%24)+24)%24),m=Math.round((t-Math.floor(t))*6
 const dur=h=>{const m=Math.round(h*60);return m>=60?`${Math.floor(m/60)}h${m%60?` ${m%60}m`:""}`:`${m}m`;};
 const parseHM=s=>{if(!s)return null;const[a,b]=s.split(":").map(Number);return a+b/60;};
 const GRACE=0.25;
-const shortWho=w=>{let s=String(w||"");const i=s.indexOf(" — ");if(i>0)s=s.slice(0,i);return esc(s);};
+const shortWho=w=>{let s=String(w||"");const i=s.indexOf(" — ");if(i>0)s=s.slice(0,i);
+  /* Parentheticals are machine notes, not names (Junyan, 2026-08-25). */
+  s=s.replace(/\s*\([^)]*\)/g,"").replace(/\s*\([^)]*$/,"").replace(/\s{2,}/g," ").trim();return esc(s);};   // 2nd replace: names arrive truncated mid-paren
 /* ALL times on this page are America/Toronto — the studios' clock — no matter
    what timezone the device is in (Junyan reads this from Brazil). Built from
    Intl parts rather than parsing toLocaleString(), which is engine-dependent. */
@@ -217,14 +238,44 @@ document.getElementById('filters').addEventListener('click',ev=>{
   const c=ev.target.closest('.fchip');if(!c)return;FILTER=c.dataset.f;render();
 });
 
-function chipRow(e,st){
+const FLAG_MIN=16/60;   // within 16 min of the window = plain green (Junyan)
+function warnChips(e,st){
   let t="";
-  if(e.tier)t+=`<span class="chip type">${e.tier}</span>`;
   if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
   /* Open Access / PIN row names this renter today: code will not work.
      Shown even after the booking ends — tomorrow's lockout too. */
   if(e.access_gap)t+=`<span class="chip crit">Code ✗</span>`;
-  return t?`<div class="chips">${t}</div>`:"";
+  if(st.flagged&&!e.dup_studios)t+=`<span class="chip crit">Missing</span>`;
+  return t;
+}
+function tlHTML(e,st,n){
+  // Cross-midnight: start/end run past 24; arrived/departed are wall-clock.
+  const nrm=t=>t==null?null:(t<e.start-12?t+24:t);
+  const arr=nrm(parseHM(e.arrived)),dep=nrm(parseHM(e.departed));
+  const span=e.end-e.start;
+  const early=arr!=null&&(e.start-arr)>FLAG_MIN;
+  const late=dep!=null&&(dep-e.end)>FLAG_MIN;
+  let fill="";
+  if(arr!=null){
+    const b=dep!=null?Math.min(dep,e.end):Math.min(n,e.end);
+    const l=Math.min(100,Math.max(0,(Math.max(arr,e.start)-e.start)/span*100));
+    const w=Math.max(0,Math.min(100,(b-e.start)/span*100)-l);
+    const liveFill=st.live&&dep==null;
+    if(w>0||liveFill)fill=`<div class="fill ${liveFill?"liveseg":""}" style="left:${l.toFixed(1)}%;width:${Math.max(w,2).toFixed(1)}%"></div>`;
+  }
+  let L,R;
+  if(arr!=null){
+    const em=Math.round((e.start-arr)*60);
+    L=early?`<span class="w">${e.arrived} in · ${em}m early</span>`:`<span class="a">${e.arrived} in</span>`;
+  }else if(st.flagged&&!e.dup_studios)L=`<span class="x">no arrival</span>`;
+  else L=`<span>${hm(e.start)}</span>`;
+  if(dep!=null){
+    const lm=Math.round((dep-e.end)*60);
+    R=late?`<span class="w">${e.departed} out · ${lm}m late</span>`:`<span class="a">${e.departed} out</span>`;
+  }else R=`<span>${hm(e.end)}</span>`;
+  return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}`+
+         `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>`+
+         `<div class="ends">${L}${R}</div></div>`;
 }
 
 function render(){
@@ -255,25 +306,16 @@ function render(){
     const st=stateOf(e,n);
     const plan=`plan-${e.plan||"oneoff"}`;
     let meta=`${hm(e.start)}–${hm(e.end)}`;
-    if(e.arrived)meta+=` <span class="arr"><span class="lbl">IN</span>${e.arrived}</span>`;
-    if(e.departed)meta+=` <span class="dep"><span class="lbl">OUT</span>${e.departed}</span>`;
-    /* In the building but in the wrong room — a different job from a no-show. */
+    /* In the building but in the wrong room — a different job from a no-show
+       (which lives on the timeline + Missing pill). */
     if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
-    /* Two studios at once is legal (both halves of 509, say) — no warning.
-       dup_studios only suppresses the false "no arrival"; a person in a room
-       they did not book is wrong_studio, above. See template.html. */
-    else if(e.dup_studios);
-    else if(st.flagged)meta+=` <span class="miss">⚠ no arrival</span>`;
-    let cnt="";
-    if(st.live)cnt=`<b>${dur(e.end-n)} left</b>`;
-    else if(!st.done)cnt=e.start-n<6?`in ${dur(e.start-n)}`:`at ${hm(e.start)}`;
-    else cnt="done";
+    const typeChip=e.tier?`<span class="chip type">${e.tier}</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
-      <div class="who">${shortWho(e.who)}</div>
+      <div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}</div>
       <div class="meta">${meta}</div>
-      ${chipRow(e,st)}
-      <div class="right"><span class="studio">${esc(e.studio)}</span><span class="cnt">${cnt}</span></div>
+      ${tlHTML(e,st,n)}
+      <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}</div>
     </div>`;
   };
 
