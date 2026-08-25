@@ -1755,8 +1755,20 @@ def fetch_issues(token, now, reports, limit=12):
                 continue
             due = _access_due(r["request"], r["process_after"], today)
             days = (due - today).days if due else None
+            # Two kinds of overdue, opposite treatments (Junyan, 2026-08-25:
+            # "clearly David Diep and Kristyan can get in"). A BOOKING-anchored
+            # gap whose date has passed is moot — the fuse burned, nothing is
+            # preventable, the row just needs processing — so it demotes and
+            # sinks. A DO-BY deadline (Megan's "rotate compromised code before
+            # Aug 30") is MORE urgent once missed and keeps screaming. Sweep
+            # rows self-identify as booking-anchored by construction.
+            passed = (days is not None and days < 0
+                      and ("[sweep:" in r["request"]
+                           or "same-day window" in r["request"]))
             if days is None:
                 tag = None                       # undated: near-term by default
+            elif passed:
+                tag = f"booking passed {due:%a %b %-d} — process the row"
             elif days < 0:
                 tag = f"OVERDUE {-days}d"
             elif days == 0:
@@ -1765,11 +1777,17 @@ def fetch_issues(token, now, reports, limit=12):
                 tag = "tomorrow"
             else:
                 tag = f"{due:%a %b %-d} · {days}d"
-            issues.append({"level": "crit" if days is not None and days <= 1 else "watch",
+            level = "crit" if days is not None and days <= 1 and not passed else "watch"
+            # Sort: live dated gaps by fuse ("0:"), then undated by age ("1:",
+            # the default), then passed bookings ("1~", after every "1:"), then
+            # housekeeping ("2:").
+            k = (f"1~{due.isoformat()}" if passed
+                 else f"0:{due.isoformat()}" if due else None)
+            issues.append({"level": level,
                            "label": "Access",
                            "text": redact(_lead(r["request"])) + (f" — {tag}" if tag else ""),
                            "whenISO": when.isoformat() if when else None,
-                           "_k": f"0:{due.isoformat()}" if due else None})
+                           "_k": k})
         else:
             if not _is_near_term(r, today, horizon):
                 continue

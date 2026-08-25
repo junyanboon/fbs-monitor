@@ -97,3 +97,41 @@ def test_money_shaped_rows_never_reach_the_public_page(monkeypatch):
         [_row("Charge Kristel San Jose $86.75 for overtime", rtype="Charge")],
         monkeypatch)
     assert issues == [] and total == 0
+
+
+# ── two kinds of overdue (Junyan, 2026-08-25) ────────────────────────────────
+
+def test_a_passed_booking_demotes_and_says_process_me(monkeypatch):
+    """David Diep's Aug 23 same-day row on the Aug 24 board: the booking is
+    over (his was literally moved) — nothing is preventable, so it must not
+    scream crit. It demotes, names the passed date, and asks to be processed."""
+    issues, _ = issues_for(
+        [_row("David Diep starts within the same-day window at 509B Aug 23 17:45 "
+              "with NO verified access [sweep:509B:2026-08-23T17:45:sameday-gap]")],
+        monkeypatch)
+    (i,) = issues
+    assert i["level"] == "watch"
+    assert "booking passed" in i["text"] and "process the row" in i["text"]
+
+
+def test_passed_bookings_sink_below_live_gaps_and_above_housekeeping(monkeypatch):
+    issues, _ = issues_for([
+        _row("Kristyan Calletor starts within the same-day window at 509B Aug 23 "
+             "13:00 with NO verified access [sweep:509B:2026-08-23T13:00:sameday-gap]"),
+        _row("Retire alarm code — Brady Lang (idle 30d+, no future bookings)"),
+        _row("Booking sweep — access unresolved for Akira Huang at 509B Aug 28 14:00 "
+             "[sweep:509B:2026-08-28T14:00:access]"),
+    ], monkeypatch)
+    assert ["Akira" in issues[0]["text"],
+            "Kristyan" in issues[1]["text"],
+            issues[2]["label"] == "Housekeeping"] == [True, True, True]
+
+
+def test_a_missed_do_by_deadline_still_screams(monkeypatch):
+    """Megan's compromised code past its rotate-by date is MORE urgent, not
+    moot — only booking-anchored rows demote."""
+    issues, _ = issues_for(
+        [_row("🔑 Rotate compromised alarm code before Aug 23; do not decommission")],
+        monkeypatch)
+    assert issues[0]["level"] == "crit"
+    assert "OVERDUE" in issues[0]["text"]
