@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 25, 2026",
-  "generatedAt": "Aug 25, 6:54 PM ET",
-  "generatedAtISO": "2026-08-25T18:54:36-04:00",
+  "generatedAt": "Aug 25, 7:00 PM ET",
+  "generatedAtISO": "2026-08-25T19:00:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -493,7 +493,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "18:57",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -508,7 +508,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
-      "arrived": null,
+      "arrived": "19:00",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -644,6 +644,32 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1787698296936,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Raquel K",
+      "time": "18:55",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787698516455,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "18:57",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787698620029,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "19:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787698854000
     }
   ],
   "panelPrior": {
@@ -656,26 +682,6 @@ const DATA = /*__DATA__*/{
       "time": "20:49",
       "ts": 1787618941000,
       "when": "Mon 20:49"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "509B",
-      "time": "22:12",
-      "ts": 1787623921000,
-      "when": "Mon 22:12"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "527",
-      "time": "22:31",
-      "ts": 1787625067000,
-      "when": "Mon 22:31"
     },
     "693": {
       "kind": "departure",
@@ -707,12 +713,15 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-25T02:31:07+00:00",
+    "updatedAt": "2026-08-25T22:59:07+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 4,
       "inGap": 0,
-      "missed": [],
-      "missedCount": 0
+      "missed": [
+        "527 arrival 19:00 (Khalid Roach-McLeod)",
+        "527 arrival 19:00 (Khalid Roach-McLeod)"
+      ],
+      "missedCount": 2
     },
     "doorGaps": [
       {
@@ -1314,6 +1323,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-25T22:52:55.935185Z",
         "until": "2026-08-25T22:53:09.399335Z"
+      },
+      {
+        "since": "2026-08-25T22:58:07.582519Z",
+        "until": "2026-08-25T22:58:21.253637Z"
       }
     ],
     "down": false
@@ -1337,7 +1350,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T18:00:00-04:00"
+      "lastISO": "2026-08-25T19:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1407,7 +1420,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T18:05:00-04:00"
+      "lastISO": "2026-08-25T18:57:00-04:00"
     },
     {
       "run": "The Responder",
