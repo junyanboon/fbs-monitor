@@ -158,6 +158,18 @@
   .row .nm.mrow .code{font-size:13.5px;line-height:1.35;overflow:hidden;display:-webkit-box;
                       -webkit-line-clamp:2;-webkit-box-orient:vertical}
   .row .nm.mrow .sub{font-size:11px;font-weight:400;color:var(--chalk-faint)}
+  /* robots: departure-board rows grouped by next fire (redesign 2026-08-25) */
+  .tcard{background:var(--scrim);border:1px solid var(--line);border-radius:12px;padding:4px 12px;
+         margin:8px 0;box-shadow:var(--shadow)}
+  .trow{display:flex;align-items:baseline;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);font-size:14px}
+  .trow:last-child{border-bottom:0}
+  .trow .tt{font-family:var(--mono);font-size:12.5px;color:var(--chalk-dim);min-width:50px;flex:none;
+            font-variant-numeric:tabular-nums}
+  .trow .n{font-weight:600;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .trow .in{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--ok);flex:none}
+  .trow.bad .n,.trow.bad .tt,.trow.bad .in{color:var(--crit);font-weight:700}
+  .trow.warn .n,.trow.warn .tt,.trow.warn .in{color:var(--watch);font-weight:700}
+  .tcard.attn{border-color:var(--crit)}
   .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
   .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
@@ -527,23 +539,36 @@ function cdTxt(nr){
     return m<60?`${m}m ago`:m<1440?`${Math.floor(m/60)}h ago`:`${Math.floor(m/1440)}d ago`;};
   if(!R){$('#robots').innerHTML=`<div class="quiet">${esc(DATA.robotsNote||"Run Monitor could not be read this edition")}</div>`;}
   else{
-    /* Live rows only — retired/paused personas are Run-Monitor bookkeeping, not
-       operations. Next fire (with countdown) leads; last-seen sits in the corner. */
-    const robotRow=r=>{
-      const nr=nextRun(r,n);
-      return `<div class="row" style="${r.status==="crit"?"border-color:var(--crit)":""}">
-      <span class="tm" style="font-size:12px;${r.status==="crit"?"color:var(--crit)":"color:var(--ok)"};font-weight:700">${cdTxt(nr)||"—"}</span>
-      <span class="nm">${esc(r.run)}<span class="st">${esc(robotDesc(r))}</span></span>
-      <span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
-        <span class="chip ${{ok:"ok",watch:"watch",crit:"crit"}[r.status]||"plain"}">${esc(r.statusLabel)}</span>
-        <span style="font-size:10px;color:var(--chalk-faint)">${ago(r.lastISO)}</span>
-      </span>
-    </div>`;};
-    const liveR=R.filter(r=>r.monitoring==="Live");
-    const overdue=liveR.filter(r=>r.status==="crit").length;
+    /* Departure board (redesign 2026-08-25, Junyan's pick): rows grouped by
+       when each robot fires NEXT — attention first, then Next hour / Later
+       today / Overnight / Tomorrow. One line per robot; descriptions and
+       per-row status pills dropped deliberately. Live rows only —
+       retired/paused personas are Run-Monitor bookkeeping, not operations. */
+    const liveR=R.filter(r=>r.monitoring==="Live").map(r=>({...r,nr:nextRun(r,n)}));
+    const attn=liveR.filter(r=>r.status!=="ok");
+    const fine=liveR.filter(r=>r.status==="ok")
+      .sort((a,b)=>((a.nr&&a.nr.mins)??1e9)-((b.nr&&b.nr.mins)??1e9));
+    const buckets=[["Next hour",[]],["Later today",[]],["Overnight",[]],["Tomorrow",[]],["Later",[]]];
+    for(const r of fine){
+      if(!r.nr||r.nr.mins==null){buckets[4][1].push(r);continue;}
+      const fire=n+r.nr.mins/60;
+      if(r.nr.mins<=60)buckets[0][1].push(r);
+      else if(fire<24)buckets[1][1].push(r);
+      else if(fire%24<6)buckets[2][1].push(r);
+      else buckets[3][1].push(r);
+    }
+    const trow=(r,cls)=>`<div class="trow ${cls||""}">
+      <span class="tt">${esc(r.nr?r.nr.hhmm:"—")}</span>
+      <span class="n">${esc(r.run)}</span>
+      <span class="in">${cls?`${esc(r.statusLabel.toLowerCase())} · silent ${ago(r.lastISO).replace(" ago","")}`
+                          :(r.nr&&r.nr.mins!=null&&r.nr.mins<=60?`in ${r.nr.mins}m`:"")}</span>
+    </div>`;
     $('#robots').innerHTML=
-      `<div class="grp">Watched runs${overdue?` — <span style="color:var(--crit)">${overdue} overdue</span>`:""}</div>`+
-      (liveR.map(robotRow).join("")||`<div class="quiet">Nothing watched.</div>`);
+      (attn.length?`<div class="grp" style="color:var(--crit)">Needs attention</div>
+        <div class="tcard attn">${attn.map(r=>trow(r,r.status==="crit"?"bad":"warn")).join("")}</div>`:"")+
+      buckets.filter(([,list])=>list.length).map(([label,list])=>
+        `<div class="grp">${label}</div><div class="tcard">${list.map(r=>trow(r)).join("")}</div>`).join("")||
+      `<div class="quiet">Nothing watched.</div>`;
   }
 
   /* Issues tab removed 2026-08-25 — access problems are a red pill on the
