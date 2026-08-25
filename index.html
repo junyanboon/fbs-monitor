@@ -152,6 +152,7 @@
          border-bottom:1px solid var(--line);align-items:center}
   .shift:last-child{border-bottom:none}
   .shift.live{background:var(--live-bg);box-shadow:inset 4px 0 0 var(--ok)}
+  .shift.openshift{background:var(--watch-bg);box-shadow:inset 4px 0 0 var(--watch)}
   .shift.done{opacity:.65}
   .shift .tm{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
   .shift .nm{font-weight:600;font-size:15.5px;min-width:0}
@@ -396,7 +397,7 @@
   <nav class="tabs" id="tabs" role="tablist">
     <button class="tab on" data-tab="studios" role="tab" aria-selected="true">Studios</button>
     <button class="tab" data-tab="board" role="tab" aria-selected="false">Calendar</button>
-    <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
+    <button class="tab" data-tab="staff" role="tab" aria-selected="false">Shifts</button>
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
     <a class="tabx" href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener">Deck ↗</a>
@@ -429,8 +430,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 25, 2026",
-  "generatedAt": "Aug 25, 1:45 PM ET",
-  "generatedAtISO": "2026-08-25T13:45:54-04:00",
+  "generatedAt": "Aug 25, 1:46 PM ET",
+  "generatedAtISO": "2026-08-25T13:46:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -536,6 +537,24 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staff": [],
+  "openShifts": [
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 14.75,
+      "end": 15.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 16.25,
+      "end": 16.75,
+      "day": "Tomorrow"
+    }
+  ],
   "attention": [],
   "armEvents": [],
   "panelPrior": {
@@ -1194,7 +1213,7 @@ document.getElementById('tabs').addEventListener('click', ev => {
     t.classList.toggle('on', on);
     t.setAttribute('aria-selected', on);
   });
-  for(const k of ['studios','board','staff','alarms','robots','reports'])
+  for(const k of ['studios','board','staff','alarms','robots'])
     document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
   // Opening the board: bring the now-line into view (Fresha/Square pattern —
   // land the user on "now", not on 09:00).
@@ -1497,8 +1516,19 @@ function render(){
     </div>`;
   };
   const monBk = bookings.filter(e=>e.tier).sort((a,b)=>a.start-b.start);
+  /* Open (claimable) shifts — display only; claiming happens on the Notion
+     Open Shifts board. Amber row, day label because these run days ahead. */
+  const openRow = o => `<div class="shift openshift">
+      <span class="tm">${hm(o.start)}–${hm(o.end)}</span>
+      <span class="nm">${esc(o.day)}${o.studio?` <span class="chip plain">${esc(o.studio)}</span>`:""}</span>
+      <span class="chip type">${esc(o.role)}</span>
+      <span class="chip watch">Open</span>
+    </div>`;
+  const OPENS = DATA.openShifts || [];
   $('#staffpanel').innerHTML =
-    `<p class="lane-label">Staff shifts</p>
+    `<p class="lane-label">Open shifts — can be claimed</p>
+     <div class="panelwrap">${OPENS.length? OPENS.map(openRow).join("") : '<div class="shift">No open shifts right now</div>'}</div>
+     <p class="lane-label">Staff shifts</p>
      <div class="panelwrap">${STAFF.length? STAFF.map(shiftRow).join("") : '<div class="shift">No staff shifts today</div>'}</div>
      <p class="lane-label">Monitored bookings — coverage</p>
      <div class="panelwrap">${monBk.length? monBk.map(covRow).join("") : '<div class="shift">No monitored bookings today</div>'}</div>`;
