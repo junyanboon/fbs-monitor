@@ -198,9 +198,26 @@
   .ev .who .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;
                max-width:100%;vertical-align:bottom}
   .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
-  .ev .cnt{font-family:var(--mono);font-size:14px;color:var(--chalk-dim);text-align:right;white-space:nowrap;
-           font-variant-numeric:tabular-nums}
-  .ev .cnt b{color:var(--ok);font-weight:700}
+  /* Warnings column (was the countdown, dropped 2026-08-25 — the timeline
+     itself says where things stand). */
+  .ev .warns{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+  /* Mini timeline: the bordered track IS the booked window, identical length
+     on every card; presence >16 min outside it is an amber stub added OUTSIDE
+     the track so the window never shrinks. */
+  .ev .tl{margin-top:4px}
+  .ev .tl .strip{display:flex;align-items:stretch;height:6px;width:fit-content}
+  .ev .tl .track{position:relative;width:190px;border-radius:99px;background:var(--scrim-2);
+                 border:1px solid var(--line)}
+  .ev .tl .fill{position:absolute;top:-1px;bottom:-1px;border-radius:99px;background:var(--ok)}
+  .ev .tl .fill.liveseg{background:linear-gradient(90deg,var(--ok),var(--ok) 70%,transparent)}
+  .ev .tl .over{background:var(--watch);border-radius:99px;width:20px}
+  .ev .tl .over.pre{margin-right:2px}
+  .ev .tl .over.post{margin-left:2px}
+  .ev .tl .ends{display:flex;justify-content:space-between;gap:8px;font-family:var(--mono);
+                font-size:11.5px;color:var(--chalk-faint);margin-top:2px;
+                font-variant-numeric:tabular-nums;max-width:214px}
+  .ev .tl .ends span{white-space:nowrap}
+  .ev .tl .ends .a{color:var(--ok)} .ev .tl .ends .w{color:var(--watch)} .ev .tl .ends .x{color:var(--crit)}
   .chip{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;padding:2px 8px;border-radius:99px;font-weight:600;
         text-transform:uppercase;display:inline-block}
   .chip.ok{background:var(--ok-bg);color:var(--ok)}
@@ -413,8 +430,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 25, 2026",
-  "generatedAt": "Aug 25, 11:22 AM ET",
-  "generatedAtISO": "2026-08-25T11:22:22-04:00",
+  "generatedAt": "Aug 25, 11:27 AM ET",
+  "generatedAtISO": "2026-08-25T11:27:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -960,7 +977,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T11:00:00-04:00"
+      "lastISO": "2026-08-25T11:30:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1061,8 +1078,13 @@ const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 /* Display just the artist's name: drop "*note*" annotations, " — description" tails,
    and "(Org …)" parentheticals — including unclosed ones like "(Toronto Bujinkan". */
 const shortWho = w => {
-  const s = String(w||"").replace(/\*[^*]*\*/g,"").split(/\s+—\s+/)[0].split(/\s+\(/)[0].trim();
-  return esc(s || String(w||""));
+  /* Display just the artist's name: "*note*" annotations, " — description"
+     tails and "(Org …)" parentheticals are machine notes, not names — and
+     some arrive truncated mid-paren ("Fabio Hernandez (Toronto Bujinkan"). */
+  let t = String(w||"").replace(/\*[^*]*\*/g,"");
+  const d = t.indexOf(" — "); if(d>0) t = t.slice(0,d);
+  t = t.replace(/\s*\([^)]*\)/g,"").replace(/\s*\([^)]*$/,"").replace(/\s{2,}/g," ").trim();
+  return esc(t || String(w||""));
 };
 
 /* tabs */
@@ -1277,6 +1299,41 @@ function render(){
   $('#summary').innerHTML = seg.join('<span class="sep">·</span>');
 
   /* studio strips */
+  const FLAG_MIN = 16/60;   // within 16 min of the window = plain green (Junyan)
+  const tlHTML = (e, st) => {
+    // Cross-midnight: e.start/end are decimal hours that can exceed 24, while
+    // arrived/departed are wall-clock "HH:MM" — pull them into the same frame.
+    const nrm = t => t==null ? null : (t < e.start-12 ? t+24 : t);
+    const arr = nrm(parseHM(e.arrived)), dep = nrm(parseHM(e.departed));
+    const span = e.end - e.start;
+    const flaggable = e.kind==="booking";       // staff come when they come
+    const early = flaggable && arr!=null && (e.start-arr) > FLAG_MIN;
+    const late  = flaggable && dep!=null && (dep-e.end)  > FLAG_MIN;
+    let fill = "";
+    if (arr!=null){
+      const b = dep!=null ? Math.min(dep,e.end) : Math.min(n,e.end);
+      const l = Math.min(100, Math.max(0,(Math.max(arr,e.start)-e.start)/span*100));
+      const w = Math.max(0, Math.min(100,(b-e.start)/span*100) - l);
+      const liveFill = e.start<=n && n<e.end && dep==null;
+      if (w>0 || liveFill)
+        fill = `<div class="fill ${liveFill?"liveseg":""}" style="left:${l.toFixed(1)}%;width:${Math.max(w,2).toFixed(1)}%"></div>`;
+    }
+    let L, R;
+    if (arr!=null){
+      const em = Math.round((e.start-arr)*60);
+      L = early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
+                : `<span class="a">${e.arrived} in</span>`;
+    } else if (st.flagged && !e.dup_studios) L = `<span class="x">no arrival</span>`;
+    else L = `<span>${hm(e.start)}</span>`;
+    if (dep!=null){
+      const lm = Math.round((dep-e.end)*60);
+      R = late ? `<span class="w">${e.departed} out · ${lm}m late</span>`
+               : `<span class="a">${e.departed} out</span>`;
+    } else R = `<span>${hm(e.end)}</span>`;
+    return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}` +
+           `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>` +
+           `<div class="ends">${L}${R}</div></div>`;
+  };
   const evCard = e => {
     const st = stateOf(e,n);
     const cv = coverageOf(e);
@@ -1285,42 +1342,28 @@ function render(){
     const cls = ["ev", live&&!st.flagged?"live":"", st.flagged?"flagged":"",
                  done?"done":"",
                  e.kind==="cleaning"?"cleaning":"", e.tier&&e.tier!=="Monitor"?"tier-t":""].join(" ");
-    // time cell: schedule on top, actuals directly beneath it
+    // time cell: the schedule, plus the wrong-room warning (a different job
+    // from a no-show, which now lives on the timeline + Missing pill)
     let act = "";
-    if(e.arrived)  act += `<span class="act">↓ ${e.arrived} in</span>`;
-    if(e.departed) act += `<span class="act dep">↑ ${e.departed} out</span>`;
-    /* A renter who disarmed a different studio is in the building, in the wrong
-       room — a different job from a no-show, so it gets its own line. */
     if(e.wrong_studio) act += `<span class="act wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
-    /* Same renter in two studios at once is NOT an alert (2026-08-20): a renter
-       who books both halves of 509 is doing something legal and common, and the
-       old "moved? verify" line nagged about every one of them, hours before
-       anyone could be in a room. dup_studios now only suppresses the red "no
-       arrival" — a second calendar row is not evidence of a no-show. Someone
-       physically in a room they did not book is wrong_studio, above. */
-    else if(e.dup_studios) ;
-    else if(st.flagged) act += `<span class="act miss">⚠ no arrival</span>`;
-    // tags
-    let tags = "";
-    if(e.kind==="cleaning") tags += `<span class="chip plain">Staff</span>`;
-    if(e.tier) tags += `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
+    // type chip rides the NAME; the right column carries only exceptions
+    let tag = "";
+    if(e.kind==="cleaning") tag = `<span class="chip plain">Staff</span>`;
+    else if(e.tier) tag = `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
+    let warns = "";
     if(e.tier && e.tier!=="Viewing" && !e.gtg && !done)
-      tags += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
+      warns += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
     /* An open Access / PIN row names this renter for today: their code will
        not work. THE one access surface on this app (2026-08-25). Stays after
        the booking ends — an unresolved code is tomorrow's lockout too. */
-    if(e.access_gap) tags += `<span class="chip crit">Code ✗</span>`;
-    /* Coverage pills (Gap Nm / Covered / AI watch) were noise on the cards — the
-       Staff tab still shows coverage per monitored booking. */
-    // countdown
-    let cnt = "";
-    if(live) cnt = `<b>${dur(e.end-n)} left</b>`;
-    else if(!done) cnt = e.start-n<6 ? `in ${dur(e.start-n)}` : `at ${hm(e.start)}`;
-    else cnt = st.label==="Complete" ? "done" : "ended";
+    if(e.access_gap) warns += `<span class="chip crit">Code ✗</span>`;
+    /* dup_studios suppresses this (a second calendar row is not evidence of a
+       no-show — see stateOf); wrong_studio has its own amber line above. */
+    if(st.flagged && !e.dup_studios) warns += `<span class="chip crit">Missing</span>`;
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${shortWho(e.who)}</span><span class="tags">${tags}</span></div>
-      <div class="cnt">${cnt}</div>
+      <div class="who"><span class="nm">${shortWho(e.who)}</span><span class="tags">${tag}</span>${tlHTML(e,st)}</div>
+      <div class="warns">${warns}</div>
     </div>`;
   };
   /* The "N things to watch" status bar was removed 2026-07-31 (Junyan) — alarms
