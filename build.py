@@ -56,6 +56,8 @@ WORKFLOW_REPORTS_DS = "469a877b-83fa-4387-ac97-94aa656481dd"
 # ✅ Actions to Perform — the fleet's human worklist. Only open Access / PIN
 # row titles are read, and only a boolean reaches the page; see flag_access_gaps().
 ACTIONS_DS = "20df225d-382f-4bb8-9c15-c31571c9f4e0"
+# 📤 Message Queue — feeds the Messages tab (rows awaiting a human).
+MESSAGES_DS = "df37abce-2222-4e68-8452-9457a4de32df"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "template.html")
@@ -1710,6 +1712,45 @@ def fetch_open_access_rows(token):
     return [_prop_text(r.get("properties", {}).get("Request")) or "" for r in rows]
 
 
+# Statuses that mean "a human still has to act on this row", in display order.
+MSG_PENDING_STATUSES = ("Error", "Pending Review", "Ready to Send")
+
+
+def fetch_pending_messages(token):
+    """Message Queue rows awaiting processing, projected for a PUBLIC page.
+
+    Only the row TITLE (through redact()), channel, status, studio, template,
+    raiser and created time cross. Message bodies, Reasoning, Reply To, email
+    subjects and every rollup (Phone / Email / Alarm Code) must NEVER reach
+    this projection — an HTA body carries access instructions, and the
+    rollups are exactly the fields redact() exists to keep off the page."""
+    filt = {"or": [{"property": "Status", "status": {"equals": s}}
+                   for s in MSG_PENDING_STATUSES]}
+    rows = _notion_query(token, MESSAGES_DS, {"filter": filt, "page_size": 100})
+    out = []
+    for r in rows:
+        p = r.get("properties", {})
+        created = ""
+        try:
+            ct = r.get("created_time")
+            if ct:
+                created = datetime.fromisoformat(ct.replace("Z", "+00:00")) \
+                    .astimezone(TZ).strftime("%b %-d · %H:%M")
+        except Exception:  # noqa: BLE001
+            pass
+        out.append({
+            "code": redact(_prop_text(p.get("Message Code")) or "Untitled message"),
+            "channel": _prop_text(p.get("Channel")),
+            "status": _prop_text(p.get("Status")),
+            "studio": _prop_text(p.get("Studio")),
+            "raised_by": _prop_text(p.get("Raised by")),
+            "created": created,
+        })
+    order = {s: i for i, s in enumerate(MSG_PENDING_STATUSES)}
+    out.sort(key=lambda m: (order.get(m["status"], 9), m["created"]))
+    return out
+
+
 def flag_access_gaps(events, requests, base_day):
     """Red pill on today's booking when an open Access / PIN row names it.
 
@@ -1888,6 +1929,13 @@ def build_data(now):
         events = flag_access_gaps(events, fetch_open_access_rows(token), base_day)
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Actions fetch failed ({e}); access pills absent this edition.")
+    # Messages tab — same soft posture: an unreadable queue costs the tab's
+    # list this edition, never the board.
+    try:
+        messages = fetch_pending_messages(token)
+    except Exception as e:  # noqa: BLE001
+        messages = []
+        emit_fallback_note(f"Message Queue fetch failed ({e}); Messages tab empty this edition.")
 
     # ---- Arrivals: panel ledger first, ADT email second ---------------------
     #
@@ -2063,6 +2111,7 @@ def build_data(now):
         "events": board_events,
         "staff": sorted(staff, key=lambda s: s["start"]),
         "openShifts": open_shifts,
+        "messages": messages,
         "attention": attention,
         "armEvents": arm_stream,
         "panelPrior": panel_prior,

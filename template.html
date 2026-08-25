@@ -159,6 +159,14 @@
   .lane-label{font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
               color:var(--chalk-dim);margin:26px 0 10px;display:flex;align-items:center;gap:10px}
   .lane-label::after{content:"";flex:1;height:1px;background:var(--line)}
+  /* outbound Notion button — the work (claiming, releasing) happens there */
+  .nbtn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:99px;
+        background:var(--tungsten);color:#fff;font-family:var(--sans);font-weight:700;
+        font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+        box-shadow:var(--shadow);margin:2px 0 14px}
+  .nbtn:hover{filter:brightness(1.08)}
+  .nbtn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;
+            stroke-linecap:round;stroke-linejoin:round}
   .lane-label .crit-note{color:var(--crit);letter-spacing:.06em}
 
   /* ── studio strips ── */
@@ -392,8 +400,8 @@
     <button class="tab" data-tab="board" role="tab" aria-selected="false">Calendar</button>
     <button class="tab" data-tab="staff" role="tab" aria-selected="false">Shifts</button>
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
+    <button class="tab" data-tab="messages" role="tab" aria-selected="false">Messages</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
-    <a class="tabx" href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener">Deck ↗</a>
   </nav>
   <section id="tab-studios">
     <div id="staffnow"></div>
@@ -407,6 +415,9 @@
   </section>
   <section id="tab-alarms" hidden>
     <div id="alarmpanel"></div>
+  </section>
+  <section id="tab-messages" hidden>
+    <div id="msgpanel"></div>
   </section>
   <section id="tab-robots" hidden>
     <div id="robotpanel"></div>
@@ -423,7 +434,7 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "…", "generatedAt": "…",
-  "studios": [], "events": [], "staff": [], "openShifts": [], "attention": []
+  "studios": [], "events": [], "staff": [], "openShifts": [], "messages": [], "attention": []
 }/*__END_DATA__*/;
 
 const $ = s => document.querySelector(s);
@@ -448,7 +459,7 @@ document.getElementById('tabs').addEventListener('click', ev => {
     t.classList.toggle('on', on);
     t.setAttribute('aria-selected', on);
   });
-  for(const k of ['studios','board','staff','alarms','robots'])
+  for(const k of ['studios','board','staff','alarms','messages','robots'])
     document.getElementById('tab-'+k).hidden = k !== b.dataset.tab;
   // Opening the board: bring the now-line into view (Fresha/Square pattern —
   // land the user on "now", not on 09:00).
@@ -760,13 +771,33 @@ function render(){
       <span class="chip watch">Open</span>
     </div>`;
   const OPENS = DATA.openShifts || [];
+  const arrow = `<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>`;
   $('#staffpanel').innerHTML =
-    `<p class="lane-label">Open shifts — can be claimed</p>
+    `<p class="lane-label">Unclaimed</p>
      <div class="panelwrap">${OPENS.length? OPENS.map(openRow).join("") : '<div class="shift">No open shifts right now</div>'}</div>
+     <a class="nbtn" href="https://app.notion.com/p/3897503281c480f2ade3c6bc1f299c60?v=3897503281c480dc8131000c1bbf52e2" target="_blank" rel="noopener" style="margin-top:12px">Claim a shift in Notion${arrow}</a>
      <p class="lane-label">Staff shifts</p>
      <div class="panelwrap">${STAFF.length? STAFF.map(shiftRow).join("") : '<div class="shift">No staff shifts today</div>'}</div>
      <p class="lane-label">Monitored bookings — coverage</p>
      <div class="panelwrap">${monBk.length? monBk.map(covRow).join("") : '<div class="shift">No monitored bookings today</div>'}</div>`;
+
+  /* messages tab: queue rows awaiting a human — titles only, bodies stay in
+     Notion. The button is the tab's whole point: process them there. */
+  const MSGS = DATA.messages || [];
+  const mstat = s => s==="Error"?["crit","Error"]:s==="Ready to Send"?["ok","Sending"]:["watch","Review"];
+  const msgRow = m => {
+    const [mc,ml] = mstat(m.status);
+    return `<div class="shift">
+      <span class="tm">${esc(m.created||"")}</span>
+      <span class="nm">${esc(m.code)}${m.studio?` <span class="chip plain">${esc(m.studio)}</span>`:""}</span>
+      <span class="chip plain">${esc(m.channel||"?")}</span>
+      <span class="chip ${mc}">${ml}</span>
+    </div>`;
+  };
+  $('#msgpanel').innerHTML =
+    `<div style="margin-top:16px"><a class="nbtn" href="https://app.notion.com/p/3887503281c48136a627cfc8749e6e57?v=3887503281c481ddb3c7000cf236c3e2" target="_blank" rel="noopener">Process in Notion${arrow}</a></div>
+     <p class="lane-label">Pending processing${MSGS.length?` — ${MSGS.length}`:""}</p>
+     <div class="panelwrap">${MSGS.length? MSGS.map(msgRow).join("") : '<div class="shift">No messages waiting</div>'}</div>`;
 
   /* board */
   const lo = Math.min(9, ...E.map(e=>Math.floor(e.start)));

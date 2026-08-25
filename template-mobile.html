@@ -145,6 +145,19 @@
   .row.orow{border:1px dashed var(--watch);background:var(--watch-bg)}
   .row.orow .nm{color:var(--watch)}
   .grp.open{color:var(--watch)}
+  /* the one aesthetic outbound button — deep link into Notion, where the
+     actual work (claiming a shift, releasing a message) happens */
+  .notionbtn{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 4px;
+             padding:13px;border-radius:12px;background:var(--tungsten);color:#fff;
+             font-family:var(--sans);font-weight:700;font-size:13.5px;letter-spacing:.05em;
+             text-transform:uppercase;text-decoration:none;box-shadow:var(--shadow)}
+  .notionbtn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;
+                 stroke-linecap:round;stroke-linejoin:round}
+  /* message rows: two-line middle cell — internal titles run long */
+  .row .nm.mrow{display:flex;flex-direction:column;gap:2px;white-space:normal}
+  .row .nm.mrow .code{font-size:13.5px;line-height:1.35;overflow:hidden;display:-webkit-box;
+                      -webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .row .nm.mrow .sub{font-size:11px;font-weight:400;color:var(--chalk-faint)}
   .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
   .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
@@ -182,20 +195,21 @@
 </section>
 <section id="tab-alarms" hidden><main id="alarms"></main></section>
 <section id="tab-staff" hidden><div class="filters" id="sfilters"></div><main id="staff"></main></section>
+<section id="tab-messages" hidden><main id="messages"></main></section>
 <section id="tab-robots" hidden><main id="robots"></main></section>
 
 <nav id="nav">
   <button class="on" data-t="today"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Today</button>
   <button data-t="alarms"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3.5l1.7 3a1 1 0 0 1-.9 1.5H5.2a1 1 0 0 1-.9-1.5l1.7-3V9a6 6 0 0 1 6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Alarms</button>
   <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Shifts</button>
+  <button data-t="messages"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Messages</button>
   <button data-t="robots"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/><path d="M9.5 16.5h5"/></svg>Robots</button>
-  <a href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="13" height="17" rx="2"/><path d="M17 7l3 1-4 13-3-1"/></svg>Deck</a>
 </nav>
 
 <script>
 const DATA = /*__DATA__*/{
   "date": "…", "generatedAt": "…",
-  "studios": [], "events": [], "staff": [], "openShifts": [], "attention": []
+  "studios": [], "events": [], "staff": [], "openShifts": [], "messages": [], "attention": []
 }/*__END_DATA__*/;
 
 const $=s=>document.querySelector(s);
@@ -239,7 +253,7 @@ let FILTER="all";
 document.getElementById('nav').addEventListener('click',ev=>{
   const b=ev.target.closest('button');if(!b)return;
   document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
-  for(const k of['today','alarms','staff','robots'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
+  for(const k of['today','alarms','staff','messages','robots'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
 });
 document.getElementById('filters').addEventListener('click',ev=>{
   const c=ev.target.closest('.fchip');if(!c)return;FILTER=c.dataset.f;render();
@@ -432,11 +446,29 @@ function render(){
       <span class="chip ${on?"ok":past?"plain":"watch"}">${on?"On now":past?"Done":hm(s.start)+"–"+hm(s.end)}</span>
     </div>`;
   }).join("");
+  const claimBtn=`<a class="notionbtn" href="https://app.notion.com/p/3897503281c480f2ade3c6bc1f299c60?v=3897503281c480dc8131000c1bbf52e2" target="_blank" rel="noopener">Claim a shift in Notion<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
   $('#staff').innerHTML=
-    (openRows?`<div class="grp open">Open — can be claimed</div>`+openRows
+    (openRows?`<div class="grp open">Unclaimed</div>`+openRows
              :SFILTER==="open"?`<div class="quiet">No open shifts right now.</div>`:"")+
+    (showOpen?claimBtn:"")+
     (SFILTER!=="open"?`<div class="grp">Scheduled today</div>`+
       (st||`<div class="quiet">No staff shifts today.</div>`):"");
+
+  /* messages: queue rows awaiting a human — titles only, bodies stay in
+     Notion. The button is the tab's whole point: process them there. */
+  const MSGS=DATA.messages||[];
+  const mstat=s=>s==="Error"?["crit","Error"]:s==="Ready to Send"?["ok","Sending"]:["watch","Review"];
+  const mrows=MSGS.map(m=>{const [mc,ml]=mstat(m.status);
+    return `<div class="row">
+      <span class="ev"><span class="chip plain">${esc(m.channel||"?")}</span></span>
+      <span class="nm mrow"><span class="code">${esc(m.code)}</span>
+        <span class="sub">${esc(m.raised_by||"")}${m.studio?` · ${esc(m.studio)}`:""}${m.created?` · ${esc(m.created)}`:""}</span></span>
+      <span class="ev"><span class="chip ${mc}">${ml}</span></span>
+    </div>`;}).join("");
+  $('#messages').innerHTML=
+    `<a class="notionbtn" href="https://app.notion.com/p/3887503281c48136a627cfc8749e6e57?v=3887503281c481ddb3c7000cf236c3e2" target="_blank" rel="noopener">Process in Notion<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`+
+    (mrows?`<div class="grp">Pending processing — ${MSGS.length}</div>`+mrows
+          :`<div class="quiet">No messages waiting.</div>`);
 
   /* robots — projection of the Run Monitor DB (same data as the desktop tab) */
 /* One-line job descriptions — the Notion "Produces" text is prose; this is the
