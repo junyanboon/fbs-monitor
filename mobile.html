@@ -164,22 +164,20 @@
 <section id="tab-alarms" hidden><main id="alarms"></main></section>
 <section id="tab-staff" hidden><main id="staff"></main></section>
 <section id="tab-robots" hidden><main id="robots"></main></section>
-<section id="tab-reports" hidden><main id="reports"></main></section>
 
 <nav id="nav">
   <button class="on" data-t="today"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Today</button>
   <button data-t="alarms"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3.5l1.7 3a1 1 0 0 1-.9 1.5H5.2a1 1 0 0 1-.9-1.5l1.7-3V9a6 6 0 0 1 6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Alarms</button>
   <button data-t="staff"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Staff</button>
   <button data-t="robots"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/><path d="M9.5 16.5h5"/></svg>Robots</button>
-  <button data-t="reports"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Issues</button>
   <a href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="13" height="17" rx="2"/><path d="M17 7l3 1-4 13-3-1"/></svg>Deck</a>
 </nav>
 
 <script>
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 10:40 PM ET",
-  "generatedAtISO": "2026-08-24T22:40:58-04:00",
+  "generatedAt": "Aug 24, 10:45 PM ET",
+  "generatedAtISO": "2026-08-24T22:45:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -220,7 +218,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.5,
-      "end": 13.75
+      "end": 13.75,
+      "access_gap": false
     },
     {
       "studio": "509A",
@@ -234,7 +233,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.25,
-      "end": 20.75
+      "end": 20.75,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -248,7 +248,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 11.0,
-      "end": 13.0
+      "end": 13.0,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -262,7 +263,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.5,
-      "end": 13.75
+      "end": 13.75,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -276,7 +278,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 14.0,
-      "end": 16.0
+      "end": 16.0,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -290,7 +293,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.0,
-      "end": 22.0
+      "end": 22.0,
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -304,7 +308,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 12.0,
-      "end": 13.0
+      "end": 13.0,
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -318,7 +323,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.0,
-      "end": 13.5
+      "end": 13.5,
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -332,7 +338,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.0,
-      "end": 22.0
+      "end": 22.0,
+      "access_gap": false
     },
     {
       "studio": "693",
@@ -346,7 +353,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 10.75,
-      "end": 11.5
+      "end": 11.5,
+      "access_gap": false
     },
     {
       "studio": "693",
@@ -360,7 +368,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.0,
-      "end": 21.0
+      "end": 21.0,
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -374,7 +383,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 12.0,
-      "end": 12.75
+      "end": 12.75,
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -388,7 +398,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.0,
-      "end": 15.0
+      "end": 15.0,
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -402,7 +413,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.5,
-      "end": 22.5
+      "end": 22.5,
+      "access_gap": false
     }
   ],
   "staff": [
@@ -1524,6 +1536,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-25T02:38:33.800927Z",
         "until": "2026-08-25T02:38:45.234845Z"
+      },
+      {
+        "since": "2026-08-25T02:41:25.739187Z",
+        "until": "2026-08-25T02:41:30.363388Z"
       }
     ],
     "down": false
@@ -1720,83 +1736,7 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     }
   ],
-  "robotsNote": null,
-  "issues": [
-    {
-      "level": "crit",
-      "label": "Urgent",
-      "text": "🚨 NOBODY WAS PAGED for either real Studio 693 alarm on Aug 15",
-      "whenISO": "2026-08-16T02:42:00-04:00"
-    },
-    {
-      "level": "crit",
-      "label": "Run error",
-      "text": "Other — see Notion",
-      "whenISO": "2026-08-24T17:56:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Akira Huang at 509B Aug 28 14:00 [sweep:509B:2026… — Fri Aug 28 · 4d",
-      "whenISO": "2026-08-23T19:04:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Garjanah Thayakumar at 509A Aug 30 17:00 [sweep:5… — Sun Aug 30 · 6d",
-      "whenISO": "2026-08-24T13:04:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "🔑 Rotate Megan Cartwright’s compromised alarm code before Aug 30; do not decommission — Sun Aug 30 · 6d",
-      "whenISO": "2026-08-23T19:39:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Garjanah Thayakumar at 509A Sep 01 17:00 [sweep:5… — Tue Sep 1 · 8d",
-      "whenISO": "2026-08-24T18:05:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Aakanksha Patel at 901 Sep 06 13:30 [sweep:901:20… — Sun Sep 6 · 13d",
-      "whenISO": "2026-08-23T00:07:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Diana Leal at 527 Sep 06 14:30 [sweep:527:2026-09… — Sun Sep 6 · 13d",
-      "whenISO": "2026-08-23T00:06:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "🔒 Provision Keegan Shim's alarm code — Thu Oct 8 · 45d",
-      "whenISO": "2026-08-20T12:29:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Alarm code needs a person",
-      "whenISO": "2026-08-21T06:10:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "✅ CAUSE FOUND — staff were remotely arming occupied studios from the shared info@dancea…",
-      "whenISO": "2026-08-22T12:33:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
-      "text": "Night pass never ran (no Fixer Report for today) · 8 of 9 Review tickets audited clean and closed · Nina Li's $••• credit does not verify — 2 bookings still unpaid in Skedda",
-      "whenISO": "2026-08-23T15:05:00-04:00"
-    }
-  ],
-  "issuesTotal": 23,
-  "issuesNote": null
+  "robotsNote": null
 }/*__END_DATA__*/;
 
 const $=s=>document.querySelector(s);
@@ -1838,7 +1778,7 @@ let FILTER="all";
 document.getElementById('nav').addEventListener('click',ev=>{
   const b=ev.target.closest('button');if(!b)return;
   document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
-  for(const k of['today','alarms','staff','robots','reports'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
+  for(const k of['today','alarms','staff','robots'])document.getElementById('tab-'+k).hidden=k!==b.dataset.t;
 });
 document.getElementById('filters').addEventListener('click',ev=>{
   const c=ev.target.closest('.fchip');if(!c)return;FILTER=c.dataset.f;render();
@@ -1848,8 +1788,9 @@ function chipRow(e,st){
   let t="";
   if(e.tier)t+=`<span class="chip type">${e.tier}</span>`;
   if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
-  /* No code on file = this renter cannot get in. Shown even after the booking
-     ends — an unresolved code is tomorrow's lockout too. */
+  /* Open Access / PIN row names this renter today: code will not work.
+     Shown even after the booking ends — tomorrow's lockout too. */
+  if(e.access_gap)t+=`<span class="chip crit">Code ✗</span>`;
   return t?`<div class="chips">${t}</div>`:"";
 }
 
@@ -2071,29 +2012,8 @@ function cdTxt(nr){
       (liveR.map(robotRow).join("")||`<div class="quiet">Nothing watched.</div>`);
   }
 
-  /* issues — what needs Junyan: door gaps by deadline (2026-08-25), else today/tomorrow: a door nobody can open, a
-     robot that broke, a run that died. Not a list of runs; Robots answers "did
-     it run?". Cleared in Notion means gone here on the next build — build.py
-     asks only for Pending Review rows. Everything here is redacted and
-     class-limited on the build side; this page is public (see fetch_issues). */
-  const IS=DATA.issues;
-  if(!IS){$('#reports').innerHTML=`<div class="quiet">${esc(DATA.issuesNote||"Actions to Perform could not be read this edition")}</div>`;}
-  else{
-    const critN=IS.filter(i=>i.level==="crit").length;
-    const agoOf=iso=>{if(!iso)return"";const h=(Date.now()-new Date(iso).getTime())/3600000;
-      return h<1?"now":h<24?`${Math.floor(h)}h`:`${Math.floor(h/24)}d`;};
-    const hidden=(DATA.issuesTotal||0)-IS.length;
-    $('#reports').innerHTML=
-      `<div class="grp">${IS.length?(critN?`<span style="color:var(--crit)">${critN} urgent</span> · ${IS.length} open`:`${IS.length} open`):"Nothing needs you"}</div>`+
-      (IS.map(i=>`<div class="row" style="display:block;${i.level==="crit"?"border-color:var(--crit)":""}">
-        <div style="display:flex;align-items:baseline;gap:8px">
-          <span style="font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--${i.level==="crit"?"crit":"watch"})">${esc(i.label)}</span>
-          <span class="tm" style="font-size:11px;margin-left:auto">${esc(agoOf(i.whenISO))}</span>
-        </div>
-        <div style="white-space:normal;line-height:1.35;font-size:14px;margin-top:3px;${i.level==="crit"?"font-weight:600":""}">${esc(i.text)}</div>
-      </div>`).join("")||`<div class="quiet">Nothing open for today or tomorrow.</div>`)+
-      (hidden>0?`<div class="quiet">+${hidden} more open — see ✅ Actions to Perform</div>`:"");
-  }
+  /* Issues tab removed 2026-08-25 — access problems are a red pill on the
+     booking card; everything else lives in Notion. */
 
   /* freshness */
   const gen=DATA.generatedAtISO?new Date(DATA.generatedAtISO):null;

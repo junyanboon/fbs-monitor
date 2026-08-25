@@ -382,7 +382,6 @@
     <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
     <button class="tab" data-tab="alarms" role="tab" aria-selected="false">Alarms</button>
     <button class="tab" data-tab="robots" role="tab" aria-selected="false">Robots</button>
-    <button class="tab" data-tab="reports" role="tab" aria-selected="false">Issues</button>
     <a class="tabx" href="https://claude.ai/code/artifact/2aabe1e6-99a5-47a8-b7aa-fbf636c6c43c" target="_blank" rel="noopener">Deck ↗</a>
   </nav>
   <section id="tab-studios">
@@ -401,9 +400,6 @@
   <section id="tab-robots" hidden>
     <div id="robotpanel"></div>
   </section>
-  <section id="tab-reports" hidden>
-    <div id="reportpanel"></div>
-  </section>
 </main>
 
 <footer>
@@ -417,8 +413,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 10:40 PM ET",
-  "generatedAtISO": "2026-08-24T22:40:58-04:00",
+  "generatedAt": "Aug 24, 10:45 PM ET",
+  "generatedAtISO": "2026-08-24T22:45:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -459,7 +455,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.5,
-      "end": 13.75
+      "end": 13.75,
+      "access_gap": false
     },
     {
       "studio": "509A",
@@ -473,7 +470,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.25,
-      "end": 20.75
+      "end": 20.75,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -487,7 +485,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 11.0,
-      "end": 13.0
+      "end": 13.0,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -501,7 +500,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.5,
-      "end": 13.75
+      "end": 13.75,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -515,7 +515,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 14.0,
-      "end": 16.0
+      "end": 16.0,
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -529,7 +530,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.0,
-      "end": 22.0
+      "end": 22.0,
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -543,7 +545,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 12.0,
-      "end": 13.0
+      "end": 13.0,
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -557,7 +560,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.0,
-      "end": 13.5
+      "end": 13.5,
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -571,7 +575,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.0,
-      "end": 22.0
+      "end": 22.0,
+      "access_gap": false
     },
     {
       "studio": "693",
@@ -585,7 +590,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 10.75,
-      "end": 11.5
+      "end": 11.5,
+      "access_gap": false
     },
     {
       "studio": "693",
@@ -599,7 +605,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.0,
-      "end": 21.0
+      "end": 21.0,
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -613,7 +620,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 12.0,
-      "end": 12.75
+      "end": 12.75,
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -627,7 +635,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 13.0,
-      "end": 15.0
+      "end": 15.0,
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -641,7 +650,8 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.5,
-      "end": 22.5
+      "end": 22.5,
+      "access_gap": false
     }
   ],
   "staff": [
@@ -1763,6 +1773,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-25T02:38:33.800927Z",
         "until": "2026-08-25T02:38:45.234845Z"
+      },
+      {
+        "since": "2026-08-25T02:41:25.739187Z",
+        "until": "2026-08-25T02:41:30.363388Z"
       }
     ],
     "down": false
@@ -1959,83 +1973,7 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     }
   ],
-  "robotsNote": null,
-  "issues": [
-    {
-      "level": "crit",
-      "label": "Urgent",
-      "text": "🚨 NOBODY WAS PAGED for either real Studio 693 alarm on Aug 15",
-      "whenISO": "2026-08-16T02:42:00-04:00"
-    },
-    {
-      "level": "crit",
-      "label": "Run error",
-      "text": "Other — see Notion",
-      "whenISO": "2026-08-24T17:56:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Akira Huang at 509B Aug 28 14:00 [sweep:509B:2026… — Fri Aug 28 · 4d",
-      "whenISO": "2026-08-23T19:04:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Garjanah Thayakumar at 509A Aug 30 17:00 [sweep:5… — Sun Aug 30 · 6d",
-      "whenISO": "2026-08-24T13:04:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "🔑 Rotate Megan Cartwright’s compromised alarm code before Aug 30; do not decommission — Sun Aug 30 · 6d",
-      "whenISO": "2026-08-23T19:39:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Garjanah Thayakumar at 509A Sep 01 17:00 [sweep:5… — Tue Sep 1 · 8d",
-      "whenISO": "2026-08-24T18:05:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Aakanksha Patel at 901 Sep 06 13:30 [sweep:901:20… — Sun Sep 6 · 13d",
-      "whenISO": "2026-08-23T00:07:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Booking sweep — access unresolved for Diana Leal at 527 Sep 06 14:30 [sweep:527:2026-09… — Sun Sep 6 · 13d",
-      "whenISO": "2026-08-23T00:06:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "🔒 Provision Keegan Shim's alarm code — Thu Oct 8 · 45d",
-      "whenISO": "2026-08-20T12:29:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "Alarm code needs a person",
-      "whenISO": "2026-08-21T06:10:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Access",
-      "text": "✅ CAUSE FOUND — staff were remotely arming occupied studios from the shared info@dancea…",
-      "whenISO": "2026-08-22T12:33:00-04:00"
-    },
-    {
-      "level": "watch",
-      "label": "Report",
-      "text": "Night pass never ran (no Fixer Report for today) · 8 of 9 Review tickets audited clean and closed · Nina Li's $••• credit does not verify — 2 bookings still unpaid in Skedda",
-      "whenISO": "2026-08-23T15:05:00-04:00"
-    }
-  ],
-  "issuesTotal": 23,
-  "issuesNote": null
+  "robotsNote": null
 }/*__END_DATA__*/;
 
 const $ = s => document.querySelector(s);
@@ -2288,8 +2226,10 @@ function render(){
     if(e.tier) tags += `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
     if(e.tier && e.tier!=="Viewing" && !e.gtg && !done)
       tags += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
-    /* No code on file = this renter cannot get in. Stays visible after the
-       booking ends: an unresolved code is tomorrow's lockout too. */
+    /* An open Access / PIN row names this renter for today: their code will
+       not work. THE one access surface on this app (2026-08-25). Stays after
+       the booking ends — an unresolved code is tomorrow's lockout too. */
+    if(e.access_gap) tags += `<span class="chip crit">Code ✗</span>`;
     /* Coverage pills (Gap Nm / Covered / AI watch) were noise on the cards — the
        Staff tab still shows coverage per monitored booking. */
     // countdown
@@ -2597,50 +2537,10 @@ function renderRobots(){
   $('#robotpanel').innerHTML = html;
 }
 
-/* ── Issues tab ──────────────────────────────────────────────────────────────
-   What needs Junyan, today or tomorrow, FBS only: a door someone cannot open,
-   a robot that broke, a run that died. NOT a list of runs — the Robots tab
-   answers "did it run?" and this answers "is anything wrong that needs me?".
-
-   Cleared in Notion, gone from here: build.py asks only for Pending Review
-   rows, so a Processed or Cancelled one is simply never returned. No state is
-   kept on this side to fall out of sync.
-
-   Everything rendered here is redacted and class-limited in build.py — the
-   board is public. See fetch_issues() before adding a field to this row. */
-function renderIssues(){
-  const I = DATA.issues;
-  if(!I){
-    $('#reportpanel').innerHTML = `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
-      <span class="head">Issues unavailable</span><span class="items"><span class="statusitem">${esc(DATA.issuesNote||"Actions to Perform could not be read this edition")}</span></span></div>`;
-    return;
-  }
-  const crit = I.filter(i=>i.level==="crit").length;
-  const head = !I.length ? "Nothing needs you"
-             : crit ? `${crit} urgent`
-             : `${I.length} open`;
-  let html = `<div class="statusbar ${I.length?(crit?"crit":"warn"):"ok"}" style="margin-top:16px"><span class="dot"></span>
-    <span class="head">${head}</span><span class="items"><span class="statusitem">Door gaps by deadline, everything else today/tomorrow · clears when Processed in Notion</span></span></div>`;
-  const ago = iso => {
-    if(!iso) return "";
-    const h = (Date.now() - new Date(iso).getTime())/3600000;
-    return h < 1 ? "now" : h < 24 ? `${Math.floor(h)}h` : `${Math.floor(h/24)}d`;
-  };
-  const row = i => `<div class="issue ${i.level}">
-      <span class="tag">${esc(i.label)}</span>
-      <span class="txt">${esc(i.text)}</span>
-      <span class="ago">${esc(ago(i.whenISO))}</span>
-    </div>`;
-  html += `<div class="panelwrap" style="margin-top:14px">` +
-    (I.length ? I.map(row).join("")
-              : `<div class="issue"><span class="txt">Nothing open for today or tomorrow.</span></div>`) + `</div>`;
-  const hidden = (DATA.issuesTotal||0) - I.length;
-  if(hidden > 0) html += `<p class="lane-label">+${hidden} more open — see ✅ Actions to Perform</p>`;
-  $('#reportpanel').innerHTML = html;
-}
-
-const _renderBase = render;
-render = function(){ _renderBase(); renderAlarms(); renderRobots(); renderIssues(); };
+/* The Issues tab was removed 2026-08-25 (Junyan: "these issues are not really
+   useful") — access problems render as a red pill on the booking card in the
+   Studios tab instead, and the rest lives in Notion / the Doorman's report. */
+render = function(){ _renderBase(); renderAlarms(); renderRobots(); };
 render(); setInterval(render, 30000);
 </script>
 
