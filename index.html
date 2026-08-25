@@ -417,8 +417,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Monday, August 24, 2026",
-  "generatedAt": "Aug 24, 9:23 PM ET",
-  "generatedAtISO": "2026-08-24T21:23:52-04:00",
+  "generatedAt": "Aug 24, 9:30 PM ET",
+  "generatedAtISO": "2026-08-24T21:30:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -681,7 +681,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "Alarm bypass · 901 · 21:30"
     }
   ],
   "armEvents": [
@@ -943,6 +943,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787620665494,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "21:30",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787621406798,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "21:30",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787621410003,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -967,6 +985,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1787620726000
+    },
+    {
+      "studio": "901",
+      "time": "21:30",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787621407000
     }
   ],
   "armFallback": false,
@@ -1679,31 +1704,15 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-25T01:20:33.968953Z",
         "until": "2026-08-25T01:20:42.369399Z"
+      },
+      {
+        "since": "2026-08-25T01:25:51.249571Z",
+        "until": "2026-08-25T01:25:58.800981Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-24T18:23:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-23T15:05:00-04:00"
-    },
     {
       "run": "qa-review (GitHub Actions)",
       "cadence": "Hourly",
@@ -1733,6 +1742,26 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-24T10:05:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-24T21:30:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-24T21:30:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1782,7 +1811,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-24T20:56:00-04:00"
+      "lastISO": "2026-08-24T21:33:00-04:00"
     },
     {
       "run": "The Sentinel",
