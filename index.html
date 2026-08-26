@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 2:31 PM ET",
-  "generatedAtISO": "2026-08-26T14:31:02-04:00",
+  "generatedAt": "Aug 26, 2:45 PM ET",
+  "generatedAtISO": "2026-08-26T14:45:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -489,11 +489,27 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509A",
-      "who": "Daniel Thevarasalingam — Daniel's Wedding Reception Dance",
+      "who": "Ishfaaq Jookhun (C19 salsa",
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
       "hta": "Unsent",
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 18.25,
+      "end": 19.0,
+      "access_gap": false
+    },
+    {
+      "studio": "509A",
+      "who": "Daniel Thevarasalingam — Daniel's Wedding Reception Dance",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -509,7 +525,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": "Will Not Send",
+      "hta": null,
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -565,22 +581,6 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 18.5,
       "end": 20.5,
-      "access_gap": false
-    },
-    {
-      "studio": "527",
-      "who": "Ishfaaq Jookhun (C19 salsa",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "heard": false,
-      "arrived": null,
-      "departed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 18.25,
-      "end": 19.0,
       "access_gap": false
     },
     {
@@ -1318,21 +1318,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T18:28:14.112687Z",
         "until": "2026-08-26T18:28:25.598912Z"
+      },
+      {
+        "since": "2026-08-26T18:34:15.649457Z",
+        "until": "2026-08-26T18:34:28.080082Z"
+      },
+      {
+        "since": "2026-08-26T18:40:04.735220Z",
+        "until": "2026-08-26T18:40:18.052015Z"
+      },
+      {
+        "since": "2026-08-26T18:45:15.613185Z",
+        "until": "2026-08-26T18:45:26.068890Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-26T12:40:00-04:00"
-    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1351,7 +1353,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T14:28:00-04:00"
+      "lastISO": "2026-08-26T14:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1382,6 +1384,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T06:03:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T14:40:00-04:00"
     },
     {
       "run": "The Custodian",
