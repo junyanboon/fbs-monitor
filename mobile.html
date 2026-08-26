@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 10:15 AM ET",
-  "generatedAtISO": "2026-08-26T10:15:54-04:00",
+  "generatedAt": "Aug 26, 10:21 AM ET",
+  "generatedAtISO": "2026-08-26T10:21:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -296,7 +296,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -525,14 +525,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "How to Access 693",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "693",
-      "raised_by": "The Host",
-      "created": "Aug 26 · 04:26"
-    },
-    {
       "code": "Concierge — Nina Li Aug 31 released + Nov 18 booked — credit pending staff — •••",
       "channel": "SMS",
       "status": "Pending Review",
@@ -629,12 +621,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 26 · 04:26"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -922,6 +909,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T14:12:06.500857Z",
         "until": "2026-08-26T14:12:14.003150Z"
+      },
+      {
+        "since": "2026-08-26T14:17:25.156366Z",
+        "until": "2026-08-26T14:17:39.718687Z"
+      },
+      {
+        "since": "2026-08-26T14:18:04.394017Z",
+        "until": "2026-08-26T14:18:08.896588Z"
       }
     ],
     "down": false
@@ -933,9 +928,9 @@ const DATA = /*__DATA__*/{
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
       "produces": "Clears tripped sirens (occupancy-guarded), restores stuck bypasses, sorts panel troubles to SMS/ticket, runs the Panel Tamper loop",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Never checked in",
-      "lastISO": null
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T10:18:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1085,7 +1080,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T09:18:00-04:00"
+      "lastISO": "2026-08-26T10:13:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1095,7 +1090,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T10:01:00-04:00"
+      "lastISO": "2026-08-26T10:16:00-04:00"
     },
     {
       "run": "The Closer",
