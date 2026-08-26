@@ -1003,10 +1003,18 @@ RE_TROUBLE = re.compile(
 # Subjects that name a studio and read like a problem but must NEVER reach the
 # board. Matched case-insensitively as substrings against the whole subject.
 #
-#   credentials in conflict — Alarm.com raises one per duplicate PIN across the
-#     168 rotating codes. Four are standing right now. It is a housekeeping
-#     notice, not a fault; Junyan asked for it excluded by name, and the
-#     alarm-monitor's own filer has skipped it since 2026-06 for the same reason.
+#   credentials in conflict — excluded by name on Junyan's standing directive
+#     (canon house-rules.md, 2026-08-01, no expiry); alarm-monitor's own filer
+#     has skipped it since 2026-06.
+#     NOT duplicate PINs. That was this comment's original claim and the
+#     2026-08-19 investigation disproved it: 174 panel users hold 174 distinct
+#     codes (fully paginated), no cloud-vs-panel drift, no reserved defaults,
+#     and capacity is not close (IQ Panel 2/4 hold 242). All four instances are
+#     ONE account-wide event at 2026-07-10 14:59:42 UTC. Per Alarm.com's KB it
+#     is an Access Control credential duplicate — a badge or card, not a PIN —
+#     and every credentials endpoint 404s here, so it is UI-only work.
+#     Full write-up: dc-canon library/doorman-access-lifecycle.md, section
+#     '"Credentials In Conflict" — what it is NOT'. Do not re-run those tests.
 #   user codes have been changed — every code we issue mails one of these.
 #   post-disarm / images uploaded — camera traffic, already covered by the
 #     "image" guard, listed here so the intent survives a refactor.
