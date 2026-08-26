@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 12:05 PM ET",
-  "generatedAtISO": "2026-08-26T12:05:50-04:00",
+  "generatedAt": "Aug 26, 12:20 PM ET",
+  "generatedAtISO": "2026-08-26T12:20:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -539,6 +539,14 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Responder",
       "created": "Aug 26 · 11:55"
+    },
+    {
+      "code": "Concierge — David Diep move CONFIRMATION 509B 18:30 — •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Concierge",
+      "created": "Aug 26 · 12:17"
     },
     {
       "code": "EOB",
@@ -988,6 +996,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T16:00:54.450745Z",
         "until": "2026-08-26T16:01:00.915941Z"
+      },
+      {
+        "since": "2026-08-26T16:06:24.033699Z",
+        "until": "2026-08-26T16:06:38.454793Z"
+      },
+      {
+        "since": "2026-08-26T16:12:07.348874Z",
+        "until": "2026-08-26T16:12:14.014712Z"
+      },
+      {
+        "since": "2026-08-26T16:17:26.048365Z",
+        "until": "2026-08-26T16:17:34.552908Z"
       }
     ],
     "down": false
@@ -1001,7 +1021,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T12:03:00-04:00"
+      "lastISO": "2026-08-26T12:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1111,7 +1131,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T11:11:00-04:00"
+      "lastISO": "2026-08-26T12:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1141,7 +1161,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T11:14:00-04:00"
+      "lastISO": "2026-08-26T12:11:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T12:16:00-04:00"
     },
     {
       "run": "Watchlist sync",
