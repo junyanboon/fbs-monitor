@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 6:00 PM ET",
-  "generatedAtISO": "2026-08-26T18:00:55-04:00",
+  "generatedAt": "Aug 26, 6:15 PM ET",
+  "generatedAtISO": "2026-08-26T18:15:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -495,7 +495,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:08",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -509,7 +509,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Sent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -835,6 +835,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787776332089,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Ishfaaq Jookhun",
+      "time": "18:08",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787782081723,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -888,9 +897,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T20:37:02+00:00",
+    "updatedAt": "2026-08-26T22:13:02+00:00",
     "mailCheck": {
-      "matched": 6,
+      "matched": 7,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1459,6 +1468,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T21:56:09.368128Z",
         "until": "2026-08-26T21:56:13.059013Z"
+      },
+      {
+        "since": "2026-08-26T22:01:15.352683Z",
+        "until": "2026-08-26T22:01:22.792853Z"
+      },
+      {
+        "since": "2026-08-26T22:07:15.367702Z",
+        "until": "2026-08-26T22:07:27.872145Z"
+      },
+      {
+        "since": "2026-08-26T22:13:18.566685Z",
+        "until": "2026-08-26T22:13:27.037960Z"
       }
     ],
     "down": false
@@ -1482,7 +1503,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T17:59:00-04:00"
+      "lastISO": "2026-08-26T18:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1502,7 +1523,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T17:07:00-04:00"
+      "lastISO": "2026-08-26T18:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1592,7 +1613,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T17:07:00-04:00"
+      "lastISO": "2026-08-26T18:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1622,7 +1643,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T17:13:00-04:00"
+      "lastISO": "2026-08-26T18:13:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1632,7 +1653,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T17:46:00-04:00"
+      "lastISO": "2026-08-26T18:01:00-04:00"
     },
     {
       "run": "The Closer",
