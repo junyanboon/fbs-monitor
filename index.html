@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 6:17 PM ET",
-  "generatedAtISO": "2026-08-26T18:17:29-04:00",
+  "generatedAt": "Aug 26, 6:30 PM ET",
+  "generatedAtISO": "2026-08-26T18:30:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -575,7 +575,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": true,
-      "arrived": null,
+      "arrived": "18:18",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -623,7 +623,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:25",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -844,6 +844,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787782081723,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "18:18",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787782705863,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "18:25",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787783111431,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -865,15 +883,6 @@ const DATA = /*__DATA__*/{
       "time": "22:08",
       "ts": 1787710128368,
       "when": "Tue 22:08"
-    },
-    "901": {
-      "studio": "901",
-      "name": "Megan Cartwright",
-      "time": "20:42",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1787704923000,
-      "when": "Tue 20:42"
     }
   },
   "alarmAlerts": [
@@ -897,9 +906,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T22:13:02+00:00",
+    "updatedAt": "2026-08-26T22:30:02+00:00",
     "mailCheck": {
-      "matched": 7,
+      "matched": 9,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1480,6 +1489,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T22:13:18.566685Z",
         "until": "2026-08-26T22:13:27.037960Z"
+      },
+      {
+        "since": "2026-08-26T22:19:15.352961Z",
+        "until": "2026-08-26T22:19:21.847286Z"
+      },
+      {
+        "since": "2026-08-26T22:25:13.691208Z",
+        "until": "2026-08-26T22:25:24.436196Z"
+      },
+      {
+        "since": "2026-08-26T22:30:23.826472Z",
+        "until": "2026-08-26T22:30:35.271197Z"
       }
     ],
     "down": false
@@ -1503,7 +1524,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T18:15:00-04:00"
+      "lastISO": "2026-08-26T18:31:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1553,7 +1574,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T16:48:00-04:00"
+      "lastISO": "2026-08-26T18:26:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1603,7 +1624,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T17:56:00-04:00"
+      "lastISO": "2026-08-26T18:26:00-04:00"
     },
     {
       "run": "The Sentinel",
