@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 7:01 PM ET",
-  "generatedAtISO": "2026-08-26T19:01:02-04:00",
+  "generatedAt": "Aug 26, 7:15 PM ET",
+  "generatedAtISO": "2026-08-26T19:15:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -283,7 +283,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": false,
       "arrived": "18:08",
-      "departed": null,
+      "departed": "19:06",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.25,
@@ -378,7 +378,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "19:01",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -548,6 +548,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509A · 11:15"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 19:07"
     }
   ],
   "armEvents": [
@@ -649,18 +653,26 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787783111431,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "19:01",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787785315000
+    },
+    {
+      "studio": "509A",
+      "name": "Ishfaaq Jookhun",
+      "time": "19:06",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787785618435,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "527": {
-      "studio": "527",
-      "name": "Khalid Roach-McLeod",
-      "time": "22:13",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1787710412000,
-      "when": "Tue 22:13"
-    },
     "693": {
       "kind": "departure",
       "name": "Angus Dirnbeck",
@@ -686,6 +698,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1787757309000
+    },
+    {
+      "studio": "509A",
+      "time": "19:07",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787785666000
     }
   ],
   "armFallback": false,
@@ -693,9 +712,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T22:30:02+00:00",
+    "updatedAt": "2026-08-26T23:11:02+00:00",
     "mailCheck": {
-      "matched": 9,
+      "matched": 12,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1308,6 +1327,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T22:59:15.265874Z",
         "until": "2026-08-26T22:59:28.715734Z"
+      },
+      {
+        "since": "2026-08-26T23:05:06.264232Z",
+        "until": "2026-08-26T23:05:19.844736Z"
+      },
+      {
+        "since": "2026-08-26T23:11:06.325143Z",
+        "until": "2026-08-26T23:11:20.785408Z"
       }
     ],
     "down": false
@@ -1331,7 +1358,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T19:00:00-04:00"
+      "lastISO": "2026-08-26T19:12:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1351,7 +1378,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T18:07:00-04:00"
+      "lastISO": "2026-08-26T19:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1441,7 +1468,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T18:03:00-04:00"
+      "lastISO": "2026-08-26T19:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1471,7 +1498,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T18:13:00-04:00"
+      "lastISO": "2026-08-26T19:12:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1481,7 +1508,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T18:46:00-04:00"
+      "lastISO": "2026-08-26T19:01:00-04:00"
     },
     {
       "run": "The Closer",
