@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 9:15 AM ET",
-  "generatedAtISO": "2026-08-26T09:15:53-04:00",
+  "generatedAt": "Aug 26, 9:29 AM ET",
+  "generatedAtISO": "2026-08-26T09:29:18-04:00",
   "studios": [
     {
       "id": "509A",
@@ -858,7 +858,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 26 · 04:26"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -1096,6 +1101,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T13:09:38.647354Z",
         "until": "2026-08-26T13:09:43.025502Z"
+      },
+      {
+        "since": "2026-08-26T13:15:38.664072Z",
+        "until": "2026-08-26T13:15:51.137028Z"
+      },
+      {
+        "since": "2026-08-26T13:20:54.730331Z",
+        "until": "2026-08-26T13:21:08.173552Z"
+      },
+      {
+        "since": "2026-08-26T13:26:22.112135Z",
+        "until": "2026-08-26T13:26:29.588988Z"
       }
     ],
     "down": false
@@ -1107,8 +1124,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-26T07:59:00-04:00"
     },
     {
@@ -1199,7 +1216,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T08:56:00-04:00"
+      "lastISO": "2026-08-26T09:31:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1209,7 +1226,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T08:26:00-04:00"
+      "lastISO": "2026-08-26T09:21:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1249,7 +1266,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T03:16:00-04:00"
+      "lastISO": "2026-08-26T09:18:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1259,7 +1276,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T09:01:00-04:00"
+      "lastISO": "2026-08-26T09:16:00-04:00"
     },
     {
       "run": "The Closer",
