@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 7:30 PM ET",
-  "generatedAtISO": "2026-08-26T19:30:47-04:00",
+  "generatedAt": "Aug 26, 7:45 PM ET",
+  "generatedAtISO": "2026-08-26T19:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -607,7 +607,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "19:45",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -721,10 +721,58 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 8.25,
+      "end": 8.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.25,
+      "end": 9.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 10.75,
+      "end": 11.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
       "studio": "693",
       "day_offset": 1,
       "start": 18.25,
       "end": 18.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 18.25,
+      "end": 18.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 19.25,
+      "end": 19.75,
       "day": "Tomorrow"
     },
     {
@@ -750,6 +798,22 @@ const DATA = /*__DATA__*/{
       "start": 15.25,
       "end": 15.75,
       "day": "Fri Aug 28"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 3,
+      "start": 18.75,
+      "end": 19.25,
+      "day": "Sat Aug 29"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 3,
+      "start": 19.75,
+      "end": 20.25,
+      "day": "Sat Aug 29"
     }
   ],
   "messages": [],
@@ -883,20 +947,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787785618435,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "19:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787787912230,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "693": {
-      "kind": "departure",
-      "name": "Angus Dirnbeck",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "22:08",
-      "ts": 1787710128368,
-      "when": "Tue 22:08"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [
     {
       "studio": "509A",
@@ -927,7 +989,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-08-26T23:11:02+00:00",
     "mailCheck": {
-      "matched": 12,
+      "matched": 13,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1560,21 +1622,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T23:28:06.444310Z",
         "until": "2026-08-26T23:28:17.753809Z"
+      },
+      {
+        "since": "2026-08-26T23:33:13.548417Z",
+        "until": "2026-08-26T23:33:20.839622Z"
+      },
+      {
+        "since": "2026-08-26T23:39:06.443548Z",
+        "until": "2026-08-26T23:39:18.743797Z"
+      },
+      {
+        "since": "2026-08-26T23:45:10.012376Z",
+        "until": "2026-08-26T23:45:17.495790Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-25T19:42:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1583,7 +1647,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T19:30:00-04:00"
+      "lastISO": "2026-08-26T19:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1676,6 +1740,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-26T19:05:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T19:47:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -1733,7 +1807,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T19:16:00-04:00"
+      "lastISO": "2026-08-26T19:31:00-04:00"
     },
     {
       "run": "The Closer",
