@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 2:15 PM ET",
-  "generatedAtISO": "2026-08-26T14:15:50-04:00",
+  "generatedAt": "Aug 26, 2:31 PM ET",
+  "generatedAtISO": "2026-08-26T14:31:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -278,9 +278,9 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "who": "Daniel Thevarasalingam — Daniel's Wedding Reception Dance",
       "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Unsent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -376,7 +376,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -547,6 +547,14 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "raised_by": "The Responder",
       "created": "Aug 26 · 13:26"
+    },
+    {
+      "code": "PBF — Sharon Rupnarian •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Aug 26 · 14:23"
     },
     {
       "code": "EOB",
@@ -1085,11 +1093,43 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T18:11:23.858686Z",
         "until": "2026-08-26T18:11:38.387111Z"
+      },
+      {
+        "since": "2026-08-26T18:17:04.578601Z",
+        "until": "2026-08-26T18:17:14.702265Z"
+      },
+      {
+        "since": "2026-08-26T18:23:04.618486Z",
+        "until": "2026-08-26T18:23:10.937363Z"
+      },
+      {
+        "since": "2026-08-26T18:28:14.112687Z",
+        "until": "2026-08-26T18:28:25.598912Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-26T12:40:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-25T19:42:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1098,7 +1138,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T14:12:00-04:00"
+      "lastISO": "2026-08-26T14:28:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1129,16 +1169,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T06:03:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-26T12:40:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1181,16 +1211,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-26T14:06:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-25T19:42:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -1198,7 +1218,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T13:58:00-04:00"
+      "lastISO": "2026-08-26T14:33:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1248,7 +1268,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T14:01:00-04:00"
+      "lastISO": "2026-08-26T14:31:00-04:00"
     },
     {
       "run": "The Closer",
