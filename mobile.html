@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 2:01 AM ET",
-  "generatedAtISO": "2026-08-26T02:01:01-04:00",
+  "generatedAt": "Aug 26, 2:15 AM ET",
+  "generatedAtISO": "2026-08-26T02:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1587,6 +1587,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T06:00:07.175640Z",
         "until": "2026-08-26T06:00:16.700079Z"
+      },
+      {
+        "since": "2026-08-26T06:05:19.403391Z",
+        "until": "2026-08-26T06:05:26.935370Z"
+      },
+      {
+        "since": "2026-08-26T06:10:55.178613Z",
+        "until": "2026-08-26T06:11:04.632153Z"
       }
     ],
     "down": false
@@ -1613,6 +1621,26 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-25T06:22:00-04:00"
     },
     {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "~07:00",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-25T04:25:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-25T04:30:00-04:00"
+    },
+    {
       "run": "QA release check",
       "cadence": "Hourly",
       "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
@@ -1633,16 +1661,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-25T04:50:00-04:00"
     },
     {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "~07:00",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-25T04:25:00-04:00"
-    },
-    {
       "run": "The Mechanic",
       "cadence": "Hourly",
       "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
@@ -1661,16 +1679,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-25T19:42:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-25T04:30:00-04:00"
     },
     {
       "run": "The Weatherman",
