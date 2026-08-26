@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 2:30 AM ET",
-  "generatedAtISO": "2026-08-26T02:30:49-04:00",
+  "generatedAt": "Aug 26, 2:45 AM ET",
+  "generatedAtISO": "2026-08-26T02:45:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1820,11 +1820,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T06:28:07.133421Z",
         "until": "2026-08-26T06:28:20.613448Z"
+      },
+      {
+        "since": "2026-08-26T06:33:22.143253Z",
+        "until": "2026-08-26T06:33:30.926082Z"
+      },
+      {
+        "since": "2026-08-26T06:39:19.594828Z",
+        "until": "2026-08-26T06:39:33.083719Z"
+      },
+      {
+        "since": "2026-08-26T06:45:19.681046Z",
+        "until": "2026-08-26T06:45:30.930866Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-25T04:50:00-04:00"
+    },
     {
       "run": "The Bookkeeper",
       "cadence": "Daily",
@@ -1874,16 +1896,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T02:00:00-04:00"
-    },
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-25T04:50:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1943,7 +1955,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-08-25T10:05:00-04:00"
+      "lastISO": "2026-08-26T02:39:00-04:00"
     },
     {
       "run": "The Opener",
