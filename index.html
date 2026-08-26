@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 7:26 AM ET",
-  "generatedAtISO": "2026-08-26T07:26:04-04:00",
+  "generatedAt": "Aug 26, 7:37 AM ET",
+  "generatedAtISO": "2026-08-26T07:37:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -874,12 +874,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 26 · 04:27"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -1041,21 +1036,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T11:21:06.461541Z",
         "until": "2026-08-26T11:21:21.715855Z"
+      },
+      {
+        "since": "2026-08-26T11:26:37.973373Z",
+        "until": "2026-08-26T11:26:47.431620Z"
+      },
+      {
+        "since": "2026-08-26T11:32:05.481619Z",
+        "until": "2026-08-26T11:32:12.943896Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Watchman",
-      "cadence": "Hourly",
-      "expected": "hourly :30 · 07–23 (cloud)",
-      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-25T23:33:00-04:00"
-    },
     {
       "run": "QA release check",
       "cadence": "Hourly",
@@ -1145,6 +1138,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T04:28:00-04:00"
+    },
+    {
+      "run": "The Watchman",
+      "cadence": "Hourly",
+      "expected": "hourly :30 · 07–23 (cloud)",
+      "produces": "External heartbeat — watches The Sentinel; alerts if the watchdog goes silent (mutual monitor)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T07:37:00-04:00"
     },
     {
       "run": "The Weatherman",
