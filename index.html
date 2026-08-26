@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 10:00 AM ET",
-  "generatedAtISO": "2026-08-26T10:00:56-04:00",
+  "generatedAt": "Aug 26, 10:15 AM ET",
+  "generatedAtISO": "2026-08-26T10:15:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -479,7 +479,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "heard": false,
-      "arrived": null,
+      "arrived": "10:01",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -754,14 +754,6 @@ const DATA = /*__DATA__*/{
       "created": "Aug 25 · 22:17"
     },
     {
-      "code": "BC-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 26 · 00:00"
-    },
-    {
       "code": "BC-sweep-•••B",
       "channel": "SMS",
       "status": "Pending Review",
@@ -848,29 +840,26 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "raised_by": "The Host",
       "created": "Aug 26 · 04:26"
-    },
-    {
-      "code": "Returning Access 527",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Host",
-      "created": "Aug 26 · 04:27"
     }
   ],
-  "attention": [],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Fabio Hernandez",
-      "remote": false,
-      "source": "doors",
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
+  "armEvents": [
+    {
       "studio": "509A",
-      "time": "22:25",
-      "ts": 1787711148356,
-      "when": "Tue 22:25"
-    },
+      "name": "Chelly Li",
+      "time": "10:01",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787752917500,
+      "source": "doors"
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "studio": "509B",
       "name": "Tess English",
@@ -910,12 +899,18 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T02:27:03+00:00",
+    "updatedAt": "2026-08-26T14:06:03+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-08-26T09:00:20.426000Z",
@@ -1132,11 +1127,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T14:00:06.254169Z",
         "until": "2026-08-26T14:00:12.703197Z"
+      },
+      {
+        "since": "2026-08-26T14:06:06.172601Z",
+        "until": "2026-08-26T14:06:15.617496Z"
+      },
+      {
+        "since": "2026-08-26T14:12:06.500857Z",
+        "until": "2026-08-26T14:12:14.003150Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "alarm-watchdog (Cloud Run)",
+      "cadence": "5-min",
+      "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
+      "produces": "Clears tripped sirens (occupancy-guarded), restores stuck bypasses, sorts panel troubles to SMS/ticket, runs the Panel Tamper loop",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Never checked in",
+      "lastISO": null
+    },
     {
       "run": "QA release check",
       "cadence": "Hourly",
@@ -1245,7 +1258,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T09:21:00-04:00"
+      "lastISO": "2026-08-26T10:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1295,7 +1308,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T09:46:00-04:00"
+      "lastISO": "2026-08-26T10:01:00-04:00"
     },
     {
       "run": "The Closer",
