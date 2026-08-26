@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Tuesday, August 25, 2026",
-  "generatedAt": "Aug 25, 8:30 PM ET",
-  "generatedAtISO": "2026-08-25T20:30:49-04:00",
+  "generatedAt": "Aug 25, 8:45 PM ET",
+  "generatedAtISO": "2026-08-25T20:45:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -544,7 +544,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "heard": true,
       "arrived": "18:48",
-      "departed": null,
+      "departed": "20:38",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.0,
@@ -559,8 +559,8 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "20:41",
+      "departed": "20:42",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.5,
@@ -693,6 +693,14 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm pending · 901 · 18:47"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 20:39"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 901 · 20:41"
     }
   ],
   "armEvents": [
@@ -766,6 +774,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787702667464,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Raquel K",
+      "time": "20:38",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787704724165,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Megan Cartwright",
+      "time": "20:41",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787704902453,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Megan Cartwright",
+      "time": "20:42",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787704922881,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -781,6 +816,20 @@ const DATA = /*__DATA__*/{
       "time": "18:47",
       "stage": "PENDING",
       "ts": 1787698032000
+    },
+    {
+      "studio": "901",
+      "time": "20:39",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787704784000
+    },
+    {
+      "studio": "901",
+      "time": "20:41",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787704903000
     }
   ],
   "armFallback": false,
@@ -788,9 +837,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T00:08:05+00:00",
+    "updatedAt": "2026-08-26T00:39:11+00:00",
     "mailCheck": {
-      "matched": 8,
+      "matched": 11,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1463,6 +1512,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T00:27:34.095054Z",
         "until": "2026-08-26T00:27:45.860573Z"
+      },
+      {
+        "since": "2026-08-26T00:33:07.827408Z",
+        "until": "2026-08-26T00:33:14.154336Z"
+      },
+      {
+        "since": "2026-08-26T00:38:08.207099Z",
+        "until": "2026-08-26T00:38:21.519597Z"
+      },
+      {
+        "since": "2026-08-26T00:43:19.549129Z",
+        "until": "2026-08-26T00:43:26.974598Z"
       }
     ],
     "down": false
@@ -1506,7 +1567,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T19:55:00-04:00"
+      "lastISO": "2026-08-25T20:39:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1606,7 +1667,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T19:32:00-04:00"
+      "lastISO": "2026-08-25T20:32:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -1626,7 +1687,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-25T20:15:00-04:00"
+      "lastISO": "2026-08-25T20:31:00-04:00"
     },
     {
       "run": "The Closer",
