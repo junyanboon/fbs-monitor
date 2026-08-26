@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 4:30 PM ET",
-  "generatedAtISO": "2026-08-26T16:30:57-04:00",
+  "generatedAt": "Aug 26, 4:45 PM ET",
+  "generatedAtISO": "2026-08-26T16:45:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -560,7 +560,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "heard": false,
       "arrived": "14:59",
-      "departed": null,
+      "departed": "16:32",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 15.0,
@@ -752,7 +752,16 @@ const DATA = /*__DATA__*/{
       "day": "Fri Aug 28"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "code": "BC-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Aug 26 · 16:32"
+    }
+  ],
   "attention": [
     {
       "level": "warn",
@@ -826,6 +835,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787770773451,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Tamina Paris",
+      "time": "16:32",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787776332089,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -879,9 +897,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T19:02:07+00:00",
+    "updatedAt": "2026-08-26T20:37:02+00:00",
     "mailCheck": {
-      "matched": 5,
+      "matched": 6,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1386,6 +1404,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T20:26:23.702222Z",
         "until": "2026-08-26T20:26:34.035018Z"
+      },
+      {
+        "since": "2026-08-26T20:32:23.699132Z",
+        "until": "2026-08-26T20:32:29.244800Z"
+      },
+      {
+        "since": "2026-08-26T20:37:23.643026Z",
+        "until": "2026-08-26T20:37:30.288837Z"
+      },
+      {
+        "since": "2026-08-26T20:43:05.638430Z",
+        "until": "2026-08-26T20:43:13.545375Z"
       }
     ],
     "down": false
@@ -1409,7 +1439,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T16:26:00-04:00"
+      "lastISO": "2026-08-26T16:42:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1420,6 +1450,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T16:00:00-04:00"
+    },
+    {
+      "run": "sentinel-sweep (Cloud Run)",
+      "cadence": "Hourly",
+      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T16:41:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1549,7 +1589,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T16:16:00-04:00"
+      "lastISO": "2026-08-26T16:31:00-04:00"
     },
     {
       "run": "The Closer",
