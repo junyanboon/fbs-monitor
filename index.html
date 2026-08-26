@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 11:36 AM ET",
-  "generatedAtISO": "2026-08-26T11:36:19-04:00",
+  "generatedAt": "Aug 26, 12:02 PM ET",
+  "generatedAtISO": "2026-08-26T12:02:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -744,6 +744,14 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "The Responder",
       "created": "Aug 26 · 10:54"
+    },
+    {
+      "code": "PBF — Chelly Li •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Responder",
+      "created": "Aug 26 · 11:55"
     },
     {
       "code": "EOB",
@@ -1169,21 +1177,35 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T15:31:25.659292Z",
         "until": "2026-08-26T15:31:36.147904Z"
+      },
+      {
+        "since": "2026-08-26T15:37:07.048192Z",
+        "until": "2026-08-26T15:37:15.368405Z"
+      },
+      {
+        "since": "2026-08-26T15:42:25.731747Z",
+        "until": "2026-08-26T15:42:35.271209Z"
+      },
+      {
+        "since": "2026-08-26T15:43:53.811818Z",
+        "until": "2026-08-26T15:43:59.800167Z"
+      },
+      {
+        "since": "2026-08-26T15:49:07.158066Z",
+        "until": "2026-08-26T15:49:21.614648Z"
+      },
+      {
+        "since": "2026-08-26T15:55:07.155514Z",
+        "until": "2026-08-26T15:55:16.866306Z"
+      },
+      {
+        "since": "2026-08-26T16:00:54.450745Z",
+        "until": "2026-08-26T16:01:00.915941Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-26T11:02:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1192,7 +1214,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T11:36:00-04:00"
+      "lastISO": "2026-08-26T12:03:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1202,7 +1224,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T11:00:00-04:00"
+      "lastISO": "2026-08-26T12:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1272,7 +1294,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T10:57:00-04:00"
+      "lastISO": "2026-08-26T12:07:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1292,7 +1314,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T11:35:00-04:00"
+      "lastISO": "2026-08-26T11:58:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1333,6 +1355,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T11:14:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T12:01:00-04:00"
     },
     {
       "run": "The Closer",
