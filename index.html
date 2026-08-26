@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 4:15 PM ET",
-  "generatedAtISO": "2026-08-26T16:15:47-04:00",
+  "generatedAt": "Aug 26, 4:30 PM ET",
+  "generatedAtISO": "2026-08-26T16:30:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -491,9 +491,9 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "who": "Ishfaaq Jookhun (C19 salsa",
       "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Unsent",
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -507,9 +507,9 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "who": "Daniel Thevarasalingam — Daniel's Wedding Reception Dance",
       "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Unsent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -525,7 +525,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -752,16 +752,7 @@ const DATA = /*__DATA__*/{
       "day": "Fri Aug 28"
     }
   ],
-  "messages": [
-    {
-      "code": "How to Access 509A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Concierge",
-      "created": "Aug 26 · 16:15"
-    }
-  ],
+  "messages": [],
   "attention": [
     {
       "level": "warn",
@@ -1387,6 +1378,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T20:15:09.212672Z",
         "until": "2026-08-26T20:15:20.694996Z"
+      },
+      {
+        "since": "2026-08-26T20:21:05.319861Z",
+        "until": "2026-08-26T20:21:12.796044Z"
+      },
+      {
+        "since": "2026-08-26T20:26:23.702222Z",
+        "until": "2026-08-26T20:26:34.035018Z"
       }
     ],
     "down": false
@@ -1410,7 +1409,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T16:15:00-04:00"
+      "lastISO": "2026-08-26T16:26:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1450,7 +1449,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T14:40:00-04:00"
+      "lastISO": "2026-08-26T16:48:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1500,7 +1499,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T15:58:00-04:00"
+      "lastISO": "2026-08-26T16:24:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1550,7 +1549,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T16:01:00-04:00"
+      "lastISO": "2026-08-26T16:16:00-04:00"
     },
     {
       "run": "The Closer",
