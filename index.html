@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 12:44 PM ET",
-  "generatedAtISO": "2026-08-26T12:44:43-04:00",
+  "generatedAt": "Aug 26, 12:52 PM ET",
+  "generatedAtISO": "2026-08-26T12:52:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -478,7 +478,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "heard": false,
+      "heard": true,
       "arrived": "10:01",
       "departed": "11:06",
       "wrong_studio": null,
@@ -498,7 +498,9 @@ const DATA = /*__DATA__*/{
       "arrived": null,
       "departed": null,
       "wrong_studio": null,
-      "dup_studios": null,
+      "dup_studios": [
+        "527"
+      ],
       "start": 18.25,
       "end": 19.0,
       "access_gap": false
@@ -526,8 +528,8 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "heard": false,
-      "arrived": null,
+      "heard": true,
+      "arrived": "12:46",
       "departed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -569,11 +571,29 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Khalid Roach-McLeod",
+      "who": "Ishfaaq Jookhun (C19 salsa",
       "kind": "booking",
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "wrong_studio": null,
+      "dup_studios": [
+        "509A"
+      ],
+      "start": 18.25,
+      "end": 19.0,
+      "access_gap": false
+    },
+    {
+      "studio": "527",
+      "who": "Khalid Roach-McLeod",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -816,18 +836,18 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1787757312442,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Sharon Rupnarian",
+      "time": "12:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787762792694,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509B": {
-      "studio": "509B",
-      "name": "Tess English",
-      "time": "21:12",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1787706735000,
-      "when": "Tue 21:12"
-    },
     "527": {
       "studio": "527",
       "name": "Khalid Roach-McLeod",
@@ -878,9 +898,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T15:09:02+00:00",
+    "updatedAt": "2026-08-26T16:50:03+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 3,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1221,6 +1241,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-26T16:39:07.472473Z",
         "until": "2026-08-26T16:39:15.184455Z"
+      },
+      {
+        "since": "2026-08-26T16:45:07.468870Z",
+        "until": "2026-08-26T16:45:17.994473Z"
+      },
+      {
+        "since": "2026-08-26T16:51:04.103556Z",
+        "until": "2026-08-26T16:51:13.542811Z"
       }
     ],
     "down": false
@@ -1234,7 +1262,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T12:42:00-04:00"
+      "lastISO": "2026-08-26T12:48:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1384,7 +1412,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T12:31:00-04:00"
+      "lastISO": "2026-08-26T12:47:00-04:00"
     },
     {
       "run": "The Closer",
