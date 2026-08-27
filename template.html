@@ -681,7 +681,10 @@ function render(){
     let L, R;
     if (arr!=null){
       const em = Math.round((e.start-arr)*60);
-      L = early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
+      /* `assumed`: the panel was already disarmed at start (tight transition),
+         so the arrival was unobservable — an inference, not a keypad event. */
+      L = e.assumed ? `<span class="a">${e.arrived} in · open</span>`
+        : early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
                 : `<span class="a">${e.arrived} in</span>`;
     } else if (st.flagged && !e.dup_studios) L = `<span class="x">no arrival</span>`;
     else L = `<span>${hm(e.start)}</span>`;

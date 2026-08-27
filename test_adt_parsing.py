@@ -125,6 +125,33 @@ def main():
         {"studio": "509B", "kind": "arrival", "time": "18:04", "remote": True, "name": "Studio (remote)"}])
     fails += check("remote never becomes an arrival", out[0]["arrived"], None)
 
+    # Pass 4 — tight transition: the previous renter's keypad disarm is the
+    # last panel event before start and nobody armed in between, so the next
+    # booking's arrival is unobservable. Assume on-time, marked `assumed`
+    # (2026-08-26: Fabio Hernandez, 509A 20:15, behind Daniel's 19:00-20:00).
+    def bkg(start, end, who="Fabio Hernandez", studio="509A"):
+        return {"studio": studio, "who": who, "kind": "booking", "start": start,
+                "end": end, "tier": None, "gtg": True, "hta": None,
+                "arrived": None, "departed": None}
+    prev_disarm = {"studio": "509A", "kind": "arrival", "time": "19:00",
+                   "remote": False, "name": "Daniel Thevarasalingam"}
+    out = build.apply_arm_events([bkg(20.25, 22.25)], [prev_disarm], now_dec=21.5)
+    fails += check("open studio assumes on-time arrival", out[0]["arrived"], "20:15")
+    fails += check("assumed arrival is marked", out[0].get("assumed"), True)
+    # An arm between the bookings closes the door — no assumption, real flag.
+    out = build.apply_arm_events([bkg(20.25, 22.25)], [prev_disarm,
+        {"studio": "509A", "kind": "departure", "time": "20:05",
+         "remote": False, "name": "Daniel Thevarasalingam"}], now_dec=21.5)
+    fails += check("armed panel keeps no-arrival honest", out[0]["arrived"], None)
+    # A REMOTE disarm proves the panel opened, not that anyone came.
+    out = build.apply_arm_events([bkg(20.25, 22.25)], [
+        {"studio": "509A", "kind": "arrival", "time": "20:10",
+         "remote": True, "name": "Studio (remote)"}], now_dec=21.5)
+    fails += check("remote disarm licenses no assumption", out[0]["arrived"], None)
+    # A booking that has not started yet must never read as "in".
+    out = build.apply_arm_events([bkg(20.25, 22.25)], [prev_disarm], now_dec=20.0)
+    fails += check("no assumption before start", out[0]["arrived"], None)
+
     # Wrong studio: the renter is in the building, in a room they didn't book.
     # Real case 2026-08-07 — Ayden Mauro booked 527 18:00-19:15 and disarmed 693
     # at 17:47, ran the session there, and armed 693 at 18:52, one minute before
@@ -170,7 +197,7 @@ def main():
     # against a weaker source. Its cases lived here; see the tombstone above
     # join_notion() in build.py for why they are not coming back.
 
-    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 13} checks passed")
+    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 18} checks passed")
     return 1 if fails else 0
 
 

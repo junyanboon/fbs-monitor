@@ -1565,7 +1565,7 @@ def _name_match(who, arm_name):
     return bool(a & b)
 
 
-def apply_arm_events(events, arm_events):
+def apply_arm_events(events, arm_events, now_dec=None):
     """Two-pass match, studio + time window [start-60, end+90].
 
     Back-to-back bookings in one studio overlap windows, so pure nearest-time
@@ -1670,6 +1670,50 @@ def apply_arm_events(events, arm_events):
                 e["wrong_studio"] = {"studio": a["studio"], "at": a["time"]}
                 a["claimed"] = True
                 break
+
+    # pass 4 — the studio was already open.
+    #
+    # The panel can only witness an arrival as a DISARM. On a tight transition
+    # the outgoing renter often walks out without arming; the panel stays
+    # disarmed, the incoming renter has nothing to disarm, and their arrival is
+    # physically unobservable — which rendered as a red "no arrival" on someone
+    # standing in the room (2026-08-26: Fabio Hernandez, 509A 20:15, right
+    # behind Daniel's 19:00-20:00). A no-show and an unobservable arrival need
+    # different treatment: only the first is a billing question.
+    #
+    # When the LAST panel-state change at or before start(+grace) in the
+    # booking's studio is a disarm, the door was open when the booking began —
+    # assume an on-time arrival, marked `assumed` so the page renders it as an
+    # inference, never as a measured time. Remote and already-claimed events
+    # count here: panel STATE is what matters, not who caused it. Only bookings
+    # already past start get the assumption — a future booking must not read
+    # as "in".
+    grace = 10 / 60
+    day_frame = lambda t: t + 24 if t < 5 else t   # 01:30 belongs to the day's tail
+    if now_dec is None:                            # injectable for tests
+        _n = datetime.now(TZ)
+        now_dec = day_frame(_n.hour + _n.minute / 60)
+    panel_timed = []
+    for a in arm_events:
+        t = _time_to_decimal(a["time"]) if a.get("time") else None
+        if t is not None:
+            panel_timed.append((a["studio"], day_frame(t), a["kind"], a.get("remote")))
+    for e in events:
+        if e["kind"] != "booking" or e.get("arrived") or e.get("wrong_studio"):
+            continue
+        if now_dec <= e["start"] + grace:
+            continue
+        before = [(t, k, r) for s, t, k, r in panel_timed
+                  if s == e["studio"] and t <= e["start"] + grace]
+        # The deciding event must be a KEYPAD disarm — a human physically in
+        # the room. A remote disarm opens the panel but proves no presence
+        # (canon: never attribute a remote event to a renter), so it never
+        # licenses the assumption — while a remote ARM still blocks it, since
+        # panel state is armed either way.
+        last = max(before) if before else None
+        if last and last[1] == "arrival" and not last[2]:
+            e["arrived"] = f"{int(e['start']) % 24:02d}:{round(e['start'] % 1 * 60):02d}"
+            e["assumed"] = True
     return events
 
 
@@ -2032,6 +2076,9 @@ def prepare_board_events(events):
         # chip — see apply_heard(). No content of any kind crosses.
         "heard": bool(e.get("heard")),
         "arrived": e.get("arrived"), "departed": e.get("departed"),
+        # True when `arrived` is an inference (panel already disarmed at
+        # start — tight transition), not a witnessed disarm. See pass 4.
+        "assumed": bool(e.get("assumed")),
         "wrong_studio": e.get("wrong_studio"),
         "dup_studios": e.get("dup_studios"),
         "start": round(e["start"], 4), "end": round(e["end"], 4),
