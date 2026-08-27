@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 9:30 PM ET",
-  "generatedAtISO": "2026-08-26T21:30:49-04:00",
+  "generatedAt": "Aug 26, 9:45 PM ET",
+  "generatedAtISO": "2026-08-26T21:45:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -481,6 +481,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "10:01",
       "departed": "11:06",
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 10.0,
@@ -497,6 +498,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": "18:08",
       "departed": "19:06",
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.25,
@@ -513,6 +515,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.0,
@@ -529,6 +532,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.25,
@@ -545,6 +549,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "12:46",
       "departed": "13:55",
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 12.5,
@@ -561,6 +566,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "14:59",
       "departed": "16:32",
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 15.0,
@@ -577,6 +583,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "18:18",
       "departed": "20:40",
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.5,
@@ -593,6 +600,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": "19:01",
       "departed": null,
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.25,
@@ -609,6 +617,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": "19:45",
       "departed": null,
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.0,
@@ -624,7 +633,8 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": false,
       "arrived": "18:25",
-      "departed": null,
+      "departed": "21:38",
+      "assumed": false,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.5,
@@ -818,28 +828,20 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Responder — Sharon Rupnarian courtesy reply to PBF (509B, •••)",
+      "code": "T-paid — Valerie Kitchell — Oct 2 and Oct 23",
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Aug 26 · 19:55"
+      "studio": "901",
+      "raised_by": "The Concierge",
+      "created": "Aug 26 · 21:42"
     },
     {
-      "code": "Responder — Megan Cartwright asks where to pay after signing agreement (•••)",
+      "code": "INSURANCE-•••",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 26 · 19:55"
-    },
-    {
-      "code": "Responder — Tamina Pollack-Paris courtesy reply to PBF (509B, •••)",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Aug 26 · 21:24"
+      "raised_by": "AI (automation)",
+      "created": "Aug 26 · 21:44"
     }
   ],
   "attention": [
@@ -990,6 +992,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787791227186,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "21:38",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787794739355,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1021,9 +1032,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-27T00:42:03+00:00",
+    "updatedAt": "2026-08-27T01:40:02+00:00",
     "mailCheck": {
-      "matched": 14,
+      "matched": 15,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1740,6 +1751,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T01:26:10.623460Z",
         "until": "2026-08-27T01:26:25.143157Z"
+      },
+      {
+        "since": "2026-08-27T01:32:07.170283Z",
+        "until": "2026-08-27T01:32:17.626853Z"
+      },
+      {
+        "since": "2026-08-27T01:37:18.191171Z",
+        "until": "2026-08-27T01:37:32.714316Z"
+      },
+      {
+        "since": "2026-08-27T01:43:23.213706Z",
+        "until": "2026-08-27T01:43:29.746492Z"
       }
     ],
     "down": false
@@ -1753,7 +1776,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T21:30:00-04:00"
+      "lastISO": "2026-08-26T21:41:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1873,7 +1896,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T21:08:00-04:00"
+      "lastISO": "2026-08-26T21:39:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1913,7 +1936,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T21:16:00-04:00"
+      "lastISO": "2026-08-26T21:31:00-04:00"
     },
     {
       "run": "The Closer",
@@ -2203,7 +2226,10 @@ function render(){
     let L, R;
     if (arr!=null){
       const em = Math.round((e.start-arr)*60);
-      L = early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
+      /* `assumed`: the panel was already disarmed at start (tight transition),
+         so the arrival was unobservable — an inference, not a keypad event. */
+      L = e.assumed ? `<span class="a">${e.arrived} in · open</span>`
+        : early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
                 : `<span class="a">${e.arrived} in</span>`;
     } else if (st.flagged && !e.dup_studios) L = `<span class="x">no arrival</span>`;
     else L = `<span>${hm(e.start)}</span>`;
