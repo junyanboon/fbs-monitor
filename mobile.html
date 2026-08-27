@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 8:30 PM ET",
-  "generatedAtISO": "2026-08-26T20:30:49-04:00",
+  "generatedAt": "Aug 26, 8:45 PM ET",
+  "generatedAtISO": "2026-08-26T20:45:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -363,7 +363,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": true,
       "arrived": "18:18",
-      "departed": null,
+      "departed": "20:40",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.5,
@@ -760,6 +760,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787787912230,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "20:40",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787791227186,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -791,9 +800,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-26T23:49:03+00:00",
+    "updatedAt": "2026-08-27T00:42:03+00:00",
     "mailCheck": {
-      "matched": 13,
+      "matched": 14,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1470,21 +1479,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T00:29:18.334784Z",
         "until": "2026-08-27T00:29:27.614351Z"
+      },
+      {
+        "since": "2026-08-27T00:35:06.808939Z",
+        "until": "2026-08-27T00:35:15.941376Z"
+      },
+      {
+        "since": "2026-08-27T00:40:18.682747Z",
+        "until": "2026-08-27T00:40:26.945547Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-26T18:26:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1493,7 +1500,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T20:28:00-04:00"
+      "lastISO": "2026-08-26T20:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1534,6 +1541,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T06:03:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T20:36:00-04:00"
     },
     {
       "run": "The Custodian",
