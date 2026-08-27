@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 27, 2026",
-  "generatedAt": "Aug 27, 12:45 AM ET",
-  "generatedAtISO": "2026-08-27T00:45:44-04:00",
+  "generatedAt": "Aug 27, 1:00 AM ET",
+  "generatedAtISO": "2026-08-27T01:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1974,11 +1974,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T04:41:17.013861Z",
         "until": "2026-08-27T04:41:26.442759Z"
+      },
+      {
+        "since": "2026-08-27T04:47:08.284544Z",
+        "until": "2026-08-27T04:47:15.563001Z"
+      },
+      {
+        "since": "2026-08-27T04:53:08.277000Z",
+        "until": "2026-08-27T04:53:21.585883Z"
+      },
+      {
+        "since": "2026-08-27T04:58:17.129655Z",
+        "until": "2026-08-27T04:58:22.420736Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-26T06:03:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1987,7 +2009,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T00:44:00-04:00"
+      "lastISO": "2026-08-27T01:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1997,7 +2019,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T00:00:00-04:00"
+      "lastISO": "2026-08-27T01:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2018,16 +2040,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T04:55:00-04:00"
-    },
-    {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-26T06:03:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -2057,7 +2069,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T23:57:00-04:00"
+      "lastISO": "2026-08-27T01:07:00-04:00"
     },
     {
       "run": "The Planner",
