@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 10:15 PM ET",
-  "generatedAtISO": "2026-08-26T22:15:42-04:00",
+  "generatedAt": "Aug 26, 10:30 PM ET",
+  "generatedAtISO": "2026-08-26T22:30:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -268,7 +268,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "10:01",
       "departed": "11:06",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 10.0,
@@ -285,7 +285,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": "18:08",
       "departed": "19:06",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.25,
@@ -300,9 +300,9 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "heard": false,
-      "arrived": null,
+      "arrived": "19:00",
       "departed": null,
-      "assumed": false,
+      "assumed": "bypass",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.0,
@@ -318,8 +318,8 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": false,
       "arrived": "21:48",
-      "departed": null,
-      "assumed": false,
+      "departed": "22:24",
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.25,
@@ -336,7 +336,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "12:46",
       "departed": "13:55",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 12.5,
@@ -353,7 +353,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "14:59",
       "departed": "16:32",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 15.0,
@@ -370,7 +370,7 @@ const DATA = /*__DATA__*/{
       "heard": true,
       "arrived": "18:18",
       "departed": "20:40",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.5,
@@ -387,7 +387,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": "19:01",
       "departed": "22:14",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 19.25,
@@ -404,7 +404,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": "19:45",
       "departed": "22:09",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 20.0,
@@ -421,7 +421,7 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": "18:25",
       "departed": "21:38",
-      "assumed": false,
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.5,
@@ -615,22 +615,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "T-paid — Valerie Kitchell — Oct 2 and Oct 23",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Concierge",
-      "created": "Aug 26 · 21:42"
-    },
-    {
-      "code": "Responder — David Diep move Thu Aug 27 + Fri Aug 28 to 6:30 PM (509B) — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 26 · 21:55"
-    },
-    {
       "code": "KEEGAN-CONTRACT-•••aea4f4",
       "channel": "Email",
       "status": "Pending Review",
@@ -653,6 +637,14 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "AI (automation)",
       "created": "Aug 26 · 22:08"
+    },
+    {
+      "code": "Concierge — Annie Ng post-HTA good-to-go confirmation (509A, returning 509 renter) — •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Concierge",
+      "created": "Aug 26 · 22:21"
     }
   ],
   "attention": [
@@ -843,6 +835,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787796843747,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Fabio Hernandez",
+      "time": "22:24",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787797479302,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -881,9 +882,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-27T02:13:01+00:00",
+    "updatedAt": "2026-08-27T02:29:02+00:00",
     "mailCheck": {
-      "matched": 19,
+      "matched": 20,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1632,11 +1633,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T02:11:13.895555Z",
         "until": "2026-08-27T02:11:23.326980Z"
+      },
+      {
+        "since": "2026-08-27T02:17:07.411903Z",
+        "until": "2026-08-27T02:17:20.910676Z"
+      },
+      {
+        "since": "2026-08-27T02:23:13.910750Z",
+        "until": "2026-08-27T02:23:28.382864Z"
+      },
+      {
+        "since": "2026-08-27T02:29:14.177900Z",
+        "until": "2026-08-27T02:29:28.707916Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-26T20:36:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1645,7 +1668,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T22:15:00-04:00"
+      "lastISO": "2026-08-26T22:31:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1665,7 +1688,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T22:07:00-04:00"
+      "lastISO": "2026-08-26T22:24:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1686,16 +1709,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T06:03:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-26T20:36:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1755,7 +1768,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T22:05:00-04:00"
+      "lastISO": "2026-08-26T22:24:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1805,7 +1818,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T22:01:00-04:00"
+      "lastISO": "2026-08-26T22:16:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1932,7 +1945,7 @@ function tlHTML(e,st,n){
   let L,R;
   if(arr!=null){
     const em=Math.round((e.start-arr)*60);
-    L=e.assumed?`<span class="a">${e.arrived} in · open</span>`
+    L=e.assumed?`<span class="w">${e.arrived} in · ${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`
       :early?`<span class="w">${e.arrived} in · ${em}m early</span>`:`<span class="a">${e.arrived} in</span>`;
   }else if(st.flagged&&!e.dup_studios)L=`<span class="x">no arrival</span>`;
   else L=`<span>${hm(e.start)}</span>`;
