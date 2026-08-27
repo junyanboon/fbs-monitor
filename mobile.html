@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 9:45 PM ET",
-  "generatedAtISO": "2026-08-26T21:45:45-04:00",
+  "generatedAt": "Aug 26, 10:00 PM ET",
+  "generatedAtISO": "2026-08-26T22:00:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -317,7 +317,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "21:48",
       "departed": null,
       "assumed": false,
       "wrong_studio": null,
@@ -623,12 +623,28 @@ const DATA = /*__DATA__*/{
       "created": "Aug 26 · 21:42"
     },
     {
-      "code": "INSURANCE-•••",
+      "code": "Responder — David Diep move Thu Aug 27 + Fri Aug 28 to 6:30 PM (509B) — •••",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 26 · 21:55"
+    },
+    {
+      "code": "KEEGAN-CONTRACT-•••aea4f4",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
       "raised_by": "AI (automation)",
-      "created": "Aug 26 · 21:44"
+      "created": "Aug 26 · 21:58"
+    },
+    {
+      "code": "YTC-DATESHIFT-••••-1b775032",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "AI (automation)",
+      "created": "Aug 26 · 22:01"
     }
   ],
   "attention": [
@@ -643,6 +659,10 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "Alarm bypass · 509A · 19:07"
+    },
+    {
+      "level": "warn",
+      "text": "Alarm bypass · 509A · 21:48"
     }
   ],
   "armEvents": [
@@ -788,6 +808,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787794739355,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Fabio Hernandez",
+      "time": "21:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787795315490,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -812,6 +841,13 @@ const DATA = /*__DATA__*/{
       "stage": "BYPASS",
       "detail": "Sensor bypass",
       "ts": 1787785666000
+    },
+    {
+      "studio": "509A",
+      "time": "21:48",
+      "stage": "BYPASS",
+      "detail": "Sensor bypass",
+      "ts": 1787795320000
     }
   ],
   "armFallback": false,
@@ -819,9 +855,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-27T01:40:02+00:00",
+    "updatedAt": "2026-08-27T01:52:01+00:00",
     "mailCheck": {
-      "matched": 15,
+      "matched": 16,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1550,6 +1586,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T01:43:23.213706Z",
         "until": "2026-08-27T01:43:29.746492Z"
+      },
+      {
+        "since": "2026-08-27T01:49:07.639632Z",
+        "until": "2026-08-27T01:49:17.831035Z"
+      },
+      {
+        "since": "2026-08-27T01:55:14.208571Z",
+        "until": "2026-08-27T01:55:20.233610Z"
+      },
+      {
+        "since": "2026-08-27T02:00:23.156411Z",
+        "until": "2026-08-27T02:00:37.526931Z"
       }
     ],
     "down": false
@@ -1563,7 +1611,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T21:41:00-04:00"
+      "lastISO": "2026-08-26T21:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1573,7 +1621,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T21:00:00-04:00"
+      "lastISO": "2026-08-26T22:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1653,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T20:58:00-04:00"
+      "lastISO": "2026-08-26T21:57:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1673,7 +1721,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T21:26:00-04:00"
+      "lastISO": "2026-08-26T22:05:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1723,7 +1771,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T21:31:00-04:00"
+      "lastISO": "2026-08-26T21:46:00-04:00"
     },
     {
       "run": "The Closer",
