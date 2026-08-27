@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 27, 2026",
-  "generatedAt": "Aug 27, 6:15 PM ET",
-  "generatedAtISO": "2026-08-27T18:15:45-04:00",
+  "generatedAt": "Aug 27, 6:30 PM ET",
+  "generatedAtISO": "2026-08-27T18:30:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -300,7 +300,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:16",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -317,7 +317,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:20",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -334,7 +334,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:22",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -349,7 +349,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": "Unsent",
+      "hta": "Sent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -368,7 +368,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "heard": true,
-      "arrived": null,
+      "arrived": "18:27",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -385,7 +385,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:26",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -515,6 +515,22 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "Correction — Raquel Khan 527 Aug 27 weekday + GTG prompt",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Concierge",
+      "created": "Aug 27 · 18:18"
+    },
+    {
+      "code": "T1 — sandra lewis [Tagvenue] 527 weekly meditation enquiry",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Concierge",
+      "created": "Aug 27 · 18:28"
+    },
+    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -612,49 +628,63 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1787867386130,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Anita Pandey",
+      "time": "18:16",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787869018552,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "18:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787869223842,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "KellyAnn Johnson",
+      "time": "18:22",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787869334580,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Dana Brookman",
+      "time": "18:26",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787869583781,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Kim M.",
+      "time": "18:27",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787869663689,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Tess English",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "20:40",
-      "ts": 1787791227186,
-      "when": "Wed 20:40"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Angus Dirnbeck",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "22:09",
-      "ts": 1787796562482,
-      "when": "Wed 22:09"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Anita Pandey",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "21:38",
-      "ts": 1787794739355,
-      "when": "Wed 21:38"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-27T21:55:02+00:00",
+    "updatedAt": "2026-08-27T22:27:02+00:00",
     "mailCheck": {
-      "matched": 0,
+      "matched": 1,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1219,11 +1249,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T22:13:53.795691Z",
         "until": "2026-08-27T22:14:07.246689Z"
+      },
+      {
+        "since": "2026-08-27T22:19:42.953879Z",
+        "until": "2026-08-27T22:19:51.703129Z"
+      },
+      {
+        "since": "2026-08-27T22:25:42.895848Z",
+        "until": "2026-08-27T22:25:50.394257Z"
+      },
+      {
+        "since": "2026-08-27T22:30:46.485855Z",
+        "until": "2026-08-27T22:30:57.908391Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-27T16:32:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1242,7 +1294,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T18:11:00-04:00"
+      "lastISO": "2026-08-27T18:27:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1283,16 +1335,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-27T06:06:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-27T16:32:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1342,7 +1384,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T17:58:00-04:00"
+      "lastISO": "2026-08-27T18:31:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1382,7 +1424,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T17:10:00-04:00"
+      "lastISO": "2026-08-27T18:14:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1392,7 +1434,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T18:01:00-04:00"
+      "lastISO": "2026-08-27T18:16:00-04:00"
     },
     {
       "run": "The Closer",
