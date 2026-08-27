@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Wednesday, August 26, 2026",
-  "generatedAt": "Aug 26, 10:30 PM ET",
-  "generatedAtISO": "2026-08-26T22:30:55-04:00",
+  "generatedAt": "Aug 26, 10:45 PM ET",
+  "generatedAtISO": "2026-08-26T22:45:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -615,36 +615,12 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "KEEGAN-CONTRACT-•••aea4f4",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Aug 26 · 21:58"
-    },
-    {
       "code": "Megan Cartwright — Template 223 rental agreement + bookings attached",
       "channel": "Email",
       "status": "Pending Review",
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Aug 26 · 22:05"
-    },
-    {
-      "code": "DIEP-MOVE-•••ad17",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Aug 26 · 22:08"
-    },
-    {
-      "code": "Concierge — Annie Ng post-HTA good-to-go confirmation (509A, returning 509 renter) — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Concierge",
-      "created": "Aug 26 · 22:21"
     }
   ],
   "attention": [
@@ -1645,21 +1621,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T02:29:14.177900Z",
         "until": "2026-08-27T02:29:28.707916Z"
+      },
+      {
+        "since": "2026-08-27T02:34:23.377342Z",
+        "until": "2026-08-27T02:34:32.844595Z"
+      },
+      {
+        "since": "2026-08-27T02:40:23.053352Z",
+        "until": "2026-08-27T02:40:31.552231Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-26T20:36:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1668,7 +1642,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T22:31:00-04:00"
+      "lastISO": "2026-08-26T22:41:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1709,6 +1683,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T06:03:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-26T22:45:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1818,7 +1802,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-26T22:16:00-04:00"
+      "lastISO": "2026-08-26T22:31:00-04:00"
     },
     {
       "run": "The Closer",
