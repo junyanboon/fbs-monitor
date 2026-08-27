@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 27, 2026",
-  "generatedAt": "Aug 27, 1:00 AM ET",
-  "generatedAtISO": "2026-08-27T01:00:50-04:00",
+  "generatedAt": "Aug 27, 1:15 AM ET",
+  "generatedAtISO": "2026-08-27T01:15:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1986,6 +1986,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T04:58:17.129655Z",
         "until": "2026-08-27T04:58:22.420736Z"
+      },
+      {
+        "since": "2026-08-27T05:04:08.369601Z",
+        "until": "2026-08-27T05:04:19.865832Z"
+      },
+      {
+        "since": "2026-08-27T05:09:22.878464Z",
+        "until": "2026-08-27T05:09:31.620893Z"
+      },
+      {
+        "since": "2026-08-27T05:15:17.166178Z",
+        "until": "2026-08-27T05:15:31.433175Z"
       }
     ],
     "down": false
@@ -2002,6 +2014,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-26T06:03:00-04:00"
     },
     {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "08:00 (cloud)",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-26T06:22:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2009,7 +2031,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T01:00:00-04:00"
+      "lastISO": "2026-08-27T01:12:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2029,7 +2051,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T00:07:00-04:00"
+      "lastISO": "2026-08-27T01:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2040,16 +2062,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-26T04:55:00-04:00"
-    },
-    {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "08:00 (cloud)",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-26T06:22:00-04:00"
     },
     {
       "run": "The Host",
