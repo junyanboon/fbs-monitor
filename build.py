@@ -1565,7 +1565,7 @@ def _name_match(who, arm_name):
     return bool(a & b)
 
 
-def apply_arm_events(events, arm_events, now_dec=None):
+def apply_arm_events(events, arm_events, now_dec=None, alerts=None):
     """Two-pass match, studio + time window [start-60, end+90].
 
     Back-to-back bookings in one studio overlap windows, so pure nearest-time
@@ -1688,6 +1688,14 @@ def apply_arm_events(events, arm_events, now_dec=None):
     # count here: panel STATE is what matters, not who caused it. Only bookings
     # already past start get the assumption — a future booking must not read
     # as "in".
+    # A second unobservable shape, found the same night: the outgoing renter
+    # arms WITH THE DOOR SENSOR BYPASSED (2026-08-26: Ishfaaq armed 509A 19:06,
+    # "Door was bypassed at 7:07 PM"), so the next renter opens the door
+    # without tripping the panel and never needs the keypad. Armed panel, no
+    # disarm, someone inside. `assumed` therefore carries the REASON — "open"
+    # (nobody armed) or "bypass" (armed around a sensor) — and the pages render
+    # both as an amber warning: an arrival we inferred because the alarm was
+    # not used correctly, never a clean measured time.
     grace = 10 / 60
     day_frame = lambda t: t + 24 if t < 5 else t   # 01:30 belongs to the day's tail
     if now_dec is None:                            # injectable for tests
@@ -1698,6 +1706,12 @@ def apply_arm_events(events, arm_events, now_dec=None):
         t = _time_to_decimal(a["time"]) if a.get("time") else None
         if t is not None:
             panel_timed.append((a["studio"], day_frame(t), a["kind"], a.get("remote")))
+    bypasses = []
+    for b in (alerts or []):
+        if b.get("stage") == "BYPASS":
+            t = _time_to_decimal(b.get("time")) if b.get("time") else None
+            if t is not None:
+                bypasses.append((b["studio"], day_frame(t)))
     for e in events:
         if e["kind"] != "booking" or e.get("arrived") or e.get("wrong_studio"):
             continue
@@ -1711,9 +1725,20 @@ def apply_arm_events(events, arm_events, now_dec=None):
         # licenses the assumption — while a remote ARM still blocks it, since
         # panel state is armed either way.
         last = max(before) if before else None
+        reason = None
         if last and last[1] == "arrival" and not last[2]:
+            reason = "open"
+        elif last and last[1] == "departure":
+            # Armed, but with the door bypassed at/after the arming (the notice
+            # trails the arm email by a minute) and before this booking began:
+            # the door opens silently, so the disarm this pass waits for can
+            # never come.
+            if any(s == e["studio"] and last[0] - grace <= t <= e["start"] + grace
+                   for s, t in bypasses):
+                reason = "bypass"
+        if reason:
             e["arrived"] = f"{int(e['start']) % 24:02d}:{round(e['start'] % 1 * 60):02d}"
-            e["assumed"] = True
+            e["assumed"] = reason
     return events
 
 
@@ -2076,9 +2101,10 @@ def prepare_board_events(events):
         # chip — see apply_heard(). No content of any kind crosses.
         "heard": bool(e.get("heard")),
         "arrived": e.get("arrived"), "departed": e.get("departed"),
-        # True when `arrived` is an inference (panel already disarmed at
-        # start — tight transition), not a witnessed disarm. See pass 4.
-        "assumed": bool(e.get("assumed")),
+        # Truthy when `arrived` is an inference, not a witnessed disarm —
+        # carries the reason: "open" (nobody armed after the previous renter)
+        # or "bypass" (armed with the door sensor bypassed). See pass 4.
+        "assumed": e.get("assumed"),
         "wrong_studio": e.get("wrong_studio"),
         "dup_studios": e.get("dup_studios"),
         "start": round(e["start"], 4), "end": round(e["end"], 4),
@@ -2219,11 +2245,11 @@ def build_data(now):
         arm_events = sorted(door_events + backstop, key=lambda e: e.get("ts") or 0)
         if mail_events:
             arm_events = enrich_arm_names(arm_events, mail_events)
-        events = apply_arm_events(events, arm_events)
+        events = apply_arm_events(events, arm_events, alerts=alarm_alerts)
     elif panel_events or mail_events:
         arm_events = (enrich_arm_names(panel_events, mail_events)
                       if panel_events else mail_events)
-        events = apply_arm_events(events, arm_events)
+        events = apply_arm_events(events, arm_events, alerts=alarm_alerts)
     else:
         # Nothing answered. The board's own Armed/Disarmed columns are a weaker
         # record (one row per studio, no actor) but they are a record.

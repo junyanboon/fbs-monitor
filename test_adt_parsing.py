@@ -137,7 +137,23 @@ def main():
                    "remote": False, "name": "Daniel Thevarasalingam"}
     out = build.apply_arm_events([bkg(20.25, 22.25)], [prev_disarm], now_dec=21.5)
     fails += check("open studio assumes on-time arrival", out[0]["arrived"], "20:15")
-    fails += check("assumed arrival is marked", out[0].get("assumed"), True)
+    fails += check("assumed arrival carries the reason", out[0].get("assumed"), "open")
+    # Armed WITH the door bypassed (2026-08-26: Ishfaaq armed 509A 19:06, door
+    # bypassed 19:07) — the next renter opens the door silently, so an armed
+    # panel plus a bypass in the gap still means an unobservable arrival.
+    armed = {"studio": "509A", "kind": "departure", "time": "19:06",
+             "remote": False, "name": "Ishfaaq Jookhun"}
+    out = build.apply_arm_events([bkg(20.25, 22.25)], [armed], now_dec=21.5,
+                                 alerts=[{"studio": "509A", "time": "19:07", "stage": "BYPASS"}])
+    fails += check("bypassed door assumes arrival", out[0]["arrived"], "20:15")
+    fails += check("bypass reason is carried", out[0].get("assumed"), "bypass")
+    # Armed cleanly, no bypass — the honest flag stays.
+    out = build.apply_arm_events([bkg(20.25, 22.25)], [armed], now_dec=21.5, alerts=[])
+    fails += check("clean arm still flags no-arrival", out[0]["arrived"], None)
+    # A bypass on some OTHER studio licenses nothing here.
+    out = build.apply_arm_events([bkg(20.25, 22.25)], [armed], now_dec=21.5,
+                                 alerts=[{"studio": "693", "time": "19:07", "stage": "BYPASS"}])
+    fails += check("foreign bypass licenses nothing", out[0]["arrived"], None)
     # An arm between the bookings closes the door — no assumption, real flag.
     out = build.apply_arm_events([bkg(20.25, 22.25)], [prev_disarm,
         {"studio": "509A", "kind": "departure", "time": "20:05",
@@ -197,7 +213,7 @@ def main():
     # against a weaker source. Its cases lived here; see the tombstone above
     # join_notion() in build.py for why they are not coming back.
 
-    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 18} checks passed")
+    print("FAILED" if fails else f"ok — {len(ARM_CASES) + len(ALERT_CASES) + 22} checks passed")
     return 1 if fails else 0
 
 
