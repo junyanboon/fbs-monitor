@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 27, 2026",
-  "generatedAt": "Aug 27, 7:30 PM ET",
-  "generatedAtISO": "2026-08-27T19:30:48-04:00",
+  "generatedAt": "Aug 27, 7:45 PM ET",
+  "generatedAtISO": "2026-08-27T19:45:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -335,7 +335,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "heard": false,
       "arrived": "18:22",
-      "departed": null,
+      "departed": "19:37",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -481,6 +481,46 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 9.25,
+      "end": 9.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 10.75,
+      "end": 11.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 11.75,
+      "end": 12.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 11.75,
+      "end": 12.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 12.75,
+      "end": 13.25,
+      "day": "Tomorrow"
+    },
+    {
       "role": "FBS",
       "studio": "509B",
       "day_offset": 1,
@@ -489,11 +529,35 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 15.0,
+      "end": 15.5,
+      "day": "Tomorrow"
+    },
+    {
       "role": "FBS",
       "studio": "509B",
       "day_offset": 1,
       "start": 15.25,
       "end": 15.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 17.75,
+      "end": 18.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 18.75,
+      "end": 19.25,
       "day": "Tomorrow"
     },
     {
@@ -511,6 +575,54 @@ const DATA = /*__DATA__*/{
       "start": 19.75,
       "end": 20.25,
       "day": "Sat Aug 29"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 3,
+      "start": 13.75,
+      "end": 14.25,
+      "day": "Sun Aug 30"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 3,
+      "start": 16.75,
+      "end": 17.25,
+      "day": "Sun Aug 30"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 3,
+      "start": 18.25,
+      "end": 18.75,
+      "day": "Sun Aug 30"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 3,
+      "start": 19.5,
+      "end": 20.0,
+      "day": "Sun Aug 30"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 3,
+      "start": 20.25,
+      "end": 20.75,
+      "day": "Sun Aug 30"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 3,
+      "start": 23.75,
+      "end": 24.25,
+      "day": "Sun Aug 30"
     }
   ],
   "messages": [
@@ -665,6 +777,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787869663689,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "KellyAnn Johnson",
+      "time": "19:37",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787873846202,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -674,9 +795,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-27T22:33:04+00:00",
+    "updatedAt": "2026-08-27T23:41:02+00:00",
     "mailCheck": {
-      "matched": 1,
+      "matched": 2,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1293,21 +1414,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-27T23:27:10.917282Z",
         "until": "2026-08-27T23:27:21.023632Z"
+      },
+      {
+        "since": "2026-08-27T23:32:46.778521Z",
+        "until": "2026-08-27T23:33:01.544634Z"
+      },
+      {
+        "since": "2026-08-27T23:38:54.315427Z",
+        "until": "2026-08-27T23:39:03.756298Z"
+      },
+      {
+        "since": "2026-08-27T23:44:54.565054Z",
+        "until": "2026-08-27T23:45:07.955816Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-26T19:47:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1316,7 +1439,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T19:28:00-04:00"
+      "lastISO": "2026-08-27T19:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1409,6 +1532,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T19:02:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-27T19:44:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -1466,7 +1599,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T19:15:00-04:00"
+      "lastISO": "2026-08-27T19:31:00-04:00"
     },
     {
       "run": "The Closer",
