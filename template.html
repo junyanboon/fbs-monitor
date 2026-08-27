@@ -685,7 +685,7 @@ function render(){
          correctly — so this is an inference, not a keypad event. Amber, with
          the reason: "open" = nobody armed after the previous renter;
          "bypass" = armed with the door sensor bypassed. */
-      L = e.assumed ? `<span class="w">${e.arrived} in · assumed — ${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`
+      L = e.assumed ? `<span class="w">${e.arrived} in · ${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`
         : early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
                 : `<span class="a">${e.arrived} in</span>`;
     } else if (st.flagged && !e.dup_studios) L = `<span class="x">no arrival</span>`;
