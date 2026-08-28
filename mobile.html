@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 8:30 AM ET",
-  "generatedAtISO": "2026-08-28T08:30:55-04:00",
+  "generatedAt": "Aug 28, 8:45 AM ET",
+  "generatedAtISO": "2026-08-28T08:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -751,7 +751,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -970,6 +970,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T12:28:58.987925Z",
         "until": "2026-08-28T12:29:01.600085Z"
+      },
+      {
+        "since": "2026-08-28T12:34:30.590569Z",
+        "until": "2026-08-28T12:34:44.082108Z"
+      },
+      {
+        "since": "2026-08-28T12:40:30.607081Z",
+        "until": "2026-08-28T12:40:36.334855Z"
       }
     ],
     "down": false
@@ -986,6 +994,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T22:50:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-28T07:02:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
@@ -996,23 +1014,13 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T22:54:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-28T07:02:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly · 07–23",
       "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-28T07:09:00-04:00"
     },
     {
@@ -1023,7 +1031,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T08:29:00-04:00"
+      "lastISO": "2026-08-28T08:45:00-04:00"
     },
     {
       "run": "QA release check",
