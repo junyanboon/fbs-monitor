@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 3:15 PM ET",
-  "generatedAtISO": "2026-08-28T15:15:44-04:00",
+  "generatedAt": "Aug 28, 3:30 PM ET",
+  "generatedAtISO": "2026-08-28T15:30:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -284,7 +284,7 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "heard": false,
       "arrived": "13:42",
-      "departed": null,
+      "departed": "15:18",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -830,6 +830,42 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787944470425,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Junyan Boon",
+      "time": "15:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787944589690,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Junyan Boon",
+      "time": "15:17",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787944649319,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "15:30",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787945417941,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "15:30",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787945421678,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -839,7 +875,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T19:15:13+00:00",
+    "updatedAt": "2026-08-28T19:21:03+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1290,6 +1326,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T19:12:41.570799Z",
         "until": "2026-08-28T19:12:52.036210Z"
+      },
+      {
+        "since": "2026-08-28T19:15:48.486328Z",
+        "until": "2026-08-28T19:16:05.778367Z"
+      },
+      {
+        "since": "2026-08-28T19:21:53.882333Z",
+        "until": "2026-08-28T19:22:00.636012Z"
+      },
+      {
+        "since": "2026-08-28T19:27:33.077197Z",
+        "until": "2026-08-28T19:27:42.457814Z"
       }
     ],
     "down": false
@@ -1336,6 +1384,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T19:44:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-28T14:10:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1343,7 +1401,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T15:14:00-04:00"
+      "lastISO": "2026-08-28T15:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1416,16 +1474,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T04:36:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-28T14:10:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1463,7 +1511,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T15:01:00-04:00"
+      "lastISO": "2026-08-28T15:31:00-04:00"
     },
     {
       "run": "The Closer",
