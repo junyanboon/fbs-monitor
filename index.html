@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 9:30 AM ET",
-  "generatedAtISO": "2026-08-28T09:30:54-04:00",
+  "generatedAt": "Aug 28, 9:45 AM ET",
+  "generatedAtISO": "2026-08-28T09:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -564,7 +564,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "heard": false,
-      "arrived": null,
+      "arrived": "09:36",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -801,14 +801,6 @@ const DATA = /*__DATA__*/{
       "created": "Aug 27 · 18:28"
     },
     {
-      "code": "PBF — Kelly-Ann Johnson •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Responder",
-      "created": "Aug 27 · 19:53"
-    },
-    {
       "code": "FOLLOWUP-JILLIA-NOV-INTENSIVE-••••",
       "channel": "SMS",
       "status": "Pending Review",
@@ -960,6 +952,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787923801000,
       "source": "panel"
+    },
+    {
+      "studio": "693",
+      "name": "Adalia Knight",
+      "time": "09:36",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787924189357,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -983,16 +984,6 @@ const DATA = /*__DATA__*/{
       "ts": 1787890421190,
       "when": "Fri 00:13"
     },
-    "693": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "23:17",
-      "ts": 1787887029969,
-      "when": "Thu 23:17"
-    },
     "901": {
       "kind": "departure",
       "name": "Dana Brookman",
@@ -1008,9 +999,9 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
-    "mail": "failed",
+    "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T13:30:01+00:00",
+    "updatedAt": "2026-08-28T13:41:02+00:00",
     "doorGaps": [
       {
         "since": "2026-08-28T09:03:41.803334Z",
@@ -1211,6 +1202,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T13:29:59.415290Z",
         "until": "2026-08-28T13:30:10.723889Z"
+      },
+      {
+        "since": "2026-08-28T13:35:41.412263Z",
+        "until": "2026-08-28T13:35:51.136081Z"
+      },
+      {
+        "since": "2026-08-28T13:41:09.453277Z",
+        "until": "2026-08-28T13:41:21.896608Z"
       }
     ],
     "down": false
@@ -1264,7 +1263,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T09:28:00-04:00"
+      "lastISO": "2026-08-28T09:45:00-04:00"
     },
     {
       "run": "QA release check",
