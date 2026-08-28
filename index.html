@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 5:30 PM ET",
-  "generatedAtISO": "2026-08-28T17:30:50-04:00",
+  "generatedAt": "Aug 28, 5:45 PM ET",
+  "generatedAtISO": "2026-08-28T17:45:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -512,7 +512,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Unsent",
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -681,7 +681,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -689,7 +689,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -829,7 +829,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1640,6 +1640,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T21:27:18.232455Z",
         "until": "2026-08-28T21:27:27.732537Z"
+      },
+      {
+        "since": "2026-08-28T21:33:13.896345Z",
+        "until": "2026-08-28T21:33:24.600749Z"
+      },
+      {
+        "since": "2026-08-28T21:39:18.290093Z",
+        "until": "2026-08-28T21:39:24.689438Z"
+      },
+      {
+        "since": "2026-08-28T21:45:18.245426Z",
+        "until": "2026-08-28T21:45:26.677542Z"
       }
     ],
     "down": false
@@ -1654,16 +1666,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T10:14:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (Codex fallback; Claude cloud down)",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T14:08:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1703,7 +1705,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:31:00-04:00"
+      "lastISO": "2026-08-28T17:43:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1776,6 +1778,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T04:36:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (Codex fallback; Claude cloud down)",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T17:30:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1813,7 +1825,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:16:00-04:00"
+      "lastISO": "2026-08-28T17:31:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1828,11 +1840,11 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Morning Text",
       "cadence": "Daily",
-      "expected": "08:45 America/Toronto · always sends one owner SMS",
-      "produces": "≤480-character overnight digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
+      "expected": "08:45 America/Toronto · owner SMS activation awaiting explicit recurring-send authorization",
+      "produces": "Digest-only until recurring owner-SMS authority is accepted by the scheduler",
+      "monitoring": "Not reporting",
       "status": "plain",
-      "statusLabel": "Off-hours",
+      "statusLabel": "Not reporting",
       "lastISO": null
     },
     {
