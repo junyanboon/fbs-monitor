@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 6:00 PM ET",
-  "generatedAtISO": "2026-08-28T18:00:55-04:00",
+  "generatedAt": "Aug 28, 6:15 PM ET",
+  "generatedAtISO": "2026-08-28T18:15:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -402,7 +402,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "heard": true,
-      "arrived": null,
+      "arrived": "18:04",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -468,7 +468,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -476,7 +476,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -597,14 +597,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "CC — Anita Shack cleanliness acknowledgement •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 28 · 17:29"
-    },
-    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -616,7 +608,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -871,6 +863,15 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1787946254421,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Jennifer Lee",
+      "time": "18:04",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787954677326,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -880,7 +881,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T19:41:05+00:00",
+    "updatedAt": "2026-08-28T22:05:06+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1447,11 +1448,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T21:56:41.246580Z",
         "until": "2026-08-28T21:56:55.542782Z"
+      },
+      {
+        "since": "2026-08-28T22:01:54.779096Z",
+        "until": "2026-08-28T22:02:08.232851Z"
+      },
+      {
+        "since": "2026-08-28T22:07:16.441770Z",
+        "until": "2026-08-28T22:07:28.936476Z"
+      },
+      {
+        "since": "2026-08-28T22:13:14.094850Z",
+        "until": "2026-08-28T22:13:28.558766Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 Toronto (Codex fallback; Claude cloud down)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-28T12:06:00-04:00"
+    },
     {
       "run": "The Mechanic",
       "cadence": "Hourly",
@@ -1500,7 +1523,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:00:00-04:00"
+      "lastISO": "2026-08-28T18:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1520,7 +1543,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:07:00-04:00"
+      "lastISO": "2026-08-28T18:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1541,16 +1564,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-28T06:13:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 Toronto (Codex fallback; Claude cloud down)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:18:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1620,7 +1633,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:46:00-04:00"
+      "lastISO": "2026-08-28T18:01:00-04:00"
     },
     {
       "run": "The Closer",
