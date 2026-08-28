@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 2:30 PM ET",
-  "generatedAtISO": "2026-08-28T14:30:51-04:00",
+  "generatedAt": "Aug 28, 2:45 PM ET",
+  "generatedAtISO": "2026-08-28T14:45:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -664,7 +664,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -672,7 +672,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -979,27 +979,31 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787940607947,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Junyan Boon",
+      "time": "14:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787941960976,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "527": {
-      "kind": "departure",
-      "name": "Raquel Khan",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "00:13",
-      "ts": 1787890421190,
-      "when": "Fri 00:13"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T18:07:10+00:00",
+    "updatedAt": "2026-08-28T18:38:07+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-08-28T09:03:41.803334Z",
@@ -1412,6 +1416,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T18:27:41.629127Z",
         "until": "2026-08-28T18:27:47.071144Z"
+      },
+      {
+        "since": "2026-08-28T18:33:18.571227Z",
+        "until": "2026-08-28T18:33:28.010703Z"
+      },
+      {
+        "since": "2026-08-28T18:39:18.586879Z",
+        "until": "2026-08-28T18:39:26.001335Z"
+      },
+      {
+        "since": "2026-08-28T18:45:18.534530Z",
+        "until": "2026-08-28T18:45:24.016504Z"
       }
     ],
     "down": false
@@ -1465,7 +1481,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T14:29:00-04:00"
+      "lastISO": "2026-08-28T14:41:00-04:00"
     },
     {
       "run": "QA release check",
