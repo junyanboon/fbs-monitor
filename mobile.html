@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 9:15 AM ET",
-  "generatedAtISO": "2026-08-28T09:15:46-04:00",
+  "generatedAt": "Aug 28, 9:30 AM ET",
+  "generatedAtISO": "2026-08-28T09:30:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -266,7 +266,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "09:30",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -367,7 +367,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -738,18 +738,18 @@ const DATA = /*__DATA__*/{
       "text": "4 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
+  "armEvents": [
+    {
       "studio": "509A",
-      "time": "23:46",
-      "ts": 1787888793930,
-      "when": "Thu 23:46"
-    },
+      "name": "",
+      "time": "09:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787923801000,
+      "source": "panel"
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "kind": "departure",
       "name": "Stefan Lovecchio",
@@ -792,12 +792,12 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
-    "mail": "ok",
+    "mail": "failed",
     "doors": "ok",
-    "updatedAt": "2026-08-28T04:19:01+00:00",
+    "updatedAt": "2026-08-28T13:30:01+00:00",
     "doorGaps": [
       {
         "since": "2026-08-28T09:03:41.803334Z",
@@ -986,6 +986,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T13:13:09.501215Z",
         "until": "2026-08-28T13:13:20.155434Z"
+      },
+      {
+        "since": "2026-08-28T13:18:17.036100Z",
+        "until": "2026-08-28T13:18:22.381361Z"
+      },
+      {
+        "since": "2026-08-28T13:23:59.386955Z",
+        "until": "2026-08-28T13:24:09.676555Z"
+      },
+      {
+        "since": "2026-08-28T13:29:59.415290Z",
+        "until": "2026-08-28T13:30:10.723889Z"
       }
     ],
     "down": false
@@ -1039,7 +1051,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T09:12:00-04:00"
+      "lastISO": "2026-08-28T09:28:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1159,7 +1171,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T09:01:00-04:00"
+      "lastISO": "2026-08-28T09:31:00-04:00"
     },
     {
       "run": "The Closer",
