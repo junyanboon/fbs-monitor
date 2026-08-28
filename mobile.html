@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 7:30 AM ET",
-  "generatedAtISO": "2026-08-28T07:30:10-04:00",
+  "generatedAt": "Aug 28, 8:00 AM ET",
+  "generatedAtISO": "2026-08-28T08:00:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -422,6 +422,12 @@ const DATA = /*__DATA__*/{
     {
       "name": "Ela",
       "role": "FBS",
+      "start": 12.75,
+      "end": 13.25
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
       "start": 13.75,
       "end": 14.25
     }
@@ -445,7 +451,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -453,7 +459,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -689,14 +695,6 @@ const DATA = /*__DATA__*/{
       "code": "AVA",
       "channel": "SMS",
       "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Host",
-      "created": "Aug 28 · 04:21"
-    },
-    {
-      "code": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
       "studio": "901",
       "raised_by": "The Host",
       "created": "Aug 28 · 04:21"
@@ -750,7 +748,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 28 · 04:21"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "3 robots overdue — see Robots tab"
+    }
+  ],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -923,11 +926,61 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T11:28:41.827082Z",
         "until": "2026-08-28T11:28:55.305756Z"
+      },
+      {
+        "since": "2026-08-28T11:34:09.630140Z",
+        "until": "2026-08-28T11:34:23.347652Z"
+      },
+      {
+        "since": "2026-08-28T11:39:17.519182Z",
+        "until": "2026-08-28T11:39:28.933188Z"
+      },
+      {
+        "since": "2026-08-28T11:44:58.755016Z",
+        "until": "2026-08-28T11:45:07.194200Z"
+      },
+      {
+        "since": "2026-08-28T11:50:17.552289Z",
+        "until": "2026-08-28T11:50:26.973878Z"
+      },
+      {
+        "since": "2026-08-28T11:55:58.805812Z",
+        "until": "2026-08-28T11:56:12.325667Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-27T22:50:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-27T22:54:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-27T22:46:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -936,7 +989,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T07:29:00-04:00"
+      "lastISO": "2026-08-28T07:59:00-04:00"
     },
     {
       "run": "QA release check",
@@ -946,7 +999,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T07:00:00-04:00"
+      "lastISO": "2026-08-28T08:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -977,6 +1030,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-28T06:13:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T02:52:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1039,6 +1102,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T04:28:00-04:00"
     },
     {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month, 08:00 (cloud)",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-01T09:05:00-04:00"
+    },
+    {
       "run": "The Weatherman",
       "cadence": "Daily",
       "expected": "07:00",
@@ -1057,26 +1130,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-27T22:50:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-28T02:52:00-04:00"
     },
     {
       "run": "The Opener",
@@ -1099,26 +1152,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-27T22:54:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month, 08:00 (cloud)",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-01T09:05:00-04:00"
-    },
-    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "RETIRED 2026-08-26 by Junyan — trigger trig_011mpmLosff2dYEf3Pg5VT35 DISABLED, persona dissolved. Do NOT set back to Live, never alert on this row. Its job (watch the Sentinel) is replaced by: the Morning Text's daily watchdog-silent check (08:45), and — once out of shadow — the deterministic sentinel-sweep in event-gate.",
@@ -1127,16 +1160,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-08-26T10:33:00-04:00"
-    },
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-08-27T22:46:00-04:00"
     }
   ],
   "robotsNote": null
