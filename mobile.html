@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 6:30 PM ET",
-  "generatedAtISO": "2026-08-28T18:30:47-04:00",
+  "generatedAt": "Aug 28, 6:45 PM ET",
+  "generatedAtISO": "2026-08-28T18:45:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -351,7 +351,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:32",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -367,7 +367,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "heard": false,
+      "heard": true,
       "arrived": "09:36",
       "departed": "15:14",
       "assumed": null,
@@ -468,7 +468,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -476,7 +476,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -611,14 +611,6 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Responder",
       "created": "Aug 28 · 18:30"
-    },
-    {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Host",
-      "created": "Aug 28 · 04:21"
     }
   ],
   "attention": [
@@ -888,6 +880,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787954677326,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Tess English",
+      "time": "18:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787956369031,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -897,7 +898,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T22:05:06+00:00",
+    "updatedAt": "2026-08-28T22:35:07+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1488,6 +1489,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T22:29:41.225903Z",
         "until": "2026-08-28T22:29:54.736626Z"
+      },
+      {
+        "since": "2026-08-28T22:35:18.132282Z",
+        "until": "2026-08-28T22:35:32.609392Z"
+      },
+      {
+        "since": "2026-08-28T22:41:16.450833Z",
+        "until": "2026-08-28T22:41:25.837254Z"
       }
     ],
     "down": false
@@ -1496,7 +1505,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Mechanic",
       "cadence": "Hourly",
-      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
       "status": "crit",
@@ -1506,7 +1515,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Sentinel",
       "cadence": "Hourly",
-      "expected": "hourly · 07–23",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
       "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
       "status": "crit",
@@ -1516,7 +1525,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Custodian",
       "cadence": "2×/day",
-      "expected": "02:35 + 09:35 America/Toronto · Codex production verifier",
+      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
       "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
       "monitoring": "Live",
       "status": "watch",
@@ -1526,7 +1535,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Planner",
       "cadence": "Daily",
-      "expected": "19:30",
+      "expected": "19:30 America/Toronto · Codex production fallback",
       "produces": "Tomorrow staged for approval",
       "monitoring": "Live",
       "status": "watch",
@@ -1541,7 +1550,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:26:00-04:00"
+      "lastISO": "2026-08-28T18:43:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1566,7 +1575,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Analyst",
       "cadence": "Daily",
-      "expected": "~05:30",
+      "expected": "04:06 America/Toronto · Codex production fallback",
       "produces": "IPR — today + tomorrow",
       "monitoring": "Live",
       "status": "ok",
@@ -1576,7 +1585,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Bookkeeper",
       "cadence": "Daily",
-      "expected": "~05:30",
+      "expected": "06:00 America/Toronto · Codex production fallback",
       "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
       "status": "ok",
@@ -1586,7 +1595,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Concierge",
       "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 Toronto (Codex fallback; Claude cloud down)",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
       "status": "ok",
@@ -1596,7 +1605,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Doorman",
       "cadence": "Daily",
-      "expected": "08:00 (cloud)",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
       "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
       "monitoring": "Live",
       "status": "ok",
@@ -1606,7 +1615,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Host",
       "cadence": "Daily",
-      "expected": "~07:00",
+      "expected": "04:00 America/Toronto · Codex production fallback",
       "produces": "FBS itinerary built + board seeded",
       "monitoring": "Live",
       "status": "ok",
@@ -1616,17 +1625,17 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Responder",
       "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (Codex fallback; Claude cloud down)",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
       "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:23:00-04:00"
+      "lastISO": "2026-08-28T18:31:00-04:00"
     },
     {
       "run": "The Timekeeper",
       "cadence": "Daily",
-      "expected": "~05:30",
+      "expected": "04:00 America/Toronto · Codex production fallback",
       "produces": "Overtime report (yesterday)",
       "monitoring": "Live",
       "status": "ok",
@@ -1636,7 +1645,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Treasurer",
       "cadence": "Monthly",
-      "expected": "1st of month, 08:00 (cloud)",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
       "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
       "monitoring": "Live",
       "status": "ok",
@@ -1646,7 +1655,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Weatherman",
       "cadence": "Daily",
-      "expected": "07:00",
+      "expected": "03:10 + hourly 09:10–23:10 America/Toronto · Codex production fallback",
       "produces": "Nest setpoints (509 / 901)",
       "monitoring": "Live",
       "status": "ok",
@@ -1661,7 +1670,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:16:00-04:00"
+      "lastISO": "2026-08-28T18:46:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1676,7 +1685,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Morning Text",
       "cadence": "Daily",
-      "expected": "08:45 America/Toronto · exactly one owner SMS daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
       "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
       "monitoring": "Live",
       "status": "plain",
