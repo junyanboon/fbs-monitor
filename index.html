@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 7:30 PM ET",
-  "generatedAtISO": "2026-08-28T19:30:46-04:00",
+  "generatedAt": "Aug 28, 7:45 PM ET",
+  "generatedAtISO": "2026-08-28T19:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -744,19 +744,35 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "693",
+      "role": "FBS",
+      "studio": "901",
       "day_offset": 1,
-      "start": 18.75,
-      "end": 19.25,
+      "start": 11.25,
+      "end": 11.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 13.25,
+      "end": 13.75,
       "day": "Tomorrow"
     },
     {
       "role": "Monitoring",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
-      "start": 19.75,
-      "end": 20.25,
+      "start": 16.25,
+      "end": 16.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 18.75,
+      "end": 19.25,
       "day": "Tomorrow"
     },
     {
@@ -808,46 +824,8 @@ const DATA = /*__DATA__*/{
       "day": "Sun Aug 30"
     }
   ],
-  "messages": [
-    {
-      "code": "Responder — Raquel Khan concert invitation thanks — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 28 · 18:30"
-    },
-    {
-      "code": "Responder — Adalia Knight positive acknowledgement — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 28 · 18:58"
-    },
-    {
-      "code": "PBF — Jennifer Lee •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 28 · 19:28"
-    },
-    {
-      "code": "QA-access — Daniel Thevarasalingam — 509A •••:23",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Concierge",
-      "created": "Aug 28 · 19:28"
-    }
-  ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "messages": [],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -1776,21 +1754,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T23:28:15.677658Z",
         "until": "2026-08-28T23:28:28.126717Z"
+      },
+      {
+        "since": "2026-08-28T23:34:18.105356Z",
+        "until": "2026-08-28T23:34:21.339823Z"
+      },
+      {
+        "since": "2026-08-28T23:39:41.071381Z",
+        "until": "2026-08-28T23:39:53.729962Z"
+      },
+      {
+        "since": "2026-08-28T23:45:18.250353Z",
+        "until": "2026-08-28T23:45:25.827574Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T12:06:00-04:00"
-    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1802,16 +1782,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T02:52:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-27T19:44:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1819,7 +1789,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T19:30:00-04:00"
+      "lastISO": "2026-08-28T19:42:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1862,6 +1832,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T06:13:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T19:33:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1892,6 +1872,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T19:00:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T19:40:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
@@ -1899,7 +1889,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:59:00-04:00"
+      "lastISO": "2026-08-28T19:31:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1949,7 +1939,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T19:16:00-04:00"
+      "lastISO": "2026-08-28T19:31:00-04:00"
     },
     {
       "run": "The Closer",
