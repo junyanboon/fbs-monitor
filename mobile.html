@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 12:00 AM ET",
-  "generatedAtISO": "2026-08-28T00:00:55-04:00",
+  "generatedAt": "Aug 28, 12:15 AM ET",
+  "generatedAtISO": "2026-08-28T00:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -395,23 +395,6 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     },
     {
-      "studio": "527",
-      "who": "Stefan",
-      "kind": "cleaning",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "heard": false,
-      "arrived": null,
-      "departed": null,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 23.75,
-      "end": 24.0,
-      "access_gap": false
-    },
-    {
       "studio": "693",
       "who": "Kim M. Peerspace",
       "kind": "booking",
@@ -566,7 +549,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 11.75,
       "end": 12.25,
@@ -574,7 +557,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 11.75,
       "end": 12.25,
@@ -711,14 +694,6 @@ const DATA = /*__DATA__*/{
       "created": "Aug 27 · 19:53"
     },
     {
-      "code": "Amandeep Kaur — Aug 29 payment processed",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Concierge",
-      "created": "Aug 27 · 23:45"
-    },
-    {
       "code": "FOLLOWUP-JILLIA-NOV-INTENSIVE-••••",
       "channel": "SMS",
       "status": "Pending Review",
@@ -730,9 +705,33 @@ const DATA = /*__DATA__*/{
       "code": "BC-sweep-•••",
       "channel": "SMS",
       "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "AI (automation)",
+      "created": "Aug 28 · 00:01"
+    },
+    {
+      "code": "BC-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Aug 28 · 00:01"
+    },
+    {
+      "code": "BC-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Aug 28 · 00:02"
+    },
+    {
+      "code": "BC-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Aug 28 · 00:03"
     }
   ],
   "attention": [],
@@ -1015,6 +1014,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787888793930,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Raquel Khan",
+      "time": "00:12",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787890337900,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Raquel Khan",
+      "time": "00:13",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787890394068,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1026,7 +1043,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-08-28T03:48:04+00:00",
     "mailCheck": {
-      "matched": 5,
+      "matched": 8,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1835,6 +1852,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T03:56:42.600682Z",
         "until": "2026-08-28T03:56:50.071964Z"
+      },
+      {
+        "since": "2026-08-28T04:02:17.864625Z",
+        "until": "2026-08-28T04:02:29.308284Z"
+      },
+      {
+        "since": "2026-08-28T04:08:17.846427Z",
+        "until": "2026-08-28T04:08:23.134963Z"
+      },
+      {
+        "since": "2026-08-28T04:13:27.776195Z",
+        "until": "2026-08-28T04:13:38.393482Z"
       }
     ],
     "down": false
@@ -1848,7 +1877,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T23:58:00-04:00"
+      "lastISO": "2026-08-28T00:14:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1868,7 +1897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T23:07:00-04:00"
+      "lastISO": "2026-08-28T00:07:00-04:00"
     },
     {
       "run": "The Analyst",
