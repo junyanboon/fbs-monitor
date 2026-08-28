@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 5:45 PM ET",
-  "generatedAtISO": "2026-08-28T17:45:42-04:00",
+  "generatedAt": "Aug 28, 6:00 PM ET",
+  "generatedAtISO": "2026-08-28T18:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -681,7 +681,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -689,7 +689,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -1652,6 +1652,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T21:45:18.245426Z",
         "until": "2026-08-28T21:45:26.677542Z"
+      },
+      {
+        "since": "2026-08-28T21:51:13.930469Z",
+        "until": "2026-08-28T21:51:28.361343Z"
+      },
+      {
+        "since": "2026-08-28T21:56:41.246580Z",
+        "until": "2026-08-28T21:56:55.542782Z"
       }
     ],
     "down": false
@@ -1705,7 +1713,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:43:00-04:00"
+      "lastISO": "2026-08-28T18:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1715,7 +1723,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:00:00-04:00"
+      "lastISO": "2026-08-28T18:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1825,7 +1833,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:31:00-04:00"
+      "lastISO": "2026-08-28T17:46:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1840,11 +1848,11 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Morning Text",
       "cadence": "Daily",
-      "expected": "08:45 America/Toronto · owner SMS activation awaiting explicit recurring-send authorization",
-      "produces": "Digest-only until recurring owner-SMS authority is accepted by the scheduler",
-      "monitoring": "Not reporting",
+      "expected": "08:45 America/Toronto · exactly one owner SMS daily",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
       "status": "plain",
-      "statusLabel": "Not reporting",
+      "statusLabel": "Off-hours",
       "lastISO": null
     },
     {
