@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 5:01 PM ET",
-  "generatedAtISO": "2026-08-28T17:01:02-04:00",
+  "generatedAt": "Aug 28, 5:15 PM ET",
+  "generatedAtISO": "2026-08-28T17:15:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -597,28 +597,20 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Responder — Shamir Panchal policy acceptance (•••)",
+      "code": "PBF — Akira Huang •••",
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": null,
+      "studio": "509B",
       "raised_by": "The Responder",
-      "created": "Aug 28 · 14:09"
+      "created": "Aug 28 · 17:14"
     },
     {
-      "code": "Responder — Vidhisha Patel sound restriction acceptance (•••)",
+      "code": "PBF — Adalia Knight •••",
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": null,
+      "studio": "693",
       "raised_by": "The Responder",
-      "created": "Aug 28 · 14:09"
-    },
-    {
-      "code": "BC-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 28 · 15:32"
+      "created": "Aug 28 · 17:14"
     },
     {
       "code": "EOB",
@@ -632,7 +624,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1423,6 +1415,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T20:59:13.658550Z",
         "until": "2026-08-28T20:59:22.160098Z"
+      },
+      {
+        "since": "2026-08-28T21:04:16.591274Z",
+        "until": "2026-08-28T21:04:29.096249Z"
+      },
+      {
+        "since": "2026-08-28T21:10:16.599642Z",
+        "until": "2026-08-28T21:10:30.048348Z"
       }
     ],
     "down": false
@@ -1431,12 +1431,12 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Concierge",
       "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "expected": "hourly at :10 · 08:10–22:10 Toronto (Codex fallback; Claude cloud down)",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
       "status": "crit",
       "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T12:33:00-04:00"
+      "lastISO": "2026-08-28T12:06:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1449,16 +1449,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T10:14:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T14:10:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly · 07–23",
@@ -1467,6 +1457,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T07:09:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-28T02:52:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1486,7 +1486,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T16:58:00-04:00"
+      "lastISO": "2026-08-28T17:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1506,7 +1506,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T16:07:00-04:00"
+      "lastISO": "2026-08-28T17:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1529,16 +1529,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T06:13:00-04:00"
     },
     {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-28T02:52:00-04:00"
-    },
-    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "08:00 (cloud)",
@@ -1557,6 +1547,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-28T04:36:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (Codex fallback; Claude cloud down)",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T17:15:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1596,7 +1596,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T16:46:00-04:00"
+      "lastISO": "2026-08-28T17:01:00-04:00"
     },
     {
       "run": "The Closer",
