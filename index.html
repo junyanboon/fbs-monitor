@@ -440,9 +440,9 @@
    Support board (tier, GTG/HTA) and Gmail ADT arrivals/departures.
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
-  "date": "Thursday, August 27, 2026",
-  "generatedAt": "Aug 27, 11:45 PM ET",
-  "generatedAtISO": "2026-08-27T23:45:40-04:00",
+  "date": "Friday, August 28, 2026",
+  "generatedAt": "Aug 28, 12:00 AM ET",
+  "generatedAtISO": "2026-08-28T00:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -531,7 +531,7 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "heard": false,
       "arrived": "23:26",
-      "departed": null,
+      "departed": "23:46",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -930,6 +930,22 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "The Concierge",
       "created": "Aug 27 · 23:45"
+    },
+    {
+      "code": "FOLLOWUP-JILLIA-NOV-INTENSIVE-••••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Aug 27 · 23:47"
+    },
+    {
+      "code": "BC-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Aug 28 · 00:01"
     }
   ],
   "attention": [],
@@ -1203,6 +1219,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787888624718,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "23:46",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787888793930,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1212,7 +1237,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T03:42:01+00:00",
+    "updatedAt": "2026-08-28T03:48:04+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -2011,6 +2036,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T03:39:56.189039Z",
         "until": "2026-08-28T03:40:03.823689Z"
+      },
+      {
+        "since": "2026-08-28T03:45:27.483666Z",
+        "until": "2026-08-28T03:45:41.093204Z"
+      },
+      {
+        "since": "2026-08-28T03:50:48.232165Z",
+        "until": "2026-08-28T03:51:02.625002Z"
+      },
+      {
+        "since": "2026-08-28T03:56:42.600682Z",
+        "until": "2026-08-28T03:56:50.071964Z"
       }
     ],
     "down": false
@@ -2024,7 +2061,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T23:42:00-04:00"
+      "lastISO": "2026-08-27T23:58:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2034,7 +2071,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T23:00:00-04:00"
+      "lastISO": "2026-08-28T00:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2094,7 +2131,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T23:02:00-04:00"
+      "lastISO": "2026-08-27T23:58:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2107,16 +2144,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T19:44:00-04:00"
     },
     {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly · 07–23",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-27T23:06:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -2125,16 +2152,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-27T04:15:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month, 08:00 (cloud)",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T09:05:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2205,6 +2222,26 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Off-hours",
       "lastISO": "2026-08-27T22:54:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly · 07–23",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-27T23:06:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month, 08:00 (cloud)",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-01T09:05:00-04:00"
     },
     {
       "run": "The Watchman",
