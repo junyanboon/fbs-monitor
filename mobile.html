@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 10:00 AM ET",
-  "generatedAtISO": "2026-08-28T10:00:56-04:00",
+  "generatedAt": "Aug 28, 10:15 AM ET",
+  "generatedAtISO": "2026-08-28T10:15:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -316,7 +316,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -451,7 +451,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -459,7 +459,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -719,7 +719,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1001,6 +1001,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T13:57:31.107186Z",
         "until": "2026-08-28T13:57:38.480964Z"
+      },
+      {
+        "since": "2026-08-28T14:02:59.638989Z",
+        "until": "2026-08-28T14:03:08.138133Z"
+      },
+      {
+        "since": "2026-08-28T14:08:41.284769Z",
+        "until": "2026-08-28T14:08:43.770212Z"
+      },
+      {
+        "since": "2026-08-28T14:14:17.007961Z",
+        "until": "2026-08-28T14:14:29.479942Z"
       }
     ],
     "down": false
@@ -1015,16 +1027,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-27T22:50:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T07:02:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1054,7 +1056,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T10:01:00-04:00"
+      "lastISO": "2026-08-28T10:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1074,7 +1076,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T09:07:00-04:00"
+      "lastISO": "2026-08-28T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1127,6 +1129,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T04:36:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 (cloud RemoteTrigger trig_01A2iWdZaRpqV4H5StkLKWoK)",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T10:14:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -1174,7 +1186,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T09:46:00-04:00"
+      "lastISO": "2026-08-28T10:01:00-04:00"
     },
     {
       "run": "The Closer",
