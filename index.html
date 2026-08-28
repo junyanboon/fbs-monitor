@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 2:45 PM ET",
-  "generatedAtISO": "2026-08-28T14:45:42-04:00",
+  "generatedAt": "Aug 28, 3:02 PM ET",
+  "generatedAtISO": "2026-08-28T15:02:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -664,7 +664,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -672,7 +672,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -844,14 +844,6 @@ const DATA = /*__DATA__*/{
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Host",
-      "created": "Aug 28 · 04:21"
-    },
-    {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
       "studio": "901",
       "raised_by": "The Host",
       "created": "Aug 28 · 04:21"
@@ -868,7 +860,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1428,11 +1420,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T18:45:18.534530Z",
         "until": "2026-08-28T18:45:24.016504Z"
+      },
+      {
+        "since": "2026-08-28T18:50:32.830429Z",
+        "until": "2026-08-28T18:50:45.316872Z"
+      },
+      {
+        "since": "2026-08-28T18:55:40.817191Z",
+        "until": "2026-08-28T18:55:49.311758Z"
+      },
+      {
+        "since": "2026-08-28T19:01:40.818729Z",
+        "until": "2026-08-28T19:01:52.281454Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-28T12:33:00-04:00"
+    },
     {
       "run": "The Mechanic",
       "cadence": "Hourly",
@@ -1454,16 +1468,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T07:09:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-28T12:33:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30",
@@ -1481,7 +1485,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T14:41:00-04:00"
+      "lastISO": "2026-08-28T14:58:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1491,7 +1495,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T14:00:00-04:00"
+      "lastISO": "2026-08-28T15:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1601,7 +1605,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T14:31:00-04:00"
+      "lastISO": "2026-08-28T15:01:00-04:00"
     },
     {
       "run": "The Closer",
