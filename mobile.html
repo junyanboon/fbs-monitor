@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 6:15 PM ET",
-  "generatedAtISO": "2026-08-28T18:15:49-04:00",
+  "generatedAt": "Aug 28, 6:30 PM ET",
+  "generatedAtISO": "2026-08-28T18:30:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -597,6 +597,22 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "CC — Nina Li — Sep 25 corrected price and credit balance",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "Other",
+      "created": "Aug 28 · 18:26"
+    },
+    {
+      "code": "Responder — Raquel Khan concert invitation thanks — •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 28 · 18:30"
+    },
+    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -608,7 +624,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1460,21 +1476,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T22:13:14.094850Z",
         "until": "2026-08-28T22:13:28.558766Z"
+      },
+      {
+        "since": "2026-08-28T22:18:54.940159Z",
+        "until": "2026-08-28T22:19:04.375845Z"
+      },
+      {
+        "since": "2026-08-28T22:24:18.217511Z",
+        "until": "2026-08-28T22:24:28.643657Z"
+      },
+      {
+        "since": "2026-08-28T22:29:41.225903Z",
+        "until": "2026-08-28T22:29:54.736626Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 Toronto (Codex fallback; Claude cloud down)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T12:06:00-04:00"
-    },
     {
       "run": "The Mechanic",
       "cadence": "Hourly",
@@ -1523,7 +1541,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:15:00-04:00"
+      "lastISO": "2026-08-28T18:26:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1566,6 +1584,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T06:13:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 Toronto (Codex fallback; Claude cloud down)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T18:28:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "08:00 (cloud)",
@@ -1593,7 +1621,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T17:30:00-04:00"
+      "lastISO": "2026-08-28T18:23:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1633,7 +1661,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:01:00-04:00"
+      "lastISO": "2026-08-28T18:16:00-04:00"
     },
     {
       "run": "The Closer",
