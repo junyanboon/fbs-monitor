@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 12:30 PM ET",
-  "generatedAtISO": "2026-08-28T12:30:53-04:00",
+  "generatedAt": "Aug 28, 12:46 PM ET",
+  "generatedAtISO": "2026-08-28T12:46:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -300,7 +300,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "heard": true,
-      "arrived": null,
+      "arrived": "12:34",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -451,7 +451,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -459,7 +459,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -599,14 +599,6 @@ const DATA = /*__DATA__*/{
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Host",
-      "created": "Aug 28 · 04:21"
-    },
-    {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
       "studio": "693",
       "raised_by": "The Host",
       "created": "Aug 28 · 04:21"
@@ -679,19 +671,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787933384078,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "alice hamman",
+      "time": "12:34",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787934849448,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "23:43",
-      "ts": 1787888624718,
-      "when": "Thu 23:43"
-    },
     "527": {
       "kind": "departure",
       "name": "Raquel Khan",
@@ -709,7 +700,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T16:15:01+00:00",
+    "updatedAt": "2026-08-28T16:38:01+00:00",
     "doorGaps": [
       {
         "since": "2026-08-28T09:03:41.803334Z",
@@ -1038,6 +1029,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T16:29:41.050784Z",
         "until": "2026-08-28T16:29:44.620014Z"
+      },
+      {
+        "since": "2026-08-28T16:35:41.070150Z",
+        "until": "2026-08-28T16:35:47.436122Z"
+      },
+      {
+        "since": "2026-08-28T16:41:41.119633Z",
+        "until": "2026-08-28T16:41:50.011168Z"
       }
     ],
     "down": false
@@ -1081,7 +1080,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T12:28:00-04:00"
+      "lastISO": "2026-08-28T12:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1131,7 +1130,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T12:06:00-04:00"
+      "lastISO": "2026-08-28T12:33:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1211,7 +1210,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T12:16:00-04:00"
+      "lastISO": "2026-08-28T12:45:00-04:00"
     },
     {
       "run": "The Closer",
