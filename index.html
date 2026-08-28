@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 6:45 PM ET",
-  "generatedAtISO": "2026-08-28T18:45:52-04:00",
+  "generatedAt": "Aug 28, 7:00 PM ET",
+  "generatedAtISO": "2026-08-28T19:00:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -616,7 +616,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "heard": true,
       "arrived": "18:04",
-      "departed": null,
+      "departed": "19:00",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -824,12 +824,20 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Responder",
       "created": "Aug 28 · 18:30"
+    },
+    {
+      "code": "Responder — Adalia Knight positive acknowledgement — •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 28 · 18:58"
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1101,6 +1109,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1787956369031,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Jennifer Lee",
+      "time": "19:00",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787958024681,
       "source": "doors"
     }
   ],
@@ -1710,21 +1727,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T22:41:16.450833Z",
         "until": "2026-08-28T22:41:25.837254Z"
+      },
+      {
+        "since": "2026-08-28T22:47:18.094252Z",
+        "until": "2026-08-28T22:47:25.535882Z"
+      },
+      {
+        "since": "2026-08-28T22:53:15.494877Z",
+        "until": "2026-08-28T22:53:26.922508Z"
+      },
+      {
+        "since": "2026-08-28T22:59:18.098257Z",
+        "until": "2026-08-28T22:59:24.561813Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T10:14:00-04:00"
-    },
     {
       "run": "The Sentinel",
       "cadence": "Hourly",
@@ -1763,7 +1782,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:43:00-04:00"
+      "lastISO": "2026-08-28T19:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1773,7 +1792,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:00:00-04:00"
+      "lastISO": "2026-08-28T19:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1836,6 +1855,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T04:36:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T19:00:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
@@ -1843,7 +1872,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T18:31:00-04:00"
+      "lastISO": "2026-08-28T18:59:00-04:00"
     },
     {
       "run": "The Timekeeper",
