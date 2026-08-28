@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 2:30 AM ET",
-  "generatedAtISO": "2026-08-28T02:30:48-04:00",
+  "generatedAt": "Aug 28, 2:45 AM ET",
+  "generatedAtISO": "2026-08-28T02:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -2173,11 +2173,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T06:27:17.681266Z",
         "until": "2026-08-28T06:27:30.095474Z"
+      },
+      {
+        "since": "2026-08-28T06:33:17.670642Z",
+        "until": "2026-08-28T06:33:27.066970Z"
+      },
+      {
+        "since": "2026-08-28T06:38:28.450047Z",
+        "until": "2026-08-28T06:38:37.397704Z"
+      },
+      {
+        "since": "2026-08-28T06:43:42.015955Z",
+        "until": "2026-08-28T06:43:48.316031Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "~05:30",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-27T04:50:00-04:00"
+    },
     {
       "run": "The Bookkeeper",
       "cadence": "Daily",
@@ -2216,7 +2238,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T02:27:00-04:00"
+      "lastISO": "2026-08-28T02:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2237,16 +2259,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-28T02:07:00-04:00"
-    },
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "~05:30",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-27T04:50:00-04:00"
     },
     {
       "run": "The Host",
