@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Thursday, August 27, 2026",
-  "generatedAt": "Aug 27, 10:45 PM ET",
-  "generatedAtISO": "2026-08-27T22:45:55-04:00",
+  "generatedAt": "Aug 27, 11:00 PM ET",
+  "generatedAtISO": "2026-08-27T23:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -436,7 +436,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "heard": false,
-      "arrived": null,
+      "arrived": "22:47",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -566,7 +566,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 11.75,
       "end": 12.25,
@@ -574,7 +574,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 11.75,
       "end": 12.25,
@@ -919,6 +919,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787883017443,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "22:47",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787885220373,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -928,7 +937,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T02:12:04+00:00",
+    "updatedAt": "2026-08-28T02:48:02+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -1687,6 +1696,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T02:44:55.422718Z",
         "until": "2026-08-28T02:45:06.670026Z"
+      },
+      {
+        "since": "2026-08-28T02:50:10.538662Z",
+        "until": "2026-08-28T02:50:23.140882Z"
+      },
+      {
+        "since": "2026-08-28T02:55:47.951485Z",
+        "until": "2026-08-28T02:55:57.395250Z"
       }
     ],
     "down": false
@@ -1700,7 +1717,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T22:45:00-04:00"
+      "lastISO": "2026-08-27T22:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1710,7 +1727,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T22:00:00-04:00"
+      "lastISO": "2026-08-27T23:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1743,26 +1760,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T06:06:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-27T22:50:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
-      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-27T10:20:00-04:00"
-    },
-    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "08:00 (cloud)",
@@ -1790,7 +1787,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-27T22:05:00-04:00"
+      "lastISO": "2026-08-27T23:02:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1801,16 +1798,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-27T19:44:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-27T22:35:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1853,16 +1840,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T22:11:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-27T22:46:00-04:00"
-    },
-    {
       "run": "The Closer",
       "cadence": "Daily",
       "expected": "RETIRED 2026-07-23 (ticket 007) — cloud trigger DELETED, persona dissolved. Do NOT set back to Live. Arm-and-sweep → The Doorman evening arm-check (23:35); day review → The Custodian 02:35 (ticket 027).",
@@ -1871,6 +1848,26 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 h at :10 · 08:10–22:10 (cloud)",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-27T22:50:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "09:35 + 02:35 (cloud) · stale-after 1140 = 19h: covers the 17h gap 09:35→02:35 — 60 min here made the row red every afternoon by construction (fixed 2026-08-15)",
+      "produces": "Housekeeping: feedback · decay · backfill · self-heal",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-27T10:20:00-04:00"
     },
     {
       "run": "The Opener",
@@ -1893,6 +1890,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-27T22:54:00-04:00"
+    },
+    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "RETIRED 2026-08-26 by Junyan — trigger trig_011mpmLosff2dYEf3Pg5VT35 DISABLED, persona dissolved. Do NOT set back to Live, never alert on this row. Its job (watch the Sentinel) is replaced by: the Morning Text's daily watchdog-silent check (08:45), and — once out of shadow — the deterministic sentinel-sweep in event-gate.",
@@ -1901,6 +1908,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-08-26T10:33:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-27T22:46:00-04:00"
     }
   ],
   "robotsNote": null
