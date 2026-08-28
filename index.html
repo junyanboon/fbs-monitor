@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 2:00 PM ET",
-  "generatedAtISO": "2026-08-28T14:00:56-04:00",
+  "generatedAt": "Aug 28, 2:15 PM ET",
+  "generatedAtISO": "2026-08-28T14:15:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -530,7 +530,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "heard": true,
-      "arrived": null,
+      "arrived": "14:10",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -664,7 +664,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -672,7 +672,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -801,6 +801,38 @@ const DATA = /*__DATA__*/{
       "created": "Aug 27 · 18:28"
     },
     {
+      "code": "Responder — Shamir Panchal policy acceptance (•••)",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 28 · 14:09"
+    },
+    {
+      "code": "PBF — Alice Hamman •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 28 · 14:09"
+    },
+    {
+      "code": "Responder — Vidhisha Patel sound restriction acceptance (•••)",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 28 · 14:09"
+    },
+    {
+      "code": "PBF — Anita Shack •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 28 · 14:09"
+    },
+    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -836,7 +868,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -911,6 +943,42 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787938922409,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "14:01",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787940094280,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "14:01",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787940097516,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Junyan Boon",
+      "time": "14:09",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787940592439,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Akira Huang",
+      "time": "14:10",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787940607947,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -931,7 +999,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T17:46:02+00:00",
+    "updatedAt": "2026-08-28T18:07:10+00:00",
     "doorGaps": [
       {
         "since": "2026-08-28T09:03:41.803334Z",
@@ -1324,6 +1392,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T17:59:18.553892Z",
         "until": "2026-08-28T17:59:24.931654Z"
+      },
+      {
+        "since": "2026-08-28T18:05:13.731690Z",
+        "until": "2026-08-28T18:05:26.230352Z"
+      },
+      {
+        "since": "2026-08-28T18:11:18.569081Z",
+        "until": "2026-08-28T18:11:30.235837Z"
       }
     ],
     "down": false
@@ -1338,16 +1414,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T10:14:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-27T22:54:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1367,7 +1433,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T13:56:00-04:00"
+      "lastISO": "2026-08-28T14:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1387,7 +1453,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T13:07:00-04:00"
+      "lastISO": "2026-08-28T14:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1460,6 +1526,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-27T19:44:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 Toronto (cloud, two staggered triggers: trig_01WA9KLVfMD82gAYupxsBwH5 + trig_015q8fhqzYvVjv5N6rnmH7wK). Self-improving-desk probe micro-agent, ticket 003, live 2026-07-29.",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-28T14:10:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "~05:30",
@@ -1497,7 +1573,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T14:01:00-04:00"
+      "lastISO": "2026-08-28T14:15:00-04:00"
     },
     {
       "run": "The Closer",
