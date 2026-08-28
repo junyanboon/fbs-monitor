@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 10:30 AM ET",
-  "generatedAtISO": "2026-08-28T10:30:55-04:00",
+  "generatedAt": "Aug 28, 10:45 AM ET",
+  "generatedAtISO": "2026-08-28T10:45:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -480,7 +480,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": false,
       "arrived": "09:30",
-      "departed": null,
+      "departed": "10:43",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -581,7 +581,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "heard": true,
-      "arrived": null,
+      "arrived": "10:45",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -664,7 +664,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -672,7 +672,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -953,6 +953,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1787924189357,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "10:43",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1787928214238,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Shack",
+      "time": "10:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1787928345955,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -975,16 +993,6 @@ const DATA = /*__DATA__*/{
       "time": "00:13",
       "ts": 1787890421190,
       "when": "Fri 00:13"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Dana Brookman",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "22:10",
-      "ts": 1787883017443,
-      "when": "Thu 22:10"
     }
   },
   "alarmAlerts": [],
@@ -993,7 +1001,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-28T13:41:02+00:00",
+    "updatedAt": "2026-08-28T14:46:02+00:00",
     "doorGaps": [
       {
         "since": "2026-08-28T09:03:41.803334Z",
@@ -1234,6 +1242,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-28T14:25:09.335488Z",
         "until": "2026-08-28T14:25:21.088032Z"
+      },
+      {
+        "since": "2026-08-28T14:31:12.400986Z",
+        "until": "2026-08-28T14:31:22.726867Z"
+      },
+      {
+        "since": "2026-08-28T14:36:52.197776Z",
+        "until": "2026-08-28T14:37:05.636066Z"
+      },
+      {
+        "since": "2026-08-28T14:42:17.360432Z",
+        "until": "2026-08-28T14:42:27.672227Z"
       }
     ],
     "down": false
@@ -1277,7 +1297,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T10:30:00-04:00"
+      "lastISO": "2026-08-28T10:41:00-04:00"
     },
     {
       "run": "QA release check",
