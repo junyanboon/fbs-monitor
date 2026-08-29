@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 11:30 PM ET",
-  "generatedAtISO": "2026-08-28T23:30:47-04:00",
+  "generatedAt": "Aug 28, 11:45 PM ET",
+  "generatedAtISO": "2026-08-28T23:45:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -681,7 +681,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -689,7 +689,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -1167,6 +1167,24 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1787967910410,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "23:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1787975104218,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "23:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1787975107906,
       "source": "doors"
     }
   ],
@@ -1980,6 +1998,22 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T03:28:20.749656Z",
         "until": "2026-08-29T03:28:25.119387Z"
+      },
+      {
+        "since": "2026-08-29T03:31:15.229665Z",
+        "until": "2026-08-29T03:31:23.600020Z"
+      },
+      {
+        "since": "2026-08-29T03:37:17.189686Z",
+        "until": "2026-08-29T03:37:24.640944Z"
+      },
+      {
+        "since": "2026-08-29T03:39:00.795241Z",
+        "until": "2026-08-29T03:39:05.831023Z"
+      },
+      {
+        "since": "2026-08-29T03:44:17.559958Z",
+        "until": "2026-08-29T03:44:26.943880Z"
       }
     ],
     "down": false
@@ -1993,7 +2027,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T23:30:00-04:00"
+      "lastISO": "2026-08-28T23:42:00-04:00"
     },
     {
       "run": "QA release check",
