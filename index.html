@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 1:15 PM ET",
-  "generatedAtISO": "2026-08-29T13:15:45-04:00",
+  "generatedAt": "Aug 29, 1:30 PM ET",
+  "generatedAtISO": "2026-08-29T13:30:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -513,7 +513,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "13:19",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -710,28 +710,12 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "901",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
-    },
-    {
       "code": "HTA-sweep-•••A",
       "channel": "SMS",
       "status": "Error",
       "studio": "509A",
       "raised_by": "AI (automation)",
       "created": "Aug 29 · 12:32"
-    },
-    {
-      "code": "Review ask — Alice Hamman •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Aug 29 · 12:52"
     },
     {
       "code": "HTA-sweep-•••A",
@@ -750,10 +734,26 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 13:10"
     },
     {
+      "code": "CC-PLAN-CANCEL-DANIELA-••••",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Aug 29 · 13:25"
+    },
+    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "527",
+      "raised_by": "The Host",
+      "created": "Aug 29 · 04:18"
+    },
+    {
+      "code": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
     },
@@ -764,6 +764,14 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
+    },
+    {
+      "code": "Review ask — Alice Hamman •••",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Aug 29 · 12:52"
     }
   ],
   "attention": [
@@ -862,6 +870,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788019169557,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Mia Vescarelli",
+      "time": "13:19",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788023940678,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -902,7 +919,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T16:04:13+00:00",
+    "updatedAt": "2026-08-29T17:23:01+00:00",
     "doorGaps": [
       {
         "since": "2026-08-29T09:00:17.333523Z",
@@ -1251,6 +1268,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T17:12:21.299427Z",
         "until": "2026-08-29T17:12:34.830845Z"
+      },
+      {
+        "since": "2026-08-29T17:17:39.575294Z",
+        "until": "2026-08-29T17:17:52.042831Z"
+      },
+      {
+        "since": "2026-08-29T17:22:49.382737Z",
+        "until": "2026-08-29T17:23:00.898766Z"
+      },
+      {
+        "since": "2026-08-29T17:28:14.449656Z",
+        "until": "2026-08-29T17:28:25.908647Z"
       }
     ],
     "down": false
@@ -1274,7 +1303,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:13:00-04:00"
+      "lastISO": "2026-08-29T13:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1324,7 +1353,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:00:00-04:00"
+      "lastISO": "2026-08-29T13:29:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1384,7 +1413,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:56:00-04:00"
+      "lastISO": "2026-08-29T13:30:00-04:00"
     },
     {
       "run": "The Sentinel",
