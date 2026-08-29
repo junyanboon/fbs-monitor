@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 4:00 PM ET",
-  "generatedAtISO": "2026-08-29T16:00:52-04:00",
+  "generatedAt": "Aug 29, 4:15 PM ET",
+  "generatedAtISO": "2026-08-29T16:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -514,7 +514,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": false,
       "arrived": "13:19",
-      "departed": null,
+      "departed": "16:03",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -547,7 +547,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "heard": false,
-      "arrived": null,
+      "arrived": "16:13",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -616,7 +616,7 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "heard": false,
       "arrived": "14:14",
-      "departed": null,
+      "departed": "16:15",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -889,6 +889,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788027278909,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Mia Vescarelli",
+      "time": "16:03",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788033831044,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "AlisonCarlos Murray",
+      "time": "16:13",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788034416906,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Junyan Boon",
+      "time": "16:15",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788034547639,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -901,16 +928,6 @@ const DATA = /*__DATA__*/{
       "time": "21:42",
       "ts": 1787967723350,
       "when": "Fri 21:42"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "527",
-      "time": "15:12",
-      "ts": 1787944324181,
-      "when": "Fri 15:12"
     },
     "693": {
       "kind": "departure",
@@ -929,7 +946,13 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T18:18:06+00:00",
+    "updatedAt": "2026-08-29T20:15:03+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-08-29T09:00:17.333523Z",
@@ -1394,6 +1417,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T19:56:16.261043Z",
         "until": "2026-08-29T19:56:24.747014Z"
+      },
+      {
+        "since": "2026-08-29T20:01:50.383299Z",
+        "until": "2026-08-29T20:02:04.839575Z"
+      },
+      {
+        "since": "2026-08-29T20:07:16.244072Z",
+        "until": "2026-08-29T20:07:30.713644Z"
+      },
+      {
+        "since": "2026-08-29T20:13:21.885911Z",
+        "until": "2026-08-29T20:13:25.830406Z"
       }
     ],
     "down": false
@@ -1467,7 +1502,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T16:00:00-04:00"
+      "lastISO": "2026-08-29T16:12:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1487,7 +1522,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T15:07:00-04:00"
+      "lastISO": "2026-08-29T16:07:00-04:00"
     },
     {
       "run": "The Analyst",
