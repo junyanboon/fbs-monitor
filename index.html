@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 6:15 PM ET",
-  "generatedAtISO": "2026-08-29T18:15:43-04:00",
+  "generatedAt": "Aug 29, 6:30 PM ET",
+  "generatedAtISO": "2026-08-29T18:30:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -528,7 +528,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": "Unsent",
+      "hta": "Sent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -708,86 +708,8 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     }
   ],
-  "messages": [
-    {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "901",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
-    },
-    {
-      "code": "AVA",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "527",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
-    },
-    {
-      "code": "HTA-sweep-•••A",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 12:32"
-    },
-    {
-      "code": "Review ask — Alice Hamman •••",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Aug 29 · 12:52"
-    },
-    {
-      "code": "HTA-sweep-•••A",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 13:01"
-    },
-    {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
-    },
-    {
-      "code": "HTA-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 14:01"
-    },
-    {
-      "code": "PBF — Vidhisha Patel •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 29 · 16:47"
-    },
-    {
-      "code": "PBF-overtime — Ishfaaq Jookhun — 901 — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 17:34"
-    }
-  ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "messages": [],
+  "attention": [],
   "armEvents": [
     {
       "studio": "901",
@@ -1533,21 +1455,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T22:15:15.990366Z",
         "until": "2026-08-29T22:15:27.410812Z"
+      },
+      {
+        "since": "2026-08-29T22:20:51.244045Z",
+        "until": "2026-08-29T22:20:58.698846Z"
+      },
+      {
+        "since": "2026-08-29T22:26:24.107074Z",
+        "until": "2026-08-29T22:26:34.581858Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T10:01:00-04:00"
-    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1566,7 +1486,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T18:11:00-04:00"
+      "lastISO": "2026-08-29T18:29:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1616,7 +1536,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T17:28:00-04:00"
+      "lastISO": "2026-08-29T18:29:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1666,7 +1586,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T18:06:00-04:00"
+      "lastISO": "2026-08-29T18:29:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1707,6 +1627,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T18:15:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T18:16:00-04:00"
     },
     {
       "run": "The Closer",
