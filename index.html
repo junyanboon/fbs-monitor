@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 2:39 PM ET",
-  "generatedAtISO": "2026-08-29T14:39:11-04:00",
+  "generatedAt": "Aug 29, 2:45 PM ET",
+  "generatedAtISO": "2026-08-29T14:45:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -769,7 +769,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1338,6 +1338,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T18:36:21.313471Z",
         "until": "2026-08-29T18:36:30.729577Z"
+      },
+      {
+        "since": "2026-08-29T18:42:22.752558Z",
+        "until": "2026-08-29T18:42:36.383933Z"
       }
     ],
     "down": false
@@ -1352,6 +1356,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-29T13:02:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-29T13:12:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1394,16 +1408,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T13:30:00-04:00"
     },
     {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-29T13:12:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1411,7 +1415,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T14:38:00-04:00"
+      "lastISO": "2026-08-29T14:43:00-04:00"
     },
     {
       "run": "QA release check",
