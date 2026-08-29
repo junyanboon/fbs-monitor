@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 2:46 PM ET",
-  "generatedAtISO": "2026-08-29T14:46:22-04:00",
+  "generatedAt": "Aug 29, 3:00 PM ET",
+  "generatedAtISO": "2026-08-29T15:00:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -769,7 +769,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "5 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1342,11 +1342,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T18:42:22.752558Z",
         "until": "2026-08-29T18:42:36.383933Z"
+      },
+      {
+        "since": "2026-08-29T18:48:21.372941Z",
+        "until": "2026-08-29T18:48:36.783346Z"
+      },
+      {
+        "since": "2026-08-29T18:54:21.396153Z",
+        "until": "2026-08-29T18:54:33.905667Z"
+      },
+      {
+        "since": "2026-08-29T18:59:38.986086Z",
+        "until": "2026-08-29T18:59:47.425050Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-29T13:29:00-04:00"
+    },
     {
       "run": "The Mechanic",
       "cadence": "Hourly",
@@ -1356,6 +1378,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-29T13:02:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-29T13:30:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1378,16 +1410,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T10:01:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-29T13:29:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1398,16 +1420,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T19:40:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-29T13:30:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1415,7 +1427,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T14:43:00-04:00"
+      "lastISO": "2026-08-29T14:59:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1425,7 +1437,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T14:00:00-04:00"
+      "lastISO": "2026-08-29T15:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
