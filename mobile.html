@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 11:00 AM ET",
-  "generatedAtISO": "2026-08-29T11:00:52-04:00",
+  "generatedAt": "Aug 29, 11:15 AM ET",
+  "generatedAtISO": "2026-08-29T11:15:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -283,7 +283,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "11:00",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -352,7 +352,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": false,
       "arrived": "08:54",
-      "departed": null,
+      "departed": "11:01",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -507,7 +507,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -555,6 +555,33 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788015630214,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Tufan Bhattarai",
+      "time": "11:01",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788015668002,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "11:15",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788016515435,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "11:15",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788016518655,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -595,7 +622,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T14:54:06+00:00",
+    "updatedAt": "2026-08-29T15:05:09+00:00",
     "doorGaps": [
       {
         "since": "2026-08-29T09:00:17.333523Z",
@@ -852,6 +879,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T14:58:16.658341Z",
         "until": "2026-08-29T14:58:29.174899Z"
+      },
+      {
+        "since": "2026-08-29T15:04:16.702936Z",
+        "until": "2026-08-29T15:04:23.132361Z"
+      },
+      {
+        "since": "2026-08-29T15:09:48.795151Z",
+        "until": "2026-08-29T15:09:57.437280Z"
+      },
+      {
+        "since": "2026-08-29T15:15:48.685225Z",
+        "until": "2026-08-29T15:15:51.656233Z"
       }
     ],
     "down": false
@@ -866,6 +905,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T04:22:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-29T08:14:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -895,7 +944,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T11:00:00-04:00"
+      "lastISO": "2026-08-29T11:12:00-04:00"
     },
     {
       "run": "QA release check",
@@ -915,7 +964,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:07:00-04:00"
+      "lastISO": "2026-08-29T11:07:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -926,16 +975,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:25:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1015,7 +1054,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:07:00-04:00"
+      "lastISO": "2026-08-29T11:07:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1035,7 +1074,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:15:00-04:00"
+      "lastISO": "2026-08-29T11:15:00-04:00"
     },
     {
       "run": "The Closer",
