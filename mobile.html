@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 9:45 AM ET",
-  "generatedAtISO": "2026-08-29T09:45:44-04:00",
+  "generatedAt": "Aug 29, 10:00 AM ET",
+  "generatedAtISO": "2026-08-29T10:00:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -480,46 +480,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 09:30"
-    },
-    {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 09:30"
-    },
-    {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 09:30"
-    },
-    {
-      "code": "HTA-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 09:31"
-    },
-    {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 09:31"
-    },
-    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -547,7 +507,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -813,6 +773,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T13:43:48.133144Z",
         "until": "2026-08-29T13:43:59.567307Z"
+      },
+      {
+        "since": "2026-08-29T13:49:20.956231Z",
+        "until": "2026-08-29T13:49:31.421813Z"
+      },
+      {
+        "since": "2026-08-29T13:55:14.858523Z",
+        "until": "2026-08-29T13:55:23.169273Z"
+      },
+      {
+        "since": "2026-08-29T14:00:39.514930Z",
+        "until": "2026-08-29T14:00:49.251812Z"
       }
     ],
     "down": false
@@ -827,6 +799,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T04:22:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-29T08:27:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -846,7 +828,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:46:00-04:00"
+      "lastISO": "2026-08-29T09:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -856,7 +838,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:00:00-04:00"
+      "lastISO": "2026-08-29T10:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -896,7 +878,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:38:00-04:00"
+      "lastISO": "2026-08-29T09:52:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -949,16 +931,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T19:40:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:32:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -996,7 +968,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:31:00-04:00"
+      "lastISO": "2026-08-29T09:46:00-04:00"
     },
     {
       "run": "The Closer",
