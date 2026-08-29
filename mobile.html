@@ -227,9 +227,9 @@
 
 <script>
 const DATA = /*__DATA__*/{
-  "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 11:45 PM ET",
-  "generatedAtISO": "2026-08-28T23:45:39-04:00",
+  "date": "Saturday, August 29, 2026",
+  "generatedAt": "Aug 29, 12:00 AM ET",
+  "generatedAtISO": "2026-08-29T00:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -611,7 +611,32 @@ const DATA = /*__DATA__*/{
       "day": "Sun Aug 30"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 00:00"
+    },
+    {
+      "code": "BC-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 00:00"
+    },
+    {
+      "code": "BC-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 00:01"
+    }
+  ],
   "attention": [],
   "armEvents": [
     {
@@ -1801,6 +1826,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T03:44:17.559958Z",
         "until": "2026-08-29T03:44:26.943880Z"
+      },
+      {
+        "since": "2026-08-29T03:50:17.280576Z",
+        "until": "2026-08-29T03:50:28.841295Z"
+      },
+      {
+        "since": "2026-08-29T03:56:17.305755Z",
+        "until": "2026-08-29T03:56:31.713637Z"
       }
     ],
     "down": false
@@ -1814,7 +1847,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T23:42:00-04:00"
+      "lastISO": "2026-08-28T23:59:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1824,7 +1857,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T23:00:00-04:00"
+      "lastISO": "2026-08-29T00:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1884,7 +1917,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T22:59:00-04:00"
+      "lastISO": "2026-08-29T00:00:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1897,16 +1930,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T19:40:00-04:00"
     },
     {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-28T23:03:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1915,16 +1938,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-28T04:28:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-01T09:05:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2005,6 +2018,26 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Off-hours",
       "lastISO": "2026-08-28T22:59:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-28T23:03:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-01T09:05:00-04:00"
     },
     {
       "run": "The Watchman",
