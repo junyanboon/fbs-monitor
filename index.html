@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 8:15 AM ET",
-  "generatedAtISO": "2026-08-29T08:15:47-04:00",
+  "generatedAt": "Aug 29, 8:30 AM ET",
+  "generatedAtISO": "2026-08-29T08:30:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -735,7 +735,7 @@ const DATA = /*__DATA__*/{
     {
       "code": "Returning Access 509A",
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "509A",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
@@ -743,7 +743,7 @@ const DATA = /*__DATA__*/{
     {
       "code": "AVA",
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "901",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
@@ -751,7 +751,7 @@ const DATA = /*__DATA__*/{
     {
       "code": "EOB",
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "527",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
@@ -759,7 +759,7 @@ const DATA = /*__DATA__*/{
     {
       "code": "EOB",
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "901",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
@@ -767,7 +767,7 @@ const DATA = /*__DATA__*/{
     {
       "code": "AVA",
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "527",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
@@ -776,7 +776,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -979,6 +979,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T12:14:15.040719Z",
         "until": "2026-08-29T12:14:28.452936Z"
+      },
+      {
+        "since": "2026-08-29T12:20:19.076566Z",
+        "until": "2026-08-29T12:20:27.511983Z"
+      },
+      {
+        "since": "2026-08-29T12:26:20.431212Z",
+        "until": "2026-08-29T12:26:31.926797Z"
       }
     ],
     "down": false
@@ -993,16 +1001,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Never checked in",
       "lastISO": null
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T22:59:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1032,7 +1030,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T08:11:00-04:00"
+      "lastISO": "2026-08-29T08:28:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1072,7 +1070,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T08:14:00-04:00"
+      "lastISO": "2026-08-29T08:29:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1125,6 +1123,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T19:40:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T08:27:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -1162,7 +1170,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T08:01:00-04:00"
+      "lastISO": "2026-08-29T08:16:00-04:00"
     },
     {
       "run": "The Closer",
