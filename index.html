@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 2:15 PM ET",
-  "generatedAtISO": "2026-08-29T14:15:44-04:00",
+  "generatedAt": "Aug 29, 2:30 PM ET",
+  "generatedAtISO": "2026-08-29T14:30:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -718,6 +718,14 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 04:18"
     },
     {
+      "code": "AVA",
+      "channel": "SMS",
+      "status": "Error",
+      "studio": "527",
+      "raised_by": "The Host",
+      "created": "Aug 29 · 04:18"
+    },
+    {
       "code": "HTA-sweep-•••A",
       "channel": "SMS",
       "status": "Error",
@@ -751,14 +759,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
-    },
-    {
-      "code": "AVA",
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "527",
@@ -929,7 +929,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T17:47:02+00:00",
+    "updatedAt": "2026-08-29T18:18:06+00:00",
     "doorGaps": [
       {
         "since": "2026-08-29T09:00:17.333523Z",
@@ -1322,6 +1322,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T18:13:39.119327Z",
         "until": "2026-08-29T18:13:48.609232Z"
+      },
+      {
+        "since": "2026-08-29T18:19:39.124187Z",
+        "until": "2026-08-29T18:19:48.553371Z"
+      },
+      {
+        "since": "2026-08-29T18:25:14.580205Z",
+        "until": "2026-08-29T18:25:25.092786Z"
       }
     ],
     "down": false
@@ -1338,6 +1346,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T10:01:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-29T13:29:00-04:00"
+    },
+    {
       "run": "The Mechanic",
       "cadence": "Hourly",
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
@@ -1348,6 +1366,26 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T13:02:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-28T19:40:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-29T13:12:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1355,7 +1393,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T14:15:00-04:00"
+      "lastISO": "2026-08-29T14:26:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1398,16 +1436,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T06:04:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:29:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -1438,16 +1466,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T04:20:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-28T19:40:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
@@ -1456,16 +1474,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T13:30:00-04:00"
-    },
-    {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:12:00-04:00"
     },
     {
       "run": "The Timekeeper",
