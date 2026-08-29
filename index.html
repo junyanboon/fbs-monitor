@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 8:00 AM ET",
-  "generatedAtISO": "2026-08-29T08:00:55-04:00",
+  "generatedAt": "Aug 29, 8:15 AM ET",
+  "generatedAtISO": "2026-08-29T08:15:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -776,7 +776,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -967,21 +967,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T11:56:20.248648Z",
         "until": "2026-08-29T11:56:27.970440Z"
+      },
+      {
+        "since": "2026-08-29T12:02:18.998231Z",
+        "until": "2026-08-29T12:02:30.614261Z"
+      },
+      {
+        "since": "2026-08-29T12:08:20.318017Z",
+        "until": "2026-08-29T12:08:33.121245Z"
+      },
+      {
+        "since": "2026-08-29T12:14:15.040719Z",
+        "until": "2026-08-29T12:14:28.452936Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T22:22:00-04:00"
-    },
     {
       "run": "The Morning Text",
       "cadence": "Daily",
@@ -1001,16 +1003,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T22:59:00-04:00"
-    },
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T22:46:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1040,7 +1032,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T08:00:00-04:00"
+      "lastISO": "2026-08-29T08:11:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1060,7 +1052,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T07:07:00-04:00"
+      "lastISO": "2026-08-29T08:07:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -1071,6 +1063,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T08:14:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1130,7 +1132,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T07:06:00-04:00"
+      "lastISO": "2026-08-29T08:09:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1151,6 +1153,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T03:16:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T08:01:00-04:00"
     },
     {
       "run": "The Closer",
