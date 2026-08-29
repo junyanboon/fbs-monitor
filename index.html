@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 6:45 PM ET",
-  "generatedAtISO": "2026-08-29T18:45:43-04:00",
+  "generatedAt": "Aug 29, 7:00 PM ET",
+  "generatedAtISO": "2026-08-29T19:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -530,7 +530,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:59",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -564,7 +564,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "18:58",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -708,16 +708,7 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     }
   ],
-  "messages": [
-    {
-      "code": "BC-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Aug 29 · 18:31"
-    }
-  ],
+  "messages": [],
   "attention": [],
   "armEvents": [
     {
@@ -863,6 +854,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788034547639,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "18:58",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788044327048,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Keysha Miller",
+      "time": "18:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788044352869,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -875,16 +884,6 @@ const DATA = /*__DATA__*/{
       "time": "21:42",
       "ts": 1787967723350,
       "when": "Fri 21:42"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "693",
-      "time": "15:30",
-      "ts": 1787945421678,
-      "when": "Fri 15:30"
     }
   },
   "alarmAlerts": [],
@@ -893,7 +892,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T20:19:03+00:00",
+    "updatedAt": "2026-08-29T23:00:17+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1484,6 +1483,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T22:42:24.188887Z",
         "until": "2026-08-29T22:42:35.669386Z"
+      },
+      {
+        "since": "2026-08-29T22:48:24.225172Z",
+        "until": "2026-08-29T22:48:35.673979Z"
+      },
+      {
+        "since": "2026-08-29T22:53:38.572673Z",
+        "until": "2026-08-29T22:53:47.210005Z"
+      },
+      {
+        "since": "2026-08-29T22:59:13.936407Z",
+        "until": "2026-08-29T22:59:19.249973Z"
       }
     ],
     "down": false
@@ -1507,7 +1518,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T18:45:00-04:00"
+      "lastISO": "2026-08-29T18:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1517,7 +1528,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T18:00:00-04:00"
+      "lastISO": "2026-08-29T19:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1607,7 +1618,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T18:29:00-04:00"
+      "lastISO": "2026-08-29T19:00:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1657,7 +1668,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T18:31:00-04:00"
+      "lastISO": "2026-08-29T18:46:00-04:00"
     },
     {
       "run": "The Closer",
