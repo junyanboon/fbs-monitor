@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 11:45 AM ET",
-  "generatedAtISO": "2026-08-29T11:45:43-04:00",
+  "generatedAt": "Aug 29, 12:00 PM ET",
+  "generatedAtISO": "2026-08-29T12:00:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -497,7 +497,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": true,
       "arrived": "11:00",
-      "departed": null,
+      "departed": "11:59",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -811,6 +811,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1788017556433,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Eri Tagawa",
+      "time": "11:59",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788019169557,
       "source": "doors"
     }
   ],
@@ -1141,6 +1150,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T15:45:16.591015Z",
         "until": "2026-08-29T15:45:23.120908Z"
+      },
+      {
+        "since": "2026-08-29T15:51:16.562644Z",
+        "until": "2026-08-29T15:51:28.044592Z"
+      },
+      {
+        "since": "2026-08-29T15:57:14.681779Z",
+        "until": "2026-08-29T15:57:22.232606Z"
       }
     ],
     "down": false
@@ -1184,7 +1201,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T11:46:00-04:00"
+      "lastISO": "2026-08-29T11:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1194,7 +1211,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T11:00:00-04:00"
+      "lastISO": "2026-08-29T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1264,17 +1281,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T11:00:00-04:00"
-    },
-    {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T08:49:00-04:00"
+      "lastISO": "2026-08-29T12:01:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1335,6 +1342,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-29T08:49:00-04:00"
     },
     {
       "run": "The Opener",
