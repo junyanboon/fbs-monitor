@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 1:00 PM ET",
-  "generatedAtISO": "2026-08-29T13:00:59-04:00",
+  "generatedAt": "Aug 29, 1:15 PM ET",
+  "generatedAtISO": "2026-08-29T13:15:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -497,6 +497,14 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "EOB",
+      "channel": "SMS",
+      "status": "Error",
+      "studio": "901",
+      "raised_by": "The Host",
+      "created": "Aug 29 · 04:18"
+    },
+    {
       "code": "HTA-sweep-•••A",
       "channel": "SMS",
       "status": "Error",
@@ -513,18 +521,26 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 12:52"
     },
     {
-      "code": "EOB",
+      "code": "HTA-sweep-•••A",
       "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 13:01"
+    },
+    {
+      "code": "CONFIRM CREDIT — Maggie Morrison Wednesday hours",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Aug 29 · 13:10"
     },
     {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
-      "studio": "901",
+      "studio": "527",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
     },
@@ -540,7 +556,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1014,31 +1030,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T17:00:22.119750Z",
         "until": "2026-08-29T17:00:33.937868Z"
+      },
+      {
+        "since": "2026-08-29T17:06:22.167648Z",
+        "until": "2026-08-29T17:06:35.600301Z"
+      },
+      {
+        "since": "2026-08-29T17:12:21.299427Z",
+        "until": "2026-08-29T17:12:34.830845Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "04:06 America/Toronto · Codex production fallback",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T04:22:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-28T04:28:00-04:00"
-    },
     {
       "run": "Watchlist sync",
       "cadence": "15-min",
@@ -1057,7 +1061,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:56:00-04:00"
+      "lastISO": "2026-08-29T13:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1077,7 +1081,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:07:00-04:00"
+      "lastISO": "2026-08-29T13:07:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "04:06 America/Toronto · Codex production fallback",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T13:12:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -1137,7 +1151,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:01:00-04:00"
+      "lastISO": "2026-08-29T13:02:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1167,7 +1181,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:46:00-04:00"
+      "lastISO": "2026-08-29T13:12:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T13:11:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1187,7 +1211,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:45:00-04:00"
+      "lastISO": "2026-08-29T13:14:00-04:00"
     },
     {
       "run": "The Closer",
