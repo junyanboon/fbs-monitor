@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 11:30 AM ET",
-  "generatedAtISO": "2026-08-29T11:30:49-04:00",
+  "generatedAt": "Aug 29, 11:45 AM ET",
+  "generatedAtISO": "2026-08-29T11:45:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -368,7 +368,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Unsent",
       "heard": true,
-      "arrived": null,
+      "arrived": "11:32",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -480,6 +480,14 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "FOLLOW-UP — Sabrina Caputi Artist Plan (Aug 29)",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Aug 29 · 11:31"
+    },
+    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -507,7 +515,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -582,6 +590,15 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788016518655,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Vidhisha Patel",
+      "time": "11:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788017556433,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -622,7 +639,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T15:05:09+00:00",
+    "updatedAt": "2026-08-29T15:37:07+00:00",
     "doorGaps": [
       {
         "since": "2026-08-29T09:00:17.333523Z",
@@ -899,6 +916,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T15:27:20.242972Z",
         "until": "2026-08-29T15:27:31.842244Z"
+      },
+      {
+        "since": "2026-08-29T15:33:20.206259Z",
+        "until": "2026-08-29T15:33:25.607629Z"
+      },
+      {
+        "since": "2026-08-29T15:39:16.584716Z",
+        "until": "2026-08-29T15:39:28.098610Z"
+      },
+      {
+        "since": "2026-08-29T15:45:16.591015Z",
+        "until": "2026-08-29T15:45:23.120908Z"
       }
     ],
     "down": false
@@ -913,16 +942,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T04:22:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T08:14:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -952,7 +971,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T11:29:00-04:00"
+      "lastISO": "2026-08-29T11:46:00-04:00"
     },
     {
       "run": "QA release check",
@@ -983,6 +1002,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T11:37:00-04:00"
     },
     {
       "run": "The Custodian",
