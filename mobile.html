@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 12:45 PM ET",
-  "generatedAtISO": "2026-08-29T12:45:42-04:00",
+  "generatedAt": "Aug 29, 1:00 PM ET",
+  "generatedAtISO": "2026-08-29T13:00:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -497,20 +497,20 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "FOLLOW-UP — Sabrina Caputi Artist Plan (Aug 29)",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Aug 29 · 11:31"
-    },
-    {
       "code": "HTA-sweep-•••A",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Error",
       "studio": "509A",
       "raised_by": "AI (automation)",
       "created": "Aug 29 · 12:32"
+    },
+    {
+      "code": "Review ask — Alice Hamman •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Aug 29 · 12:52"
     },
     {
       "code": "EOB",
@@ -540,7 +540,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1002,6 +1002,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T16:43:22.013192Z",
         "until": "2026-08-29T16:43:29.529755Z"
+      },
+      {
+        "since": "2026-08-29T16:48:49.243321Z",
+        "until": "2026-08-29T16:48:59.505880Z"
+      },
+      {
+        "since": "2026-08-29T16:54:20.929796Z",
+        "until": "2026-08-29T16:54:29.666941Z"
+      },
+      {
+        "since": "2026-08-29T17:00:22.119750Z",
+        "until": "2026-08-29T17:00:33.937868Z"
       }
     ],
     "down": false
@@ -1016,16 +1028,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T04:22:00-04:00"
-    },
-    {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T11:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1048,16 +1050,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T10:01:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-29T11:37:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1065,7 +1057,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:45:00-04:00"
+      "lastISO": "2026-08-29T12:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1075,7 +1067,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:00:00-04:00"
+      "lastISO": "2026-08-29T13:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1096,6 +1088,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T13:00:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1155,7 +1157,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:02:00-04:00"
+      "lastISO": "2026-08-29T12:56:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T12:46:00-04:00"
     },
     {
       "run": "The Treasurer",
