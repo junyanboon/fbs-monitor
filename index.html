@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 9:15 AM ET",
-  "generatedAtISO": "2026-08-29T09:15:43-04:00",
+  "generatedAt": "Aug 29, 9:30 AM ET",
+  "generatedAtISO": "2026-08-29T09:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -479,7 +479,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "09:16",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -693,12 +693,36 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "AVA",
+      "code": "HTA-sweep-•••",
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "901",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 09:30"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 09:30"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 09:30"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 09:31"
     },
     {
       "code": "EOB",
@@ -725,7 +749,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 04:18"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "2 robots overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "901",
@@ -735,19 +764,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788008094219,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "09:16",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788009404814,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "509A",
-      "time": "23:45",
-      "ts": 1787975107906,
-      "when": "Fri 23:45"
-    },
     "509B": {
       "kind": "departure",
       "name": "Tess English",
@@ -785,7 +813,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T12:58:02+00:00",
+    "updatedAt": "2026-08-29T13:22:14+00:00",
     "doorGaps": [
       {
         "since": "2026-08-29T09:00:17.333523Z",
@@ -966,6 +994,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T13:11:16.789464Z",
         "until": "2026-08-29T13:11:24.215689Z"
+      },
+      {
+        "since": "2026-08-29T13:16:19.398485Z",
+        "until": "2026-08-29T13:16:25.831187Z"
+      },
+      {
+        "since": "2026-08-29T13:21:20.919640Z",
+        "until": "2026-08-29T13:21:30.422682Z"
+      },
+      {
+        "since": "2026-08-29T13:26:39.632822Z",
+        "until": "2026-08-29T13:26:55.131405Z"
       }
     ],
     "down": false
@@ -977,8 +1017,8 @@ const DATA = /*__DATA__*/{
       "expected": "04:06 America/Toronto · Codex production fallback",
       "produces": "IPR — today + tomorrow",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-28T04:22:00-04:00"
     },
     {
@@ -987,8 +1027,8 @@ const DATA = /*__DATA__*/{
       "expected": "04:00 America/Toronto · Codex production fallback",
       "produces": "Overtime report (yesterday)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-28T04:28:00-04:00"
     },
     {
@@ -999,7 +1039,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:13:00-04:00"
+      "lastISO": "2026-08-29T09:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1039,7 +1079,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T08:29:00-04:00"
+      "lastISO": "2026-08-29T09:25:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1139,7 +1179,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T03:16:00-04:00"
+      "lastISO": "2026-08-29T09:16:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1149,7 +1189,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:01:00-04:00"
+      "lastISO": "2026-08-29T09:16:00-04:00"
     },
     {
       "run": "The Closer",
