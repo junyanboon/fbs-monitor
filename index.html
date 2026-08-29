@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 2:00 PM ET",
-  "generatedAtISO": "2026-08-29T14:00:59-04:00",
+  "generatedAt": "Aug 29, 2:15 PM ET",
+  "generatedAtISO": "2026-08-29T14:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -615,7 +615,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "heard": false,
-      "arrived": null,
+      "arrived": "14:14",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -740,6 +740,14 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "AI (automation)",
       "created": "Aug 29 · 13:01"
+    },
+    {
+      "code": "HTA-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 14:01"
     },
     {
       "code": "EOB",
@@ -871,6 +879,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1788025416383,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Junyan Boon",
+      "time": "14:14",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788027278909,
       "source": "doors"
     }
   ],
@@ -1293,6 +1310,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T17:56:49.582572Z",
         "until": "2026-08-29T17:56:56.024828Z"
+      },
+      {
+        "since": "2026-08-29T18:02:22.504026Z",
+        "until": "2026-08-29T18:02:32.140189Z"
+      },
+      {
+        "since": "2026-08-29T18:07:49.657120Z",
+        "until": "2026-08-29T18:07:56.143546Z"
+      },
+      {
+        "since": "2026-08-29T18:13:39.119327Z",
+        "until": "2026-08-29T18:13:48.609232Z"
       }
     ],
     "down": false
@@ -1309,6 +1338,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T10:01:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-29T13:02:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1316,7 +1355,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:58:00-04:00"
+      "lastISO": "2026-08-29T14:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1336,7 +1375,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:07:00-04:00"
+      "lastISO": "2026-08-29T14:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1397,16 +1436,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T04:20:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:02:00-04:00"
     },
     {
       "run": "The Planner",
