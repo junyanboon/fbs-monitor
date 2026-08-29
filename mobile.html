@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 12:30 PM ET",
-  "generatedAtISO": "2026-08-29T12:30:44-04:00",
+  "generatedAt": "Aug 29, 12:45 PM ET",
+  "generatedAtISO": "2026-08-29T12:45:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -315,7 +315,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Unsent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -505,6 +505,14 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 11:31"
     },
     {
+      "code": "HTA-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 12:32"
+    },
+    {
       "code": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -532,7 +540,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -982,6 +990,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T16:25:49.305225Z",
         "until": "2026-08-29T16:25:52.712734Z"
+      },
+      {
+        "since": "2026-08-29T16:31:49.135918Z",
+        "until": "2026-08-29T16:31:55.227734Z"
+      },
+      {
+        "since": "2026-08-29T16:37:39.639851Z",
+        "until": "2026-08-29T16:37:47.165835Z"
+      },
+      {
+        "since": "2026-08-29T16:43:22.013192Z",
+        "until": "2026-08-29T16:43:29.529755Z"
       }
     ],
     "down": false
@@ -996,6 +1016,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-28T04:22:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-29T11:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1018,14 +1048,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T10:01:00-04:00"
     },
     {
-      "run": "The Sentinel",
+      "run": "The Concierge",
       "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-08-29T11:07:00-04:00"
+      "lastISO": "2026-08-29T11:37:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1035,7 +1065,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T12:30:00-04:00"
+      "lastISO": "2026-08-29T12:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1066,16 +1096,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T11:37:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1155,7 +1175,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T11:15:00-04:00"
+      "lastISO": "2026-08-29T12:45:00-04:00"
     },
     {
       "run": "The Closer",
