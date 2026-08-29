@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 1:30 PM ET",
-  "generatedAtISO": "2026-08-29T13:30:49-04:00",
+  "generatedAt": "Aug 29, 1:45 PM ET",
+  "generatedAtISO": "2026-08-29T13:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -386,7 +386,7 @@ const DATA = /*__DATA__*/{
       "hta": "Unsent",
       "heard": true,
       "arrived": "11:32",
-      "departed": null,
+      "departed": "13:43",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -497,12 +497,28 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "EOB",
+      "channel": "SMS",
+      "status": "Error",
+      "studio": "901",
+      "raised_by": "The Host",
+      "created": "Aug 29 · 04:18"
+    },
+    {
       "code": "HTA-sweep-•••A",
       "channel": "SMS",
       "status": "Error",
       "studio": "509A",
       "raised_by": "AI (automation)",
       "created": "Aug 29 · 12:32"
+    },
+    {
+      "code": "Review ask — Alice Hamman •••",
+      "channel": "SMS",
+      "status": "Error",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Aug 29 · 12:52"
     },
     {
       "code": "HTA-sweep-•••A",
@@ -537,28 +553,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 04:18"
     },
     {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Host",
-      "created": "Aug 29 · 04:18"
-    },
-    {
       "code": "AVA",
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "527",
       "raised_by": "The Host",
       "created": "Aug 29 · 04:18"
-    },
-    {
-      "code": "Review ask — Alice Hamman •••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Aug 29 · 12:52"
     }
   ],
   "attention": [
@@ -665,6 +665,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1788023940678,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Vidhisha Patel",
+      "time": "13:43",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788025416383,
       "source": "doors"
     }
   ],
@@ -1067,6 +1076,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T17:28:14.449656Z",
         "until": "2026-08-29T17:28:25.908647Z"
+      },
+      {
+        "since": "2026-08-29T17:33:39.205307Z",
+        "until": "2026-08-29T17:33:46.713935Z"
+      },
+      {
+        "since": "2026-08-29T17:39:39.313192Z",
+        "until": "2026-08-29T17:39:51.710527Z"
+      },
+      {
+        "since": "2026-08-29T17:45:20.987705Z",
+        "until": "2026-08-29T17:45:25.489679Z"
       }
     ],
     "down": false
@@ -1090,7 +1111,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:30:00-04:00"
+      "lastISO": "2026-08-29T13:41:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1220,7 +1241,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T13:11:00-04:00"
+      "lastISO": "2026-08-29T13:44:00-04:00"
     },
     {
       "run": "The Treasurer",
