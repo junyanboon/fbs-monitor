@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 10:45 AM ET",
-  "generatedAtISO": "2026-08-29T10:45:45-04:00",
+  "generatedAt": "Aug 29, 11:00 AM ET",
+  "generatedAtISO": "2026-08-29T11:00:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -480,7 +480,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "heard": false,
       "arrived": "09:16",
-      "departed": null,
+      "departed": "10:49",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -720,7 +720,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -740,6 +740,33 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1788009404814,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "10:49",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788014982330,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788015627011,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788015630214,
       "source": "doors"
     }
   ],
@@ -781,7 +808,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T13:22:14+00:00",
+    "updatedAt": "2026-08-29T14:54:06+00:00",
     "doorGaps": [
       {
         "since": "2026-08-29T09:00:17.333523Z",
@@ -1026,6 +1053,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T14:40:16.661183Z",
         "until": "2026-08-29T14:40:22.169884Z"
+      },
+      {
+        "since": "2026-08-29T14:46:14.770972Z",
+        "until": "2026-08-29T14:46:29.287971Z"
+      },
+      {
+        "since": "2026-08-29T14:52:16.690025Z",
+        "until": "2026-08-29T14:52:26.147579Z"
+      },
+      {
+        "since": "2026-08-29T14:58:16.658341Z",
+        "until": "2026-08-29T14:58:29.174899Z"
       }
     ],
     "down": false
@@ -1057,8 +1096,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
       "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-29T10:01:00-04:00"
     },
     {
@@ -1069,7 +1108,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:44:00-04:00"
+      "lastISO": "2026-08-29T11:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1079,7 +1118,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:00:00-04:00"
+      "lastISO": "2026-08-29T11:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1149,7 +1188,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:02:00-04:00"
+      "lastISO": "2026-08-29T11:00:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1179,7 +1218,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T10:34:00-04:00"
+      "lastISO": "2026-08-29T10:59:00-04:00"
     },
     {
       "run": "The Sentinel",
