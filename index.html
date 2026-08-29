@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 7:34 PM ET",
-  "generatedAtISO": "2026-08-29T19:34:30-04:00",
+  "generatedAt": "Aug 29, 7:45 PM ET",
+  "generatedAtISO": "2026-08-29T19:45:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -537,6 +537,23 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 19.0,
       "end": 20.5,
+      "access_gap": false
+    },
+    {
+      "studio": "527",
+      "who": "Alison Murray and Carlos Boeri (Noches Largas Tango",
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "heard": false,
+      "arrived": "16:13",
+      "departed": "19:12",
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 16.5,
+      "end": 19.0,
       "access_gap": false
     },
     {
@@ -643,7 +660,31 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 10.5,
+      "end": 11.0,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 11.5,
+      "end": 12.0,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 12.75,
+      "end": 13.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
       "studio": "527",
       "day_offset": 1,
       "start": 13.75,
@@ -651,7 +692,15 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 14.75,
+      "end": 15.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
       "studio": "527",
       "day_offset": 1,
       "start": 16.75,
@@ -660,6 +709,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 16.75,
+      "end": 17.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
       "studio": "693",
       "day_offset": 1,
       "start": 18.25,
@@ -668,6 +725,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 18.75,
+      "end": 19.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
       "studio": "527",
       "day_offset": 1,
       "start": 19.5,
@@ -675,7 +740,7 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
+      "role": "FBS",
       "studio": "527",
       "day_offset": 1,
       "start": 20.25,
@@ -683,12 +748,28 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
+      "role": "FBS",
       "studio": "693",
       "day_offset": 1,
       "start": 23.75,
       "end": 24.25,
       "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 3,
+      "start": 16.75,
+      "end": 17.25,
+      "day": "Tue Sep 1"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 3,
+      "start": 18.5,
+      "end": 19.0,
+      "day": "Tue Sep 1"
     }
   ],
   "messages": [
@@ -1520,20 +1601,28 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T23:33:13.879401Z",
         "until": "2026-08-29T23:33:26.123272Z"
+      },
+      {
+        "since": "2026-08-29T23:38:23.059482Z",
+        "until": "2026-08-29T23:38:36.893916Z"
+      },
+      {
+        "since": "2026-08-29T23:43:38.530918Z",
+        "until": "2026-08-29T23:43:49.995755Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-08-28T19:40:00-04:00"
+      "lastISO": "2026-08-29T18:35:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1543,7 +1632,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T19:34:00-04:00"
+      "lastISO": "2026-08-29T19:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1586,16 +1675,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T06:04:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T18:35:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -1634,6 +1713,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T19:02:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T19:40:00-04:00"
     },
     {
       "run": "The Responder",
