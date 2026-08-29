@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Friday, August 28, 2026",
-  "generatedAt": "Aug 28, 9:45 PM ET",
-  "generatedAtISO": "2026-08-28T21:45:40-04:00",
+  "generatedAt": "Aug 28, 10:00 PM ET",
+  "generatedAtISO": "2026-08-28T22:00:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -468,7 +468,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -476,7 +476,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -611,8 +611,30 @@ const DATA = /*__DATA__*/{
       "day": "Sun Aug 30"
     }
   ],
-  "messages": [],
-  "attention": [],
+  "messages": [
+    {
+      "code": "AGREEMENT-SIGN-LAURA-••••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Concierge",
+      "created": "Aug 28 · 21:55"
+    },
+    {
+      "code": "Responder — @melleeepops IG courtesy (•••:44)",
+      "channel": "Instagram",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 28 · 22:00"
+    }
+  ],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -964,7 +986,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-29T01:37:02+00:00",
+    "updatedAt": "2026-08-29T01:47:01+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1691,6 +1713,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T01:44:40.808799Z",
         "until": "2026-08-29T01:44:46.288271Z"
+      },
+      {
+        "since": "2026-08-29T01:49:43.913648Z",
+        "until": "2026-08-29T01:49:58.381910Z"
+      },
+      {
+        "since": "2026-08-29T01:55:17.823662Z",
+        "until": "2026-08-29T01:55:22.865553Z"
       }
     ],
     "down": false
@@ -1702,8 +1732,8 @@ const DATA = /*__DATA__*/{
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
       "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-28T02:52:00-04:00"
     },
     {
@@ -1714,7 +1744,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T21:45:00-04:00"
+      "lastISO": "2026-08-28T21:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1724,7 +1754,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T21:00:00-04:00"
+      "lastISO": "2026-08-28T22:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1794,7 +1824,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T20:59:00-04:00"
+      "lastISO": "2026-08-28T21:58:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1864,7 +1894,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-28T21:31:00-04:00"
+      "lastISO": "2026-08-28T21:46:00-04:00"
     },
     {
       "run": "The Closer",
