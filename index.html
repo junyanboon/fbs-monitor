@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 2:17 AM ET",
-  "generatedAtISO": "2026-08-29T02:17:15-04:00",
+  "generatedAt": "Aug 29, 2:30 AM ET",
+  "generatedAtISO": "2026-08-29T02:30:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -681,7 +681,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -689,7 +689,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
@@ -2159,6 +2159,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-29T06:14:40.320363Z",
         "until": "2026-08-29T06:14:50.638150Z"
+      },
+      {
+        "since": "2026-08-29T06:19:45.432614Z",
+        "until": "2026-08-29T06:19:57.870304Z"
+      },
+      {
+        "since": "2026-08-29T06:25:45.481300Z",
+        "until": "2026-08-29T06:25:52.730674Z"
       }
     ],
     "down": false
@@ -2195,6 +2203,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-28T06:17:00-04:00"
     },
     {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-28T04:36:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -2212,7 +2230,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T02:15:00-04:00"
+      "lastISO": "2026-08-29T02:27:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2233,16 +2251,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T02:07:00-04:00"
-    },
-    {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-28T04:36:00-04:00"
     },
     {
       "run": "The Mechanic",
