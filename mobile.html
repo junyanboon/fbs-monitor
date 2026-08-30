@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 8:30 AM ET",
-  "generatedAtISO": "2026-08-30T08:30:52-04:00",
+  "generatedAt": "Aug 30, 8:45 AM ET",
+  "generatedAtISO": "2026-08-30T08:45:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -537,16 +537,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -750,7 +750,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "7 robots overdue — see Robots tab"
+      "text": "6 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -965,6 +965,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T12:29:37.153836Z",
         "until": "2026-08-30T12:29:43.419149Z"
+      },
+      {
+        "since": "2026-08-30T12:35:02.388072Z",
+        "until": "2026-08-30T12:35:09.824178Z"
+      },
+      {
+        "since": "2026-08-30T12:40:37.104093Z",
+        "until": "2026-08-30T12:40:47.574484Z"
       }
     ],
     "down": false
@@ -1009,16 +1017,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-29T06:24:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T22:01:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1068,7 +1066,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T08:29:00-04:00"
+      "lastISO": "2026-08-30T08:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1099,6 +1097,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T13:12:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T08:32:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1148,7 +1156,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T08:16:00-04:00"
+      "lastISO": "2026-08-30T08:46:00-04:00"
     },
     {
       "run": "The Closer",
