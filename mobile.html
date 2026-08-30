@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 1:15 PM ET",
-  "generatedAtISO": "2026-08-30T13:15:44-04:00",
+  "generatedAt": "Aug 30, 1:20 PM ET",
+  "generatedAtISO": "2026-08-30T13:20:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1158,6 +1158,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T17:11:58.237532Z",
         "until": "2026-08-30T17:12:06.733939Z"
+      },
+      {
+        "since": "2026-08-30T17:17:57.922013Z",
+        "until": "2026-08-30T17:18:10.421304Z"
       }
     ],
     "down": false
@@ -1174,16 +1178,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T12:01:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-30T12:02:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
@@ -1194,16 +1188,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T11:59:00-04:00"
     },
     {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-30T12:05:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1211,7 +1195,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:13:00-04:00"
+      "lastISO": "2026-08-30T13:18:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1284,6 +1268,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T11:00:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T13:19:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1292,6 +1286,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T19:40:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T13:18:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1444,9 +1448,9 @@ function warnChips(e,st){
   // e.heard = the renter has texted us today; that IS the confirmation, so the
   // chip clears on it without waiting for the desk to flip GTG.
   if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!e.heard&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
-  /* Open Access / PIN row names this renter today: code will not work.
-     Shown even after the booking ends — tomorrow's lockout too. */
-  if(e.access_gap)t+=`<span class="chip crit">Code ✗</span>`;
+  /* Open Access / PIN row names this renter today. The boolean covers any
+     unresolved access check; it is not proof that the code is missing. */
+  if(e.access_gap)t+=`<span class="chip crit" title="Open access verification">Verify access</span>`;
   if(st.flagged&&!e.dup_studios)t+=`<span class="chip crit">Missing</span>`;
   return t;
 }
