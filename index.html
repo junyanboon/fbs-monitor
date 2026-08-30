@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 9:00 PM ET",
-  "generatedAtISO": "2026-08-29T21:00:54-04:00",
+  "generatedAt": "Aug 29, 9:15 PM ET",
+  "generatedAtISO": "2026-08-29T21:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -540,6 +540,40 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     },
     {
+      "studio": "509A",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 22.25,
+      "end": 22.75,
+      "access_gap": false
+    },
+    {
+      "studio": "509B",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 22.25,
+      "end": 22.75,
+      "access_gap": false
+    },
+    {
       "studio": "527",
       "who": "Alison Murray and Carlos Boeri (Noches Largas Tango",
       "kind": "booking",
@@ -554,6 +588,23 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 16.5,
       "end": 19.0,
+      "access_gap": false
+    },
+    {
+      "studio": "527",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 23.0,
+      "end": 23.75,
       "access_gap": false
     },
     {
@@ -622,6 +673,23 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 14.25,
       "end": 16.0,
+      "access_gap": false
+    },
+    {
+      "studio": "901",
+      "who": "Stefan",
+      "kind": "cleaning",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "heard": false,
+      "arrived": "21:14",
+      "departed": null,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 21.25,
+      "end": 22.0,
       "access_gap": false
     }
   ],
@@ -700,16 +768,16 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
@@ -788,14 +856,17 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "Other",
       "created": "Aug 29 · 20:02"
-    }
-  ],
-  "attention": [
+    },
     {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "code": "Courtesy — Keysha Miller •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Aug 29 · 21:02"
     }
   ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "901",
@@ -1002,6 +1073,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1788050298636,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "21:14",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788052480561,
       "source": "doors"
     }
   ],
@@ -1710,21 +1790,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T00:57:15.790960Z",
         "until": "2026-08-30T00:57:30.544425Z"
+      },
+      {
+        "since": "2026-08-30T01:02:52.209263Z",
+        "until": "2026-08-30T01:03:00.667406Z"
+      },
+      {
+        "since": "2026-08-30T01:08:38.386690Z",
+        "until": "2026-08-30T01:08:45.838813Z"
+      },
+      {
+        "since": "2026-08-30T01:14:15.963807Z",
+        "until": "2026-08-30T01:14:28.536080Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T18:35:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1733,7 +1815,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T20:56:00-04:00"
+      "lastISO": "2026-08-29T21:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1753,7 +1835,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T20:07:00-04:00"
+      "lastISO": "2026-08-29T21:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1774,6 +1856,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-29T21:15:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1813,7 +1905,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T20:00:00-04:00"
+      "lastISO": "2026-08-29T21:01:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1833,7 +1925,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T20:01:00-04:00"
+      "lastISO": "2026-08-29T21:03:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1843,7 +1935,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T20:08:00-04:00"
+      "lastISO": "2026-08-29T21:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
