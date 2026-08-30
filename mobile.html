@@ -244,8 +244,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 5:15 PM ET",
-  "generatedAtISO": "2026-08-30T17:15:40-04:00",
+  "generatedAt": "Aug 30, 5:30 PM ET",
+  "generatedAtISO": "2026-08-30T17:30:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -618,16 +618,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -914,7 +914,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T20:15:01+00:00",
+    "updatedAt": "2026-08-30T21:17:10+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1457,11 +1457,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T21:10:42.990501Z",
         "until": "2026-08-30T21:10:57.425718Z"
+      },
+      {
+        "since": "2026-08-30T21:16:11.648325Z",
+        "until": "2026-08-30T21:16:24.054700Z"
+      },
+      {
+        "since": "2026-08-30T21:22:05.625295Z",
+        "until": "2026-08-30T21:22:08.582053Z"
+      },
+      {
+        "since": "2026-08-30T21:27:44.302682Z",
+        "until": "2026-08-30T21:27:59.717636Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-30T16:20:00-04:00"
+    },
     {
       "run": "The Mechanic",
       "cadence": "Hourly",
@@ -1500,7 +1522,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T17:15:00-04:00"
+      "lastISO": "2026-08-30T17:27:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1541,16 +1563,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T09:23:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:20:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1630,7 +1642,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T17:01:00-04:00"
+      "lastISO": "2026-08-30T17:31:00-04:00"
     },
     {
       "run": "The Closer",
