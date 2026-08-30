@@ -139,6 +139,22 @@
   .chip.watch{background:var(--watch-bg);color:var(--watch)}
   .chip.crit{background:var(--crit-bg);color:var(--crit)}
   .chip.plain{background:var(--scrim-2);color:var(--chalk-dim)}
+  /* Approved 2026-08-30: compact AVA/EOB dispatch state in the existing
+     right-side cluster. Public payload is kind + state/time only. */
+  .dispatch-cluster{display:flex;justify-content:flex-end;gap:4px;margin-top:2px;flex-wrap:wrap}
+  .dispatch-seg{display:inline-grid;grid-template-columns:auto auto;overflow:hidden;border:1px solid var(--line);
+                border-radius:7px;background:var(--scrim);font-family:var(--mono);font-size:10px;
+                font-weight:700;line-height:1;white-space:nowrap}
+  .dispatch-seg .dk{padding:5px;background:var(--scrim-2);color:var(--chalk-faint);
+                    font-family:var(--sans);font-size:8.5px;letter-spacing:.08em}
+  .dispatch-seg .dv{padding:5px 6px;color:var(--chalk)}
+  .dispatch-seg.scheduled.ava{border-color:color-mix(in srgb,#2f6fd0 30%,var(--line))}
+  .dispatch-seg.scheduled.ava .dk{background:color-mix(in srgb,#2f6fd0 12%,var(--scrim));color:#2f6fd0}
+  .dispatch-seg.scheduled.eob{border-color:color-mix(in srgb,var(--ok) 30%,var(--line))}
+  .dispatch-seg.scheduled.eob .dk{background:var(--ok-bg);color:var(--ok)}
+  .dispatch-seg.missing{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
+  .dispatch-seg.missing .dk,.dispatch-seg.error .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
+  .dispatch-seg.missing .dv,.dispatch-seg.error .dv{color:var(--crit)}
   .quiet{color:var(--chalk-faint);text-align:center;padding:40px 0;font-size:14.5px}
 
   /* alarms + shifts panels reuse card look */
@@ -228,8 +244,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 3:15 PM ET",
-  "generatedAtISO": "2026-08-30T15:15:40-04:00",
+  "generatedAt": "Aug 30, 3:27 PM ET",
+  "generatedAtISO": "2026-08-30T15:27:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -265,6 +281,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": true,
       "arrived": "09:07",
       "departed": null,
@@ -282,6 +299,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": true,
       "arrived": null,
       "departed": null,
@@ -299,6 +317,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
+      "dispatch": [],
       "heard": false,
       "arrived": "10:49",
       "departed": "11:47",
@@ -315,9 +334,10 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": "Unsent",
+      "hta": "Sent",
+      "dispatch": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "15:15",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -333,6 +353,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": false,
       "arrived": "09:01",
       "departed": "10:17",
@@ -350,6 +371,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Unsent",
+      "dispatch": [],
       "heard": true,
       "arrived": "13:47",
       "departed": null,
@@ -367,6 +389,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -384,6 +407,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": false,
       "arrived": "11:01",
       "departed": null,
@@ -401,6 +425,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
+      "dispatch": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -418,6 +443,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": true,
       "arrived": "11:00",
       "departed": "12:18",
@@ -435,6 +461,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
+      "dispatch": [],
       "heard": true,
       "arrived": "12:51",
       "departed": "14:58",
@@ -452,8 +479,9 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "15:22",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -469,6 +497,7 @@ const DATA = /*__DATA__*/{
       "tier": null,
       "gtg": true,
       "hta": "Will Not Send",
+      "dispatch": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -554,16 +583,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -668,7 +697,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 30 · 05:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -813,6 +847,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788116292397,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Georgia L",
+      "time": "15:15",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788117333367,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Himanshi Mehta",
+      "time": "15:22",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788117726777,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -822,7 +874,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T18:59:01+00:00",
+    "updatedAt": "2026-08-30T19:25:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1273,11 +1325,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T19:11:11.850418Z",
         "until": "2026-08-30T19:11:22.297540Z"
+      },
+      {
+        "since": "2026-08-30T19:16:35.060339Z",
+        "until": "2026-08-30T19:16:41.596229Z"
+      },
+      {
+        "since": "2026-08-30T19:21:43.204503Z",
+        "until": "2026-08-30T19:21:54.668029Z"
+      },
+      {
+        "since": "2026-08-30T19:27:11.837933Z",
+        "until": "2026-08-30T19:27:27.273906Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-30T10:28:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1296,7 +1370,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T15:14:00-04:00"
+      "lastISO": "2026-08-30T15:25:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1346,7 +1420,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T14:39:00-04:00"
+      "lastISO": "2026-08-30T15:24:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1387,16 +1461,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T15:01:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T14:58:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1446,7 +1510,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T15:01:00-04:00"
+      "lastISO": "2026-08-30T15:16:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1628,12 +1692,18 @@ function render(){
        (which lives on the timeline + Missing pill). */
     if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
     const typeChip=e.tier?`<span class="chip type">${e.tier}</span>`:"";
+    const dispatch=(e.dispatch||[]).length?`<span class="dispatch-cluster">`+
+      e.dispatch.map(d=>{
+        const value=d.state==="scheduled"?d.time:d.state==="queued"?"QUEUED":"MISSING";
+        const title=d.state==="scheduled"?`Scheduled for ${d.time}`:d.state==="queued"?"Queue row exists; no send time yet":"Expected queue row not found";
+        return `<span class="dispatch-seg ${d.state} ${d.kind.toLowerCase()}" title="${title}"><span class="dk">${d.kind}</span><span class="dv">${value}</span></span>`;
+      }).join("")+`</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
       <div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}</div>
       <div class="meta">${meta}</div>
       ${tlHTML(e,st,n)}
-      <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}</div>
+      <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}${dispatch}</div>
     </div>`;
   };
 
