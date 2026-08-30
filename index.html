@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 12:45 AM ET",
-  "generatedAtISO": "2026-08-30T00:45:40-04:00",
+  "generatedAt": "Aug 30, 1:00 AM ET",
+  "generatedAtISO": "2026-08-30T01:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -768,16 +768,16 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
@@ -2050,6 +2050,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T04:41:38.300591Z",
         "until": "2026-08-30T04:41:47.729851Z"
+      },
+      {
+        "since": "2026-08-30T04:47:26.442874Z",
+        "until": "2026-08-30T04:47:39.894778Z"
+      },
+      {
+        "since": "2026-08-30T04:52:53.561563Z",
+        "until": "2026-08-30T04:52:57.144875Z"
+      },
+      {
+        "since": "2026-08-30T04:58:26.517496Z",
+        "until": "2026-08-30T04:58:37.965641Z"
       }
     ],
     "down": false
@@ -2066,6 +2078,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T22:01:00-04:00"
     },
     {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "06:00 America/Toronto · Codex production fallback",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-29T06:04:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2073,7 +2095,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T00:43:00-04:00"
+      "lastISO": "2026-08-30T00:59:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2083,7 +2105,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T00:00:00-04:00"
+      "lastISO": "2026-08-30T01:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2104,16 +2126,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T13:12:00-04:00"
-    },
-    {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "06:00 America/Toronto · Codex production fallback",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T06:04:00-04:00"
     },
     {
       "run": "The Doorman",
