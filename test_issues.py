@@ -7,6 +7,7 @@ is a renter at a locked door. Matching is build-side and publishes a boolean
 only — the row titles are internal text.
 """
 from datetime import date
+from pathlib import Path
 
 import build
 
@@ -67,3 +68,29 @@ def test_the_flag_is_a_plain_boolean():
     e = flag([booking("Akira Huang")],
              ["access unresolved for Akira Huang [sweep:509B:2026-08-24T14:00:x]"])
     assert e[0]["access_gap"] is True
+
+
+def test_access_chip_describes_verification_not_a_missing_code():
+    """The boolean means an Access / PIN action is open. It must not claim
+    the renter's code is missing: the action may instead be an unverified
+    window or a temporarily unavailable Alarm.com directory read."""
+    root = Path(__file__).parent
+    for template in ("template.html", "template-mobile.html"):
+        text = (root / template).read_text()
+        assert "Verify access" in text
+        assert "Code ✗" not in text
+
+
+def main():
+    test_sweep_row_lights_exactly_its_booking()
+    test_sweep_row_for_another_day_lights_nothing()
+    test_sweep_row_for_another_studio_lights_nothing()
+    test_unkeyed_row_matches_on_the_person()
+    test_unrelated_rows_and_staff_blocks_stay_dark()
+    test_the_flag_is_a_plain_boolean()
+    test_access_chip_describes_verification_not_a_missing_code()
+    print("access warning regression tests: OK")
+
+
+if __name__ == "__main__":
+    main()

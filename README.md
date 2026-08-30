@@ -171,35 +171,18 @@ name token legitimately booked that other studio, pass 1 claims the event first 
 no flag is raised. `arrived` is never set from a foreign studio — the person did not
 arrive where they were supposed to be, and the board must not imply they did.
 
-### 5. The alarm code is a boolean here, never a value
+### 5. Access warnings are boolean here, never codes
 
-`Alarm Code` on 🛎️ FBS AI Support is a rollup of the renter's real PIN.
-**This board is a public GitHub Pages site.** `parse_notion()` reads that
-property, collapses it to `has_code` on the same line, and lets the string go;
-only `no_code: true/false` ever reaches DATA. Canon masks PINs for exactly this
-reason — display name and access window are AI-readable, the PIN is `[STAFF]`.
-An edit that "helpfully" surfaces the value to save a lookup publishes every
-renter's door code to the internet.
+**This board is a public GitHub Pages site.** It never reads or publishes the
+`Alarm Code` rollup. `fetch_open_access_rows()` reads only the titles of open
+`Access / PIN` actions, and `flag_access_gaps()` collapses the matching action
+to `access_gap: true/false` before DATA is built. Message bodies, action notes,
+Alarm.com identifiers, and PIN values never cross into the public payload.
 
-A renter with no code cannot get in, and normally nobody finds out until they
-are at the door. The Doorman raises these each morning as `Access / PIN — <name>
-… — no alarm code on file` rows, but that is a Notion queue nobody reads
-mid-shift; the board is what's open when the call comes.
-
-Two guards in `apply_missing_codes()`:
-
-- **Unknown is not missing.** Only bookings that matched a Notion row are
-  eligible. An unmatched booking has no code information either way and must
-  never render as a lockout.
-- **All-codeless is suppressed.** If every tiered booking reads as codeless,
-  that is a renamed property or a permissions change far more often than a day
-  where nobody can get in. A board of false alarms is how a real one gets
-  ignored, so it emits a fallback note instead of flagging them all.
-
-What this check **cannot** see: a renter who has a code on file but no matching
-live Alarm.com user, or a window that has expired. Verifying those needs the
-alarm connector, which the cloud build cannot reach (see rule 8). Only the
-Doorman catches that class.
+The red `VERIFY ACCESS` chip therefore means exactly one thing: an access check
+for this renter and today's booking is still open. It does **not** assert that
+the code field is empty; the unresolved item may instead be an access window,
+a dormant panel user, or an unavailable Alarm.com directory read.
 
 ### 6. Same-minute events order by email receipt
 

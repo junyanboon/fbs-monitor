@@ -76,6 +76,12 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_titles.py
 
+      # Guards the access-warning join and its public wording. An open
+      # Access / PIN action is not proof that the Alarm Code field is empty.
+      - name: Access warning regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_issues.py
+
       # Guards open-shift placeholder parsing for the Shifts tab. Placeholders
       # must never read as a person's coverage, and nothing from an event
       # description except the studio number may reach the public page.

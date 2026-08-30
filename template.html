@@ -720,10 +720,11 @@ function render(){
     // chip clears on it without waiting for the desk to flip GTG.
     if(e.tier && e.tier!=="Viewing" && !e.gtg && !e.heard && !done)
       warns += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
-    /* An open Access / PIN row names this renter for today: their code will
-       not work. THE one access surface on this app (2026-08-25). Stays after
-       the booking ends — an unresolved code is tomorrow's lockout too. */
-    if(e.access_gap) warns += `<span class="chip crit">Code ✗</span>`;
+    /* An open Access / PIN row names this renter for today. That can mean a
+       missing code, an unverified access window, or an unavailable directory
+       read, so never describe the boolean as proof that the code is missing.
+       THE one access surface on this app (2026-08-25). */
+    if(e.access_gap) warns += `<span class="chip crit" title="Open access verification">Verify access</span>`;
     /* dup_studios suppresses this (a second calendar row is not evidence of a
        no-show — see stateOf); wrong_studio has its own amber line above. */
     if(st.flagged && !e.dup_studios) warns += `<span class="chip crit">Missing</span>`;
