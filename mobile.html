@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 11:45 AM ET",
-  "generatedAtISO": "2026-08-30T11:45:45-04:00",
+  "generatedAt": "Aug 30, 12:00 PM ET",
+  "generatedAtISO": "2026-08-30T12:00:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -301,7 +301,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "heard": false,
       "arrived": "10:49",
-      "departed": null,
+      "departed": "11:47",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -332,7 +332,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -349,7 +349,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -392,7 +392,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 18.5,
       "end": 24.0,
-      "access_gap": true
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -417,7 +417,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Sent",
       "heard": true,
       "arrived": null,
       "departed": null,
@@ -426,7 +426,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 13.0,
       "end": 15.0,
-      "access_gap": true
+      "access_gap": false
     },
     {
       "studio": "901",
@@ -657,17 +657,14 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 05:02"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -722,6 +719,60 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788102063592,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Claire Lee",
+      "time": "11:47",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788104833310,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "11:49",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788104999730,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "11:50",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788105005295,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "11:53",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788105216681,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "11:53",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788105232765,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Studio (remote)",
+      "time": "11:56",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788105381445,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -731,7 +782,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T15:03:09+00:00",
+    "updatedAt": "2026-08-30T15:57:03+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1030,11 +1081,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T15:41:57.361436Z",
         "until": "2026-08-30T15:42:06.786031Z"
+      },
+      {
+        "since": "2026-08-30T15:47:57.372005Z",
+        "until": "2026-08-30T15:48:06.783055Z"
+      },
+      {
+        "since": "2026-08-30T15:53:12.141815Z",
+        "until": "2026-08-30T15:53:25.619526Z"
+      },
+      {
+        "since": "2026-08-30T15:58:36.790698Z",
+        "until": "2026-08-30T15:58:45.191956Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-30T09:24:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1043,7 +1116,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T11:44:00-04:00"
+      "lastISO": "2026-08-30T11:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1053,7 +1126,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T11:00:00-04:00"
+      "lastISO": "2026-08-30T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1086,16 +1159,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T09:23:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T11:04:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -1113,7 +1176,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T09:24:00-04:00"
+      "lastISO": "2026-08-30T11:52:00-04:00"
     },
     {
       "run": "The Host",
@@ -1136,16 +1199,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T11:02:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T09:56:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1163,7 +1216,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T10:56:00-04:00"
+      "lastISO": "2026-08-30T11:59:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1173,7 +1226,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T11:07:00-04:00"
+      "lastISO": "2026-08-30T11:53:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1203,7 +1256,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T10:10:00-04:00"
+      "lastISO": "2026-08-30T11:51:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1224,6 +1277,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-30T09:56:00-04:00"
     },
     {
       "run": "The Opener",
