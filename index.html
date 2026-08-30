@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 12:45 PM ET",
-  "generatedAtISO": "2026-08-30T12:45:43-04:00",
+  "generatedAt": "Aug 30, 1:00 PM ET",
+  "generatedAtISO": "2026-08-30T13:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -495,7 +495,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -632,7 +632,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "heard": true,
-      "arrived": null,
+      "arrived": "12:51",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -750,16 +750,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -990,6 +990,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788106697998,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Roux Buciu",
+      "time": "12:51",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788108718876,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -999,7 +1008,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T16:20:02+00:00",
+    "updatedAt": "2026-08-30T16:55:02+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1342,6 +1351,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T16:43:43.534443Z",
         "until": "2026-08-30T16:43:55.946611Z"
+      },
+      {
+        "since": "2026-08-30T16:49:29.135325Z",
+        "until": "2026-08-30T16:49:41.457995Z"
+      },
+      {
+        "since": "2026-08-30T16:55:03.992621Z",
+        "until": "2026-08-30T16:55:16.556659Z"
+      },
+      {
+        "since": "2026-08-30T17:00:29.203649Z",
+        "until": "2026-08-30T17:00:41.506679Z"
       }
     ],
     "down": false
@@ -1355,7 +1376,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:45:00-04:00"
+      "lastISO": "2026-08-30T12:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1365,7 +1386,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:00:00-04:00"
+      "lastISO": "2026-08-30T13:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1515,7 +1536,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:31:00-04:00"
+      "lastISO": "2026-08-30T12:46:00-04:00"
     },
     {
       "run": "The Closer",
