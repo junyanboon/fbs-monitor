@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 11:30 PM ET",
-  "generatedAtISO": "2026-08-29T23:30:44-04:00",
+  "generatedAt": "Aug 29, 11:45 PM ET",
+  "generatedAtISO": "2026-08-29T23:45:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -555,16 +555,16 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
@@ -637,7 +637,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 21:57"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "2 robots overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "901",
@@ -953,7 +958,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T03:18:11+00:00",
+    "updatedAt": "2026-08-30T03:34:03+00:00",
     "mailCheck": {
       "matched": 6,
       "inGap": 0,
@@ -1748,6 +1753,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T03:27:25.985524Z",
         "until": "2026-08-30T03:27:40.396999Z"
+      },
+      {
+        "since": "2026-08-30T03:33:25.980230Z",
+        "until": "2026-08-30T03:33:36.394302Z"
+      },
+      {
+        "since": "2026-08-30T03:39:15.512873Z",
+        "until": "2026-08-30T03:39:27.355925Z"
       }
     ],
     "down": false
@@ -1759,8 +1772,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-29T22:01:00-04:00"
     },
     {
@@ -1769,8 +1782,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
       "produces": "Run Monitor watchdog — texts on a missing run",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-29T22:06:00-04:00"
     },
     {
@@ -1781,7 +1794,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T23:30:00-04:00"
+      "lastISO": "2026-08-29T23:42:00-04:00"
     },
     {
       "run": "QA release check",
