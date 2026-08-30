@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 10:45 PM ET",
-  "generatedAtISO": "2026-08-29T22:45:43-04:00",
+  "generatedAt": "Aug 29, 11:00 PM ET",
+  "generatedAtISO": "2026-08-29T23:00:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -850,12 +850,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 29 · 21:57"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "901",
@@ -1898,21 +1893,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T02:42:13.589286Z",
         "until": "2026-08-30T02:42:26.005777Z"
+      },
+      {
+        "since": "2026-08-30T02:47:38.144200Z",
+        "until": "2026-08-30T02:47:52.544034Z"
+      },
+      {
+        "since": "2026-08-30T02:53:25.766380Z",
+        "until": "2026-08-30T02:53:32.429179Z"
+      },
+      {
+        "since": "2026-08-30T02:59:24.214744Z",
+        "until": "2026-08-30T02:59:34.857615Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T21:15:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1921,7 +1918,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T22:42:00-04:00"
+      "lastISO": "2026-08-29T22:58:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1931,7 +1928,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T22:00:00-04:00"
+      "lastISO": "2026-08-29T23:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1962,16 +1959,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
-      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T09:52:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -2014,16 +2001,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T19:40:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:58:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -2064,16 +2041,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T22:14:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T22:45:00-04:00"
-    },
-    {
       "run": "The Closer",
       "cadence": "Daily",
       "expected": "RETIRED 2026-07-23 (ticket 007) — cloud trigger DELETED, persona dissolved. Do NOT set back to Live. Arm-and-sweep → The Doorman evening arm-check (23:35); day review → The Custodian 02:35 (ticket 027).",
@@ -2082,6 +2049,26 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-29T21:15:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
+      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-29T09:52:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -2114,6 +2101,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-29T21:58:00-04:00"
+    },
+    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "RETIRED 2026-08-26 by Junyan — trigger trig_011mpmLosff2dYEf3Pg5VT35 DISABLED, persona dissolved. Do NOT set back to Live, never alert on this row. Its job (watch the Sentinel) is replaced by: the Morning Text's daily watchdog-silent check (08:45), and — once out of shadow — the deterministic sentinel-sweep in event-gate.",
@@ -2122,6 +2119,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-08-26T10:33:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-29T22:45:00-04:00"
     }
   ],
   "robotsNote": null
