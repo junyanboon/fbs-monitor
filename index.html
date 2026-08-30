@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 1:00 PM ET",
-  "generatedAtISO": "2026-08-30T13:00:55-04:00",
+  "generatedAt": "Aug 30, 1:15 PM ET",
+  "generatedAtISO": "2026-08-30T13:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1363,11 +1363,59 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T17:00:29.203649Z",
         "until": "2026-08-30T17:00:41.506679Z"
+      },
+      {
+        "since": "2026-08-30T17:05:57.858706Z",
+        "until": "2026-08-30T17:06:12.367351Z"
+      },
+      {
+        "since": "2026-08-30T17:11:58.237532Z",
+        "until": "2026-08-30T17:12:06.733939Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-30T12:01:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-30T12:02:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-30T11:59:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-30T12:05:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1376,7 +1424,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:56:00-04:00"
+      "lastISO": "2026-08-30T13:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1396,7 +1444,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:07:00-04:00"
+      "lastISO": "2026-08-30T13:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1417,16 +1465,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T09:23:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:01:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1459,16 +1497,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T11:00:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:02:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1477,26 +1505,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T19:40:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T11:59:00-04:00"
-    },
-    {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:05:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1526,7 +1534,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T11:51:00-04:00"
+      "lastISO": "2026-08-30T13:14:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1536,7 +1544,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T12:46:00-04:00"
+      "lastISO": "2026-08-30T13:16:00-04:00"
     },
     {
       "run": "The Closer",
