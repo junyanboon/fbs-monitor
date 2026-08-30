@@ -460,8 +460,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 4:15 PM ET",
-  "generatedAtISO": "2026-08-30T16:15:54-04:00",
+  "generatedAt": "Aug 30, 4:30 PM ET",
+  "generatedAtISO": "2026-08-30T16:30:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -658,13 +658,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "16:30"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -822,16 +816,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -896,18 +890,18 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "PBF — Georgia L •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Aug 30 · 16:25"
+    },
+    {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 05:01"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
     },
@@ -928,12 +922,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 30 · 05:01"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "527",
@@ -1609,21 +1598,27 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T20:11:05.223855Z",
         "until": "2026-08-30T20:11:14.500095Z"
+      },
+      {
+        "since": "2026-08-30T20:16:30.352173Z",
+        "until": "2026-08-30T20:16:36.866447Z"
+      },
+      {
+        "since": "2026-08-30T20:20:36.106158Z",
+        "until": "2026-08-30T20:20:42.058243Z"
+      },
+      {
+        "since": "2026-08-30T20:20:37.045573Z",
+        "until": "2026-08-30T20:20:43.056831Z"
+      },
+      {
+        "since": "2026-08-30T20:26:05.309859Z",
+        "until": "2026-08-30T20:26:16.641610Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-30T09:24:00-04:00"
-    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1642,7 +1637,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:14:00-04:00"
+      "lastISO": "2026-08-30T16:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1683,6 +1678,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T09:23:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T16:20:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1732,7 +1737,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:01:00-04:00"
+      "lastISO": "2026-08-30T16:27:00-04:00"
     },
     {
       "run": "The Sentinel",
