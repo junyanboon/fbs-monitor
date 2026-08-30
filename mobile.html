@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 9:45 AM ET",
-  "generatedAtISO": "2026-08-30T09:45:44-04:00",
+  "generatedAt": "Aug 30, 10:01 AM ET",
+  "generatedAtISO": "2026-08-30T10:01:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -264,7 +264,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": "09:07",
       "departed": null,
@@ -398,10 +398,10 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "who": "Ishfaaq Jookhun (C19 salsa",
       "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Unsent",
-      "heard": true,
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
+      "heard": false,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -415,10 +415,10 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "who": "Roux Buciu — WCS Peer Practica",
       "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "heard": false,
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Unsent",
+      "heard": true,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -1022,6 +1022,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T13:41:37.024141Z",
         "until": "2026-08-30T13:41:52.482437Z"
+      },
+      {
+        "since": "2026-08-30T13:46:56.661611Z",
+        "until": "2026-08-30T13:47:03.959960Z"
+      },
+      {
+        "since": "2026-08-30T13:52:02.877342Z",
+        "until": "2026-08-30T13:52:11.240640Z"
+      },
+      {
+        "since": "2026-08-30T13:57:14.619043Z",
+        "until": "2026-08-30T13:57:26.036348Z"
       }
     ],
     "down": false
@@ -1038,16 +1050,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T04:20:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-29T08:49:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1055,7 +1057,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T09:45:00-04:00"
+      "lastISO": "2026-08-30T10:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1065,7 +1067,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T09:00:00-04:00"
+      "lastISO": "2026-08-30T10:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1138,6 +1140,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T09:23:00-04:00"
     },
     {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T09:56:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1155,7 +1167,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T09:23:00-04:00"
+      "lastISO": "2026-08-30T09:55:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1205,7 +1217,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T09:31:00-04:00"
+      "lastISO": "2026-08-30T09:46:00-04:00"
     },
     {
       "run": "The Closer",
