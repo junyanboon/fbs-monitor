@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 1:20 PM ET",
-  "generatedAtISO": "2026-08-30T13:20:10-04:00",
+  "generatedAt": "Aug 30, 1:30 PM ET",
+  "generatedAtISO": "2026-08-30T13:30:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -537,16 +537,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -659,7 +659,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 30 · 05:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "2 robots overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -1162,6 +1167,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T17:17:57.922013Z",
         "until": "2026-08-30T17:18:10.421304Z"
+      },
+      {
+        "since": "2026-08-30T17:23:57.950998Z",
+        "until": "2026-08-30T17:24:11.724573Z"
+      },
+      {
+        "since": "2026-08-30T17:29:58.063342Z",
+        "until": "2026-08-30T17:30:04.519849Z"
       }
     ],
     "down": false
@@ -1173,8 +1186,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-30T12:01:00-04:00"
     },
     {
@@ -1183,8 +1196,8 @@ const DATA = /*__DATA__*/{
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
       "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-30T11:59:00-04:00"
     },
     {
@@ -1195,7 +1208,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:18:00-04:00"
+      "lastISO": "2026-08-30T13:29:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1335,7 +1348,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:16:00-04:00"
+      "lastISO": "2026-08-30T13:31:00-04:00"
     },
     {
       "run": "The Closer",
