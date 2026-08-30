@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 2:00 PM ET",
-  "generatedAtISO": "2026-08-30T14:00:55-04:00",
+  "generatedAt": "Aug 30, 2:15 PM ET",
+  "generatedAtISO": "2026-08-30T14:15:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -528,7 +528,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Unsent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -847,6 +847,14 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Aug 29 · 09:30"
+    },
+    {
+      "code": "HTA-sweep-•••B",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Aug 30 · 14:01"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -1437,6 +1445,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T17:58:11.932592Z",
         "until": "2026-08-30T17:58:21.388281Z"
+      },
+      {
+        "since": "2026-08-30T18:03:35.224577Z",
+        "until": "2026-08-30T18:03:42.714418Z"
+      },
+      {
+        "since": "2026-08-30T18:08:43.322451Z",
+        "until": "2026-08-30T18:08:55.629103Z"
+      },
+      {
+        "since": "2026-08-30T18:14:35.164088Z",
+        "until": "2026-08-30T18:14:45.641771Z"
       }
     ],
     "down": false
@@ -1450,7 +1470,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T14:01:00-04:00"
+      "lastISO": "2026-08-30T14:12:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1470,7 +1490,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:07:00-04:00"
+      "lastISO": "2026-08-30T14:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1610,7 +1630,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:46:00-04:00"
+      "lastISO": "2026-08-30T14:01:00-04:00"
     },
     {
       "run": "The Closer",
