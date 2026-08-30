@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 10:45 AM ET",
-  "generatedAtISO": "2026-08-30T10:45:48-04:00",
+  "generatedAt": "Aug 30, 11:00 AM ET",
+  "generatedAtISO": "2026-08-30T11:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -281,7 +281,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
-      "hta": "Unsent",
+      "hta": "Will Not Send",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -297,10 +297,10 @@ const DATA = /*__DATA__*/{
       "who": "Claire Lee",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
-      "hta": "Unsent",
+      "gtg": true,
+      "hta": "Sent",
       "heard": false,
-      "arrived": null,
+      "arrived": "10:49",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -383,7 +383,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Sent",
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -426,7 +426,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 13.0,
       "end": 15.0,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "901",
@@ -611,49 +611,17 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Review request — Vidhisha Patel •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Responder",
-      "created": "Aug 29 · 21:57"
-    },
-    {
-      "code": "BC-sweep-•••",
+      "code": "EOB",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 00:01"
-    },
-    {
-      "code": "BC-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 00:01"
-    },
-    {
-      "code": "BC-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 00:01"
-    },
-    {
-      "code": "BC-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 00:02"
+      "raised_by": "The Host",
+      "created": "Aug 30 · 10:55"
     },
     {
       "code": "AVA-sweep-•••A",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "509A",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
@@ -661,23 +629,15 @@ const DATA = /*__DATA__*/{
     {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 05:01"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
     },
     {
       "code": "EOB-sweep-•••",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "901",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
@@ -685,7 +645,7 @@ const DATA = /*__DATA__*/{
     {
       "code": "AVA-sweep-•••",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "693",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
@@ -693,7 +653,7 @@ const DATA = /*__DATA__*/{
     {
       "code": "AVA-sweep-•••",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
@@ -701,23 +661,15 @@ const DATA = /*__DATA__*/{
     {
       "code": "EOB-sweep-•••",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 05:01"
-    },
-    {
-      "code": "AVA-sweep-•••B",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
     },
     {
       "code": "EOB-sweep-•••B",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "509B",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:01"
@@ -725,32 +677,16 @@ const DATA = /*__DATA__*/{
     {
       "code": "AVA-sweep-•••",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Aug 30 · 05:02"
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 05:02"
-    },
-    {
-      "code": "HTA-sweep-•••B",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 07:31"
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -780,19 +716,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788099456926,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Claire Lee",
+      "time": "10:49",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788101384720,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "22:30",
-      "ts": 1788057026683,
-      "when": "Sat 22:30"
-    },
     "693": {
       "kind": "departure",
       "name": "Stefan Lovecchio",
@@ -820,7 +755,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T14:19:02+00:00",
+    "updatedAt": "2026-08-30T14:51:02+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1075,6 +1010,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T14:40:28.373729Z",
         "until": "2026-08-30T14:40:32.670348Z"
+      },
+      {
+        "since": "2026-08-30T14:45:57.080551Z",
+        "until": "2026-08-30T14:46:11.733157Z"
+      },
+      {
+        "since": "2026-08-30T14:51:12.254383Z",
+        "until": "2026-08-30T14:51:24.645907Z"
+      },
+      {
+        "since": "2026-08-30T14:56:36.898082Z",
+        "until": "2026-08-30T14:56:44.364390Z"
       }
     ],
     "down": false
@@ -1091,26 +1038,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T09:24:00-04:00"
     },
     {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T04:20:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-30T09:23:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1118,7 +1045,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T10:42:00-04:00"
+      "lastISO": "2026-08-30T11:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1128,7 +1055,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T10:00:00-04:00"
+      "lastISO": "2026-08-30T11:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1148,7 +1075,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T10:22:00-04:00"
+      "lastISO": "2026-08-30T10:49:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -1168,7 +1095,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T09:23:00-04:00"
+      "lastISO": "2026-08-30T10:52:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1179,6 +1106,26 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T09:24:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T11:00:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T10:57:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1208,7 +1155,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T10:28:00-04:00"
+      "lastISO": "2026-08-30T10:56:00-04:00"
     },
     {
       "run": "The Sentinel",
