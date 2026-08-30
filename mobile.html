@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 9:45 PM ET",
-  "generatedAtISO": "2026-08-29T21:45:56-04:00",
+  "generatedAt": "Aug 29, 10:00 PM ET",
+  "generatedAtISO": "2026-08-29T22:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -334,7 +334,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "heard": false,
-      "arrived": null,
+      "arrived": "22:00",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -627,7 +627,16 @@ const DATA = /*__DATA__*/{
       "day": "Tue Sep 1"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "code": "Review request — Vidhisha Patel •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Aug 29 · 21:57"
+    }
+  ],
   "attention": [],
   "armEvents": [
     {
@@ -844,6 +853,24 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1788052480561,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "22:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788055217158,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "22:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788055240715,
       "source": "doors"
     }
   ],
@@ -1584,6 +1611,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T01:41:15.732710Z",
         "until": "2026-08-30T01:41:30.213185Z"
+      },
+      {
+        "since": "2026-08-30T01:46:53.275795Z",
+        "until": "2026-08-30T01:47:03.976095Z"
+      },
+      {
+        "since": "2026-08-30T01:52:52.442180Z",
+        "until": "2026-08-30T01:53:07.848968Z"
+      },
+      {
+        "since": "2026-08-30T01:58:23.902101Z",
+        "until": "2026-08-30T01:58:34.379974Z"
       }
     ],
     "down": false
@@ -1597,7 +1636,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:41:00-04:00"
+      "lastISO": "2026-08-29T21:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1607,7 +1646,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:00:00-04:00"
+      "lastISO": "2026-08-29T22:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1687,7 +1726,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:01:00-04:00"
+      "lastISO": "2026-08-29T22:01:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1707,7 +1746,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:29:00-04:00"
+      "lastISO": "2026-08-29T21:58:00-04:00"
     },
     {
       "run": "The Sentinel",
