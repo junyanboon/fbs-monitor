@@ -244,8 +244,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 4:05 PM ET",
-  "generatedAtISO": "2026-08-30T16:05:14-04:00",
+  "generatedAt": "Aug 30, 4:15 PM ET",
+  "generatedAtISO": "2026-08-30T16:15:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -344,7 +344,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "15:15",
-      "departed": null,
+      "departed": "16:09",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -712,7 +712,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 30 · 05:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -875,6 +880,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788117726777,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Georgia L",
+      "time": "16:09",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788120545954,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -884,7 +898,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T19:25:01+00:00",
+    "updatedAt": "2026-08-30T20:15:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1371,11 +1385,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T19:59:43.178235Z",
         "until": "2026-08-30T19:59:51.159083Z"
+      },
+      {
+        "since": "2026-08-30T20:05:30.301998Z",
+        "until": "2026-08-30T20:05:40.725454Z"
+      },
+      {
+        "since": "2026-08-30T20:11:05.223855Z",
+        "until": "2026-08-30T20:11:14.500095Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-30T09:24:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1394,7 +1426,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:04:00-04:00"
+      "lastISO": "2026-08-30T16:14:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1414,7 +1446,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T15:07:00-04:00"
+      "lastISO": "2026-08-30T16:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1435,16 +1467,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T09:23:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T15:24:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1534,7 +1556,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T15:14:00-04:00"
+      "lastISO": "2026-08-30T16:14:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1544,7 +1566,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:01:00-04:00"
+      "lastISO": "2026-08-30T16:16:00-04:00"
     },
     {
       "run": "The Closer",
