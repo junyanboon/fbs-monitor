@@ -460,8 +460,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 6:15 PM ET",
-  "generatedAtISO": "2026-08-30T18:15:48-04:00",
+  "generatedAt": "Aug 30, 6:30 PM ET",
+  "generatedAtISO": "2026-08-30T18:30:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -578,7 +578,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "17:30",
-      "departed": null,
+      "departed": "18:29",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -673,7 +673,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:26",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -829,16 +829,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -1149,6 +1149,24 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788127249585,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Kosi Ese",
+      "time": "18:26",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788128788439,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Georgia L",
+      "time": "18:29",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788128982391,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1158,7 +1176,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T22:00:20+00:00",
+    "updatedAt": "2026-08-30T22:27:08+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1745,6 +1763,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T22:12:30.996422Z",
         "until": "2026-08-30T22:12:37.494987Z"
+      },
+      {
+        "since": "2026-08-30T22:17:44.207312Z",
+        "until": "2026-08-30T22:17:58.660196Z"
+      },
+      {
+        "since": "2026-08-30T22:23:05.992390Z",
+        "until": "2026-08-30T22:23:14.444914Z"
+      },
+      {
+        "since": "2026-08-30T22:28:31.103462Z",
+        "until": "2026-08-30T22:28:38.197950Z"
       }
     ],
     "down": false
@@ -1808,7 +1838,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T18:16:00-04:00"
+      "lastISO": "2026-08-30T18:27:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1918,7 +1948,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T18:01:00-04:00"
+      "lastISO": "2026-08-30T18:31:00-04:00"
     },
     {
       "run": "The Closer",
