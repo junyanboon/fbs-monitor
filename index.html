@@ -460,8 +460,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 5:00 PM ET",
-  "generatedAtISO": "2026-08-30T17:00:59-04:00",
+  "generatedAt": "Aug 30, 5:15 PM ET",
+  "generatedAtISO": "2026-08-30T17:15:40-04:00",
   "studios": [
     {
       "id": "509A",
@@ -523,9 +523,9 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "17:00",
       "departed": null,
-      "assumed": null,
+      "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 17.0,
@@ -574,9 +574,9 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Unsent",
       "dispatch": [],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -614,7 +614,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "13:47",
-      "departed": null,
+      "departed": "17:15",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -1112,6 +1112,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788120545954,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Francisco Delgado",
+      "time": "17:15",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788124524219,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1123,7 +1132,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-08-30T20:15:01+00:00",
     "mailCheck": {
-      "matched": 3,
+      "matched": 4,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1656,11 +1665,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T21:00:11.685188Z",
         "until": "2026-08-30T21:00:26.174169Z"
+      },
+      {
+        "since": "2026-08-30T21:05:34.944393Z",
+        "until": "2026-08-30T21:05:45.394537Z"
+      },
+      {
+        "since": "2026-08-30T21:10:42.990501Z",
+        "until": "2026-08-30T21:10:57.425718Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-30T16:01:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1672,6 +1699,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T19:40:00-04:00"
     },
     {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-30T16:04:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1679,7 +1716,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:59:00-04:00"
+      "lastISO": "2026-08-30T17:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1699,7 +1736,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:07:00-04:00"
+      "lastISO": "2026-08-30T17:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1762,16 +1799,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T11:00:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:01:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
@@ -1780,16 +1807,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T16:27:00-04:00"
-    },
-    {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1829,7 +1846,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T16:45:00-04:00"
+      "lastISO": "2026-08-30T17:01:00-04:00"
     },
     {
       "run": "The Closer",
