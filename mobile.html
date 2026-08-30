@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 2:45 PM ET",
-  "generatedAtISO": "2026-08-30T14:45:43-04:00",
+  "generatedAt": "Aug 30, 3:00 PM ET",
+  "generatedAtISO": "2026-08-30T15:00:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -437,7 +437,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "heard": true,
       "arrived": "12:51",
-      "departed": null,
+      "departed": "14:58",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -628,12 +628,12 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "AVA-sweep-•••A",
+      "code": "HTA-sweep-•••",
       "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
+      "status": "Pending Review",
+      "studio": "527",
       "raised_by": "AI (automation)",
-      "created": "Aug 30 · 05:01"
+      "created": "Aug 30 · 15:00"
     },
     {
       "code": "EOB-sweep-•••A",
@@ -668,7 +668,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 30 · 05:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -804,6 +809,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788112076249,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Roux Buciu",
+      "time": "14:58",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788116292397,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -813,7 +827,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T17:51:02+00:00",
+    "updatedAt": "2026-08-30T18:59:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1244,6 +1258,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T18:43:11.920681Z",
         "until": "2026-08-30T18:43:19.544512Z"
+      },
+      {
+        "since": "2026-08-30T18:48:29.796342Z",
+        "until": "2026-08-30T18:48:38.233105Z"
+      },
+      {
+        "since": "2026-08-30T18:54:29.857451Z",
+        "until": "2026-08-30T18:54:42.351493Z"
+      },
+      {
+        "since": "2026-08-30T19:00:04.752718Z",
+        "until": "2026-08-30T19:00:17.209520Z"
       }
     ],
     "down": false
@@ -1255,8 +1281,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-30T13:19:00-04:00"
     },
     {
@@ -1277,7 +1303,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T14:45:00-04:00"
+      "lastISO": "2026-08-30T14:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1287,7 +1313,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T14:00:00-04:00"
+      "lastISO": "2026-08-30T15:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1367,7 +1393,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T14:35:00-04:00"
+      "lastISO": "2026-08-30T14:58:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1417,7 +1443,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T14:31:00-04:00"
+      "lastISO": "2026-08-30T14:46:00-04:00"
     },
     {
       "run": "The Closer",
