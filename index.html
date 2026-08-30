@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 9:00 AM ET",
-  "generatedAtISO": "2026-08-30T09:00:55-04:00",
+  "generatedAt": "Aug 30, 9:15 AM ET",
+  "generatedAtISO": "2026-08-30T09:15:13-04:00",
   "studios": [
     {
       "id": "509A",
@@ -479,7 +479,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "heard": false,
-      "arrived": null,
+      "arrived": "09:07",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -530,7 +530,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "heard": false,
-      "arrived": null,
+      "arrived": "09:01",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -966,18 +966,27 @@ const DATA = /*__DATA__*/{
       "text": "6 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
+  "armEvents": [
+    {
+      "studio": "527",
+      "name": "Scott Vandenberg",
+      "time": "09:01",
+      "kind": "arrival",
       "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "22:33",
-      "ts": 1788057198619,
-      "when": "Sat 22:33"
+      "ts": 1788094871057,
+      "source": "doors"
     },
+    {
+      "studio": "509A",
+      "name": "Ishfaaq Jookhun",
+      "time": "09:07",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788095249634,
+      "source": "doors"
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "kind": "departure",
       "name": "Stefan Lovecchio",
@@ -987,16 +996,6 @@ const DATA = /*__DATA__*/{
       "time": "22:30",
       "ts": 1788057026683,
       "when": "Sat 22:30"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "23:04",
-      "ts": 1788059089527,
-      "when": "Sat 23:04"
     },
     "693": {
       "kind": "departure",
@@ -1020,12 +1019,18 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T03:34:03+00:00",
+    "updatedAt": "2026-08-30T13:09:02+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-08-30T09:01:15.265287Z",
@@ -1198,6 +1203,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T12:57:14.651579Z",
         "until": "2026-08-30T12:57:23.236228Z"
+      },
+      {
+        "since": "2026-08-30T13:03:02.571122Z",
+        "until": "2026-08-30T13:03:13.998876Z"
+      },
+      {
+        "since": "2026-08-30T13:08:14.693400Z",
+        "until": "2026-08-30T13:08:23.414979Z"
+      },
+      {
+        "since": "2026-08-30T13:14:02.647395Z",
+        "until": "2026-08-30T13:14:15.095401Z"
       }
     ],
     "down": false
@@ -1291,7 +1308,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T08:56:00-04:00"
+      "lastISO": "2026-08-30T09:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1311,7 +1328,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T08:07:00-04:00"
+      "lastISO": "2026-08-30T09:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1381,7 +1398,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T08:46:00-04:00"
+      "lastISO": "2026-08-30T09:01:00-04:00"
     },
     {
       "run": "The Closer",
