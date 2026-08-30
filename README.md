@@ -14,7 +14,9 @@ Two static editions, rebuilt from the same DATA every ~15 min by GitHub Actions:
 Sources: studio + staff calendars (secret ICS), the FBS AI Support board (Notion),
 ADT arm/disarm mail (Gmail API, label `Artist Care - ADT`), the 🚥 Run Monitor
 DB (Notion) for the Robots tab, and 📊 Workflow Reports (Notion) for the Reports
-tab.
+tab. The booking-card AVA/EOB cluster reads a reduced projection of 📤 Message
+Queue: Template, Artist relation, Studio, Status, Send After, Sent At, and created
+time only.
 
 **Each studio calendar is written by two syncs, and the board takes only one.**
 The Skedda→Google mirror (`Spaces: Studio NNN` in the description) is the system
@@ -276,6 +278,25 @@ A job can check in perfectly on time having found something badly wrong. Before
 the Reports tab existed, that answer lived only in Notion, and the board that is
 actually open when a call comes in showed a green robot. Do not merge the two
 tabs on the grounds that they both list runs.
+
+### 15. AVA/EOB pills are queue state, not message content
+
+FBS and Monitor booking cards carry a right-side AVA/EOB dispatch cluster:
+
+- a clock time means the queue row has `Send After`;
+- `QUEUED` means the row exists but has no send time;
+- `MISSING` means the queue read succeeded but the FBS row expects that message
+  and no matching queue row exists;
+- terminal rows (`Sent`, `Will Not Send`, or `Error`) render no queue pill.
+
+The join is Artist relation + Studio + message kind, then the booking's
+canonical dispatch time (AVA = start−2h; EOB = end−15m). An untimed row is
+shown only when that artist has one booking in that studio today; otherwise
+the board declines to guess. The page publishes
+only `{kind, state, time}`. It never publishes queue ids, Artist ids, recipient
+details, message bodies, access instructions, reasoning, or dispatch receipts.
+If Message Queue is unreadable, every booking gets an empty dispatch list — an
+outage must remove the pills, never manufacture a wall of false `MISSING` alerts.
 
 ---
 

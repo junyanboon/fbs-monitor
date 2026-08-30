@@ -900,6 +900,8 @@ def parse_notion(rows):
             "tier": tier,
             "gtg": gtg if tier else True,
             "hta": _prop_text(p.get("HTA")),
+            "ava": _prop_text(p.get("AVA")),
+            "eob": _prop_text(p.get("EOB")),
             "board_disarmed": norm_hm(_prop_text(p.get("Disarmed"))),
             "board_armed": norm_hm(_prop_text(p.get("Armed"))),
         })
@@ -930,10 +932,11 @@ def join_notion(events, notion_rows):
         if best and best_gap <= 2.0:
             used[best_i] = True
             e["tier"], e["gtg"], e["hta"] = best["tier"], best["gtg"], best["hta"]
+            e["_ava_status"], e["_eob_status"] = best.get("ava"), best.get("eob")
             e["_board_disarmed"] = best["board_disarmed"]
             e["_board_armed"] = best["board_armed"]
             e["_notion_id"] = best["id"]
-            e["_artist_id"] = best["artist"]
+            e["_artist_id"] = best.get("artist")
             e["_board_status"] = best["status"]
     return events
 
@@ -1923,6 +1926,12 @@ def apply_heard(events, texted_ids):
 # Statuses that mean "a human still has to act on this row", in display order.
 MSG_PENDING_STATUSES = ("Error", "Pending Review", "Ready to Send")
 
+DISPATCH_TEMPLATES = {
+    "ava_staff_available": "AVA",
+    "ava_staff_unavailable": "AVA",
+    "eob_booking_bending": "EOB",
+}
+
 
 def fetch_pending_messages(token):
     """Message Queue rows awaiting processing, projected for a PUBLIC page.
@@ -1957,6 +1966,179 @@ def fetch_pending_messages(token):
     order = {s: i for i, s in enumerate(MSG_PENDING_STATUSES)}
     out.sort(key=lambda m: (order.get(m["status"], 9), m["created"]))
     return out
+
+
+def fetch_message_dispatch(token, win_start, win_end):
+    """Reduced AVA/EOB queue state for booking-card pills.
+
+    The public payload receives only message kind, state and a Toronto-local
+    clock time. Bodies, recipients, row ids and Artist ids remain internal.
+    Scheduled rows are selected by their dispatch window even when the Host
+    prepared them the night before. A short creation-time lookback also finds
+    rows that exist but have not received a Send After yet.
+    """
+    template_filter = {"or": [
+        {"property": "Template", "select": {"equals": template}}
+        for template in DISPATCH_TEMPLATES
+    ]}
+    recent = win_start - timedelta(days=2)
+    rows = _notion_query(token, MESSAGES_DS, {
+        "filter": {"and": [
+            template_filter,
+            {"or": [
+                {"and": [
+                    {"property": "Send After", "date": {"on_or_after": win_start.isoformat()}},
+                    {"property": "Send After", "date": {"on_or_before": win_end.isoformat()}},
+                ]},
+                {"and": [
+                    {"property": "Sent At", "date": {"on_or_after": win_start.isoformat()}},
+                    {"property": "Sent At", "date": {"on_or_before": win_end.isoformat()}},
+                ]},
+                {"timestamp": "created_time",
+                 "created_time": {"on_or_after": recent.isoformat()}},
+            ]},
+        ]},
+        "page_size": 100,
+    })
+    out = []
+    for row in rows:
+        p = row.get("properties", {})
+        kind = DISPATCH_TEMPLATES.get(_prop_text(p.get("Template")))
+        artist = _relation_id(p.get("Artist"))
+        studio = (_prop_text(p.get("Studio")) or "").strip()
+        if not (kind and artist and studio):
+            continue
+        out.append({
+            "kind": kind,
+            "artist": artist,
+            "studio": studio,
+            "status": _prop_text(p.get("Status")) or "",
+            "send_after": _prop_text(p.get("Send After")),
+            "sent_at": _prop_text(p.get("Sent At")),
+            "created": row.get("created_time") or "",
+        })
+    return out
+
+
+def _dispatch_time(value):
+    if not value:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=TZ)
+        return dt.astimezone(TZ).strftime("%H:%M")
+    except (TypeError, ValueError):
+        return None
+
+
+def _dispatch_pill(kind, board_status, row):
+    board = (board_status or "").strip().lower()
+    if row is None:
+        if board in ("will not send", "sent", "error"):
+            return None
+        return {"kind": kind, "state": "missing", "time": None}
+
+    status = (row.get("status") or "").strip().lower()
+    if status in ("will not send", "sent", "error"):
+        return None
+    send_time = _dispatch_time(row.get("send_after"))
+    return {"kind": kind, "state": "scheduled" if send_time else "queued",
+            "time": send_time}
+
+
+def _event_clock(base_day, decimal_hour):
+    """Operating-day decimal hour to a Toronto datetime."""
+    hour = float(decimal_hour)
+    day_offset, hour = divmod(hour, 24)
+    if day_offset == 0 and hour < 5:
+        day_offset = 1
+    whole_hour = int(hour)
+    minute = round((hour - whole_hour) * 60)
+    return (datetime.combine(base_day, datetime.min.time(), TZ)
+            + timedelta(days=int(day_offset), hours=whole_hour, minutes=minute))
+
+
+def _expected_dispatch_at(event, kind, base_day):
+    point = event.get("start") if kind == "AVA" else event.get("end")
+    if point is None:
+        return None
+    dt = _event_clock(base_day, point)
+    return dt - (timedelta(hours=2) if kind == "AVA" else timedelta(minutes=15))
+
+
+def _row_datetime(row, field):
+    value = row.get(field)
+    if not value:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        return (dt.replace(tzinfo=TZ) if dt.tzinfo is None else dt).astimezone(TZ)
+    except (TypeError, ValueError):
+        return None
+
+
+def apply_message_dispatch(events, rows, base_day):
+    """Attach the approved compact AVA/EOB state to FBS/Monitor bookings.
+
+    An answered queue read with no expected row is MISSING. A failed queue read
+    never calls this function, so an outage cannot manufacture a wall of false
+    missing alarms. Timed rows join to the booking's canonical AVA (start−2h)
+    or EOB (end−15m) time; an untimed row is safe only when Artist + Studio has
+    one booking today. Duplicate replacements resolve newest-first.
+    """
+    by_key = {}
+    for row in rows:
+        key = (row.get("artist"), row.get("studio"), row.get("kind"))
+        if not all(key):
+            continue
+        by_key.setdefault(key, []).append(row)
+
+    booking_count = {}
+    for event in events:
+        if event.get("kind") != "booking" or event.get("tier") not in ("FBS", "Monitor"):
+            continue
+        artist, studio = event.get("_artist_id"), event.get("studio")
+        if artist and studio:
+            booking_count[(artist, studio)] = booking_count.get((artist, studio), 0) + 1
+
+    for event in events:
+        event["dispatch"] = []
+        if event.get("kind") != "booking" or event.get("tier") not in ("FBS", "Monitor"):
+            continue
+        artist, studio = event.get("_artist_id"), event.get("studio")
+        # Without both sides of the exact relation join, absence is UNKNOWN,
+        # never MISSING. Publishing nothing is the fail-safe state.
+        if not artist or not studio:
+            continue
+        for kind, field in (("AVA", "_ava_status"), ("EOB", "_eob_status")):
+            candidates = by_key.get((artist, studio, kind), [])
+            expected = _expected_dispatch_at(event, kind, base_day)
+            timed = [r for r in candidates
+                     if _row_datetime(r, "send_after") is not None
+                     and expected is not None
+                     and abs((_row_datetime(r, "send_after") - expected).total_seconds()) <= 300]
+            if timed:
+                matches = timed
+            elif booking_count.get((artist, studio)) == 1:
+                matches = [r for r in candidates if _row_datetime(r, "send_after") is None]
+            else:
+                # An untimed row cannot be assigned safely between two bookings.
+                # Its existence also means absence cannot be proved for either.
+                untimed = any(_row_datetime(r, "send_after") is None for r in candidates)
+                matches = [] if not untimed else None
+            row = (max(matches, key=lambda r: r.get("created") or "")
+                   if matches else None)
+            if matches is None:
+                continue
+            pill = _dispatch_pill(
+                kind,
+                event.get(field),
+                row,
+            )
+            if pill:
+                event["dispatch"].append(pill)
+    return events
 
 
 def flag_access_gaps(events, requests, base_day):
@@ -2097,6 +2279,9 @@ def prepare_board_events(events):
     return [{
         "studio": e["studio"], "who": e["who"], "kind": e["kind"],
         "tier": e["tier"], "gtg": e["gtg"], "hta": e["hta"],
+        # Public-safe AVA/EOB projection: kind + small state vocabulary + local
+        # clock only. No queue ids, Artist ids, recipients or message content.
+        "dispatch": e.get("dispatch", []),
         # Boolean only: "this renter has texted us today". Suppresses the No GTG
         # chip — see apply_heard(). No content of any kind crosses.
         "heard": bool(e.get("heard")),
@@ -2169,6 +2354,19 @@ def build_data(now):
     except Exception as e:  # noqa: BLE001
         messages = []
         emit_fallback_note(f"Message Queue fetch failed ({e}); Messages tab empty this edition.")
+
+    # AVA/EOB pills — a second reduced projection of the same queue. This read
+    # is deliberately separate from the Messages tab because it includes Sent
+    # and Will Not Send rows needed to distinguish intentional absence from a
+    # missing row. If the source is unreadable, publish no pills; never turn a
+    # connector outage into dozens of false MISSING warnings.
+    try:
+        events = apply_message_dispatch(
+            events, fetch_message_dispatch(token, win_start, win_end), base_day)
+    except Exception as e:  # noqa: BLE001
+        for event in events:
+            event["dispatch"] = []
+        emit_fallback_note(f"Message Queue dispatch fetch failed ({e}); AVA/EOB pills absent this edition.")
 
     # ---- Arrivals: panel ledger first, ADT email second ---------------------
     #

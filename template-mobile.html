@@ -134,6 +134,22 @@
   .chip.watch{background:var(--watch-bg);color:var(--watch)}
   .chip.crit{background:var(--crit-bg);color:var(--crit)}
   .chip.plain{background:var(--scrim-2);color:var(--chalk-dim)}
+  /* Approved 2026-08-30: compact AVA/EOB dispatch state in the existing
+     right-side cluster. Public payload is kind + state/time only. */
+  .dispatch-cluster{display:flex;justify-content:flex-end;gap:4px;margin-top:2px;flex-wrap:wrap}
+  .dispatch-seg{display:inline-grid;grid-template-columns:auto auto;overflow:hidden;border:1px solid var(--line);
+                border-radius:7px;background:var(--scrim);font-family:var(--mono);font-size:10px;
+                font-weight:700;line-height:1;white-space:nowrap}
+  .dispatch-seg .dk{padding:5px;background:var(--scrim-2);color:var(--chalk-faint);
+                    font-family:var(--sans);font-size:8.5px;letter-spacing:.08em}
+  .dispatch-seg .dv{padding:5px 6px;color:var(--chalk)}
+  .dispatch-seg.scheduled.ava{border-color:color-mix(in srgb,#2f6fd0 30%,var(--line))}
+  .dispatch-seg.scheduled.ava .dk{background:color-mix(in srgb,#2f6fd0 12%,var(--scrim));color:#2f6fd0}
+  .dispatch-seg.scheduled.eob{border-color:color-mix(in srgb,var(--ok) 30%,var(--line))}
+  .dispatch-seg.scheduled.eob .dk{background:var(--ok-bg);color:var(--ok)}
+  .dispatch-seg.missing{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
+  .dispatch-seg.missing .dk,.dispatch-seg.error .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
+  .dispatch-seg.missing .dv,.dispatch-seg.error .dv{color:var(--crit)}
   .quiet{color:var(--chalk-faint);text-align:center;padding:40px 0;font-size:14.5px}
 
   /* alarms + shifts panels reuse card look */
@@ -350,12 +366,18 @@ function render(){
        (which lives on the timeline + Missing pill). */
     if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
     const typeChip=e.tier?`<span class="chip type">${e.tier}</span>`:"";
+    const dispatch=(e.dispatch||[]).length?`<span class="dispatch-cluster">`+
+      e.dispatch.map(d=>{
+        const value=d.state==="scheduled"?d.time:d.state==="queued"?"QUEUED":"MISSING";
+        const title=d.state==="scheduled"?`Scheduled for ${d.time}`:d.state==="queued"?"Queue row exists; no send time yet":"Expected queue row not found";
+        return `<span class="dispatch-seg ${d.state} ${d.kind.toLowerCase()}" title="${title}"><span class="dk">${d.kind}</span><span class="dv">${value}</span></span>`;
+      }).join("")+`</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
       <div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}</div>
       <div class="meta">${meta}</div>
       ${tlHTML(e,st,n)}
-      <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}</div>
+      <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}${dispatch}</div>
     </div>`;
   };
 

@@ -205,6 +205,23 @@
   /* Warnings column (was the countdown, dropped 2026-08-25 — the timeline
      itself says where things stand). */
   .ev .warns{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+  /* Approved 2026-08-30: AVA/EOB live in a dedicated right-side dispatch
+     cluster, separate from tier and booking-state warnings. Each segment is a
+     public-safe projection: kind + state/time only. */
+  .dispatch-cluster{display:flex;justify-content:flex-end;gap:5px;margin-top:2px;flex-wrap:wrap}
+  .dispatch-seg{display:inline-grid;grid-template-columns:auto auto;overflow:hidden;border:1px solid var(--line);
+                border-radius:7px;background:var(--scrim);font-family:var(--mono);font-size:10.5px;
+                font-weight:700;line-height:1;white-space:nowrap}
+  .dispatch-seg .dk{padding:5px 6px;background:var(--scrim-2);color:var(--chalk-faint);
+                    font-family:var(--sans);font-size:9px;letter-spacing:.08em}
+  .dispatch-seg .dv{padding:5px 7px;color:var(--chalk)}
+  .dispatch-seg.scheduled.ava{border-color:color-mix(in srgb,#2f6fd0 30%,var(--line))}
+  .dispatch-seg.scheduled.ava .dk{background:color-mix(in srgb,#2f6fd0 12%,var(--scrim));color:#2f6fd0}
+  .dispatch-seg.scheduled.eob{border-color:color-mix(in srgb,var(--ok) 30%,var(--line))}
+  .dispatch-seg.scheduled.eob .dk{background:var(--ok-bg);color:var(--ok)}
+  .dispatch-seg.missing{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
+  .dispatch-seg.missing .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
+  .dispatch-seg.missing .dv{color:var(--crit)}
   /* Mini timeline: the bordered track IS the booked window, identical length
      on every card; presence >16 min outside it is an amber stub added OUTSIDE
      the track so the window never shrinks. */
@@ -238,6 +255,8 @@
     .strip{grid-template-columns:72px 1fr}
     .ev{grid-template-columns:88px minmax(0,1fr)}
     .ev .cnt{grid-column:2;text-align:left}
+    .ev .warns{grid-column:2;align-items:flex-start}
+    .dispatch-cluster{justify-content:flex-start}
     .summary{width:100%;order:5;margin-left:0}
   }
 
@@ -728,10 +747,19 @@ function render(){
     /* dup_studios suppresses this (a second calendar row is not evidence of a
        no-show — see stateOf); wrong_studio has its own amber line above. */
     if(st.flagged && !e.dup_studios) warns += `<span class="chip crit">Missing</span>`;
+    const dispatch = (e.dispatch||[]).length ? `<span class="dispatch-cluster">` +
+      e.dispatch.map(d=>{
+        const value = d.state==="scheduled" ? d.time
+          : d.state==="queued" ? "QUEUED" : "MISSING";
+        const title = d.state==="scheduled" ? `Scheduled for ${d.time}`
+          : d.state==="queued" ? "Queue row exists; no send time yet"
+          : "Expected queue row not found";
+        return `<span class="dispatch-seg ${d.state} ${d.kind.toLowerCase()}" title="${title}"><span class="dk">${d.kind}</span><span class="dv">${value}</span></span>`;
+      }).join("") + `</span>` : "";
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
       <div class="who"><span class="nm">${shortWho(e.who)}</span><span class="tags">${tag}</span>${tlHTML(e,st)}</div>
-      <div class="warns">${warns}</div>
+      <div class="warns">${warns}${dispatch}</div>
     </div>`;
   };
   /* The "N things to watch" status bar was removed 2026-07-31 (Junyan) — alarms

@@ -82,6 +82,12 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_issues.py
 
+      # Guards the reduced public AVA/EOB projection. A queue outage must not
+      # fabricate MISSING pills, and no recipient/body/row id may cross.
+      - name: Message dispatch regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_message_dispatch.py
+
       # Guards open-shift placeholder parsing for the Shifts tab. Placeholders
       # must never read as a person's coverage, and nothing from an event
       # description except the studio number may reach the public page.
