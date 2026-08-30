@@ -244,8 +244,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 5:45 PM ET",
-  "generatedAtISO": "2026-08-30T17:45:46-04:00",
+  "generatedAt": "Aug 30, 6:00 PM ET",
+  "generatedAtISO": "2026-08-30T18:00:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -440,7 +440,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "11:01",
-      "departed": null,
+      "departed": "17:56",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -613,16 +613,16 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "509A",
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
@@ -714,7 +714,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -906,6 +906,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788125444915,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Dana Brookman",
+      "time": "17:56",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788127003841,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "18:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788127246381,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "18:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788127249585,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -915,7 +942,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T21:35:06+00:00",
+    "updatedAt": "2026-08-30T22:00:20+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1482,6 +1509,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T21:44:30.874802Z",
         "until": "2026-08-30T21:44:44.304137Z"
+      },
+      {
+        "since": "2026-08-30T21:49:59.584887Z",
+        "until": "2026-08-30T21:50:05.022217Z"
+      },
+      {
+        "since": "2026-08-30T21:55:30.905658Z",
+        "until": "2026-08-30T21:55:40.366384Z"
       }
     ],
     "down": false
@@ -1508,6 +1543,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T16:01:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-30T16:27:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -1528,16 +1573,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T19:40:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-30T16:27:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1545,7 +1580,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T17:43:00-04:00"
+      "lastISO": "2026-08-30T18:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1555,7 +1590,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T17:00:00-04:00"
+      "lastISO": "2026-08-30T18:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1655,7 +1690,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T17:31:00-04:00"
+      "lastISO": "2026-08-30T18:01:00-04:00"
     },
     {
       "run": "The Closer",
