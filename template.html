@@ -600,6 +600,10 @@ function stateOf(e, now){
                                 : {label:"Upcoming", cls:"plain", flagged};
   return {label:"Upcoming", cls:"plain", flagged:false};
 }
+function noGtgChip(e,st){
+  if(!e.tier||e.tier==="Viewing"||e.gtg||e.heard||st.done)return "";
+  return `<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
+}
 
 /* One staff column: merge each person's overlapping / back-to-back shifts into a
    single block so the rail never stacks blocks on top of each other. Ela's
@@ -734,11 +738,10 @@ function render(){
     let tag = "";
     if(e.kind==="cleaning") tag = `<span class="chip plain">Staff</span>`;
     else if(e.tier) tag = `<span class="chip ${e.tier==="Monitor"?"mon":"type"}">${e.tier}</span>`;
+    // Confirmation is booking context, so keep it beside the FBS/Monitor tag.
+    // The right column is reserved for access, arrival, and dispatch exceptions.
+    const gtgChip = noGtgChip(e,{live,done});
     let warns = "";
-    // e.heard = the renter has texted us today; that IS the confirmation, so the
-    // chip clears on it without waiting for the desk to flip GTG.
-    if(e.tier && e.tier!=="Viewing" && !e.gtg && !e.heard && !done)
-      warns += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`;
     /* An open Access / PIN row names this renter for today. That can mean a
        missing code, an unverified access window, or an unavailable directory
        read, so never describe the boolean as proof that the code is missing.
@@ -758,7 +761,7 @@ function render(){
       }).join("") + `</span>` : "";
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${shortWho(e.who)}</span><span class="tags">${tag}</span>${tlHTML(e,st)}</div>
+      <div class="who"><span class="nm">${shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}</span>${tlHTML(e,st)}</div>
       <div class="warns">${warns}${dispatch}</div>
     </div>`;
   };

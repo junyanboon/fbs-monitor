@@ -7,6 +7,9 @@ Notion relation ids stay internal.
 
 from pathlib import Path
 from datetime import date
+import json
+import re
+import subprocess
 
 import build
 
@@ -158,6 +161,44 @@ def test_templates_render_the_approved_right_side_cluster_and_missing_state():
         assert "MISSING" in text
 
 
+def test_no_gtg_renders_beside_the_booking_type_not_in_the_warning_column():
+    root = Path(__file__).parent
+    desktop = (root / "template.html").read_text()
+    mobile = (root / "template-mobile.html").read_text()
+
+    assert '<span class="tags">${tag}${gtgChip}</span>' in desktop
+    assert '<div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}${gtgChip}</div>' in mobile
+    assert 'warns += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`' not in desktop
+    assert 't+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`' not in mobile
+
+
+def test_no_gtg_visibility_rules_match_on_desktop_and_mobile():
+    cases = [
+        ({"tier": "FBS", "gtg": False, "heard": False}, {"live": False, "done": False}, "watch"),
+        ({"tier": "Monitor", "gtg": False, "heard": False}, {"live": True, "done": False}, "crit"),
+        ({"tier": "FBS", "gtg": True, "heard": False}, {"live": False, "done": False}, None),
+        ({"tier": "FBS", "gtg": False, "heard": True}, {"live": False, "done": False}, None),
+        ({"tier": "Viewing", "gtg": False, "heard": False}, {"live": False, "done": False}, None),
+        ({"tier": None, "gtg": False, "heard": False}, {"live": False, "done": False}, None),
+        ({"tier": "FBS", "gtg": False, "heard": False}, {"live": False, "done": True}, None),
+    ]
+    payload = json.dumps([{"event": event, "state": state} for event, state, _ in cases])
+
+    for template in ("template.html", "template-mobile.html"):
+        text = (Path(__file__).parent / template).read_text()
+        helper = re.search(r"function noGtgChip\(e,st\)\{.*?\n\}", text, re.S)
+        assert helper, f"{template} must expose the pure No GTG renderer"
+        script = helper.group(0) + f"\nconst cases={payload};\n" + (
+            "console.log(JSON.stringify(cases.map(c=>noGtgChip(c.event,c.state))));")
+        result = subprocess.run(
+            ["node", "-e", script], check=True, capture_output=True, text=True)
+        rendered = json.loads(result.stdout)
+        for html, (_, _, expected_class) in zip(rendered, cases):
+            assert html.count("No GTG") == (1 if expected_class else 0)
+            if expected_class:
+                assert f'class="chip {expected_class}"' in html
+
+
 def test_legacy_host_rows_without_template_still_have_a_dispatch_kind():
     assert build._dispatch_kind({
         "Template": {"type": "select", "select": None},
@@ -181,6 +222,8 @@ def main():
     test_untimed_row_is_not_guessed_between_two_bookings()
     test_only_fbs_and_monitor_rows_receive_dispatch_pills()
     test_templates_render_the_approved_right_side_cluster_and_missing_state()
+    test_no_gtg_renders_beside_the_booking_type_not_in_the_warning_column()
+    test_no_gtg_visibility_rules_match_on_desktop_and_mobile()
     test_legacy_host_rows_without_template_still_have_a_dispatch_kind()
     print("message dispatch regression tests: OK")
 

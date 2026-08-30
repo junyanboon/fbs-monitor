@@ -273,6 +273,10 @@ function stateOf(e,now){
   if(now>=e.start)return{live:true,flagged};
   return{flagged:false};
 }
+function noGtgChip(e,st){
+  if(!e.tier||e.tier==="Viewing"||e.gtg||e.heard||st.done)return "";
+  return `<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
+}
 
 const E=(DATA.events||[]).filter(e=>e.kind==="booking");
 let FILTER="all";
@@ -294,9 +298,6 @@ document.getElementById('sfilters').addEventListener('click',ev=>{
 const FLAG_MIN=16/60;   // within 16 min of the window = plain green (Junyan)
 function warnChips(e,st){
   let t="";
-  // e.heard = the renter has texted us today; that IS the confirmation, so the
-  // chip clears on it without waiting for the desk to flip GTG.
-  if(e.tier&&e.tier!=="Viewing"&&!e.gtg&&!e.heard&&!st.done)t+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
   /* Open Access / PIN row names this renter today. The boolean covers any
      unresolved access check; it is not proof that the code is missing. */
   if(e.access_gap)t+=`<span class="chip crit" title="Open access verification">Verify access</span>`;
@@ -366,6 +367,9 @@ function render(){
        (which lives on the timeline + Missing pill). */
     if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
     const typeChip=e.tier?`<span class="chip type">${e.tier}</span>`:"";
+    // Confirmation is booking context, so keep it beside the FBS/Monitor tag.
+    // e.heard clears it without waiting for the desk to flip GTG.
+    const gtgChip=noGtgChip(e,st);
     const dispatch=(e.dispatch||[]).length?`<span class="dispatch-cluster">`+
       e.dispatch.map(d=>{
         const value=d.state==="scheduled"?d.time:d.state==="queued"?"QUEUED":"MISSING";
@@ -374,7 +378,7 @@ function render(){
       }).join("")+`</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
-      <div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}</div>
+      <div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}${gtgChip}</div>
       <div class="meta">${meta}</div>
       ${tlHTML(e,st,n)}
       <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}${dispatch}</div>
