@@ -1977,31 +1977,29 @@ def fetch_message_dispatch(token, win_start, win_end):
     prepared them the night before. A short creation-time lookback also finds
     rows that exist but have not received a Send After yet.
     """
-    template_filter = {"or": [
-        {"property": "Template", "select": {"equals": template}}
-        for template in DISPATCH_TEMPLATES
-    ]}
     recent = win_start - timedelta(days=2)
-    rows = _notion_query(token, MESSAGES_DS, {
-        "filter": {"and": [
-            template_filter,
-            {"or": [
-                {"and": [
-                    {"property": "Send After", "date": {"on_or_after": win_start.isoformat()}},
-                    {"property": "Send After", "date": {"on_or_before": win_end.isoformat()}},
-                ]},
-                {"and": [
-                    {"property": "Sent At", "date": {"on_or_after": win_start.isoformat()}},
-                    {"property": "Sent At", "date": {"on_or_before": win_end.isoformat()}},
-                ]},
-                {"timestamp": "created_time",
-                 "created_time": {"on_or_after": recent.isoformat()}},
-            ]},
+    # Notion rejects an OR-of-ANDs nested below another compound filter. Read
+    # the three bounded windows separately, merge by page id, then discard
+    # non-AVA/EOB templates locally. This is still a reduced projection: row
+    # bodies and recipient rollups are never read below.
+    filters = [
+        {"and": [
+            {"property": "Send After", "date": {"on_or_after": win_start.isoformat()}},
+            {"property": "Send After", "date": {"on_or_before": win_end.isoformat()}},
         ]},
-        "page_size": 100,
-    })
+        {"and": [
+            {"property": "Sent At", "date": {"on_or_after": win_start.isoformat()}},
+            {"property": "Sent At", "date": {"on_or_before": win_end.isoformat()}},
+        ]},
+        {"timestamp": "created_time",
+         "created_time": {"on_or_after": recent.isoformat()}},
+    ]
+    merged = {}
+    for filt in filters:
+        for row in _notion_query(token, MESSAGES_DS, {"filter": filt, "page_size": 100}):
+            merged[row.get("id") or f"anonymous-{len(merged)}"] = row
     out = []
-    for row in rows:
+    for row in merged.values():
         p = row.get("properties", {})
         kind = DISPATCH_TEMPLATES.get(_prop_text(p.get("Template")))
         artist = _relation_id(p.get("Artist"))
