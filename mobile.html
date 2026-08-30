@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 8:01 AM ET",
-  "generatedAtISO": "2026-08-30T08:01:01-04:00",
+  "generatedAt": "Aug 30, 8:15 AM ET",
+  "generatedAtISO": "2026-08-30T08:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -750,7 +750,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "8 robots overdue — see Robots tab"
+      "text": "7 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -941,6 +941,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T11:55:15.102325Z",
         "until": "2026-08-30T11:55:18.386686Z"
+      },
+      {
+        "since": "2026-08-30T12:01:12.572781Z",
+        "until": "2026-08-30T12:01:18.145670Z"
+      },
+      {
+        "since": "2026-08-30T12:07:02.236373Z",
+        "until": "2026-08-30T12:07:11.700627Z"
+      },
+      {
+        "since": "2026-08-30T12:12:56.142257Z",
+        "until": "2026-08-30T12:13:08.545013Z"
       }
     ],
     "down": false
@@ -1017,16 +1029,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-29T22:06:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-29T22:45:00-04:00"
-    },
-    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1054,7 +1056,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T08:01:00-04:00"
+      "lastISO": "2026-08-30T08:11:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1074,7 +1076,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T07:07:00-04:00"
+      "lastISO": "2026-08-30T08:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1125,6 +1127,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T23:19:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T08:02:00-04:00"
     },
     {
       "run": "The Closer",
