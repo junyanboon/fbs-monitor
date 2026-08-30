@@ -441,8 +441,8 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 1:45 PM ET",
-  "generatedAtISO": "2026-08-30T13:45:44-04:00",
+  "generatedAt": "Aug 30, 2:00 PM ET",
+  "generatedAtISO": "2026-08-30T14:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -523,6 +523,23 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     },
     {
+      "studio": "509B",
+      "who": "Georgia L",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 15.0,
+      "end": 16.0,
+      "access_gap": false
+    },
+    {
       "studio": "527",
       "who": "Scott Vandenberg (Fixed) (Heartfulness Insitute) — Heartfulness meditation",
       "kind": "booking",
@@ -545,9 +562,9 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Will Not Send",
-      "heard": false,
-      "arrived": null,
+      "hta": "Unsent",
+      "heard": true,
+      "arrived": "13:47",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -824,20 +841,12 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Responder — Aakanksha Patel corrects September booking date (•••)",
+      "code": "How to Access 527",
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 30 · 13:45"
-    },
-    {
-      "code": "PBF — Claire Lee •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Aug 30 · 13:45"
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Aug 29 · 09:30"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -888,12 +897,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 30 · 05:01"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "527",
@@ -1020,6 +1024,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788108718876,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Francisco Delgado",
+      "time": "13:47",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788112076249,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1029,9 +1042,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T16:55:02+00:00",
+    "updatedAt": "2026-08-30T17:51:02+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 3,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1412,21 +1425,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T17:41:12.008332Z",
         "until": "2026-08-30T17:41:18.450126Z"
+      },
+      {
+        "since": "2026-08-30T17:46:58.084222Z",
+        "until": "2026-08-30T17:47:12.497815Z"
+      },
+      {
+        "since": "2026-08-30T17:53:04.342034Z",
+        "until": "2026-08-30T17:53:12.771231Z"
+      },
+      {
+        "since": "2026-08-30T17:58:11.932592Z",
+        "until": "2026-08-30T17:58:21.388281Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-30T12:01:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1435,7 +1450,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:45:00-04:00"
+      "lastISO": "2026-08-30T14:01:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1445,7 +1460,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:00:00-04:00"
+      "lastISO": "2026-08-30T14:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1476,6 +1491,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T09:23:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T13:46:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1535,7 +1560,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:46:00-04:00"
+      "lastISO": "2026-08-30T13:59:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1585,7 +1610,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T13:31:00-04:00"
+      "lastISO": "2026-08-30T13:46:00-04:00"
     },
     {
       "run": "The Closer",
