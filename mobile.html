@@ -228,8 +228,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Saturday, August 29, 2026",
-  "generatedAt": "Aug 29, 10:00 PM ET",
-  "generatedAtISO": "2026-08-29T22:00:55-04:00",
+  "generatedAt": "Aug 29, 10:15 PM ET",
+  "generatedAtISO": "2026-08-29T22:15:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -351,7 +351,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "heard": false,
-      "arrived": null,
+      "arrived": "22:09",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -872,27 +872,25 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788055240715,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "22:09",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788055761119,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Tess English",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "21:42",
-      "ts": 1787967723350,
-      "when": "Fri 21:42"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-30T01:19:04+00:00",
+    "updatedAt": "2026-08-30T02:13:03+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1623,11 +1621,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T01:58:23.902101Z",
         "until": "2026-08-30T01:58:34.379974Z"
+      },
+      {
+        "since": "2026-08-30T02:03:52.561305Z",
+        "until": "2026-08-30T02:04:00.193490Z"
+      },
+      {
+        "since": "2026-08-30T02:09:52.540832Z",
+        "until": "2026-08-30T02:10:02.000124Z"
+      },
+      {
+        "since": "2026-08-30T02:15:15.631357Z",
+        "until": "2026-08-30T02:15:22.089054Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-29T21:15:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1636,7 +1656,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:57:00-04:00"
+      "lastISO": "2026-08-29T22:14:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1656,7 +1676,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:07:00-04:00"
+      "lastISO": "2026-08-29T22:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1677,16 +1697,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-29T06:04:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:15:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1756,7 +1766,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:06:00-04:00"
+      "lastISO": "2026-08-29T22:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1786,7 +1796,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:16:00-04:00"
+      "lastISO": "2026-08-29T22:14:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1796,7 +1806,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-29T21:46:00-04:00"
+      "lastISO": "2026-08-29T22:01:00-04:00"
     },
     {
       "run": "The Closer",
