@@ -1933,6 +1933,21 @@ DISPATCH_TEMPLATES = {
 }
 
 
+def _dispatch_kind(properties):
+    """AVA/EOB across current Template rows and legacy Host rows.
+
+    The Host's older queue rows leave Template blank but carry stable
+    `AVA-sweep-…` / `EOB-sweep-…` Message Codes. Ignoring that generation
+    falsely turns already scheduled or sent work into MISSING.
+    """
+    kind = DISPATCH_TEMPLATES.get(_prop_text(properties.get("Template")))
+    if kind:
+        return kind
+    code = (_prop_text(properties.get("Message Code")) or "").strip().upper()
+    prefix = code.split("-", 1)[0]
+    return prefix if prefix in ("AVA", "EOB") else None
+
+
 def fetch_pending_messages(token):
     """Message Queue rows awaiting processing, projected for a PUBLIC page.
 
@@ -2001,7 +2016,7 @@ def fetch_message_dispatch(token, win_start, win_end):
     out = []
     for row in merged.values():
         p = row.get("properties", {})
-        kind = DISPATCH_TEMPLATES.get(_prop_text(p.get("Template")))
+        kind = _dispatch_kind(p)
         artist = _relation_id(p.get("Artist"))
         studio = (_prop_text(p.get("Studio")) or "").strip()
         if not (kind and artist and studio):

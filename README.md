@@ -292,7 +292,8 @@ FBS and Monitor booking cards carry a right-side AVA/EOB dispatch cluster:
 The join is Artist relation + Studio + message kind, then the booking's
 canonical dispatch time (AVA = start−2h; EOB = end−15m). An untimed row is
 shown only when that artist has one booking in that studio today; otherwise
-the board declines to guess. The page publishes
+the board declines to guess. Message kind comes from the current `Template`
+field or the legacy Host row's stable `AVA-sweep-…` / `EOB-sweep-…` code. The page publishes
 only `{kind, state, time}`. It never publishes queue ids, Artist ids, recipient
 details, message bodies, access instructions, reasoning, or dispatch receipts.
 If Message Queue is unreadable, every booking gets an empty dispatch list — an

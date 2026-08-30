@@ -158,6 +158,16 @@ def test_templates_render_the_approved_right_side_cluster_and_missing_state():
         assert "MISSING" in text
 
 
+def test_legacy_host_rows_without_template_still_have_a_dispatch_kind():
+    assert build._dispatch_kind({
+        "Template": {"type": "select", "select": None},
+        "Message Code": {"type": "title", "title": [{"plain_text": "AVA-sweep-0830-1400-527"}]},
+    }) == "AVA"
+    assert build._dispatch_kind({
+        "Message Code": {"type": "title", "title": [{"plain_text": "EOB-sweep-0830-1400-527"}]},
+    }) == "EOB"
+
+
 def main():
     test_scheduled_queue_rows_publish_toronto_times_only()
     test_existing_row_without_time_is_queued_not_missing()
@@ -171,6 +181,7 @@ def main():
     test_untimed_row_is_not_guessed_between_two_bookings()
     test_only_fbs_and_monitor_rows_receive_dispatch_pills()
     test_templates_render_the_approved_right_side_cluster_and_missing_state()
+    test_legacy_host_rows_without_template_still_have_a_dispatch_kind()
     print("message dispatch regression tests: OK")
 
 
