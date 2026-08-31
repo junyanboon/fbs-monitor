@@ -244,6 +244,11 @@
                 font-variant-numeric:tabular-nums;max-width:214px}
   .ev .tl .ends span{white-space:nowrap}
   .ev .tl .ends .a{color:var(--ok)} .ev .tl .ends .w{color:var(--watch)} .ev .tl .ends .x{color:var(--crit)}
+  .ev .tl .assumption{display:flex;margin-top:5px}
+  .ev .tl .assumption .signal{display:inline-flex;align-items:center;padding:3px 7px;border-radius:99px;
+                              background:var(--watch-bg);color:var(--watch);font-family:var(--sans);
+                              font-size:9px;font-weight:700;line-height:1;letter-spacing:.07em;
+                              text-transform:uppercase;white-space:nowrap}
   .chip{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;padding:2px 8px;border-radius:99px;font-weight:600;
         text-transform:uppercase;display:inline-block}
   .chip.ok{background:var(--ok-bg);color:var(--ok)}
@@ -460,8 +465,9 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 9:30 PM ET",
-  "generatedAtISO": "2026-08-30T21:30:47-04:00",
+  "shiftBaseDay": "2026-08-30",
+  "generatedAt": "Aug 30, 9:35 PM ET",
+  "generatedAtISO": "2026-08-30T21:35:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -776,102 +782,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "openShifts": [
-    {
-      "role": "FBS",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 10.5,
-      "end": 11.0,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 11.5,
-      "end": 12.0,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "901",
-      "day_offset": 0,
-      "start": 12.75,
-      "end": 13.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 13.75,
-      "end": 14.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "901",
-      "day_offset": 0,
-      "start": 14.75,
-      "end": 15.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 16.75,
-      "end": 17.25,
-      "day": "Today"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 16.75,
-      "end": 17.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 18.25,
-      "end": 18.75,
-      "day": "Today"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 19.5,
-      "end": 20.0,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 20.25,
-      "end": 20.75,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 23.75,
-      "end": 24.25,
-      "day": "Today"
-    },
     {
       "role": "FBS",
       "studio": "509B",
@@ -1949,6 +1859,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T01:27:34.479867Z",
         "until": "2026-08-31T01:27:39.948900Z"
+      },
+      {
+        "since": "2026-08-31T01:32:43.898357Z",
+        "until": "2026-08-31T01:32:53.332742Z"
       }
     ],
     "down": false
@@ -2122,7 +2036,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T21:16:00-04:00"
+      "lastISO": "2026-08-30T21:31:00-04:00"
     },
     {
       "run": "The Closer",
@@ -2297,12 +2211,19 @@ function coverageOf(e){
    what timezone the device is in (Junyan reads this from Brazil). Built from
    Intl parts rather than parsing toLocaleString(), which is engine-dependent. */
 const TOR = new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",
-  hour:"2-digit",minute:"2-digit",hour12:false});
+  year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false});
 function torontoNow(){
   const p = Object.fromEntries(TOR.formatToParts(new Date()).map(x=>[x.type,x.value]));
   const h = (+p.hour)%24, m = +p.minute;
-  return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")};
+  return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0"),
+          date: `${p.year}-${p.month}-${p.day}`};
 }
+const shiftNowHour = now => {
+  const base = DATA.shiftBaseDay || (DATA.generatedAtISO||"").slice(0,10);
+  if(!base || !now.date) return now.t;
+  const days = Math.round((Date.parse(now.date+"T00:00:00Z")-Date.parse(base+"T00:00:00Z"))/86400000);
+  return days*24+now.t;
+};
 
 /* When no arrival source answered this build, `arrived` is null for EVERY
    booking — not because nobody came, but because nothing was watching. A
@@ -2423,16 +2344,20 @@ function render(){
       if (w>0 || liveFill)
         fill = `<div class="fill ${liveFill?"liveseg":""}" style="left:${l.toFixed(1)}%;width:${Math.max(w,2).toFixed(1)}%"></div>`;
     }
-    let L, R;
+    let L, R, assumption = "";
     if (arr!=null){
       const em = Math.round((e.start-arr)*60);
       /* `assumed`: the arrival was unobservable — the alarm wasn't used
          correctly — so this is an inference, not a keypad event. Amber, with
          the reason: "open" = nobody armed after the previous renter;
          "bypass" = armed with the door sensor bypassed. */
-      L = e.assumed ? `<span class="w">${e.arrived} in · ${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`
-        : early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
-                : `<span class="a">${e.arrived} in</span>`;
+      if (e.assumed) {
+        L = `<span class="w">${e.arrived} in</span>`;
+        assumption = `<div class="assumption"><span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span></div>`;
+      } else {
+        L = early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
+                  : `<span class="a">${e.arrived} in</span>`;
+      }
     } else if (st.flagged && !e.dup_studios) L = `<span class="x">no arrival</span>`;
     else L = `<span>${hm(e.start)}</span>`;
     if (dep!=null){
@@ -2442,7 +2367,7 @@ function render(){
     } else R = `<span>${hm(e.end)}</span>`;
     return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}` +
            `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>` +
-           `<div class="ends">${L}${R}</div></div>`;
+           `<div class="ends">${L}${R}</div>${assumption}</div>`;
   };
   const evCard = e => {
     const st = stateOf(e,n);
@@ -2531,7 +2456,8 @@ function render(){
       <span class="chip type">${esc(o.role)}</span>
       <span class="chip watch">Open</span>
     </div>`;
-  const OPENS = DATA.openShifts || [];
+  const shiftNow = shiftNowHour(now);
+  const OPENS = (DATA.openShifts || []).filter(o=>o.day_offset*24+o.end>shiftNow);
   const arrow = `<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>`;
   $('#staffpanel').innerHTML =
     `<p class="lane-label">Unclaimed</p>
