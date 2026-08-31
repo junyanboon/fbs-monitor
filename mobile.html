@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 10:00 AM ET",
-  "generatedAtISO": "2026-08-31T10:00:59-04:00",
+  "generatedAt": "Aug 31, 10:15 AM ET",
+  "generatedAtISO": "2026-08-31T10:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -650,14 +650,17 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "AI (automation)",
       "created": "Aug 31 · 09:31"
-    }
-  ],
-  "attention": [
+    },
     {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "code": "Returning Access 693 RA-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "AI (automation)",
+      "created": "Aug 31 · 10:01"
     }
   ],
+  "attention": [],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -929,21 +932,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T13:56:33.365654Z",
         "until": "2026-08-31T13:56:39.860043Z"
+      },
+      {
+        "since": "2026-08-31T14:02:33.355668Z",
+        "until": "2026-08-31T14:02:46.874685Z"
+      },
+      {
+        "since": "2026-08-31T14:07:58.332273Z",
+        "until": "2026-08-31T14:08:11.775760Z"
+      },
+      {
+        "since": "2026-08-31T14:13:09.006772Z",
+        "until": "2026-08-31T14:13:19.435599Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T07:53:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -952,7 +957,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T10:00:00-04:00"
+      "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -972,7 +977,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:07:00-04:00"
+      "lastISO": "2026-08-31T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1002,7 +1007,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:14:00-04:00"
+      "lastISO": "2026-08-31T10:06:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1012,7 +1017,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:45:00-04:00"
+      "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1033,6 +1038,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-31T09:39:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-31T10:10:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1062,7 +1077,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:34:00-04:00"
+      "lastISO": "2026-08-31T09:11:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1072,7 +1087,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:15:00-04:00"
+      "lastISO": "2026-08-31T10:13:00-04:00"
     },
     {
       "run": "The Timekeeper",
