@@ -82,18 +82,20 @@ def test_access_chip_describes_verification_not_a_missing_code():
 
 
 def test_assumed_arrival_reason_does_not_cramp_timeline_endpoints():
-    """The inferred-arrival reason is a compact rectangular badge attached to
-    the arrival endpoint, while departure remains the row's right endpoint."""
+    """The inferred-arrival reason is the compact rectangular middle column,
+    between the arrival and departure endpoints."""
     root = Path(__file__).parent
     cramped = '${e.arrived} in · ${e.assumed==="bypass"?"door bypassed":"forgot to arm"}'
     for template in ("template.html", "template-mobile.html"):
         text = (root / template).read_text()
         assert cramped not in text
-        assert 'class="assumed-in"' in text
         assert 'assumed-row' in text
         assert 'class="signal"' in text
+        assert "grid-template-columns:auto 1fr auto" in text
+        assert "${L}${signal}${R}" in text
         assert 'border-radius:3px' in text
         assert 'class="assumption"' not in text
+        assert 'class="assumed-in"' not in text
 
 
 def main():
