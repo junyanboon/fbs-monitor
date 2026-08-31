@@ -244,8 +244,8 @@
 <script>
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
-  "generatedAt": "Aug 30, 8:00 PM ET",
-  "generatedAtISO": "2026-08-30T20:00:52-04:00",
+  "generatedAt": "Aug 30, 8:15 PM ET",
+  "generatedAtISO": "2026-08-30T20:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -407,13 +407,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Will Not Send",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "20:15"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": "19:31",
       "departed": null,
@@ -695,17 +689,13 @@ const DATA = /*__DATA__*/{
       "day": "Tue Sep 1"
     }
   ],
-  "messages": [
+  "messages": [],
+  "attention": [
     {
-      "code": "EOB-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Aug 30 · 05:01"
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
-  "attention": [],
   "armEvents": [
     {
       "studio": "527",
@@ -1666,11 +1656,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-30T23:57:42.769289Z",
         "until": "2026-08-30T23:57:50.261218Z"
+      },
+      {
+        "since": "2026-08-31T00:03:00.522393Z",
+        "until": "2026-08-31T00:03:14.991466Z"
+      },
+      {
+        "since": "2026-08-31T00:08:34.608499Z",
+        "until": "2026-08-31T00:08:48.074326Z"
+      },
+      {
+        "since": "2026-08-31T00:14:06.670507Z",
+        "until": "2026-08-31T00:14:15.173146Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-30T09:24:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1679,7 +1691,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T19:56:00-04:00"
+      "lastISO": "2026-08-30T20:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1699,7 +1711,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T19:07:00-04:00"
+      "lastISO": "2026-08-30T20:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1720,16 +1732,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T09:23:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T19:30:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1839,7 +1841,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T20:01:00-04:00"
+      "lastISO": "2026-08-30T20:16:00-04:00"
     },
     {
       "run": "The Closer",
