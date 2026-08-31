@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
   "shiftBaseDay": "2026-08-30",
-  "generatedAt": "Aug 30, 10:15 PM ET",
-  "generatedAtISO": "2026-08-30T22:15:45-04:00",
+  "generatedAt": "Aug 30, 10:30 PM ET",
+  "generatedAtISO": "2026-08-30T22:30:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -817,7 +817,12 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -1892,11 +1897,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T02:12:34.471224Z",
         "until": "2026-08-31T02:12:45.634679Z"
+      },
+      {
+        "since": "2026-08-31T02:18:01.156317Z",
+        "until": "2026-08-31T02:18:14.462367Z"
+      },
+      {
+        "since": "2026-08-31T02:24:01.170511Z",
+        "until": "2026-08-31T02:24:15.487174Z"
+      },
+      {
+        "since": "2026-08-31T02:29:43.832029Z",
+        "until": "2026-08-31T02:29:53.254055Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-30T10:28:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1905,7 +1932,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T22:15:00-04:00"
+      "lastISO": "2026-08-30T22:26:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1955,7 +1982,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T21:27:00-04:00"
+      "lastISO": "2026-08-30T22:20:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2008,16 +2035,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T19:42:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-30T21:59:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -2065,7 +2082,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T22:16:00-04:00"
+      "lastISO": "2026-08-30T22:31:00-04:00"
     },
     {
       "run": "The Closer",
