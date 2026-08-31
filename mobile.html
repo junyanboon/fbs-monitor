@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 9:15 AM ET",
-  "generatedAtISO": "2026-08-31T09:15:54-04:00",
+  "generatedAt": "Aug 31, 9:31 AM ET",
+  "generatedAtISO": "2026-08-31T09:31:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -628,7 +628,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 08:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -868,20 +873,32 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T13:11:41.281020Z",
         "until": "2026-08-31T13:11:53.778985Z"
+      },
+      {
+        "since": "2026-08-31T13:17:33.436221Z",
+        "until": "2026-08-31T13:17:45.909760Z"
+      },
+      {
+        "since": "2026-08-31T13:22:42.738021Z",
+        "until": "2026-08-31T13:22:54.209719Z"
+      },
+      {
+        "since": "2026-08-31T13:28:41.264952Z",
+        "until": "2026-08-31T13:28:47.845753Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "04:06 America/Toronto · Codex production fallback",
-      "produces": "IPR — today + tomorrow",
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-30T10:49:00-04:00"
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-31T07:53:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -904,16 +921,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T11:00:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-31T07:53:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -931,7 +938,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:15:00-04:00"
+      "lastISO": "2026-08-31T09:31:00-04:00"
     },
     {
       "run": "QA release check",
@@ -952,6 +959,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-31T09:07:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "04:06 America/Toronto · Codex production fallback",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-31T09:20:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -1051,7 +1068,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:01:00-04:00"
+      "lastISO": "2026-08-31T09:31:00-04:00"
     },
     {
       "run": "The Closer",
