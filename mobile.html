@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 3:30 PM ET",
-  "generatedAtISO": "2026-08-31T15:30:54-04:00",
+  "generatedAt": "Aug 31, 3:45 PM ET",
+  "generatedAtISO": "2026-08-31T15:45:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -525,14 +525,6 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 13:42"
     },
     {
-      "code": "Review ask — Kosi Eze •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Responder",
-      "created": "Aug 31 · 15:25"
-    },
-    {
       "code": "EOB-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -541,12 +533,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 05:01"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -1089,21 +1076,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T19:27:42.100891Z",
         "until": "2026-08-31T19:27:54.565919Z"
+      },
+      {
+        "since": "2026-08-31T19:33:42.124578Z",
+        "until": "2026-08-31T19:33:53.497328Z"
+      },
+      {
+        "since": "2026-08-31T19:39:13.844471Z",
+        "until": "2026-08-31T19:39:27.257496Z"
+      },
+      {
+        "since": "2026-08-31T19:45:13.922423Z",
+        "until": "2026-08-31T19:45:26.241218Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T09:11:00-04:00"
-    },
     {
       "run": "The Concierge",
       "cadence": "Hourly",
@@ -1132,7 +1121,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T15:28:00-04:00"
+      "lastISO": "2026-08-31T15:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1215,6 +1204,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T15:05:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-31T15:39:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -1262,7 +1261,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T15:16:00-04:00"
+      "lastISO": "2026-08-31T15:31:00-04:00"
     },
     {
       "run": "The Closer",
