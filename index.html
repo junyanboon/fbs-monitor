@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 1:15 PM ET",
-  "generatedAtISO": "2026-08-31T13:15:50-04:00",
+  "generatedAt": "Aug 31, 1:30 PM ET",
+  "generatedAtISO": "2026-08-31T13:30:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -730,6 +730,14 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "Courtesy + account-holder authorization",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "Other",
+      "created": "Aug 31 · 13:22"
+    },
+    {
       "code": "AVA-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -749,7 +757,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1171,6 +1179,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T17:12:42.806602Z",
         "until": "2026-08-31T17:12:56.120658Z"
+      },
+      {
+        "since": "2026-08-31T17:18:33.116680Z",
+        "until": "2026-08-31T17:18:47.581322Z"
+      },
+      {
+        "since": "2026-08-31T17:23:42.660765Z",
+        "until": "2026-08-31T17:23:53.964985Z"
+      },
+      {
+        "since": "2026-08-31T17:29:42.307625Z",
+        "until": "2026-08-31T17:29:48.840976Z"
       }
     ],
     "down": false
@@ -1187,16 +1207,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T09:14:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T09:11:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1204,7 +1214,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T13:13:00-04:00"
+      "lastISO": "2026-08-31T13:29:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1297,6 +1307,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T19:42:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-31T13:22:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -1334,7 +1354,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T12:15:00-04:00"
+      "lastISO": "2026-08-31T13:18:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1344,7 +1364,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T13:16:00-04:00"
+      "lastISO": "2026-08-31T13:31:00-04:00"
     },
     {
       "run": "The Closer",
