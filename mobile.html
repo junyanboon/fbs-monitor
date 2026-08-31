@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 11:46 AM ET",
-  "generatedAtISO": "2026-08-31T11:46:03-04:00",
+  "generatedAt": "Aug 31, 12:00 PM ET",
+  "generatedAtISO": "2026-08-31T12:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -573,7 +573,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -931,6 +931,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T15:43:33.330124Z",
         "until": "2026-08-31T15:43:45.157502Z"
+      },
+      {
+        "since": "2026-08-31T15:48:41.422686Z",
+        "until": "2026-08-31T15:48:49.910314Z"
+      },
+      {
+        "since": "2026-08-31T15:54:42.479494Z",
+        "until": "2026-08-31T15:54:56.010180Z"
+      },
+      {
+        "since": "2026-08-31T15:59:59.056503Z",
+        "until": "2026-08-31T16:00:09.520047Z"
       }
     ],
     "down": false
@@ -947,6 +959,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:10:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-31T09:11:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -954,7 +976,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T11:44:00-04:00"
+      "lastISO": "2026-08-31T12:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -964,7 +986,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T11:00:00-04:00"
+      "lastISO": "2026-08-31T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1037,16 +1059,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T09:39:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:11:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1055,16 +1067,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T19:42:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T11:33:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1114,7 +1116,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T11:46:00-04:00"
+      "lastISO": "2026-08-31T12:01:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1125,6 +1127,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-31T09:11:00-04:00"
     },
     {
       "run": "The Opener",
