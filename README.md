@@ -299,6 +299,20 @@ details, message bodies, access instructions, reasoning, or dispatch receipts.
 If Message Queue is unreadable, every booking gets an empty dispatch list — an
 outage must remove the pills, never manufacture a wall of false `MISSING` alerts.
 
+### 16. An open shift must still be claimable
+
+The Staff calendar can temporarily hold both `Need FBS` / `Need Monitoring`
+placeholders and the named shift that claimed them. The open-shift lookahead
+therefore reads both shapes from the same three-day feed and removes a
+placeholder only when a rostered assignment covers the same day, role, time,
+and studio. A missing studio is accepted only when that role/time has one
+possible open block; simultaneous studios fail open rather than guessing.
+
+Expired blocks are removed in the builder and filtered again in both pages so
+a row ages out at its end time between 15-minute rebuilds. Cross-midnight times
+use the build's `shiftBaseDay`; `23:45–00:15` remains claimable until 00:15 and
+not a minute longer.
+
 ---
 
 ## Working on it

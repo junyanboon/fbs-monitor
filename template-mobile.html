@@ -121,6 +121,11 @@
                   font-variant-numeric:tabular-nums;max-width:222px}
   .card .tl .ends span{white-space:nowrap}
   .card .tl .ends .a{color:var(--ok)} .card .tl .ends .w{color:var(--watch)} .card .tl .ends .x{color:var(--crit)}
+  .card .tl .assumption{display:flex;margin-top:4px}
+  .card .tl .assumption .signal{display:inline-flex;align-items:center;padding:3px 6px;border-radius:99px;
+                                background:var(--watch-bg);color:var(--watch);font-family:var(--sans);
+                                font-size:8.5px;font-weight:700;line-height:1;letter-spacing:.06em;
+                                text-transform:uppercase;white-space:nowrap}
   .card .right{grid-column:3;grid-row:1/span 3;text-align:right;font-size:12.5px;color:var(--chalk-dim);
                display:flex;flex-direction:column;align-items:flex-end;gap:4px}
   .card .right .chip{flex:0 0 auto}
@@ -254,12 +259,19 @@ const shortWho=w=>{let s=String(w||"");const i=s.indexOf(" — ");if(i>0)s=s.sli
    what timezone the device is in (Junyan reads this from Brazil). Built from
    Intl parts rather than parsing toLocaleString(), which is engine-dependent. */
 const TOR = new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",
-  hour:"2-digit",minute:"2-digit",hour12:false});
+  year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false});
 function torontoNow(){
   const p = Object.fromEntries(TOR.formatToParts(new Date()).map(x=>[x.type,x.value]));
   const h = (+p.hour)%24, m = +p.minute;
-  return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")};
+  return {t: h+m/60, hhmm: String(h).padStart(2,"0")+":"+String(m).padStart(2,"0"),
+          date: `${p.year}-${p.month}-${p.day}`};
 }
+const shiftNowHour=now=>{
+  const base=DATA.shiftBaseDay||(DATA.generatedAtISO||"").slice(0,10);
+  if(!base||!now.date)return now.t;
+  const days=Math.round((Date.parse(now.date+"T00:00:00Z")-Date.parse(base+"T00:00:00Z"))/86400000);
+  return days*24+now.t;
+};
 /* No arrival source answered this build ⇒ `arrived` is null for EVERY booking
    because nothing was watching, not because nobody came. Flagging then invents
    a no-show per finished renter. Suppress, and say why in the summary. */
@@ -319,11 +331,13 @@ function tlHTML(e,st,n){
     const liveFill=st.live&&dep==null;
     if(w>0||liveFill)fill=`<div class="fill ${liveFill?"liveseg":""}" style="left:${l.toFixed(1)}%;width:${Math.max(w,2).toFixed(1)}%"></div>`;
   }
-  let L,R;
+  let L,R,assumption="";
   if(arr!=null){
     const em=Math.round((e.start-arr)*60);
-    L=e.assumed?`<span class="w">${e.arrived} in · ${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`
-      :early?`<span class="w">${e.arrived} in · ${em}m early</span>`:`<span class="a">${e.arrived} in</span>`;
+    if(e.assumed){
+      L=`<span class="w">${e.arrived} in</span>`;
+      assumption=`<div class="assumption"><span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span></div>`;
+    }else L=early?`<span class="w">${e.arrived} in · ${em}m early</span>`:`<span class="a">${e.arrived} in</span>`;
   }else if(st.flagged&&!e.dup_studios)L=`<span class="x">no arrival</span>`;
   else L=`<span>${hm(e.start)}</span>`;
   if(dep!=null){
@@ -332,7 +346,7 @@ function tlHTML(e,st,n){
   }else R=`<span>${hm(e.end)}</span>`;
   return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}`+
          `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>`+
-         `<div class="ends">${L}${R}</div></div>`;
+         `<div class="ends">${L}${R}</div>${assumption}</div>`;
 }
 
 function render(){
@@ -468,7 +482,8 @@ function render(){
 
   /* shifts: open (claimable) placeholders pinned on top, then today's roster.
      Chips mirror the Today-tab filter pattern: All / Open / one per person. */
-  const OPEN=DATA.openShifts||[];
+  const shiftNow=shiftNowHour(now);
+  const OPEN=(DATA.openShifts||[]).filter(o=>o.day_offset*24+o.end>shiftNow);
   const names=[...new Set((DATA.staff||[]).map(s=>s.name))];
   const sf=[["all","All"],["open",`Open <span class="n">${OPEN.length}</span>`],...names.map(x=>[x,esc(x)])];
   $('#sfilters').innerHTML=sf.map(([k,l])=>`<button class="fchip ${SFILTER===k?"on":""}" data-f="${esc(k)}">${l}</button>`).join("");

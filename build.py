@@ -376,7 +376,7 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
 STAFF_ROSTER = ("junyan", "kyjah", "ela", "stefan", "donny")
 
 
-def parse_staff_row(summary, dtstart, dtend, base_day):
+def _staff_identity(summary):
     low = summary.lower().strip()
     if "meeting" in low or "payroll" in low or "ela morning" in low:
         return None
@@ -385,7 +385,15 @@ def parse_staff_row(summary, dtstart, dtend, base_day):
         return None
     role = m.group(2)
     role = {"monitor": "Monitoring"}.get(role.lower(), role[0].upper() + role[1:])
-    return {"name": m.group(1), "role": role,
+    return m.group(1), role
+
+
+def parse_staff_row(summary, dtstart, dtend, base_day):
+    identity = _staff_identity(summary)
+    if not identity:
+        return None
+    name, role = identity
+    return {"name": name, "role": role,
             "start": decimal_hours(dtstart, base_day),
             "end": decimal_hours(dtend, base_day)}
 
@@ -419,7 +427,72 @@ def parse_open_shift(summary, description, dtstart, dtend, base_day):
     return None
 
 
-def fetch_open_shifts(ics_map, win_start, base_day):
+def parse_staff_assignment(summary, description, dtstart, dtend, base_day):
+    """Private lookahead shape used only to prove a placeholder was claimed.
+
+    Staff descriptions may carry renter/payment text, so the same public-data
+    rail as open shifts applies: retain only the studio number. The returned
+    rows never enter DATA; they are consumed by reconcile_open_shifts().
+    """
+    identity = _staff_identity(summary or "")
+    if not identity:
+        return None
+    name, role = identity
+    local_start = dtstart.astimezone(TZ) if dtstart.tzinfo else dtstart
+    day = local_start.date()
+    m = RE_SHIFT_STUDIO.search(description or "")
+    return {"name": name, "role": role,
+            "studio": m.group(1).upper() if m else None,
+            "day_offset": (day - base_day).days,
+            "start": decimal_hours(dtstart, day),
+            "end": decimal_hours(dtend, day)}
+
+
+def _same_shift_window(open_shift, assignment):
+    return (open_shift["day_offset"] == assignment["day_offset"]
+            and open_shift["role"] == assignment["role"]
+            and assignment["start"] <= open_shift["start"] + 1e-6
+            and assignment["end"] >= open_shift["end"] - 1e-6)
+
+
+def _open_shift_is_future(open_shift, now, base_day):
+    local_now = now.astimezone(TZ) if now.tzinfo else now
+    now_hour = ((local_now.date() - base_day).days * 24
+                + local_now.hour + local_now.minute / 60)
+    end_hour = open_shift["day_offset"] * 24 + open_shift["end"]
+    return end_hour > now_hour
+
+
+def reconcile_open_shifts(open_shifts, assignments, now, base_day):
+    """Return only still-claimable placeholders.
+
+    A claimed block must be covered by a rostered assignment with the same
+    day, role and time. Studio is also required whenever both rows carry one.
+    If either side lacks a studio, suppress only when the compatible open block
+    is unique; simultaneous gaps must stay visible rather than being guessed.
+    """
+    current = [o for o in open_shifts if _open_shift_is_future(o, now, base_day)]
+    out = []
+    for open_shift in current:
+        claimed = False
+        for assignment in assignments:
+            if not _same_shift_window(open_shift, assignment):
+                continue
+            if open_shift.get("studio") and assignment.get("studio"):
+                if open_shift["studio"] == assignment["studio"]:
+                    claimed = True
+                    break
+                continue
+            compatible = [o for o in current if _same_shift_window(o, assignment)]
+            if len(compatible) == 1:
+                claimed = True
+                break
+        if not claimed:
+            out.append(open_shift)
+    return out
+
+
+def fetch_open_shifts(ics_map, win_start, base_day, now=None):
     """Unassigned placeholders from the Staff calendar, today + the posting
     lookahead. Separate fetch because the board window is today-only, while
     claimable shifts are posted days ahead. Own fetch also means an outage
@@ -428,7 +501,7 @@ def fetch_open_shifts(ics_map, win_start, base_day):
     if not url:
         return []
     win_end = win_start + timedelta(days=OPEN_SHIFT_LOOKAHEAD_DAYS + 1)
-    out = []
+    open_shifts, assignments = [], []
     for ev in fetch_ics(url, win_start, win_end):
         if ev.get("cancelled"):
             continue
@@ -439,7 +512,14 @@ def fetch_open_shifts(ics_map, win_start, base_day):
             o["day"] = ("Today" if o["day_offset"] == 0 else
                         "Tomorrow" if o["day_offset"] == 1 else
                         d.strftime("%a %b %-d"))
-            out.append(o)
+            open_shifts.append(o)
+            continue
+        a = parse_staff_assignment(ev["summary"], ev.get("description"),
+                                   ev["dtstart"], ev["dtend"], base_day)
+        if a and a["day_offset"] >= 0:
+            assignments.append(a)
+    out = reconcile_open_shifts(open_shifts, assignments,
+                                now or datetime.now(TZ), base_day)
     out.sort(key=lambda o: (o["day_offset"], o["start"]))
     return out
 
@@ -2335,7 +2415,7 @@ def build_data(now):
     # fetch costs the Open list this edition, never the board. fetch_ics exits
     # via die() on failure, so SystemExit must be absorbed here too.
     try:
-        open_shifts = fetch_open_shifts(ics_map, win_start, base_day)
+        open_shifts = fetch_open_shifts(ics_map, win_start, base_day, now)
     except (Exception, SystemExit) as e:  # noqa: BLE001
         open_shifts = []
         emit_fallback_note(f"Staff ICS lookahead failed ({e}); open shifts absent this edition.")
@@ -2564,6 +2644,7 @@ def build_data(now):
 
     data = {
         "date": now.strftime("%A, %B %-d, %Y"),
+        "shiftBaseDay": base_day.isoformat(),
         "generatedAt": now.strftime("%b %-d, %-I:%M %p ET"),
         "generatedAtISO": now.replace(microsecond=0).isoformat(),
         "studios": STUDIOS,
