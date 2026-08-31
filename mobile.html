@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 11:30 AM ET",
-  "generatedAtISO": "2026-08-31T11:30:52-04:00",
+  "generatedAt": "Aug 31, 11:46 AM ET",
+  "generatedAtISO": "2026-08-31T11:46:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -570,7 +570,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 05:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [],
   "panelPrior": {
     "509A": {
@@ -910,6 +915,22 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T15:26:12.201582Z",
         "until": "2026-08-31T15:26:18.049198Z"
+      },
+      {
+        "since": "2026-08-31T15:31:58.851177Z",
+        "until": "2026-08-31T15:32:12.362660Z"
+      },
+      {
+        "since": "2026-08-31T15:32:13.557230Z",
+        "until": "2026-08-31T15:32:19.223325Z"
+      },
+      {
+        "since": "2026-08-31T15:38:12.370577Z",
+        "until": "2026-08-31T15:38:23.183707Z"
+      },
+      {
+        "since": "2026-08-31T15:43:33.330124Z",
+        "until": "2026-08-31T15:43:45.157502Z"
       }
     ],
     "down": false
@@ -921,8 +942,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-31T10:10:00-04:00"
     },
     {
@@ -933,7 +954,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T11:27:00-04:00"
+      "lastISO": "2026-08-31T11:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -983,7 +1004,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T10:36:00-04:00"
+      "lastISO": "2026-08-31T11:38:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1043,7 +1064,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T11:06:00-04:00"
+      "lastISO": "2026-08-31T11:33:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1093,7 +1114,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T11:01:00-04:00"
+      "lastISO": "2026-08-31T11:46:00-04:00"
     },
     {
       "run": "The Closer",
