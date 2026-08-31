@@ -126,11 +126,12 @@
                   font-variant-numeric:tabular-nums;max-width:222px}
   .card .tl .ends span{white-space:nowrap}
   .card .tl .ends .a{color:var(--ok)} .card .tl .ends .w{color:var(--watch)} .card .tl .ends .x{color:var(--crit)}
-  .card .tl .assumption{display:flex;margin-top:4px}
-  .card .tl .assumption .signal{display:inline-flex;align-items:center;padding:3px 6px;border-radius:99px;
-                                background:var(--watch-bg);color:var(--watch);font-family:var(--sans);
-                                font-size:8.5px;font-weight:700;line-height:1;letter-spacing:.06em;
-                                text-transform:uppercase;white-space:nowrap}
+  .card .tl .ends.assumed-row{width:222px}
+  .card .tl .ends .assumed-in{display:inline-flex;align-items:center;gap:4px;min-width:0}
+  .card .tl .ends .signal{display:inline-flex;align-items:center;padding:2px 4px;border-radius:3px;
+                          background:var(--watch-bg);color:var(--watch);font-family:var(--sans);
+                          font-size:7.5px;font-weight:700;line-height:1.1;letter-spacing:.04em;
+                          text-transform:uppercase;white-space:nowrap}
   .card .right{grid-column:3;grid-row:1/span 3;text-align:right;font-size:12.5px;color:var(--chalk-dim);
                display:flex;flex-direction:column;align-items:flex-end;gap:4px}
   .card .right .chip{flex:0 0 auto}
@@ -250,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
   "shiftBaseDay": "2026-08-30",
-  "generatedAt": "Aug 30, 9:35 PM ET",
-  "generatedAtISO": "2026-08-30T21:35:39-04:00",
+  "generatedAt": "Aug 30, 9:45 PM ET",
+  "generatedAtISO": "2026-08-30T21:45:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1647,6 +1648,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T01:32:43.898357Z",
         "until": "2026-08-31T01:32:53.332742Z"
+      },
+      {
+        "since": "2026-08-31T01:38:32.205695Z",
+        "until": "2026-08-31T01:38:41.641202Z"
+      },
+      {
+        "since": "2026-08-31T01:44:07.242762Z",
+        "until": "2026-08-31T01:44:21.718353Z"
       }
     ],
     "down": false
@@ -1670,7 +1679,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T21:30:00-04:00"
+      "lastISO": "2026-08-30T21:42:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1962,12 +1971,11 @@ function tlHTML(e,st,n){
     const liveFill=st.live&&dep==null;
     if(w>0||liveFill)fill=`<div class="fill ${liveFill?"liveseg":""}" style="left:${l.toFixed(1)}%;width:${Math.max(w,2).toFixed(1)}%"></div>`;
   }
-  let L,R,assumption="";
+  let L,R;
   if(arr!=null){
     const em=Math.round((e.start-arr)*60);
     if(e.assumed){
-      L=`<span class="w">${e.arrived} in</span>`;
-      assumption=`<div class="assumption"><span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span></div>`;
+      L=`<span class="assumed-in"><span class="w">${e.arrived} in</span><span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span></span>`;
     }else L=early?`<span class="w">${e.arrived} in · ${em}m early</span>`:`<span class="a">${e.arrived} in</span>`;
   }else if(st.flagged&&!e.dup_studios)L=`<span class="x">no arrival</span>`;
   else L=`<span>${hm(e.start)}</span>`;
@@ -1977,7 +1985,7 @@ function tlHTML(e,st,n){
   }else R=`<span>${hm(e.end)}</span>`;
   return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}`+
          `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>`+
-         `<div class="ends">${L}${R}</div>${assumption}</div>`;
+         `<div class="ends ${e.assumed?"assumed-row":""}">${L}${R}</div></div>`;
 }
 
 function render(){
