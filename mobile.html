@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 6:30 PM ET",
-  "generatedAtISO": "2026-08-31T18:30:50-04:00",
+  "generatedAt": "Aug 31, 6:45 PM ET",
+  "generatedAtISO": "2026-08-31T18:45:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -342,13 +342,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "18:45"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
       "arrived": "16:58",
       "departed": null,
@@ -368,7 +362,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:31",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -459,16 +453,7 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     }
   ],
-  "messages": [
-    {
-      "code": "EOB-sweep-•••B",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Aug 31 · 05:01"
-    }
-  ],
+  "messages": [],
   "attention": [],
   "armEvents": [
     {
@@ -524,18 +509,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788210458964,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Ishfaaq Jookhun",
+      "time": "18:31",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788215468846,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "527": {
-      "studio": "527",
-      "name": "Zad Abouhatab",
-      "time": "20:45",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1788137106000,
-      "when": "Sun 20:45"
-    },
     "693": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -563,7 +548,13 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-31T21:10:02+00:00",
+    "updatedAt": "2026-08-31T22:37:02+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-08-31T09:03:03.481481Z",
@@ -1148,6 +1139,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T22:26:14.863583Z",
         "until": "2026-08-31T22:26:21.309098Z"
+      },
+      {
+        "since": "2026-08-31T22:31:32.703120Z",
+        "until": "2026-08-31T22:31:45.179609Z"
+      },
+      {
+        "since": "2026-08-31T22:36:40.338329Z",
+        "until": "2026-08-31T22:36:51.859483Z"
+      },
+      {
+        "since": "2026-08-31T22:42:32.628476Z",
+        "until": "2026-08-31T22:42:43.225211Z"
       }
     ],
     "down": false
@@ -1171,7 +1174,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T18:27:00-04:00"
+      "lastISO": "2026-08-31T18:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1271,7 +1274,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T18:46:00-04:00"
+      "lastISO": "2026-08-31T18:32:00-04:00"
     },
     {
       "run": "The Sentinel",
