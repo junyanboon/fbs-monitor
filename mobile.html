@@ -126,12 +126,12 @@
                   font-variant-numeric:tabular-nums;max-width:222px}
   .card .tl .ends span{white-space:nowrap}
   .card .tl .ends .a{color:var(--ok)} .card .tl .ends .w{color:var(--watch)} .card .tl .ends .x{color:var(--crit)}
-  .card .tl .ends.assumed-row{width:222px}
-  .card .tl .ends .assumed-in{display:inline-flex;align-items:center;gap:4px;min-width:0}
+  .card .tl .ends.assumed-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+                              gap:5px;width:222px}
   .card .tl .ends .signal{display:inline-flex;align-items:center;padding:2px 4px;border-radius:3px;
                           background:var(--watch-bg);color:var(--watch);font-family:var(--sans);
                           font-size:7.5px;font-weight:700;line-height:1.1;letter-spacing:.04em;
-                          text-transform:uppercase;white-space:nowrap}
+                          text-transform:uppercase;white-space:nowrap;justify-self:center}
   .card .right{grid-column:3;grid-row:1/span 3;text-align:right;font-size:12.5px;color:var(--chalk-dim);
                display:flex;flex-direction:column;align-items:flex-end;gap:4px}
   .card .right .chip{flex:0 0 auto}
@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, August 30, 2026",
   "shiftBaseDay": "2026-08-30",
-  "generatedAt": "Aug 30, 10:30 PM ET",
-  "generatedAtISO": "2026-08-30T22:30:51-04:00",
+  "generatedAt": "Aug 30, 10:34 PM ET",
+  "generatedAtISO": "2026-08-30T22:34:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -601,12 +601,7 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "527",
@@ -1699,16 +1694,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-30T10:28:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1716,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-30T22:26:00-04:00"
+      "lastISO": "2026-08-30T22:32:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1817,6 +1802,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-30T19:42:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-30T22:30:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -2008,11 +2003,12 @@ function tlHTML(e,st,n){
     const liveFill=st.live&&dep==null;
     if(w>0||liveFill)fill=`<div class="fill ${liveFill?"liveseg":""}" style="left:${l.toFixed(1)}%;width:${Math.max(w,2).toFixed(1)}%"></div>`;
   }
-  let L,R;
+  let L,R,signal="";
   if(arr!=null){
     const em=Math.round((e.start-arr)*60);
     if(e.assumed){
-      L=`<span class="assumed-in"><span class="w">${e.arrived} in</span><span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span></span>`;
+      L=`<span class="w">${e.arrived} in</span>`;
+      signal=`<span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`;
     }else L=early?`<span class="w">${e.arrived} in · ${em}m early</span>`:`<span class="a">${e.arrived} in</span>`;
   }else if(st.flagged&&!e.dup_studios)L=`<span class="x">no arrival</span>`;
   else L=`<span>${hm(e.start)}</span>`;
@@ -2022,7 +2018,7 @@ function tlHTML(e,st,n){
   }else R=`<span>${hm(e.end)}</span>`;
   return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}`+
          `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>`+
-         `<div class="ends ${e.assumed?"assumed-row":""}">${L}${R}</div></div>`;
+         `<div class="ends ${e.assumed?"assumed-row":""}">${L}${signal}${R}</div></div>`;
 }
 
 function render(){
