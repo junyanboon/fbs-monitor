@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-30",
-  "generatedAt": "Aug 31, 12:45 AM ET",
-  "generatedAtISO": "2026-08-31T00:45:47-04:00",
+  "generatedAt": "Aug 31, 1:00 AM ET",
+  "generatedAtISO": "2026-08-31T01:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -601,7 +601,12 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -1807,6 +1812,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T04:41:43.534402Z",
         "until": "2026-08-31T04:41:57.914480Z"
+      },
+      {
+        "since": "2026-08-31T04:47:05.654680Z",
+        "until": "2026-08-31T04:47:15.118381Z"
+      },
+      {
+        "since": "2026-08-31T04:53:08.381639Z",
+        "until": "2026-08-31T04:53:17.306109Z"
+      },
+      {
+        "since": "2026-08-31T04:59:02.090521Z",
+        "until": "2026-08-31T04:59:17.547166Z"
       }
     ],
     "down": false
@@ -1818,8 +1835,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-30T23:16:00-04:00"
     },
     {
@@ -1830,7 +1847,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T00:45:00-04:00"
+      "lastISO": "2026-08-31T00:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1840,7 +1857,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T00:00:00-04:00"
+      "lastISO": "2026-08-31T01:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
