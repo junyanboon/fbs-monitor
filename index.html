@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 4:00 PM ET",
-  "generatedAtISO": "2026-08-31T16:00:55-04:00",
+  "generatedAt": "Aug 31, 4:15 PM ET",
+  "generatedAtISO": "2026-08-31T16:15:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -725,28 +725,20 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Courtesy + account-holder authorization",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "Other",
-      "created": "Aug 31 · 13:22"
-    },
-    {
-      "code": "Booking confirmation — Himanshi Sep 19, 20 & 27",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Aug 31 · 13:42"
-    },
-    {
-      "code": "Sales — Nicholas Walsh call scheduling — •••",
+      "code": "Sales follow-up — Sandra Lewis weekly meditation — •••",
       "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "The Concierge",
-      "created": "Aug 31 · 15:55"
+      "created": "Aug 31 · 16:10"
+    },
+    {
+      "code": "PBF-overtime — Ishfaaq Jookhun — 901 — •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Aug 31 · 16:11"
     },
     {
       "code": "EOB-sweep-•••B",
@@ -757,12 +749,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 05:01"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -1325,21 +1312,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T19:56:42.046814Z",
         "until": "2026-08-31T19:56:47.191016Z"
+      },
+      {
+        "since": "2026-08-31T20:02:11.653607Z",
+        "until": "2026-08-31T20:02:17.116102Z"
+      },
+      {
+        "since": "2026-08-31T20:07:40.776181Z",
+        "until": "2026-08-31T20:07:48.235477Z"
+      },
+      {
+        "since": "2026-08-31T20:12:42.085617Z",
+        "until": "2026-08-31T20:12:54.649839Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T09:11:00-04:00"
-    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1358,7 +1347,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T15:56:00-04:00"
+      "lastISO": "2026-08-31T16:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1378,7 +1367,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T15:07:00-04:00"
+      "lastISO": "2026-08-31T16:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1448,7 +1437,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T15:05:00-04:00"
+      "lastISO": "2026-08-31T16:04:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-31T16:07:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1458,7 +1457,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T15:24:00-04:00"
+      "lastISO": "2026-08-31T16:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1498,7 +1497,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T16:01:00-04:00"
+      "lastISO": "2026-08-31T16:16:00-04:00"
     },
     {
       "run": "The Closer",
