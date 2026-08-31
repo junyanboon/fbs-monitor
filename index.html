@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 4:30 PM ET",
-  "generatedAtISO": "2026-08-31T16:30:48-04:00",
+  "generatedAt": "Aug 31, 4:45 PM ET",
+  "generatedAtISO": "2026-08-31T16:45:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -499,31 +499,11 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
-      "who": "Matterport 360° panorama capture — Studios 509A & 509B",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "dispatch": [],
-      "heard": false,
-      "arrived": null,
-      "departed": null,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": [
-        "509B"
-      ],
-      "start": 13.0,
-      "end": 14.0,
-      "access_gap": false
-    },
-    {
-      "studio": "509A",
       "who": "Chelly Li",
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
       "arrived": "13:50",
@@ -569,26 +549,6 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 19.25,
       "end": 20.75,
-      "access_gap": false
-    },
-    {
-      "studio": "509B",
-      "who": "Matterport 360° panorama capture — Studios 509A & 509B",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "heard": false,
-      "arrived": null,
-      "departed": null,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": [
-        "509A"
-      ],
-      "start": 13.0,
-      "end": 14.0,
       "access_gap": false
     },
     {
@@ -725,22 +685,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Sales follow-up — Sandra Lewis weekly meditation — •••",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Aug 31 · 16:10"
-    },
-    {
-      "code": "PBF-overtime — Ishfaaq Jookhun — 901 — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Aug 31 · 16:11"
-    },
-    {
       "code": "EOB-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -749,12 +693,7 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 05:01"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -1341,21 +1280,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T20:29:14.185704Z",
         "until": "2026-08-31T20:29:27.650331Z"
+      },
+      {
+        "since": "2026-08-31T20:34:32.882141Z",
+        "until": "2026-08-31T20:34:46.313100Z"
+      },
+      {
+        "since": "2026-08-31T20:40:14.329738Z",
+        "until": "2026-08-31T20:40:23.756245Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T09:11:00-04:00"
-    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1374,7 +1311,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T16:29:00-04:00"
+      "lastISO": "2026-08-31T16:41:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1467,6 +1404,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T16:04:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-08-31T16:30:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -1514,7 +1461,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T16:16:00-04:00"
+      "lastISO": "2026-08-31T16:31:00-04:00"
     },
     {
       "run": "The Closer",
