@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 4:45 PM ET",
-  "generatedAtISO": "2026-08-31T16:45:54-04:00",
+  "generatedAt": "Aug 31, 5:01 PM ET",
+  "generatedAtISO": "2026-08-31T17:01:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -566,7 +566,7 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "16:58",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -693,7 +693,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 05:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -730,19 +735,18 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788204610493,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Julia S",
+      "time": "16:58",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788209936552,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "509B",
-      "time": "18:45",
-      "ts": 1788129911512,
-      "when": "Sun 18:45"
-    },
     "527": {
       "studio": "527",
       "name": "Zad Abouhatab",
@@ -1288,11 +1292,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T20:40:14.329738Z",
         "until": "2026-08-31T20:40:23.756245Z"
+      },
+      {
+        "since": "2026-08-31T20:46:14.284010Z",
+        "until": "2026-08-31T20:46:26.914526Z"
+      },
+      {
+        "since": "2026-08-31T20:51:40.896903Z",
+        "until": "2026-08-31T20:51:49.557531Z"
+      },
+      {
+        "since": "2026-08-31T20:57:01.268167Z",
+        "until": "2026-08-31T20:57:13.623310Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-31T09:11:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1311,7 +1337,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T16:41:00-04:00"
+      "lastISO": "2026-08-31T16:58:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1321,7 +1347,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T16:00:00-04:00"
+      "lastISO": "2026-08-31T17:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1404,16 +1430,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T16:04:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T16:30:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -1461,7 +1477,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T16:31:00-04:00"
+      "lastISO": "2026-08-31T17:01:00-04:00"
     },
     {
       "run": "The Closer",
