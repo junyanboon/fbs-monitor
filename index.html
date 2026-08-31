@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 3:01 PM ET",
-  "generatedAtISO": "2026-08-31T15:01:00-04:00",
+  "generatedAt": "Aug 31, 3:15 PM ET",
+  "generatedAtISO": "2026-08-31T15:15:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -527,7 +527,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "13:50",
-      "departed": null,
+      "departed": "15:11",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -759,6 +759,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788198626128,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Chelly Li",
+      "time": "15:11",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788203485066,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -808,7 +817,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-31T17:56:03+00:00",
+    "updatedAt": "2026-08-31T19:16:02+00:00",
     "doorGaps": [
       {
         "since": "2026-08-31T09:03:03.481481Z",
@@ -1245,6 +1254,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T19:00:13.617678Z",
         "until": "2026-08-31T19:00:22.815430Z"
+      },
+      {
+        "since": "2026-08-31T19:05:40.693945Z",
+        "until": "2026-08-31T19:05:50.155357Z"
+      },
+      {
+        "since": "2026-08-31T19:11:13.711182Z",
+        "until": "2026-08-31T19:11:19.011705Z"
       }
     ],
     "down": false
@@ -1261,6 +1278,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T19:42:00-04:00"
     },
     {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-31T14:08:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1268,7 +1295,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T15:01:00-04:00"
+      "lastISO": "2026-08-31T15:12:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1288,7 +1315,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T14:07:00-04:00"
+      "lastISO": "2026-08-31T15:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1358,7 +1385,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T14:59:00-04:00"
+      "lastISO": "2026-08-31T15:05:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1369,16 +1396,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-31T14:32:00-04:00"
-    },
-    {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T14:08:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1418,7 +1435,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T14:46:00-04:00"
+      "lastISO": "2026-08-31T15:01:00-04:00"
     },
     {
       "run": "The Closer",
