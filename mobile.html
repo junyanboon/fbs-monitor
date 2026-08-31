@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 10:15 AM ET",
-  "generatedAtISO": "2026-08-31T10:15:44-04:00",
+  "generatedAt": "Aug 31, 10:30 AM ET",
+  "generatedAtISO": "2026-08-31T10:30:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -604,22 +604,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "AVA-sweep-•••B",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Aug 31 · 05:01"
-    },
-    {
-      "code": "EOB-sweep-•••B",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Aug 31 · 05:01"
-    },
-    {
       "code": "PHONE-giggster-•••A",
       "channel": "Giggster",
       "status": "Pending Review",
@@ -658,6 +642,22 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "AI (automation)",
       "created": "Aug 31 · 10:01"
+    },
+    {
+      "code": "AVA-sweep-•••B",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Aug 31 · 05:01"
+    },
+    {
+      "code": "EOB-sweep-•••B",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Aug 31 · 05:01"
     }
   ],
   "attention": [],
@@ -944,11 +944,43 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T14:13:09.006772Z",
         "until": "2026-08-31T14:13:19.435599Z"
+      },
+      {
+        "since": "2026-08-31T14:19:09.044888Z",
+        "until": "2026-08-31T14:19:17.615811Z"
+      },
+      {
+        "since": "2026-08-31T14:24:58.491586Z",
+        "until": "2026-08-31T14:25:05.217522Z"
+      },
+      {
+        "since": "2026-08-31T14:30:11.917572Z",
+        "until": "2026-08-31T14:30:22.432664Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-31T09:14:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-31T09:11:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -957,7 +989,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T10:15:00-04:00"
+      "lastISO": "2026-08-31T10:27:00-04:00"
     },
     {
       "run": "QA release check",
@@ -998,16 +1030,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-31T07:54:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T10:06:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1070,16 +1092,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-30T19:42:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:11:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
@@ -1117,7 +1129,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T09:09:00-04:00"
+      "lastISO": "2026-08-31T10:17:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1127,7 +1139,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T10:01:00-04:00"
+      "lastISO": "2026-08-31T10:16:00-04:00"
     },
     {
       "run": "The Closer",
