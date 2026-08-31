@@ -239,11 +239,12 @@
                 font-variant-numeric:tabular-nums;max-width:214px}
   .ev .tl .ends span{white-space:nowrap}
   .ev .tl .ends .a{color:var(--ok)} .ev .tl .ends .w{color:var(--watch)} .ev .tl .ends .x{color:var(--crit)}
-  .ev .tl .assumption{display:flex;margin-top:5px}
-  .ev .tl .assumption .signal{display:inline-flex;align-items:center;padding:3px 7px;border-radius:99px;
-                              background:var(--watch-bg);color:var(--watch);font-family:var(--sans);
-                              font-size:9px;font-weight:700;line-height:1;letter-spacing:.07em;
-                              text-transform:uppercase;white-space:nowrap}
+  .ev .tl .ends.assumed-row{width:214px}
+  .ev .tl .ends .assumed-in{display:inline-flex;align-items:center;gap:5px;min-width:0}
+  .ev .tl .ends .signal{display:inline-flex;align-items:center;padding:2px 5px;border-radius:3px;
+                        background:var(--watch-bg);color:var(--watch);font-family:var(--sans);
+                        font-size:8px;font-weight:700;line-height:1.1;letter-spacing:.05em;
+                        text-transform:uppercase;white-space:nowrap}
   .chip{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;padding:2px 8px;border-radius:99px;font-weight:600;
         text-transform:uppercase;display:inline-block}
   .chip.ok{background:var(--ok-bg);color:var(--ok)}
@@ -713,7 +714,7 @@ function render(){
       if (w>0 || liveFill)
         fill = `<div class="fill ${liveFill?"liveseg":""}" style="left:${l.toFixed(1)}%;width:${Math.max(w,2).toFixed(1)}%"></div>`;
     }
-    let L, R, assumption = "";
+    let L, R;
     if (arr!=null){
       const em = Math.round((e.start-arr)*60);
       /* `assumed`: the arrival was unobservable — the alarm wasn't used
@@ -721,8 +722,7 @@ function render(){
          the reason: "open" = nobody armed after the previous renter;
          "bypass" = armed with the door sensor bypassed. */
       if (e.assumed) {
-        L = `<span class="w">${e.arrived} in</span>`;
-        assumption = `<div class="assumption"><span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span></div>`;
+        L = `<span class="assumed-in"><span class="w">${e.arrived} in</span><span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span></span>`;
       } else {
         L = early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
                   : `<span class="a">${e.arrived} in</span>`;
@@ -736,7 +736,7 @@ function render(){
     } else R = `<span>${hm(e.end)}</span>`;
     return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}` +
            `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>` +
-           `<div class="ends">${L}${R}</div>${assumption}</div>`;
+           `<div class="ends ${e.assumed?"assumed-row":""}">${L}${R}</div></div>`;
   };
   const evCard = e => {
     const st = stateOf(e,n);
