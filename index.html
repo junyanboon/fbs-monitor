@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 6:00 PM ET",
-  "generatedAtISO": "2026-08-31T18:00:59-04:00",
+  "generatedAt": "Aug 31, 6:15 PM ET",
+  "generatedAtISO": "2026-08-31T18:15:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -685,7 +685,12 @@ const DATA = /*__DATA__*/{
       "created": "Aug 31 · 05:01"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -1344,11 +1349,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T21:58:11.805452Z",
         "until": "2026-08-31T21:58:23.240063Z"
+      },
+      {
+        "since": "2026-08-31T22:03:32.728603Z",
+        "until": "2026-08-31T22:03:42.037714Z"
+      },
+      {
+        "since": "2026-08-31T22:08:42.259785Z",
+        "until": "2026-08-31T22:08:54.931163Z"
+      },
+      {
+        "since": "2026-08-31T22:14:32.666183Z",
+        "until": "2026-08-31T22:14:41.177832Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-08-31T09:14:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1367,7 +1394,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T18:00:00-04:00"
+      "lastISO": "2026-08-31T18:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1387,7 +1414,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T17:07:00-04:00"
+      "lastISO": "2026-08-31T18:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1408,16 +1435,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-31T07:54:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T17:28:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1477,7 +1494,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T17:07:00-04:00"
+      "lastISO": "2026-08-31T18:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1507,7 +1524,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T17:19:00-04:00"
+      "lastISO": "2026-08-31T18:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
