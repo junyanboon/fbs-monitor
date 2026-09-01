@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 11:45 AM ET",
-  "generatedAtISO": "2026-09-01T11:45:50-04:00",
+  "generatedAt": "Sep 1, 12:00 PM ET",
+  "generatedAtISO": "2026-09-01T12:00:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -425,13 +425,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "12:00"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": "09:39",
       "departed": null,
@@ -654,14 +648,6 @@ const DATA = /*__DATA__*/{
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 00:01"
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
       "raised_by": "AI (automation)",
       "created": "Sep 1 · 00:01"
     },
@@ -1040,11 +1026,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T15:45:08.049870Z",
         "until": "2026-09-01T15:45:22.518715Z"
+      },
+      {
+        "since": "2026-09-01T15:51:12.173517Z",
+        "until": "2026-09-01T15:51:23.592065Z"
+      },
+      {
+        "since": "2026-09-01T15:57:07.952804Z",
+        "until": "2026-09-01T15:57:19.052900Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-01T10:40:00-04:00"
+    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1056,26 +1060,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T09:11:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-01T10:40:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1083,7 +1067,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T11:42:00-04:00"
+      "lastISO": "2026-09-01T11:59:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1093,7 +1077,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T11:00:00-04:00"
+      "lastISO": "2026-09-01T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1163,7 +1147,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T10:56:00-04:00"
+      "lastISO": "2026-09-01T11:56:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1183,7 +1167,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T11:36:00-04:00"
+      "lastISO": "2026-09-01T11:58:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1244,6 +1228,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-08-31T09:11:00-04:00"
     },
     {
       "run": "The Opener",
