@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 7:31 PM ET",
-  "generatedAtISO": "2026-09-01T19:31:38-04:00",
+  "generatedAt": "Sep 1, 7:45 PM ET",
+  "generatedAtISO": "2026-09-01T19:45:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -540,13 +540,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "19:45"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
       "arrived": "19:00",
       "departed": null,
@@ -747,18 +741,25 @@ const DATA = /*__DATA__*/{
       "start": 19.75,
       "end": 20.25,
       "day": "Today"
-    }
-  ],
-  "messages": [
+    },
     {
-      "code": "EOB-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 00:01"
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 20.25,
+      "end": 20.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 22.25,
+      "end": 22.75,
+      "day": "Tomorrow"
     }
   ],
+  "messages": [],
   "attention": [
     {
       "level": "warn",
@@ -1572,6 +1573,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T23:28:04.629435Z",
         "until": "2026-09-01T23:28:16.072521Z"
+      },
+      {
+        "since": "2026-09-01T23:33:39.124674Z",
+        "until": "2026-09-01T23:33:44.548311Z"
+      },
+      {
+        "since": "2026-09-01T23:39:10.738438Z",
+        "until": "2026-09-01T23:39:17.480783Z"
+      },
+      {
+        "since": "2026-09-01T23:44:11.299080Z",
+        "until": "2026-09-01T23:44:24.718178Z"
       }
     ],
     "down": false
@@ -1588,16 +1601,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-08-31T19:38:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1605,7 +1608,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T19:30:00-04:00"
+      "lastISO": "2026-09-01T19:41:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1615,7 +1618,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T19:30:00-04:00"
+      "lastISO": "2026-09-01T19:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1695,7 +1698,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T18:47:00-04:00"
+      "lastISO": "2026-09-01T19:52:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1706,6 +1709,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-01T19:01:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-01T19:38:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1816,6 +1829,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-08-26T10:33:00-04:00"
+    },
+    {
+      "run": "🔑 Code Mirror",
+      "cadence": "Daily",
+      "expected": "at least once a day · usually ~06:00 Toronto on the Doorman's Job D pass, plus ad-hoc dry runs",
+      "produces": "🔑 Code Mirror report — Alarm.com user codes reconciled against the Artist DB (checked / matched / corrected / needs a human / no live code / unverified name).",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": null
     }
   ],
   "robotsNote": null
