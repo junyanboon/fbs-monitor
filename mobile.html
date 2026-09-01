@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 1:45 PM ET",
-  "generatedAtISO": "2026-09-01T13:45:44-04:00",
+  "generatedAt": "Sep 1, 2:00 PM ET",
+  "generatedAtISO": "2026-09-01T14:00:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -663,7 +663,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1125,11 +1125,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T17:40:07.894077Z",
         "until": "2026-09-01T17:40:22.386977Z"
+      },
+      {
+        "since": "2026-09-01T17:46:02.637738Z",
+        "until": "2026-09-01T17:46:12.818108Z"
+      },
+      {
+        "since": "2026-09-01T17:51:11.906807Z",
+        "until": "2026-09-01T17:51:15.492565Z"
+      },
+      {
+        "since": "2026-09-01T17:57:08.243978Z",
+        "until": "2026-09-01T17:57:16.873864Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-01T12:31:00-04:00"
+    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1141,16 +1163,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-01T12:31:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1158,7 +1170,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T13:45:00-04:00"
+      "lastISO": "2026-09-01T13:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1168,7 +1180,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T13:00:00-04:00"
+      "lastISO": "2026-09-01T14:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1238,7 +1250,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T13:02:00-04:00"
+      "lastISO": "2026-09-01T13:57:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1258,7 +1270,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T13:28:00-04:00"
+      "lastISO": "2026-09-01T13:55:00-04:00"
     },
     {
       "run": "The Sentinel",
