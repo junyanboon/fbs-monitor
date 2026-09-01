@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 8:00 AM ET",
-  "generatedAtISO": "2026-09-01T08:00:58-04:00",
+  "generatedAt": "Sep 1, 8:15 AM ET",
+  "generatedAtISO": "2026-09-01T08:15:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -786,22 +786,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "T4 — Tight Transition heads-up — Nina Li (901, Wed Sep 2)",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 1 · 04:21"
-    },
-    {
-      "code": "T3 — Tight Transition finish-on-time — Anita Pandey (901, Wed Sep 2)",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 1 · 04:21"
-    },
-    {
       "code": "AVA-sweep-•••A",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -837,7 +821,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1028,6 +1012,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T11:55:08.339468Z",
         "until": "2026-09-01T11:55:21.849883Z"
+      },
+      {
+        "since": "2026-09-01T12:01:12.853786Z",
+        "until": "2026-09-01T12:01:21.284725Z"
+      },
+      {
+        "since": "2026-09-01T12:06:53.094098Z",
+        "until": "2026-09-01T12:07:02.654325Z"
+      },
+      {
+        "since": "2026-09-01T12:12:08.346156Z",
+        "until": "2026-09-01T12:12:19.774157Z"
       }
     ],
     "down": false
@@ -1074,16 +1070,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T23:00:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T22:47:00-04:00"
-    },
-    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:45 America/Toronto · one authorized owner SMS",
@@ -1101,7 +1087,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T07:58:00-04:00"
+      "lastISO": "2026-09-01T08:14:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1121,7 +1107,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T07:07:00-04:00"
+      "lastISO": "2026-09-01T08:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1222,6 +1208,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-01T03:13:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-01T08:03:00-04:00"
     },
     {
       "run": "The Closer",
