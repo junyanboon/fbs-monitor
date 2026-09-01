@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 6:01 PM ET",
-  "generatedAtISO": "2026-09-01T18:01:13-04:00",
+  "generatedAt": "Sep 1, 6:15 PM ET",
+  "generatedAtISO": "2026-09-01T18:15:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -441,7 +441,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "17:17",
-      "departed": null,
+      "departed": "18:09",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -542,46 +542,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
-    {
-      "code": "INSURANCE-••••-ffe32c27",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
-      "code": "INSURANCE-•••",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
-      "code": "INSURANCE-•••d75032",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
-      "code": "INSURANCE-•••b75032",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
-      "code": "Stephanie Brinning — outstanding balance $•••, e-transfer request (email, phone unreachable)",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "Other",
-      "created": "Sep 1 · 17:49"
-    },
     {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
@@ -731,6 +691,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788297471284,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "18:09",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788300547310,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -751,7 +720,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-01T21:21:02+00:00",
+    "updatedAt": "2026-09-01T22:11:02+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1314,6 +1283,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T21:58:11.504666Z",
         "until": "2026-09-01T21:58:21.317590Z"
+      },
+      {
+        "since": "2026-09-01T22:03:39.226503Z",
+        "until": "2026-09-01T22:03:46.548367Z"
+      },
+      {
+        "since": "2026-09-01T22:09:04.726558Z",
+        "until": "2026-09-01T22:09:10.232713Z"
+      },
+      {
+        "since": "2026-09-01T22:14:11.604725Z",
+        "until": "2026-09-01T22:14:20.075945Z"
       }
     ],
     "down": false
@@ -1347,7 +1328,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T17:59:00-04:00"
+      "lastISO": "2026-09-01T18:15:00-04:00"
+    },
+    {
+      "run": "drop-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
+      "produces": "Buzz #desk-drops → 📸 Desk Drops rows (media re-uploaded to Media property + page body, 📥 receipt), and carries the Concierge's ✅/❓ verdict back to the channel",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-01T18:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1367,7 +1358,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T17:07:00-04:00"
+      "lastISO": "2026-09-01T18:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1457,7 +1448,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T17:07:00-04:00"
+      "lastISO": "2026-09-01T18:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1487,7 +1478,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T17:12:00-04:00"
+      "lastISO": "2026-09-01T18:14:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1497,17 +1488,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T17:46:00-04:00"
-    },
-    {
-      "run": "drop-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
-      "produces": "Buzz #desk-drops → 📸 Desk Drops rows (media re-uploaded to Media property + page body, 📥 receipt), and carries the Concierge's ✅/❓ verdict back to the channel",
-      "monitoring": "Paused",
-      "status": "plain",
-      "statusLabel": "Paused",
-      "lastISO": "2026-09-01T18:01:00-04:00"
+      "lastISO": "2026-09-01T18:02:00-04:00"
     },
     {
       "run": "The Closer",
