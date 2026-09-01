@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 9:21 PM ET",
-  "generatedAtISO": "2026-08-31T21:21:03-04:00",
+  "generatedAt": "Aug 31, 9:30 PM ET",
+  "generatedAtISO": "2026-08-31T21:30:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -462,7 +462,12 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -1302,11 +1307,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T01:15:12.936309Z",
         "until": "2026-09-01T01:15:22.485081Z"
+      },
+      {
+        "since": "2026-09-01T01:21:13.360806Z",
+        "until": "2026-09-01T01:21:23.860405Z"
+      },
+      {
+        "since": "2026-09-01T01:26:41.525442Z",
+        "until": "2026-09-01T01:26:55.035193Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Never checked in",
+      "lastISO": null
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1315,7 +1338,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T21:21:00-04:00"
+      "lastISO": "2026-08-31T21:27:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1425,7 +1448,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T20:55:00-04:00"
+      "lastISO": "2026-08-31T21:29:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1475,7 +1498,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T21:16:00-04:00"
+      "lastISO": "2026-08-31T21:31:00-04:00"
     },
     {
       "run": "The Closer",
