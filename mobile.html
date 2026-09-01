@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 7:45 PM ET",
-  "generatedAtISO": "2026-08-31T19:45:46-04:00",
+  "generatedAt": "Aug 31, 8:00 PM ET",
+  "generatedAtISO": "2026-08-31T20:00:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -461,8 +461,22 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     }
   ],
-  "messages": [],
-  "attention": [],
+  "messages": [
+    {
+      "code": "Responder — Ish 527→Avante alarm handover (•••)",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Responder",
+      "created": "Aug 31 · 19:54"
+    }
+  ],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -562,6 +576,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788218642131,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Ishfaaq Jookhun",
+      "time": "19:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788219972551,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -582,9 +605,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-31T23:27:02+00:00",
+    "updatedAt": "2026-08-31T23:51:02+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 3,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1229,6 +1252,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-08-31T23:44:01.961560Z",
         "until": "2026-08-31T23:44:09.245502Z"
+      },
+      {
+        "since": "2026-08-31T23:49:12.903186Z",
+        "until": "2026-08-31T23:49:19.279098Z"
+      },
+      {
+        "since": "2026-08-31T23:55:12.464198Z",
+        "until": "2026-08-31T23:55:17.734096Z"
+      },
+      {
+        "since": "2026-09-01T00:00:12.508200Z",
+        "until": "2026-09-01T00:00:19.809759Z"
       }
     ],
     "down": false
@@ -1240,8 +1275,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-31T18:32:00-04:00"
     },
     {
@@ -1252,7 +1287,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T19:45:00-04:00"
+      "lastISO": "2026-08-31T19:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1262,7 +1297,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T19:00:00-04:00"
+      "lastISO": "2026-08-31T20:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1332,7 +1367,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T18:58:00-04:00"
+      "lastISO": "2026-08-31T19:57:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1352,7 +1387,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T19:25:00-04:00"
+      "lastISO": "2026-08-31T19:58:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1402,7 +1437,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T19:46:00-04:00"
+      "lastISO": "2026-08-31T20:01:00-04:00"
     },
     {
       "run": "The Closer",
