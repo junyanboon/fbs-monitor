@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, August 31, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Aug 31, 10:00 PM ET",
-  "generatedAtISO": "2026-08-31T22:00:55-04:00",
+  "generatedAt": "Aug 31, 10:15 PM ET",
+  "generatedAtISO": "2026-08-31T22:15:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -597,7 +597,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "20:00",
-      "departed": null,
+      "departed": "22:10",
       "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
@@ -678,7 +678,12 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -787,6 +792,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788219972551,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Ishfaaq Jookhun",
+      "time": "22:10",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788228612293,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "22:15",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788228907240,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "22:15",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788228910617,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -807,9 +839,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-08-31T23:51:02+00:00",
+    "updatedAt": "2026-09-01T02:15:02+00:00",
     "mailCheck": {
-      "matched": 3,
+      "matched": 4,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1550,6 +1582,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T01:57:09.217431Z",
         "until": "2026-09-01T01:57:15.682713Z"
+      },
+      {
+        "since": "2026-09-01T02:02:41.405150Z",
+        "until": "2026-09-01T02:02:49.925107Z"
+      },
+      {
+        "since": "2026-09-01T02:08:13.239178Z",
+        "until": "2026-09-01T02:08:22.766102Z"
+      },
+      {
+        "since": "2026-09-01T02:14:13.527281Z",
+        "until": "2026-09-01T02:14:25.576178Z"
       }
     ],
     "down": false
@@ -1561,8 +1605,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-31T20:50:00-04:00"
     },
     {
@@ -1573,7 +1617,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T22:01:00-04:00"
+      "lastISO": "2026-08-31T22:13:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1593,7 +1637,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T21:07:00-04:00"
+      "lastISO": "2026-08-31T22:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1693,7 +1737,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T21:07:00-04:00"
+      "lastISO": "2026-08-31T22:08:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1723,7 +1767,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T21:12:00-04:00"
+      "lastISO": "2026-08-31T22:11:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1733,7 +1777,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-08-31T21:46:00-04:00"
+      "lastISO": "2026-08-31T22:16:00-04:00"
     },
     {
       "run": "The Closer",
