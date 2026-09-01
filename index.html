@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 4:15 PM ET",
-  "generatedAtISO": "2026-09-01T16:15:49-04:00",
+  "generatedAt": "Sep 1, 4:30 PM ET",
+  "generatedAtISO": "2026-09-01T16:30:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -506,8 +506,8 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "16:20",
+      "departed": "16:28",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -764,14 +764,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "INSURANCE-••••-0e334a2f",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
       "code": "INSURANCE-••••-ffe32c27",
       "channel": "Email",
       "status": "Pending Review",
@@ -844,14 +836,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 1 · 14:22"
     },
     {
-      "code": "AUTH-USER-T5-akira-huang-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 1 · 16:12"
-    },
-    {
       "code": "AVA-sweep-•••A",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -879,7 +863,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -918,19 +902,36 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788281109791,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "16:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788294049597,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "16:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788294513834,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "16:28",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788294522385,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Laurie-Eve Bastiani",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "19:02",
-      "ts": 1788217322708,
-      "when": "Mon 19:02"
-    },
     "509B": {
       "kind": "departure",
       "name": "Julia S",
@@ -968,7 +969,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-01T16:30:02+00:00",
+    "updatedAt": "2026-09-01T20:25:02+00:00",
     "doorGaps": [
       {
         "since": "2026-09-01T09:00:40.745133Z",
@@ -1445,21 +1446,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T20:10:09.483236Z",
         "until": "2026-09-01T20:10:25.221282Z"
+      },
+      {
+        "since": "2026-09-01T20:16:03.479449Z",
+        "until": "2026-09-01T20:16:18.962638Z"
+      },
+      {
+        "since": "2026-09-01T20:22:09.555180Z",
+        "until": "2026-09-01T20:22:16.281275Z"
+      },
+      {
+        "since": "2026-09-01T20:27:52.238523Z",
+        "until": "2026-09-01T20:28:05.248280Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-01T14:52:00-04:00"
-    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1488,7 +1491,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T16:12:00-04:00"
+      "lastISO": "2026-09-01T16:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1529,6 +1532,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-01T06:03:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-01T16:38:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1578,7 +1591,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T15:57:00-04:00"
+      "lastISO": "2026-09-01T16:33:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -1628,7 +1641,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T16:01:00-04:00"
+      "lastISO": "2026-09-01T16:16:00-04:00"
     },
     {
       "run": "The Closer",
