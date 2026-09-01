@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 9:31 AM ET",
-  "generatedAtISO": "2026-09-01T09:31:02-04:00",
+  "generatedAt": "Sep 1, 9:45 AM ET",
+  "generatedAtISO": "2026-09-01T09:45:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -649,7 +649,7 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:39",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -917,10 +917,20 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "693",
+      "name": "Adalia Knight",
+      "time": "09:39",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788269988014,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -952,16 +962,6 @@ const DATA = /*__DATA__*/{
       "ts": 1788228910617,
       "when": "Mon 22:15"
     },
-    "693": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "693",
-      "time": "23:30",
-      "ts": 1788147009407,
-      "when": "Sun 23:30"
-    },
     "901": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -974,12 +974,12 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-01T02:54:02+00:00",
+    "updatedAt": "2026-09-01T13:43:02+00:00",
     "doorGaps": [
       {
         "since": "2026-09-01T09:00:40.745133Z",
@@ -1172,6 +1172,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T13:26:06.999970Z",
         "until": "2026-09-01T13:26:14.527140Z"
+      },
+      {
+        "since": "2026-09-01T13:31:12.324834Z",
+        "until": "2026-09-01T13:31:25.972223Z"
+      },
+      {
+        "since": "2026-09-01T13:37:12.323676Z",
+        "until": "2026-09-01T13:37:26.782615Z"
+      },
+      {
+        "since": "2026-09-01T13:42:35.621452Z",
+        "until": "2026-09-01T13:42:45.060308Z"
       }
     ],
     "down": false
@@ -1188,14 +1200,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Mechanic",
+      "run": "The Concierge",
       "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-01T07:59:00-04:00"
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-01T08:32:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1215,7 +1227,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T09:26:00-04:00"
+      "lastISO": "2026-09-01T09:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1258,16 +1270,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-01T06:03:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-01T08:32:00-04:00"
-    },
-    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1295,7 +1297,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T08:55:00-04:00"
+      "lastISO": "2026-09-01T09:52:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-01T09:44:00-04:00"
     },
     {
       "run": "The Planner",
