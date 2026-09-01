@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-08-31",
-  "generatedAt": "Sep 1, 2:30 AM ET",
-  "generatedAtISO": "2026-09-01T02:30:49-04:00",
+  "generatedAt": "Sep 1, 2:45 AM ET",
+  "generatedAtISO": "2026-09-01T02:45:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1613,11 +1613,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T06:30:04.411842Z",
         "until": "2026-09-01T06:30:11.842666Z"
+      },
+      {
+        "since": "2026-09-01T06:35:14.786660Z",
+        "until": "2026-09-01T06:35:26.274865Z"
+      },
+      {
+        "since": "2026-09-01T06:41:13.025073Z",
+        "until": "2026-09-01T06:41:20.703628Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "06:00 America/Toronto · Codex production fallback",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-08-31T07:54:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1626,7 +1644,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T02:29:00-04:00"
+      "lastISO": "2026-09-01T02:41:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1657,16 +1675,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-08-31T09:32:00-04:00"
-    },
-    {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "06:00 America/Toronto · Codex production fallback",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-08-31T07:54:00-04:00"
     },
     {
       "run": "The Doorman",
