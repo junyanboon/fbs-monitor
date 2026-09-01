@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 5:30 PM ET",
-  "generatedAtISO": "2026-09-01T17:30:57-04:00",
+  "generatedAt": "Sep 1, 5:45 PM ET",
+  "generatedAtISO": "2026-09-01T17:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -567,22 +567,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 1 · 09:00"
     },
     {
-      "code": "INSURANCE-••••-1fb75032",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
-      "code": "INSURANCE-•••",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
       "code": "INSURANCE-•••d75032",
       "channel": "Email",
       "status": "Pending Review",
@@ -599,30 +583,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 1 · 09:00"
     },
     {
-      "code": "INSURANCE-••••-3a975032",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 09:00"
-    },
-    {
-      "code": "BC-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 1 · 16:31"
-    },
-    {
-      "code": "Responder courtesy — Julie Marouze ack •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Responder",
-      "created": "Sep 1 · 16:54"
-    },
-    {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -637,6 +597,22 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Concierge",
       "created": "Sep 1 · 08:21"
+    },
+    {
+      "code": "INSURANCE-••••-1fb75032",
+      "channel": "Email",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "AI (automation)",
+      "created": "Sep 1 · 09:00"
+    },
+    {
+      "code": "INSURANCE-•••",
+      "channel": "Email",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "AI (automation)",
+      "created": "Sep 1 · 09:00"
     }
   ],
   "attention": [
@@ -1330,6 +1306,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T21:25:52.147668Z",
         "until": "2026-09-01T21:26:03.244718Z"
+      },
+      {
+        "since": "2026-09-01T21:31:08.303161Z",
+        "until": "2026-09-01T21:31:23.087716Z"
+      },
+      {
+        "since": "2026-09-01T21:37:10.070744Z",
+        "until": "2026-09-01T21:37:21.450148Z"
+      },
+      {
+        "since": "2026-09-01T21:42:38.531487Z",
+        "until": "2026-09-01T21:42:51.965571Z"
       }
     ],
     "down": false
@@ -1344,6 +1332,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-31T10:15:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-01T16:38:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1363,7 +1361,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T17:31:00-04:00"
+      "lastISO": "2026-09-01T17:42:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1406,16 +1404,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-01T06:03:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-01T16:38:00-04:00"
-    },
-    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1443,7 +1431,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T16:52:00-04:00"
+      "lastISO": "2026-09-01T17:58:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1513,7 +1501,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T17:16:00-04:00"
+      "lastISO": "2026-09-01T17:31:00-04:00"
     },
     {
       "run": "The Closer",
