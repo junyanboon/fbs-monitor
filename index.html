@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 4:30 PM ET",
-  "generatedAtISO": "2026-09-01T16:30:55-04:00",
+  "generatedAt": "Sep 1, 4:45 PM ET",
+  "generatedAtISO": "2026-09-01T16:45:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -507,7 +507,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "16:20",
-      "departed": "16:28",
+      "departed": "16:33",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -552,7 +552,7 @@ const DATA = /*__DATA__*/{
           "time": "19:45"
         }
       ],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "assumed": null,
@@ -589,7 +589,7 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "16:33",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -836,6 +836,14 @@ const DATA = /*__DATA__*/{
       "created": "Sep 1 · 14:22"
     },
     {
+      "code": "BC-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 1 · 16:31"
+    },
+    {
       "code": "AVA-sweep-•••A",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -929,19 +937,27 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788294522385,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "16:33",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788294799514,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "16:33",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788294827024,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Julia S",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "19:03",
-      "ts": 1788217408554,
-      "when": "Mon 19:03"
-    },
     "527": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -969,7 +985,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-01T20:25:02+00:00",
+    "updatedAt": "2026-09-01T20:37:02+00:00",
     "doorGaps": [
       {
         "since": "2026-09-01T09:00:40.745133Z",
@@ -1458,6 +1474,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T20:27:52.238523Z",
         "until": "2026-09-01T20:28:05.248280Z"
+      },
+      {
+        "since": "2026-09-01T20:33:07.931178Z",
+        "until": "2026-09-01T20:33:22.403145Z"
+      },
+      {
+        "since": "2026-09-01T20:39:07.596665Z",
+        "until": "2026-09-01T20:39:15.414348Z"
+      },
+      {
+        "since": "2026-09-01T20:45:07.580970Z",
+        "until": "2026-09-01T20:45:12.979010Z"
       }
     ],
     "down": false
@@ -1491,7 +1519,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T16:30:00-04:00"
+      "lastISO": "2026-09-01T16:42:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1571,7 +1599,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T15:41:00-04:00"
+      "lastISO": "2026-09-01T16:52:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1641,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T16:16:00-04:00"
+      "lastISO": "2026-09-01T16:31:00-04:00"
     },
     {
       "run": "The Closer",
