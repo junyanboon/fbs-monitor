@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 12:30 PM ET",
-  "generatedAtISO": "2026-09-01T12:30:49-04:00",
+  "generatedAt": "Sep 1, 12:45 PM ET",
+  "generatedAtISO": "2026-09-01T12:45:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -765,7 +765,7 @@ const DATA = /*__DATA__*/{
   "messages": [
     {
       "code": "INSURANCE-••••-0e334a2f",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -773,7 +773,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-••••-ffe32c27",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -781,7 +781,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-•••a186b3",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -789,7 +789,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-•••",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -797,7 +797,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-••••-1fb75032",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -805,7 +805,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-•••",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -813,7 +813,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-•••d75032",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -821,7 +821,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-•••b75032",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
@@ -829,43 +829,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "code": "INSURANCE-••••-3a975032",
-      "channel": "SMS",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "AI (automation)",
       "created": "Sep 1 · 09:00"
-    },
-    {
-      "code": "CC-viktoriia-card-declined-••••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Sep 1 · 10:29"
-    },
-    {
-      "code": "AUTH-USER-T2-nina-li-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Concierge",
-      "created": "Sep 1 · 12:20"
-    },
-    {
-      "code": "PAYMETHOD-T2-enrico-casertano-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Sep 1 · 12:23"
-    },
-    {
-      "code": "Responder courtesy — Ivanka Moskaliuk •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Responder",
-      "created": "Sep 1 · 12:25"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -903,7 +871,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -923,6 +891,24 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1788280119286,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "12:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788281107509,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "12:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788281109791,
       "source": "doors"
     }
   ],
@@ -1299,21 +1285,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T16:29:36.650496Z",
         "until": "2026-09-01T16:29:44.113542Z"
+      },
+      {
+        "since": "2026-09-01T16:37:10.309624Z",
+        "until": "2026-09-01T16:37:38.035124Z"
+      },
+      {
+        "since": "2026-09-01T16:43:07.928323Z",
+        "until": "2026-09-01T16:43:13.534500Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-01T10:40:00-04:00"
-    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1332,7 +1316,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T12:27:00-04:00"
+      "lastISO": "2026-09-01T12:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1375,6 +1359,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-01T06:03:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "hourly at :10 · 08:10–22:10 America/Toronto · Codex production fallback",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-01T12:31:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1402,7 +1396,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T11:52:00-04:00"
+      "lastISO": "2026-09-01T12:52:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1482,7 +1476,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T12:16:00-04:00"
+      "lastISO": "2026-09-01T12:46:00-04:00"
     },
     {
       "run": "The Closer",
