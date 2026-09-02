@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 8:01 PM ET",
-  "generatedAtISO": "2026-09-01T20:01:06-04:00",
+  "generatedAt": "Sep 1, 8:15 PM ET",
+  "generatedAtISO": "2026-09-01T20:15:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -543,7 +543,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "19:00",
-      "departed": null,
+      "departed": "20:08",
       "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
@@ -560,7 +560,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "20:10",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -722,7 +722,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "20:08",
       "departed": null,
       "assumed": null,
       "wrong_studio": null,
@@ -734,14 +734,6 @@ const DATA = /*__DATA__*/{
   ],
   "staff": [],
   "openShifts": [
-    {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 19.75,
-      "end": 20.25,
-      "day": "Today"
-    },
     {
       "role": "Monitoring",
       "studio": "901",
@@ -937,6 +929,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788303625344,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Viktoriia Osipovych",
+      "time": "20:08",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788307692371,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "20:08",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788307712201,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Fabio Hernandez",
+      "time": "20:10",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788307852530,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -946,7 +965,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-01T23:06:02+00:00",
+    "updatedAt": "2026-09-02T00:10:02+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1593,6 +1612,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-01T23:55:39.268175Z",
         "until": "2026-09-01T23:55:43.364474Z"
+      },
+      {
+        "since": "2026-09-02T00:01:10.931602Z",
+        "until": "2026-09-02T00:01:23.385878Z"
+      },
+      {
+        "since": "2026-09-02T00:07:11.416252Z",
+        "until": "2026-09-02T00:07:25.830548Z"
+      },
+      {
+        "since": "2026-09-02T00:13:10.959261Z",
+        "until": "2026-09-02T00:13:25.541764Z"
       }
     ],
     "down": false
@@ -1616,7 +1647,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T19:58:00-04:00"
+      "lastISO": "2026-09-01T20:14:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1626,7 +1657,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T20:00:00-04:00"
+      "lastISO": "2026-09-01T20:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1646,7 +1677,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T19:07:00-04:00"
+      "lastISO": "2026-09-01T20:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1746,7 +1777,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T19:07:00-04:00"
+      "lastISO": "2026-09-01T20:04:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1776,7 +1807,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T19:17:00-04:00"
+      "lastISO": "2026-09-01T20:14:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1786,7 +1817,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T19:46:00-04:00"
+      "lastISO": "2026-09-01T20:16:00-04:00"
     },
     {
       "run": "The Closer",
