@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 8:00 AM ET",
-  "generatedAtISO": "2026-09-02T08:00:58-04:00",
+  "generatedAt": "Sep 2, 8:15 AM ET",
+  "generatedAtISO": "2026-09-02T08:15:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -718,7 +718,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -908,6 +908,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T11:55:37.869530Z",
         "until": "2026-09-02T11:55:51.402891Z"
+      },
+      {
+        "since": "2026-09-02T12:01:07.621441Z",
+        "until": "2026-09-02T12:01:22.073392Z"
+      },
+      {
+        "since": "2026-09-02T12:07:07.628997Z",
+        "until": "2026-09-02T12:07:18.240990Z"
+      },
+      {
+        "since": "2026-09-02T12:13:09.099732Z",
+        "until": "2026-09-02T12:13:23.549400Z"
       }
     ],
     "down": false
@@ -954,16 +966,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-01T22:51:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-01T22:46:00-04:00"
-    },
-    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:45 America/Toronto · one authorized owner SMS",
@@ -981,7 +983,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T07:57:00-04:00"
+      "lastISO": "2026-09-02T08:14:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -991,7 +993,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:00:00-04:00"
+      "lastISO": "2026-09-02T08:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1011,7 +1013,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T07:07:00-04:00"
+      "lastISO": "2026-09-02T08:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1074,16 +1076,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-01T19:38:00-04:00"
     },
     {
-      "run": "The Sentinel",
-      "cadence": "Hourly",
-      "expected": "hourly at :00 · 07:00–23:00 America/Toronto · Codex production fallback",
-      "produces": "Run Monitor watchdog — texts on a missing run",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-02T07:07:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1114,6 +1106,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T03:14:00-04:00"
     },
     {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-02T08:02:00-04:00"
+    },
+    {
       "run": "The Closer",
       "cadence": "Daily",
       "expected": "RETIRED 2026-07-23 (ticket 007) — cloud trigger DELETED, persona dissolved. Do NOT set back to Live. Arm-and-sweep → The Doorman evening arm-check (23:35); day review → The Custodian 02:35 (ticket 027).",
@@ -1142,6 +1144,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-08-01T10:01:00-04:00"
+    },
+    {
+      "run": "The Sentinel",
+      "cadence": "Hourly",
+      "expected": "retired 2026-09-02 - see Runtime",
+      "produces": "Run Monitor watchdog — texts on a missing run",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-09-02T07:07:00-04:00"
     },
     {
       "run": "The Watchman",
