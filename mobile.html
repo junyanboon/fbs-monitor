@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 5:15 PM ET",
-  "generatedAtISO": "2026-09-02T17:15:43-04:00",
+  "generatedAt": "Sep 2, 5:31 PM ET",
+  "generatedAtISO": "2026-09-02T17:31:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -528,7 +528,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 2 · 12:47"
     },
     {
-      "code": "Greeter — Tagvenue request — xavier — 693 Mon Sep 7 3:00 PM–4:00 PM [greeter:1a06346a0822c34f]",
+      "code": "PHONE ask + confirmation — Tagvenue — xavier — 693 Sep 4 + Sep 7 (one combined reply) [greeter:1a06346a0822c34f]",
       "channel": "Email",
       "status": "Pending Review",
       "studio": "693",
@@ -536,68 +536,12 @@ const DATA = /*__DATA__*/{
       "created": "Sep 2 · 16:50"
     },
     {
-      "code": "Greeter — Tagvenue enquiry — xavier — 693 Mon Sep 7 3:00 PM–4:00 PM [greeter:1a063458f8fd7032]",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 16:50"
-    },
-    {
-      "code": "Greeter — Tagvenue enquiry — xavier — 693 Mon Sep 7 3:00 PM–4:00 PM [greeter:1a06342cfa99555e]",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 16:50"
-    },
-    {
-      "code": "Greeter — Tagvenue request — xavier — 693 Fri Sep 4 3:00 PM–4:00 PM [greeter:1a•••b77]",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 16:50"
-    },
-    {
-      "code": "Greeter — Tagvenue enquiry — xavier — 693 Fri Sep 4 3:00 PM–4:00 PM [greeter:1a0633f5e47ce90c]",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 16:50"
-    },
-    {
-      "code": "Responder — door-sign printable area is 20 x 42, not 20 x 20 — Caryl (iFreeStyle) •••",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 2 · 16:57"
-    },
-    {
-      "code": "HTA-sweep-•••B",
+      "code": "Courtesy — Raquel Khan booking-thanks ack •••",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 17:01"
-    },
-    {
-      "code": "PHONE-tagvenue-•••",
-      "channel": "Platform Relay",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 17:01"
-    },
-    {
-      "code": "PHONE-tagvenue-•••",
-      "channel": "Platform Relay",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 17:01"
+      "raised_by": "The Responder",
+      "created": "Sep 2 · 17:25"
     },
     {
       "code": "AVA-sweep-•••",
@@ -619,7 +563,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1218,6 +1162,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T21:11:37.134801Z",
         "until": "2026-09-02T21:11:48.663113Z"
+      },
+      {
+        "since": "2026-09-02T21:17:05.780343Z",
+        "until": "2026-09-02T21:17:16.191067Z"
+      },
+      {
+        "since": "2026-09-02T21:23:05.619378Z",
+        "until": "2026-09-02T21:23:09.986715Z"
+      },
+      {
+        "since": "2026-09-02T21:28:37.096236Z",
+        "until": "2026-09-02T21:28:42.772411Z"
       }
     ],
     "down": false
@@ -1234,6 +1190,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-02T16:31:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1244,16 +1210,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-01T19:38:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-02T16:31:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1261,7 +1217,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:12:00-04:00"
+      "lastISO": "2026-09-02T17:28:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1271,7 +1227,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:15:00-04:00"
+      "lastISO": "2026-09-02T17:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1371,7 +1327,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:00:00-04:00"
+      "lastISO": "2026-09-02T17:37:00-04:00"
     },
     {
       "run": "The Timekeeper",
