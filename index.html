@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 5:45 PM ET",
-  "generatedAtISO": "2026-09-02T17:45:47-04:00",
+  "generatedAt": "Sep 2, 6:01 PM ET",
+  "generatedAtISO": "2026-09-02T18:01:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -575,10 +575,10 @@ const DATA = /*__DATA__*/{
       "hta": "Unsent",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:59",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Raquel Khan",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -621,12 +621,12 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:00",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Angus Dirnbeck",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -654,7 +654,7 @@ const DATA = /*__DATA__*/{
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 22.25,
+      "start": 22.0,
       "end": 23.5,
       "access_gap": false
     },
@@ -802,6 +802,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788381158189,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Raquel Khan",
+      "time": "17:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788386378899,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "18:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788386431741,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -813,16 +831,6 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788315092000,
       "when": "Tue 22:11"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Angus Dirnbeck",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "23:38",
-      "ts": 1788320299623,
-      "when": "Tue 23:38"
     },
     "901": {
       "kind": "departure",
@@ -1382,6 +1390,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T21:39:59.973004Z",
         "until": "2026-09-02T21:40:12.472131Z"
+      },
+      {
+        "since": "2026-09-02T21:45:59.991621Z",
+        "until": "2026-09-02T21:46:11.505681Z"
+      },
+      {
+        "since": "2026-09-02T21:51:50.974212Z",
+        "until": "2026-09-02T21:52:03.405523Z"
+      },
+      {
+        "since": "2026-09-02T21:57:45.950341Z",
+        "until": "2026-09-02T21:57:57.948248Z"
       }
     ],
     "down": false
@@ -1425,7 +1445,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:45:00-04:00"
+      "lastISO": "2026-09-02T18:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1435,7 +1455,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:45:00-04:00"
+      "lastISO": "2026-09-02T18:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1445,7 +1465,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:00:00-04:00"
+      "lastISO": "2026-09-02T18:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1525,7 +1545,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T16:57:00-04:00"
+      "lastISO": "2026-09-02T18:05:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1535,7 +1555,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:37:00-04:00"
+      "lastISO": "2026-09-02T18:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
