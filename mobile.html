@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 8:45 AM ET",
-  "generatedAtISO": "2026-09-02T08:45:44-04:00",
+  "generatedAt": "Sep 2, 9:01 AM ET",
+  "generatedAtISO": "2026-09-02T09:01:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -467,22 +467,6 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Host",
       "created": "Sep 2 · 04:19"
-    },
-    {
-      "code": "Returning Access 509B",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Host",
-      "created": "Sep 2 · 04:20"
-    },
-    {
-      "code": "Returning Access 509A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Host",
-      "created": "Sep 2 · 04:20"
     }
   ],
   "attention": [
@@ -710,6 +694,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T12:41:41.998082Z",
         "until": "2026-09-02T12:41:52.995498Z"
+      },
+      {
+        "since": "2026-09-02T12:47:08.262484Z",
+        "until": "2026-09-02T12:47:18.672947Z"
+      },
+      {
+        "since": "2026-09-02T12:52:42.067622Z",
+        "until": "2026-09-02T12:52:54.380804Z"
+      },
+      {
+        "since": "2026-09-02T12:58:44.009278Z",
+        "until": "2026-09-02T12:58:56.918330Z"
       }
     ],
     "down": false
@@ -726,16 +722,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-01T08:55:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -743,7 +729,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:46:00-04:00"
+      "lastISO": "2026-09-02T08:57:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -753,7 +739,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:45:00-04:00"
+      "lastISO": "2026-09-02T09:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -763,7 +749,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:00:00-04:00"
+      "lastISO": "2026-09-02T09:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -843,7 +829,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T07:59:00-04:00"
+      "lastISO": "2026-09-02T08:56:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-02T08:58:00-04:00"
     },
     {
       "run": "The Planner",
@@ -863,7 +859,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:35:00-04:00"
+      "lastISO": "2026-09-02T08:55:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -903,7 +899,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:31:00-04:00"
+      "lastISO": "2026-09-02T08:46:00-04:00"
     },
     {
       "run": "The Closer",
