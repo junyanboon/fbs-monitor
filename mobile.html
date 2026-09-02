@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 1, 2026",
   "shiftBaseDay": "2026-09-01",
-  "generatedAt": "Sep 1, 10:01 PM ET",
-  "generatedAtISO": "2026-09-01T22:01:06-04:00",
+  "generatedAt": "Sep 1, 10:15 PM ET",
+  "generatedAtISO": "2026-09-01T22:15:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -399,7 +399,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "19:00",
-      "departed": null,
+      "departed": "22:11",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -470,9 +470,9 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "22:00",
       "departed": null,
-      "assumed": null,
+      "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 22.0,
@@ -507,7 +507,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "20:08",
-      "departed": null,
+      "departed": "22:14",
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -749,6 +749,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788307852530,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "22:11",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788315091910,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Viktoriia Osipovych",
+      "time": "22:14",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788315270557,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -758,9 +776,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-02T00:10:02+00:00",
+    "updatedAt": "2026-09-02T02:16:02+00:00",
     "mailCheck": {
-      "matched": 3,
+      "matched": 4,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1493,6 +1511,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T01:58:11.608542Z",
         "until": "2026-09-02T01:58:20.054106Z"
+      },
+      {
+        "since": "2026-09-02T02:04:11.613593Z",
+        "until": "2026-09-02T02:04:19.148276Z"
+      },
+      {
+        "since": "2026-09-02T02:09:38.809485Z",
+        "until": "2026-09-02T02:09:46.330394Z"
       }
     ],
     "down": false
@@ -1516,7 +1542,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T22:00:00-04:00"
+      "lastISO": "2026-09-01T22:16:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1526,7 +1552,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T22:00:00-04:00"
+      "lastISO": "2026-09-01T22:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1546,7 +1572,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T21:07:00-04:00"
+      "lastISO": "2026-09-01T22:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1646,7 +1672,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T21:09:00-04:00"
+      "lastISO": "2026-09-01T22:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1676,7 +1702,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T21:12:00-04:00"
+      "lastISO": "2026-09-01T22:12:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1686,7 +1712,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-01T21:46:00-04:00"
+      "lastISO": "2026-09-01T22:01:00-04:00"
     },
     {
       "run": "The Closer",
