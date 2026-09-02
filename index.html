@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 6:15 PM ET",
-  "generatedAtISO": "2026-09-02T18:15:51-04:00",
+  "generatedAt": "Sep 2, 6:30 PM ET",
+  "generatedAtISO": "2026-09-02T18:30:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -572,14 +572,14 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": "Unsent",
+      "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
       "arrived": "17:59",
-      "departed": null,
+      "departed": "18:29",
       "facilitator": null,
       "arrived_by": "Raquel Khan",
-      "departed_by": null,
+      "departed_by": "",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -614,7 +614,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "693",
-      "who": "Ifreestyle Dance Company — *Additional time added at no cost*",
+      "who": "Ifreestyle Dance Company — Ifreestyle Wednesday group classes *BOOKING CANCELLATION DUE TO SEVERE WEATHER*",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -636,36 +636,24 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     },
     {
-      "studio": "693",
-      "who": "Caryl CUIZON (Private Classes) (iFreeStyle.ca) — Practice",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Will Not Send",
-      "dispatch": [],
-      "heard": false,
-      "arrived": null,
-      "departed": null,
-      "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 22.0,
-      "end": 23.5,
-      "access_gap": false
-    },
-    {
       "studio": "901",
       "who": "Anita Pandey",
       "kind": "booking",
-      "tier": null,
+      "tier": "Monitor",
       "gtg": true,
-      "hta": "Will Not Send",
-      "dispatch": [],
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "missing",
+          "time": null
+        },
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        }
+      ],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -685,21 +673,10 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "who": "Nina Li — *bookings covered by June 29, Aug 24, Sep 7, 14*",
       "kind": "booking",
-      "tier": "Monitor",
+      "tier": null,
       "gtg": true,
-      "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "18:30"
-        },
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "22:15"
-        }
-      ],
+      "hta": null,
+      "dispatch": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -744,12 +721,28 @@ const DATA = /*__DATA__*/{
       "created": "Sep 2 · 12:47"
     },
     {
-      "code": "AVA-sweep-•••",
+      "code": "Booking move confirmation — Sep 6 → Sep 26, Studio 901 [Himanshi Mehta]",
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 2 · 00:01"
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 18:21"
+    },
+    {
+      "code": "Courtesy — Thea [Giggster] closing ack after access info •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 2 · 18:26"
+    },
+    {
+      "code": "Weather cancellation — Fri Sep 4 hour confirmed, credit deferred to Junyan [Anita Pandey]",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 18:27"
     },
     {
       "code": "EOB-sweep-•••",
@@ -820,6 +813,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788386431741,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "18:29",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788388142000,
+      "source": "panel"
     }
   ],
   "panelPrior": {
@@ -849,7 +851,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-02T22:02:02+00:00",
+    "updatedAt": "2026-09-02T22:29:02+00:00",
     "doorGaps": [
       {
         "since": "2026-09-02T09:00:38.252584Z",
@@ -1414,6 +1416,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T22:13:45.773444Z",
         "until": "2026-09-02T22:13:58.324216Z"
+      },
+      {
+        "since": "2026-09-02T22:19:05.923668Z",
+        "until": "2026-09-02T22:19:09.045045Z"
+      },
+      {
+        "since": "2026-09-02T22:25:05.986802Z",
+        "until": "2026-09-02T22:25:19.674817Z"
       }
     ],
     "down": false
@@ -1457,7 +1467,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:16:00-04:00"
+      "lastISO": "2026-09-02T18:27:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1467,7 +1477,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:15:00-04:00"
+      "lastISO": "2026-09-02T18:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1567,7 +1577,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:03:00-04:00"
+      "lastISO": "2026-09-02T18:32:00-04:00"
     },
     {
       "run": "The Timekeeper",
