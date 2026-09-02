@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 11:31 AM ET",
-  "generatedAtISO": "2026-09-02T11:31:12-04:00",
+  "generatedAt": "Sep 2, 11:45 AM ET",
+  "generatedAtISO": "2026-09-02T11:45:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -288,13 +288,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "11:45"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": "10:46",
       "departed": null,
@@ -354,7 +348,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 15.5,
       "end": 16.5,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "527",
@@ -503,22 +497,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Responder courtesy — Krista Flynn: name + code received •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 2 · 11:24"
-    },
-    {
-      "code": "Reply — Justin Blayney: Sep 25 + Oct 23 already booked and paid •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Responder",
-      "created": "Sep 2 · 11:24"
-    },
-    {
       "code": "AVA-sweep-•••",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -533,14 +511,6 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "AI (automation)",
       "created": "Sep 2 · 00:01"
-    },
-    {
-      "code": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Host",
-      "created": "Sep 2 · 04:19"
     }
   ],
   "attention": [
@@ -884,6 +854,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T15:29:08.009526Z",
         "until": "2026-09-02T15:29:15.197204Z"
+      },
+      {
+        "since": "2026-09-02T15:34:57.809444Z",
+        "until": "2026-09-02T15:35:10.277997Z"
+      },
+      {
+        "since": "2026-09-02T15:40:37.953940Z",
+        "until": "2026-09-02T15:40:50.417236Z"
       }
     ],
     "down": false
@@ -907,7 +885,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T11:28:00-04:00"
+      "lastISO": "2026-09-02T11:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -917,7 +895,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T11:30:00-04:00"
+      "lastISO": "2026-09-02T11:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -997,7 +975,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T10:52:00-04:00"
+      "lastISO": "2026-09-02T11:55:00-04:00"
     },
     {
       "run": "The Mechanic",
