@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 10:01 AM ET",
-  "generatedAtISO": "2026-09-02T10:01:02-04:00",
+  "generatedAt": "Sep 2, 10:07 AM ET",
+  "generatedAtISO": "2026-09-02T10:07:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -298,6 +298,11 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -316,6 +321,11 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -334,6 +344,11 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -352,6 +367,11 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -370,6 +390,11 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -388,6 +413,11 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -417,6 +447,11 @@ const DATA = /*__DATA__*/{
       "heard": false,
       "arrived": null,
       "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -754,6 +789,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T13:56:08.147563Z",
         "until": "2026-09-02T13:56:14.660051Z"
+      },
+      {
+        "since": "2026-09-02T14:02:07.474836Z",
+        "until": "2026-09-02T14:02:22.911713Z"
       }
     ],
     "down": false
@@ -777,7 +816,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T09:57:00-04:00"
+      "lastISO": "2026-09-02T10:03:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -807,7 +846,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T09:07:00-04:00"
+      "lastISO": "2026-09-02T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1102,15 +1141,20 @@ function tlHTML(e,st,n){
   let L,R,signal="";
   if(arr!=null){
     const em=Math.round((e.start-arr)*60);
+    /* Keypad actor shown when not the expected person (facilitator if named, else booker). */
+    const inBy=e.arrived_foreign?` · ${esc(e.arrived_by)}`:"";
     if(e.assumed){
       L=`<span class="w">${e.arrived} in</span>`;
-      signal=`<span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`;
-    }else L=early?`<span class="w">${e.arrived} in · ${em}m early</span>`:`<span class="a">${e.arrived} in</span>`;
+      signal=`<span class="signal">${e.assumed==="bypass"?"door bypassed":"missing disarm"}</span>`;
+    }else L=early?`<span class="w">${e.arrived} in · ${em}m early${inBy}</span>`
+      :inBy?`<span class="w">${e.arrived} in${inBy}</span>`:`<span class="a">${e.arrived} in</span>`;
   }else if(st.flagged&&!e.dup_studios)L=`<span class="x">no arrival</span>`;
   else L=`<span>${hm(e.start)}</span>`;
   if(dep!=null){
     const lm=Math.round((dep-e.end)*60);
-    R=late?`<span class="w">${e.departed} out · ${lm}m late</span>`:`<span class="a">${e.departed} out</span>`;
+    const outBy=e.departed_foreign?` · ${esc(e.departed_by)}`:"";
+    R=late?`<span class="w">${e.departed} out · ${lm}m late${outBy}</span>`
+      :outBy?`<span class="w">${e.departed} out${outBy}</span>`:`<span class="a">${e.departed} out</span>`;
   }else R=`<span>${hm(e.end)}</span>`;
   return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}`+
          `<div class="track">${fill}</div>${late?'<div class="over post"></div>':""}</div>`+
@@ -1148,7 +1192,9 @@ function render(){
     /* In the building but in the wrong room — a different job from a no-show
        (which lives on the timeline + Missing pill). */
     if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
-    const typeChip=e.tier?`<span class="chip type">${e.tier}</span>`:"";
+    const typeChip=(e.tier?`<span class="chip type">${e.tier}</span>`:"")
+      /* Facilitator takes the name slot; the booker becomes a chip (Junyan, 2026-09-02). */
+      +(e.facilitator?`<span class="chip plain">for ${shortWho(e.who)}</span>`:"");
     // Confirmation is booking context, so keep it beside the FBS/Monitor tag.
     // e.heard clears it without waiting for the desk to flip GTG.
     const gtgChip=noGtgChip(e,st);
@@ -1160,7 +1206,7 @@ function render(){
       }).join("")+`</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
-      <div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}${gtgChip}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span>${typeChip}${gtgChip}</div>
       <div class="meta">${meta}</div>
       ${tlHTML(e,st,n)}
       <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}${dispatch}</div>
