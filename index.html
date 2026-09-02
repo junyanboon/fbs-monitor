@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 8:30 AM ET",
-  "generatedAtISO": "2026-09-02T08:30:49-04:00",
+  "generatedAt": "Sep 2, 8:45 AM ET",
+  "generatedAtISO": "2026-09-02T08:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -505,11 +505,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "08:45"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -690,14 +685,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 2 · 04:19"
     },
     {
-      "code": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Host",
-      "created": "Sep 2 · 04:19"
-    },
-    {
       "code": "Returning Access 509B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -717,7 +704,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -931,6 +918,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T12:30:09.221721Z",
         "until": "2026-09-02T12:30:16.654584Z"
+      },
+      {
+        "since": "2026-09-02T12:36:08.292443Z",
+        "until": "2026-09-02T12:36:15.727821Z"
+      },
+      {
+        "since": "2026-09-02T12:41:41.998082Z",
+        "until": "2026-09-02T12:41:52.995498Z"
       }
     ],
     "down": false
@@ -945,16 +940,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-31T10:15:00-04:00"
-    },
-    {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-01T22:41:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -974,7 +959,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:30:00-04:00"
+      "lastISO": "2026-09-02T08:46:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -984,7 +969,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:30:00-04:00"
+      "lastISO": "2026-09-02T08:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1057,6 +1042,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T04:30:00-04:00"
     },
     {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-02T08:58:00-04:00"
+    },
+    {
       "run": "The Mechanic",
       "cadence": "Hourly",
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
@@ -1124,7 +1119,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T08:17:00-04:00"
+      "lastISO": "2026-09-02T08:31:00-04:00"
     },
     {
       "run": "The Closer",
