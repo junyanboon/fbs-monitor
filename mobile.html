@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 6:45 PM ET",
-  "generatedAtISO": "2026-09-02T18:45:48-04:00",
+  "generatedAt": "Sep 2, 7:01 PM ET",
+  "generatedAtISO": "2026-09-02T19:01:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -382,10 +382,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "19:00",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Khalid Roach-McLeod",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -406,12 +406,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "18:00",
-      "departed": null,
+      "departed": "18:47",
       "facilitator": null,
       "arrived_by": "Angus Dirnbeck",
-      "departed_by": null,
+      "departed_by": "Angus Dirnbeck",
       "arrived_foreign": true,
-      "departed_foreign": false,
+      "departed_foreign": true,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -433,7 +433,7 @@ const DATA = /*__DATA__*/{
           "time": "22:15"
         }
       ],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -475,38 +475,6 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "Other",
       "created": "Sep 2 · 12:47"
-    },
-    {
-      "code": "Booking move confirmation — Sep 6 → Sep 26, Studio 901 [Himanshi Mehta]",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Concierge",
-      "created": "Sep 2 · 18:21"
-    },
-    {
-      "code": "Courtesy — Thea [Giggster] closing ack after access info •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 2 · 18:26"
-    },
-    {
-      "code": "Weather cancellation — move confirmed + one-hour booking credit [Anita Pandey]",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Concierge",
-      "created": "Sep 2 · 18:27"
-    },
-    {
-      "code": "Merged viewing confirmation + How to Access — Lordasa Charles — Sep 3",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Concierge",
-      "created": "Sep 2 · 18:39"
     },
     {
       "code": "EOB-sweep-•••",
@@ -586,18 +554,45 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788388142000,
       "source": "panel"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "18:47",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788389279223,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "18:58",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788389889023,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "18:58",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788389892540,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "19:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788390034580,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "527": {
-      "studio": "527",
-      "name": "Khalid Roach-McLeod",
-      "time": "22:11",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1788315092000,
-      "when": "Tue 22:11"
-    },
     "901": {
       "kind": "departure",
       "name": "Viktoriia Osipovych",
@@ -615,7 +610,13 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-02T22:29:02+00:00",
+    "updatedAt": "2026-09-02T22:50:02+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-02T09:00:38.252584Z",
@@ -1200,6 +1201,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T22:42:58.305936Z",
         "until": "2026-09-02T22:43:08.894947Z"
+      },
+      {
+        "since": "2026-09-02T22:49:00.359248Z",
+        "until": "2026-09-02T22:49:11.767684Z"
+      },
+      {
+        "since": "2026-09-02T22:55:00.395743Z",
+        "until": "2026-09-02T22:55:09.073421Z"
+      },
+      {
+        "since": "2026-09-02T23:00:45.838078Z",
+        "until": "2026-09-02T23:00:55.319433Z"
       }
     ],
     "down": false
@@ -1243,7 +1256,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:44:00-04:00"
+      "lastISO": "2026-09-02T18:54:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1253,7 +1266,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:45:00-04:00"
+      "lastISO": "2026-09-02T19:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1263,7 +1276,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:00:00-04:00"
+      "lastISO": "2026-09-02T19:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1343,7 +1356,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:05:00-04:00"
+      "lastISO": "2026-09-02T19:05:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1353,7 +1366,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:32:00-04:00"
+      "lastISO": "2026-09-02T18:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
