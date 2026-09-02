@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 6:30 PM ET",
-  "generatedAtISO": "2026-09-02T18:30:55-04:00",
+  "generatedAt": "Sep 2, 6:45 PM ET",
+  "generatedAtISO": "2026-09-02T18:45:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -398,7 +398,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "693",
-      "who": "Ifreestyle Dance Company — Ifreestyle Wednesday group classes *BOOKING CANCELLATION DUE TO SEVERE WEATHER*",
+      "who": "Ifreestyle Dance Company — *Additional time added at no cost*",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -416,51 +416,23 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 18.25,
-      "end": 22.0,
-      "access_gap": false
-    },
-    {
-      "studio": "901",
-      "who": "Anita Pandey",
-      "kind": "booking",
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "missing",
-          "time": null
-        },
-        {
-          "kind": "EOB",
-          "state": "missing",
-          "time": null
-        }
-      ],
-      "heard": false,
-      "arrived": null,
-      "departed": null,
-      "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 18.5,
-      "end": 20.5,
+      "end": 18.5,
       "access_gap": false
     },
     {
       "studio": "901",
       "who": "Nina Li — *bookings covered by June 29, Aug 24, Sep 7, 14*",
       "kind": "booking",
-      "tier": null,
+      "tier": "Monitor",
       "gtg": true,
-      "hta": null,
-      "dispatch": [],
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "22:15"
+        }
+      ],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -521,12 +493,20 @@ const DATA = /*__DATA__*/{
       "created": "Sep 2 · 18:26"
     },
     {
-      "code": "Weather cancellation — Fri Sep 4 hour confirmed, credit deferred to Junyan [Anita Pandey]",
+      "code": "Weather cancellation — move confirmed + one-hour booking credit [Anita Pandey]",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Sep 2 · 18:27"
+    },
+    {
+      "code": "Merged viewing confirmation + How to Access — Lordasa Charles — Sep 3",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 18:39"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1208,6 +1188,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T22:25:05.986802Z",
         "until": "2026-09-02T22:25:19.674817Z"
+      },
+      {
+        "since": "2026-09-02T22:31:05.991439Z",
+        "until": "2026-09-02T22:31:21.652233Z"
+      },
+      {
+        "since": "2026-09-02T22:37:00.360257Z",
+        "until": "2026-09-02T22:37:10.882944Z"
+      },
+      {
+        "since": "2026-09-02T22:42:58.305936Z",
+        "until": "2026-09-02T22:43:08.894947Z"
       }
     ],
     "down": false
@@ -1251,7 +1243,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:27:00-04:00"
+      "lastISO": "2026-09-02T18:44:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1261,7 +1253,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T18:30:00-04:00"
+      "lastISO": "2026-09-02T18:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1311,7 +1303,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T16:55:00-04:00"
+      "lastISO": "2026-09-02T18:45:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1341,7 +1333,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T17:40:00-04:00"
+      "lastISO": "2026-09-02T18:50:00-04:00"
     },
     {
       "run": "The Mechanic",
