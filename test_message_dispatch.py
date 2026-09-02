@@ -167,7 +167,7 @@ def test_no_gtg_renders_beside_the_booking_type_not_in_the_warning_column():
     mobile = (root / "template-mobile.html").read_text()
 
     assert '<span class="tags">${tag}${gtgChip}</span>' in desktop
-    assert '<div class="who"><span class="nm">${shortWho(e.who)}</span>${typeChip}${gtgChip}</div>' in mobile
+    assert '<div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span>${typeChip}${gtgChip}</div>' in mobile
     assert 'warns += `<span class="chip ${live?"crit":"watch"}">No GTG</span>`' not in desktop
     assert 't+=`<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`' not in mobile
 

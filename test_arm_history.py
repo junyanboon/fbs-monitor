@@ -197,7 +197,38 @@ def main():
     fails += check("earliest disarm is the arrival", solo["arrived"], "18:02")
     fails += check("last arm is the departure", solo["departed"], "20:01")
 
-    print("FAILED" if fails else "ok — 31 checks passed")
+    # ---- facilitator + keypad actor (2026-09-02) ----------------------------
+    # `[Facilitator: Name]` names who we expect at the keypad; the booker is
+    # not that person. Krista's disarm must (a) match her booking by name,
+    # (b) carry her name on the card, (c) NOT read as foreign. Nina's own
+    # disarm on that booking is foreign — she is not the facilitator.
+    nina = ev("901", "Nina Li — *bookings covered* [Facilitator: Krista Flynn]", 20.5, 22.5)
+    nina["facilitator"] = build.facilitator_of(
+        "Nina Li: *bookings covered* [Facilitator: Krista Flynn]")
+    fails += check("facilitator parsed", nina["facilitator"], "Krista Flynn")
+    arm = [{"studio": "901", "name": "Krista Flynn", "time": "20:28", "kind": "arrival"},
+           {"studio": "901", "name": "Stefan", "time": "22:31", "kind": "departure"}]
+    build.apply_arm_events([nina], arm)
+    fails += check("facilitator disarm is the arrival", nina["arrived"], "20:28")
+    fails += check("actor carried", nina["arrived_by"], "Krista Flynn")
+    fails += check("facilitator is not foreign", nina["arrived_foreign"], False)
+    fails += check("staff arm carried", nina["departed_by"], "Stefan")
+    fails += check("staff arm is foreign", nina["departed_foreign"], True)
+
+    plain = ev("901", "Nina Li — Heels", 20.5, 22.5)
+    plain["facilitator"] = None
+    build.apply_arm_events([plain], [
+        {"studio": "901", "name": "Akira Huang", "time": "20:29", "kind": "arrival"}])
+    fails += check("unnamed guest still lands (pass 2)", plain["arrived"], "20:29")
+    fails += check("unnamed guest is foreign", plain["arrived_foreign"], True)
+    fails += check("no facilitator → booker expected", build.expected_name(plain), "Nina Li — Heels")
+
+    nameless = ev("693", "Angus Dirnbeck", 18.0, 20.0)
+    build.apply_arm_events([nameless], [
+        {"studio": "693", "name": "", "time": "18:02", "kind": "arrival"}])
+    fails += check("nameless event is not foreign", nameless["arrived_foreign"], False)
+
+    print("FAILED" if fails else "ok — 42 checks passed")
     return 1 if fails else 0
 
 

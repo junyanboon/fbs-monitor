@@ -721,18 +721,25 @@ function render(){
          correctly — so this is an inference, not a keypad event. Amber, with
          the reason: "open" = nobody armed after the previous renter;
          "bypass" = armed with the door sensor bypassed. */
+      /* Who keyed in: the panel name rides along and is shown when it is not
+         the expected person (facilitator if named, else the booker) — an
+         authorized user, a stand-in, staff. Matching actors stay quiet. */
+      const inBy = e.arrived_foreign ? ` · ${esc(e.arrived_by)}` : "";
       if (e.assumed) {
         L = `<span class="w">${e.arrived} in</span>`;
-        signal = `<span class="signal">${e.assumed==="bypass"?"door bypassed":"forgot to arm"}</span>`;
+        signal = `<span class="signal">${e.assumed==="bypass"?"door bypassed":"missing disarm"}</span>`;
       } else {
-        L = early ? `<span class="w">${e.arrived} in · ${em}m early</span>`
-                  : `<span class="a">${e.arrived} in</span>`;
+        L = early ? `<span class="w">${e.arrived} in · ${em}m early${inBy}</span>`
+          : inBy ? `<span class="w" title="Keypad name is not the expected person">${e.arrived} in${inBy}</span>`
+                 : `<span class="a" title="${esc(e.arrived_by||"")}">${e.arrived} in</span>`;
       }
     } else if (st.flagged && !e.dup_studios) L = `<span class="x">no arrival</span>`;
     else L = `<span>${hm(e.start)}</span>`;
     if (dep!=null){
       const lm = Math.round((dep-e.end)*60);
-      R = late ? `<span class="w">${e.departed} out · ${lm}m late</span>`
+      const outBy = e.departed_foreign ? ` · ${esc(e.departed_by)}` : "";
+      R = late ? `<span class="w">${e.departed} out · ${lm}m late${outBy}</span>`
+        : outBy ? `<span class="w" title="Keypad name is not the expected person">${e.departed} out${outBy}</span>`
                : `<span class="a">${e.departed} out</span>`;
     } else R = `<span>${hm(e.end)}</span>`;
     return `<div class="tl"><div class="strip">${early?'<div class="over pre"></div>':""}` +
@@ -758,6 +765,10 @@ function render(){
     // Confirmation is booking context, so keep it beside the FBS/Monitor tag.
     // The right column is reserved for access, arrival, and dispatch exceptions.
     const gtgChip = noGtgChip(e,{live,done});
+    /* `[Facilitator: Name]` on the booking: that person is who we expect at
+       the keypad, so they take the name slot; the account holder rides as a
+       chip. (Junyan, 2026-09-02.) */
+    if(e.facilitator) tag += `<span class="chip plain" title="Booked by ${shortWho(e.who)}">for ${shortWho(e.who)}</span>`;
     let warns = "";
     /* An open Access / PIN row names this renter for today. That can mean a
        missing code, an unverified access window, or an unavailable directory
@@ -778,7 +789,7 @@ function render(){
       }).join("") + `</span>` : "";
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}</span>${tlHTML(e,st)}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}</span>${tlHTML(e,st)}</div>
       <div class="warns">${warns}${dispatch}</div>
     </div>`;
   };

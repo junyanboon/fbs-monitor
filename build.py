@@ -209,6 +209,29 @@ def clean_who(title):
     return t
 
 
+# `[Facilitator: Name]` on a booking title names the person actually running
+# the session — an authorized user or a stand-in who attends WITHOUT the
+# account holder (SOP 👫 Request for Additional Facilitator / Authorized User,
+# Cases B and C write it). When it is present that person, not the booker, is
+# who the panel should see at the keypad: Junyan, 2026-09-02 — "if a
+# facilitator is indicated then we will select that one instead of the person
+# who booked". Without it, an authorized user's disarm was silently credited
+# to the account holder (Nina Li / Krista Flynn, Studio 901).
+RE_FACILITATOR = re.compile(r"\[\s*facilitator\s*:\s*([^\]]+?)\s*\]", re.I)
+
+
+def facilitator_of(title):
+    m = RE_FACILITATOR.search(title or "")
+    return m.group(1).strip() if m else None
+
+
+def expected_name(e):
+    """Whose name the keypad event should carry: the facilitator when one is
+    named on the booking, else the booking title (name tokens and all — the
+    pre-facilitator behaviour, unchanged)."""
+    return e.get("facilitator") or e.get("who") or ""
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 1. Bookings + staff — Google Calendar secret ICS
 # ─────────────────────────────────────────────────────────────────────────────
@@ -347,6 +370,7 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
             events.append({
                 "studio": key,
                 "who": clean_who(summary),
+                "facilitator": facilitator_of(summary),
                 "kind": "cleaning" if is_cleaning(summary) else "booking",
                 "plan": plan_of(summary, ev.get("recurring")),
                 "start": decimal_hours(ev["dtstart"], base_day),
@@ -1675,13 +1699,14 @@ def apply_arm_events(events, arm_events, now_dec=None, alerts=None):
         arrivals, departures = [], []
         for a in timed:
             if a["studio"] == e["studio"] and in_window(e, a["t"]) \
-                    and _name_match(e["who"], a["name"]):
+                    and _name_match(expected_name(e), a["name"]):
                 a["claimed"] = True
-                (arrivals if a["kind"] == "arrival" else departures).append((a["t"], a["time"]))
+                (arrivals if a["kind"] == "arrival" else departures).append(
+                    (a["t"], a["time"], a["name"]))
         if arrivals:
-            e["arrived"] = min(arrivals)[1]
+            _, e["arrived"], e["arrived_by"] = min(arrivals)
         if departures:
-            e["departed"] = max(departures)[1]
+            _, e["departed"], e["departed_by"] = max(departures)
 
     # pass 2 — unclaimed events for still-unmatched bookings.
     #
@@ -1718,6 +1743,7 @@ def apply_arm_events(events, arm_events, now_dec=None, alerts=None):
             continue
         best = min(cands, key=lambda e: (_iv_dist(e, a["t"]), e["start"]))
         best[want] = a["time"]
+        best[want + "_by"] = a["name"]
         a["claimed"] = True
 
     # A departure that precedes the arrival is a mis-claimed neighbour's arm
@@ -1726,6 +1752,7 @@ def apply_arm_events(events, arm_events, now_dec=None, alerts=None):
         arr, dep = _time_to_decimal(e.get("arrived")), _time_to_decimal(e.get("departed"))
         if arr is not None and dep is not None and dep < arr:
             e["departed"] = None
+            e["departed_by"] = None
 
     # pass 3 — wrong studio.
     #
@@ -1749,7 +1776,7 @@ def apply_arm_events(events, arm_events, now_dec=None, alerts=None):
         for a in timed:
             if a["claimed"] or a["kind"] != "arrival" or a["studio"] == e["studio"]:
                 continue
-            if in_window(e, a["t"]) and _name_match(e["who"], a["name"]):
+            if in_window(e, a["t"]) and _name_match(expected_name(e), a["name"]):
                 e["wrong_studio"] = {"studio": a["studio"], "at": a["time"]}
                 a["claimed"] = True
                 break
@@ -1822,6 +1849,22 @@ def apply_arm_events(events, arm_events, now_dec=None, alerts=None):
         if reason:
             e["arrived"] = f"{int(e['start']) % 24:02d}:{round(e['start'] % 1 * 60):02d}"
             e["assumed"] = reason
+
+    # pass 5 — who actually keyed in.
+    #
+    # The card used to carry arrival/departure TIMES only; the keypad name
+    # never left the Alarms tab. So an authorized user, a stand-in, or staff
+    # closing out rendered as the booker's own clean green "in"/"out". Now the
+    # actor rides along, and is flagged `foreign` when their name shares no
+    # token with the expected person (the facilitator if named, else the
+    # booking title). A nameless event (ledger backstop) flags nothing.
+    for e in events:
+        if e.get("kind") != "booking":
+            continue
+        want = expected_name(e)
+        for k in ("arrived", "departed"):
+            who = e.get(k + "_by")
+            e[k + "_foreign"] = bool(who) and not _name_match(want, who)
     return events
 
 
@@ -2379,6 +2422,13 @@ def prepare_board_events(events):
         # chip — see apply_heard(). No content of any kind crosses.
         "heard": bool(e.get("heard")),
         "arrived": e.get("arrived"), "departed": e.get("departed"),
+        # Who keyed in / out, per the panel — a name, same class of data as
+        # `who` (renter names are published by design; see redact()). Paired
+        # `_foreign` booleans say the actor is not the expected person.
+        "facilitator": e.get("facilitator"),
+        "arrived_by": e.get("arrived_by"), "departed_by": e.get("departed_by"),
+        "arrived_foreign": bool(e.get("arrived_foreign")),
+        "departed_foreign": bool(e.get("departed_foreign")),
         # Truthy when `arrived` is an inference, not a witnessed disarm —
         # carries the reason: "open" (nobody armed after the previous renter)
         # or "bypass" (armed with the door sensor bypassed). See pass 4.
