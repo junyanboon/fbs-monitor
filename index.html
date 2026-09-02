@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 12:15 PM ET",
-  "generatedAtISO": "2026-09-02T12:15:59-04:00",
+  "generatedAt": "Sep 2, 12:31 PM ET",
+  "generatedAtISO": "2026-09-02T12:31:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -547,10 +547,21 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "who": "Kelly Kao",
       "kind": "booking",
-      "tier": null,
-      "gtg": true,
+      "tier": "Monitor",
+      "gtg": false,
       "hta": null,
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "13:30"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "16:15"
+        }
+      ],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -727,6 +738,22 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "AI (automation)",
       "created": "Sep 2 · 00:01"
+    },
+    {
+      "code": "AVA-sweep-•••B",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Sep 2 · 12:31"
+    },
+    {
+      "code": "EOB-sweep-•••B",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Sep 2 · 12:31"
     }
   ],
   "attention": [
@@ -1111,6 +1138,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T16:14:37.537861Z",
         "until": "2026-09-02T16:14:44.011461Z"
+      },
+      {
+        "since": "2026-09-02T16:20:07.963155Z",
+        "until": "2026-09-02T16:20:16.443386Z"
+      },
+      {
+        "since": "2026-09-02T16:26:10.739354Z",
+        "until": "2026-09-02T16:26:23.233794Z"
       }
     ],
     "down": false
@@ -1134,7 +1169,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T12:13:00-04:00"
+      "lastISO": "2026-09-02T12:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1144,7 +1179,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T12:15:00-04:00"
+      "lastISO": "2026-09-02T12:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1194,7 +1229,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T10:36:00-04:00"
+      "lastISO": "2026-09-02T12:40:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1254,7 +1289,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T12:02:00-04:00"
+      "lastISO": "2026-09-02T12:30:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1294,7 +1329,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T12:16:00-04:00"
+      "lastISO": "2026-09-02T12:31:00-04:00"
     },
     {
       "run": "The Closer",
