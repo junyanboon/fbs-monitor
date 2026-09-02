@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 7:31 PM ET",
-  "generatedAtISO": "2026-09-02T19:31:00-04:00",
+  "generatedAt": "Sep 2, 7:36 PM ET",
+  "generatedAtISO": "2026-09-02T19:36:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -418,29 +418,6 @@ const DATA = /*__DATA__*/{
       "start": 18.25,
       "end": 18.5,
       "access_gap": false
-    },
-    {
-      "studio": "901",
-      "who": "Nina Li — *bookings covered by June 29, Aug 24, Sep 7, 14*",
-      "kind": "booking",
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Sent",
-      "dispatch": [],
-      "heard": true,
-      "arrived": null,
-      "departed": null,
-      "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 20.5,
-      "end": 22.5,
-      "access_gap": false
     }
   ],
   "staff": [
@@ -459,6 +436,30 @@ const DATA = /*__DATA__*/{
       "start": 22.25,
       "end": 22.75,
       "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 14.0,
+      "end": 14.5,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 15.5,
+      "end": 16.0,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 16.75,
+      "end": 17.25,
+      "day": "Tomorrow"
     }
   ],
   "messages": [
@@ -1254,6 +1255,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-02T23:28:06.786565Z",
         "until": "2026-09-02T23:28:13.686194Z"
+      },
+      {
+        "since": "2026-09-02T23:34:06.388638Z",
+        "until": "2026-09-02T23:34:21.863825Z"
       }
     ],
     "down": false
@@ -1278,16 +1283,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-02T16:31:00-04:00"
-    },
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-01T19:38:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1398,6 +1393,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-02T19:05:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-02T19:33:00-04:00"
     },
     {
       "run": "The Responder",
