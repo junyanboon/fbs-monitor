@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 4:45 PM ET",
-  "generatedAtISO": "2026-09-03T16:45:49-04:00",
+  "generatedAt": "Sep 3, 5:01 PM ET",
+  "generatedAtISO": "2026-09-03T17:01:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -531,18 +531,15 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "16:48",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Kyle FitzGerald",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
-      "wrong_studio": {
-        "studio": "509B",
-        "at": "16:46"
-      },
+      "wrong_studio": null,
       "dup_studios": null,
       "start": 17.0,
       "end": 18.0,
@@ -957,6 +954,14 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Sep 3 · 16:22"
+    },
+    {
+      "code": "Courtesy — Stephanie Brinning confirms $••• e-transfer sent — •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 3 · 16:55"
     }
   ],
   "attention": [
@@ -1127,6 +1132,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788468376932,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Kyle FitzGerald",
+      "time": "16:47",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788468476218,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Kyle FitzGerald",
+      "time": "16:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788468513936,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1136,7 +1159,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T19:47:02+00:00",
+    "updatedAt": "2026-09-03T20:51:02+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1647,6 +1670,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T20:43:50.576291Z",
         "until": "2026-09-03T20:44:01.443143Z"
+      },
+      {
+        "since": "2026-09-03T20:49:51.200206Z",
+        "until": "2026-09-03T20:50:04.026258Z"
+      },
+      {
+        "since": "2026-09-03T20:55:22.306660Z",
+        "until": "2026-09-03T20:55:33.048766Z"
+      },
+      {
+        "since": "2026-09-03T21:00:49.320112Z",
+        "until": "2026-09-03T21:00:55.583518Z"
       }
     ],
     "down": false
@@ -1680,7 +1715,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:41:00-04:00"
+      "lastISO": "2026-09-03T16:58:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1690,7 +1725,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:45:00-04:00"
+      "lastISO": "2026-09-03T17:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1700,7 +1735,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:45:00-04:00"
+      "lastISO": "2026-09-03T17:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1710,7 +1745,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:00:00-04:00"
+      "lastISO": "2026-09-03T17:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1790,7 +1825,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T15:57:00-04:00"
+      "lastISO": "2026-09-03T17:02:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1800,7 +1835,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:33:00-04:00"
+      "lastISO": "2026-09-03T17:00:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1840,7 +1875,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:46:00-04:00"
+      "lastISO": "2026-09-03T17:01:00-04:00"
     },
     {
       "run": "The Closer",
