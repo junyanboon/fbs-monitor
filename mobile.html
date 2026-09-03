@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 3, 12:45 AM ET",
-  "generatedAtISO": "2026-09-03T00:45:52-04:00",
+  "generatedAt": "Sep 3, 1:01 AM ET",
+  "generatedAtISO": "2026-09-03T01:01:13-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1673,11 +1673,43 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T04:43:08.219689Z",
         "until": "2026-09-03T04:43:22.685285Z"
+      },
+      {
+        "since": "2026-09-03T04:49:02.443767Z",
+        "until": "2026-09-03T04:49:13.881624Z"
+      },
+      {
+        "since": "2026-09-03T04:54:50.914215Z",
+        "until": "2026-09-03T04:54:58.384555Z"
+      },
+      {
+        "since": "2026-09-03T05:00:08.241634Z",
+        "until": "2026-09-03T05:00:17.685863Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "06:00 America/Toronto · Codex production fallback",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-02T06:10:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-02T06:08:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1686,7 +1718,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T00:42:00-04:00"
+      "lastISO": "2026-09-03T00:59:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1696,7 +1728,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T00:00:00-04:00"
+      "lastISO": "2026-09-03T01:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1719,26 +1751,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T04:45:00-04:00"
     },
     {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "06:00 America/Toronto · Codex production fallback",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-02T06:10:00-04:00"
-    },
-    {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-02T06:08:00-04:00"
-    },
-    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1756,7 +1768,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T23:59:00-04:00"
+      "lastISO": "2026-09-03T01:02:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1796,7 +1808,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-03T00:45:00-04:00"
+      "lastISO": "2026-09-03T01:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1806,7 +1818,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T00:45:00-04:00"
+      "lastISO": "2026-09-03T01:00:00-04:00"
     },
     {
       "run": "The Closer",
