@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 6:01 PM ET",
-  "generatedAtISO": "2026-09-03T18:01:03-04:00",
+  "generatedAt": "Sep 3, 6:15 PM ET",
+  "generatedAtISO": "2026-09-03T18:15:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -316,10 +316,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "16:48",
-      "departed": null,
+      "departed": "18:02",
       "facilitator": null,
       "arrived_by": "Kyle FitzGerald",
-      "departed_by": null,
+      "departed_by": "Kyle FitzGerald",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -337,11 +337,11 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "dispatch": [],
-      "heard": false,
-      "arrived": null,
+      "heard": true,
+      "arrived": "18:03",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Lordasa Charles",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -432,10 +432,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "18:03",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Kyle FitzGerald",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -500,7 +500,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "dispatch": [],
-      "heard": false,
+      "heard": true,
       "arrived": "17:31",
       "departed": null,
       "facilitator": null,
@@ -619,14 +619,6 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 17.75,
-      "end": 18.25,
-      "day": "Today"
-    },
-    {
-      "role": "Monitoring",
       "studio": "509B",
       "day_offset": 0,
       "start": 20.75,
@@ -690,6 +682,14 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 3 · 17:56"
+    },
+    {
+      "code": "Booked on credit (901 Sep 26 1:00 PM) — Nina Li [credit:643a45f0-7c5b-4cf5-9e37-53768ff6c1c4]",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Sep 3 · 18:08"
     }
   ],
   "attention": [
@@ -896,6 +896,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788472298003,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Kyle FitzGerald",
+      "time": "18:02",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788472928917,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Kyle FitzGerald",
+      "time": "18:03",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788473013772,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Lordasa Charles",
+      "time": "18:03",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788473032673,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -905,7 +932,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T21:56:02+00:00",
+    "updatedAt": "2026-09-03T22:07:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1468,6 +1495,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T21:57:51.043440Z",
         "until": "2026-09-03T21:58:06.520941Z"
+      },
+      {
+        "since": "2026-09-03T22:03:22.740932Z",
+        "until": "2026-09-03T22:03:37.189831Z"
+      },
+      {
+        "since": "2026-09-03T22:09:21.878511Z",
+        "until": "2026-09-03T22:09:27.296488Z"
+      },
+      {
+        "since": "2026-09-03T22:14:49.183038Z",
+        "until": "2026-09-03T22:14:59.499030Z"
       }
     ],
     "down": false
@@ -1501,7 +1540,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:00:00-04:00"
+      "lastISO": "2026-09-03T18:11:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1511,7 +1550,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:00:00-04:00"
+      "lastISO": "2026-09-03T18:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1521,7 +1560,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:00:00-04:00"
+      "lastISO": "2026-09-03T18:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1541,7 +1580,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:07:00-04:00"
+      "lastISO": "2026-09-03T18:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1651,7 +1690,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:10:00-04:00"
+      "lastISO": "2026-09-03T18:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
