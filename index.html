@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 6:15 PM ET",
-  "generatedAtISO": "2026-09-03T18:15:46-04:00",
+  "generatedAt": "Sep 3, 6:30 PM ET",
+  "generatedAtISO": "2026-09-03T18:30:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -555,10 +555,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "18:03",
-      "departed": null,
+      "departed": "18:16",
       "facilitator": null,
       "arrived_by": "Lordasa Charles",
-      "departed_by": null,
+      "departed_by": "Lordasa Charles",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -786,10 +786,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:16",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Dana Brookman",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -868,14 +868,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Concierge — Nina Li — Sep •••pm availability + credit — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Concierge",
-      "created": "Sep 3 · 16:16"
-    },
-    {
       "code": "Lauren Taylor Scott — accepted Tagvenue booking — request mobile for access [1a068c6bfb07c4a0]",
       "channel": "Platform Relay",
       "status": "Pending Review",
@@ -898,14 +890,6 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 3 · 17:56"
-    },
-    {
-      "code": "Booked on credit (901 Sep 26 1:00 PM) — Nina Li [credit:643a45f0-7c5b-4cf5-9e37-53768ff6c1c4]",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 18:08"
     }
   ],
   "attention": [
@@ -1139,6 +1123,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788473032673,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Lordasa Charles",
+      "time": "18:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788473795862,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Dana Brookman",
+      "time": "18:16",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788473805179,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1148,7 +1150,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T22:07:01+00:00",
+    "updatedAt": "2026-09-03T22:22:02+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1723,6 +1725,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T22:14:49.183038Z",
         "until": "2026-09-03T22:14:59.499030Z"
+      },
+      {
+        "since": "2026-09-03T22:20:08.883910Z",
+        "until": "2026-09-03T22:20:14.211495Z"
+      },
+      {
+        "since": "2026-09-03T22:25:08.997442Z",
+        "until": "2026-09-03T22:25:21.254216Z"
+      },
+      {
+        "since": "2026-09-03T22:30:21.966903Z",
+        "until": "2026-09-03T22:30:32.400849Z"
       }
     ],
     "down": false
@@ -1756,7 +1770,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:11:00-04:00"
+      "lastISO": "2026-09-03T18:28:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1766,7 +1780,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:15:00-04:00"
+      "lastISO": "2026-09-03T18:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1776,7 +1790,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:15:00-04:00"
+      "lastISO": "2026-09-03T18:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1826,7 +1840,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:05:00-04:00"
+      "lastISO": "2026-09-03T18:52:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1876,7 +1890,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:01:00-04:00"
+      "lastISO": "2026-09-03T18:26:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1916,7 +1930,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:01:00-04:00"
+      "lastISO": "2026-09-03T18:16:00-04:00"
     },
     {
       "run": "The Closer",
