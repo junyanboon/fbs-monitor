@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 4:30 PM ET",
-  "generatedAtISO": "2026-09-03T16:30:51-04:00",
+  "generatedAt": "Sep 3, 4:45 PM ET",
+  "generatedAtISO": "2026-09-03T16:45:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -539,7 +539,10 @@ const DATA = /*__DATA__*/{
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
-      "wrong_studio": null,
+      "wrong_studio": {
+        "studio": "509B",
+        "at": "16:46"
+      },
       "dup_studios": null,
       "start": 17.0,
       "end": 18.0,
@@ -892,14 +895,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Overtime pending review — Janet Zamora — Studio 901 Aug 31",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Sep 2 · 23:49"
-    },
-    {
       "code": "Responder — Jillia Cato-Weiler hands the Nov 7–14 thread to Kevin (•••)",
       "channel": "Email",
       "status": "Pending Review",
@@ -962,14 +957,6 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Sep 3 · 16:22"
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 00:02"
     }
   ],
   "attention": [
@@ -1130,6 +1117,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1788465610773,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Kyle FitzGerald",
+      "time": "16:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788468376932,
       "source": "doors"
     }
   ],
@@ -1639,6 +1635,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T20:26:09.150850Z",
         "until": "2026-09-03T20:26:23.875590Z"
+      },
+      {
+        "since": "2026-09-03T20:31:50.531350Z",
+        "until": "2026-09-03T20:32:05.094459Z"
+      },
+      {
+        "since": "2026-09-03T20:37:50.558347Z",
+        "until": "2026-09-03T20:37:58.571244Z"
+      },
+      {
+        "since": "2026-09-03T20:43:50.576291Z",
+        "until": "2026-09-03T20:44:01.443143Z"
       }
     ],
     "down": false
@@ -1672,7 +1680,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:30:00-04:00"
+      "lastISO": "2026-09-03T16:41:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1682,7 +1690,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:30:00-04:00"
+      "lastISO": "2026-09-03T16:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1692,7 +1700,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:30:00-04:00"
+      "lastISO": "2026-09-03T16:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1772,7 +1780,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T15:55:00-04:00"
+      "lastISO": "2026-09-03T16:52:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1832,7 +1840,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:16:00-04:00"
+      "lastISO": "2026-09-03T16:46:00-04:00"
     },
     {
       "run": "The Closer",
