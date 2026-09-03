@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 9:01 AM ET",
-  "generatedAtISO": "2026-09-03T09:01:10-04:00",
+  "generatedAt": "Sep 3, 9:15 AM ET",
+  "generatedAtISO": "2026-09-03T09:15:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -988,7 +988,17 @@ const DATA = /*__DATA__*/{
       "text": "1 robot overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "693",
+      "name": "Studio (remote)",
+      "time": "09:06",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788440779905,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1020,16 +1030,6 @@ const DATA = /*__DATA__*/{
       "ts": 1788401364058,
       "when": "Wed 22:09"
     },
-    "693": {
-      "kind": "arrival",
-      "name": "Junyan Boon",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "20:40",
-      "ts": 1788396006400,
-      "when": "Wed 20:40"
-    },
     "901": {
       "kind": "departure",
       "name": "Viktoriia Osipovych",
@@ -1042,12 +1042,12 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T02:48:01+00:00",
+    "updatedAt": "2026-09-03T13:09:02+00:00",
     "doorGaps": [
       {
         "since": "2026-09-03T09:02:09.663779Z",
@@ -1220,6 +1220,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T12:56:18.449383Z",
         "until": "2026-09-03T12:56:32.911555Z"
+      },
+      {
+        "since": "2026-09-03T13:02:09.860695Z",
+        "until": "2026-09-03T13:02:17.146613Z"
+      },
+      {
+        "since": "2026-09-03T13:08:09.844612Z",
+        "until": "2026-09-03T13:08:18.180338Z"
+      },
+      {
+        "since": "2026-09-03T13:13:50.073678Z",
+        "until": "2026-09-03T13:13:57.551686Z"
       }
     ],
     "down": false
@@ -1243,7 +1255,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:57:00-04:00"
+      "lastISO": "2026-09-03T09:13:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1253,7 +1265,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T09:00:00-04:00"
+      "lastISO": "2026-09-03T09:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1273,7 +1285,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:07:00-04:00"
+      "lastISO": "2026-09-03T09:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1403,7 +1415,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T03:10:00-04:00"
+      "lastISO": "2026-09-03T09:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1413,7 +1425,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:46:00-04:00"
+      "lastISO": "2026-09-03T09:01:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1423,7 +1435,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T09:00:00-04:00"
+      "lastISO": "2026-09-03T09:15:00-04:00"
     },
     {
       "run": "The Closer",
