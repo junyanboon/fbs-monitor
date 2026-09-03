@@ -337,7 +337,7 @@ are needed:
 
 | Detector | Reads | Covers | Misses |
 |---|---|---|---|
-| `is_cleaning()` | the ICS title (a cleaner's name) | recurring blocks | anything titled differently |
+| `is_staff_block()` | the ICS title — one of OUR names, leading | recurring blocks | anything titled differently (e.g. "Matterport …") |
 | `mark_skedda_holds()` | 🚧 Studio Holds in Notion — Skedda's own `type == 2` (UNAVAILABLE) | every one-off block, whatever it is called | recurring blocks (Skedda does not expand series) |
 
 A matched card becomes `kind: "staff"` and renders a **red `Staff` chip**. Do
@@ -357,6 +357,17 @@ identity — no key, no token — and publishes each hold to 🚧 Studio Holds
 `enrich_names_from_skedda`'s direct Skedda path still exists and still marks
 holds when a cookie IS present — that is the developer-laptop case. In CI it
 soft-fails and Notion answers.
+
+`is_staff_block()` needs **two** things, and both are load-bearing: a staff name
+(`caney`, `junyan`, `donny`, `stefan`, `ela`, `kyjah`) as the **first whole
+word**, and **no holder colon**. A plain "the name appears anywhere" rule is
+unsafe against the live Artist DB — "Rita Stefan [Skedda]" is a One-Off
+*renter*, and `ela` sits inside Gabriela, Mihaela, Mariadela, Daniela, Pamela,
+Kaela and Elaine. Skedda writes a booking as `<Holder>: <activity> (Studio NNN)`
+and a hold as the bare title, so the colon is what survives a renter genuinely
+being called Stefan. It costs a false negative on a block titled
+"Junyan: fixing the mirror" — the right way round, because over-marking hides a
+paying renter and under-marking only shows an extra card.
 
 `join_notion()` matches a card to its FBS row on **both ends within 30 minutes**
 (`NOTION_SLOT_TOLERANCE`). Both sides come from the same Skedda booking and
