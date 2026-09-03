@@ -52,6 +52,42 @@ def _row(studio, start, end, tier="Monitor Only"):
             "board_disarmed": None, "board_armed": None, "status": "Upcoming"}
 
 
+def _notion_hold(studio, start, end, title):
+    """The shape fetch_studio_holds returns — wall-clock HH:MM, not datetimes."""
+    return {"studio": studio, "title": title, "user_name": None,
+            "is_hold": True, "_hm": (start, end)}
+
+
+# ── 0. The Notion-carried rows mark exactly like the Skedda ones ─────────────
+# 🚧 Studio Holds is the PRIMARY source: the board's GitHub Actions runner has
+# no Skedda credential, so the direct read answers only on a laptop.
+
+def test_a_notion_hold_row_marks_the_same_card():
+    events = [_card("Matterport 360° panorama capture", "509B", 13.0, 14.0)]
+    holds = [_notion_hold("509B", "13:00", "14:00", "Matterport")]
+    assert build.mark_skedda_holds(events, holds, BASE_DAY) == 1
+    assert events[0]["kind"] == "staff"
+
+
+def test_a_notion_hold_does_not_touch_the_next_booking():
+    events = [_card("Akira Huang", "509B", 14.25, 15.75)]
+    holds = [_notion_hold("509B", "13:00", "14:00", "Matterport")]
+    assert build.mark_skedda_holds(events, holds, BASE_DAY) == 0
+
+
+def test_a_notion_hold_after_midnight_lands_on_the_operating_day():
+    """The board's day runs 05:00 → 05:00, so 02:00 sits at 26.0 on the grid."""
+    events = [_card("Late clean", "901", 26.0, 27.0)]
+    holds = [_notion_hold("901", "02:00", "03:00", "Stefan")]
+    assert build.mark_skedda_holds(events, holds, BASE_DAY) == 1
+
+
+def test_a_notion_hold_crossing_midnight_still_matches():
+    events = [_card("Overnight hold", "693", 23.0, 25.0)]
+    holds = [_notion_hold("693", "23:00", "01:00", "Maintenance")]
+    assert build.mark_skedda_holds(events, holds, BASE_DAY) == 1
+
+
 # ── 1. Skedda's UNAVAILABLE type is what identifies a staff block ────────────
 
 def test_the_matterport_hold_is_marked_staff():

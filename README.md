@@ -338,11 +338,25 @@ are needed:
 | Detector | Reads | Covers | Misses |
 |---|---|---|---|
 | `is_cleaning()` | the ICS title (a cleaner's name) | recurring blocks | anything titled differently |
-| `mark_skedda_holds()` | Skedda's own `type == 2` (UNAVAILABLE) | every one-off block, whatever it is called | recurring blocks (the hold feed does not expand series) |
+| `mark_skedda_holds()` | 🚧 Studio Holds in Notion — Skedda's own `type == 2` (UNAVAILABLE) | every one-off block, whatever it is called | recurring blocks (Skedda does not expand series) |
 
 A matched card becomes `kind: "staff"` and renders a **red `Staff` chip**. Do
 not infer a hold from a missing `venueuser` — a type-1 "casual" booking (every
 Tagvenue / Peerspace / Giggster mirror) also has none and *is* a real booking.
+
+**Why Notion and not Skedda directly.** A Skedda read needs the venue session
+cookie, and this board builds in GitHub Actions, which holds no GCP credential:
+the workflow's `Read Skedda cookie` step has been **skipped on every run since
+it was added on 2026-08-15**, so `skedda_names` has never once answered in
+production. `dc-canon services/event-gate/holds_sweep.py` runs inside the
+`danceannex-skedda` project and reads that cookie with the service's own
+identity — no key, no token — and publishes each hold to 🚧 Studio Holds
+(`f6210728-6396-4047-9bf1-10971dbcbeb6`). This builder reads it with the
+`NOTION_TOKEN` it already has. No new credential on either side.
+
+`enrich_names_from_skedda`'s direct Skedda path still exists and still marks
+holds when a cookie IS present — that is the developer-laptop case. In CI it
+soft-fails and Notion answers.
 
 `join_notion()` matches a card to its FBS row on **both ends within 30 minutes**
 (`NOTION_SLOT_TOLERANCE`). Both sides come from the same Skedda booking and

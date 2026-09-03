@@ -601,6 +601,46 @@ def _is_nameless_title(who):
     return bool(re.fullmatch(r"(?:[A-Za-z0-9.-]+\s+)?[Bb]ooking[,.]?", name_part))
 
 
+# 🚧 Studio Holds — Skedda's UNAVAILABLE blocks (type 2), published to Notion by
+# the deterministic holds lane in dc-canon `services/event-gate/holds_sweep.py`.
+#
+# WHY NOTION AND NOT SKEDDA DIRECTLY. A Skedda read needs the venue session
+# cookie, and this board builds in GitHub Actions, which holds no GCP
+# credential — the workflow's `Read Skedda cookie` step has been SKIPPED on
+# every run since it was added on 2026-08-15, so `skedda_names` has never once
+# answered in production. The event-gate service runs inside the
+# `danceannex-skedda` project and reads that cookie with its own identity, no
+# key. So it asks, Notion carries, and this builder reads it with the
+# NOTION_TOKEN it already has. No new credential on either side (Junyan,
+# 2026-09-03: "I don't know how to get skedda credentials easily as they don't
+# have an api key").
+HOLDS_DS = "f6210728-6396-4047-9bf1-10971dbcbeb6"
+
+
+def fetch_studio_holds(token, base_day):
+    """Today's staff blocks from 🚧 Studio Holds, shaped like Skedda rows.
+
+    Returns the same dicts mark_skedda_holds already takes, so the matching
+    rule is identical whichever source answered.
+    """
+    rows = _notion_query(token, HOLDS_DS, {
+        "filter": {"property": "Hold Date", "date": {"equals": base_day.isoformat()}},
+        "page_size": 100,
+    })
+    out = []
+    for row in rows:
+        p = row.get("properties", {})
+        start, end = norm_hm(_prop_text(p.get("Start Time"))), \
+            norm_hm(_prop_text(p.get("End Time")))
+        studio = (_prop_text(p.get("Studio")) or "").strip()
+        if not (start and end and studio):
+            continue
+        out.append({"studio": studio, "title": _prop_text(p.get("Title")),
+                    "user_name": None, "is_hold": True,
+                    "_hm": (start, end)})
+    return out
+
+
 # A Skedda hold and its Google-mirror card are the SAME slot, written by one
 # sync, so they agree to the minute. Allow a couple of minutes for clock skew
 # and nothing more: a loose window is exactly the mistake join_notion made.
@@ -630,8 +670,21 @@ def mark_skedda_holds(events, rows, base_day):
     if not holds:
         return 0
     for r in holds:
-        r["_start"] = decimal_hours(r["start"], base_day)
-        r["_end"] = decimal_hours(r["end"], base_day)
+        if r.get("_hm"):
+            # A Notion row carries wall-clock HH:MM. The board's day is the
+            # OPERATING day (05:00 → 05:00), so a 02:00 block sits at 26.0 on
+            # the same card grid — lift it the way decimal_hours would.
+            r["_start"], r["_end"] = (_time_to_decimal(v) for v in r["_hm"])
+            if r["_start"] < 5:
+                r["_start"] += 24
+            if r["_end"] < 5:
+                r["_end"] += 24
+        else:                                 # a Skedda row carries datetimes
+            r["_start"] = decimal_hours(r["start"], base_day)
+            r["_end"] = decimal_hours(r["end"], base_day)
+        # A block ending at or before it starts crossed midnight.
+        if r["_end"] <= r["_start"]:
+            r["_end"] += 24
 
     marked = 0
     for e in events:
@@ -2668,6 +2721,19 @@ def build_data(now):
     token = os.environ.get("NOTION_TOKEN")
     if not token:
         die("NOTION_TOKEN missing.")
+    # Staff blocks. Notion is the PRIMARY source (see HOLDS_DS): this runner has
+    # no Skedda credential, so a direct read answers only on a developer's
+    # machine. Marking runs before join_notion so a hold can never take a
+    # renter's tier row. Soft: a failed read costs the Staff pills and falls
+    # back to the title-only is_cleaning() detector, never the board.
+    try:
+        marked = mark_skedda_holds(events, fetch_studio_holds(token, base_day),
+                                   base_day)
+        if marked:
+            print(f"NOTE: 🚧 Studio Holds marked {marked} card(s) as staff.")
+    except Exception as e:  # noqa: BLE001
+        emit_fallback_note(f"Studio Holds fetch failed ({e}); staff blocks fall "
+                           f"back to title detection this edition.")
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
     # Access pills — soft source, same posture as Robots/Reports: an unreadable
     # Actions DB costs the pills, never the board.
