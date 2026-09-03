@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 3:30 PM ET",
-  "generatedAtISO": "2026-09-03T15:30:56-04:00",
+  "generatedAt": "Sep 3, 3:45 PM ET",
+  "generatedAtISO": "2026-09-03T15:45:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -626,10 +626,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "14:12",
-      "departed": null,
+      "departed": "15:42",
       "facilitator": null,
       "arrived_by": "Akira Huang",
-      "departed_by": null,
+      "departed_by": "Akira Huang",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -938,6 +938,14 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 3 · 14:25"
+    },
+    {
+      "code": "Greeter — Tagvenue enquiry — Lauren Taylor Scott — 509B Fri Sep 4 4:00 PM–5:00 PM [greeter:1a068c224d1730a1]",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Sep 3 · 15:35"
     }
   ],
   "attention": [
@@ -1071,6 +1079,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": true,
       "ts": 1788462385873,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Akira Huang",
+      "time": "15:42",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788464524938,
       "source": "doors"
     }
   ],
@@ -1540,6 +1557,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T19:30:49.538502Z",
         "until": "2026-09-03T19:30:54.984459Z"
+      },
+      {
+        "since": "2026-09-03T19:35:50.189680Z",
+        "until": "2026-09-03T19:35:55.872251Z"
+      },
+      {
+        "since": "2026-09-03T19:41:20.971488Z",
+        "until": "2026-09-03T19:41:35.416988Z"
       }
     ],
     "down": false
@@ -1573,7 +1598,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T15:27:00-04:00"
+      "lastISO": "2026-09-03T15:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1583,7 +1608,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T15:30:00-04:00"
+      "lastISO": "2026-09-03T15:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1593,7 +1618,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T15:30:00-04:00"
+      "lastISO": "2026-09-03T15:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1673,7 +1698,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T14:50:00-04:00"
+      "lastISO": "2026-09-03T15:55:00-04:00"
     },
     {
       "run": "The Mechanic",
