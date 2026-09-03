@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 9:45 AM ET",
-  "generatedAtISO": "2026-09-03T09:45:53-04:00",
+  "generatedAt": "Sep 3, 10:01 AM ET",
+  "generatedAtISO": "2026-09-03T10:01:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -379,21 +379,10 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "who": "Matterport 360° panorama capture — Studios 509A & 509B",
       "kind": "booking",
-      "tier": "Monitor",
+      "tier": null,
       "gtg": true,
-      "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "missing",
-          "time": null
-        },
-        {
-          "kind": "EOB",
-          "state": "missing",
-          "time": null
-        }
-      ],
+      "hta": null,
+      "dispatch": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -415,10 +404,21 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "who": "Akira Huang — Dance practice",
       "kind": "booking",
-      "tier": null,
+      "tier": "Monitor",
       "gtg": true,
-      "hta": null,
-      "dispatch": [],
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "12:15"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "15:30"
+        }
+      ],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -432,7 +432,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 14.25,
       "end": 15.75,
-      "access_gap": true
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -507,7 +507,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 9.25,
       "end": 12.25,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "693",
@@ -604,7 +604,7 @@ const DATA = /*__DATA__*/{
     {
       "studio": "901",
       "who": "Stefan",
-      "kind": "cleaning",
+      "kind": "staff",
       "tier": null,
       "gtg": true,
       "hta": null,
@@ -1045,6 +1045,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T13:41:23.466246Z",
         "until": "2026-09-03T13:41:38.007118Z"
+      },
+      {
+        "since": "2026-09-03T13:46:50.079565Z",
+        "until": "2026-09-03T13:47:05.520751Z"
+      },
+      {
+        "since": "2026-09-03T13:52:18.770809Z",
+        "until": "2026-09-03T13:52:29.098360Z"
+      },
+      {
+        "since": "2026-09-03T13:58:09.803655Z",
+        "until": "2026-09-03T13:58:16.209394Z"
       }
     ],
     "down": false
@@ -1061,6 +1073,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-03T08:52:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1068,7 +1090,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T09:45:00-04:00"
+      "lastISO": "2026-09-03T09:56:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1078,7 +1100,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T09:45:00-04:00"
+      "lastISO": "2026-09-03T10:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1088,7 +1110,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T09:00:00-04:00"
+      "lastISO": "2026-09-03T10:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1149,16 +1171,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-03T04:38:00-04:00"
-    },
-    {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:52:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1238,7 +1250,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T09:31:00-04:00"
+      "lastISO": "2026-09-03T10:01:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1248,7 +1260,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T09:45:00-04:00"
+      "lastISO": "2026-09-03T10:00:00-04:00"
     },
     {
       "run": "The Closer",
