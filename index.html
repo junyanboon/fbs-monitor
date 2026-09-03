@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 5:30 PM ET",
-  "generatedAtISO": "2026-09-03T17:30:58-04:00",
+  "generatedAt": "Sep 3, 5:47 PM ET",
+  "generatedAtISO": "2026-09-03T17:47:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -717,12 +717,12 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:31",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Angus Dirnbeck",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -834,14 +834,6 @@ const DATA = /*__DATA__*/{
   ],
   "openShifts": [
     {
-      "role": "Viewing",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 17.5,
-      "end": 17.75,
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
@@ -884,22 +876,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "CC — Vicky Yeung — Oct 9 509A move confirmation (19:00–21:•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Concierge",
-      "created": "Sep 3 · 12:25"
-    },
-    {
-      "code": "PBF — Akira Huang •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 3 · 15:55"
-    },
-    {
       "code": "Courtesy — Akira Huang reports she locked up and armed (•••)",
       "channel": "SMS",
       "status": "Pending Review",
@@ -914,14 +890,6 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Sep 3 · 16:16"
-    },
-    {
-      "code": "T1 — Megan Cartwright Tuesday evening availability •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Concierge",
-      "created": "Sep 3 · 16:22"
     },
     {
       "code": "Courtesy — Stephanie Brinning confirms $••• e-transfer sent — •••",
@@ -1142,6 +1110,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788468513936,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "17:31",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788471069502,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1151,7 +1128,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T20:51:02+00:00",
+    "updatedAt": "2026-09-03T21:35:01+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1694,6 +1671,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T21:29:49.257989Z",
         "until": "2026-09-03T21:30:02.700389Z"
+      },
+      {
+        "since": "2026-09-03T21:35:21.662078Z",
+        "until": "2026-09-03T21:35:28.158257Z"
+      },
+      {
+        "since": "2026-09-03T21:41:08.955272Z",
+        "until": "2026-09-03T21:41:24.659933Z"
+      },
+      {
+        "since": "2026-09-03T21:47:09.003377Z",
+        "until": "2026-09-03T21:47:15.333753Z"
       }
     ],
     "down": false
@@ -1727,7 +1716,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:26:00-04:00"
+      "lastISO": "2026-09-03T17:43:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1737,7 +1726,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:30:00-04:00"
+      "lastISO": "2026-09-03T17:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1747,7 +1736,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:30:00-04:00"
+      "lastISO": "2026-09-03T17:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1827,7 +1816,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T16:52:00-04:00"
+      "lastISO": "2026-09-03T17:40:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1887,7 +1876,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:16:00-04:00"
+      "lastISO": "2026-09-03T17:46:00-04:00"
     },
     {
       "run": "The Closer",
