@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 11:45 AM ET",
-  "generatedAtISO": "2026-09-03T11:45:54-04:00",
+  "generatedAt": "Sep 3, 12:01 PM ET",
+  "generatedAtISO": "2026-09-03T12:01:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -960,6 +960,14 @@ const DATA = /*__DATA__*/{
       "created": "Sep 3 · 11:34"
     },
     {
+      "code": "Courtesy — Anita Shack thanks for access codes (•••)",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 3 · 11:55"
+    },
+    {
       "code": "AVA-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -987,7 +995,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1347,6 +1355,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T15:40:23.321026Z",
         "until": "2026-09-03T15:40:31.768056Z"
+      },
+      {
+        "since": "2026-09-03T15:46:09.631566Z",
+        "until": "2026-09-03T15:46:22.094650Z"
+      },
+      {
+        "since": "2026-09-03T15:51:49.853934Z",
+        "until": "2026-09-03T15:51:56.528457Z"
+      },
+      {
+        "since": "2026-09-03T15:57:09.782798Z",
+        "until": "2026-09-03T15:57:22.251984Z"
       }
     ],
     "down": false
@@ -1363,16 +1383,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-03T08:57:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1380,7 +1390,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:41:00-04:00"
+      "lastISO": "2026-09-03T11:59:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1390,7 +1400,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:45:00-04:00"
+      "lastISO": "2026-09-03T12:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1400,7 +1410,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:45:00-04:00"
+      "lastISO": "2026-09-03T12:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1410,7 +1420,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:00:00-04:00"
+      "lastISO": "2026-09-03T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1483,14 +1493,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T11:39:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:53:00-04:00"
+      "lastISO": "2026-09-03T12:02:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1510,7 +1520,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:33:00-04:00"
+      "lastISO": "2026-09-03T11:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1561,6 +1571,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-03T08:53:00-04:00"
     },
     {
       "run": "The Opener",
