@@ -291,56 +291,38 @@ def fetch_ics(url, win_start, win_end):
     return out
 
 
-# Our own people. A studio-calendar block led by one of these names is the
-# venue using its own room, not a renter (Junyan, 2026-09-03: "If any of our
-# staff names appear on there then it will be known that it is a staff
-# booking"). His four, plus Ela and Kyjah, who were already staff here.
-STAFF_NAMES = ("caney", "junyan", "donny", "stefan", "ela", "kyjah")
-CLEANERS = STAFF_NAMES              # old name, kept for readers of older commits
-
-
-def is_staff_block(summary):
-    """Staff blocks on studio calendars, by TITLE — the fallback detector.
-
-    Two conditions, and both are load-bearing.
-
-    1. A staff name is the FIRST WHOLE WORD, after dropping '(Studio …)'
-       parentheticals ('Stefan (Studio 901 (Elements))' → 'stefan'). NOT a
-       substring anywhere, which is what a plain reading of the rule would be
-       and which the live Artist DB says is unsafe: "Rita Stefan [Skedda]" is a
-       One-Off RENTER whose surname is Stefan, and "ela" is inside Gabriela,
-       Mihaela, Mariadela, Daniela, Pamela and Kaela — seven real renters. A
-       substring rule would hide every one of them from the board and from the
-       FBS message lanes, which is far worse than the bug it fixes.
-
-    2. NO holder colon before the studio parenthetical. Skedda writes a real
-       booking as '<Holder>: <activity> (Studio NNN)' — verified live on the
-       509B and 693 calendars, 2026-09-03 — and a hold has no holder, so it
-       gets the bare title ('Caney', 'Stefan ', 'Matterport 360° panorama
-       capture — Studios 509A & 509B'). This is the guard that survives a
-       renter actually being named Stefan or Donny: their booking carries the
-       colon, a staff block does not.
-
-    Costs a false NEGATIVE on a staff block someone titles 'Junyan: fixing the
-    mirror' — it reads as a booking, today's bug. That is the right way round:
-    over-marking hides a paying renter, under-marking shows an extra card.
-
-    This is the only detector that works on a RECURRING staff block, because
-    Skedda stamps a series with its first occurrence and the hold feed skips
-    them. Everything one-off is caught properly by mark_skedda_holds.
-    """
-    s = _strip_paren_groups(summary, ("studio",)).strip()
-    if ":" in s:
-        return False
-    toks = s.lower().split()
-    return bool(toks) and toks[0] in STAFF_NAMES
+CLEANERS = ("stefan", "donny", "ela")
 
 
 def is_cleaning(summary):
-    """Deprecated name for is_staff_block. 2026-09-03: the rule stopped being
-    about cleaning when Caney's dance block and a Matterport capture had to
-    read as staff too."""
-    return is_staff_block(summary)
+    """Staff blocks on studio calendars: '<Cleaner> ... clean ...' or just the
+    cleaner's name alone — after dropping '(Studio …)' parentheticals, e.g.
+    'Stefan (Studio 901 (Elements))'.
+
+    TITLE-ONLY, and deliberately narrow. It is the fallback detector, kept
+    because it is the only one that works on a RECURRING staff block (Skedda's
+    hold feed does not expand series). Anything one-off is caught properly by
+    mark_skedda_holds.
+
+    DO NOT WIDEN THIS LIST, and do not relax it to a substring search. Tried
+    and reverted 2026-09-03: Junyan asked for "if any of our staff names appear
+    on there", and the live Artist Database says that class of rule is unsafe —
+    "Rita Stefan [Skedda]" is a One-Off RENTER whose surname is Stefan, and
+    "ela" sits inside Gabriela, Mihaela, Mariadela, Daniela, Pamela, Kaela and
+    Elaine. Marking a renter as staff pulls them off the board AND out of every
+    FBS message lane, which is worse than the bug it fixes. Junyan's ruling on
+    seeing the collisions: "let's drop off the staff name rule then as that can
+    definitely be an issue."
+
+    The `clean`-or-two-words condition is what keeps even THIS list safe: it
+    fires on "Stefan", "Stefan clean 693" and "Donny (Studio 527)", never on a
+    renter whose booking title merely starts with one of those words.
+    """
+    s = _strip_paren_groups(summary, ("studio",)).lower().strip()
+    toks = s.split()
+    if not toks or toks[0] not in CLEANERS:
+        return False
+    return "clean" in s or len(toks) <= 2
 
 
 def plan_of(summary, recurring):
@@ -403,7 +385,7 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
             if ev.get("cancelled") or "unavailable" in summary.lower():
                 continue
             if os.environ.get("DEBUG_ARM") == "1" and not is_staff:
-                print(f"CAL-DEBUG: {key} {summary!r} staff={is_staff_block(summary)}")
+                print(f"CAL-DEBUG: {key} {summary!r} cleaning={is_cleaning(summary)}")
             if is_staff:
                 s = parse_staff_row(summary, ev["dtstart"], ev["dtend"], base_day)
                 if s:
@@ -413,12 +395,11 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
                 "studio": key,
                 "who": clean_who(summary),
                 "facilitator": facilitator_of(summary),
-                # Two independent staff detectors, both needed. is_staff_block
-                # reads the TITLE (one of our own names, leading) and is the
+                # Two staff detectors. is_cleaning reads the TITLE and is the
                 # only cover for a RECURRING block; mark_skedda_holds (below)
                 # reads Skedda's own UNAVAILABLE type and catches everything
                 # one-off whatever it is called. Neither alone is enough.
-                "kind": "staff" if is_staff_block(summary) else "booking",
+                "kind": "staff" if is_cleaning(summary) else "booking",
                 "plan": plan_of(summary, ev.get("recurring")),
                 "start": decimal_hours(ev["dtstart"], base_day),
                 "end": decimal_hours(ev["dtend"], base_day),

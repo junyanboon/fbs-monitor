@@ -168,46 +168,36 @@ def test_two_bookings_one_room_each_keep_their_own_row():
     assert b["tier"] == "Studio Viewing"
 
 
-# ── 3. The staff-name title rule (Junyan, 2026-09-03) ───────────────────────
-# "If any of our staff names appear on there then it will be known that it is a
-# staff booking." Implemented as FIRST WHOLE WORD + no holder colon — a plain
-# substring rule is unsafe against the live Artist DB, and these tests pin why.
+# ── 3. The title detector stays NARROW (tried and reverted 2026-09-03) ──────
+# Junyan asked for "if any of our staff names appear on there"; the live Artist
+# DB killed it. These guard the boundary that survived.
 
-def test_our_own_names_lead_a_staff_block():
-    for title in ("Caney", "Stefan ", "Donny (Studio 527)",
-                  "Junyan (Studio 901 (Elements))", "Stefan clean 693",
-                  "Ela (Studio 509A)", "Kyjah 901"):
-        assert build.is_staff_block(title), title
+def test_the_long_standing_cleaner_titles_still_read_as_staff():
+    for title in ("Stefan", "Stefan (Studio 901 (Elements))", "Stefan clean 693",
+                  "Donny (Studio 527)", "Ela (Studio 509A)"):
+        assert build.is_cleaning(title), title
 
 
-def test_a_renter_whose_SURNAME_is_a_staff_name_is_not_staff():
-    """'Rita Stefan [Skedda]' is a live One-Off renter. A substring rule would
-    have hidden her from the board and from every FBS message lane."""
-    assert not build.is_staff_block("Rita Stefan: Practice (Studio 527) [Paid]")
-    assert not build.is_staff_block("Rita Stefan (Studio 527)")
+def test_a_renter_whose_surname_is_a_staff_name_is_not_staff():
+    """'Rita Stefan [Skedda]' is a live One-Off RENTER. A substring rule would
+    have pulled her off the board and out of every FBS message lane."""
+    assert not build.is_cleaning("Rita Stefan: Practice (Studio 527) [Paid]")
+    assert not build.is_cleaning("Rita Stefan (Studio 527)")
 
 
-def test_names_that_merely_CONTAIN_a_staff_name_are_not_staff():
+def test_names_that_merely_contain_a_staff_name_are_not_staff():
     """Seven live renters contain 'ela': Gabriela, Mihaela, Mariadela,
     Daniela, Pamela, Kaela, Elaine."""
     for who in ("Gabriela Meza-Yanes", "Mihaela Dirlea", "Mariadela Ruiz",
                 "Nanu Daniela Bragagnolo", "Pamela Xu", "Kaela Faloon",
                 "Elaine Yang"):
-        assert not build.is_staff_block(f"{who} (Studio 693)"), who
+        assert not build.is_cleaning(f"{who} (Studio 693)"), who
 
 
-def test_a_holder_colon_means_a_real_booking_whatever_the_name():
-    """Skedda writes a booking as '<Holder>: <activity> (Studio NNN)'; a hold
-    has no holder and gets the bare title. Verified live 2026-09-03."""
-    assert not build.is_staff_block("Stefan Lovecchio: Practice (Studio 527) [Paid]")
-    assert build.is_staff_block("Stefan (Studio 901 (Elements))")
-
-
-def test_a_stranger_is_never_staff():
-    assert not build.is_staff_block("Matterport 360° panorama capture")
-    assert not build.is_staff_block("Akira Huang: Dance practice (Studio 509B)")
-    assert not build.is_staff_block("")
-
-
-def test_the_old_name_still_answers():
-    assert build.is_cleaning("Caney") is True
+def test_a_title_the_detector_cannot_know_is_left_a_booking():
+    """Matterport and Caney carry no cleaner name. That gap is the holds
+    lane's job, not this one's — under-marking shows an extra card, and
+    over-marking hides a paying renter."""
+    assert not build.is_cleaning("Matterport 360° panorama capture")
+    assert not build.is_cleaning("Caney")
+    assert not build.is_cleaning("Akira Huang: Dance practice (Studio 509B)")

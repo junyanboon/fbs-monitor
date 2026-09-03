@@ -337,7 +337,7 @@ are needed:
 
 | Detector | Reads | Covers | Misses |
 |---|---|---|---|
-| `is_staff_block()` | the ICS title — one of OUR names, leading | recurring blocks | anything titled differently (e.g. "Matterport …") |
+| `is_cleaning()` | the ICS title — a cleaner's name, leading | recurring cleaning blocks | anything titled differently (e.g. "Matterport …", "Caney") |
 | `mark_skedda_holds()` | 🚧 Studio Holds in Notion — Skedda's own `type == 2` (UNAVAILABLE) | every one-off block, whatever it is called | recurring blocks (Skedda does not expand series) |
 
 A matched card becomes `kind: "staff"` and renders a **red `Staff` chip**. Do
@@ -358,16 +358,30 @@ identity — no key, no token — and publishes each hold to 🚧 Studio Holds
 holds when a cookie IS present — that is the developer-laptop case. In CI it
 soft-fails and Notion answers.
 
-`is_staff_block()` needs **two** things, and both are load-bearing: a staff name
-(`caney`, `junyan`, `donny`, `stefan`, `ela`, `kyjah`) as the **first whole
-word**, and **no holder colon**. A plain "the name appears anywhere" rule is
-unsafe against the live Artist DB — "Rita Stefan [Skedda]" is a One-Off
-*renter*, and `ela` sits inside Gabriela, Mihaela, Mariadela, Daniela, Pamela,
-Kaela and Elaine. Skedda writes a booking as `<Holder>: <activity> (Studio NNN)`
-and a hold as the bare title, so the colon is what survives a renter genuinely
-being called Stefan. It costs a false negative on a block titled
-"Junyan: fixing the mirror" — the right way round, because over-marking hides a
-paying renter and under-marking only shows an extra card.
+**The title detector stays narrow, and that is deliberate.** On 2026-09-03
+Junyan asked for "if any of our staff names appear on there (Caney, Junyan,
+Donny, Stefan)". Built, then reverted the same day on the evidence: the live
+Artist Database holds **"Rita Stefan [Skedda]"**, a One-Off *renter* whose
+surname is Stefan, and `ela` sits inside Gabriela, Mihaela, Mariadela, Daniela,
+Pamela, Kaela and Elaine — seven more. Marking a renter as staff pulls them off
+the board **and out of every FBS message lane**, which is worse than the bug it
+fixes. Junyan's ruling on seeing the collisions: *"let's drop off the staff name
+rule then as that can definitely be an issue."*
+
+`CLEANERS` stays at `stefan`, `donny`, `ela`, first token only, and only when
+the title also says `clean` or is two words or fewer. That last condition is
+what keeps even this list safe.
+
+Two other title-shaped ideas were tested and rejected the same day:
+
+- **The `Price:` line** in the calendar description looks like a hold marker and
+  is not — Lordasa Charles's Studio Viewing and Ifreestyle's free block both
+  lack it and are real bookings. It means "costs money", not "is a booking".
+- **Stamping the type onto the Google event.** Those calendars are a
+  GAS-ICS-Sync that rewrites events (Kyle FitzGerald's two 509B events both
+  showed `updated` 14:12Z on the day they were inspected), so an appended
+  marker is wiped silently — and the script's own input is the same ICS, which
+  does not carry the type either.
 
 `join_notion()` matches a card to its FBS row on **both ends within 30 minutes**
 (`NOTION_SLOT_TOLERANCE`). Both sides come from the same Skedda booking and
