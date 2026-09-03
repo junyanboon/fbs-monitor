@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 10:16 AM ET",
-  "generatedAtISO": "2026-09-03T10:16:01-04:00",
+  "generatedAt": "Sep 3, 10:31 AM ET",
+  "generatedAtISO": "2026-09-03T10:31:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -979,7 +979,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1279,6 +1279,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T14:14:48.264733Z",
         "until": "2026-09-03T14:14:58.672338Z"
+      },
+      {
+        "since": "2026-09-03T14:20:09.761411Z",
+        "until": "2026-09-03T14:20:23.263139Z"
+      },
+      {
+        "since": "2026-09-03T14:26:09.706270Z",
+        "until": "2026-09-03T14:26:24.191456Z"
       }
     ],
     "down": false
@@ -1300,8 +1308,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
       "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-03T08:52:00-04:00"
     },
     {
@@ -1310,8 +1318,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-03T08:57:00-04:00"
     },
     {
@@ -1320,8 +1328,8 @@ const DATA = /*__DATA__*/{
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
       "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-03T08:56:00-04:00"
     },
     {
@@ -1332,7 +1340,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T10:12:00-04:00"
+      "lastISO": "2026-09-03T10:29:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1342,7 +1350,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T10:15:00-04:00"
+      "lastISO": "2026-09-03T10:30:00-04:00"
+    },
+    {
+      "run": "greeter-sweep (Cloud Run)",
+      "cadence": "5-min",
+      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c).",
+      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-03T10:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1472,17 +1490,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T10:16:00-04:00"
-    },
-    {
-      "run": "greeter-sweep (Cloud Run)",
-      "cadence": "5-min",
-      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. HELD at Not reporting until the heartbeat code is deployed (services/event-gate/deploy.sh) - the running revision does not stamp yet, so Live would alarm on a lane that is alive. FLIP TO LIVE right after the deploy.",
-      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
-      "monitoring": "Not reporting",
-      "status": "plain",
-      "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T10:15:00-04:00"
+      "lastISO": "2026-09-03T10:31:00-04:00"
     },
     {
       "run": "The Closer",
