@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 11:30 AM ET",
-  "generatedAtISO": "2026-09-03T11:30:55-04:00",
+  "generatedAt": "Sep 3, 11:45 AM ET",
+  "generatedAtISO": "2026-09-03T11:45:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -952,6 +952,14 @@ const DATA = /*__DATA__*/{
       "created": "Sep 3 · 11:30"
     },
     {
+      "code": "Booking change reply — Janet Zamora — Oct 19/26 reallocation",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Concierge",
+      "created": "Sep 3 · 11:34"
+    },
+    {
       "code": "AVA-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -1331,6 +1339,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T15:28:20.456063Z",
         "until": "2026-09-03T15:28:29.873219Z"
+      },
+      {
+        "since": "2026-09-03T15:34:20.062570Z",
+        "until": "2026-09-03T15:34:34.517324Z"
+      },
+      {
+        "since": "2026-09-03T15:40:23.321026Z",
+        "until": "2026-09-03T15:40:31.768056Z"
       }
     ],
     "down": false
@@ -1357,16 +1373,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T08:57:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-03T09:05:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1374,7 +1380,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:30:00-04:00"
+      "lastISO": "2026-09-03T11:41:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1384,7 +1390,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:30:00-04:00"
+      "lastISO": "2026-09-03T11:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1394,7 +1400,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:30:00-04:00"
+      "lastISO": "2026-09-03T11:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1437,6 +1443,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T06:12:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-03T12:05:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1464,7 +1480,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T15:35:00-04:00"
+      "lastISO": "2026-09-03T11:39:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1534,7 +1550,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:31:00-04:00"
+      "lastISO": "2026-09-03T11:46:00-04:00"
     },
     {
       "run": "The Closer",
