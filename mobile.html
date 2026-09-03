@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 3, 2:15 AM ET",
-  "generatedAtISO": "2026-09-03T02:15:54-04:00",
+  "generatedAt": "Sep 3, 2:26 AM ET",
+  "generatedAtISO": "2026-09-03T02:26:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1737,6 +1737,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T06:12:11.177884Z",
         "until": "2026-09-03T06:12:17.644972Z"
+      },
+      {
+        "since": "2026-09-03T06:17:39.060172Z",
+        "until": "2026-09-03T06:17:52.386016Z"
+      },
+      {
+        "since": "2026-09-03T06:22:50.796264Z",
+        "until": "2026-09-03T06:23:05.080525Z"
       }
     ],
     "down": false
@@ -1773,6 +1781,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T04:30:00-04:00"
     },
     {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-02T04:40:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1780,7 +1798,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T02:16:00-04:00"
+      "lastISO": "2026-09-03T02:27:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1833,16 +1851,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T19:40:00-04:00"
     },
     {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-02T04:40:00-04:00"
-    },
-    {
       "run": "The Weatherman",
       "cadence": "Daily",
       "expected": "03:10 + hourly 09:10–23:10 America/Toronto · Codex production fallback",
@@ -1870,7 +1878,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T02:15:00-04:00"
+      "lastISO": "2026-09-03T02:25:00-04:00"
     },
     {
       "run": "The Closer",
