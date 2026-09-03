@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 2:19 PM ET",
-  "generatedAtISO": "2026-09-03T14:19:33-04:00",
+  "generatedAt": "Sep 3, 2:30 PM ET",
+  "generatedAtISO": "2026-09-03T14:30:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -843,14 +843,6 @@ const DATA = /*__DATA__*/{
       "role": "Monitoring",
       "studio": "509B",
       "day_offset": 0,
-      "start": 14.0,
-      "end": 14.5,
-      "day": "Today"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 0,
       "start": 15.5,
       "end": 16.0,
       "day": "Today"
@@ -944,6 +936,14 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Concierge",
       "created": "Sep 3 · 12:25"
+    },
+    {
+      "code": "Courtesy — Akira Huang thanks after availability heads-up (•••)",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 3 · 14:25"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -1074,6 +1074,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788459150966,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Junyan Boon",
+      "time": "14:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788460128670,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1085,7 +1094,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-03T18:18:01+00:00",
     "mailCheck": {
-      "matched": 1,
+      "matched": 2,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1490,6 +1499,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T18:17:09.331451Z",
         "until": "2026-09-03T18:17:23.757628Z"
+      },
+      {
+        "since": "2026-09-03T18:22:49.777545Z",
+        "until": "2026-09-03T18:22:59.220178Z"
+      },
+      {
+        "since": "2026-09-03T18:28:49.609678Z",
+        "until": "2026-09-03T18:29:02.197291Z"
       }
     ],
     "down": false
@@ -1506,6 +1523,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-02T19:40:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1513,7 +1540,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T14:19:00-04:00"
+      "lastISO": "2026-09-03T14:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1523,7 +1550,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T14:15:00-04:00"
+      "lastISO": "2026-09-03T14:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1533,7 +1560,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T14:20:00-04:00"
+      "lastISO": "2026-09-03T14:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1583,7 +1610,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T12:55:00-04:00"
+      "lastISO": "2026-09-03T14:40:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1626,16 +1653,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T14:02:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-02T19:40:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
@@ -1643,7 +1660,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T13:56:00-04:00"
+      "lastISO": "2026-09-03T14:28:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1683,7 +1700,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T14:16:00-04:00"
+      "lastISO": "2026-09-03T14:31:00-04:00"
     },
     {
       "run": "The Closer",
