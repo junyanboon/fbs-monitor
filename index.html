@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 2, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 10:30 PM ET",
-  "generatedAtISO": "2026-09-02T22:30:56-04:00",
+  "generatedAt": "Sep 2, 10:45 PM ET",
+  "generatedAtISO": "2026-09-02T22:45:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -576,7 +576,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "17:59",
-      "departed": "19:52",
+      "departed": "22:43",
       "facilitator": null,
       "arrived_by": "Raquel Khan",
       "departed_by": "Raquel Khan",
@@ -645,14 +645,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "openShifts": [
-    {
-      "role": "Monitoring",
-      "studio": "901",
-      "day_offset": 0,
-      "start": 22.25,
-      "end": 22.75,
-      "day": "Today"
-    },
     {
       "role": "Monitoring",
       "studio": "509B",
@@ -742,7 +734,16 @@ const DATA = /*__DATA__*/{
       "day": "Sat Sep 5"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "code": "HTA-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 2 · 22:31"
+    }
+  ],
   "attention": [
     {
       "level": "warn",
@@ -965,6 +966,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788402382953,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Raquel Khan",
+      "time": "22:43",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788403423654,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -985,7 +995,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T02:10:15+00:00",
+    "updatedAt": "2026-09-03T02:32:14+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1732,6 +1742,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T02:28:01.630085Z",
         "until": "2026-09-03T02:28:13.918262Z"
+      },
+      {
+        "since": "2026-09-03T02:33:37.716668Z",
+        "until": "2026-09-03T02:33:48.192826Z"
+      },
+      {
+        "since": "2026-09-03T02:39:36.557204Z",
+        "until": "2026-09-03T02:39:44.943939Z"
+      },
+      {
+        "since": "2026-09-03T02:45:37.780694Z",
+        "until": "2026-09-03T02:45:51.248654Z"
       }
     ],
     "down": false
@@ -1755,7 +1777,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T22:30:00-04:00"
+      "lastISO": "2026-09-02T22:41:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1765,7 +1787,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T22:30:00-04:00"
+      "lastISO": "2026-09-02T22:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1845,7 +1867,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T21:45:00-04:00"
+      "lastISO": "2026-09-02T22:50:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1915,7 +1937,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T22:31:00-04:00"
+      "lastISO": "2026-09-02T22:46:00-04:00"
     },
     {
       "run": "The Closer",
