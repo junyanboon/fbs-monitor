@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 8:16 AM ET",
-  "generatedAtISO": "2026-09-03T08:16:00-04:00",
+  "generatedAt": "Sep 3, 8:31 AM ET",
+  "generatedAtISO": "2026-09-03T08:31:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -313,7 +313,13 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "15:00"
+        }
+      ],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -441,7 +447,13 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        }
+      ],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -712,6 +724,30 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "Community rate proposal — Amanda-May Wilson — 509B Sep 8–9",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Concierge",
+      "created": "Sep 3 · 08:20"
+    },
+    {
+      "code": "AVA-sweep-•••A",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 3 · 00:02"
+    },
+    {
+      "code": "EOB-sweep-•••A",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 3 · 00:02"
+    },
+    {
       "code": "AVA-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -763,7 +799,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -966,21 +1002,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T12:12:18.194187Z",
         "until": "2026-09-03T12:12:31.648716Z"
+      },
+      {
+        "since": "2026-09-03T12:17:47.568634Z",
+        "until": "2026-09-03T12:17:59.083072Z"
+      },
+      {
+        "since": "2026-09-03T12:23:09.968783Z",
+        "until": "2026-09-03T12:23:23.494181Z"
+      },
+      {
+        "since": "2026-09-03T12:28:23.580281Z",
+        "until": "2026-09-03T12:28:32.074534Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-02T22:36:00-04:00"
-    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1002,16 +1040,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T22:50:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-02T23:00:00-04:00"
-    },
-    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:45 America/Toronto · one authorized owner SMS",
@@ -1029,7 +1057,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:12:00-04:00"
+      "lastISO": "2026-09-03T08:29:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1039,7 +1067,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:15:00-04:00"
+      "lastISO": "2026-09-03T08:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1082,6 +1110,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T06:12:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-03T09:05:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1120,6 +1158,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-02T19:40:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-03T08:32:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1169,7 +1217,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T08:15:00-04:00"
+      "lastISO": "2026-09-03T08:30:00-04:00"
     },
     {
       "run": "The Closer",
