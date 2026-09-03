@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 8:46 AM ET",
-  "generatedAtISO": "2026-09-03T08:46:02-04:00",
+  "generatedAt": "Sep 3, 9:01 AM ET",
+  "generatedAtISO": "2026-09-03T09:01:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -726,6 +726,22 @@ const DATA = /*__DATA__*/{
       "created": "Sep 3 · 08:20"
     },
     {
+      "code": "Responder — Jillia Cato-Weiler hands the Nov 7–14 thread to Kevin (•••)",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Sep 3 · 08:55"
+    },
+    {
+      "code": "Courtesy — Rebecca Wise booking ack •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Responder",
+      "created": "Sep 3 · 08:55"
+    },
+    {
       "code": "AVA-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -740,30 +756,6 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "raised_by": "AI (automation)",
       "created": "Sep 3 · 00:02"
-    },
-    {
-      "code": "Returning Access 509A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Host",
-      "created": "Sep 3 · 04:16"
-    },
-    {
-      "code": "Returning Access 901",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Host",
-      "created": "Sep 3 · 04:16"
-    },
-    {
-      "code": "Returning Access 527",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Host",
-      "created": "Sep 3 · 04:16"
     },
     {
       "code": "AVA",
@@ -1004,6 +996,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T12:45:23.594150Z",
         "until": "2026-09-03T12:45:34.082284Z"
+      },
+      {
+        "since": "2026-09-03T12:50:50.162654Z",
+        "until": "2026-09-03T12:50:55.070982Z"
+      },
+      {
+        "since": "2026-09-03T12:56:18.449383Z",
+        "until": "2026-09-03T12:56:32.911555Z"
       }
     ],
     "down": false
@@ -1020,16 +1020,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-02T08:58:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1037,7 +1027,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:45:00-04:00"
+      "lastISO": "2026-09-03T08:57:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1047,7 +1037,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:45:00-04:00"
+      "lastISO": "2026-09-03T09:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1057,7 +1047,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:00:00-04:00"
+      "lastISO": "2026-09-03T09:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1137,7 +1127,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T07:58:00-04:00"
+      "lastISO": "2026-09-03T08:57:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-03T08:53:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1157,7 +1157,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:32:00-04:00"
+      "lastISO": "2026-09-03T08:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1197,7 +1197,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:16:00-04:00"
+      "lastISO": "2026-09-03T08:46:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1207,7 +1207,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T08:45:00-04:00"
+      "lastISO": "2026-09-03T09:00:00-04:00"
     },
     {
       "run": "The Closer",
