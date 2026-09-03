@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 12:30 PM ET",
-  "generatedAtISO": "2026-09-03T12:30:57-04:00",
+  "generatedAt": "Sep 3, 12:46 PM ET",
+  "generatedAtISO": "2026-09-03T12:46:13-04:00",
   "studios": [
     {
       "id": "509A",
@@ -630,7 +630,7 @@ const DATA = /*__DATA__*/{
           "time": "15:30"
         }
       ],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -830,7 +830,14 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     }
   ],
-  "staff": [],
+  "staff": [
+    {
+      "name": "Ela",
+      "role": "Viewing",
+      "start": 18.0,
+      "end": 18.25
+    }
+  ],
   "openShifts": [
     {
       "role": "Monitoring",
@@ -873,14 +880,6 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Viewing",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 18.0,
-      "end": 18.25,
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509B",
       "day_offset": 0,
@@ -911,17 +910,17 @@ const DATA = /*__DATA__*/{
       "start": 16.75,
       "end": 17.25,
       "day": "Sat Sep 5"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 2,
-      "start": 21.25,
-      "end": 21.75,
-      "day": "Sat Sep 5"
     }
   ],
   "messages": [
+    {
+      "code": "Overtime pending review — Janet Zamora — Studio 901 Aug 31",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 23:49"
+    },
     {
       "code": "Responder — Jillia Cato-Weiler hands the Nov 7–14 thread to Kevin (•••)",
       "channel": "Email",
@@ -953,22 +952,6 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Concierge",
       "created": "Sep 3 · 12:25"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 00:02"
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 00:02"
     },
     {
       "code": "EOB-sweep-•••B",
@@ -1395,6 +1378,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T16:30:09.570571Z",
         "until": "2026-09-03T16:30:14.806492Z"
+      },
+      {
+        "since": "2026-09-03T16:35:49.163479Z",
+        "until": "2026-09-03T16:35:56.434900Z"
+      },
+      {
+        "since": "2026-09-03T16:41:49.173205Z",
+        "until": "2026-09-03T16:42:00.513051Z"
       }
     ],
     "down": false
@@ -1418,7 +1409,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T12:30:00-04:00"
+      "lastISO": "2026-09-03T12:46:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1428,7 +1419,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T12:30:00-04:00"
+      "lastISO": "2026-09-03T12:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1438,7 +1429,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T12:30:00-04:00"
+      "lastISO": "2026-09-03T12:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1488,7 +1479,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T12:05:00-04:00"
+      "lastISO": "2026-09-03T12:55:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1518,7 +1509,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T11:39:00-04:00"
+      "lastISO": "2026-09-03T12:52:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1588,7 +1579,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T12:16:00-04:00"
+      "lastISO": "2026-09-03T12:46:00-04:00"
     },
     {
       "run": "The Closer",
