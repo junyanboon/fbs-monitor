@@ -17,11 +17,20 @@ edits, cancels and re-holders bookings. The board builder runs unattended every
 write to Skedda, not merely disinclined. If the auth shape changes, canon is
 skedda-cli and this file follows it.
 
+WHAT IT ALSO DOES
+Marks Skedda UNAVAILABLE blocks (`is_hold`) so the board can render a staff
+block as staff instead of guessing from its title. Added 2026-09-03 after a
+"Matterport 360deg panorama capture" hold in 509B was rendered as a booking and
+absorbed the FBS Monitor row belonging to the renter an hour later.
+
 WHAT IT DELIBERATELY DOES NOT DO
 Recurring series are NOT expanded. Skedda returns a series as one record stamped
 with its FIRST occurrence, so today's occurrences of a weekly booking simply do
 not appear in this read. That is fine for the job: marketplace bookings are
-one-off casual bookings, never recurring. It is NOT fine for deciding which
+one-off casual bookings, never recurring. It is a KNOWN GAP for `is_hold` —
+a RECURRING staff block does not appear here and so is not marked as staff; the
+cleaner-name detector in build.py (`is_cleaning`) is the only cover for those.
+It is NOT fine for deciding which
 studio a booking belongs to — an unexpanded series would read as "no Skedda
 counterpart", which is indistinguishable from a moved booking's ghost. So this
 module names renters and nothing else; see the 2026-08-15 Plumbing Map entry for
@@ -52,6 +61,16 @@ SECRET_PROJECT = os.environ.get("SKEDDA_COOKIE_PROJECT", "danceannex-skedda")
 TOKEN_HEADER = "X-Skedda-RequestVerificationToken"
 _TOKEN_RE = re.compile(r'name="?__RequestVerificationToken"?[^>]*value="([^"]+)"')
 TIMEOUT = 20
+# Skedda's booking `type` enum (canon: skedda-cli `skedda/client.py` BOOKING_TYPES).
+#   0 internal · 1 user/casual · 2 UNAVAILABLE
+# Type 2 is the venue's own block — cleaning, maintenance, a photo shoot, a hold.
+# It is the ONLY reliable way to tell a staff block from a booking: the Google
+# mirror the board reads carries just the title, and a hold titled "Matterport
+# 360deg panorama capture" is indistinguishable from a renter by title alone.
+# Do NOT infer this from a missing venueuser — a type-1 "casual" booking (every
+# Tagvenue/Peerspace/Giggster mirror) also has no venue user and IS a real
+# booking.
+UNAVAILABLE_TYPE = 2
 
 
 class SkeddaUnavailable(RuntimeError):
@@ -113,7 +132,10 @@ def _studio_id(space_name):
 
 
 def fetch_named_bookings(win_start, win_end):
-    """[{studio, start, end, title, user_name}] for bookings overlapping the window.
+    """[{studio, start, end, title, user_name, is_hold}] overlapping the window.
+
+    `is_hold` marks a Skedda UNAVAILABLE block (type 2) — a staff block, not a
+    booking. See UNAVAILABLE_TYPE above.
 
     Times are naive local strings from Skedda, parsed to naive datetimes — the
     same wall clock the ICS events are compared on. Raises SkeddaUnavailable for
@@ -163,6 +185,7 @@ def fetch_named_bookings(win_start, win_end):
                     "studio": studio, "start": start, "end": end,
                     "title": (b.get("title") or "").strip() or None,
                     "user_name": name,
+                    "is_hold": b.get("type") == UNAVAILABLE_TYPE,
                     "id": b.get("id"),
                 })
     return out
@@ -180,7 +203,8 @@ def main():
         return 1
     for r in rows:
         print(f"{r['studio']:<5} {r['start']:%H:%M}-{r['end']:%H:%M}  "
-              f"title={r['title']!r} user={r['user_name']!r}")
+              f"title={r['title']!r} user={r['user_name']!r}"
+              f"{'  [HOLD]' if r['is_hold'] else ''}")
     return 0
 
 

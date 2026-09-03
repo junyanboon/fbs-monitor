@@ -297,7 +297,12 @@ CLEANERS = ("stefan", "donny", "ela")
 def is_cleaning(summary):
     """Staff blocks on studio calendars: '<Cleaner> ... clean ...' or just the
     cleaner's name alone — after dropping '(Studio …)' parentheticals, e.g.
-    'Stefan (Studio 901 (Elements))'."""
+    'Stefan (Studio 901 (Elements))'.
+
+    TITLE-ONLY, and deliberately narrow. It is the fallback detector, kept
+    because it is the only one that works on a RECURRING staff block (Skedda's
+    hold feed does not expand series). Anything one-off is caught properly by
+    mark_skedda_holds; do not widen this list to chase a title."""
     s = _strip_paren_groups(summary, ("studio",)).lower().strip()
     toks = s.split()
     if not toks or toks[0] not in CLEANERS:
@@ -358,6 +363,10 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
         is_staff = key == "Staff"
         for ev in occ:
             summary = ev["summary"]
+            # An UNTITLED Skedda hold syncs as the literal word "Unavailable"
+            # and is dropped outright — there is nothing to show. A hold WITH a
+            # title stays on the board (the room is genuinely occupied) and is
+            # marked staff further down; see mark_skedda_holds.
             if ev.get("cancelled") or "unavailable" in summary.lower():
                 continue
             if os.environ.get("DEBUG_ARM") == "1" and not is_staff:
@@ -371,7 +380,12 @@ def build_calendar_events(ics_map, win_start, win_end, base_day):
                 "studio": key,
                 "who": clean_who(summary),
                 "facilitator": facilitator_of(summary),
-                "kind": "cleaning" if is_cleaning(summary) else "booking",
+                # Two independent staff detectors, both needed. is_cleaning reads
+                # the TITLE (a cleaner's name) and is the only cover for a
+                # recurring block; mark_skedda_holds (below) reads Skedda's own
+                # UNAVAILABLE type and catches everything one-off whatever it is
+                # called. Neither alone is enough — see mark_skedda_holds.
+                "kind": "staff" if is_cleaning(summary) else "booking",
                 "plan": plan_of(summary, ev.get("recurring")),
                 "start": decimal_hours(ev["dtstart"], base_day),
                 "end": decimal_hours(ev["dtend"], base_day),
@@ -587,32 +601,89 @@ def _is_nameless_title(who):
     return bool(re.fullmatch(r"(?:[A-Za-z0-9.-]+\s+)?[Bb]ooking[,.]?", name_part))
 
 
-def enrich_names_from_skedda(events, win_start, win_end):
-    """Fill in renter names the ICS feeds omit, using Skedda as the name source.
+# A Skedda hold and its Google-mirror card are the SAME slot, written by one
+# sync, so they agree to the minute. Allow a couple of minutes for clock skew
+# and nothing more: a loose window is exactly the mistake join_notion made.
+HOLD_SLOT_TOLERANCE = 2 / 60   # decimal hours
 
-    Touches ONLY nameless platform titles, and only on an unambiguous match:
-    one studio, one overlapping Skedda booking. Two candidates means the read
-    cannot tell them apart, and a confidently wrong name at the door is worse
-    than an honest "Giggster Booking". Any failure is soft — the board is not
-    worth losing over a nicety."""
+
+def mark_skedda_holds(events, rows, base_day):
+    """Flip cards that are Skedda UNAVAILABLE blocks to kind "staff".
+
+    WHY THIS IS NOT A TITLE CHECK. The builder reads the Google mirror, which
+    carries a hold's title and nothing that says "this is a hold". The only
+    title-shaped signal was `"unavailable" in summary` in build_calendar_events,
+    which catches an untitled block and nothing else. On 2026-09-03 a 509B hold
+    titled "Matterport 360° panorama capture — Studios 509A & 509B" (Skedda
+    booking 119939698, type 2, no venueuser) rendered as a 13:00 booking, and
+    join_notion then handed it Akira Huang's 14:15 Monitor Only row — 1.25 h
+    away, inside the old 2 h window. The renter lost her tier, her HTA and both
+    dispatch pills to a camera on a tripod. Skedda knows what its own blocks
+    are; ask Skedda.
+
+    Match is deliberately exact — same studio, same start AND same end within
+    HOLD_SLOT_TOLERANCE, one candidate only. An ambiguous match leaves the card
+    a booking: over-marking hides a real renter from the board, which is the
+    worse failure. Returns the number of cards flipped.
+    """
+    holds = [r for r in rows if r.get("is_hold")]
+    if not holds:
+        return 0
+    for r in holds:
+        r["_start"] = decimal_hours(r["start"], base_day)
+        r["_end"] = decimal_hours(r["end"], base_day)
+
+    marked = 0
+    for e in events:
+        if e.get("kind") != "booking":
+            continue
+        hits = [r for r in holds
+                if r["studio"] == e["studio"]
+                and abs(r["_start"] - e["start"]) <= HOLD_SLOT_TOLERANCE
+                and abs(r["_end"] - e["end"]) <= HOLD_SLOT_TOLERANCE]
+        if len(hits) == 1:
+            e["kind"] = "staff"
+            marked += 1
+    return marked
+
+
+def enrich_names_from_skedda(events, win_start, win_end):
+    """One Skedda read, two jobs: name the nameless, and mark the staff blocks.
+
+    NAMES — fill in renter names the ICS feeds omit. Touches ONLY nameless
+    platform titles, and only on an unambiguous match: one studio, one
+    overlapping Skedda booking. Two candidates means the read cannot tell them
+    apart, and a confidently wrong name at the door is worse than an honest
+    "Giggster Booking".
+
+    STAFF — see mark_skedda_holds.
+
+    Any failure is soft. Names degrade to the ICS title as before; holds degrade
+    to the title-only `is_cleaning` detector, i.e. exactly the pre-2026-09-03
+    behaviour. The board is never worth losing over either.
+    """
     targets = [e for e in events
                if e["kind"] == "booking" and _is_nameless_title(e.get("who"))]
-    if not targets:
-        return events, None
     try:
         rows = skedda_names.fetch_named_bookings(win_start, win_end)
     except skedda_names.SkeddaUnavailable as e:
-        return events, f"Skedda name lookup skipped ({e}); platform titles left as-is."
-    except Exception as e:  # noqa: BLE001 — never let a nicety fail the build
-        return events, f"Skedda name lookup failed ({type(e).__name__}: {e})."
+        return events, (f"Skedda lookup skipped ({e}); platform titles left as-is "
+                        f"and staff blocks fall back to title detection.")
+    except Exception as e:  # noqa: BLE001 — never let enrichment fail the build
+        return events, f"Skedda lookup failed ({type(e).__name__}: {e})."
 
     base_day = win_start.date()
     for r in rows:
         r["_start"] = decimal_hours(r["start"], base_day)
         r["_end"] = decimal_hours(r["end"], base_day)
 
+    # Staff first: a hold is not a renter, so it must not then be renamed as one.
+    marked = mark_skedda_holds(events, rows, base_day)
+
     filled = 0
     for e in targets:
+        if e["kind"] != "booking":
+            continue   # just marked as staff
         hits = [r for r in rows
                 if r["studio"] == e["studio"]
                 and e["start"] < r["_end"] - EPS and r["_start"] < e["end"] - EPS]
@@ -630,8 +701,13 @@ def enrich_names_from_skedda(events, win_start, win_end):
         # A renamed row can now be recognised as its own ghost in another
         # studio — the placeholder title matched nothing.
         _mark_cross_studio_dupes(events)
-    return events, (f"Skedda supplied {filled} renter name(s) the ICS feeds omitted."
-                    if filled else None)
+
+    notes = []
+    if filled:
+        notes.append(f"Skedda supplied {filled} renter name(s) the ICS feeds omitted.")
+    if marked:
+        notes.append(f"Skedda marked {marked} card(s) as staff (UNAVAILABLE blocks).")
+    return events, (" ".join(notes) or None)
 
 
 def drop_marketplace_mirrors(events):
@@ -1001,6 +1077,7 @@ def parse_notion(rows):
             "status": (_prop_text(p.get("Booking Status")) or "").strip(),
             "studio": studio,
             "start": _prop_text(p.get("Start Time")),
+            "end": _prop_text(p.get("End Time")),
             "tier": tier,
             "gtg": gtg if tier else True,
             "hta": _prop_text(p.get("HTA")),
@@ -1020,20 +1097,73 @@ def _time_to_decimal(val):
     return int(h) + int(m) / 60
 
 
+# How far a Notion booking row may sit from its calendar card and still be the
+# same booking. BOTH ends must agree.
+#
+# This was 2.0 hours, on the START only, and that is the whole of the
+# 2026-09-03 Matterport bug: a 13:00–14:00 staff hold in 509B was 1.25 h from
+# Akira Huang's 14:15–15:45 Monitor Only row, won it on the greedy earliest-card
+# pass, and left the actual renter with no tier, no HTA and two false MISSING
+# dispatch pills. Both sides of this join are generated from the same Skedda
+# booking, so they agree to the MINUTE in practice — every matched card on the
+# 2026-09-03 board lined up exactly on both ends. Half an hour is already
+# generous; the old window was wide enough to swallow the neighbouring slot.
+#
+# Failure mode if this is too tight: a booking loses its tier chip and its
+# dispatch pills. That is honest under-reporting. Too loose puts a renter's tier
+# on someone else's card AND strips it from theirs — a lie in two places.
+NOTION_SLOT_TOLERANCE = 0.5   # decimal hours, each end independently
+
+
+def _notion_span(row):
+    """(start, end) in decimal hours, end pushed past 24 for a cross-midnight row."""
+    rs, re_ = _time_to_decimal(row.get("start")), _time_to_decimal(row.get("end"))
+    if rs is None or re_ is None:
+        return None
+    return rs, (re_ + 24 if re_ <= rs else re_)
+
+
+def _slot_gap(rs, re_, e_start, e_end):
+    """Total start+end distance, or None when either end is out of tolerance.
+
+    The card's clock is the board's OPERATING day (05:00 → 05:00 next), so a
+    00:30 booking sits at 24.5 while Notion still says "00:30". Try the row in
+    both day frames and keep the better fit — never let a clock frame decide a
+    booking has no tier.
+    """
+    best = None
+    for shift in (0, 24):
+        start_gap, end_gap = abs(rs + shift - e_start), abs(re_ + shift - e_end)
+        if start_gap > NOTION_SLOT_TOLERANCE or end_gap > NOTION_SLOT_TOLERANCE:
+            continue
+        total = start_gap + end_gap
+        if best is None or total < best:
+            best = total
+    return best
+
+
 def join_notion(events, notion_rows):
     used = [False] * len(notion_rows)
     for e in events:
         if e["kind"] != "booking":
-            continue   # a staff cleaning block must never absorb a booking's tier row
+            continue   # a staff block must never absorb a booking's tier row
         best, best_i, best_gap = None, -1, 1e9
         for i, r in enumerate(notion_rows):
             if used[i] or r["studio"] != e["studio"]:
                 continue
-            rs = _time_to_decimal(r["start"])
-            gap = abs((rs if rs is not None else e["start"]) - e["start"])
+            span = _notion_span(r)
+            # A row with no usable time cannot be placed; it is only a candidate
+            # when it is the studio's single unclaimed row, which the caller
+            # cannot know here. Skip it rather than default it onto this card.
+            if span is None:
+                continue
+            rs, re_ = span
+            gap = _slot_gap(rs, re_, e["start"], e["end"])
+            if gap is None:
+                continue
             if gap < best_gap:
                 best, best_i, best_gap = r, i, gap
-        if best and best_gap <= 2.0:
+        if best:
             used[best_i] = True
             e["tier"], e["gtg"], e["hta"] = best["tier"], best["gtg"], best["hta"]
             e["_ava_status"], e["_eob_status"] = best.get("ava"), best.get("eob")
@@ -1990,11 +2120,25 @@ def _lead(text, limit=88):
 # actually are during a shift. fetch_issues(), its deadline/housekeeping
 # machinery and the tab in both templates went with it.
 
+# The sweep writes its keys in TWO shapes, and both must be read or the row
+# silently degrades to a name-only match against the whole board:
+#
+#   [sweep:509B:2026-08-24T14:00:access]                        studio + date
+#   [sweep:access:<artist-page-id>:2026-08-31:access]           artist + date
+#
+# The second shape is deliberately NOT studio-scoped ("one text covers every
+# room they hold that day"), so it is matched on the DATE, never the studio.
 RE_SWEEP_KEY = re.compile(r"\[sweep:(\w+):(\d{4}-\d{2}-\d{2})")
+RE_SWEEP_ARTIST_KEY = re.compile(
+    r"\[sweep:access:([0-9a-fA-F-]{32,36}):(\d{4}-\d{2}-\d{2})")
 
 
 def fetch_open_access_rows(token):
-    """Open Access / PIN rows, title text only — input to flag_access_gaps()."""
+    """Open Access / PIN rows → [{text, artist}] for flag_access_gaps().
+
+    `text` is the row TITLE only and `artist` is a Notion page id — no notes, no
+    bodies, no codes. Neither reaches the payload; only the boolean does.
+    """
     rows = _notion_query(token, ACTIONS_DS, {
         "filter": {"and": [
             {"property": "Status", "select": {"equals": "Pending Review"}},
@@ -2002,7 +2146,12 @@ def fetch_open_access_rows(token):
         ]},
         "page_size": 100,
     })
-    return [_prop_text(r.get("properties", {}).get("Request")) or "" for r in rows]
+    out = []
+    for r in rows:
+        props = r.get("properties", {})
+        out.append({"text": _prop_text(props.get("Request")) or "",
+                    "artist": _relation_id(props.get("Artist"))})
+    return out
 
 
 def fetch_inbound_texts(token, since_dt):
@@ -2277,15 +2426,64 @@ def apply_message_dispatch(events, rows, base_day):
     return events
 
 
-def flag_access_gaps(events, requests, base_day):
-    """Red pill on today's booking when an open Access / PIN row names it.
+def _access_row_hits(row, event, day):
+    """Does this open Access / PIN row concern THIS card, today?
+
+    Three row shapes, narrowest first:
+
+    1. studio-keyed  — must match the studio AND today's date AND the name.
+    2. artist-keyed  — day-scoped by design (one text covers every room the
+       renter holds that day), so studio is not required; date is.
+    3. unkeyed       — about the person, not a slot. If the row carries an
+       Artist relation, that id is the match and the name is not consulted:
+       relations do not collide, names do. Only a row with NO artist at all
+       falls back to a name substring.
+
+    Rule 3's artist check was added 2026-09-03. Without it, the open row
+    "🔑 Studio 901 authorized users — Krista Flynn … (Akira Huang done)" — Nina
+    Li's row, about Studio 901 on Sep 9, saying in its own title that Akira was
+    finished — painted VERIFY ACCESS on Akira Huang's 509B booking that
+    afternoon, and would have kept doing it on every booking of hers until
+    somebody closed the row.
+
+    Rules 1 and 2 are day-scoped; rule 3 is not, and is not meant to be. An
+    unkeyed row is about the PERSON — "this renter has an unresolved access
+    item" — so it lights every booking of theirs while it stays open, including
+    one whose code works today. That is the pill's stated meaning (README §5:
+    "an access check for this renter and today's booking is still open"), not a
+    bug. It is also stricter than it looks: matching on the relation rather than
+    the name makes the pill appear for renters a name substring used to miss
+    (Adalia Knight, whose card reads "Adalia Knight (X Movement").
+    """
+    text = (row.get("text") or "")
+    who = (event.get("who") or "").split(" — ")[0].strip().lower()
+    artist = row.get("artist")
+
+    m = RE_SWEEP_ARTIST_KEY.search(text)
+    if m:
+        if m.group(2) != day:
+            return False
+        if artist and event.get("_artist_id"):
+            return artist == event["_artist_id"]
+        return bool(who) and who in text.lower()
+
+    m = RE_SWEEP_KEY.search(text)
+    if m:
+        return (m.group(1) == event["studio"] and m.group(2) == day
+                and bool(who) and who in text.lower())
+
+    if artist:
+        return artist == event.get("_artist_id")
+    return bool(who) and who in text.lower()
+
+
+def flag_access_gaps(events, rows, base_day):
+    """Red pill on today's booking when an open Access / PIN row concerns it.
 
     The card is the ONLY access surface on this app (Junyan, 2026-08-25): a
     renter whose code will not work shows as a red chip on their booking, and
-    nothing else here talks about access. Matching is deliberately narrow —
-    a sweep-keyed row must match studio AND today's date AND the renter's
-    name; an unkeyed row (e.g. "Alarm code needs a person — <name>") matches
-    on the name alone, because it is about the person, not a slot. Only a
+    nothing else here talks about access. Matching is deliberately narrow — see
+    _access_row_hits for the three row shapes and what each requires. Only a
     boolean crosses into the payload: this page is public, and the row titles
     are internal text (see redact()).
     """
@@ -2293,14 +2491,8 @@ def flag_access_gaps(events, requests, base_day):
     for e in events:
         if e.get("kind") != "booking":
             continue
-        who = (e.get("who") or "").split(" — ")[0].strip().lower()
-        if not who:
-            continue
-        for req in requests:
-            m = RE_SWEEP_KEY.search(req)
-            if m and (m.group(1) != e["studio"] or m.group(2) != day):
-                continue
-            if who in req.lower():
+        for row in rows:
+            if _access_row_hits(row, e, day):
                 e["access_gap"] = True
                 break
     return events

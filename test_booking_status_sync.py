@@ -103,7 +103,8 @@ def _joined_event(status="In Studio"):
         "tier": None, "gtg": None, "hta": None,
     }]
     rows = [{
-        "id": "notion-row-509b", "studio": "509B", "start": "2:00 PM",
+        "id": "notion-row-509b", "studio": "509B",
+        "start": "2:00 PM", "end": "4:00 PM",
         "tier": None, "gtg": None, "hta": None, "has_code": True,
         "board_disarmed": None, "board_armed": None, "status": status,
     }]

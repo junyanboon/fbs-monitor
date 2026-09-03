@@ -177,14 +177,30 @@ arrive where they were supposed to be, and the board must not imply they did.
 
 **This board is a public GitHub Pages site.** It never reads or publishes the
 `Alarm Code` rollup. `fetch_open_access_rows()` reads only the titles of open
-`Access / PIN` actions, and `flag_access_gaps()` collapses the matching action
-to `access_gap: true/false` before DATA is built. Message bodies, action notes,
-Alarm.com identifiers, and PIN values never cross into the public payload.
+`Access / PIN` actions plus each row's `Artist` relation id, and
+`flag_access_gaps()` collapses the matching action to `access_gap: true/false`
+before DATA is built. Message bodies, action notes, Alarm.com identifiers, and
+PIN values never cross into the public payload.
 
 The red `VERIFY ACCESS` chip therefore means exactly one thing: an access check
 for this renter and today's booking is still open. It does **not** assert that
 the code field is empty; the unresolved item may instead be an access window,
-a dormant panel user, or an unavailable Alarm.com directory read.
+a dormant panel user, or an unavailable Alarm.com directory read. It also never
+says WHO verifies — every one of these rows carries `For: Ops Lead`, and the
+answer is always the desk.
+
+Which rows reach which card (`_access_row_hits`, three shapes, narrowest first):
+
+| Row shape | Example key | Must match |
+|---|---|---|
+| studio-keyed | `[sweep:509B:2026-08-24T14:00:access]` | studio + today + name |
+| artist-keyed | `[sweep:access:<artist-id>:2026-08-31:access]` | today + artist (day-scoped by design — one text covers every room they hold) |
+| unkeyed | *(none)* | the `Artist` relation, or the name when the row has no artist |
+
+> 2026-09-03: the unkeyed rule matched on the name substring alone, so the open
+> row "🔑 Studio 901 authorized users — Krista Flynn … **(Akira Huang done)**" —
+> Nina Li's row, about Studio 901 on Sep 9 — painted `VERIFY ACCESS` on Akira
+> Huang's 509B booking that afternoon. Relations do not collide; names do.
 
 ### 6. Same-minute events order by email receipt
 
@@ -312,6 +328,33 @@ Expired blocks are removed in the builder and filtered again in both pages so
 a row ages out at its end time between 15-minute rebuilds. Cross-midnight times
 use the build's `shiftBaseDay`; `23:45–00:15` remains claimable until 00:15 and
 not a minute longer.
+
+### 17. A staff block is identified by Skedda, not by its title
+
+The board reads the Google mirror, which carries a hold's **title and nothing
+else** — no field says "this is a venue block". Two detectors cover it, and both
+are needed:
+
+| Detector | Reads | Covers | Misses |
+|---|---|---|---|
+| `is_cleaning()` | the ICS title (a cleaner's name) | recurring blocks | anything titled differently |
+| `mark_skedda_holds()` | Skedda's own `type == 2` (UNAVAILABLE) | every one-off block, whatever it is called | recurring blocks (the hold feed does not expand series) |
+
+A matched card becomes `kind: "staff"` and renders a **red `Staff` chip**. Do
+not infer a hold from a missing `venueuser` — a type-1 "casual" booking (every
+Tagvenue / Peerspace / Giggster mirror) also has none and *is* a real booking.
+
+`join_notion()` matches a card to its FBS row on **both ends within 30 minutes**
+(`NOTION_SLOT_TOLERANCE`). Both sides come from the same Skedda booking and
+agree to the minute in practice.
+
+> 2026-09-03: a 509B hold titled "Matterport 360° panorama capture — Studios
+> 509A & 509B" (Skedda 119939698, type 2), 13:00–14:00, rendered as a booking.
+> `join_notion` then matched it — on the START only, inside a 2-hour window — to
+> Akira Huang's 14:15–15:45 `Monitor Only` row. The camera wore her `MONITOR`
+> chip and her `HTA: Sent`, and picked up two false `AVA MISSING` / `EOB MISSING`
+> pills because the queue rows were timed off *her* 14:15, not its 13:00. She
+> read as an untiered booking with no messages at all.
 
 ---
 
