@@ -249,10 +249,10 @@
 
 <script>
 const DATA = /*__DATA__*/{
-  "date": "Wednesday, September 2, 2026",
+  "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-02",
-  "generatedAt": "Sep 2, 11:45 PM ET",
-  "generatedAtISO": "2026-09-02T23:45:45-04:00",
+  "generatedAt": "Sep 3, 12:01 AM ET",
+  "generatedAtISO": "2026-09-03T00:01:08-04:00",
   "studios": [
     {
       "id": "509A",
@@ -518,7 +518,56 @@ const DATA = /*__DATA__*/{
       "day": "Sat Sep 5"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "code": "Overtime pending review — Janet Zamora — Studio 901 Aug 31",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 23:49"
+    },
+    {
+      "code": "Transition guidance — Julie Marouze — incoming renter Sep 1",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 23:49"
+    },
+    {
+      "code": "Transition guidance — Garjanah Thayakumar — outgoing renter Sep 1",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 23:49"
+    },
+    {
+      "code": "Insurance renewal — Fabio Hernandez — due before Sep 8",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 23:49"
+    },
+    {
+      "code": "Insurance renewal — Brad Wong — before Sep 28 expiry",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 2 · 23:49"
+    },
+    {
+      "code": "BC-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Sep 3 · 00:00"
+    }
+  ],
   "attention": [],
   "armEvents": [
     {
@@ -1568,6 +1617,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T03:45:50.323241Z",
         "until": "2026-09-03T03:45:58.792260Z"
+      },
+      {
+        "since": "2026-09-03T03:51:07.925686Z",
+        "until": "2026-09-03T03:51:19.357739Z"
+      },
+      {
+        "since": "2026-09-03T03:56:50.291815Z",
+        "until": "2026-09-03T03:56:59.788981Z"
       }
     ],
     "down": false
@@ -1581,7 +1638,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T23:41:00-04:00"
+      "lastISO": "2026-09-02T23:58:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1591,7 +1648,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T23:00:00-04:00"
+      "lastISO": "2026-09-03T00:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1651,7 +1708,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-02T23:12:00-04:00"
+      "lastISO": "2026-09-02T23:59:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1674,16 +1731,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T04:40:00-04:00"
     },
     {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-01T10:12:00-04:00"
-    },
-    {
       "run": "The Weatherman",
       "cadence": "Daily",
       "expected": "03:10 + hourly 09:10–23:10 America/Toronto · Codex production fallback",
@@ -1701,7 +1748,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-02T23:45:00-04:00"
+      "lastISO": "2026-09-03T00:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1711,7 +1758,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-02T23:45:00-04:00"
+      "lastISO": "2026-09-03T00:00:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1802,6 +1849,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-09-02T07:07:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-01T10:12:00-04:00"
     },
     {
       "run": "The Watchman",
