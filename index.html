@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 8:31 AM ET",
-  "generatedAtISO": "2026-09-03T08:31:02-04:00",
+  "generatedAt": "Sep 3, 8:46 AM ET",
+  "generatedAtISO": "2026-09-03T08:46:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -529,13 +529,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "15:00"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -948,22 +942,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 3 · 08:20"
     },
     {
-      "code": "AVA-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 00:02"
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 00:02"
-    },
-    {
       "code": "AVA-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -1015,7 +993,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1230,6 +1208,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T12:28:23.580281Z",
         "until": "2026-09-03T12:28:32.074534Z"
+      },
+      {
+        "since": "2026-09-03T12:34:09.906102Z",
+        "until": "2026-09-03T12:34:16.457529Z"
+      },
+      {
+        "since": "2026-09-03T12:40:09.932239Z",
+        "until": "2026-09-03T12:40:19.473622Z"
+      },
+      {
+        "since": "2026-09-03T12:45:23.594150Z",
+        "until": "2026-09-03T12:45:34.082284Z"
       }
     ],
     "down": false
@@ -1244,16 +1234,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-31T10:15:00-04:00"
-    },
-    {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-02T22:50:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1273,7 +1253,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:29:00-04:00"
+      "lastISO": "2026-09-03T08:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1283,7 +1263,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T08:30:00-04:00"
+      "lastISO": "2026-09-03T08:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1354,6 +1334,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-03T04:38:00-04:00"
+    },
+    {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-03T08:52:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1433,7 +1423,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
-      "lastISO": "2026-09-03T08:30:00-04:00"
+      "lastISO": "2026-09-03T08:45:00-04:00"
     },
     {
       "run": "The Closer",
