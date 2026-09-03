@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 5:47 PM ET",
-  "generatedAtISO": "2026-09-03T17:47:04-04:00",
+  "generatedAt": "Sep 3, 6:01 PM ET",
+  "generatedAtISO": "2026-09-03T18:01:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -455,10 +455,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:51",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Kateryna Zozulia",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -524,14 +524,14 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:45",
       "departed": null,
       "facilitator": null,
       "arrived_by": null,
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
-      "assumed": null,
+      "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 17.75,
@@ -660,28 +660,12 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Courtesy — Akira Huang reports she locked up and armed (•••)",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 3 · 15:55"
-    },
-    {
       "code": "Concierge — Nina Li — Sep •••pm availability + credit — •••",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Sep 3 · 16:16"
-    },
-    {
-      "code": "Courtesy — Stephanie Brinning confirms $••• e-transfer sent — •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 3 · 16:55"
     },
     {
       "code": "Lauren Taylor Scott — accepted Tagvenue booking — request mobile for access [1a068c6bfb07c4a0]",
@@ -700,12 +684,12 @@ const DATA = /*__DATA__*/{
       "created": "Sep 3 · 17:25"
     },
     {
-      "code": "Booking moved (509A Oct 9 → Oct 9) — Vicky Yeung [mover:65a7dd66-2ad0-47c1-9e9f-95a8bd532af3]",
+      "code": "Courtesy — Akira Huang answers her PBF: went well, AC note (•••)",
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 17:31"
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 3 · 17:56"
     }
   ],
   "attention": [
@@ -903,6 +887,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788471069502,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "17:51",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788472298003,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -912,9 +905,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T21:35:01+00:00",
+    "updatedAt": "2026-09-03T21:56:02+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 3,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1467,6 +1460,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-03T21:47:09.003377Z",
         "until": "2026-09-03T21:47:15.333753Z"
+      },
+      {
+        "since": "2026-09-03T21:52:22.839289Z",
+        "until": "2026-09-03T21:52:30.235257Z"
+      },
+      {
+        "since": "2026-09-03T21:57:51.043440Z",
+        "until": "2026-09-03T21:58:06.520941Z"
       }
     ],
     "down": false
@@ -1500,7 +1501,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:43:00-04:00"
+      "lastISO": "2026-09-03T18:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1510,7 +1511,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:45:00-04:00"
+      "lastISO": "2026-09-03T18:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1520,7 +1521,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:45:00-04:00"
+      "lastISO": "2026-09-03T18:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1530,7 +1531,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:00:00-04:00"
+      "lastISO": "2026-09-03T18:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1610,7 +1611,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:02:00-04:00"
+      "lastISO": "2026-09-03T17:59:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1620,7 +1621,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:31:00-04:00"
+      "lastISO": "2026-09-03T18:01:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1660,7 +1661,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T17:46:00-04:00"
+      "lastISO": "2026-09-03T18:01:00-04:00"
     },
     {
       "run": "The Closer",
