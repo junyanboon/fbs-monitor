@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 8:01 AM ET",
-  "generatedAtISO": "2026-09-04T08:01:05-04:00",
+  "generatedAt": "Sep 4, 8:15 AM ET",
+  "generatedAtISO": "2026-09-04T08:15:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -845,7 +845,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1040,21 +1040,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T11:59:07.455121Z",
         "until": "2026-09-04T11:59:15.905816Z"
+      },
+      {
+        "since": "2026-09-04T12:04:28.165092Z",
+        "until": "2026-09-04T12:04:34.173540Z"
+      },
+      {
+        "since": "2026-09-04T12:09:56.009012Z",
+        "until": "2026-09-04T12:10:01.459291Z"
+      },
+      {
+        "since": "2026-09-04T12:15:27.027380Z",
+        "until": "2026-09-04T12:15:34.784917Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-03T22:35:00-04:00"
-    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1086,16 +1088,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T22:58:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-03T22:47:00-04:00"
-    },
-    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:45 America/Toronto · one authorized owner SMS",
@@ -1113,7 +1105,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T07:59:00-04:00"
+      "lastISO": "2026-09-04T08:15:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1123,7 +1115,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:00:00-04:00"
+      "lastISO": "2026-09-04T08:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1133,7 +1125,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:00:00-04:00"
+      "lastISO": "2026-09-04T08:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1153,7 +1145,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T07:07:00-04:00"
+      "lastISO": "2026-09-04T08:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1174,6 +1166,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T06:02:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T08:16:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1246,6 +1248,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T03:10:00-04:00"
     },
     {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T08:02:00-04:00"
+    },
+    {
       "run": "desk-loop (Cloud Run)",
       "cadence": "15-min",
       "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
@@ -1253,7 +1265,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T08:00:00-04:00"
+      "lastISO": "2026-09-04T08:10:00-04:00"
     },
     {
       "run": "The Closer",
