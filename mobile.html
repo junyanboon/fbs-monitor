@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 3:45 PM ET",
-  "generatedAtISO": "2026-09-04T15:45:56-04:00",
+  "generatedAt": "Sep 4, 4:01 PM ET",
+  "generatedAtISO": "2026-09-04T16:01:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -509,11 +509,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "16:00"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "23:30"
@@ -567,10 +562,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "14:46",
-      "departed": null,
+      "departed": "15:55",
       "facilitator": null,
       "arrived_by": "xavier xavier",
-      "departed_by": null,
+      "departed_by": "xavier xavier",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -690,7 +685,7 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -698,7 +693,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -755,20 +750,12 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 15:35"
     },
     {
-      "code": "Quick answer — Kaushik Boga yoga mats in Studio 527",
+      "code": "Quick answer — Kaushik Boga Studio 527 mats and cleaning",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "527",
       "raised_by": "The Responder",
       "created": "Sep 4 · 15:35"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:02"
     },
     {
       "code": "EOB-sweep-•••",
@@ -982,6 +969,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788547603807,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "xavier xavier",
+      "time": "15:55",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788551702181,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -991,7 +987,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T18:51:03+00:00",
+    "updatedAt": "2026-09-04T20:00:19+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1454,6 +1450,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T19:40:44.400319Z",
         "until": "2026-09-04T19:40:57.828312Z"
+      },
+      {
+        "since": "2026-09-04T19:46:09.608337Z",
+        "until": "2026-09-04T19:46:21.845124Z"
+      },
+      {
+        "since": "2026-09-04T19:52:09.614183Z",
+        "until": "2026-09-04T19:52:22.024334Z"
+      },
+      {
+        "since": "2026-09-04T19:57:44.433643Z",
+        "until": "2026-09-04T19:58:33.434598Z"
       }
     ],
     "down": false
@@ -1497,7 +1505,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:46:00-04:00"
+      "lastISO": "2026-09-04T15:57:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1507,7 +1515,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:45:00-04:00"
+      "lastISO": "2026-09-04T16:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1517,7 +1525,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:45:00-04:00"
+      "lastISO": "2026-09-04T16:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1527,7 +1535,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:00:00-04:00"
+      "lastISO": "2026-09-04T16:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1607,7 +1615,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:36:00-04:00"
+      "lastISO": "2026-09-04T16:00:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1657,7 +1665,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T15:40:00-04:00"
+      "lastISO": "2026-09-04T16:00:00-04:00"
     },
     {
       "run": "The Closer",
