@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 8:30 PM ET",
-  "generatedAtISO": "2026-09-03T20:30:53-04:00",
+  "generatedAt": "Sep 3, 8:45 PM ET",
+  "generatedAtISO": "2026-09-03T20:45:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -362,10 +362,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "18:46",
-      "departed": null,
+      "departed": "20:37",
       "facilitator": null,
       "arrived_by": "Anita Pandey",
-      "departed_by": null,
+      "departed_by": "Anita Pandey",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -433,10 +433,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "18:03",
-      "departed": null,
+      "departed": "20:41",
       "facilitator": null,
       "arrived_by": "Kyle FitzGerald",
-      "departed_by": null,
+      "departed_by": "Kyle FitzGerald",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -659,7 +659,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -667,7 +667,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -746,14 +746,6 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 3 · 19:57"
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 00:02"
     }
   ],
   "attention": [
@@ -1014,6 +1006,42 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788475566773,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Anita Pandey",
+      "time": "20:37",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788482264017,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Kyle FitzGerald",
+      "time": "20:41",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788482460252,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "20:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788482707349,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "20:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788482711990,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1023,7 +1051,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-03T22:48:02+00:00",
+    "updatedAt": "2026-09-04T00:45:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1694,6 +1722,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T00:28:23.165197Z",
         "until": "2026-09-04T00:28:35.636777Z"
+      },
+      {
+        "since": "2026-09-04T00:33:48.935560Z",
+        "until": "2026-09-04T00:33:55.365396Z"
+      },
+      {
+        "since": "2026-09-04T00:39:22.759273Z",
+        "until": "2026-09-04T00:39:33.206707Z"
+      },
+      {
+        "since": "2026-09-04T00:44:52.463153Z",
+        "until": "2026-09-04T00:45:06.941672Z"
       }
     ],
     "down": false
@@ -1717,7 +1757,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T20:29:00-04:00"
+      "lastISO": "2026-09-03T20:46:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1727,7 +1767,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T20:30:00-04:00"
+      "lastISO": "2026-09-03T20:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1737,7 +1777,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T20:30:00-04:00"
+      "lastISO": "2026-09-03T20:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1787,7 +1827,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T18:52:00-04:00"
+      "lastISO": "2026-09-03T20:36:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1817,7 +1857,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T19:52:00-04:00"
+      "lastISO": "2026-09-03T20:47:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1887,7 +1927,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T20:31:00-04:00"
+      "lastISO": "2026-09-03T20:46:00-04:00"
     },
     {
       "run": "The Closer",
