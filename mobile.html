@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 12:45 PM ET",
-  "generatedAtISO": "2026-09-04T12:45:54-04:00",
+  "generatedAt": "Sep 4, 1:01 PM ET",
+  "generatedAtISO": "2026-09-04T13:01:18-04:00",
   "studios": [
     {
       "id": "509A",
@@ -548,10 +548,10 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "12:47",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -571,17 +571,12 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "13:00"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "15:45"
         }
       ],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -722,7 +717,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -730,7 +725,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -767,14 +762,6 @@ const DATA = /*__DATA__*/{
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:02"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
       "raised_by": "AI (automation)",
       "created": "Sep 4 · 00:02"
     },
@@ -962,27 +949,25 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788539706659,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "12:47",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788540427207,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "693": {
-      "kind": "departure",
-      "name": "Angus Dirnbeck",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "22:11",
-      "ts": 1788487870748,
-      "when": "Thu 22:11"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T16:35:13+00:00",
+    "updatedAt": "2026-09-04T16:52:10+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1321,6 +1306,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T16:43:09.927887Z",
         "until": "2026-09-04T16:43:19.333799Z"
+      },
+      {
+        "since": "2026-09-04T16:49:04.252480Z",
+        "until": "2026-09-04T16:49:11.723844Z"
+      },
+      {
+        "since": "2026-09-04T16:54:49.358299Z",
+        "until": "2026-09-04T16:55:03.803779Z"
+      },
+      {
+        "since": "2026-09-04T17:00:36.065941Z",
+        "until": "2026-09-04T17:00:46.892336Z"
       }
     ],
     "down": false
@@ -1384,7 +1381,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:46:00-04:00"
+      "lastISO": "2026-09-04T12:58:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1394,7 +1391,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:45:00-04:00"
+      "lastISO": "2026-09-04T13:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1404,7 +1401,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:45:00-04:00"
+      "lastISO": "2026-09-04T13:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1414,7 +1411,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:00:00-04:00"
+      "lastISO": "2026-09-04T13:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1514,7 +1511,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:46:00-04:00"
+      "lastISO": "2026-09-04T13:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1524,7 +1521,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T12:40:00-04:00"
+      "lastISO": "2026-09-04T13:00:00-04:00"
     },
     {
       "run": "The Closer",
