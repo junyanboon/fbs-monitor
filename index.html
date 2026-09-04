@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 12:15 PM ET",
-  "generatedAtISO": "2026-09-04T12:15:58-04:00",
+  "generatedAt": "Sep 4, 12:30 PM ET",
+  "generatedAtISO": "2026-09-04T12:30:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -558,10 +558,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "12:20",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stella Dada",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -938,7 +938,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -946,7 +946,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -970,14 +970,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
-    {
-      "code": "Insurance follow-up — Aakanksha Patel — Sep 6 class",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 11:10"
-    },
     {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
@@ -1176,6 +1168,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788538028409,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stella Dada",
+      "time": "12:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788538832987,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1196,7 +1197,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T16:09:03+00:00",
+    "updatedAt": "2026-09-04T16:25:12+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1515,6 +1516,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T16:14:43.203479Z",
         "until": "2026-09-04T16:14:53.714639Z"
+      },
+      {
+        "since": "2026-09-04T16:19:49.343957Z",
+        "until": "2026-09-04T16:19:58.826615Z"
+      },
+      {
+        "since": "2026-09-04T16:25:43.201211Z",
+        "until": "2026-09-04T16:25:56.632494Z"
       }
     ],
     "down": false
@@ -1578,7 +1587,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:14:00-04:00"
+      "lastISO": "2026-09-04T12:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1588,7 +1597,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:15:00-04:00"
+      "lastISO": "2026-09-04T12:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1598,7 +1607,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:15:00-04:00"
+      "lastISO": "2026-09-04T12:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1708,7 +1717,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T12:01:00-04:00"
+      "lastISO": "2026-09-04T12:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1718,7 +1727,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T12:10:00-04:00"
+      "lastISO": "2026-09-04T12:30:00-04:00"
     },
     {
       "run": "The Closer",
