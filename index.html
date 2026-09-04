@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 4:01 PM ET",
-  "generatedAtISO": "2026-09-04T16:01:05-04:00",
+  "generatedAt": "Sep 4, 4:16 PM ET",
+  "generatedAtISO": "2026-09-04T16:16:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -901,22 +901,6 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 15.75,
-      "end": 16.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 15.75,
-      "end": 16.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
       "studio": "509B",
       "day_offset": 0,
       "start": 16.75,
@@ -974,6 +958,14 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 15:35"
     },
     {
+      "code": "BC-sweep-•••B",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Sep 4 · 16:01"
+    },
+    {
       "code": "EOB-sweep-•••",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -993,7 +985,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1678,11 +1670,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T19:57:44.433643Z",
         "until": "2026-09-04T19:58:33.434598Z"
+      },
+      {
+        "since": "2026-09-04T20:03:44.489969Z",
+        "until": "2026-09-04T20:03:53.900877Z"
+      },
+      {
+        "since": "2026-09-04T20:09:44.532519Z",
+        "until": "2026-09-04T20:09:50.026215Z"
+      },
+      {
+        "since": "2026-09-04T20:15:09.573018Z",
+        "until": "2026-09-04T20:15:20.089442Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-04T08:16:00-04:00"
+    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1721,7 +1735,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:57:00-04:00"
+      "lastISO": "2026-09-04T16:13:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1731,7 +1745,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T16:00:00-04:00"
+      "lastISO": "2026-09-04T16:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1741,7 +1755,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T16:00:00-04:00"
+      "lastISO": "2026-09-04T16:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1761,7 +1775,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:07:00-04:00"
+      "lastISO": "2026-09-04T16:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1782,16 +1796,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T06:02:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:37:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1821,7 +1825,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:02:00-04:00"
+      "lastISO": "2026-09-04T16:04:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1861,7 +1865,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:10:00-04:00"
+      "lastISO": "2026-09-04T16:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1871,7 +1875,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:46:00-04:00"
+      "lastISO": "2026-09-04T16:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1881,7 +1885,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T16:00:00-04:00"
+      "lastISO": "2026-09-04T16:10:00-04:00"
     },
     {
       "run": "The Closer",
