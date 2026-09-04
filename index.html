@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 2:45 PM ET",
-  "generatedAtISO": "2026-09-04T14:45:48-04:00",
+  "generatedAt": "Sep 4, 3:00 PM ET",
+  "generatedAtISO": "2026-09-04T15:00:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -598,7 +598,7 @@ const DATA = /*__DATA__*/{
     {
       "studio": "509B",
       "who": "Piano Tuning",
-      "kind": "staff",
+      "kind": "booking",
       "tier": null,
       "gtg": true,
       "hta": null,
@@ -609,8 +609,8 @@ const DATA = /*__DATA__*/{
       "facilitator": null,
       "arrived_by": "Maggie Morrison",
       "departed_by": "Maggie Morrison",
-      "arrived_foreign": false,
-      "departed_foreign": false,
+      "arrived_foreign": true,
+      "departed_foreign": true,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -788,10 +788,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "14:46",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "xavier xavier",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -953,12 +953,28 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Greeter — Peerspace instant (pointer → earlier booking thread) — Jia L. — 509B Sun Sep 6 11:30 AM–1:30 PM [greeter:1a06db1a26b544f2]",
-      "channel": "Email",
+      "code": "PBF — Anita Shack •••",
+      "channel": "SMS",
       "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 14:35"
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 15:00"
+    },
+    {
+      "code": "PBF — Stella Dada •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 15:00"
+    },
+    {
+      "code": "Post-HTA \"good to go\" confirmation — xavier — 693 Sep 4 3:00 PM [gtg:•••]",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": null,
+      "created": "Sep 4 · 15:00"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1179,6 +1195,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788544074928,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "xavier xavier",
+      "time": "14:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788547603807,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1188,7 +1213,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T17:52:12+00:00",
+    "updatedAt": "2026-09-04T18:51:03+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1611,6 +1636,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T18:44:50.644086Z",
         "until": "2026-09-04T18:45:04.138021Z"
+      },
+      {
+        "since": "2026-09-04T18:50:04.002850Z",
+        "until": "2026-09-04T18:50:14.365127Z"
+      },
+      {
+        "since": "2026-09-04T18:55:49.104967Z",
+        "until": "2026-09-04T18:56:01.777995Z"
+      },
+      {
+        "since": "2026-09-04T19:01:09.681836Z",
+        "until": "2026-09-04T19:01:16.131803Z"
       }
     ],
     "down": false
@@ -1664,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "crit",
       "statusLabel": "Overdue",
-      "lastISO": "2026-09-04T09:58:00-04:00"
+      "lastISO": "2026-09-04T08:31:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1684,7 +1721,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:45:00-04:00"
+      "lastISO": "2026-09-04T15:01:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1694,7 +1731,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:45:00-04:00"
+      "lastISO": "2026-09-04T15:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1704,7 +1741,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:45:00-04:00"
+      "lastISO": "2026-09-04T15:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1714,7 +1751,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:00:00-04:00"
+      "lastISO": "2026-09-04T15:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1804,7 +1841,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:31:00-04:00"
+      "lastISO": "2026-09-04T14:48:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1814,7 +1851,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T14:40:00-04:00"
+      "lastISO": "2026-09-04T15:00:00-04:00"
     },
     {
       "run": "The Closer",
