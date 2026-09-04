@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 7:15 PM ET",
-  "generatedAtISO": "2026-09-04T19:15:46-04:00",
+  "generatedAt": "Sep 4, 7:30 PM ET",
+  "generatedAtISO": "2026-09-04T19:30:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -452,10 +452,16 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "who": "Daniel Cater — Salsa practice with Diana",
       "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": "Unsent",
-      "dispatch": [],
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        }
+      ],
       "heard": true,
       "arrived": "19:11",
       "departed": null,
@@ -717,6 +723,14 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "The Responder",
       "created": "Sep 4 · 19:01"
+    },
+    {
+      "code": "Lordasa — Studio 693 weekly-slot clarification •••",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 4 · 19:21"
     },
     {
       "code": "EOB-sweep-•••",
@@ -985,7 +999,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T22:56:04+00:00",
+    "updatedAt": "2026-09-04T23:16:17+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -1600,6 +1614,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T23:12:48.654129Z",
         "until": "2026-09-04T23:13:03.103037Z"
+      },
+      {
+        "since": "2026-09-04T23:18:46.171962Z",
+        "until": "2026-09-04T23:19:00.743384Z"
+      },
+      {
+        "since": "2026-09-04T23:24:38.360131Z",
+        "until": "2026-09-04T23:24:52.938279Z"
+      },
+      {
+        "since": "2026-09-04T23:30:45.728354Z",
+        "until": "2026-09-04T23:30:55.099511Z"
       }
     ],
     "down": false
@@ -1643,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:14:00-04:00"
+      "lastISO": "2026-09-04T19:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1653,7 +1679,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:15:00-04:00"
+      "lastISO": "2026-09-04T19:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1663,7 +1689,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:15:00-04:00"
+      "lastISO": "2026-09-04T19:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1713,7 +1739,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T18:25:00-04:00"
+      "lastISO": "2026-09-04T19:25:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1753,7 +1779,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:04:00-04:00"
+      "lastISO": "2026-09-04T19:30:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1793,7 +1819,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:02:00-04:00"
+      "lastISO": "2026-09-04T19:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1803,7 +1829,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T19:10:00-04:00"
+      "lastISO": "2026-09-04T19:30:00-04:00"
     },
     {
       "run": "The Closer",
