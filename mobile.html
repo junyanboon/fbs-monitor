@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 2:30 PM ET",
-  "generatedAtISO": "2026-09-04T14:30:59-04:00",
+  "generatedAt": "Sep 4, 2:45 PM ET",
+  "generatedAtISO": "2026-09-04T14:45:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -704,7 +704,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -712,7 +712,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -737,12 +737,12 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Greeter — Peerspace instant + phone ask — Jia L. — 509B Sat Sep 12 2:00 PM–4:00 PM [greeter:1a06da7f2aa1e132]",
+      "code": "Greeter — Peerspace instant (pointer → earlier booking thread) — Jia L. — 509B Sun Sep 6 11:30 AM–1:30 PM [greeter:1a06db1a26b544f2]",
       "channel": "Email",
       "status": "Pending Review",
       "studio": "509B",
       "raised_by": "AI (automation)",
-      "created": "Sep 4 · 14:25"
+      "created": "Sep 4 · 14:35"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1383,6 +1383,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T18:26:50.643210Z",
         "until": "2026-09-04T18:27:05.143571Z"
+      },
+      {
+        "since": "2026-09-04T18:32:50.140626Z",
+        "until": "2026-09-04T18:33:00.622040Z"
+      },
+      {
+        "since": "2026-09-04T18:38:49.074109Z",
+        "until": "2026-09-04T18:39:04.533668Z"
+      },
+      {
+        "since": "2026-09-04T18:44:50.644086Z",
+        "until": "2026-09-04T18:45:04.138021Z"
       }
     ],
     "down": false
@@ -1439,6 +1451,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-03T19:47:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1446,7 +1468,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:27:00-04:00"
+      "lastISO": "2026-09-04T14:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1456,7 +1478,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:30:00-04:00"
+      "lastISO": "2026-09-04T14:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1466,7 +1488,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T14:30:00-04:00"
+      "lastISO": "2026-09-04T14:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1529,16 +1551,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T04:22:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-03T19:47:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1586,7 +1598,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T14:30:00-04:00"
+      "lastISO": "2026-09-04T14:40:00-04:00"
     },
     {
       "run": "The Closer",
