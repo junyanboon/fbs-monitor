@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 4, 2:15 AM ET",
-  "generatedAtISO": "2026-09-04T02:15:49-04:00",
+  "generatedAt": "Sep 4, 2:30 AM ET",
+  "generatedAtISO": "2026-09-04T02:30:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -867,7 +867,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -875,7 +875,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -2349,11 +2349,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T06:14:53.876399Z",
         "until": "2026-09-04T06:15:08.124303Z"
+      },
+      {
+        "since": "2026-09-04T06:20:53.938512Z",
+        "until": "2026-09-04T06:21:05.378047Z"
+      },
+      {
+        "since": "2026-09-04T06:26:25.303616Z",
+        "until": "2026-09-04T06:26:39.763909Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "04:06 America/Toronto · Codex production fallback",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-03T04:45:00-04:00"
+    },
     {
       "run": "The Bookkeeper",
       "cadence": "Daily",
@@ -2375,6 +2393,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T06:08:00-04:00"
     },
     {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-03T04:38:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2382,7 +2410,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T02:13:00-04:00"
+      "lastISO": "2026-09-04T02:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2403,26 +2431,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T02:07:00-04:00"
-    },
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "04:06 America/Toronto · Codex production fallback",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-03T04:45:00-04:00"
-    },
-    {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-03T04:38:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -2482,7 +2490,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-04T02:15:00-04:00"
+      "lastISO": "2026-09-04T02:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2492,7 +2500,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-04T02:15:00-04:00"
+      "lastISO": "2026-09-04T02:30:00-04:00"
     },
     {
       "run": "The Closer",
