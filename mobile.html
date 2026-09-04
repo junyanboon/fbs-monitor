@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 11:45 AM ET",
-  "generatedAtISO": "2026-09-04T11:45:54-04:00",
+  "generatedAt": "Sep 4, 12:01 PM ET",
+  "generatedAtISO": "2026-09-04T12:01:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -469,10 +469,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "11:17",
-      "departed": null,
+      "departed": "11:57",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -830,7 +830,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "5 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -923,6 +923,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788536279367,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "11:57",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788537446820,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -943,9 +952,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T15:42:07+00:00",
+    "updatedAt": "2026-09-04T15:59:01+00:00",
     "mailCheck": {
-      "matched": 1,
+      "matched": 2,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1242,11 +1251,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T15:45:49.320298Z",
         "until": "2026-09-04T15:45:58.811048Z"
+      },
+      {
+        "since": "2026-09-04T15:51:49.333415Z",
+        "until": "2026-09-04T15:52:04.836884Z"
+      },
+      {
+        "since": "2026-09-04T15:57:49.334281Z",
+        "until": "2026-09-04T15:57:59.783667Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-04T09:25:00-04:00"
+    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1288,16 +1315,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-04T09:25:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1305,7 +1322,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:43:00-04:00"
+      "lastISO": "2026-09-04T11:58:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1315,7 +1332,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:45:00-04:00"
+      "lastISO": "2026-09-04T12:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1325,7 +1342,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:45:00-04:00"
+      "lastISO": "2026-09-04T12:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1335,7 +1352,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:00:00-04:00"
+      "lastISO": "2026-09-04T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1388,16 +1405,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T04:22:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:48:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1445,7 +1452,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:46:00-04:00"
+      "lastISO": "2026-09-04T12:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1455,7 +1462,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T11:40:00-04:00"
+      "lastISO": "2026-09-04T12:00:00-04:00"
     },
     {
       "run": "The Closer",
@@ -1466,6 +1473,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-04T08:48:00-04:00"
     },
     {
       "run": "The Opener",
