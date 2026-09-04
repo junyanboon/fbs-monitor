@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 8:45 AM ET",
-  "generatedAtISO": "2026-09-04T08:45:53-04:00",
+  "generatedAt": "Sep 4, 9:01 AM ET",
+  "generatedAtISO": "2026-09-04T09:01:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -656,11 +656,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "09:00"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "11:45"
@@ -846,22 +841,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 08:30"
     },
     {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 22:37"
-    },
-    {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 3 · 22:37"
-    },
-    {
       "code": "AVA-sweep-•••A",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -878,14 +857,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 00:02"
     },
     {
-      "code": "AVA-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:02"
-    },
-    {
       "code": "EOB-sweep-•••",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -924,14 +895,6 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "AI (automation)",
       "created": "Sep 4 · 00:02"
-    },
-    {
-      "code": "Returning Access 509A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Host",
-      "created": "Sep 4 · 04:18"
     },
     {
       "code": "AVA-sweep-•••B",
@@ -1180,6 +1143,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T12:43:47.703068Z",
         "until": "2026-09-04T12:44:00.164673Z"
+      },
+      {
+        "since": "2026-09-04T12:49:07.324377Z",
+        "until": "2026-09-04T12:49:15.768058Z"
+      },
+      {
+        "since": "2026-09-04T12:55:07.324993Z",
+        "until": "2026-09-04T12:55:14.066476Z"
+      },
+      {
+        "since": "2026-09-04T13:00:27.296131Z",
+        "until": "2026-09-04T13:00:42.771892Z"
       }
     ],
     "down": false
@@ -1196,16 +1171,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-03T08:53:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1213,7 +1178,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:44:00-04:00"
+      "lastISO": "2026-09-04T08:59:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1223,7 +1188,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:45:00-04:00"
+      "lastISO": "2026-09-04T09:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1233,7 +1198,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:45:00-04:00"
+      "lastISO": "2026-09-04T09:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1243,7 +1208,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:00:00-04:00"
+      "lastISO": "2026-09-04T09:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1323,7 +1288,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:06:00-04:00"
+      "lastISO": "2026-09-04T09:02:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T08:48:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1343,7 +1318,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:55:00-04:00"
+      "lastISO": "2026-09-04T08:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1383,7 +1358,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:46:00-04:00"
+      "lastISO": "2026-09-04T09:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1393,7 +1368,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T08:40:00-04:00"
+      "lastISO": "2026-09-04T09:00:00-04:00"
     },
     {
       "run": "The Closer",
