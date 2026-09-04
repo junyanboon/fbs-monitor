@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 11:01 PM ET",
-  "generatedAtISO": "2026-09-03T23:01:00-04:00",
+  "generatedAt": "Sep 3, 11:15 PM ET",
+  "generatedAtISO": "2026-09-03T23:15:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -867,7 +867,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -875,7 +875,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -930,24 +930,12 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Sep 3 · 22:37"
-    },
-    {
-      "code": "Courtesy — Dana Brookman accepts the tap-board condition (•••)",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 3 · 22:56"
     }
   ],
   "attention": [
     {
       "level": "warn",
       "text": "Alarm pending · 527 · 21:31"
-    },
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -2109,21 +2097,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T02:59:08.368690Z",
         "until": "2026-09-04T02:59:21.739532Z"
+      },
+      {
+        "since": "2026-09-04T03:04:52.812993Z",
+        "until": "2026-09-04T03:05:03.258202Z"
+      },
+      {
+        "since": "2026-09-04T03:10:08.405522Z",
+        "until": "2026-09-04T03:10:13.919292Z"
+      },
+      {
+        "since": "2026-09-04T03:15:08.393506Z",
+        "until": "2026-09-04T03:15:14.828367Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "sentinel-sweep (Cloud Run)",
-      "cadence": "Hourly",
-      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-03T21:07:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2132,7 +2122,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T23:00:00-04:00"
+      "lastISO": "2026-09-03T23:11:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2143,6 +2133,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-03T23:00:00-04:00"
+    },
+    {
+      "run": "sentinel-sweep (Cloud Run)",
+      "cadence": "Hourly",
+      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-03T23:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2232,7 +2232,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T22:10:00-04:00"
+      "lastISO": "2026-09-03T23:10:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2252,7 +2252,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-03T23:00:00-04:00"
+      "lastISO": "2026-09-03T23:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2262,7 +2262,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-03T23:00:00-04:00"
+      "lastISO": "2026-09-03T23:15:00-04:00"
     },
     {
       "run": "The Closer",
