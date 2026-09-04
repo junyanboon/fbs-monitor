@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 10:31 PM ET",
-  "generatedAtISO": "2026-09-03T22:31:01-04:00",
+  "generatedAt": "Sep 3, 10:45 PM ET",
+  "generatedAtISO": "2026-09-03T22:45:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -456,10 +456,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "21:32",
-      "departed": null,
+      "departed": "22:33",
       "facilitator": null,
       "arrived_by": "Raquel Khan",
-      "departed_by": null,
+      "departed_by": "Raquel Khan",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -651,7 +651,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -659,7 +659,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -700,20 +700,36 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Courtesy — Akira Huang answers her PBF: went well, AC note (•••)",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 3 · 17:56"
-    },
-    {
       "code": "T1 — Megan Cartwright Sunday 2-4 PM availability •••",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "527",
       "raised_by": "The Concierge",
       "created": "Sep 3 · 22:16"
+    },
+    {
+      "code": "Tufan Bhattarai — Sep 5 move confirmed + Studio 901 back-door guide",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "Other",
+      "created": "Sep 3 · 22:43"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "AI (automation)",
+      "created": "Sep 3 · 22:37"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Sep 3 · 22:37"
     }
   ],
   "attention": [
@@ -723,7 +739,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1077,6 +1093,15 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788488108369,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Raquel Khan",
+      "time": "22:33",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788489207733,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1093,7 +1118,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T02:13:02+00:00",
+    "updatedAt": "2026-09-04T02:38:01+00:00",
     "mailCheck": {
       "matched": 6,
       "inGap": 0,
@@ -1852,11 +1877,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T02:26:06.012217Z",
         "until": "2026-09-04T02:26:10.364659Z"
+      },
+      {
+        "since": "2026-09-04T02:31:52.617178Z",
+        "until": "2026-09-04T02:32:03.081028Z"
+      },
+      {
+        "since": "2026-09-04T02:37:23.457476Z",
+        "until": "2026-09-04T02:37:30.760769Z"
+      },
+      {
+        "since": "2026-09-04T02:42:48.699813Z",
+        "until": "2026-09-04T02:43:02.545345Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "sentinel-sweep (Cloud Run)",
+      "cadence": "Hourly",
+      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-03T21:07:00-04:00"
+    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1868,16 +1915,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
-      "run": "sentinel-sweep (Cloud Run)",
-      "cadence": "Hourly",
-      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-03T21:07:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1885,7 +1922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T22:26:00-04:00"
+      "lastISO": "2026-09-03T22:43:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1895,7 +1932,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T22:30:00-04:00"
+      "lastISO": "2026-09-03T22:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1905,7 +1942,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T22:30:00-04:00"
+      "lastISO": "2026-09-03T22:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1975,7 +2012,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:45:00-04:00"
+      "lastISO": "2026-09-03T22:20:00-04:00"
     },
     {
       "run": "The Mechanic",
