@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 10:01 PM ET",
-  "generatedAtISO": "2026-09-03T22:01:03-04:00",
+  "generatedAt": "Sep 3, 10:15 PM ET",
+  "generatedAtISO": "2026-09-03T22:15:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -764,12 +764,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "17:45",
-      "departed": null,
+      "departed": "22:11",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Angus Dirnbeck",
       "arrived_foreign": false,
-      "departed_foreign": false,
+      "departed_foreign": true,
       "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
@@ -810,10 +810,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "18:16",
-      "departed": null,
+      "departed": "22:05",
       "facilitator": null,
       "arrived_by": "Dana Brookman",
-      "departed_by": null,
+      "departed_by": "Dana Brookman",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -867,7 +867,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -875,7 +875,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
@@ -1249,6 +1249,42 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788485568455,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Dana Brookman",
+      "time": "22:05",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788487555969,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "22:11",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788487870748,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "22:15",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788488106040,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "22:15",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788488108369,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1265,7 +1301,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T01:39:03+00:00",
+    "updatedAt": "2026-09-04T02:13:02+00:00",
     "mailCheck": {
       "matched": 6,
       "inGap": 0,
@@ -2000,6 +2036,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T01:59:23.233209Z",
         "until": "2026-09-04T01:59:34.710508Z"
+      },
+      {
+        "since": "2026-09-04T02:05:23.563863Z",
+        "until": "2026-09-04T02:05:35.278103Z"
+      },
+      {
+        "since": "2026-09-04T02:08:22.497864Z",
+        "until": "2026-09-04T02:08:37.016101Z"
+      },
+      {
+        "since": "2026-09-04T02:13:52.522441Z",
+        "until": "2026-09-04T02:13:57.824075Z"
       }
     ],
     "down": false
@@ -2016,6 +2064,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
+      "run": "sentinel-sweep (Cloud Run)",
+      "cadence": "Hourly",
+      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-03T21:07:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2023,7 +2081,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:58:00-04:00"
+      "lastISO": "2026-09-03T22:15:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2033,7 +2091,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T22:00:00-04:00"
+      "lastISO": "2026-09-03T22:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2043,7 +2101,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T22:00:00-04:00"
+      "lastISO": "2026-09-03T22:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2054,16 +2112,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-03T22:00:00-04:00"
-    },
-    {
-      "run": "sentinel-sweep (Cloud Run)",
-      "cadence": "Hourly",
-      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2183,7 +2231,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:10:00-04:00"
+      "lastISO": "2026-09-03T22:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
