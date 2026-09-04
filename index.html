@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 9:31 AM ET",
-  "generatedAtISO": "2026-09-04T09:31:06-04:00",
+  "generatedAt": "Sep 4, 9:45 AM ET",
+  "generatedAtISO": "2026-09-04T09:45:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -648,7 +648,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "who": "Lauren Taylor Scott Tagvenue",
+      "who": "Lauren Taylor Scott Tagvenue FBS",
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
@@ -678,7 +678,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 16.0,
       "end": 17.0,
-      "access_gap": true
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -916,7 +916,20 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     }
   ],
-  "staff": [],
+  "staff": [
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 17.75,
+      "end": 18.25
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 23.5,
+      "end": 24.25
+    }
+  ],
   "openShifts": [
     {
       "role": "Monitoring",
@@ -952,7 +965,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -960,7 +973,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -972,22 +985,6 @@ const DATA = /*__DATA__*/{
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 17.75,
-      "end": 18.25,
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 23.5,
-      "end": 24.25,
       "day": "Today"
     },
     {
@@ -1007,22 +1004,6 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Sep 4 · 00:00"
-    },
-    {
-      "code": "BC-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:00"
-    },
-    {
-      "code": "BC-sweep-•••A",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:01"
     },
     {
       "code": "HTA-sweep-•••",
@@ -1049,12 +1030,12 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 08:27"
     },
     {
-      "code": "Courtesy — Megan Cartwright asks to reply in the morning (•••)",
+      "code": "HTA-sweep-•••B",
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Responder",
-      "created": "Sep 4 · 08:30"
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Sep 4 · 09:40"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -1390,6 +1371,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T13:28:27.869405Z",
         "until": "2026-09-04T13:28:34.334592Z"
+      },
+      {
+        "since": "2026-09-04T13:34:27.485526Z",
+        "until": "2026-09-04T13:34:38.924686Z"
+      },
+      {
+        "since": "2026-09-04T13:40:07.377714Z",
+        "until": "2026-09-04T13:40:13.327811Z"
+      },
+      {
+        "since": "2026-09-04T13:46:07.730082Z",
+        "until": "2026-09-04T13:46:15.047895Z"
       }
     ],
     "down": false
@@ -1413,7 +1406,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:29:00-04:00"
+      "lastISO": "2026-09-04T09:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1423,7 +1416,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:30:00-04:00"
+      "lastISO": "2026-09-04T09:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1433,7 +1426,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:30:00-04:00"
+      "lastISO": "2026-09-04T09:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1513,7 +1506,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:05:00-04:00"
+      "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1593,7 +1586,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:16:00-04:00"
+      "lastISO": "2026-09-04T09:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1603,7 +1596,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T09:30:00-04:00"
+      "lastISO": "2026-09-04T09:40:00-04:00"
     },
     {
       "run": "The Closer",
