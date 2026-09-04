@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 3, 2026",
   "shiftBaseDay": "2026-09-03",
-  "generatedAt": "Sep 3, 9:30 PM ET",
-  "generatedAtISO": "2026-09-03T21:30:57-04:00",
+  "generatedAt": "Sep 3, 9:45 PM ET",
+  "generatedAtISO": "2026-09-03T21:45:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -671,10 +671,10 @@ const DATA = /*__DATA__*/{
       "hta": "Unsent",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "21:32",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Raquel Khan",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -695,7 +695,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "17:51",
-      "departed": "21:30",
+      "departed": "21:31",
       "facilitator": null,
       "arrived_by": "Kateryna Zozulia",
       "departed_by": "Kateryna Zozulia",
@@ -924,14 +924,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 2 · 23:49"
     },
     {
-      "code": "Lauren Taylor Scott — accepted Tagvenue booking — request mobile for access [1a068c6bfb07c4a0]",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Concierge",
-      "created": "Sep 3 · 17:20"
-    },
-    {
       "code": "Courtesy — Akira Huang answers her PBF: went well, AC note (•••)",
       "channel": "SMS",
       "status": "Pending Review",
@@ -957,6 +949,10 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [
+    {
+      "level": "warn",
+      "text": "Alarm pending · 527 · 21:31"
+    },
     {
       "level": "warn",
       "text": "1 robot overdue — see Robots tab"
@@ -1259,18 +1255,43 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788485439057,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "21:31",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788485501068,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Raquel Khan",
+      "time": "21:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788485568455,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
-  "alarmAlerts": [],
+  "alarmAlerts": [
+    {
+      "studio": "527",
+      "time": "21:31",
+      "stage": "PENDING",
+      "ts": 1788485486000
+    }
+  ],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T00:45:01+00:00",
+    "updatedAt": "2026-09-04T01:39:03+00:00",
     "mailCheck": {
-      "matched": 4,
+      "matched": 6,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1983,6 +2004,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T01:30:48.893784Z",
         "until": "2026-09-04T01:30:57.185491Z"
+      },
+      {
+        "since": "2026-09-04T01:36:23.145573Z",
+        "until": "2026-09-04T01:36:33.622472Z"
+      },
+      {
+        "since": "2026-09-04T01:42:22.386887Z",
+        "until": "2026-09-04T01:42:31.195044Z"
       }
     ],
     "down": false
@@ -2006,7 +2035,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:26:00-04:00"
+      "lastISO": "2026-09-03T21:43:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2016,7 +2045,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:30:00-04:00"
+      "lastISO": "2026-09-03T21:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2026,7 +2055,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:30:00-04:00"
+      "lastISO": "2026-09-03T21:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2106,7 +2135,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T20:47:00-04:00"
+      "lastISO": "2026-09-03T21:45:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -2176,7 +2205,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-03T21:31:00-04:00"
+      "lastISO": "2026-09-03T21:46:00-04:00"
     },
     {
       "run": "The Closer",
