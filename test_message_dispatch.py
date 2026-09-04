@@ -75,6 +75,55 @@ def test_expected_row_that_does_not_exist_is_missing():
     ]
 
 
+def test_extended_booking_does_not_call_its_sent_message_missing():
+    """Stella Dada, 2026-09-04, Studio 509A — the regression this guards.
+
+    She booked 12:00–13:00 and asked to extend to 13:30 at 12:31, mid-session.
+    `EOB-sweep-0904-1200-509A` had already been scheduled off the original end
+    and went out on time at 12:45 (`Sent`, 16:45Z). The card's end had become
+    13:30, so the expected EOB moved to 13:15 — a 30-minute gap against the
+    5-minute join window. The sent row fell out of the match and the board
+    published MISSING for a message the renter had already received.
+    """
+    extended = booking()
+    extended["studio"] = "509A"
+    extended["tier"] = "Monitor"
+    extended["start"], extended["end"] = 12.0, 13.5
+
+    sent_before_the_extension = message(
+        "EOB", "Sent",
+        send_after="2026-09-04T16:45:00Z", sent_at="2026-09-04T16:45:00Z")
+    sent_before_the_extension["studio"] = "509A"
+
+    out = build.apply_message_dispatch(
+        [extended], [sent_before_the_extension], date(2026, 9, 4))
+    assert not any(p["kind"] == "EOB" for p in out[0]["dispatch"])
+
+
+def test_terminal_row_suppresses_missing_only_when_nothing_else_joins():
+    """A finished row must not mute a pill the queue still owes.
+
+    An `Error` row replaced by a live one is the ordinary case: the replacement
+    joins, so the terminal row never gets to speak for the booking.
+    """
+    pills = dispatch([booking()], [
+        message("AVA", "Error", created="2026-08-30T08:00:00Z"),
+        message("AVA", "Ready to Send", send_after="2026-08-30T20:30:00Z",
+                created="2026-08-30T09:00:00Z"),
+    ])
+    assert {"kind": "AVA", "state": "scheduled", "time": "16:30"} in pills
+
+
+def test_missing_still_fires_when_no_row_of_that_kind_ever_finished():
+    """The alarm has to survive the fix — a live row that misses its slot by
+    half an hour is a real scheduling fault, not a moved booking."""
+    pills = dispatch([booking()], [
+        message("AVA", "Ready to Send", send_after="2026-08-30T21:00:00Z"),
+        message("EOB", "Ready to Send", send_after="2026-08-31T03:45:00Z"),
+    ])
+    assert {"kind": "AVA", "state": "missing", "time": None} in pills
+
+
 def test_will_not_send_is_intentional_absence_not_missing():
     assert dispatch([booking(ava="Will Not Send", eob="Will Not Send")], []) == []
 
@@ -213,6 +262,9 @@ def main():
     test_scheduled_queue_rows_publish_toronto_times_only()
     test_existing_row_without_time_is_queued_not_missing()
     test_expected_row_that_does_not_exist_is_missing()
+    test_extended_booking_does_not_call_its_sent_message_missing()
+    test_terminal_row_suppresses_missing_only_when_nothing_else_joins()
+    test_missing_still_fires_when_no_row_of_that_kind_ever_finished()
     test_will_not_send_is_intentional_absence_not_missing()
     test_terminal_rows_do_not_render_queue_pills()
     test_missing_artist_relation_is_unknown_not_missing()

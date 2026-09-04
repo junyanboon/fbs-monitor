@@ -2384,15 +2384,23 @@ def _dispatch_time(value):
         return None
 
 
+# A row in one of these has already reached its end state: it went out, it was
+# ruled unnecessary, or it failed loudly somewhere that is not this board. None
+# of them is work still owed, so none of them draws a pill.
+DISPATCH_TERMINAL_STATUSES = ("will not send", "sent", "error")
+
+
+def _is_terminal_dispatch(status):
+    return (status or "").strip().lower() in DISPATCH_TERMINAL_STATUSES
+
+
 def _dispatch_pill(kind, board_status, row):
-    board = (board_status or "").strip().lower()
     if row is None:
-        if board in ("will not send", "sent", "error"):
+        if _is_terminal_dispatch(board_status):
             return None
         return {"kind": kind, "state": "missing", "time": None}
 
-    status = (row.get("status") or "").strip().lower()
-    if status in ("will not send", "sent", "error"):
+    if _is_terminal_dispatch(row.get("status")):
         return None
     send_time = _dispatch_time(row.get("send_after"))
     return {"kind": kind, "state": "scheduled" if send_time else "queued",
@@ -2438,6 +2446,10 @@ def apply_message_dispatch(events, rows, base_day):
     missing alarms. Timed rows join to the booking's canonical AVA (start−2h)
     or EOB (end−15m) time; an untimed row is safe only when Artist + Studio has
     one booking today. Duplicate replacements resolve newest-first.
+
+    MISSING is a claim about the queue, so it is only ever made when nothing
+    finished. A terminal row that fails the time join suppresses the pill
+    rather than proving absence — see the comment at the claim itself.
     """
     by_key = {}
     for row in rows:
@@ -2482,6 +2494,17 @@ def apply_message_dispatch(events, rows, base_day):
             row = (max(matches, key=lambda r: r.get("created") or "")
                    if matches else None)
             if matches is None:
+                continue
+            # Nothing joined, but a FINISHED row for this artist + studio + kind
+            # is sitting right there. Its clock simply does not line up, which is
+            # what a booking that moved after the sweep scheduled its message
+            # looks like: Stella Dada's 2026-09-04 booking grew 13:00 → 13:30
+            # mid-session, so her EOB went out on time at 12:45 while the card's
+            # end−15m had become 13:15 — a 30-minute gap against a 5-minute
+            # window, and the board called a sent message MISSING. A failed time
+            # match is not evidence of absence. Publish nothing instead.
+            if row is None and any(
+                    _is_terminal_dispatch(r.get("status")) for r in candidates):
                 continue
             pill = _dispatch_pill(
                 kind,
