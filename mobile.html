@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 5:31 PM ET",
-  "generatedAtISO": "2026-09-04T17:31:00-04:00",
+  "generatedAt": "Sep 4, 5:45 PM ET",
+  "generatedAtISO": "2026-09-04T17:45:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -449,6 +449,29 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     },
     {
+      "studio": "509B",
+      "who": "Daniel Cater — Salsa practice with Diana",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 19.25,
+      "end": 20.25,
+      "access_gap": false
+    },
+    {
       "studio": "527",
       "who": "Stefan",
       "kind": "staff",
@@ -509,10 +532,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "17:46",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Enrico Casertano",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -696,12 +719,20 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 16:58"
     },
     {
-      "code": "Post-HTA go-ahead confirmation — Enrico Casertano [Skedda] — 527 [gtg:45f6db•••fb8-8b0f-0e1d5f6cbc00]",
+      "code": "Courtesy — Amanda-May schedule-delay acknowledgement •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 17:34"
+    },
+    {
+      "code": "Quick answer — Enrico after-midnight booking question •••",
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 17:15"
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 17:34"
     },
     {
       "code": "EOB-sweep-•••",
@@ -916,6 +947,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788551702181,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Enrico Casertano",
+      "time": "17:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788558366346,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -927,7 +967,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-04T20:00:19+00:00",
     "mailCheck": {
-      "matched": 4,
+      "matched": 5,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1464,6 +1504,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T21:28:03.740398Z",
         "until": "2026-09-04T21:28:15.293748Z"
+      },
+      {
+        "since": "2026-09-04T21:33:09.427610Z",
+        "until": "2026-09-04T21:33:21.875630Z"
+      },
+      {
+        "since": "2026-09-04T21:38:37.731389Z",
+        "until": "2026-09-04T21:38:50.141110Z"
+      },
+      {
+        "since": "2026-09-04T21:44:09.374914Z",
+        "until": "2026-09-04T21:44:24.990687Z"
       }
     ],
     "down": false
@@ -1507,7 +1559,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T17:30:00-04:00"
+      "lastISO": "2026-09-04T17:46:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1517,7 +1569,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T17:30:00-04:00"
+      "lastISO": "2026-09-04T17:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1527,7 +1579,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T17:30:00-04:00"
+      "lastISO": "2026-09-04T17:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1577,7 +1629,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T16:31:00-04:00"
+      "lastISO": "2026-09-04T17:32:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1617,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T16:59:00-04:00"
+      "lastISO": "2026-09-04T17:36:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1657,7 +1709,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T17:31:00-04:00"
+      "lastISO": "2026-09-04T17:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1667,7 +1719,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T17:30:00-04:00"
+      "lastISO": "2026-09-04T17:40:00-04:00"
     },
     {
       "run": "The Closer",
