@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 3:30 PM ET",
-  "generatedAtISO": "2026-09-04T15:30:58-04:00",
+  "generatedAt": "Sep 4, 3:45 PM ET",
+  "generatedAtISO": "2026-09-04T15:45:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -562,15 +562,9 @@ const DATA = /*__DATA__*/{
       "who": "xavier Tagvenue",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
+      "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "15:45"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
       "arrived": "14:46",
       "departed": null,
@@ -696,7 +690,7 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -704,7 +698,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -745,6 +739,30 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 15:27"
     },
     {
+      "code": "Courtesy — Anita Shack positive PBF reply (•••)",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 15:35"
+    },
+    {
+      "code": "Responder — phone number received — Jia L. •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 15:35"
+    },
+    {
+      "code": "Quick answer — Kaushik Boga yoga mats in Studio 527",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 15:35"
+    },
+    {
       "code": "AVA-sweep-•••",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -761,14 +779,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 00:02"
     },
     {
-      "code": "EOB-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:02"
-    },
-    {
       "code": "EOB-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -780,7 +790,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1436,21 +1446,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T19:29:09.596440Z",
         "until": "2026-09-04T19:29:15.029319Z"
+      },
+      {
+        "since": "2026-09-04T19:34:49.068672Z",
+        "until": "2026-09-04T19:34:56.491545Z"
+      },
+      {
+        "since": "2026-09-04T19:40:44.400319Z",
+        "until": "2026-09-04T19:40:57.828312Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-04T09:25:00-04:00"
-    },
     {
       "run": "The Custodian",
       "cadence": "2×/day",
@@ -1472,16 +1480,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-04T08:31:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1499,7 +1497,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:29:00-04:00"
+      "lastISO": "2026-09-04T15:46:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1509,7 +1507,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:30:00-04:00"
+      "lastISO": "2026-09-04T15:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1519,7 +1517,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:30:00-04:00"
+      "lastISO": "2026-09-04T15:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1562,6 +1560,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T06:02:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T15:37:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1590,6 +1598,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T15:02:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T15:36:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1629,7 +1647,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:31:00-04:00"
+      "lastISO": "2026-09-04T15:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1639,7 +1657,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T15:30:00-04:00"
+      "lastISO": "2026-09-04T15:40:00-04:00"
     },
     {
       "run": "The Closer",
