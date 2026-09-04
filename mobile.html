@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 3:15 PM ET",
-  "generatedAtISO": "2026-09-04T15:15:49-04:00",
+  "generatedAt": "Sep 4, 3:30 PM ET",
+  "generatedAtISO": "2026-09-04T15:30:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -729,6 +729,22 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "Kateryna Zozulia — overtime dispute acknowledgment",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 4 · 15:27"
+    },
+    {
+      "code": "Stephanie Brinning — repayment proposal acknowledgment",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 4 · 15:27"
+    },
+    {
       "code": "AVA-sweep-•••",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -764,7 +780,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1408,6 +1424,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T19:12:44.260576Z",
         "until": "2026-09-04T19:12:54.913586Z"
+      },
+      {
+        "since": "2026-09-04T19:17:49.028792Z",
+        "until": "2026-09-04T19:17:58.506929Z"
+      },
+      {
+        "since": "2026-09-04T19:23:44.597784Z",
+        "until": "2026-09-04T19:23:55.099362Z"
+      },
+      {
+        "since": "2026-09-04T19:29:09.596440Z",
+        "until": "2026-09-04T19:29:15.029319Z"
       }
     ],
     "down": false
@@ -1444,6 +1472,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-04T08:31:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1461,7 +1499,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:12:00-04:00"
+      "lastISO": "2026-09-04T15:29:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1471,7 +1509,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:15:00-04:00"
+      "lastISO": "2026-09-04T15:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1481,7 +1519,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:15:00-04:00"
+      "lastISO": "2026-09-04T15:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1554,16 +1592,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T15:02:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:02:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1601,7 +1629,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T15:02:00-04:00"
+      "lastISO": "2026-09-04T15:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1611,7 +1639,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T15:10:00-04:00"
+      "lastISO": "2026-09-04T15:30:00-04:00"
     },
     {
       "run": "The Closer",
