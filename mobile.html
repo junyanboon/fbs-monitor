@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 11:15 AM ET",
-  "generatedAtISO": "2026-09-04T11:15:51-04:00",
+  "generatedAt": "Sep 4, 11:31 AM ET",
+  "generatedAtISO": "2026-09-04T11:31:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -468,10 +468,10 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:17",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -736,7 +736,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -744,7 +744,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -844,7 +844,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -919,19 +919,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788534941711,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "11:17",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788535054620,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "527": {
-      "kind": "departure",
-      "name": "Kateryna Zozulia",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "21:31",
-      "ts": 1788485508805,
-      "when": "Thu 21:31"
-    },
     "693": {
       "kind": "departure",
       "name": "Angus Dirnbeck",
@@ -949,7 +948,13 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T15:11:09+00:00",
+    "updatedAt": "2026-09-04T15:21:05+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-04T09:01:07.690147Z",
@@ -1218,6 +1223,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T15:12:49.420098Z",
         "until": "2026-09-04T15:12:57.816675Z"
+      },
+      {
+        "since": "2026-09-04T15:18:28.149649Z",
+        "until": "2026-09-04T15:18:35.244387Z"
+      },
+      {
+        "since": "2026-09-04T15:23:49.382242Z",
+        "until": "2026-09-04T15:23:58.839676Z"
+      },
+      {
+        "since": "2026-09-04T15:29:42.945691Z",
+        "until": "2026-09-04T15:29:51.408963Z"
       }
     ],
     "down": false
@@ -1239,8 +1256,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
       "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
@@ -1249,8 +1266,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
@@ -1259,9 +1276,19 @@ const DATA = /*__DATA__*/{
       "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
       "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
       "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-04T09:58:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-04T09:58:00-04:00"
+      "lastISO": "2026-09-04T09:25:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1271,7 +1298,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:14:00-04:00"
+      "lastISO": "2026-09-04T11:31:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1281,7 +1308,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:15:00-04:00"
+      "lastISO": "2026-09-04T11:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1291,7 +1318,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:15:00-04:00"
+      "lastISO": "2026-09-04T11:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1332,16 +1359,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T06:02:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:25:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1421,7 +1438,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:01:00-04:00"
+      "lastISO": "2026-09-04T11:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1431,7 +1448,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T11:10:00-04:00"
+      "lastISO": "2026-09-04T11:30:00-04:00"
     },
     {
       "run": "The Closer",
