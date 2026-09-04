@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 8:31 AM ET",
-  "generatedAtISO": "2026-09-04T08:31:03-04:00",
+  "generatedAt": "Sep 4, 8:45 AM ET",
+  "generatedAtISO": "2026-09-04T08:45:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -518,6 +518,29 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 9.5,
       "end": 10.5,
+      "access_gap": false
+    },
+    {
+      "studio": "509A",
+      "who": "Stefan",
+      "kind": "staff",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 11.0,
+      "end": 11.25,
       "access_gap": false
     },
     {
@@ -602,6 +625,29 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
+      "who": "Stefan",
+      "kind": "staff",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 12.0,
+      "end": 12.25,
+      "access_gap": false
+    },
+    {
+      "studio": "509B",
       "who": "Lauren Taylor Scott Tagvenue",
       "kind": "booking",
       "tier": "FBS",
@@ -633,6 +679,29 @@ const DATA = /*__DATA__*/{
       "start": 16.0,
       "end": 17.0,
       "access_gap": true
+    },
+    {
+      "studio": "527",
+      "who": "Stefan",
+      "kind": "staff",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 11.25,
+      "end": 12.0,
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -689,6 +758,29 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 18.0,
       "end": 23.75,
+      "access_gap": false
+    },
+    {
+      "studio": "693",
+      "who": "Stefan",
+      "kind": "staff",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 12.5,
+      "end": 13.25,
       "access_gap": false
     },
     {
@@ -865,7 +957,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -873,7 +965,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -1077,7 +1169,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1292,6 +1384,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T12:27:21.401019Z",
         "until": "2026-09-04T12:27:30.870490Z"
+      },
+      {
+        "since": "2026-09-04T12:32:27.637383Z",
+        "until": "2026-09-04T12:32:37.117347Z"
+      },
+      {
+        "since": "2026-09-04T12:38:27.162710Z",
+        "until": "2026-09-04T12:38:38.592923Z"
+      },
+      {
+        "since": "2026-09-04T12:43:47.703068Z",
+        "until": "2026-09-04T12:44:00.164673Z"
       }
     ],
     "down": false
@@ -1306,16 +1410,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-08-31T10:15:00-04:00"
-    },
-    {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-03T22:20:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1335,7 +1429,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:27:00-04:00"
+      "lastISO": "2026-09-04T08:44:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1345,7 +1439,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:30:00-04:00"
+      "lastISO": "2026-09-04T08:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1355,7 +1449,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:30:00-04:00"
+      "lastISO": "2026-09-04T08:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1428,6 +1522,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T04:22:00-04:00"
     },
     {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T09:05:00-04:00"
+    },
+    {
       "run": "The Mechanic",
       "cadence": "Hourly",
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
@@ -1495,7 +1599,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T08:31:00-04:00"
+      "lastISO": "2026-09-04T08:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1505,7 +1609,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T08:30:00-04:00"
+      "lastISO": "2026-09-04T08:40:00-04:00"
     },
     {
       "run": "The Closer",
