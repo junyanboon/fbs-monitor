@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 6:45 PM ET",
-  "generatedAtISO": "2026-09-04T18:45:44-04:00",
+  "generatedAt": "Sep 4, 6:58 PM ET",
+  "generatedAtISO": "2026-09-04T18:58:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -601,10 +601,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:51",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Amandeep Kaur",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -670,10 +670,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:54",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Anita Pandey",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -722,7 +722,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -941,6 +941,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788561186085,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Amandeep Kaur",
+      "time": "18:51",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788562291767,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "18:54",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788562475930,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -950,7 +968,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T22:35:13+00:00",
+    "updatedAt": "2026-09-04T22:56:04+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -1545,6 +1563,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T22:44:03.581484Z",
         "until": "2026-09-04T22:44:17.021216Z"
+      },
+      {
+        "since": "2026-09-04T22:49:38.156162Z",
+        "until": "2026-09-04T22:49:45.601895Z"
+      },
+      {
+        "since": "2026-09-04T22:54:45.897599Z",
+        "until": "2026-09-04T22:54:58.694561Z"
       }
     ],
     "down": false
@@ -1571,6 +1597,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-04T08:31:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1588,7 +1624,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T18:46:00-04:00"
+      "lastISO": "2026-09-04T18:58:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1608,7 +1644,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T18:45:00-04:00"
+      "lastISO": "2026-09-04T18:55:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1691,16 +1727,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T18:02:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T18:28:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1738,7 +1764,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T18:31:00-04:00"
+      "lastISO": "2026-09-04T18:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1748,7 +1774,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T18:40:00-04:00"
+      "lastISO": "2026-09-04T18:50:00-04:00"
     },
     {
       "run": "The Closer",
