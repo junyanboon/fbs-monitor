@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 11:01 AM ET",
-  "generatedAtISO": "2026-09-04T11:01:02-04:00",
+  "generatedAt": "Sep 4, 11:15 AM ET",
+  "generatedAtISO": "2026-09-04T11:15:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -313,11 +313,11 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:09",
+      "departed": "11:15",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -714,14 +714,6 @@ const DATA = /*__DATA__*/{
       "role": "Monitoring",
       "studio": "901",
       "day_offset": 0,
-      "start": 10.75,
-      "end": 11.25,
-      "day": "Today"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "901",
-      "day_offset": 0,
       "start": 11.75,
       "end": 12.25,
       "day": "Today"
@@ -744,7 +736,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -752,7 +744,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -776,6 +768,14 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
+    {
+      "code": "Insurance follow-up — Aakanksha Patel — Sep 6 class",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Sep 4 · 11:10"
+    },
     {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
@@ -901,6 +901,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788533174042,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "11:09",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788534553071,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "11:15",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788534941711,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -931,7 +949,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T14:50:03+00:00",
+    "updatedAt": "2026-09-04T15:11:09+00:00",
     "doorGaps": [
       {
         "since": "2026-09-04T09:01:07.690147Z",
@@ -1192,6 +1210,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T15:00:57.113229Z",
         "until": "2026-09-04T15:01:03.581910Z"
+      },
+      {
+        "since": "2026-09-04T15:06:49.409858Z",
+        "until": "2026-09-04T15:06:57.974157Z"
+      },
+      {
+        "since": "2026-09-04T15:12:49.420098Z",
+        "until": "2026-09-04T15:12:57.816675Z"
       }
     ],
     "down": false
@@ -1208,6 +1234,36 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-04T09:58:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-04T09:58:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-04T09:58:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1215,7 +1271,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T10:57:00-04:00"
+      "lastISO": "2026-09-04T11:14:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1225,7 +1281,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:00:00-04:00"
+      "lastISO": "2026-09-04T11:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1235,7 +1291,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T11:00:00-04:00"
+      "lastISO": "2026-09-04T11:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1255,7 +1311,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T10:07:00-04:00"
+      "lastISO": "2026-09-04T11:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1308,26 +1364,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T04:22:00-04:00"
     },
     {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:58:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:58:00-04:00"
-    },
-    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:45 America/Toronto · one authorized owner SMS",
@@ -1346,16 +1382,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-03T19:47:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1385,7 +1411,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T10:10:00-04:00"
+      "lastISO": "2026-09-04T11:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1405,7 +1431,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T11:00:00-04:00"
+      "lastISO": "2026-09-04T11:10:00-04:00"
     },
     {
       "run": "The Closer",
