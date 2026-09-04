@@ -251,8 +251,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 1:45 PM ET",
-  "generatedAtISO": "2026-09-04T13:45:49-04:00",
+  "generatedAt": "Sep 4, 2:03 PM ET",
+  "generatedAtISO": "2026-09-04T14:03:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -434,11 +434,6 @@ const DATA = /*__DATA__*/{
       "hta": "Unsent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "14:00"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "16:45"
@@ -549,10 +544,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "12:47",
-      "departed": null,
+      "departed": "13:47",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -766,14 +761,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 4 · 00:02"
     },
     {
-      "code": "AVA-sweep-•••B",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 04:31"
-    },
-    {
       "code": "EOB-sweep-•••B",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -959,6 +946,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788543119668,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "13:47",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788544074928,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -968,7 +964,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T17:35:09+00:00",
+    "updatedAt": "2026-09-04T17:52:12+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1347,6 +1343,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T17:40:09.781700Z",
         "until": "2026-09-04T17:40:16.279301Z"
+      },
+      {
+        "since": "2026-09-04T17:46:04.084650Z",
+        "until": "2026-09-04T17:46:18.716109Z"
+      },
+      {
+        "since": "2026-09-04T17:52:04.065464Z",
+        "until": "2026-09-04T17:52:13.521786Z"
+      },
+      {
+        "since": "2026-09-04T17:57:49.147255Z",
+        "until": "2026-09-04T17:58:00.278006Z"
       }
     ],
     "down": false
@@ -1410,7 +1418,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T13:43:00-04:00"
+      "lastISO": "2026-09-04T13:59:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1420,7 +1428,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T13:45:00-04:00"
+      "lastISO": "2026-09-04T14:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1430,7 +1438,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T13:45:00-04:00"
+      "lastISO": "2026-09-04T14:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1440,7 +1448,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T13:00:00-04:00"
+      "lastISO": "2026-09-04T14:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1540,7 +1548,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T13:46:00-04:00"
+      "lastISO": "2026-09-04T14:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1550,7 +1558,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T13:40:00-04:00"
+      "lastISO": "2026-09-04T14:00:00-04:00"
     },
     {
       "run": "The Closer",
