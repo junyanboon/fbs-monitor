@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 9:45 AM ET",
-  "generatedAtISO": "2026-09-04T09:45:50-04:00",
+  "generatedAt": "Sep 4, 10:01 AM ET",
+  "generatedAtISO": "2026-09-04T10:01:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -551,11 +551,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "10:00"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -849,10 +844,10 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:48",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -965,7 +960,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "693",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -973,7 +968,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509B",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
@@ -997,54 +992,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
-    {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:00"
-    },
-    {
-      "code": "HTA-sweep-•••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:01"
-    },
-    {
-      "code": "PBF-overtime — Kateryna Zozulia — 527, •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Timekeeper",
-      "created": "Sep 4 · 04:14"
-    },
-    {
-      "code": "Responder — phone number received — Lauren Taylor Scott •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Sep 4 · 08:27"
-    },
-    {
-      "code": "HTA-sweep-•••B",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 09:40"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:02"
-    },
     {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
@@ -1134,6 +1081,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788527905816,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "09:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788529695471,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1156,16 +1112,6 @@ const DATA = /*__DATA__*/{
       "time": "22:11",
       "ts": 1788487870748,
       "when": "Thu 22:11"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "901",
-      "time": "22:15",
-      "ts": 1788488108369,
-      "when": "Thu 22:15"
     }
   },
   "alarmAlerts": [],
@@ -1174,7 +1120,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T13:23:06+00:00",
+    "updatedAt": "2026-09-04T13:50:21+00:00",
     "doorGaps": [
       {
         "since": "2026-09-04T09:01:07.690147Z",
@@ -1383,6 +1329,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T13:46:07.730082Z",
         "until": "2026-09-04T13:46:15.047895Z"
+      },
+      {
+        "since": "2026-09-04T13:51:47.590572Z",
+        "until": "2026-09-04T13:52:00.990294Z"
+      },
+      {
+        "since": "2026-09-04T13:56:56.768612Z",
+        "until": "2026-09-04T13:57:10.244476Z"
       }
     ],
     "down": false
@@ -1406,7 +1360,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:45:00-04:00"
+      "lastISO": "2026-09-04T10:01:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1416,7 +1370,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:45:00-04:00"
+      "lastISO": "2026-09-04T10:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1426,7 +1380,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:45:00-04:00"
+      "lastISO": "2026-09-04T10:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1436,7 +1390,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:00:00-04:00"
+      "lastISO": "2026-09-04T10:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1516,7 +1470,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:02:00-04:00"
+      "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1546,7 +1500,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:33:00-04:00"
+      "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1586,7 +1540,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T09:31:00-04:00"
+      "lastISO": "2026-09-04T09:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1596,7 +1550,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T09:40:00-04:00"
+      "lastISO": "2026-09-04T10:00:00-04:00"
     },
     {
       "run": "The Closer",
