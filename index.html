@@ -209,12 +209,14 @@
   .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
   /* Session verdict glyph (verdictOf): last in the tag cluster, so it reads as
      the verdict ON the booking rather than another attribute of it. */
-  .verdict{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;
-           border-radius:99px;font-family:var(--sans);font-size:12px;font-weight:700;line-height:1;
-           cursor:default;flex:none}
-  .verdict.ok{background:var(--ok-bg);color:var(--ok)}
-  .verdict.odd{background:var(--watch-bg);color:var(--watch)}
-  .verdict.bad{background:var(--crit);color:#fff}
+  .verdict{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+           border-radius:99px;font-family:var(--sans);font-size:16px;font-weight:900;line-height:1;
+           cursor:default;flex:none;color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+  /* Filled discs, one weight for all three (Junyan, 2026-09-05: the old
+     tinted 19px chips did not read from across the desk). */
+  .verdict.ok{background:var(--ok)}
+  .verdict.odd{background:var(--watch)}
+  .verdict.bad{background:var(--crit)}
   /* Warnings column (was the countdown, dropped 2026-08-25 — the timeline
      itself says where things stand). */
   .ev .warns{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
@@ -484,8 +486,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 1:16 PM ET",
-  "generatedAtISO": "2026-09-05T13:16:25-04:00",
+  "generatedAt": "Sep 5, 1:30 PM ET",
+  "generatedAtISO": "2026-09-05T13:30:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -666,7 +668,7 @@ const DATA = /*__DATA__*/{
           "time": "14:45"
         }
       ],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -922,7 +924,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1431,6 +1433,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T17:12:07.411411Z",
         "until": "2026-09-05T17:12:18.931086Z"
+      },
+      {
+        "since": "2026-09-05T17:18:01.588403Z",
+        "until": "2026-09-05T17:18:12.125726Z"
+      },
+      {
+        "since": "2026-09-05T17:23:52.011588Z",
+        "until": "2026-09-05T17:24:00.658660Z"
+      },
+      {
+        "since": "2026-09-05T17:29:45.496624Z",
+        "until": "2026-09-05T17:29:51.903562Z"
       }
     ],
     "down": false
@@ -1462,8 +1476,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
@@ -1474,7 +1488,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:15:00-04:00"
+      "lastISO": "2026-09-05T13:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1484,7 +1498,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:10:00-04:00"
+      "lastISO": "2026-09-05T13:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1494,7 +1508,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:15:00-04:00"
+      "lastISO": "2026-09-05T13:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1504,7 +1518,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:15:00-04:00"
+      "lastISO": "2026-09-05T13:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1534,7 +1548,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:07:00-04:00"
+      "lastISO": "2026-09-05T13:31:00-04:00"
     },
     {
       "run": "The Analyst",
