@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 11:45 AM ET",
-  "generatedAtISO": "2026-09-05T11:45:50-04:00",
+  "generatedAt": "Sep 5, 12:01 PM ET",
+  "generatedAtISO": "2026-09-05T12:01:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -513,7 +513,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [],
-      "heard": false,
+      "heard": true,
       "arrived": "09:02",
       "departed": "10:22",
       "facilitator": null,
@@ -682,7 +682,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "07:51",
-      "departed": "11:45",
+      "departed": "11:46",
       "facilitator": null,
       "arrived_by": "Tufan Bhattarai",
       "departed_by": "Tufan Bhattarai",
@@ -781,35 +781,49 @@ const DATA = /*__DATA__*/{
   "messages": [
     {
       "code": "Holding reply — Janet Zamora ••• [gmail-1a071f55683e2310]",
+      "kind": null,
       "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "The Responder",
-      "created": "Sep 5 · 11:31"
+      "created": "Sep 5 · 11:31",
+      "send_after": null,
+      "send_after_iso": null
     },
     {
       "code": "Post-HTA go-ahead confirmation — Jia L. [Peerspace] — 509B [gtg:ffb5067d-••••-42c1-a40d-4708c61e1d0a]",
+      "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "509B",
       "raised_by": "AI (automation)",
-      "created": "Sep 5 · 11:40"
+      "created": "Sep 5 · 11:40",
+      "send_after": null,
+      "send_after_iso": null
     },
     {
       "code": "EOB",
+      "kind": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "527",
       "raised_by": "AI (automation)",
-      "created": "Sep 5 · 11:44"
+      "created": "Sep 5 · 11:44",
+      "send_after": "21:45",
+      "send_after_iso": "2026-09-05T21:45:00-04:00",
+      "label": "EOB for Rebecca Wise in Studio 527"
     },
     {
       "code": "AVA",
+      "kind": "AVA",
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "527",
       "raised_by": "AI (automation)",
-      "created": "Sep 5 · 11:44"
+      "created": "Sep 5 · 11:44",
+      "send_after": "14:45",
+      "send_after_iso": "2026-09-05T14:45:00-04:00",
+      "label": "AVA for Rebecca Wise in Studio 527"
     }
   ],
   "attention": [
@@ -926,6 +940,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788623155038,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "12:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788624007905,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "12:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788624011171,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -946,7 +978,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-05T15:35:02+00:00",
+    "updatedAt": "2026-09-05T15:48:02+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1233,6 +1265,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T15:40:51.367137Z",
         "until": "2026-09-05T15:41:01.818374Z"
+      },
+      {
+        "since": "2026-09-05T15:46:44.359867Z",
+        "until": "2026-09-05T15:46:59.830481Z"
+      },
+      {
+        "since": "2026-09-05T15:51:58.061856Z",
+        "until": "2026-09-05T15:52:12.724213Z"
+      },
+      {
+        "since": "2026-09-05T15:57:57.706118Z",
+        "until": "2026-09-05T15:58:08.518911Z"
       }
     ],
     "down": false
@@ -1266,7 +1310,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:43:00-04:00"
+      "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1276,7 +1320,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:40:00-04:00"
+      "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1286,7 +1330,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:45:00-04:00"
+      "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1296,7 +1340,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:45:00-04:00"
+      "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1306,7 +1350,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:00:00-04:00"
+      "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1316,7 +1360,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:00:00-04:00"
+      "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1386,17 +1430,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:59:00-04:00"
-    },
-    {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:45 America/Toronto · one authorized owner SMS",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-05T00:28:00-04:00"
+      "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1456,7 +1490,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:46:00-04:00"
+      "lastISO": "2026-09-05T12:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1477,6 +1511,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:45 America/Toronto · one authorized owner SMS",
+      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-05T00:28:00-04:00"
     },
     {
       "run": "The Opener",
@@ -1920,7 +1964,7 @@ function render(){
        missing code, an unverified access window, or an unavailable directory
        read, so never describe the boolean as proof that the code is missing.
        THE one access surface on this app (2026-08-25). */
-    if(e.access_gap) warns += `<span class="chip crit" title="Open access verification">Verify access</span>`;
+    if(e.access_gap) warns += `<span class="chip crit" title="Open access item for this renter">${esc(e.access_label||"Verify access")}</span>`;
     /* dup_studios suppresses this (a second calendar row is not evidence of a
        no-show — see stateOf); wrong_studio has its own amber line above. */
     if(st.flagged && !e.dup_studios) warns += `<span class="chip crit">Missing</span>`;
@@ -1998,12 +2042,23 @@ function render(){
   /* messages tab: queue rows awaiting a human — titles only, bodies stay in
      Notion. The button is the tab's whole point: process them there. */
   const MSGS = DATA.messages || [];
-  const mstat = s => s==="Error"?["crit","Error"]:s==="Ready to Send"?["ok","Sending"]:["watch","Review"];
+  /* SENDING only when dispatch is due within about a minute (or overdue);
+     a later Send After is an orange SCHEDULED pill carrying the clock time. */
+  const mstat = m => {
+    if(m.status==="Error") return ["crit","Error"];
+    if(m.status!=="Ready to Send") return ["watch","Review"];
+    const due = m.send_after_iso ? new Date(m.send_after_iso).getTime() : 0;
+    if(due && due - Date.now() > 90000) return ["watch","Scheduled " + esc(m.send_after)];
+    return ["ok","Sending"];
+  };
   const msgRow = m => {
-    const [mc,ml] = mstat(m.status);
+    const [mc,ml] = mstat(m);
+    const when = m.send_after ? `sends ${esc(m.send_after)}` : esc(m.created||"");
+    const name = m.label ? esc(m.label)
+               : `${esc(m.code)}${m.studio?` <span class="chip plain">${esc(m.studio)}</span>`:""}`;
     return `<div class="shift">
-      <span class="tm">${esc(m.created||"")}</span>
-      <span class="nm">${esc(m.code)}${m.studio?` <span class="chip plain">${esc(m.studio)}</span>`:""}</span>
+      <span class="tm">${when}</span>
+      <span class="nm">${name}</span>
       <span class="chip plain">${esc(m.channel||"?")}</span>
       <span class="chip ${mc}">${ml}</span>
     </div>`;
