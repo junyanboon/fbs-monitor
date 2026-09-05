@@ -486,8 +486,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 4:31 PM ET",
-  "generatedAtISO": "2026-09-05T16:31:09-04:00",
+  "generatedAt": "Sep 5, 4:39 PM ET",
+  "generatedAtISO": "2026-09-05T16:39:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -571,10 +571,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "16:36",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Kyle FitzGerald",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -664,10 +664,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "13:49",
-      "departed": null,
+      "departed": "16:34",
       "facilitator": null,
       "arrived_by": "Kyle FitzGerald",
-      "departed_by": null,
+      "departed_by": "Kyle FitzGerald",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -824,18 +824,6 @@ const DATA = /*__DATA__*/{
       "send_after": null,
       "send_after_iso": null,
       "label": "Quick answer for Rebecca Wise"
-    },
-    {
-      "code": "Post-HTA go-ahead confirmation — Simona Horova — 509A [gtg:8de56021-b0ed-••••-8e7b-dd8e576b023d]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 5 · 15:40",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "GTG Confirmation for Simona Horova in Studio 509A"
     },
     {
       "code": "EOB",
@@ -1000,6 +988,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788630552993,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Kyle FitzGerald",
+      "time": "16:34",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788640440189,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Kyle FitzGerald",
+      "time": "16:36",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788640605479,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1020,9 +1026,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-05T17:52:02+00:00",
+    "updatedAt": "2026-09-05T20:38:06+00:00",
     "mailCheck": {
-      "matched": 4,
+      "matched": 5,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1511,6 +1517,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T20:29:59.319822Z",
         "until": "2026-09-05T20:30:07.647788Z"
+      },
+      {
+        "since": "2026-09-05T20:35:46.164087Z",
+        "until": "2026-09-05T20:35:55.604922Z"
       }
     ],
     "down": false
@@ -1534,7 +1544,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T16:27:00-04:00"
+      "lastISO": "2026-09-05T16:38:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1564,7 +1574,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T16:30:00-04:00"
+      "lastISO": "2026-09-05T16:35:00-04:00"
     },
     {
       "run": "QA release check",
