@@ -395,6 +395,43 @@ agree to the minute in practice.
 > pills because the queue rows were timed off *her* 14:15, not its 13:00. She
 > read as an untiered booking with no messages at all.
 
+### 18. The session verdict certifies only what was observed
+
+Each **finished** booking carries one glyph at the end of its name row — right
+of the tier pill, or beside the name when there is no pill. It answers the one
+question the desk asks while scanning a lane: did this one go normally?
+
+| Glyph | Means | Triggered by |
+|---|---|---|
+| ✓ green | Nothing to do | arrival **and** departure both seen, both within 16 min of the window |
+| ⚠ amber | Worth a look | out >16 min late, in >16 min early, an inferred arrival (`assumed`), a keypad name that is not the expected person, or **no departure seen at all** |
+| ! red | Act on it | no arrival at all, the renter was in another studio, or out **>60 min** late |
+
+`verdictOf()` lives in both templates and is covered case-for-case, on both
+editions at once, by `test_session_verdict.py`. The thresholds are the timeline's
+own `FLAG_MIN` (16 min) and a new `OVER_BIG` (1 h) — change them in one place.
+
+**It stays silent twice, and each silence is load-bearing:**
+
+* **The booking is not over.** A live booking has no departure yet, so a ✓ would
+  be a guess that goes stale the moment the renter overstays.
+* **`FEED_DOWN` is set.** `arrived` is then null for *every* booking because
+  nothing was watching (rule 0). A verdict there is manufactured out of an
+  outage — the same reason `stateOf()` suppresses the Missing flag.
+
+`dup_studios` suppresses it too, for the reason `stateOf()` already does: a
+second calendar row for the same renter is not evidence about anything.
+
+**A departure nobody observed is amber, and must stay amber.** Back-to-back
+bookings in one studio share a panel: nobody arms between them, so the earlier
+renter honestly has `departed: null` (see `attribute_arm_events` pass 2). That
+is the routine case, not an alarm — but it is also indistinguishable here from
+a studio left genuinely open, and Junyan's ruling on 2026-09-05 was to flag it:
+*"12 departure never seen back to back is warning."* The desk tells the two
+apart in a glance; this builder cannot. Promoting it to red would put an
+act-on-it badge on a large share of every ordinary day, which is how a signal
+stops being read at all.
+
 ---
 
 ## Working on it
