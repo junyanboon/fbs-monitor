@@ -207,6 +207,14 @@
   .ev .who .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;
                max-width:100%;vertical-align:bottom}
   .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
+  /* Session verdict glyph (verdictOf): last in the tag cluster, so it reads as
+     the verdict ON the booking rather than another attribute of it. */
+  .verdict{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;
+           border-radius:99px;font-family:var(--sans);font-size:12px;font-weight:700;line-height:1;
+           cursor:default;flex:none}
+  .verdict.ok{background:var(--ok-bg);color:var(--ok)}
+  .verdict.odd{background:var(--watch-bg);color:var(--watch)}
+  .verdict.bad{background:var(--crit);color:#fff}
   /* Warnings column (was the countdown, dropped 2026-08-25 — the timeline
      itself says where things stand). */
   .ev .warns{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
@@ -467,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 9:30 PM ET",
-  "generatedAtISO": "2026-09-04T21:30:54-04:00",
+  "generatedAt": "Sep 4, 9:45 PM ET",
+  "generatedAtISO": "2026-09-04T21:45:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1992,6 +2000,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T01:30:08.969705Z",
         "until": "2026-09-05T01:30:14.450296Z"
+      },
+      {
+        "since": "2026-09-05T01:36:08.991116Z",
+        "until": "2026-09-05T01:36:17.452043Z"
+      },
+      {
+        "since": "2026-09-05T01:42:03.475374Z",
+        "until": "2026-09-05T01:42:12.952373Z"
       }
     ],
     "down": false
@@ -2045,7 +2061,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:26:00-04:00"
+      "lastISO": "2026-09-04T21:43:00-04:00"
+    },
+    {
+      "run": "desk-loop (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
+      "produces": "No report row. Closes 🎯 Next Actions rows reality has already satisfied, flags mismatches, absorbs reviewer rewrites into 🔧 Sweep Feedback, and runs the handback pass. An idle tick writes nothing at all — which is exactly why Self-heartbeat is this row's primary signal rather than a linked report.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T21:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2055,7 +2081,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:30:00-04:00"
+      "lastISO": "2026-09-04T21:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2065,7 +2091,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:30:00-04:00"
+      "lastISO": "2026-09-04T21:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2186,16 +2212,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T21:31:00-04:00"
-    },
-    {
-      "run": "desk-loop (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
-      "produces": "No report row. Closes 🎯 Next Actions rows reality has already satisfied, flags mismatches, absorbs reviewer rewrites into 🔧 Sweep Feedback, and runs the handback pass. An idle tick writes nothing at all — which is exactly why Self-heartbeat is this row's primary signal rather than a linked report.",
-      "monitoring": "Paused",
-      "status": "plain",
-      "statusLabel": "Paused",
-      "lastISO": "2026-09-04T21:30:00-04:00"
     },
     {
       "run": "The Closer",
@@ -2427,6 +2443,78 @@ function noGtgChip(e,st){
   return `<span class="chip ${st.live?"crit":"watch"}">No GTG</span>`;
 }
 
+const FLAG_MIN = 16/60;   // within 16 min of the window = plain green (Junyan)
+const OVER_BIG = 1;       // an hour past the booked end stops being "a bit late"
+
+/* ── Session verdict ────────────────────────────────────────────────────────
+   One glyph per FINISHED booking, answering the question the desk actually
+   asks when it scans the lane: did this one go normally? Reading the timeline
+   row answers it too, but only one card at a time.
+
+   THREE THINGS IT REFUSES TO DO, each for a reason that has already bitten:
+
+   1. Judge a booking that is not over. A live booking has no departure yet, so
+      a ✓ would be a guess that goes stale the moment the renter overstays.
+
+   2. Speak while the arrival feed is down. FEED_DOWN means `arrived` is null
+      for every booking because nothing was watching (see stateOf) — a ✓ or a
+      ! then would be manufactured out of an outage.
+
+   3. Certify a booking whose departure was never observed. Back-to-back
+      bookings in one studio share a panel: nobody arms between them, so the
+      earlier renter legitimately has `departed: null` (see the pass-2 comment
+      in build.py). That is the routine case, not an alarm — so it gets NO
+      badge rather than a ✓ we cannot support or a ! that accuses half the
+      day's ordinary bookings.
+
+   The three levels split on what the desk must DO:
+     ✓ clean   — in and out inside the window. Nothing to do.
+     ⚠ odd     — a soft overrun, an early arrival, an unexpected keypad name,
+                 or an arrival we had to infer. Worth a look.
+     ! serious — nobody disarmed at all, the renter was in the wrong room, or
+                 the overrun is big enough to bill or to have pushed the next
+                 booking. Act on it. */
+function verdictOf(e, now){
+  if(FEED_DOWN || e.kind!=="booking") return null;
+  const nrm = t => t==null ? null : (t < e.start-12 ? t+24 : t);
+  const arr = nrm(parseHM(e.arrived)), dep = nrm(parseHM(e.departed));
+  const over = now >= e.end || (dep!=null && dep >= e.start);
+  if(!over) return null;
+  // A second calendar row for the same renter is not evidence of anything —
+  // the same suppression stateOf() applies to the Missing flag.
+  if(e.dup_studios) return null;
+  const bad = [], odd = [];
+  if(e.wrong_studio) bad.push(`In ${e.wrong_studio.studio} at ${e.wrong_studio.at}, not this studio`);
+  if(arr==null){
+    if(!e.wrong_studio) bad.push("No arrival — nobody disarmed this studio");
+  } else {
+    if(e.assumed) odd.push(e.assumed==="bypass"
+      ? "Arrival inferred — the door sensor was bypassed"
+      : "Arrival inferred — no disarm, the studio was already open");
+    else if((e.start-arr) > FLAG_MIN) odd.push(`In ${Math.round((e.start-arr)*60)}m early`);
+    if(e.arrived_foreign) odd.push(`Keyed in by ${e.arrived_by} — not the expected person`);
+  }
+  if(dep!=null){
+    const lm = Math.round((dep-e.end)*60);
+    if((dep-e.end) > OVER_BIG) bad.push(`Out ${lm}m late`);
+    else if((dep-e.end) > FLAG_MIN) odd.push(`Out ${lm}m late`);
+    if(e.departed_foreign) odd.push(`Armed by ${e.departed_by} — not the expected person`);
+  } else if(arr!=null){
+    /* Came in; nobody armed afterwards. Usually the routine back-to-back case —
+       two renters share one panel, so the earlier booking has no arm of its own
+       (see the pass-2 comment in build.py). Junyan's ruling, 2026-09-05: flag it
+       anyway. An unclosed booking is worth a glance even when the explanation is
+       boring, and the desk can tell a back-to-back from a real open studio far
+       faster than this builder can. */
+    odd.push("No departure seen — nobody armed after this booking");
+  }
+  if(bad.length) return {cls:"bad", glyph:"!", why:bad.concat(odd).join(" · ")};
+  if(odd.length) return {cls:"odd", glyph:"\u26a0", why:odd.join(" · ")};
+  return {cls:"ok", glyph:"\u2713", why:"In and out on time"};
+}
+const verdictChip = v => v
+  ? `<span class="verdict ${v.cls}" title="${esc(v.why)}" aria-label="${esc(v.why)}">${v.glyph}</span>` : "";
+
 /* One staff column: merge each person's overlapping / back-to-back shifts into a
    single block so the rail never stacks blocks on top of each other. Ela's
    18:00-18:15 + 18:15-18:45 + 18:30-19:00 becomes one 18:00-19:00 block. */
@@ -2504,7 +2592,6 @@ function render(){
   $('#summary').innerHTML = seg.join('<span class="sep">·</span>');
 
   /* studio strips */
-  const FLAG_MIN = 16/60;   // within 16 min of the window = plain green (Junyan)
   const tlHTML = (e, st) => {
     // Cross-midnight: e.start/end are decimal hours that can exceed 24, while
     // arrived/departed are wall-clock "HH:MM" — pull them into the same frame.
@@ -2602,7 +2689,7 @@ function render(){
       }).join("") + `</span>` : "";
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}</span>${tlHTML(e,st)}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}${verdictChip(verdictOf(e,n))}</span>${tlHTML(e,st)}</div>
       <div class="warns">${warns}${dispatch}</div>
     </div>`;
   };
