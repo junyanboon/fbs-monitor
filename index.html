@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 7:45 PM ET",
-  "generatedAtISO": "2026-09-04T19:45:51-04:00",
+  "generatedAt": "Sep 4, 8:01 PM ET",
+  "generatedAtISO": "2026-09-04T20:01:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -582,10 +582,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "18:33",
-      "departed": null,
+      "departed": "19:48",
       "facilitator": null,
       "arrived_by": "Ishfaaq Jookhun",
-      "departed_by": null,
+      "departed_by": "Ishfaaq Jookhun",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -671,13 +671,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "20:00"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
       "arrived": "19:11",
       "departed": null,
@@ -955,20 +949,12 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "AI (automation)",
       "created": "Sep 4 · 00:02"
-    },
-    {
-      "code": "EOB-sweep-•••B",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 19:31"
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1214,6 +1200,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788563477217,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Ishfaaq Jookhun",
+      "time": "19:48",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788565721779,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "20:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788566430600,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "20:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788566434430,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1223,7 +1236,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-04T23:16:17+00:00",
+    "updatedAt": "2026-09-04T23:51:04+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -1858,6 +1871,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-04T23:42:45.796035Z",
         "until": "2026-09-04T23:42:59.763239Z"
+      },
+      {
+        "since": "2026-09-04T23:48:09.182715Z",
+        "until": "2026-09-04T23:48:24.635421Z"
+      },
+      {
+        "since": "2026-09-04T23:53:51.952747Z",
+        "until": "2026-09-04T23:54:04.219096Z"
+      },
+      {
+        "since": "2026-09-04T23:59:52.454663Z",
+        "until": "2026-09-05T00:00:03.021864Z"
       }
     ],
     "down": false
@@ -1884,6 +1909,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-04T08:31:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1901,7 +1936,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:42:00-04:00"
+      "lastISO": "2026-09-04T20:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1911,7 +1946,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:45:00-04:00"
+      "lastISO": "2026-09-04T20:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1921,7 +1956,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:45:00-04:00"
+      "lastISO": "2026-09-04T20:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1931,7 +1966,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:00:00-04:00"
+      "lastISO": "2026-09-04T20:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2001,17 +2036,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:03:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T19:30:00-04:00"
+      "lastISO": "2026-09-04T20:00:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2061,7 +2086,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T19:40:00-04:00"
+      "lastISO": "2026-09-04T20:00:00-04:00"
     },
     {
       "run": "The Closer",
