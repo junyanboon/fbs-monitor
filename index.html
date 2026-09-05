@@ -473,10 +473,10 @@
    Support board (tier, GTG/HTA) and Gmail ADT arrivals/departures.
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
-  "date": "Friday, September 4, 2026",
+  "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 11:46 PM ET",
-  "generatedAtISO": "2026-09-04T23:46:05-04:00",
+  "generatedAt": "Sep 5, 12:01 AM ET",
+  "generatedAtISO": "2026-09-05T00:01:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -921,11 +921,36 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 00:00"
+    },
+    {
+      "code": "BC-sweep-•••A",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 00:01"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 00:01"
+    }
+  ],
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -2094,6 +2119,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T03:45:08.718527Z",
         "until": "2026-09-05T03:45:19.424763Z"
+      },
+      {
+        "since": "2026-09-05T03:50:53.394021Z",
+        "until": "2026-09-05T03:51:00.662211Z"
+      },
+      {
+        "since": "2026-09-05T03:56:47.250968Z",
+        "until": "2026-09-05T03:56:53.567570Z"
       }
     ],
     "down": false
@@ -2110,16 +2143,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T22:05:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-03T19:47:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2127,7 +2150,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T23:45:00-04:00"
+      "lastISO": "2026-09-04T23:56:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2137,7 +2160,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T23:00:00-04:00"
+      "lastISO": "2026-09-05T00:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2190,6 +2213,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T23:31:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T23:57:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -2198,16 +2231,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T04:25:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-01T10:12:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2237,7 +2260,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-04T23:45:00-04:00"
+      "lastISO": "2026-09-05T00:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2247,7 +2270,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-04T23:45:00-04:00"
+      "lastISO": "2026-09-05T00:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2348,6 +2371,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-09-02T07:07:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-01T10:12:00-04:00"
     },
     {
       "run": "The Watchman",
