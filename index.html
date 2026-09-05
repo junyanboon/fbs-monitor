@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 9:00 AM ET",
-  "generatedAtISO": "2026-09-05T09:00:56-04:00",
+  "generatedAt": "Sep 5, 9:15 AM ET",
+  "generatedAtISO": "2026-09-05T09:15:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -520,10 +520,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:02",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Annie Ng",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -755,7 +755,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -776,19 +776,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788612502341,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Annie Ng",
+      "time": "09:02",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788613348900,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "509A",
-      "time": "20:00",
-      "ts": 1788566434430,
-      "when": "Fri 20:00"
-    },
     "509B": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -816,7 +815,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-05T12:55:01+00:00",
+    "updatedAt": "2026-09-05T13:05:01+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -991,11 +990,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T12:58:07.793883Z",
         "until": "2026-09-05T12:58:17.287292Z"
+      },
+      {
+        "since": "2026-09-05T13:04:02.019887Z",
+        "until": "2026-09-05T13:04:15.630930Z"
+      },
+      {
+        "since": "2026-09-05T13:10:02.026319Z",
+        "until": "2026-09-05T13:10:09.494952Z"
+      },
+      {
+        "since": "2026-09-05T13:16:02.279971Z",
+        "until": "2026-09-05T13:16:04.882912Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "scribe (GitHub Actions)",
+      "cadence": "Hourly",
+      "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
+      "produces": "Ships Junyan's Deck rulings on HTR suggestions: Approved rows ship the proposal, Declined-with-note rows ship the note; verified edits flip the Sweep Feedback row to Applied",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Never checked in",
+      "lastISO": null
+    },
     {
       "run": "The Loop",
       "cadence": "Hourly",
@@ -1014,7 +1035,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:59:00-04:00"
+      "lastISO": "2026-09-05T09:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1024,7 +1045,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:00:00-04:00"
+      "lastISO": "2026-09-05T09:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1034,7 +1055,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:00:00-04:00"
+      "lastISO": "2026-09-05T09:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1044,7 +1065,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:00:00-04:00"
+      "lastISO": "2026-09-05T09:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1064,7 +1085,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:07:00-04:00"
+      "lastISO": "2026-09-05T09:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1164,7 +1185,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:34:00-04:00"
+      "lastISO": "2026-09-05T09:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1194,7 +1215,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T03:10:00-04:00"
+      "lastISO": "2026-09-05T09:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1204,7 +1225,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:46:00-04:00"
+      "lastISO": "2026-09-05T09:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
