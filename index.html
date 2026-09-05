@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 11:30 AM ET",
-  "generatedAtISO": "2026-09-05T11:30:52-04:00",
+  "generatedAt": "Sep 5, 11:45 AM ET",
+  "generatedAtISO": "2026-09-05T11:45:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -538,10 +538,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "10:23",
-      "departed": null,
+      "departed": "11:33",
       "facilitator": null,
       "arrived_by": "Julie Marouze",
-      "departed_by": null,
+      "departed_by": "Julie Marouze",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -650,7 +650,13 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "14:45"
+        }
+      ],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -676,10 +682,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "07:51",
-      "departed": null,
+      "departed": "11:45",
       "facilitator": null,
       "arrived_by": "Tufan Bhattarai",
-      "departed_by": null,
+      "departed_by": "Tufan Bhattarai",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -687,7 +693,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 8.0,
       "end": 12.0,
-      "access_gap": true
+      "access_gap": false
     }
   ],
   "staff": [
@@ -717,7 +723,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 13.25,
       "end": 13.75,
@@ -725,7 +731,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 13.25,
       "end": 13.75,
@@ -774,28 +780,36 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "PBF — Annie Ng •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 10:57"
-    },
-    {
-      "code": "PBF — Kaushik Boga •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 10:59"
-    },
-    {
       "code": "Holding reply — Janet Zamora ••• [gmail-1a071f55683e2310]",
       "channel": "Email",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 5 · 11:31"
+    },
+    {
+      "code": "Post-HTA go-ahead confirmation — Jia L. [Peerspace] — 509B [gtg:ffb5067d-••••-42c1-a40d-4708c61e1d0a]",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 11:40"
+    },
+    {
+      "code": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 11:44"
+    },
+    {
+      "code": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 11:44"
     }
   ],
   "attention": [
@@ -885,6 +899,33 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788620547561,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "11:33",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788622408706,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Tufan Bhattarai",
+      "time": "11:45",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788623150193,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Tufan Bhattarai",
+      "time": "11:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788623155038,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -905,7 +946,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-05T15:09:02+00:00",
+    "updatedAt": "2026-09-05T15:35:02+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1184,6 +1225,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T15:28:44.261156Z",
         "until": "2026-09-05T15:28:50.844178Z"
+      },
+      {
+        "since": "2026-09-05T15:34:44.302691Z",
+        "until": "2026-09-05T15:34:57.726103Z"
+      },
+      {
+        "since": "2026-09-05T15:40:51.367137Z",
+        "until": "2026-09-05T15:41:01.818374Z"
       }
     ],
     "down": false
@@ -1217,7 +1266,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:27:00-04:00"
+      "lastISO": "2026-09-05T11:43:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1227,7 +1276,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:30:00-04:00"
+      "lastISO": "2026-09-05T11:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1237,7 +1286,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:30:00-04:00"
+      "lastISO": "2026-09-05T11:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1247,7 +1296,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:30:00-04:00"
+      "lastISO": "2026-09-05T11:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1407,7 +1456,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T11:31:00-04:00"
+      "lastISO": "2026-09-05T11:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
