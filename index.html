@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 9:15 AM ET",
-  "generatedAtISO": "2026-09-05T09:15:44-04:00",
+  "generatedAt": "Sep 5, 9:30 AM ET",
+  "generatedAtISO": "2026-09-05T09:30:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -724,6 +724,70 @@ const DATA = /*__DATA__*/{
       "start": 16.75,
       "end": 17.25,
       "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 11.25,
+      "end": 11.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 13.25,
+      "end": 13.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 13.25,
+      "end": 13.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 13.75,
+      "end": 14.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 14.25,
+      "end": 14.75,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 14.75,
+      "end": 15.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 15.75,
+      "end": 16.25,
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 17.25,
+      "end": 17.75,
+      "day": "Tomorrow"
     }
   ],
   "messages": [
@@ -755,7 +819,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1002,21 +1066,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T13:16:02.279971Z",
         "until": "2026-09-05T13:16:04.882912Z"
+      },
+      {
+        "since": "2026-09-05T13:21:47.403064Z",
+        "until": "2026-09-05T13:21:55.899108Z"
+      },
+      {
+        "since": "2026-09-05T13:27:01.931281Z",
+        "until": "2026-09-05T13:27:14.389720Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "scribe (GitHub Actions)",
-      "cadence": "Hourly",
-      "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
-      "produces": "Ships Junyan's Deck rulings on HTR suggestions: Approved rows ship the proposal, Declined-with-note rows ship the note; verified edits flip the Sweep Feedback row to Applied",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Never checked in",
-      "lastISO": null
-    },
     {
       "run": "The Loop",
       "cadence": "Hourly",
@@ -1035,7 +1097,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:16:00-04:00"
+      "lastISO": "2026-09-05T09:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1045,7 +1107,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:10:00-04:00"
+      "lastISO": "2026-09-05T09:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1055,7 +1117,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:15:00-04:00"
+      "lastISO": "2026-09-05T09:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1065,7 +1127,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:15:00-04:00"
+      "lastISO": "2026-09-05T09:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1075,7 +1137,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:00:00-04:00"
+      "lastISO": "2026-09-05T09:26:00-04:00"
+    },
+    {
+      "run": "scribe (GitHub Actions)",
+      "cadence": "Hourly",
+      "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
+      "produces": "Ships Junyan's Deck rulings on HTR suggestions: Approved rows ship the proposal, Declined-with-note rows ship the note; verified edits flip the Sweep Feedback row to Applied",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-05T09:26:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1175,7 +1247,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T23:57:00-04:00"
+      "lastISO": "2026-09-05T09:31:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1185,7 +1257,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:03:00-04:00"
+      "lastISO": "2026-09-05T09:26:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1225,7 +1297,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:01:00-04:00"
+      "lastISO": "2026-09-05T09:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
