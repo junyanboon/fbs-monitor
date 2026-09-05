@@ -204,12 +204,14 @@
   .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
   /* Session verdict glyph (verdictOf): last in the tag cluster, so it reads as
      the verdict ON the booking rather than another attribute of it. */
-  .verdict{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;
-           border-radius:99px;font-family:var(--sans);font-size:12px;font-weight:700;line-height:1;
-           cursor:default;flex:none}
-  .verdict.ok{background:var(--ok-bg);color:var(--ok)}
-  .verdict.odd{background:var(--watch-bg);color:var(--watch)}
-  .verdict.bad{background:var(--crit);color:#fff}
+  .verdict{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+           border-radius:99px;font-family:var(--sans);font-size:16px;font-weight:900;line-height:1;
+           cursor:default;flex:none;color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+  /* Filled discs, one weight for all three (Junyan, 2026-09-05: the old
+     tinted 19px chips did not read from across the desk). */
+  .verdict.ok{background:var(--ok)}
+  .verdict.odd{background:var(--watch)}
+  .verdict.bad{background:var(--crit)}
   /* Warnings column (was the countdown, dropped 2026-08-25 — the timeline
      itself says where things stand). */
   .ev .warns{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
