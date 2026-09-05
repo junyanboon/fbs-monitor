@@ -268,8 +268,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 7:30 PM ET",
-  "generatedAtISO": "2026-09-05T19:30:56-04:00",
+  "generatedAt": "Sep 5, 7:46 PM ET",
+  "generatedAtISO": "2026-09-05T19:46:31-04:00",
   "studios": [
     {
       "id": "509A",
@@ -523,6 +523,18 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 13.25,
+      "end": 13.75,
+      "id": "817e310d6fde",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T13:15:00-04:00",
+      "endISO": "2026-09-06T13:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
       "start": 13.75,
@@ -580,6 +592,30 @@ const DATA = /*__DATA__*/{
       "startISO": "2026-09-06T17:15:00-04:00",
       "endISO": "2026-09-06T17:45:00-04:00",
       "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 20.25,
+      "end": 20.75,
+      "id": "14cc057b827e",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T20:15:00-04:00",
+      "endISO": "2026-09-06T20:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 21.75,
+      "end": 22.25,
+      "id": "f5f475625df0",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T21:45:00-04:00",
+      "endISO": "2026-09-06T22:15:00-04:00",
+      "day": "Tomorrow"
     }
   ],
   "messages": [
@@ -595,28 +631,15 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Quick answer — Rebecca Wise — Studio 527 garbage — ••• [responder:sms-4ac3e002-65f5-••••-8b1d-f7308ba464d1]",
+      "code": "Nabil Fairbairn — six-date booking confirmation + invoice — Sep/Oct 2026",
       "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 19:07",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "Quick answer for Rebecca Wise in Studio 527"
-    },
-    {
-      "code": "Greeter — Giggster instant + phone ask + dry-venue check — Jessica — 693 Sat Oct 10 6:30 PM–11:00 PM [greeter:1a07384dbf0f47a1]",
-      "kind": null,
-      "channel": "Giggster",
+      "channel": "Email",
       "status": "Pending Review",
       "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 5 · 19:27",
+      "raised_by": "The Concierge",
+      "created": "Sep 5 · 19:37",
       "send_after": null,
-      "send_after_iso": null,
-      "label": "Booking Confirmation (Platform) · Jessica · Oct 10 booking"
+      "send_after_iso": null
     },
     {
       "code": "EOB",
@@ -1462,6 +1485,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T23:28:47.119479Z",
         "until": "2026-09-05T23:29:02.522818Z"
+      },
+      {
+        "since": "2026-09-05T23:34:54.112067Z",
+        "until": "2026-09-05T23:35:08.673447Z"
+      },
+      {
+        "since": "2026-09-05T23:41:00.585341Z",
+        "until": "2026-09-05T23:41:11.148006Z"
       }
     ],
     "down": false
@@ -1485,7 +1516,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:27:00-04:00"
+      "lastISO": "2026-09-05T19:44:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1495,7 +1526,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:30:00-04:00"
+      "lastISO": "2026-09-05T19:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1505,7 +1536,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:30:00-04:00"
+      "lastISO": "2026-09-05T19:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1515,7 +1546,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:30:00-04:00"
+      "lastISO": "2026-09-05T19:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1625,7 +1656,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:35:00-04:00"
+      "lastISO": "2026-09-05T19:39:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1635,7 +1666,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:07:00-04:00"
+      "lastISO": "2026-09-05T19:35:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1675,7 +1706,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:31:00-04:00"
+      "lastISO": "2026-09-05T19:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
