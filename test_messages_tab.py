@@ -60,6 +60,14 @@ def test_lane_labels_read_as_plain_english():
     assert L("SAL-REBECCA-PAID-20260805", None, None) is None, "unknown prefix keeps its code"
 
 
+def test_greeter_and_booking_change_read_as_dotted_labels():
+    L = build._lane_label
+    assert L("Greeter — Peerspace instant + phone ask — KerriAnn M. — 901 Fri Oct 16 6:00 PM–7:30 PM [greeter:1a07265fb123e3d4]",
+             None, "901") == "Booking Confirmation (Platform) · KerriAnn M. · Oct 16 booking"
+    assert L("Booking change — KerriAnn M. — Oct 23 alternative [responder:1a07244005bcc4e8]",
+             None, "901") == "Booking Change Request · KerriAnn M. · Oct 23 alternative"
+
+
 def test_label_messages_never_publishes_the_raw_code():
     msgs = [{"code": "Holding reply — X ••• [gmail-1]", "_raw_code": "Holding reply — X +1 416 555 0100 [gmail-1]",
              "kind": None, "studio": None, "_artist": None}]

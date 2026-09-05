@@ -2426,6 +2426,35 @@ RE_CODE_STUDIO = re.compile(r"\s*\bStudio\s+\d{3}[AB]?\b", re.I)
 RE_CODE_PLATFORM = re.compile(r"\s*\b(?:FBS\s+)?via\s+(\w+)", re.I)
 
 
+RE_MONTH_DAY = re.compile(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}\b")
+
+
+def _dotted_label(code):
+    """Two lanes read "Kind · Name · Detail" (Junyan, 2026-09-05):
+
+    "Greeter — Peerspace instant + phone ask — KerriAnn M. — 901 Fri Oct 16
+    6:00 PM–7:30 PM [greeter:…]" → "Booking Confirmation (Platform) ·
+    KerriAnn M. · Oct 16 booking"; "Booking change — KerriAnn M. — Oct 23
+    alternative [responder:…]" → "Booking Change Request · KerriAnn M. ·
+    Oct 23 alternative". None for any other code."""
+    text = RE_CODE_TAG.sub("", (code or "")).replace("•", "").strip()
+    parts = [p.strip(" —-:·") for p in re.split(r"\s+—\s+", text)]
+    parts = [p for p in parts if p]
+    if not parts:
+        return None
+    head = parts[0].lower()
+    if head == "greeter" and len(parts) >= 3:
+        name = parts[2]
+        m = RE_MONTH_DAY.search(" ".join(parts[3:]))
+        detail = f"{m.group(0)} booking" if m else "booking"
+        return f"Booking Confirmation (Platform) · {name} · {detail}"
+    if head == "booking change" and len(parts) >= 2:
+        name = parts[1]
+        detail = " ".join(parts[2:]).strip()
+        return f"Booking Change Request · {name}" + (f" · {detail}" if detail else "")
+    return None
+
+
 def _lane_label(code, board_name, studio):
     """"Post-HTA go-ahead confirmation — Jia L. [Peerspace] — 509B [gtg:…]"
     → "GTG Confirmation for Jia L. in Studio 509B".
@@ -2433,6 +2462,9 @@ def _lane_label(code, board_name, studio):
     Ids, source tags, dates and the platform tag stay in Notion. The name is
     the code's own second segment (the lanes write it), or today's board name
     for a Quick answer, whose second segment is free text."""
+    dotted = _dotted_label(code)
+    if dotted:
+        return dotted
     text = (code or "").strip()
     head = text.lower()
     for prefix, word, keep_topic in LANE_LABELS:
