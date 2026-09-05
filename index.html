@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 5, 12:45 AM ET",
-  "generatedAtISO": "2026-09-05T00:45:48-04:00",
+  "generatedAt": "Sep 5, 1:00 AM ET",
+  "generatedAtISO": "2026-09-05T01:00:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -2231,6 +2231,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T04:41:53.666641Z",
         "until": "2026-09-05T04:42:05.937055Z"
+      },
+      {
+        "since": "2026-09-05T04:47:47.540143Z",
+        "until": "2026-09-05T04:47:54.049958Z"
+      },
+      {
+        "since": "2026-09-05T04:52:48.341902Z",
+        "until": "2026-09-05T04:52:55.761837Z"
+      },
+      {
+        "since": "2026-09-05T04:58:02.830065Z",
+        "until": "2026-09-05T04:58:17.253730Z"
       }
     ],
     "down": false
@@ -2247,6 +2259,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T22:05:00-04:00"
     },
     {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "06:00 America/Toronto · Codex production fallback",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-04T06:02:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2254,7 +2276,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T00:45:00-04:00"
+      "lastISO": "2026-09-05T00:57:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2264,7 +2286,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T00:00:00-04:00"
+      "lastISO": "2026-09-05T01:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2285,16 +2307,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T23:15:00-04:00"
-    },
-    {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "06:00 America/Toronto · Codex production fallback",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T06:02:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -2364,7 +2376,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-05T00:45:00-04:00"
+      "lastISO": "2026-09-05T01:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2374,7 +2386,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-05T00:45:00-04:00"
+      "lastISO": "2026-09-05T01:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
