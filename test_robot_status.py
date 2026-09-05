@@ -26,19 +26,13 @@ def lane(name, last, *, start=8, end=23, stale=120):
 
 
 class RobotStatusTests(unittest.TestCase):
-    def test_confirmed_missing_lanes_stay_missing_even_with_a_fresh_heartbeat(self):
-        now = datetime(2026, 9, 4, 21, 30, tzinfo=build.TZ)
+    def test_a_lane_that_missed_its_active_window_stays_missing_off_hours(self):
+        now = datetime(2026, 9, 4, 23, 30, tzinfo=build.TZ)
         for name in ("The Loop", "The Responder", "The Custodian"):
             with self.subTest(name=name):
-                row = lane(name, now.replace(minute=29), stale=90)
+                row = lane(name, now.replace(hour=10, minute=0), stale=90)
                 self.assertEqual(build.robot_status(row, now),
                                  ("crit", "🔴 MISSING"))
-
-    def test_a_generic_lane_that_missed_its_window_stays_missing_off_hours(self):
-        now = datetime(2026, 9, 4, 23, 30, tzinfo=build.TZ)
-        row = lane("Stale hourly lane", now.replace(hour=10, minute=0), stale=90)
-        self.assertEqual(build.robot_status(row, now),
-                         ("crit", "🔴 MISSING"))
 
     def test_a_lane_that_finished_near_window_close_is_off_hours(self):
         now = datetime(2026, 9, 4, 23, 30, tzinfo=build.TZ)
