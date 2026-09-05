@@ -258,8 +258,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 8:45 AM ET",
-  "generatedAtISO": "2026-09-05T08:45:47-04:00",
+  "generatedAt": "Sep 5, 8:59 AM ET",
+  "generatedAtISO": "2026-09-05T08:59:49-04:00",
   "studios": [
     {
       "id": "509A",
@@ -384,10 +384,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "08:48",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Kaushik Boga",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -511,30 +511,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Greeter — Tagvenue enquiry — Jasmine Myrie — 693 Sun Sep 27 6:30 PM–12:00 AM [greeter:1a06fc5ff7e1f7fb]",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 5 · 00:15"
-    },
-    {
-      "code": "T1 — Jasmine Myrie Sep 27 availability •••",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Concierge",
-      "created": "Sep 5 · 08:27"
-    },
-    {
-      "code": "HTR acknowledgement — Kaushik Boga •••",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 08:33"
-    },
-    {
       "code": "HTA-sweep-•••A",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -582,6 +558,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788609114156,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Kaushik Boga",
+      "time": "08:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788612502341,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -605,16 +590,6 @@ const DATA = /*__DATA__*/{
       "ts": 1788569115189,
       "when": "Fri 20:45"
     },
-    "527": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "527",
-      "time": "23:35",
-      "ts": 1788579304000,
-      "when": "Fri 23:35"
-    },
     "693": {
       "kind": "departure",
       "name": "",
@@ -632,7 +607,13 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-05T11:54:02+00:00",
+    "updatedAt": "2026-09-05T12:55:01+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-05T09:04:49.006771Z",
@@ -789,6 +770,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T12:41:02.023571Z",
         "until": "2026-09-05T12:41:10.409302Z"
+      },
+      {
+        "since": "2026-09-05T12:46:50.334159Z",
+        "until": "2026-09-05T12:47:02.898001Z"
+      },
+      {
+        "since": "2026-09-05T12:52:07.780377Z",
+        "until": "2026-09-05T12:52:16.291676Z"
+      },
+      {
+        "since": "2026-09-05T12:58:07.793883Z",
+        "until": "2026-09-05T12:58:17.287292Z"
       }
     ],
     "down": false
@@ -812,7 +805,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:42:00-04:00"
+      "lastISO": "2026-09-05T08:59:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -822,7 +815,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:40:00-04:00"
+      "lastISO": "2026-09-05T09:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -832,7 +825,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:45:00-04:00"
+      "lastISO": "2026-09-05T09:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -842,7 +835,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T08:45:00-04:00"
+      "lastISO": "2026-09-05T09:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -932,7 +925,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T07:59:00-04:00"
+      "lastISO": "2026-09-05T08:59:00-04:00"
     },
     {
       "run": "The Morning Text",
