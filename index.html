@@ -486,8 +486,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 6:18 PM ET",
-  "generatedAtISO": "2026-09-05T18:18:50-04:00",
+  "generatedAt": "Sep 5, 6:30 PM ET",
+  "generatedAtISO": "2026-09-05T18:30:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1628,6 +1628,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T22:16:01.040838Z",
         "until": "2026-09-05T22:16:08.510350Z"
+      },
+      {
+        "since": "2026-09-05T22:21:29.205996Z",
+        "until": "2026-09-05T22:21:34.521383Z"
+      },
+      {
+        "since": "2026-09-05T22:26:29.137366Z",
+        "until": "2026-09-05T22:27:12.286560Z"
       }
     ],
     "down": false
@@ -1644,16 +1652,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-05T16:26:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1661,7 +1659,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T18:19:00-04:00"
+      "lastISO": "2026-09-05T18:30:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1671,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T18:10:00-04:00"
+      "lastISO": "2026-09-05T18:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1681,7 +1679,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T18:15:00-04:00"
+      "lastISO": "2026-09-05T18:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1691,7 +1689,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T18:15:00-04:00"
+      "lastISO": "2026-09-05T18:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1742,6 +1740,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-05T06:07:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-05T18:29:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1841,7 +1849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T18:16:00-04:00"
+      "lastISO": "2026-09-05T18:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
