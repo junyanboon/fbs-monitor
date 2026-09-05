@@ -258,8 +258,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 9:45 PM ET",
-  "generatedAtISO": "2026-09-04T21:45:44-04:00",
+  "generatedAt": "Sep 4, 10:00 PM ET",
+  "generatedAtISO": "2026-09-04T22:00:37-04:00",
   "studios": [
     {
       "id": "509A",
@@ -712,6 +712,14 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "Courtesy — Daniel Cater post-PBF •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 21:55"
+    },
+    {
       "code": "EOB-sweep-•••",
       "channel": "SMS",
       "status": "Ready to Send",
@@ -723,7 +731,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1791,6 +1799,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T01:42:03.475374Z",
         "until": "2026-09-05T01:42:12.952373Z"
+      },
+      {
+        "since": "2026-09-05T01:47:52.605644Z",
+        "until": "2026-09-05T01:47:58.724256Z"
+      },
+      {
+        "since": "2026-09-05T01:53:48.722253Z",
+        "until": "2026-09-05T01:53:56.229546Z"
+      },
+      {
+        "since": "2026-09-05T01:59:48.392254Z",
+        "until": "2026-09-05T01:59:56.835405Z"
       }
     ],
     "down": false
@@ -1827,16 +1847,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T19:47:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-04T08:31:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1844,7 +1854,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:43:00-04:00"
+      "lastISO": "2026-09-04T21:59:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1854,7 +1864,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:40:00-04:00"
+      "lastISO": "2026-09-04T22:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1864,7 +1874,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:45:00-04:00"
+      "lastISO": "2026-09-04T22:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1874,7 +1884,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:45:00-04:00"
+      "lastISO": "2026-09-04T22:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1884,7 +1894,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:00:00-04:00"
+      "lastISO": "2026-09-04T22:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1954,7 +1964,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:06:00-04:00"
+      "lastISO": "2026-09-04T22:05:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T21:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1994,7 +2014,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:31:00-04:00"
+      "lastISO": "2026-09-04T21:46:00-04:00"
     },
     {
       "run": "The Closer",
