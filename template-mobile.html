@@ -372,7 +372,7 @@ function warnChips(e,st){
   let t="";
   /* Open Access / PIN row names this renter today. The boolean covers any
      unresolved access check; it is not proof that the code is missing. */
-  if(e.access_gap)t+=`<span class="chip crit" title="Open access verification">Verify access</span>`;
+  if(e.access_gap)t+=`<span class="chip crit" title="Open access item for this renter">${esc(e.access_label||"Verify access")}</span>`;
   if(st.flagged&&!e.dup_studios)t+=`<span class="chip crit">Missing</span>`;
   return t;
 }
@@ -580,12 +580,21 @@ function render(){
   /* messages: queue rows awaiting a human — titles only, bodies stay in
      Notion. The button is the tab's whole point: process them there. */
   const MSGS=DATA.messages||[];
-  const mstat=s=>s==="Error"?["crit","Error"]:s==="Ready to Send"?["ok","Sending"]:["watch","Review"];
-  const mrows=MSGS.map(m=>{const [mc,ml]=mstat(m.status);
+  /* SENDING only when dispatch is due within about a minute; a later Send
+     After is an orange SCHEDULED pill with the clock time. */
+  const mstat=m=>{
+    if(m.status==="Error")return["crit","Error"];
+    if(m.status!=="Ready to Send")return["watch","Review"];
+    const due=m.send_after_iso?new Date(m.send_after_iso).getTime():0;
+    if(due&&due-Date.now()>90000)return["watch","Scheduled "+esc(m.send_after)];
+    return["ok","Sending"];
+  };
+  const mrows=MSGS.map(m=>{const [mc,ml]=mstat(m);
+    const sub=[m.raised_by||"", m.label?"":(m.studio||""), m.send_after?`sends ${m.send_after}`:(m.created||"")].filter(Boolean).map(esc).join(" · ");
     return `<div class="row">
       <span class="ev"><span class="chip plain">${esc(m.channel||"?")}</span></span>
-      <span class="nm mrow"><span class="code">${esc(m.code)}</span>
-        <span class="sub">${esc(m.raised_by||"")}${m.studio?` · ${esc(m.studio)}`:""}${m.created?` · ${esc(m.created)}`:""}</span></span>
+      <span class="nm mrow"><span class="code">${esc(m.label||m.code)}</span>
+        <span class="sub">${sub}</span></span>
       <span class="ev"><span class="chip ${mc}">${ml}</span></span>
     </div>`;}).join("");
   $('#messages').innerHTML=

@@ -2309,17 +2309,78 @@ def fetch_pending_messages(token):
                     .astimezone(TZ).strftime("%b %-d · %H:%M")
         except Exception:  # noqa: BLE001
             pass
+        code = _prop_text(p.get("Message Code")) or "Untitled message"
+        send_after = _prop_text(p.get("Send After"))
         out.append({
-            "code": redact(_prop_text(p.get("Message Code")) or "Untitled message"),
+            "code": redact(code),
+            "kind": _daily_kind(code, _prop_text(p.get("Template"))),
             "channel": _prop_text(p.get("Channel")),
             "status": _prop_text(p.get("Status")),
             "studio": _prop_text(p.get("Studio")),
             "raised_by": _prop_text(p.get("Raised by")),
             "created": created,
+            "send_after": _dispatch_time(send_after),
+            "send_after_iso": _row_datetime({"t": send_after}, "t").isoformat()
+                              if _row_datetime({"t": send_after}, "t") else None,
+            # Internal join key for label_messages(); stripped before publish.
+            "_artist": _relation_id(p.get("Artist")),
         })
     order = {s: i for i, s in enumerate(MSG_PENDING_STATUSES)}
     out.sort(key=lambda m: (order.get(m["status"], 9), m["created"]))
     return out
+
+
+def _daily_kind(code, template):
+    """EOB / AVA / HTA for the three daily FBS messages, else None.
+
+    Matches the sweep's `EOB-sweep-…` codes, the Host's literal `EOB`, and
+    the HTA template rows (`hta_studio_access`, code `HTA-sweep-…` or
+    `How to Access 527`)."""
+    if (template or "").strip().lower().startswith("hta_"):
+        return "HTA"
+    head = (code or "").strip().upper()
+    for kind in ("EOB", "AVA", "HTA"):
+        if head == kind or head.startswith(kind + "-") or head.startswith(kind + " "):
+            return kind
+    if head.startswith("HOW TO ACCESS"):
+        return "HTA"
+    return None
+
+
+def _display_name(who):
+    """"Rebecca Wise (Event Wise) — [Unpaid - Invoiced]" → "Rebecca Wise"."""
+    name = (who or "").split(" — ")[0]
+    name = re.sub(r"\s*\([^)]*\)", "", name)
+    name = re.sub(r"\s*\[[^\]]*\]", "", name)
+    return name.strip()
+
+
+def label_messages(messages, events):
+    """Plain-English labels for the daily FBS rows on the Messages tab.
+
+    "EOB-sweep-•••A · 509A" told a reader nothing (Junyan, 2026-09-05); the
+    tab now says "EOB for Diana Leal in Studio 509A". The renter name comes
+    from today's board cards, which already publish it — no new name crosses.
+    A row whose renter is not on today's board keeps its redacted code. The
+    internal artist id never reaches the payload."""
+    names = {}
+    for e in events:
+        if e.get("kind") == "booking" and e.get("_artist_id") and e.get("who"):
+            names.setdefault(e["_artist_id"], _display_name(e["who"]))
+    for m in messages:
+        artist = m.pop("_artist", None)
+        kind = m.get("kind")
+        if not kind:
+            continue
+        name = names.get(artist)
+        studio = m.get("studio")
+        if name and studio:
+            m["label"] = f"{kind} for {name} in Studio {studio}"
+        elif name:
+            m["label"] = f"{kind} for {name}"
+        elif studio:
+            m["label"] = f"{kind} · Studio {studio}"
+    return messages
 
 
 def fetch_message_dispatch(token, win_start, win_end):
@@ -2584,6 +2645,12 @@ def flag_access_gaps(events, rows, base_day):
         for row in rows:
             if _access_row_hits(row, e, day):
                 e["access_gap"] = True
+                # A fixed label only — never the row text. "Lockbox key" for
+                # the key-return checks (Junyan, 2026-09-05: Tufan's card said
+                # VERIFY ACCESS for a row about returning the 901 keys).
+                e["access_label"] = ("Lockbox key"
+                                     if "lockbox" in (row.get("text") or "").lower()
+                                     else "Verify access")
                 break
     return events
 
@@ -2996,7 +3063,7 @@ def build_data(now):
         "events": board_events,
         "staff": sorted(staff, key=lambda s: s["start"]),
         "openShifts": open_shifts,
-        "messages": messages,
+        "messages": label_messages(messages, events),
         "attention": attention,
         "armEvents": arm_stream,
         "panelPrior": panel_prior,

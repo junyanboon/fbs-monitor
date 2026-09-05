@@ -93,6 +93,13 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_message_dispatch.py
 
+      # Guards the Messages tab labels ("EOB for <renter> in Studio 527") and
+      # the access-chip label. The renter name comes from today's cards only;
+      # the artist id must never reach the payload.
+      - name: Messages tab regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_messages_tab.py
+
       # Guards open-shift placeholder parsing for the Shifts tab. Placeholders
       # must never read as a person's coverage, and nothing from an event
       # description except the studio number may reach the public page.
