@@ -11,10 +11,15 @@ on:
       - ".rebuild-tick"
   # BACKUP trigger: GitHub cron. Delivers only ~hourly here (best-effort, heavily
   # throttled on low-traffic repos), so it's a safety net behind the driver, not
-  # the primary. build.py gates execution to 07:00-02:59 America/Toronto.
+  # the primary. Overnight (03:00-06:59 Toronto = 07-10 UTC in EDT, 08-11 UTC in
+  # EST) it is the ONLY trigger — the day-sheet tick sleeps 02:45-08:00 Toronto —
+  # and one build an hour is the ask (Junyan, 2026-09-05): the board used to
+  # freeze on the prior day until the first tick landed, anywhere from 07:10 to
+  # 08:00. UTC hours below cover both DST offsets; a shoulder hour is harmless.
   schedule:
-    - cron: "3-59/15 * * * *"
-  workflow_dispatch:          # manual "Run workflow" button — bypasses the time gate
+    - cron: "3-59/15 11-23,0-6 * * *"
+    - cron: "3 7-10 * * *"
+  workflow_dispatch:          # manual "Run workflow" button
     inputs:
       debug_arm:
         description: "Log how each ADT subject parses (public logs — subjects only)"
@@ -149,7 +154,7 @@ jobs:
           # Gmail-only behaviour exactly, with the feed-down guard still armed.
           ALARM_HISTORY_URL: ${{ secrets.ALARM_HISTORY_URL }}
           ALARM_HISTORY_TOKEN: ${{ secrets.ALARM_HISTORY_TOKEN }}
-          # Manual dispatch bypasses the 07:00–24:00 Toronto gate; cron respects it.
+          # Legacy: build.py had a time gate until 2026-09-05; it ignores this now.
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
           DEBUG_ARM: ${{ github.event.inputs.debug_arm == 'true' && '1' || '0' }}
         run: python build.py

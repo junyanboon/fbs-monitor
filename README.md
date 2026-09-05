@@ -456,5 +456,8 @@ open("/tmp/preview.html","w").write(out)
 PY
 ```
 
-The build is gated to 07:00–02:59 Toronto (quiet 03:00–06:59) and skips green
-until `NOTION_TOKEN` is set. `workflow_dispatch` bypasses the time gate.
+The build has no time gate (since 2026-09-05). Daytime cadence is the day-sheet
+tick every 15 min, 08:00–02:45 Toronto; 03:00–06:59 the workflow's own cron
+fires once an hour (best-effort — GitHub throttles it) so the board rolls to the
+new day at 05:00 instead of freezing on yesterday until the first tick. The
+build skips green until `NOTION_TOKEN` is set.

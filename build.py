@@ -3143,13 +3143,13 @@ def sync_booking_status(data, fallback, now):
 
 def main():
     now = datetime.now(TZ)
-    force = os.environ.get("FORCE_BUILD") == "1"
-    # Run 07:00–02:59 Toronto: bookings regularly cross midnight (e.g. socials
-    # ending 02:15), so the board must keep updating arrivals/departures until
-    # the last cross-midnight block is done. Quiet hours: 03:00–06:59 only.
-    if not force and 3 <= now.hour < 7:
-        print(f"Quiet hours 03:00–07:00 Toronto ({now:%H:%M}); skipping.")
-        return
+    # No time gate since 2026-09-05. Bookings regularly cross midnight (socials
+    # ending 02:15), so the board updates through the night; 03:00–06:59 the
+    # workflow cron fires once an hour instead of every 15 min (the day-sheet
+    # tick that drives the daytime cadence sleeps 02:45–08:00). The old quiet
+    # hours skip left the board on the PRIOR day until the first morning tick,
+    # anywhere from 07:10 to 08:00. (FORCE_BUILD, the old gate bypass, is
+    # still exported by the workflow and now ignored.)
     data, fallback = build_data(now)
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))
     open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))

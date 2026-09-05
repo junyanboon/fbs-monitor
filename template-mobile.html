@@ -693,7 +693,9 @@ function cdTxt(nr){
   const gen=DATA.generatedAtISO?new Date(DATA.generatedAtISO):null;
   if(gen){const age=Math.round((Date.now()-gen.getTime())/60000);
     $('#freshtxt').textContent=`data ${age} min old`;
-    $('#fresh').classList.toggle('stale',age>40);}
+    // Hourly rebuilds 03:00–07:00 Toronto, every 15 min otherwise.
+    const etHour=+new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",hour:"numeric",hour12:false}).format(new Date());
+    $('#fresh').classList.toggle('stale',age>((etHour>=3&&etHour<7)?90:40));}
 }
 render();
 setInterval(render,30000);

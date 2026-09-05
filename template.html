@@ -518,15 +518,16 @@ document.getElementById('daytitle').innerHTML =
     const iso = DATA.generatedAtISO;
     if(!iso){ fresh.textContent = "edition " + (DATA.generatedAt||"—"); return; }
     const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
-    // Rebuilds pause 03:00–07:00 Toronto (build.py quiet hours) — old data then
-    // is expected, not an outage. Red-flag staleness only during operating hours.
+    // Rebuilds run hourly 03:00–07:00 Toronto (GitHub cron only, best-effort)
+    // and every 15 min otherwise. Overnight, an hour-old board is expected, so
+    // the red flag waits for 90 min there and 40 min during operating hours.
     const etHour = +new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",hour:"numeric",hour12:false}).format(new Date());
     const quiet = etHour >= 3 && etHour < 7;
-    const stale = !quiet && mins > 40;
+    const stale = mins > (quiet ? 90 : 40);
     btn.classList.toggle('stale', stale);
-    fresh.textContent = quiet ? "overnight — resumes 7 AM"
-                      : stale ? "data " + mins + " min old — rebuild down?"
-                      : mins < 1 ? "data live" : "data " + mins + " min old";
+    fresh.textContent = stale ? "data " + mins + " min old — rebuild down?"
+                      : mins < 1 ? "data live"
+                      : "data " + mins + " min old" + (quiet ? " · hourly overnight" : "");
   }
   function flash(msg){
     clearTimeout(flashTimer);
