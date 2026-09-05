@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 10:15 PM ET",
-  "generatedAtISO": "2026-09-04T22:15:44-04:00",
+  "generatedAt": "Sep 4, 10:26 PM ET",
+  "generatedAtISO": "2026-09-04T22:26:11-04:00",
   "studios": [
     {
       "id": "509A",
@@ -948,7 +948,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -2036,6 +2036,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T02:11:08.906160Z",
         "until": "2026-09-05T02:11:22.402654Z"
+      },
+      {
+        "since": "2026-09-05T02:17:09.186515Z",
+        "until": "2026-09-05T02:17:23.653574Z"
+      },
+      {
+        "since": "2026-09-05T02:23:08.955939Z",
+        "until": "2026-09-05T02:23:20.418599Z"
       }
     ],
     "down": false
@@ -2048,7 +2056,7 @@ const DATA = /*__DATA__*/{
       "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
       "monitoring": "Live",
       "status": "crit",
-      "statusLabel": "🔴 MISSING",
+      "statusLabel": "Overdue",
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
@@ -2058,7 +2066,7 @@ const DATA = /*__DATA__*/{
       "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
       "monitoring": "Live",
       "status": "crit",
-      "statusLabel": "🔴 MISSING",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
@@ -2072,16 +2080,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-03T19:47:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "🔴 MISSING",
-      "lastISO": "2026-09-04T21:56:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2089,7 +2087,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:16:00-04:00"
+      "lastISO": "2026-09-04T22:22:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2099,7 +2097,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:10:00-04:00"
+      "lastISO": "2026-09-04T22:20:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2119,7 +2117,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:15:00-04:00"
+      "lastISO": "2026-09-04T22:25:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2169,7 +2167,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:13:00-04:00"
+      "lastISO": "2026-09-04T22:24:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -2200,6 +2198,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T22:05:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T21:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2239,7 +2247,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:01:00-04:00"
+      "lastISO": "2026-09-04T22:16:00-04:00"
+    },
+    {
+      "run": "migration-sweep (Cloud Run — alarm-mcp)",
+      "cadence": "Daily",
+      "expected": "Once daily, 03:50 America/Toronto (before the Doorman's 04:00 pass). Stamps Self-heartbeat only on a LIVE pass; shadow stamps nothing. Monitoring = Paused until Junyan flips the env var, then Live with Stale after 1560 min (26h).",
+      "produces": "📊 Workflow Reports row '🚪 Window Migration — <day> · migrated N · fallback N · escalated N · skipped N' (Headline = attempted ids, the stateless pass counter); at most ONE ✅ Actions to Perform row per user still temporary after 3 passes (Access / PIN, Raised by The Doorman, Human-confirmed); one notify-after SMS to on-call per pass that migrated anyone. Never a code, never a ⏭️ Next Action row.",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": null
     },
     {
       "run": "The Closer",
