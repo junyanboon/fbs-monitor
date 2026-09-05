@@ -2097,6 +2097,19 @@ def _last_checkin(r):
                default=None)
 
 
+# Manual operational truth wins over report-derived heartbeats.  These lanes
+# were confirmed missing by Junyan on 2026-09-04; The Responder in particular
+# still had a fresh attributed report, which is not proof that its intended
+# runtime exists.  Remove a lane only after its runtime is restored and
+# independently verified.  Paused/Not-reporting below remain explicit operator
+# overrides, so they intentionally take precedence over this incident list.
+CONFIRMED_MISSING_RUNS = {
+    "The Loop",
+    "The Responder",
+    "The Custodian",
+}
+
+
 def robot_status(r, now):
     """Mirror the Run Monitor DB's Health formula semantics (see the DB's own
     property descriptions): Paused/Not-reporting are un-watched; a Window
@@ -2107,6 +2120,8 @@ def robot_status(r, now):
         return "plain", "Paused"
     if r["monitoring"] == "Not reporting":
         return "plain", "Not reporting"
+    if r.get("run") in CONFIRMED_MISSING_RUNS:
+        return "crit", "🔴 MISSING"
     last = _last_checkin(r)
     stale = r["stale_after"] or 120
     cadence = (r["cadence"] or "").lower()
