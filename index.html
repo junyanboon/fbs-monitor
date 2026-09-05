@@ -486,8 +486,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 3:31 PM ET",
-  "generatedAtISO": "2026-09-05T15:31:00-04:00",
+  "generatedAt": "Sep 5, 3:45 PM ET",
+  "generatedAtISO": "2026-09-05T15:45:50-04:00",
   "studios": [
     {
       "id": "509A",
@@ -591,9 +591,9 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Sent",
       "dispatch": [],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -848,6 +848,18 @@ const DATA = /*__DATA__*/{
       "send_after": null,
       "send_after_iso": null,
       "label": "Acknowledgement for Janet Zamora"
+    },
+    {
+      "code": "Post-HTA go-ahead confirmation — Simona Horova — 509A [gtg:8de56021-b0ed-••••-8e7b-dd8e576b023d]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 15:40",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "GTG Confirmation for Simona Horova in Studio 509A"
     },
     {
       "code": "EOB",
@@ -1479,6 +1491,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T19:27:07.203210Z",
         "until": "2026-09-05T19:27:15.689807Z"
+      },
+      {
+        "since": "2026-09-05T19:32:58.920653Z",
+        "until": "2026-09-05T19:33:04.797976Z"
+      },
+      {
+        "since": "2026-09-05T19:38:52.842409Z",
+        "until": "2026-09-05T19:39:05.120129Z"
+      },
+      {
+        "since": "2026-09-05T19:44:52.842449Z",
+        "until": "2026-09-05T19:45:00.145788Z"
       }
     ],
     "down": false
@@ -1502,7 +1526,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:31:00-04:00"
+      "lastISO": "2026-09-05T15:42:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1512,7 +1536,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:30:00-04:00"
+      "lastISO": "2026-09-05T15:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1522,7 +1546,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:30:00-04:00"
+      "lastISO": "2026-09-05T15:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1532,7 +1556,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:30:00-04:00"
+      "lastISO": "2026-09-05T15:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1692,7 +1716,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:31:00-04:00"
+      "lastISO": "2026-09-05T15:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
