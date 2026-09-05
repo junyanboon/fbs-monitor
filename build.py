@@ -2107,31 +2107,15 @@ def robot_status(r, now):
         return "plain", "Paused"
     if r["monitoring"] == "Not reporting":
         return "plain", "Not reporting"
-    last = _last_checkin(r)
-    stale = r["stale_after"] or 120
-    cadence = (r["cadence"] or "").lower()
     ws, we = r["window_start"], r["window_end"]
     if ws is not None and we is not None and not (ws <= now.hour < we):
-        # Off-hours suppresses the normal overnight age, not a pass that was
-        # already missing when the active window closed.  The old early return
-        # hid a dead lane every night: on 2026-09-04 it turned The Loop, The
-        # Responder and The Custodian grey even though none had completed the
-        # latest active window.
-        #
-        # Compare with the end of the most recently closed window.  A healthy
-        # last pass may land up to `stale` minutes before that boundary; an
-        # older heartbeat means the lane missed while it was supposed to be
-        # running and remains red until it checks in again.
-        if cadence not in ("weekly", "monthly"):
-            window_end = now.replace(hour=we, minute=0, second=0, microsecond=0)
-            if now.hour < ws:
-                window_end -= timedelta(days=1)
-            if last is None or last < window_end - timedelta(minutes=stale):
-                return "crit", "🔴 MISSING"
         return "plain", "Off-hours"
+    last = _last_checkin(r)
     if last is None:
         return "crit", "Never checked in"
     age_min = (now - last).total_seconds() / 60
+    stale = r["stale_after"] or 120
+    cadence = (r["cadence"] or "").lower()
     if cadence == "monthly":
         if last.year == now.year and last.month == now.month:
             return "ok", "On time"

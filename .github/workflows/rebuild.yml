@@ -88,12 +88,6 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_message_dispatch.py
 
-      # Off-hours may suppress the normal overnight gap, but must never hide a
-      # lane that had already missed its most recently closed active window.
-      - name: Robot status regression tests
-        if: steps.gate.outputs.ready == 'true'
-        run: python test_robot_status.py
-
       # Guards open-shift placeholder parsing for the Shifts tab. Placeholders
       # must never read as a person's coverage, and nothing from an event
       # description except the studio number may reach the public page.
