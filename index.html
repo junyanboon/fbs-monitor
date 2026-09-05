@@ -486,8 +486,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 5:19 PM ET",
-  "generatedAtISO": "2026-09-05T17:19:25-04:00",
+  "generatedAt": "Sep 5, 5:30 PM ET",
+  "generatedAtISO": "2026-09-05T17:30:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -589,10 +589,16 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "who": "Simona Horova",
       "kind": "booking",
-      "tier": null,
+      "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "19:30"
+        }
+      ],
       "heard": true,
       "arrived": null,
       "departed": null,
@@ -812,6 +818,18 @@ const DATA = /*__DATA__*/{
       "send_after": "21:45",
       "send_after_iso": "2026-09-05T21:45:00-04:00",
       "label": "EOB for Rebecca Wise in Studio 527"
+    },
+    {
+      "code": "EOB-sweep-•••A",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 17:27",
+      "send_after": "19:30",
+      "send_after_iso": "2026-09-05T19:30:00-04:00",
+      "label": "EOB for Simona Horova in Studio 509A"
     }
   ],
   "attention": [
@@ -1534,6 +1552,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T21:14:53.431611Z",
         "until": "2026-09-05T21:14:59.918202Z"
+      },
+      {
+        "since": "2026-09-05T21:20:06.944630Z",
+        "until": "2026-09-05T21:20:17.699856Z"
+      },
+      {
+        "since": "2026-09-05T21:25:29.232159Z",
+        "until": "2026-09-05T21:25:44.710934Z"
       }
     ],
     "down": false
@@ -1557,7 +1583,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T17:18:00-04:00"
+      "lastISO": "2026-09-05T17:28:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1567,7 +1593,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T17:10:00-04:00"
+      "lastISO": "2026-09-05T17:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1577,7 +1603,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T17:15:00-04:00"
+      "lastISO": "2026-09-05T17:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1587,7 +1613,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T17:15:00-04:00"
+      "lastISO": "2026-09-05T17:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1747,7 +1773,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T17:16:00-04:00"
+      "lastISO": "2026-09-05T17:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
