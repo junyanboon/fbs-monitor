@@ -268,8 +268,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 4:15 PM ET",
-  "generatedAtISO": "2026-09-05T16:15:52-04:00",
+  "generatedAt": "Sep 5, 4:31 PM ET",
+  "generatedAtISO": "2026-09-05T16:31:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -608,18 +608,6 @@ const DATA = /*__DATA__*/{
       "label": "Quick answer for Rebecca Wise"
     },
     {
-      "code": "HTR acknowledgement — Janet Zamora — ••• [responder:gmail-1a072cefa40bb7e5]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 15:04",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "Acknowledgement for Janet Zamora"
-    },
-    {
       "code": "Post-HTA go-ahead confirmation — Simona Horova — 509A [gtg:8de56021-b0ed-••••-8e7b-dd8e576b023d]",
       "kind": null,
       "channel": "SMS",
@@ -647,7 +635,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1293,21 +1281,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T20:13:01.301498Z",
         "until": "2026-09-05T20:13:07.035025Z"
+      },
+      {
+        "since": "2026-09-05T20:18:59.220932Z",
+        "until": "2026-09-05T20:19:12.482161Z"
+      },
+      {
+        "since": "2026-09-05T20:24:46.454385Z",
+        "until": "2026-09-05T20:24:55.992087Z"
+      },
+      {
+        "since": "2026-09-05T20:29:59.319822Z",
+        "until": "2026-09-05T20:30:07.647788Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-05T08:15:00-04:00"
-    },
     {
       "run": "The Loop",
       "cadence": "Hourly",
@@ -1326,7 +1316,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T16:16:00-04:00"
+      "lastISO": "2026-09-05T16:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1336,7 +1326,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T16:10:00-04:00"
+      "lastISO": "2026-09-05T16:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1346,7 +1336,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T16:15:00-04:00"
+      "lastISO": "2026-09-05T16:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1356,7 +1346,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T16:15:00-04:00"
+      "lastISO": "2026-09-05T16:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1407,6 +1397,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-05T06:07:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-05T16:26:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1466,7 +1466,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:57:00-04:00"
+      "lastISO": "2026-09-05T16:28:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1506,7 +1506,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T16:16:00-04:00"
+      "lastISO": "2026-09-05T16:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
