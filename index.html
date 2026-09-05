@@ -467,8 +467,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 8:23 PM ET",
-  "generatedAtISO": "2026-09-04T20:23:56-04:00",
+  "generatedAt": "Sep 4, 8:30 PM ET",
+  "generatedAtISO": "2026-09-04T20:30:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -674,10 +674,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "19:11",
-      "departed": null,
+      "departed": "20:25",
       "facilitator": null,
       "arrived_by": "Daniel Cater",
-      "departed_by": null,
+      "departed_by": "Daniel Cater",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -926,6 +926,14 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
+    {
+      "code": "HTR acknowledgement — Kaushik Boga",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Responder",
+      "created": "Sep 4 · 20:29"
+    },
     {
       "code": "EOB-sweep-•••",
       "channel": "SMS",
@@ -1220,6 +1228,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788567323363,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Daniel Cater",
+      "time": "20:25",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788567937432,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1229,7 +1246,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-05T00:20:05+00:00",
+    "updatedAt": "2026-09-05T00:26:13+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -1892,6 +1909,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T00:22:52.127915Z",
         "until": "2026-09-05T00:22:59.611212Z"
+      },
+      {
+        "since": "2026-09-05T00:28:09.066684Z",
+        "until": "2026-09-05T00:28:16.472262Z"
       }
     ],
     "down": false
@@ -1945,7 +1966,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T20:23:00-04:00"
+      "lastISO": "2026-09-04T20:29:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1955,7 +1976,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T20:15:00-04:00"
+      "lastISO": "2026-09-04T20:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1965,7 +1986,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T20:20:00-04:00"
+      "lastISO": "2026-09-04T20:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2085,7 +2106,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T20:16:00-04:00"
+      "lastISO": "2026-09-04T20:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2095,7 +2116,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": "2026-09-04T20:20:00-04:00"
+      "lastISO": "2026-09-04T20:30:00-04:00"
     },
     {
       "run": "The Closer",
