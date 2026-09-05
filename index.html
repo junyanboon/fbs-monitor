@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 10:45 AM ET",
-  "generatedAtISO": "2026-09-05T10:45:49-04:00",
+  "generatedAt": "Sep 5, 11:00 AM ET",
+  "generatedAtISO": "2026-09-05T11:00:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -723,7 +723,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 13.25,
       "end": 13.75,
@@ -731,7 +731,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 13.25,
       "end": 13.75,
@@ -779,6 +779,22 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
+    {
+      "code": "PBF — Annie Ng •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Responder",
+      "created": "Sep 5 · 10:57"
+    },
+    {
+      "code": "PBF — Kaushik Boga •••",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Responder",
+      "created": "Sep 5 · 10:59"
+    },
     {
       "code": "EOB-sweep-•••A",
       "channel": "SMS",
@@ -857,19 +873,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788618820228,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Junyan Boon",
+      "time": "11:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788620433225,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "509B",
-      "time": "20:45",
-      "ts": 1788569115189,
-      "when": "Fri 20:45"
-    },
     "693": {
       "kind": "departure",
       "name": "",
@@ -1134,6 +1149,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T14:44:44.444836Z",
         "until": "2026-09-05T14:44:51.947314Z"
+      },
+      {
+        "since": "2026-09-05T14:50:07.593291Z",
+        "until": "2026-09-05T14:50:11.333507Z"
+      },
+      {
+        "since": "2026-09-05T14:56:01.975983Z",
+        "until": "2026-09-05T14:56:09.451486Z"
       }
     ],
     "down": false
@@ -1167,7 +1190,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:43:00-04:00"
+      "lastISO": "2026-09-05T11:00:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1177,7 +1200,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:40:00-04:00"
+      "lastISO": "2026-09-05T11:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1187,7 +1210,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:45:00-04:00"
+      "lastISO": "2026-09-05T11:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1197,7 +1220,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:45:00-04:00"
+      "lastISO": "2026-09-05T11:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1207,7 +1230,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:00:00-04:00"
+      "lastISO": "2026-09-05T11:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1217,7 +1240,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:00:00-04:00"
+      "lastISO": "2026-09-05T11:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1287,7 +1310,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T09:59:00-04:00"
+      "lastISO": "2026-09-05T10:59:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1317,7 +1340,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T10:30:00-04:00"
+      "lastISO": "2026-09-05T10:59:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1481,15 +1504,16 @@ document.getElementById('daytitle').innerHTML =
     const iso = DATA.generatedAtISO;
     if(!iso){ fresh.textContent = "edition " + (DATA.generatedAt||"—"); return; }
     const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
-    // Rebuilds pause 03:00–07:00 Toronto (build.py quiet hours) — old data then
-    // is expected, not an outage. Red-flag staleness only during operating hours.
+    // Rebuilds run hourly 03:00–07:00 Toronto (GitHub cron only, best-effort)
+    // and every 15 min otherwise. Overnight, an hour-old board is expected, so
+    // the red flag waits for 90 min there and 40 min during operating hours.
     const etHour = +new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",hour:"numeric",hour12:false}).format(new Date());
     const quiet = etHour >= 3 && etHour < 7;
-    const stale = !quiet && mins > 40;
+    const stale = mins > (quiet ? 90 : 40);
     btn.classList.toggle('stale', stale);
-    fresh.textContent = quiet ? "overnight — resumes 7 AM"
-                      : stale ? "data " + mins + " min old — rebuild down?"
-                      : mins < 1 ? "data live" : "data " + mins + " min old";
+    fresh.textContent = stale ? "data " + mins + " min old — rebuild down?"
+                      : mins < 1 ? "data live"
+                      : "data " + mins + " min old" + (quiet ? " · hourly overnight" : "");
   }
   function flash(msg){
     clearTimeout(flashTimer);
