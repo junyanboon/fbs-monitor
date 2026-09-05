@@ -415,6 +415,14 @@
   .legend{display:flex;gap:16px;flex-wrap:wrap}
   .legend span{display:inline-flex;align-items:center;gap:7px}
   .swatch{width:14px;height:10px;border-radius:3px;display:inline-block}
+  /* claim server (server/app.py): who is signed in, and the Claim control on open shifts */
+  #who{display:flex;align-items:center;gap:8px;font-size:12.5px}
+  #who a{color:var(--chalk-dim);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+  #who a:hover{color:#fff}
+  .claimbtn{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;font-weight:700;padding:3px 11px;border-radius:99px;
+    border:0;background:var(--watch);color:#111;cursor:pointer;margin-left:6px}
+  .claimbtn.plain{background:var(--scrim-2);color:var(--chalk-dim);border:1px solid var(--line)}
+  .claimbtn:disabled{opacity:.5;cursor:default}
 </style>
 </head>
 <body>
@@ -427,6 +435,7 @@
   <div class="summary" id="summary"></div>
   <div class="clockwrap">
     <div class="clock"><span class="dot" aria-hidden="true"></span><span id="clock">--:--</span><small>Toronto</small></div>
+    <div id="who"></div>
     <button id="refreshbtn" class="datastamp" type="button" aria-label="Refresh data" title="Pull the newest edition">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg>
       <span id="freshness">data —</span>
@@ -475,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 12:16 PM ET",
-  "generatedAtISO": "2026-09-05T12:16:51-04:00",
+  "generatedAt": "Sep 5, 12:31 PM ET",
+  "generatedAtISO": "2026-09-05T12:31:32-04:00",
   "studios": [
     {
       "id": "509A",
@@ -607,10 +616,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "10:33",
-      "departed": null,
+      "departed": "12:28",
       "facilitator": null,
       "arrived_by": "Kateryna Zozulia",
-      "departed_by": null,
+      "departed_by": "Kateryna Zozulia",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -711,6 +720,10 @@ const DATA = /*__DATA__*/{
       "day_offset": 0,
       "start": 16.75,
       "end": 17.25,
+      "id": "18075b4cec9a",
+      "date": "2026-09-05",
+      "startISO": "2026-09-05T16:45:00-04:00",
+      "endISO": "2026-09-05T17:15:00-04:00",
       "day": "Today"
     },
     {
@@ -719,14 +732,10 @@ const DATA = /*__DATA__*/{
       "day_offset": 1,
       "start": 11.25,
       "end": 11.75,
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
-      "studio": "901",
-      "day_offset": 1,
-      "start": 13.25,
-      "end": 13.75,
+      "id": "5445454f695d",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T11:15:00-04:00",
+      "endISO": "2026-09-06T11:45:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -735,6 +744,22 @@ const DATA = /*__DATA__*/{
       "day_offset": 1,
       "start": 13.25,
       "end": 13.75,
+      "id": "d59a2bb23f63",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T13:15:00-04:00",
+      "endISO": "2026-09-06T13:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 13.25,
+      "end": 13.75,
+      "id": "817e310d6fde",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T13:15:00-04:00",
+      "endISO": "2026-09-06T13:45:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -743,6 +768,10 @@ const DATA = /*__DATA__*/{
       "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
+      "id": "082464b6dab5",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T13:45:00-04:00",
+      "endISO": "2026-09-06T14:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -751,6 +780,10 @@ const DATA = /*__DATA__*/{
       "day_offset": 1,
       "start": 14.25,
       "end": 14.75,
+      "id": "6093da3eed26",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T14:15:00-04:00",
+      "endISO": "2026-09-06T14:45:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -759,6 +792,10 @@ const DATA = /*__DATA__*/{
       "day_offset": 1,
       "start": 14.75,
       "end": 15.25,
+      "id": "a5bc335dbb7e",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T14:45:00-04:00",
+      "endISO": "2026-09-06T15:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -767,6 +804,10 @@ const DATA = /*__DATA__*/{
       "day_offset": 1,
       "start": 15.75,
       "end": 16.25,
+      "id": "7d51cb55058b",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T15:45:00-04:00",
+      "endISO": "2026-09-06T16:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -775,21 +816,14 @@ const DATA = /*__DATA__*/{
       "day_offset": 1,
       "start": 17.25,
       "end": 17.75,
+      "id": "473bd698f817",
+      "date": "2026-09-06",
+      "startISO": "2026-09-06T17:15:00-04:00",
+      "endISO": "2026-09-06T17:45:00-04:00",
       "day": "Tomorrow"
     }
   ],
   "messages": [
-    {
-      "code": "Holding reply — Janet Zamora ••• [gmail-1a071f55683e2310]",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 11:31",
-      "send_after": null,
-      "send_after_iso": null
-    },
     {
       "code": "Post-HTA go-ahead confirmation — Jia L. [Peerspace] — 509B [gtg:ffb5067d-••••-42c1-a40d-4708c61e1d0a]",
       "kind": null,
@@ -820,6 +854,17 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "The Responder",
       "created": "Sep 5 · 12:03",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Greeter — Peerspace instant + phone ask — KerriAnn M. — 901 Fri Oct 16 6:00 PM–7:30 PM [greeter:1a07265fb123e3d4]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 12:30",
       "send_after": null,
       "send_after_iso": null
     },
@@ -980,6 +1025,15 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788624011171,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "12:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788625704077,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1002,7 +1056,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-05T15:48:02+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 3,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1311,6 +1365,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T16:15:07.840479Z",
         "until": "2026-09-05T16:15:17.606730Z"
+      },
+      {
+        "since": "2026-09-05T16:20:51.620336Z",
+        "until": "2026-09-05T16:20:59.026088Z"
+      },
+      {
+        "since": "2026-09-05T16:26:51.653358Z",
+        "until": "2026-09-05T16:26:59.093490Z"
       }
     ],
     "down": false
@@ -1344,7 +1406,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T12:12:00-04:00"
+      "lastISO": "2026-09-05T12:30:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1354,7 +1416,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T12:10:00-04:00"
+      "lastISO": "2026-09-05T12:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1364,7 +1426,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T12:15:00-04:00"
+      "lastISO": "2026-09-05T12:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1374,7 +1436,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T12:15:00-04:00"
+      "lastISO": "2026-09-05T12:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1524,7 +1586,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T12:16:00-04:00"
+      "lastISO": "2026-09-05T12:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1898,6 +1960,89 @@ function bookingLayout(list, SLOT, yOf){
   return box;
 }
 
+/* ── Staff identity + shift claims. Talks to server/app.py (the Hostinger
+   edition). On GitHub Pages api/me answers 404, `backend` goes false, and the
+   page renders exactly as before — the Notion board stays the claim path.
+   Offline: the last-known identity is kept in localStorage, and a claim made
+   with no network waits in an outbox until `online` fires or the page next
+   loads with a connection. The server is the only judge of a claim; the outbox
+   delays the question, it never answers it. ── */
+const FBS_AUTH = (() => {
+  const base = location.pathname.replace(/[^/]*$/, '');
+  const K_ME='fbs.me', K_CL='fbs.claims', K_OUT='fbs.outbox';
+  const rd=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+  const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  const S={me:rd(K_ME,null), backend:rd(K_ME,null)?true:null, claims:rd(K_CL,[]), outbox:rd(K_OUT,[]), busy:{}, err:{}};
+  const api=(p,o={})=>fetch(base+'api/'+p,{credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json'},...o});
+  const detail=async r=>{try{return (await r.json()).detail||('Failed ('+r.status+')')}catch(e){return 'Failed ('+r.status+')'}};
+  const rerender=()=>{try{render()}catch(e){}};
+  async function whoami(){
+    let r; try{ r=await api('me'); }catch(e){ return; }             // offline: keep what we have
+    if(r.status===404){ S.backend=false; return; }                   // static edition, no server
+    S.backend=true;
+    if(r.status===401){ S.me=null; wr(K_ME,null);
+      location.replace(base+'login?next='+encodeURIComponent(location.pathname+location.search)); return; }
+    if(r.ok){ S.me=await r.json(); wr(K_ME,S.me); }
+  }
+  async function pull(){ if(S.backend===false) return;
+    try{ const r=await api('claims'); if(r.ok){ S.claims=await r.json(); wr(K_CL,S.claims); } }catch(e){} }
+  async function flush(){
+    if(!S.outbox.length || S.backend===false) return;
+    const keep=[];
+    for(const c of S.outbox){
+      try{ const r=await api('claim',{method:'POST',body:JSON.stringify({id:c.id})});
+        if(r.status>=500) keep.push(c);
+        else if(!r.ok && r.status!==409) S.err[c.id]=await detail(r);   // server said no: drop it, show why
+      }catch(e){ keep.push(c); }
+    }
+    S.outbox=keep; wr(K_OUT,keep);
+  }
+  const claimOf=id=>S.claims.find(c=>c.id===id)||null;
+  const pending=id=>S.outbox.some(c=>c.id===id);
+  async function claim(id){
+    if(!S.me || S.busy[id]) return;
+    S.busy[id]=true; delete S.err[id]; rerender();
+    let r=null;
+    try{ r=await api('claim',{method:'POST',body:JSON.stringify({id})}); }catch(e){ r=null; }
+    if(r===null || r.status>=500){                                    // no network / server down → outbox
+      if(!pending(id)){ S.outbox.push({id,at:Date.now()}); wr(K_OUT,S.outbox); }
+    } else if(r.ok || r.status===409){ await pull(); }
+    else { S.err[id]=await detail(r); }
+    delete S.busy[id]; header(); rerender();
+  }
+  async function release(id){
+    if(!S.me || S.busy[id]) return;
+    S.busy[id]=true; delete S.err[id]; rerender();
+    try{ const r=await api('claim/'+encodeURIComponent(id),{method:'DELETE'}); if(!r.ok) S.err[id]=await detail(r); }
+    catch(e){ S.err[id]='Offline — try again with signal'; }
+    await pull(); delete S.busy[id]; rerender();
+  }
+  /* Right edge of an open-shift row. Empty on the static edition. */
+  function rowExtra(o){
+    if(S.backend===false || !o.id) return '';
+    const c=claimOf(o.id), mine=c&&S.me&&c.name===S.me.name;
+    if(c) return `<span class="chip ok">${mine?'You':esc(c.name)}</span>`
+      +(mine?`<button type="button" class="claimbtn plain" data-release="${esc(o.id)}"${S.busy[o.id]?' disabled':''}>Release</button>`:'');
+    if(pending(o.id)) return `<span class="chip watch">Sending…</span>`;
+    if(S.err[o.id]) return `<span class="chip crit">${esc(S.err[o.id])}</span><button type="button" class="claimbtn" data-claim="${esc(o.id)}">Retry</button>`;
+    return `<button type="button" class="claimbtn" data-claim="${esc(o.id)}"${S.busy[o.id]||!S.me?' disabled':''}>Claim</button>`;
+  }
+  function header(){
+    const el=document.getElementById('who'); if(!el) return;
+    if(S.backend===false||!S.me){ el.innerHTML=''; return; }
+    el.innerHTML=`<a href="${base}account" title="Account">${esc(S.me.name)}</a>`
+      +(S.outbox.length?`<span class="chip watch">${S.outbox.length} claim${S.outbox.length>1?'s':''} waiting for signal</span>`:'');
+  }
+  document.addEventListener('click',ev=>{
+    const b=ev.target.closest('[data-claim],[data-release]'); if(!b) return;
+    ev.preventDefault(); if(b.dataset.claim) claim(b.dataset.claim); else release(b.dataset.release);
+  });
+  async function sync(){ await whoami(); await flush(); await pull(); header(); rerender(); }
+  function start(){ sync(); window.addEventListener('online',sync);
+    setInterval(()=>{ if(S.backend!==false) sync(); },60000); }
+  return {start, rowExtra, state:S};
+})();
+
 function render(){
   const now = torontoNow();
   $('#clock').textContent = now.hhmm;
@@ -2053,13 +2198,14 @@ function render(){
     </div>`;
   };
   const monBk = bookings.filter(e=>e.tier).sort((a,b)=>a.start-b.start);
-  /* Open (claimable) shifts — display only; claiming happens on the Notion
-     Open Shifts board. Amber row, day label because these run days ahead. */
+  /* Open (claimable) shifts. Amber row, day label because these run days
+     ahead. On the claim server FBS_AUTH.rowExtra adds the Claim control; on
+     the static edition it adds nothing and Notion stays the claim path. */
   const openRow = o => `<div class="shift openshift">
       <span class="tm">${hm(o.start)}–${hm(o.end)}</span>
       <span class="nm">${esc(o.day)}${o.studio?` <span class="chip plain">${esc(o.studio)}</span>`:""}</span>
       <span class="chip type">${esc(o.role)}</span>
-      <span class="chip watch">Open</span>
+      <span class="chip watch">Open</span>${FBS_AUTH.rowExtra(o)}
     </div>`;
   const shiftNow = shiftNowHour(now);
   const OPENS = (DATA.openShifts || []).filter(o=>o.day_offset*24+o.end>shiftNow);
@@ -2361,6 +2507,7 @@ function renderRobots(){
 const _renderBase = render;
 render = function(){ _renderBase(); renderAlarms(); renderRobots(); };
 render(); setInterval(render, 30000);
+FBS_AUTH.start();
 </script>
 
 </body>
