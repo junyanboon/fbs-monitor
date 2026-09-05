@@ -2330,6 +2330,9 @@ def fetch_pending_messages(token):
         send_after = _prop_text(p.get("Send After"))
         out.append({
             "code": redact(code),
+            # Internal: the unredacted code for _lane_label(); popped before
+            # publish, and the label it yields passes through redact().
+            "_raw_code": code,
             "kind": _daily_kind(code, _prop_text(p.get("Template"))),
             "channel": _prop_text(p.get("Channel")),
             "status": _prop_text(p.get("Status")),
@@ -2387,10 +2390,15 @@ def label_messages(messages, events):
     for m in messages:
         artist = m.pop("_artist", None)
         kind = m.get("kind")
-        if not kind:
-            continue
-        name = names.get(artist)
         studio = m.get("studio")
+        name = names.get(artist)
+        if not kind:
+            label = _lane_label(m.get("_raw_code") or m.get("code"), name, studio)
+            m.pop("_raw_code", None)
+            if label:
+                m["label"] = redact(label)
+            continue
+        m.pop("_raw_code", None)
         if name and studio:
             m["label"] = f"{kind} for {name} in Studio {studio}"
         elif name:
@@ -2398,6 +2406,75 @@ def label_messages(messages, events):
         elif studio:
             m["label"] = f"{kind} · Studio {studio}"
     return messages
+
+
+# Lane prefixes → the plain words the tab shows (Junyan, 2026-09-05). A code
+# that starts with none of these keeps its redacted text.
+LANE_LABELS = (
+    ("post-hta go-ahead confirmation", "GTG Confirmation", False),
+    ("holding reply", "Pending Reply", False),
+    ("pbf", "PBF", False),
+    ("quick answer", "Quick answer", True),
+    ("htr acknowledgement", "Acknowledgement", False),
+    ("courtesy", "Courtesy reply", False),
+    ("booking extension confirmed", "Extension confirmed", False),
+    ("platform booking", "Booking confirmation", False),
+)
+RE_CODE_TAG = re.compile(r"\s*\[[^\]]*\]")
+RE_CODE_DATE = re.compile(r"\s*\b\d{4}-\d{2}-\d{2}\b")
+RE_CODE_STUDIO = re.compile(r"\s*\bStudio\s+\d{3}[AB]?\b", re.I)
+RE_CODE_PLATFORM = re.compile(r"\s*\b(?:FBS\s+)?via\s+(\w+)", re.I)
+
+
+def _lane_label(code, board_name, studio):
+    """"Post-HTA go-ahead confirmation — Jia L. [Peerspace] — 509B [gtg:…]"
+    → "GTG Confirmation for Jia L. in Studio 509B".
+
+    Ids, source tags, dates and the platform tag stay in Notion. The name is
+    the code's own second segment (the lanes write it), or today's board name
+    for a Quick answer, whose second segment is free text."""
+    text = (code or "").strip()
+    head = text.lower()
+    for prefix, word, keep_topic in LANE_LABELS:
+        if head.startswith(prefix):
+            break
+    else:
+        return None
+    rest = text[len(prefix):]
+    rest = re.sub(r"^\s*\([^)]*\)", "", rest)            # "(gate 1)", "(527 Sep 5)"
+    platform = None
+    m = RE_CODE_PLATFORM.search(rest)
+    if m:
+        platform = m.group(1)
+    rest = RE_CODE_PLATFORM.sub("", rest)
+    rest = RE_CODE_TAG.sub("", rest)
+    rest = RE_CODE_DATE.sub("", rest)
+    rest = rest.replace("•", "")
+    rest = re.sub(r":\s*\d{3}[AB]?\s+\w{3}\s+\d{2}\s+\d{2}:\d{2}.*$", "", rest)  # ": 509B Sep 04 16:00"
+    rest = rest.strip(" —-:·")
+    parts = [p.strip(" —-:·") for p in re.split(r"\s+—\s+", rest) if p.strip(" —-:·")]
+    if not parts:
+        return None
+    name, topic = parts[0], " ".join(parts[1:])
+    if keep_topic and board_name and board_name.lower() in name.lower():
+        # Free-text segment: "Kaushik Boga Studio 527 mats and cleaning".
+        topic = re.sub(re.escape(board_name), "", name, flags=re.I)
+        topic = RE_CODE_STUDIO.sub("", topic).strip(" —-:·")
+        name = board_name
+    elif keep_topic:
+        cut = RE_CODE_STUDIO.split(name, maxsplit=1)
+        name, topic = cut[0].strip(), (cut[1].strip() if len(cut) > 1 else topic)
+    name = re.sub(r"\s+(?:FBS|booking ack)$", "", name, flags=re.I).strip()
+    if not name:
+        return None
+    label = f"{word} for {name}"
+    if studio:
+        label += f" in Studio {studio}"
+    if keep_topic and topic:
+        label += f" · {topic}"
+    if platform:
+        label += f" · {platform}"
+    return label
 
 
 def fetch_message_dispatch(token, win_start, win_end):
