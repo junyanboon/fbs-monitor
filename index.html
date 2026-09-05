@@ -486,8 +486,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 7:15 PM ET",
-  "generatedAtISO": "2026-09-05T19:15:49-04:00",
+  "generatedAt": "Sep 5, 7:30 PM ET",
+  "generatedAtISO": "2026-09-05T19:30:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -592,13 +592,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "19:30"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
       "arrived": "18:40",
       "departed": null,
@@ -808,18 +802,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Greeter — Giggster instant + phone ask — Jessica — 693 Sat Oct 10 6:30 PM–11:00 PM [greeter:1a07384dbf0f47a1]",
-      "kind": null,
-      "channel": "Giggster",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 5 · 17:45",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "Booking Confirmation (Platform) · Jessica · Oct 10 booking"
-    },
-    {
       "code": "HOLD — Nicholas Walsh Sep 19 + 26 901 request — •••",
       "kind": null,
       "channel": "Email",
@@ -843,6 +825,18 @@ const DATA = /*__DATA__*/{
       "label": "Quick answer for Rebecca Wise in Studio 527"
     },
     {
+      "code": "Greeter — Giggster instant + phone ask + dry-venue check — Jessica — 693 Sat Oct 10 6:30 PM–11:00 PM [greeter:1a07384dbf0f47a1]",
+      "kind": null,
+      "channel": "Giggster",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 19:27",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "Booking Confirmation (Platform) · Jessica · Oct 10 booking"
+    },
+    {
       "code": "EOB",
       "kind": "EOB",
       "channel": "SMS",
@@ -853,18 +847,6 @@ const DATA = /*__DATA__*/{
       "send_after": "21:45",
       "send_after_iso": "2026-09-05T21:45:00-04:00",
       "label": "EOB for Rebecca Wise in Studio 527"
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 5 · 17:27",
-      "send_after": "19:30",
-      "send_after_iso": "2026-09-05T19:30:00-04:00",
-      "label": "EOB for Simona Horova in Studio 509A"
     }
   ],
   "attention": [
@@ -1686,6 +1668,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T23:03:29.129232Z",
         "until": "2026-09-05T23:09:29.405149Z"
+      },
+      {
+        "since": "2026-09-05T23:15:00.288362Z",
+        "until": "2026-09-05T23:17:42.243817Z"
+      },
+      {
+        "since": "2026-09-05T23:22:47.083835Z",
+        "until": "2026-09-05T23:23:42.239395Z"
+      },
+      {
+        "since": "2026-09-05T23:28:47.119479Z",
+        "until": "2026-09-05T23:29:02.522818Z"
       }
     ],
     "down": false
@@ -1709,7 +1703,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:16:00-04:00"
+      "lastISO": "2026-09-05T19:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1719,7 +1713,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:10:00-04:00"
+      "lastISO": "2026-09-05T19:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1729,7 +1723,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:15:00-04:00"
+      "lastISO": "2026-09-05T19:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1739,7 +1733,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:15:00-04:00"
+      "lastISO": "2026-09-05T19:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1899,7 +1893,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:16:00-04:00"
+      "lastISO": "2026-09-05T19:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
