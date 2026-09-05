@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 10:30 PM ET",
-  "generatedAtISO": "2026-09-04T22:30:55-04:00",
+  "generatedAt": "Sep 4, 10:45 PM ET",
+  "generatedAtISO": "2026-09-04T22:45:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -948,7 +948,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -2048,21 +2048,27 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T02:29:03.119640Z",
         "until": "2026-09-05T02:29:15.608964Z"
+      },
+      {
+        "since": "2026-09-05T02:34:21.583692Z",
+        "until": "2026-09-05T02:34:26.575936Z"
+      },
+      {
+        "since": "2026-09-05T02:37:13.137237Z",
+        "until": "2026-09-05T02:37:19.400200Z"
+      },
+      {
+        "since": "2026-09-05T02:42:46.793208Z",
+        "until": "2026-09-05T02:42:52.218769Z"
+      },
+      {
+        "since": "2026-09-05T02:43:15.238635Z",
+        "until": "2026-09-05T02:43:19.658281Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
-      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-08-31T10:15:00-04:00"
-    },
     {
       "run": "The Loop",
       "cadence": "Hourly",
@@ -2091,7 +2097,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:27:00-04:00"
+      "lastISO": "2026-09-04T22:44:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2101,7 +2107,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:30:00-04:00"
+      "lastISO": "2026-09-04T22:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2111,7 +2117,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:30:00-04:00"
+      "lastISO": "2026-09-04T22:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2121,7 +2127,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:30:00-04:00"
+      "lastISO": "2026-09-04T22:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2171,7 +2177,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:24:00-04:00"
+      "lastISO": "2026-09-04T22:38:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
+      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-04T22:45:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -2251,7 +2267,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T22:16:00-04:00"
+      "lastISO": "2026-09-04T22:32:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
