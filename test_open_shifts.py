@@ -46,10 +46,23 @@ def test_description_never_leaks():
     # Only the studio number may come out of a description — renter names and
     # money markers stay behind. The output is a closed set of fields.
     o = parse("Need FBS", "Mark Jennings (Midnight Seven): (Studio 901) [Paid]")
-    assert set(o) == {"role", "studio", "day_offset", "start", "end"}, o
+    assert set(o) == {"role", "studio", "day_offset", "start", "end",
+                      "id", "date", "startISO", "endISO"}, o
     for v in o.values():
         s = str(v)
         assert "Mark" not in s and "Paid" not in s, o
+
+
+def test_claim_id_is_stable_and_public_only():
+    # The claim server keys on `id`. It must come out the same on every build
+    # (a claim posted against one build must still resolve on the next) and be
+    # built from the public fields only — never the calendar UID.
+    a = parse("Need FBS", "Renter A: (Studio 901) [Paid]")
+    b = parse("Need FBS", "Renter B: (Studio 901) [Paid]")
+    assert a["id"] == b["id"] and len(a["id"]) == 12
+    c = parse("Need FBS", "Renter A: (Studio 509B) [Paid]")
+    assert c["id"] != a["id"]
+    assert a["startISO"].startswith("2026-08-25T12:45") and a["date"] == "2026-08-25"
 
 
 def test_assigned_and_noise_are_not_open():

@@ -1,3 +1,6 @@
 requests>=2.31
 icalendar>=5.0
 recurring-ical-events>=2.2
+# The Vercel edition (server/): installed here too because Vercel's Python
+# builder reads the root requirements.txt. Costs the Actions build ~10 s.
+-r server/requirements.txt

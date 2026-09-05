@@ -25,6 +25,7 @@ build.py actually runs, missing/failing sources are real errors.
 import os
 import re
 import sys
+import hashlib
 import json
 import base64
 from datetime import datetime, timedelta, timezone
@@ -85,6 +86,7 @@ PANEL_STATE = os.path.join(HERE, "panel-state.json")
 # so clients can poll every 30 s for a fraction of the bandwidth — faster AND
 # cheaper. Keep it byte-small; it is fetched far more often than the pages.
 VERSION = os.path.join(HERE, "version.json")
+OPEN_SHIFTS = os.path.join(HERE, "open-shifts.json")   # claim server input, not committed
 # Per-booking arrival/departure, published for machines rather than for the two
 # pages. The event gate reads it to answer one question before it sends a canned
 # how-to reply: is this renter still in the studio? panel-state.json cannot
@@ -471,12 +473,27 @@ def parse_open_shift(summary, description, dtstart, dtend, base_day):
         if rx.search(summary or ""):
             m = RE_SHIFT_STUDIO.search(description or "")
             day = dtstart.astimezone(TZ).date() if dtstart.tzinfo else dtstart.date()
+            studio = m.group(1).upper() if m else None
+            start, end = decimal_hours(dtstart, day), decimal_hours(dtend, day)
             return {"role": role,
-                    "studio": m.group(1).upper() if m else None,
+                    "studio": studio,
                     "day_offset": (day - base_day).days,
-                    "start": decimal_hours(dtstart, day),
-                    "end": decimal_hours(dtend, day)}
+                    "start": start,
+                    "end": end,
+                    # Claim identity (server/app.py). Derived from the public
+                    # fields only — never the calendar UID, which is not ours
+                    # to publish — so the same placeholder gets the same id on
+                    # every build, and the id says nothing a reader can't see.
+                    "id": open_shift_id(day, role, start, end, studio),
+                    "date": day.isoformat(),
+                    "startISO": (dtstart.astimezone(TZ) if dtstart.tzinfo else dtstart).isoformat(),
+                    "endISO": (dtend.astimezone(TZ) if dtend.tzinfo else dtend).isoformat()}
     return None
+
+
+def open_shift_id(day, role, start, end, studio):
+    key = f"{day.isoformat()}|{role}|{start:.2f}|{end:.2f}|{studio or ''}"
+    return hashlib.sha1(key.encode()).hexdigest()[:12]
 
 
 def parse_staff_assignment(summary, description, dtstart, dtend, base_day):
@@ -3208,6 +3225,22 @@ def sync_booking_status(data, fallback, now):
         print(f"Booking Status sync: {flipped} flipped, {failed} failed.")
 
 
+def write_open_shifts(data):
+    """The claim server's view of what is claimable (server/app.py).
+
+    Same rows the pages already carry in DATA — nothing extra crosses here —
+    written beside the pages so the server never has to parse a built page to
+    answer "is this id still open?". Local to the host that builds; the GitHub
+    workflow does not add it, and the Pages edition needs nothing from it.
+    """
+    with open(OPEN_SHIFTS, "w", encoding="utf-8") as fh:
+        json.dump({"generatedAtISO": data["generatedAtISO"],
+                   "shiftBaseDay": data.get("shiftBaseDay"),
+                   "openShifts": data.get("openShifts", [])},
+                  fh, separators=(",", ":"))
+        fh.write("\n")
+
+
 def main():
     now = datetime.now(TZ)
     # No time gate since 2026-09-05. Bookings regularly cross midnight (socials
@@ -3221,6 +3254,7 @@ def main():
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))
     open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
     write_booking_state(data, fallback)
+    write_open_shifts(data)
     sync_booking_status(data, fallback, now)
     # Written last, so it can never advertise an edition the pages don't carry yet.
     with open(VERSION, "w", encoding="utf-8") as fh:

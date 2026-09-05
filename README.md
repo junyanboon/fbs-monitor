@@ -75,6 +75,15 @@ question, because a back-to-back renter's arrival overwrites the previous
 renter's departure. Same fields the pages already render publicly; no PINs (see
 rule 5).
 
+**Vercel edition** (2026-09-05): the same build, served from Vercel behind a
+staff login, with **Claim** on every open shift. Setup and operation:
+[`deploy/README.md`](deploy/README.md). The workflow's `publish.py` step
+uploads each build into the app's Postgres `pages` table (skipped when the
+`DATABASE_URL` secret is unset — the Pages edition never depends on it).
+`server/` is the claim server; `open-shifts.json` is its input and is never
+committed. Both templates carry `FBS_AUTH`, which asks `api/me` once: a 404
+(GitHub Pages) means "no server" and the page renders exactly as before.
+
 ---
 
 ## Rules that are easy to break

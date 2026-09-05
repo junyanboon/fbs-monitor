@@ -166,6 +166,15 @@ jobs:
           DEBUG_ARM: ${{ github.event.inputs.debug_arm == 'true' && '1' || '0' }}
         run: python build.py
 
+      # Vercel edition (server/app.py): push the built files into the app's
+      # database. Skips cleanly when the secret is unset, so the Pages edition
+      # never depends on it. The pages themselves are the same bytes.
+      - name: Publish to the Vercel edition
+        if: steps.gate.outputs.ready == 'true'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python publish.py
+
       - name: Commit if changed
         if: steps.gate.outputs.ready == 'true'
         run: |

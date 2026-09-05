@@ -220,10 +220,18 @@
         letter-spacing:.06em;text-transform:uppercase;display:flex;flex-direction:column;
         align-items:center;gap:3px;padding:0;text-decoration:none}
   nav a svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+  /* claim server (server/app.py): who is signed in, and the Claim control on open shifts */
+  #who{font-size:12px;margin-top:2px}#who a{color:var(--chalk-dim);text-decoration:none}
+  #who .chip{margin-left:6px}
+  .orow .ev{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;align-items:center}
+  .claimbtn{font-size:11px;letter-spacing:.05em;font-weight:800;padding:5px 12px;border-radius:99px;border:0;
+    background:var(--watch);color:#111}
+  .claimbtn.plain{background:var(--scrim-2);color:var(--chalk-dim)}
+  .claimbtn:disabled{opacity:.5}
 </style>
 
 <header>
-  <div><h1>FBS <em>Mobile</em></h1><div class="hdate" id="hdate"></div></div>
+  <div><h1>FBS <em>Mobile</em></h1><div class="hdate" id="hdate"></div><div id="who"></div></div>
   <div class="clock"><div><b id="clock">--:--</b><span class="tz">TORONTO</span></div>
     <button id="fresh" aria-label="Refresh data"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4"/></svg><span id="freshtxt">·</span></button>
   </div>
@@ -414,6 +422,89 @@ function tlHTML(e,st,n){
          `<div class="ends ${e.assumed?"assumed-row":""}">${L}${signal}${R}</div></div>`;
 }
 
+/* ── Staff identity + shift claims. Talks to server/app.py (the Hostinger
+   edition). On GitHub Pages api/me answers 404, `backend` goes false, and the
+   page renders exactly as before — the Notion board stays the claim path.
+   Offline: the last-known identity is kept in localStorage, and a claim made
+   with no network waits in an outbox until `online` fires or the page next
+   loads with a connection. The server is the only judge of a claim; the outbox
+   delays the question, it never answers it. ── */
+const FBS_AUTH = (() => {
+  const base = location.pathname.replace(/[^/]*$/, '');
+  const K_ME='fbs.me', K_CL='fbs.claims', K_OUT='fbs.outbox';
+  const rd=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+  const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  const S={me:rd(K_ME,null), backend:rd(K_ME,null)?true:null, claims:rd(K_CL,[]), outbox:rd(K_OUT,[]), busy:{}, err:{}};
+  const api=(p,o={})=>fetch(base+'api/'+p,{credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json'},...o});
+  const detail=async r=>{try{return (await r.json()).detail||('Failed ('+r.status+')')}catch(e){return 'Failed ('+r.status+')'}};
+  const rerender=()=>{try{render()}catch(e){}};
+  async function whoami(){
+    let r; try{ r=await api('me'); }catch(e){ return; }             // offline: keep what we have
+    if(r.status===404){ S.backend=false; return; }                   // static edition, no server
+    S.backend=true;
+    if(r.status===401){ S.me=null; wr(K_ME,null);
+      location.replace(base+'login?next='+encodeURIComponent(location.pathname+location.search)); return; }
+    if(r.ok){ S.me=await r.json(); wr(K_ME,S.me); }
+  }
+  async function pull(){ if(S.backend===false) return;
+    try{ const r=await api('claims'); if(r.ok){ S.claims=await r.json(); wr(K_CL,S.claims); } }catch(e){} }
+  async function flush(){
+    if(!S.outbox.length || S.backend===false) return;
+    const keep=[];
+    for(const c of S.outbox){
+      try{ const r=await api('claim',{method:'POST',body:JSON.stringify({id:c.id})});
+        if(r.status>=500) keep.push(c);
+        else if(!r.ok && r.status!==409) S.err[c.id]=await detail(r);   // server said no: drop it, show why
+      }catch(e){ keep.push(c); }
+    }
+    S.outbox=keep; wr(K_OUT,keep);
+  }
+  const claimOf=id=>S.claims.find(c=>c.id===id)||null;
+  const pending=id=>S.outbox.some(c=>c.id===id);
+  async function claim(id){
+    if(!S.me || S.busy[id]) return;
+    S.busy[id]=true; delete S.err[id]; rerender();
+    let r=null;
+    try{ r=await api('claim',{method:'POST',body:JSON.stringify({id})}); }catch(e){ r=null; }
+    if(r===null || r.status>=500){                                    // no network / server down → outbox
+      if(!pending(id)){ S.outbox.push({id,at:Date.now()}); wr(K_OUT,S.outbox); }
+    } else if(r.ok || r.status===409){ await pull(); }
+    else { S.err[id]=await detail(r); }
+    delete S.busy[id]; header(); rerender();
+  }
+  async function release(id){
+    if(!S.me || S.busy[id]) return;
+    S.busy[id]=true; delete S.err[id]; rerender();
+    try{ const r=await api('claim/'+encodeURIComponent(id),{method:'DELETE'}); if(!r.ok) S.err[id]=await detail(r); }
+    catch(e){ S.err[id]='Offline — try again with signal'; }
+    await pull(); delete S.busy[id]; rerender();
+  }
+  /* Right edge of an open-shift row. Empty on the static edition. */
+  function rowExtra(o){
+    if(S.backend===false || !o.id) return '';
+    const c=claimOf(o.id), mine=c&&S.me&&c.name===S.me.name;
+    if(c) return `<span class="chip ok">${mine?'You':esc(c.name)}</span>`
+      +(mine?`<button type="button" class="claimbtn plain" data-release="${esc(o.id)}"${S.busy[o.id]?' disabled':''}>Release</button>`:'');
+    if(pending(o.id)) return `<span class="chip watch">Sending…</span>`;
+    if(S.err[o.id]) return `<span class="chip crit">${esc(S.err[o.id])}</span><button type="button" class="claimbtn" data-claim="${esc(o.id)}">Retry</button>`;
+    return `<button type="button" class="claimbtn" data-claim="${esc(o.id)}"${S.busy[o.id]||!S.me?' disabled':''}>Claim</button>`;
+  }
+  function header(){
+    const el=document.getElementById('who'); if(!el) return;
+    if(S.backend===false||!S.me){ el.innerHTML=''; return; }
+    el.innerHTML=`<a href="${base}account" title="Account">${esc(S.me.name)}</a>`
+      +(S.outbox.length?`<span class="chip watch">${S.outbox.length} claim${S.outbox.length>1?'s':''} waiting for signal</span>`:'');
+  }
+  document.addEventListener('click',ev=>{
+    const b=ev.target.closest('[data-claim],[data-release]'); if(!b) return;
+    ev.preventDefault(); if(b.dataset.claim) claim(b.dataset.claim); else release(b.dataset.release);
+  });
+  async function sync(){ await whoami(); await flush(); await pull(); header(); rerender(); }
+  function start(){ sync(); window.addEventListener('online',sync);
+    setInterval(()=>{ if(S.backend!==false) sync(); },60000); }
+  return {start, rowExtra, state:S};
+})();
+
 function render(){
   const now=torontoNow(),n=now.t;
   $('#clock').textContent=now.hhmm;
@@ -558,7 +649,7 @@ function render(){
   const openRows=showOpen?OPEN.map(o=>`<div class="row orow">
       <span class="tm">${hm(o.start)}</span>
       <span class="nm">${esc(o.role)}${o.studio?`<span class="st">${esc(o.studio)}</span>`:""}</span>
-      <span class="ev"><span class="chip watch">${esc(o.day)} · ${hm(o.start)}–${hm(o.end)}</span></span>
+      <span class="ev"><span class="chip watch">${esc(o.day)} · ${hm(o.start)}–${hm(o.end)}</span>${FBS_AUTH.rowExtra(o)}</span>
     </div>`).join(""):"";
   const roster=SFILTER==="open"?[]:(DATA.staff||[]).filter(s=>SFILTER==="all"||s.name===SFILTER);
   const st=roster.map(s=>{
@@ -707,6 +798,7 @@ function cdTxt(nr){
     $('#fresh').classList.toggle('stale',age>((etHour>=3&&etHour<7)?90:40));}
 }
 render();
+FBS_AUTH.start();
 setInterval(render,30000);
 
 /* ── refresh: the page is a static edition. checkEdition probes version.json

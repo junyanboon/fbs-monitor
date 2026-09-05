@@ -74,6 +74,14 @@ self.addEventListener('fetch', event => {
   // The freshness probe. Must reach the network or fail — see the header note.
   if (url.pathname.endsWith('/version.json')) return;
 
+  // The claim server (server/app.py): identity, claims, sign-in. Live answers
+  // or nothing — a cached /api/me would keep a signed-out reader "signed in",
+  // and a cached claims list would re-offer a shift someone took. The pages
+  // keep their own last-known identity and an outbox in localStorage for the
+  // offline case, so the worker has no job here.
+  if (url.pathname.includes('/api/') || url.pathname.endsWith('/login')
+      || url.pathname.endsWith('/account') || url.pathname.endsWith('/open-shifts.json')) return;
+
   const isPage = req.mode === 'navigate' || url.pathname.endsWith('.html')
     || url.pathname.endsWith('/');
 
