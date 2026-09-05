@@ -306,5 +306,21 @@ def test_single_booking_takes_an_off_clock_live_row():
     assert got["AVA"]["time"] == "14:45"
 
 
+def test_a_dead_row_on_the_clock_never_outranks_the_live_row():
+    """The live 2026-09-05 shape: the voided morning EOB sits at exactly the
+    canonical 21:30, the real row at 21:45. The live row must draw the pill."""
+    ev = {"kind": "booking", "tier": "FBS", "studio": "527", "_artist_id": "r1",
+          "start": 16.75, "end": 21.75, "_eob_status": "Scheduled", "_ava_status": "Scheduled"}
+    rows = [
+        {"kind": "EOB", "artist": "r1", "studio": "527", "status": "Will Not Send",
+         "send_after": "2026-09-06T01:30:00+00:00", "sent_at": None, "created": "2026-09-05T08:18:43Z"},
+        {"kind": "EOB", "artist": "r1", "studio": "527", "status": "Ready to Send",
+         "send_after": "2026-09-05T21:45:00-04:00", "sent_at": None, "created": "2026-09-05T16:05:00Z"},
+    ]
+    import datetime
+    build.apply_message_dispatch([ev], rows, datetime.date(2026, 9, 5))
+    assert ev["dispatch"] == [{"kind": "EOB", "state": "scheduled", "time": "21:45"}], ev["dispatch"]
+
+
 if __name__ == "__main__":
     main()

@@ -2665,25 +2665,34 @@ def apply_message_dispatch(events, rows, base_day):
         for kind, field in (("AVA", "_ava_status"), ("EOB", "_eob_status")):
             candidates = by_key.get((artist, studio, kind), [])
             expected = _expected_dispatch_at(event, kind, base_day)
-            timed = [r for r in candidates
-                     if _row_datetime(r, "send_after") is not None
-                     and expected is not None
-                     and abs((_row_datetime(r, "send_after") - expected).total_seconds()) <= 300]
+            # Live rows join first, dead rows never outrank them. On
+            # 2026-09-05 Rebecca Wise's voided morning EOB sat at exactly the
+            # canonical 21:30 while her real row (queued by hand for 21:45,
+            # session extended to 22:00) sat 15 minutes off; the clock join
+            # picked the dead row and the card showed nothing. Terminal rows
+            # only ever speak when no live row exists — see below.
+            live = [r for r in candidates
+                    if not _is_terminal_dispatch(r.get("status"))]
+            def _near(r):
+                at = _row_datetime(r, "send_after")
+                return (at is not None and expected is not None
+                        and abs((at - expected).total_seconds()) <= 300)
+            timed = [r for r in live if _near(r)]
             if timed:
                 matches = timed
             elif booking_count.get((artist, studio)) == 1:
                 # One booking for this renter in this studio today: every
-                # live row is theirs, timed or not. A row whose clock is off
-                # the canonical time is still their message — Rebecca Wise's
-                # 2026-09-05 EOB was queued at 21:45 (session extended to
-                # 22:00) against a board end of 21:45, a 15-minute miss that
-                # hid a queued message. Sent rows still fall through below.
-                matches = [r for r in candidates
-                           if not _is_terminal_dispatch(r.get("status"))]
+                # live row is theirs, timed or not. A wrong clock reads as a
+                # wrong time on the card, not as a false MISSING.
+                matches = live
+            elif any(_near(r) for r in candidates):
+                # Two bookings, and a FINISHED row sits on this one's clock:
+                # it went (or was ruled off). Nothing to draw.
+                matches = []
             else:
                 # An untimed row cannot be assigned safely between two bookings.
                 # Its existence also means absence cannot be proved for either.
-                untimed = any(_row_datetime(r, "send_after") is None for r in candidates)
+                untimed = any(_row_datetime(r, "send_after") is None for r in live)
                 matches = [] if not untimed else None
             row = (max(matches, key=lambda r: r.get("created") or "")
                    if matches else None)
