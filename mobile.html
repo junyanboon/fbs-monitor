@@ -258,8 +258,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 10:01 PM ET",
-  "generatedAtISO": "2026-09-04T22:01:34-04:00",
+  "generatedAt": "Sep 4, 10:03 PM ET",
+  "generatedAtISO": "2026-09-04T22:03:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -731,7 +731,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1823,7 +1823,7 @@ const DATA = /*__DATA__*/{
       "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
       "monitoring": "Live",
       "status": "crit",
-      "statusLabel": "Overdue",
+      "statusLabel": "🔴 MISSING",
       "lastISO": "2026-08-31T10:15:00-04:00"
     },
     {
@@ -1833,7 +1833,7 @@ const DATA = /*__DATA__*/{
       "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
       "monitoring": "Live",
       "status": "crit",
-      "statusLabel": "Overdue",
+      "statusLabel": "🔴 MISSING",
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
@@ -1845,6 +1845,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-03T19:47:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "🔴 MISSING",
+      "lastISO": "2026-09-04T21:56:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1965,16 +1975,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-04T22:05:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–22:50 America/Toronto · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T21:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
