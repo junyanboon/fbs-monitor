@@ -268,8 +268,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 1:54 PM ET",
-  "generatedAtISO": "2026-09-05T13:54:02-04:00",
+  "generatedAt": "Sep 5, 2:01 PM ET",
+  "generatedAtISO": "2026-09-05T14:01:34-04:00",
   "studios": [
     {
       "id": "509A",
@@ -529,11 +529,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 13.25,
       "end": 13.75,
-      "id": "d59a2bb23f63",
+      "id": "817e310d6fde",
       "date": "2026-09-06",
       "startISO": "2026-09-06T13:15:00-04:00",
       "endISO": "2026-09-06T13:45:00-04:00",
@@ -541,11 +541,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 13.25,
       "end": 13.75,
-      "id": "817e310d6fde",
+      "id": "d59a2bb23f63",
       "date": "2026-09-06",
       "startISO": "2026-09-06T13:15:00-04:00",
       "endISO": "2026-09-06T13:45:00-04:00",
@@ -614,18 +614,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "PBF — Julie Marouze — keyless entry reply [responder:sms-•••]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 12:03",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "PBF for Julie Marouze in Studio 693"
-    },
-    {
       "code": "Booking change — KerriAnn M. — Oct 23 alternative [responder:1a07244005bcc4e8]",
       "kind": null,
       "channel": "SMS",
@@ -636,6 +624,18 @@ const DATA = /*__DATA__*/{
       "send_after": null,
       "send_after_iso": null,
       "label": "Booking Change Request · KerriAnn M. · Oct 23 alternative"
+    },
+    {
+      "code": "COURTESY — Rebecca Wise — safety acknowledgement [responder:sms-in-e614e8d9be676c382cfc]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 5 · 14:01",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "Courtesy reply for Rebecca Wise"
     },
     {
       "code": "EOB",
@@ -665,7 +665,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1211,6 +1211,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T17:51:45.158611Z",
         "until": "2026-09-05T17:51:55.140829Z"
+      },
+      {
+        "since": "2026-09-05T17:57:45.145961Z",
+        "until": "2026-09-05T17:57:54.625206Z"
       }
     ],
     "down": false
@@ -1247,6 +1251,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T12:00:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-05T07:46:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1254,7 +1268,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:53:00-04:00"
+      "lastISO": "2026-09-05T13:59:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1264,7 +1278,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:50:00-04:00"
+      "lastISO": "2026-09-05T14:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1274,7 +1288,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:45:00-04:00"
+      "lastISO": "2026-09-05T14:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1284,7 +1298,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:50:00-04:00"
+      "lastISO": "2026-09-05T14:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1294,7 +1308,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:00:00-04:00"
+      "lastISO": "2026-09-05T14:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1304,7 +1318,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:00:00-04:00"
+      "lastISO": "2026-09-05T14:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1377,16 +1391,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T09:35:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:42:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1424,7 +1428,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T13:46:00-04:00"
+      "lastISO": "2026-09-05T14:02:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
