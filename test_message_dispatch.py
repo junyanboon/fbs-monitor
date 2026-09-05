@@ -114,14 +114,19 @@ def test_terminal_row_suppresses_missing_only_when_nothing_else_joins():
     assert {"kind": "AVA", "state": "scheduled", "time": "16:30"} in pills
 
 
-def test_missing_still_fires_when_no_row_of_that_kind_ever_finished():
-    """The alarm has to survive the fix — a live row that misses its slot by
-    half an hour is a real scheduling fault, not a moved booking."""
+def test_off_clock_live_row_shows_its_own_time_for_a_single_booking():
+    """Changed 2026-09-05 (Junyan): a live row that misses its slot by half an
+    hour is still THE queued message when the renter has one booking here
+    today. It shows with its real send time — a wrong clock reads as a wrong
+    time on the card, not as a false MISSING. (Rebecca Wise's EOB, queued at
+    21:45 for a session extended past the board's end, was hidden by the old
+    rule.)"""
     pills = dispatch([booking()], [
         message("AVA", "Ready to Send", send_after="2026-08-30T21:00:00Z"),
         message("EOB", "Ready to Send", send_after="2026-08-31T03:45:00Z"),
     ])
-    assert {"kind": "AVA", "state": "missing", "time": None} in pills
+    assert {"kind": "AVA", "state": "scheduled", "time": "17:00"} in pills
+    assert {"kind": "EOB", "state": "scheduled", "time": "23:45"} in pills
 
 
 def test_will_not_send_is_intentional_absence_not_missing():
@@ -265,7 +270,7 @@ def main():
     test_expected_row_that_does_not_exist_is_missing()
     test_extended_booking_does_not_call_its_sent_message_missing()
     test_terminal_row_suppresses_missing_only_when_nothing_else_joins()
-    test_missing_still_fires_when_no_row_of_that_kind_ever_finished()
+    test_off_clock_live_row_shows_its_own_time_for_a_single_booking()
     test_will_not_send_is_intentional_absence_not_missing()
     test_terminal_rows_do_not_render_queue_pills()
     test_missing_artist_relation_is_unknown_not_missing()
@@ -279,6 +284,26 @@ def main():
     test_no_gtg_visibility_rules_match_on_desktop_and_mobile()
     test_legacy_host_rows_without_template_still_have_a_dispatch_kind()
     print("message dispatch regression tests: OK")
+
+
+def test_single_booking_takes_an_off_clock_live_row():
+    """Rebecca Wise, 2026-09-05: EOB queued for 21:45 against a board end of
+    21:45 (expected 21:30). One booking → the live row is hers, clock or no."""
+    ev = {"kind": "booking", "tier": "FBS", "studio": "527", "_artist_id": "r1",
+          "start": 16.75, "end": 21.75, "_eob_status": "Scheduled", "_ava_status": "Scheduled"}
+    rows = [
+        {"kind": "EOB", "artist": "r1", "studio": "527", "status": "Ready to Send",
+         "send_after": "2026-09-05T21:45:00-04:00", "sent_at": None, "created": "2026-09-05T16:00:00Z"},
+        {"kind": "EOB", "artist": "r1", "studio": "527", "status": "Will Not Send",
+         "send_after": "2026-09-05T21:30:00-04:00", "sent_at": None, "created": "2026-09-05T04:02:00Z"},
+        {"kind": "AVA", "artist": "r1", "studio": "527", "status": "Ready to Send",
+         "send_after": "2026-09-05T14:45:00-04:00", "sent_at": None, "created": "2026-09-05T16:00:00Z"},
+    ]
+    import datetime
+    build.apply_message_dispatch([ev], rows, datetime.date(2026, 9, 5))
+    got = {d["kind"]: d for d in ev["dispatch"]}
+    assert got["EOB"]["state"] == "scheduled" and got["EOB"]["time"] == "21:45", ev["dispatch"]
+    assert got["AVA"]["time"] == "14:45"
 
 
 if __name__ == "__main__":

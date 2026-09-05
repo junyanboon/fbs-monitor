@@ -2672,7 +2672,14 @@ def apply_message_dispatch(events, rows, base_day):
             if timed:
                 matches = timed
             elif booking_count.get((artist, studio)) == 1:
-                matches = [r for r in candidates if _row_datetime(r, "send_after") is None]
+                # One booking for this renter in this studio today: every
+                # live row is theirs, timed or not. A row whose clock is off
+                # the canonical time is still their message — Rebecca Wise's
+                # 2026-09-05 EOB was queued at 21:45 (session extended to
+                # 22:00) against a board end of 21:45, a 15-minute miss that
+                # hid a queued message. Sent rows still fall through below.
+                matches = [r for r in candidates
+                           if not _is_terminal_dispatch(r.get("status"))]
             else:
                 # An untimed row cannot be assigned safely between two bookings.
                 # Its existence also means absence cannot be proved for either.
