@@ -486,8 +486,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 3:06 PM ET",
-  "generatedAtISO": "2026-09-05T15:06:41-04:00",
+  "generatedAt": "Sep 5, 3:15 PM ET",
+  "generatedAtISO": "2026-09-05T15:15:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -842,7 +842,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1440,6 +1440,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T19:04:59.425465Z",
         "until": "2026-09-05T19:05:08.906327Z"
+      },
+      {
+        "since": "2026-09-05T19:10:46.864368Z",
+        "until": "2026-09-05T19:10:55.671003Z"
+      },
+      {
+        "since": "2026-09-05T19:15:53.053796Z",
+        "until": "2026-09-05T19:15:57.615904Z"
       }
     ],
     "down": false
@@ -1456,16 +1464,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-05T07:46:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1473,7 +1471,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:05:00-04:00"
+      "lastISO": "2026-09-05T15:15:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1483,7 +1481,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:00:00-04:00"
+      "lastISO": "2026-09-05T15:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1493,7 +1491,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:00:00-04:00"
+      "lastISO": "2026-09-05T15:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1503,7 +1501,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:05:00-04:00"
+      "lastISO": "2026-09-05T15:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1533,7 +1531,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T14:07:00-04:00"
+      "lastISO": "2026-09-05T15:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1616,6 +1614,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T09:35:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-05T15:11:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1643,7 +1651,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T14:10:00-04:00"
+      "lastISO": "2026-09-05T15:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1653,7 +1661,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T15:01:00-04:00"
+      "lastISO": "2026-09-05T15:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
