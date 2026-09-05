@@ -475,8 +475,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 4, 2026",
   "shiftBaseDay": "2026-09-04",
-  "generatedAt": "Sep 4, 11:15 PM ET",
-  "generatedAtISO": "2026-09-04T23:15:49-04:00",
+  "generatedAt": "Sep 4, 11:30 PM ET",
+  "generatedAtISO": "2026-09-04T23:30:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -742,19 +742,13 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "23:30"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
       "arrived": "17:46",
-      "departed": null,
+      "departed": "23:30",
       "facilitator": null,
       "arrived_by": "Enrico Casertano",
-      "departed_by": null,
+      "departed_by": "Enrico Casertano",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -927,16 +921,7 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     }
   ],
-  "messages": [
-    {
-      "code": "EOB-sweep-•••",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 4 · 00:02"
-    }
-  ],
+  "messages": [],
   "attention": [
     {
       "level": "warn",
@@ -1276,6 +1261,15 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788571821453,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Enrico Casertano",
+      "time": "23:30",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788579027140,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1287,7 +1281,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-05T01:15:07+00:00",
     "mailCheck": {
-      "matched": 5,
+      "matched": 6,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -2076,6 +2070,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-05T03:11:39.738738Z",
         "until": "2026-09-05T03:11:53.052335Z"
+      },
+      {
+        "since": "2026-09-05T03:16:53.130620Z",
+        "until": "2026-09-05T03:17:02.613142Z"
+      },
+      {
+        "since": "2026-09-05T03:22:03.281754Z",
+        "until": "2026-09-05T03:22:16.748084Z"
+      },
+      {
+        "since": "2026-09-05T03:27:48.307966Z",
+        "until": "2026-09-05T03:28:00.763633Z"
       }
     ],
     "down": false
@@ -2109,7 +2115,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-04T23:12:00-04:00"
+      "lastISO": "2026-09-04T23:29:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2219,7 +2225,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-04T23:15:00-04:00"
+      "lastISO": "2026-09-04T23:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2229,7 +2235,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-04T23:15:00-04:00"
+      "lastISO": "2026-09-04T23:30:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
