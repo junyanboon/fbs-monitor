@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 6, 12:45 AM ET",
-  "generatedAtISO": "2026-09-06T00:45:57-04:00",
+  "generatedAt": "Sep 6, 1:01 AM ET",
+  "generatedAtISO": "2026-09-06T01:01:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1043,7 +1043,12 @@ const DATA = /*__DATA__*/{
       "label": "EOB · Studio 509B"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "901",
@@ -2064,11 +2069,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T04:44:06.159818Z",
         "until": "2026-09-06T04:44:19.580660Z"
+      },
+      {
+        "since": "2026-09-06T04:49:49.079647Z",
+        "until": "2026-09-06T04:49:56.389677Z"
+      },
+      {
+        "since": "2026-09-06T04:55:02.265688Z",
+        "until": "2026-09-06T04:55:12.729107Z"
+      },
+      {
+        "since": "2026-09-06T05:01:02.300726Z",
+        "until": "2026-09-06T05:01:10.770023Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge — 2026-09-05 20:10 interrupted",
+      "cadence": null,
+      "expected": "2026-09-05 20:10 America/Toronto",
+      "produces": "interrupted by Hermes container restart 20:22–20:30; outcome unknown; no inbox writes made",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-05T22:52:00-04:00"
+    },
     {
       "run": "The Analyst",
       "cadence": "Daily",
@@ -2080,14 +2107,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T23:15:00-04:00"
     },
     {
-      "run": "The Concierge — 2026-09-05 20:10 interrupted",
-      "cadence": null,
-      "expected": "2026-09-05 20:10 America/Toronto",
-      "produces": "interrupted by Hermes container restart 20:22–20:30; outcome unknown; no inbox writes made",
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "06:00 America/Toronto · Codex production fallback",
+      "produces": "Staff hours logged → FBS Itinerary",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-05T22:52:00-04:00"
+      "lastISO": "2026-09-05T06:07:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2107,7 +2134,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T00:45:00-04:00"
+      "lastISO": "2026-09-06T01:01:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2117,7 +2144,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T00:00:00-04:00"
+      "lastISO": "2026-09-06T01:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2127,7 +2154,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T00:00:00-04:00"
+      "lastISO": "2026-09-06T01:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2138,16 +2165,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-06T00:07:00-04:00"
-    },
-    {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "06:00 America/Toronto · Codex production fallback",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-05T06:07:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -2217,7 +2234,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T00:45:00-04:00"
+      "lastISO": "2026-09-06T01:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2227,7 +2244,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T00:45:00-04:00"
+      "lastISO": "2026-09-06T01:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2317,7 +2334,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T00:27:00-04:00"
+      "lastISO": "2026-09-06T00:59:00-04:00"
     },
     {
       "run": "The Sentinel",
