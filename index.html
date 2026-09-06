@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 2:24 PM ET",
-  "generatedAtISO": "2026-09-06T14:24:30-04:00",
+  "generatedAt": "Sep 6, 2:30 PM ET",
+  "generatedAtISO": "2026-09-06T14:30:28-04:00",
   "studios": [
     {
       "id": "509A",
@@ -587,7 +587,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 11.5,
       "end": 13.5,
-      "access_gap": true
+      "access_gap": false
     },
     {
       "studio": "509B",
@@ -689,10 +689,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "14:26",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Diana Leal",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1116,6 +1116,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788717786000,
       "source": "panel"
+    },
+    {
+      "studio": "527",
+      "name": "Diana Leal",
+      "time": "14:26",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788719192775,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1125,9 +1134,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-06T18:03:06+00:00",
+    "updatedAt": "2026-09-06T18:30:10+00:00",
     "mailCheck": {
-      "matched": 3,
+      "matched": 4,
       "inGap": 1,
       "missed": [],
       "missedCount": 0
@@ -1484,6 +1493,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T18:20:07.021520Z",
         "until": "2026-09-06T18:20:10.185909Z"
+      },
+      {
+        "since": "2026-09-06T18:25:27.334412Z",
+        "until": "2026-09-06T18:25:36.832012Z"
       }
     ],
     "down": false
@@ -1498,6 +1511,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-05T22:52:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-06T12:35:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1517,7 +1540,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T14:21:00-04:00"
+      "lastISO": "2026-09-06T14:26:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1527,7 +1550,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T14:20:00-04:00"
+      "lastISO": "2026-09-06T14:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1537,7 +1560,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T14:15:00-04:00"
+      "lastISO": "2026-09-06T14:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1547,7 +1570,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T14:20:00-04:00"
+      "lastISO": "2026-09-06T14:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1598,16 +1621,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-06T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:35:00-04:00"
     },
     {
       "run": "The Custodian",
