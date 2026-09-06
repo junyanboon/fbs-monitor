@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 6:47 AM ET",
-  "generatedAtISO": "2026-09-06T06:47:32-04:00",
+  "generatedAt": "Sep 6, 7:29 AM ET",
+  "generatedAtISO": "2026-09-06T07:29:38-04:00",
   "studios": [
     {
       "id": "509A",
@@ -951,7 +951,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     },
     {
       "level": "crit",
@@ -1090,6 +1090,42 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T10:41:51.240155Z",
         "until": "2026-09-06T10:42:05.542996Z"
+      },
+      {
+        "since": "2026-09-06T10:47:04.332844Z",
+        "until": "2026-09-06T10:48:05.743165Z"
+      },
+      {
+        "since": "2026-09-06T10:53:04.357809Z",
+        "until": "2026-09-06T10:54:54.756562Z"
+      },
+      {
+        "since": "2026-09-06T10:54:53.075583Z",
+        "until": "2026-09-06T10:54:58.757606Z"
+      },
+      {
+        "since": "2026-09-06T11:00:27.991431Z",
+        "until": "2026-09-06T11:00:38.424393Z"
+      },
+      {
+        "since": "2026-09-06T11:06:27.982200Z",
+        "until": "2026-09-06T11:06:33.447377Z"
+      },
+      {
+        "since": "2026-09-06T11:11:28.028278Z",
+        "until": "2026-09-06T11:11:42.491531Z"
+      },
+      {
+        "since": "2026-09-06T11:16:59.565587Z",
+        "until": "2026-09-06T11:17:13.988046Z"
+      },
+      {
+        "since": "2026-09-06T11:22:59.557250Z",
+        "until": "2026-09-06T11:23:08.021656Z"
+      },
+      {
+        "since": "2026-09-06T11:28:27.942316Z",
+        "until": "2026-09-06T11:28:41.824711Z"
       }
     ],
     "down": false
@@ -1106,6 +1142,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-06T00:59:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1113,7 +1159,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T06:48:00-04:00"
+      "lastISO": "2026-09-06T07:28:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1123,7 +1169,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T06:00:00-04:00"
+      "lastISO": "2026-09-06T07:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1133,7 +1179,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T06:00:00-04:00"
+      "lastISO": "2026-09-06T07:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1143,7 +1189,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T06:07:00-04:00"
+      "lastISO": "2026-09-06T07:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1193,7 +1239,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T06:00:00-04:00"
+      "lastISO": "2026-09-06T07:08:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1243,7 +1289,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T06:45:00-04:00"
+      "lastISO": "2026-09-06T07:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1253,7 +1299,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T06:45:00-04:00"
+      "lastISO": "2026-09-06T07:25:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1334,16 +1380,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-08-01T10:01:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T00:59:00-04:00"
     },
     {
       "run": "The Sentinel",
