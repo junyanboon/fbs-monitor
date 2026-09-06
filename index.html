@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 2:01 PM ET",
-  "generatedAtISO": "2026-09-06T14:01:25-04:00",
+  "generatedAt": "Sep 6, 2:03 PM ET",
+  "generatedAtISO": "2026-09-06T14:03:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -661,10 +661,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "11:30",
-      "departed": null,
+      "departed": "14:03",
       "facilitator": null,
       "arrived_by": "Kyle FitzGerald",
-      "departed_by": null,
+      "departed_by": "Kyle FitzGerald",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1129,6 +1129,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788716297677,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Kyle FitzGerald",
+      "time": "14:03",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788717786000,
+      "source": "panel"
     }
   ],
   "panelPrior": {},
@@ -1138,12 +1147,14 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-06T17:44:02+00:00",
+    "updatedAt": "2026-09-06T18:03:06+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
-      "missed": [],
-      "missedCount": 0
+      "missed": [
+        "527 departure 14:02 (Kyle FitzGerald)"
+      ],
+      "missedCount": 1
     },
     "doorGaps": [
       {
