@@ -89,6 +89,13 @@ jobs:
 
       # Guards the reduced public AVA/EOB projection. A queue outage must not
       # fabricate MISSING pills, and no recipient/body/row id may cross.
+      # Guards the HTA watchdog: a board flag is never proof of a send, a
+      # Ready-to-Send row past its time is STUCK, and nothing private reaches
+      # the pill. Pure logic — no network, no secrets.
+      - name: HTA watch regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_hta_watch.py
+
       - name: Message dispatch regression tests
         if: steps.gate.outputs.ready == 'true'
         run: python test_message_dispatch.py
@@ -99,12 +106,6 @@ jobs:
       - name: Messages tab regression tests
         if: steps.gate.outputs.ready == 'true'
         run: python test_messages_tab.py
-
-      # Guards the red dot: newest inbound vs newest reply, per renter, by
-      # Artist id. Only a boolean may cross to the public page.
-      - name: Unread-dot regression tests
-        if: steps.gate.outputs.ready == 'true'
-        run: python test_unread.py
 
       # Guards open-shift placeholder parsing for the Shifts tab. Placeholders
       # must never read as a person's coverage, and nothing from an event
@@ -170,6 +171,10 @@ jobs:
           # Legacy: build.py had a time gate until 2026-09-05; it ignores this now.
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
           DEBUG_ARM: ${{ github.event.inputs.debug_arm == 'true' && '1' || '0' }}
+          # HTA watchdog first flight (2026-09-06): log the Actions rows and
+          # Booking links it WOULD write, write nothing. Remove once one clean
+          # run has been read.
+          HTA_WATCH_DRYRUN: "1"
         run: python build.py
 
       # Vercel edition (server/app.py): push the built files into the app's

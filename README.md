@@ -441,6 +441,43 @@ apart in a glance; this builder cannot. Promoting it to red would put an
 act-on-it badge on a large share of every ordinary day, which is how a signal
 stops being read at all.
 
+### 19. `HTA = Sent` on the board is a flag, not a send
+
+On 2026-09-05 the sweep set a booking's `HTA` to `Sent` because an earlier
+Responder text *looked* like an access message; it carried no codes, and the
+real How-to-Access sat unsent until 21:21 the night before a 14:00 booking.
+The board's flag is something a robot wrote. It is never evidence.
+
+The watchdog (`hta_verdicts`) judges every FBS / Monitor / Viewing booking for
+today and tomorrow from the **queue**: a row of the HTA shape (`Template =
+hta_studio_access`, or a `HTA…` / `How to Access…` code) that reached `Sent`
+for that renter — same studio, or no studio — within the seven days before the
+start. Anything else is one of:
+
+- `MISSING` — no row of that shape exists;
+- `STUCK` — a `Ready to Send` row is more than ten minutes past its send time,
+  or is timed *after* the booking starts;
+- `UNSENT` — the only row still sits at Pending Review / Needs Fix / Error;
+- a clock — a `Ready to Send` row is timed and not yet due (`QUEUED` if untimed
+  and young).
+
+Inside 18 h of the start, a non-verified booking gets an `HTA` pill in the
+dispatch cluster, a red line in the attention strip, and ONE open ✅ Actions to
+Perform row (`Access / PIN`, for Junyan, raised by `Gap audit`), deduplicated on
+its title so the 15-minute cadence cannot raise it twice. The open row also
+paints VERIFY ACCESS through rule 5. `Will Not Send` on the board or the newest
+queue row is intentional absence and stays quiet.
+
+The verified row is linked back to the booking (`Booking` relation on the
+queue), which is what feeds the board's `HTA Verified` rollup — a count of
+linked rows whose `Is Sent HTA` formula is true. That column is derived from
+the queue and cannot be set by a sweep; readers that want proof should read
+it, not `HTA`.
+
+Same publishing rule as 15: only `{kind, state, time}` crosses. A failed queue
+read publishes no HTA pill and writes nothing. Kill switch
+`HTA_WATCH_DISABLED=1`; `HTA_WATCH_DRYRUN=1` logs the writes it would make.
+
 ---
 
 ## Working on it

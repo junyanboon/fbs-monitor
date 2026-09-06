@@ -2265,60 +2265,6 @@ def fetch_inbound_texts(token, since_dt):
     return out
 
 
-def fetch_reply_state(token, since_dt):
-    """Per renter: when they last wrote to us, and when we last wrote back.
-
-    Reads the Correspondence Log in BOTH directions and every medium (Junyan,
-    2026-09-05: "text and email"), plus the Message Queue's Sent At — a robot
-    reply stamps Sent At within a minute, the log row follows minutes later.
-    Returns two {artist_id: datetime} maps and nothing else: no subjects, no
-    bodies, no numbers. `Content` is verbatim customer text and is never read.
-    """
-    last_in, last_out = {}, {}
-    def _note(store, aid, when):
-        if aid and when and (aid not in store or when > store[aid]):
-            store[aid] = when
-    rows = _notion_query(token, CORRESPONDENCE_DS, {
-        "filter": {"property": "Date & Time",
-                   "date": {"on_or_after": since_dt.isoformat()}},
-        "page_size": 100,
-    })
-    for r in rows:
-        p = r.get("properties", {})
-        aid = _relation_id(p.get("Artist"))
-        when = _row_datetime({"t": _prop_text(p.get("Date & Time"))}, "t")
-        direction = (_prop_text(p.get("Direction")) or "").strip()
-        if direction == "→ Us":
-            _note(last_in, aid, when)
-        elif direction == "→ Them":
-            _note(last_out, aid, when)
-    sent = _notion_query(token, MESSAGES_DS, {
-        "filter": {"property": "Sent At",
-                   "date": {"on_or_after": since_dt.isoformat()}},
-        "page_size": 100,
-    })
-    for r in sent:
-        p = r.get("properties", {})
-        _note(last_out, _relation_id(p.get("Artist")),
-              _row_datetime({"t": _prop_text(p.get("Sent At"))}, "t"))
-    return last_in, last_out
-
-
-def apply_unread(events, last_in, last_out):
-    """The red dot: the renter's latest message is newer than our latest reply.
-
-    Junyan, 2026-09-05: "indicate that there is a message from someone (red
-    dot) and then that red dot disappears when we reply." Any reply clears it —
-    a robot send (queue Sent At) or a human one (log row). Matching is by
-    Artist page-id, never by name. Boolean only crosses to the page."""
-    for e in events:
-        aid = e.get("_artist_id")
-        came = last_in.get(aid) if aid else None
-        went = last_out.get(aid) if aid else None
-        e["unread"] = bool(came and (went is None or came > went))
-    return events
-
-
 def apply_heard(events, texted_ids):
     """Mark bookings whose renter has texted us today.
 
@@ -2384,9 +2330,6 @@ def fetch_pending_messages(token):
         send_after = _prop_text(p.get("Send After"))
         out.append({
             "code": redact(code),
-            # Internal: the unredacted code for _lane_label(); popped before
-            # publish, and the label it yields passes through redact().
-            "_raw_code": code,
             "kind": _daily_kind(code, _prop_text(p.get("Template"))),
             "channel": _prop_text(p.get("Channel")),
             "status": _prop_text(p.get("Status")),
@@ -2444,15 +2387,10 @@ def label_messages(messages, events):
     for m in messages:
         artist = m.pop("_artist", None)
         kind = m.get("kind")
-        studio = m.get("studio")
-        name = names.get(artist)
         if not kind:
-            label = _lane_label(m.get("_raw_code") or m.get("code"), name, studio)
-            m.pop("_raw_code", None)
-            if label:
-                m["label"] = redact(label)
             continue
-        m.pop("_raw_code", None)
+        name = names.get(artist)
+        studio = m.get("studio")
         if name and studio:
             m["label"] = f"{kind} for {name} in Studio {studio}"
         elif name:
@@ -2460,107 +2398,6 @@ def label_messages(messages, events):
         elif studio:
             m["label"] = f"{kind} · Studio {studio}"
     return messages
-
-
-# Lane prefixes → the plain words the tab shows (Junyan, 2026-09-05). A code
-# that starts with none of these keeps its redacted text.
-LANE_LABELS = (
-    ("post-hta go-ahead confirmation", "GTG Confirmation", False),
-    ("holding reply", "Pending Reply", False),
-    ("pbf", "PBF", False),
-    ("quick answer", "Quick answer", True),
-    ("htr acknowledgement", "Acknowledgement", False),
-    ("courtesy", "Courtesy reply", False),
-    ("booking extension confirmed", "Extension confirmed", False),
-    ("platform booking", "Booking confirmation", False),
-)
-RE_CODE_TAG = re.compile(r"\s*\[[^\]]*\]")
-RE_CODE_DATE = re.compile(r"\s*\b\d{4}-\d{2}-\d{2}\b")
-RE_CODE_STUDIO = re.compile(r"\s*\bStudio\s+\d{3}[AB]?\b", re.I)
-RE_CODE_PLATFORM = re.compile(r"\s*\b(?:FBS\s+)?via\s+(\w+)", re.I)
-
-
-RE_MONTH_DAY = re.compile(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}\b")
-
-
-def _dotted_label(code):
-    """Two lanes read "Kind · Name · Detail" (Junyan, 2026-09-05):
-
-    "Greeter — Peerspace instant + phone ask — KerriAnn M. — 901 Fri Oct 16
-    6:00 PM–7:30 PM [greeter:…]" → "Booking Confirmation (Platform) ·
-    KerriAnn M. · Oct 16 booking"; "Booking change — KerriAnn M. — Oct 23
-    alternative [responder:…]" → "Booking Change Request · KerriAnn M. ·
-    Oct 23 alternative". None for any other code."""
-    text = RE_CODE_TAG.sub("", (code or "")).replace("•", "").strip()
-    parts = [p.strip(" —-:·") for p in re.split(r"\s+—\s+", text)]
-    parts = [p for p in parts if p]
-    if not parts:
-        return None
-    head = parts[0].lower()
-    if head == "greeter" and len(parts) >= 3:
-        name = parts[2]
-        m = RE_MONTH_DAY.search(" ".join(parts[3:]))
-        detail = f"{m.group(0)} booking" if m else "booking"
-        return f"Booking Confirmation (Platform) · {name} · {detail}"
-    if head == "booking change" and len(parts) >= 2:
-        name = parts[1]
-        detail = " ".join(parts[2:]).strip()
-        return f"Booking Change Request · {name}" + (f" · {detail}" if detail else "")
-    return None
-
-
-def _lane_label(code, board_name, studio):
-    """"Post-HTA go-ahead confirmation — Jia L. [Peerspace] — 509B [gtg:…]"
-    → "GTG Confirmation for Jia L. in Studio 509B".
-
-    Ids, source tags, dates and the platform tag stay in Notion. The name is
-    the code's own second segment (the lanes write it), or today's board name
-    for a Quick answer, whose second segment is free text."""
-    dotted = _dotted_label(code)
-    if dotted:
-        return dotted
-    text = (code or "").strip()
-    head = text.lower()
-    for prefix, word, keep_topic in LANE_LABELS:
-        if head.startswith(prefix):
-            break
-    else:
-        return None
-    rest = text[len(prefix):]
-    rest = re.sub(r"^\s*\([^)]*\)", "", rest)            # "(gate 1)", "(527 Sep 5)"
-    platform = None
-    m = RE_CODE_PLATFORM.search(rest)
-    if m:
-        platform = m.group(1)
-    rest = RE_CODE_PLATFORM.sub("", rest)
-    rest = RE_CODE_TAG.sub("", rest)
-    rest = RE_CODE_DATE.sub("", rest)
-    rest = rest.replace("•", "")
-    rest = re.sub(r":\s*\d{3}[AB]?\s+\w{3}\s+\d{2}\s+\d{2}:\d{2}.*$", "", rest)  # ": 509B Sep 04 16:00"
-    rest = rest.strip(" —-:·")
-    parts = [p.strip(" —-:·") for p in re.split(r"\s+—\s+", rest) if p.strip(" —-:·")]
-    if not parts:
-        return None
-    name, topic = parts[0], " ".join(parts[1:])
-    if keep_topic and board_name and board_name.lower() in name.lower():
-        # Free-text segment: "Kaushik Boga Studio 527 mats and cleaning".
-        topic = re.sub(re.escape(board_name), "", name, flags=re.I)
-        topic = RE_CODE_STUDIO.sub("", topic).strip(" —-:·")
-        name = board_name
-    elif keep_topic:
-        cut = RE_CODE_STUDIO.split(name, maxsplit=1)
-        name, topic = cut[0].strip(), (cut[1].strip() if len(cut) > 1 else topic)
-    name = re.sub(r"\s+(?:FBS|booking ack)$", "", name, flags=re.I).strip()
-    if not name:
-        return None
-    label = f"{word} for {name}"
-    if studio:
-        label += f" in Studio {studio}"
-    if keep_topic and topic:
-        label += f" · {topic}"
-    if platform:
-        label += f" · {platform}"
-    return label
 
 
 def fetch_message_dispatch(token, win_start, win_end):
@@ -2719,34 +2556,18 @@ def apply_message_dispatch(events, rows, base_day):
         for kind, field in (("AVA", "_ava_status"), ("EOB", "_eob_status")):
             candidates = by_key.get((artist, studio, kind), [])
             expected = _expected_dispatch_at(event, kind, base_day)
-            # Live rows join first, dead rows never outrank them. On
-            # 2026-09-05 Rebecca Wise's voided morning EOB sat at exactly the
-            # canonical 21:30 while her real row (queued by hand for 21:45,
-            # session extended to 22:00) sat 15 minutes off; the clock join
-            # picked the dead row and the card showed nothing. Terminal rows
-            # only ever speak when no live row exists — see below.
-            live = [r for r in candidates
-                    if not _is_terminal_dispatch(r.get("status"))]
-            def _near(r):
-                at = _row_datetime(r, "send_after")
-                return (at is not None and expected is not None
-                        and abs((at - expected).total_seconds()) <= 300)
-            timed = [r for r in live if _near(r)]
+            timed = [r for r in candidates
+                     if _row_datetime(r, "send_after") is not None
+                     and expected is not None
+                     and abs((_row_datetime(r, "send_after") - expected).total_seconds()) <= 300]
             if timed:
                 matches = timed
             elif booking_count.get((artist, studio)) == 1:
-                # One booking for this renter in this studio today: every
-                # live row is theirs, timed or not. A wrong clock reads as a
-                # wrong time on the card, not as a false MISSING.
-                matches = live
-            elif any(_near(r) for r in candidates):
-                # Two bookings, and a FINISHED row sits on this one's clock:
-                # it went (or was ruled off). Nothing to draw.
-                matches = []
+                matches = [r for r in candidates if _row_datetime(r, "send_after") is None]
             else:
                 # An untimed row cannot be assigned safely between two bookings.
                 # Its existence also means absence cannot be proved for either.
-                untimed = any(_row_datetime(r, "send_after") is None for r in live)
+                untimed = any(_row_datetime(r, "send_after") is None for r in candidates)
                 matches = [] if not untimed else None
             row = (max(matches, key=lambda r: r.get("created") or "")
                    if matches else None)
@@ -2771,6 +2592,354 @@ def apply_message_dispatch(events, rows, base_day):
             if pill:
                 event["dispatch"].append(pill)
     return events
+
+
+# ---------------------------------------------------------------------------
+# HTA WATCHDOG (2026-09-06). "HTA = Sent" on the board is a flag a sweep sets;
+# on 2026-09-05 it was set from a Responder text that carried no codes, and the
+# real How-to-Access sat unsent until 21:21 the night before a 14:00 booking.
+# The board's flag was never evidence. This section makes the claim from the
+# queue instead: a booking's HTA is verified only when a queue row of the HTA
+# shape reached `Sent` for that renter (and studio) inside the lookback window.
+#
+# Two outputs, same posture as the AVA/EOB pills:
+#   * a per-booking HTA pill on today's cards (MISSING / STUCK / UNSENT / a
+#     scheduled clock) — kind, state and a Toronto clock time only cross;
+#   * an ✅ Actions to Perform row (Access / PIN, for Junyan) when a booking is
+#     inside HTA_WATCH_HOURS with no verified send — one row per booking, by
+#     title, so the 15-minute cadence cannot raise it twice. An open Access /
+#     PIN row already paints VERIFY ACCESS on the card via flag_access_gaps().
+#
+# The verified row is also linked to the booking (`Booking` relation on the
+# queue) so the board's `HTA Verified` rollup counts it. That rollup is derived
+# from queue rows and cannot be set by a sweep; readers can move to it.
+#
+# A failed read publishes nothing — an outage must never become a wall of false
+# alarms (same rule as apply_message_dispatch). Kill switch: HTA_WATCH_DISABLED=1.
+# Dry run (log, no writes): HTA_WATCH_DRYRUN=1.
+HTA_WATCH_HOURS = 18          # alert inside this many hours before the start
+HTA_STUCK_MINUTES = 10        # Ready to Send past its send time by this much = stuck
+HTA_LOOKBACK_DAYS = 7         # a Sent HTA counts for a booking only inside this window
+HTA_WATCH_TIERS = ("FBS", "Monitor", "Viewing")
+HTA_ACTION_PREFIX = "🔔 HTA not sent — "
+# ✅ Actions to Perform — the DATABASE id (parent for page creation on the
+# legacy API version); ACTIONS_DS above is its data source id.
+ACTIONS_DB = "760a2e65-5c69-4b6f-bd4a-2b185ece0973"
+
+
+def fetch_hta_watch_bookings(token, base_day):
+    """Today's and tomorrow's FBS / Monitor / Viewing rows, for hta_verdicts().
+
+    Reduced projection: row id, artist id, studio, date, start clock, tier, the
+    board's own HTA flag (read only to honour Will Not Send), the Skedda title
+    (for the Actions row, which is internal) and whether a queue row is already
+    linked. Nothing here reaches the page except through _hta_pill().
+    """
+    days = [base_day.isoformat(), (base_day + timedelta(days=1)).isoformat()]
+    rows = _notion_query(token, NOTION_DATA_SOURCE, {
+        "filter": {"or": [{"property": "Booking Date", "date": {"equals": d}}
+                          for d in days]},
+        "page_size": 100,
+    })
+    out = []
+    for row in rows:
+        p = row.get("properties", {})
+        status = (_prop_text(p.get("Booking Status")) or "").lower()
+        if "cancel" in status or "missed" in status or "complete" in status:
+            continue
+        tob = (_prop_text(p.get("Type of Booking")) or "").strip().lower()
+        tier = {"fbs": "FBS", "monitor only": "Monitor",
+                "studio viewing": "Viewing"}.get(tob)
+        if tier not in HTA_WATCH_TIERS:
+            continue
+        out.append({
+            "id": row.get("id"),
+            "artist": _relation_id(p.get("🎨 Artist Database")),
+            "studio": re.sub(r"\s*\(.*\)\s*", "", (_prop_text(p.get("Studio")) or "")).strip(),
+            "date": _prop_text(p.get("Booking Date")),
+            "start": norm_hm(_prop_text(p.get("Start Time"))),
+            "tier": tier,
+            "hta": (_prop_text(p.get("HTA")) or "").strip(),
+            "who": _prop_text(p.get("Skedda Booking Title")) or "",
+        })
+    return out
+
+
+def fetch_hta_rows(token, since_dt):
+    """Queue rows of the HTA shape created since `since_dt`.
+
+    Shape = Template `hta_studio_access`, or a Message Code starting `HTA` /
+    `How to Access` (the sweep's and the Host's legacy codes). Bodies, Reply To
+    and every recipient rollup are never read: the row is judged on status,
+    clocks and the relation ids alone.
+    """
+    filt = {"and": [
+        {"timestamp": "created_time",
+         "created_time": {"on_or_after": since_dt.isoformat()}},
+        {"or": [
+            {"property": "Template", "select": {"equals": "hta_studio_access"}},
+            {"property": "Message Code", "title": {"starts_with": "HTA"}},
+            {"property": "Message Code", "title": {"starts_with": "How to Access"}},
+        ]},
+    ]}
+    rows = _notion_query(token, MESSAGES_DS, {"filter": filt, "page_size": 100})
+    out = []
+    for row in rows:
+        p = row.get("properties", {})
+        out.append({
+            "id": row.get("id"),
+            "artist": _relation_id(p.get("Artist")),
+            "studio": (_prop_text(p.get("Studio")) or "").strip(),
+            "status": (_prop_text(p.get("Status")) or "").strip(),
+            "send_after": _prop_text(p.get("Send After")),
+            "sent_at": _prop_text(p.get("Sent At")),
+            "created": row.get("created_time") or "",
+            "receipt": bool(_prop_text(p.get("Dispatch Receipt"))),
+            "linked": bool((p.get("Booking") or {}).get("relation")),
+        })
+    return out
+
+
+def _booking_start(booking):
+    """Booking Date + Start Time → Toronto datetime, or None when either is missing."""
+    if not booking.get("date") or not booking.get("start"):
+        return None
+    try:
+        day = datetime.fromisoformat(str(booking["date"])[:10]).date()
+        hh, mm = booking["start"].split(":")
+        return datetime.combine(day, datetime.min.time(), TZ).replace(
+            hour=int(hh), minute=int(mm))
+    except (TypeError, ValueError):
+        return None
+
+
+def hta_verdicts(bookings, rows, now):
+    """One verdict per booking: what the QUEUE says about its How-to-Access.
+
+    states:
+      verified    — a row of the HTA shape reached Sent for this renter (same
+                    studio, or an unstudioed row) within HTA_LOOKBACK_DAYS
+                    before the start. `row` is the newest such row.
+      intentional — the board or the newest queue row says Will Not Send.
+      scheduled   — a Ready to Send row exists and its send time has not
+                    passed (or it is younger than HTA_STUCK_MINUTES).
+      stuck       — a Ready to Send row is past its send time by more than
+                    HTA_STUCK_MINUTES, or is timed AFTER the booking starts.
+      awaiting    — only Pending Review / Needs Fix / Error rows exist.
+      missing     — no row of the HTA shape at all.
+
+    A booking with no artist relation or no clock is skipped: absence cannot be
+    claimed without both sides of the join (same rule as the AVA/EOB pills).
+    `hours` is time to start; callers gate alerts on HTA_WATCH_HOURS.
+    """
+    by_artist = {}
+    for r in rows:
+        if r.get("artist"):
+            by_artist.setdefault(r["artist"], []).append(r)
+    out = []
+    for b in bookings:
+        start = _booking_start(b)
+        if not b.get("artist") or start is None:
+            continue
+        hours = (start - now).total_seconds() / 3600
+        if hours < -2:
+            continue                # long started; the arrival column owns it now
+        low = start - timedelta(days=HTA_LOOKBACK_DAYS)
+        high = start + timedelta(hours=2)
+        cands = []
+        for r in by_artist.get(b["artist"], []):
+            if r.get("studio") and b.get("studio") and r["studio"] != b["studio"]:
+                continue
+            stamp = _row_datetime(r, "sent_at") or _row_datetime(r, "created")
+            if stamp is None or stamp < low or stamp > high:
+                continue
+            cands.append(r)
+        cands.sort(key=lambda r: r.get("created") or "", reverse=True)
+        v = {"booking": b, "hours": hours, "row": None, "state": None}
+        sent = [r for r in cands if r["status"].lower() == "sent"]
+        newest = cands[0]["status"].lower() if cands else ""
+        if sent:
+            v.update(state="verified", row=sent[0])
+        elif b.get("hta", "").lower() == "will not send" or newest == "will not send":
+            v["state"] = "intentional"
+        else:
+            live = [r for r in cands if r["status"].lower() == "ready to send"]
+            review = [r for r in cands
+                      if r["status"].lower() in ("pending review", "needs fix", "error")]
+            if live:
+                r = live[0]
+                timed = _row_datetime(r, "send_after")
+                due = timed or _row_datetime(r, "created")
+                late = due is not None and (now - due) > timedelta(minutes=HTA_STUCK_MINUTES)
+                v.update(state="stuck" if (late or (timed and timed > start)) else "scheduled",
+                         row=r)
+            elif review:
+                v.update(state="awaiting", row=review[0])
+            else:
+                v["state"] = "missing"
+        out.append(v)
+    return out
+
+
+def _hta_pill(verdict):
+    """Public pill for one verdict, or None when nothing is owed."""
+    state, row = verdict["state"], verdict["row"]
+    if state in ("verified", "intentional"):
+        return None
+    if state == "scheduled":
+        t = _dispatch_time(row.get("send_after")) if row else None
+        return {"kind": "HTA", "state": "scheduled" if t else "queued", "time": t}
+    return {"kind": "HTA", "state": state, "time": None}
+
+
+def apply_hta_watch(events, verdicts):
+    """Attach the HTA pill to today's cards, inside the alert window only."""
+    by_id = {v["booking"]["id"]: v for v in verdicts if v["booking"].get("id")}
+    for e in events:
+        if e.get("kind") != "booking":
+            continue
+        v = by_id.get(e.get("_notion_id"))
+        if not v or v["hours"] > HTA_WATCH_HOURS:
+            continue
+        pill = _hta_pill(v)
+        if pill:
+            e.setdefault("dispatch", []).append(pill)
+    return events
+
+
+def _hta_action_title(booking):
+    who = _display_name(booking.get("who") or "") or "renter"
+    return (f"{HTA_ACTION_PREFIX}{who} · Studio {booking.get('studio') or '?'} · "
+            f"{str(booking.get('date') or '')[:10]} {booking.get('start') or ''}").strip()
+
+
+def _open_hta_action_titles(token):
+    rows = _notion_query(token, ACTIONS_DS, {
+        "filter": {"and": [
+            {"property": "Status", "select": {"equals": "Pending Review"}},
+            {"property": "Type", "select": {"equals": "Access / PIN"}},
+            {"property": "Request", "title": {"starts_with": HTA_ACTION_PREFIX}},
+        ]},
+        "page_size": 100,
+    })
+    return {(_prop_text(r.get("properties", {}).get("Request")) or "").strip()
+            for r in rows}
+
+
+def _notion_create_page(headers, data_source_id, database_id, properties):
+    """Create a page, new API first (data_source parent), legacy second."""
+    attempts = [
+        ("2025-09-03", {"type": "data_source_id", "data_source_id": data_source_id}),
+        ("2022-06-28", {"type": "database_id", "database_id": database_id}),
+    ]
+    last = None
+    for ver, parent in attempts:
+        h = dict(headers, **{"Notion-Version": ver})
+        r = requests.post("https://api.notion.com/v1/pages", headers=h,
+                          json={"parent": parent, "properties": properties}, timeout=30)
+        if r.status_code < 300:
+            return r
+        last = r
+    return last
+
+
+def sync_hta_watch(verdicts, now):
+    """Write-back for the watchdog: link verified rows, raise the unsent ones.
+
+    Two writes, both idempotent across the 15-minute cadence:
+      1. a verified queue row gains the `Booking` relation (once) so the board's
+         `HTA Verified` rollup counts it;
+      2. a booking inside HTA_WATCH_HOURS with state missing / stuck / awaiting
+         gets ONE open ✅ Actions to Perform row (Access / PIN, for Junyan),
+         deduplicated on the exact title.
+    """
+    if os.environ.get("HTA_WATCH_DISABLED") == "1":
+        print("HTA watch: disabled by kill switch.")
+        return
+    token = os.environ.get("NOTION_TOKEN")
+    if not token or not verdicts:
+        return
+    dry = os.environ.get("HTA_WATCH_DRYRUN") == "1"
+    headers = {"Authorization": f"Bearer {token}",
+               "Notion-Version": "2022-06-28",
+               "Content-Type": "application/json"}
+    linked = raised = failed = 0
+    open_titles = None
+    for v in verdicts:
+        b, r, state = v["booking"], v["row"], v["state"]
+        who = _display_name(b.get("who") or "")
+        if state == "verified":
+            if not r or r.get("linked") or not b.get("id"):
+                continue
+            if dry:
+                linked += 1
+                print(f"  [dry run] would link HTA row → booking: {who} ({b.get('studio')})")
+                continue
+            try:
+                resp = requests.patch(
+                    f"https://api.notion.com/v1/pages/{r['id']}", headers=headers,
+                    json={"properties": {"Booking": {"relation": [{"id": b["id"]}]}}},
+                    timeout=30)
+                if resp.status_code >= 300:
+                    failed += 1
+                    print(f"  ! HTA link failed for {who}: {resp.status_code} {resp.text[:200]}")
+                else:
+                    linked += 1
+            except Exception as exc:      # a write hiccup must not kill the board
+                failed += 1
+                print(f"  ! HTA link error for {who}: {exc}")
+            continue
+        if state not in ("missing", "stuck", "awaiting") or v["hours"] > HTA_WATCH_HOURS:
+            continue
+        title = _hta_action_title(b)
+        if open_titles is None:
+            try:
+                open_titles = _open_hta_action_titles(token)
+            except Exception as exc:  # noqa: BLE001
+                print(f"  ! HTA watch: cannot read open Actions ({exc}); raising nothing.")
+                return
+        if title in open_titles:
+            continue
+        why = {
+            "missing": "No queue row of the HTA shape exists for this renter.",
+            "stuck": "A Ready to Send HTA row is past its send time (or timed after the start) and has not dispatched.",
+            "awaiting": "The only HTA row is still Pending Review / Needs Fix / Error.",
+        }[state]
+        note = (f"{why} Booking starts in {v['hours']:.1f} h. Raised by the FBS Monitor "
+                f"HTA watchdog {now.strftime('%Y-%m-%d %H:%M')} Toronto.")
+        if r and r.get("id"):
+            note += f" Queue row: https://www.notion.so/{r['id'].replace('-', '')}"
+        props = {
+            "Request": {"title": [{"text": {"content": title}}]},
+            "Type": {"select": {"name": "Access / PIN"}},
+            "Status": {"select": {"name": "Pending Review"}},
+            "For": {"select": {"name": "Junyan"}},
+            "Raised by": {"select": {"name": "Gap audit"}},
+            "Booking ref": {"rich_text": [{"text": {"content":
+                f"Studio {b.get('studio')} · {str(b.get('date') or '')[:10]} {b.get('start') or ''}"}}]},
+            "Notes": {"rich_text": [{"text": {"content": note[:1900]}}]},
+        }
+        if b.get("artist"):
+            props["Artist"] = {"relation": [{"id": b["artist"]}]}
+        if dry:
+            raised += 1
+            print(f"  [dry run] would raise: {title}")
+            continue
+        try:
+            resp = _notion_create_page(headers, ACTIONS_DS, ACTIONS_DB, props)
+            if resp is None or resp.status_code >= 300:
+                failed += 1
+                print(f"  ! HTA action failed for {who}: "
+                      f"{getattr(resp, 'status_code', '?')} {getattr(resp, 'text', '')[:200]}")
+            else:
+                raised += 1
+                open_titles.add(title)
+                print(f"  HTA watch raised: {title}")
+        except Exception as exc:
+            failed += 1
+            print(f"  ! HTA action error for {who}: {exc}")
+    if linked or raised or failed:
+        print(f"HTA watch: {linked} linked, {raised} raised, {failed} failed.")
 
 
 def _access_row_hits(row, event, day):
@@ -2966,9 +3135,6 @@ def prepare_board_events(events):
         # Boolean only: "this renter has texted us today". Suppresses the No GTG
         # chip — see apply_heard(). No content of any kind crosses.
         "heard": bool(e.get("heard")),
-        # Boolean only: the renter's latest message is newer than our latest
-        # reply — the red dot. See apply_unread(). No content crosses.
-        "unread": bool(e.get("unread")),
         "arrived": e.get("arrived"), "departed": e.get("departed"),
         # Who keyed in / out, per the panel — a name, same class of data as
         # `who` (renter names are published by design; see redact()). Paired
@@ -3051,13 +3217,6 @@ def build_data(now):
         events = apply_heard(events, fetch_inbound_texts(token, win_start))
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Correspondence fetch failed ({e}); No GTG chips not text-cleared.")
-    # The red dot — same soft posture. A day's lookback before the board day,
-    # so a text that came in last night and was never answered still shows
-    # this morning. An unreadable log means no dots, never false ones.
-    try:
-        events = apply_unread(events, *fetch_reply_state(token, win_start - timedelta(days=1)))
-    except Exception as e:  # noqa: BLE001
-        emit_fallback_note(f"Reply-state fetch failed ({e}); message dots absent this edition.")
     # Messages tab — same soft posture: an unreadable queue costs the tab's
     # list this edition, never the board.
     try:
@@ -3078,6 +3237,18 @@ def build_data(now):
         for event in events:
             event["dispatch"] = []
         emit_fallback_note(f"Message Queue dispatch fetch failed ({e}); AVA/EOB pills absent this edition.")
+
+    # HTA watchdog — the queue is the evidence, not the board's HTA flag. Same
+    # soft posture: an unreadable read costs the HTA pills and the Actions
+    # write-back this edition, never the board, and never a false MISSING.
+    try:
+        hta_bookings = fetch_hta_watch_bookings(token, base_day)
+        hta_rows = fetch_hta_rows(token, now - timedelta(days=HTA_LOOKBACK_DAYS + 2))
+        verdicts = hta_verdicts(hta_bookings, hta_rows, now)
+        events = apply_hta_watch(events, verdicts)
+    except Exception as e:  # noqa: BLE001
+        verdicts = []
+        emit_fallback_note(f"HTA watch fetch failed ({e}); HTA pills absent this edition.")
 
     # ---- Arrivals: panel ledger first, ADT email second ---------------------
     #
@@ -3260,6 +3431,17 @@ def build_data(now):
             attention.append({"level": "warn",
                               "text": f"{overdue} robot{'s' if overdue > 1 else ''} overdue — see Robots tab"})
 
+    # HTA watchdog banner: a booking inside the alert window with no verified
+    # send. The card already shows the renter name, so nothing new crosses.
+    for v in verdicts:
+        if v["state"] in ("missing", "stuck", "awaiting") and v["hours"] <= HTA_WATCH_HOURS:
+            b = v["booking"]
+            word = {"missing": "not queued", "stuck": "stuck in queue",
+                    "awaiting": "awaiting review"}[v["state"]]
+            attention.append({"level": "crit",
+                              "text": f"HTA {word} · {_display_name(b.get('who') or '')} · "
+                                      f"{b.get('studio')} · {b.get('start')}"})
+
     data = {
         "date": now.strftime("%A, %B %-d, %Y"),
         "shiftBaseDay": base_day.isoformat(),
@@ -3278,6 +3460,9 @@ def build_data(now):
         "armFeed": arm_feed,
         "robots": robots,
         "robotsNote": robots_note,
+        # Internal: consumed by sync_hta_watch() in main() and popped before
+        # the pages are spliced. Carries booking/artist ids — never publish.
+        "_hta_verdicts": verdicts,
     }
     return data, used_fallback
 
@@ -3440,11 +3625,15 @@ def main():
     # anywhere from 07:10 to 08:00. (FORCE_BUILD, the old gate bypass, is
     # still exported by the workflow and now ignored.)
     data, fallback = build_data(now)
+    # Internal — booking ids, artist ids and Skedda titles. Popped BEFORE the
+    # pages are spliced so it can never reach the public payload.
+    hta = data.pop("_hta_verdicts", [])
     open(OUTPUT, "w", encoding="utf-8").write(splice(data))
     open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
     write_booking_state(data, fallback)
     write_open_shifts(data)
     sync_booking_status(data, fallback, now)
+    sync_hta_watch(hta, now)
     # Written last, so it can never advertise an edition the pages don't carry yet.
     with open(VERSION, "w", encoding="utf-8") as fh:
         json.dump({"generatedAtISO": data["generatedAtISO"],

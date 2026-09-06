@@ -204,18 +204,12 @@
   .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
   /* Session verdict glyph (verdictOf): last in the tag cluster, so it reads as
      the verdict ON the booking rather than another attribute of it. */
-  .verdict{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
-           border-radius:99px;font-family:var(--sans);font-size:16px;font-weight:900;line-height:1;
-           cursor:default;flex:none;color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
-  /* Filled discs, one weight for all three (Junyan, 2026-09-05: the old
-     tinted 19px chips did not read from across the desk). */
-  /* The red dot: a message from this renter is waiting for a reply. Solid,
-     badge-style, nothing else (Junyan, 2026-09-05). Any reply clears it. */
-  .msgdot{display:inline-block;width:10px;height:10px;border-radius:99px;background:#ff3b30;
-          margin-left:8px;vertical-align:middle;flex:none}
-  .verdict.ok{background:var(--ok)}
-  .verdict.odd{background:var(--watch)}
-  .verdict.bad{background:var(--crit)}
+  .verdict{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;
+           border-radius:99px;font-family:var(--sans);font-size:12px;font-weight:700;line-height:1;
+           cursor:default;flex:none}
+  .verdict.ok{background:var(--ok-bg);color:var(--ok)}
+  .verdict.odd{background:var(--watch-bg);color:var(--watch)}
+  .verdict.bad{background:var(--crit);color:#fff}
   /* Warnings column (was the countdown, dropped 2026-08-25 — the timeline
      itself says where things stand). */
   .ev .warns{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
@@ -233,9 +227,9 @@
   .dispatch-seg.scheduled.ava .dk{background:color-mix(in srgb,#2f6fd0 12%,var(--scrim));color:#2f6fd0}
   .dispatch-seg.scheduled.eob{border-color:color-mix(in srgb,var(--ok) 30%,var(--line))}
   .dispatch-seg.scheduled.eob .dk{background:var(--ok-bg);color:var(--ok)}
-  .dispatch-seg.missing{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
-  .dispatch-seg.missing .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
-  .dispatch-seg.missing .dv{color:var(--crit)}
+  .dispatch-seg.missing,.dispatch-seg.stuck,.dispatch-seg.awaiting{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
+  .dispatch-seg.missing .dk,.dispatch-seg.stuck .dk,.dispatch-seg.awaiting .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
+  .dispatch-seg.missing .dv,.dispatch-seg.stuck .dv,.dispatch-seg.awaiting .dv{color:var(--crit)}
   /* Mini timeline: the bordered track IS the booked window, identical length
      on every card; presence >16 min outside it is an amber stub added OUTSIDE
      the track so the window never shrinks. */
@@ -962,16 +956,22 @@ function render(){
     if(st.flagged && !e.dup_studios) warns += `<span class="chip crit">Missing</span>`;
     const dispatch = (e.dispatch||[]).length ? `<span class="dispatch-cluster">` +
       e.dispatch.map(d=>{
+        /* HTA states (watchdog, 2026-09-06): STUCK = a Ready to Send row is
+           past its send time; UNSENT = the only row still awaits review. */
         const value = d.state==="scheduled" ? d.time
-          : d.state==="queued" ? "QUEUED" : "MISSING";
+          : d.state==="queued" ? "QUEUED"
+          : d.state==="stuck" ? "STUCK"
+          : d.state==="awaiting" ? "UNSENT" : "MISSING";
         const title = d.state==="scheduled" ? `Scheduled for ${d.time}`
           : d.state==="queued" ? "Queue row exists; no send time yet"
+          : d.state==="stuck" ? "Queue row is Ready to Send but has not dispatched"
+          : d.state==="awaiting" ? "Queue row still awaits review — nothing has been sent"
           : "Expected queue row not found";
         return `<span class="dispatch-seg ${d.state} ${d.kind.toLowerCase()}" title="${title}"><span class="dk">${d.kind}</span><span class="dv">${value}</span></span>`;
       }).join("") + `</span>` : "";
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}${verdictChip(verdictOf(e,n))}${e.unread?`<span class="msgdot" title="Message waiting for a reply" aria-label="Message waiting for a reply"></span>`:""}</span>${tlHTML(e,st)}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}${verdictChip(verdictOf(e,n))}</span>${tlHTML(e,st)}</div>
       <div class="warns">${warns}${dispatch}</div>
     </div>`;
   };
