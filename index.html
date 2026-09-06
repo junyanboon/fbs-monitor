@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 12:15 PM ET",
-  "generatedAtISO": "2026-09-06T12:15:53-04:00",
+  "generatedAt": "Sep 6, 12:30 PM ET",
+  "generatedAtISO": "2026-09-06T12:30:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -528,7 +528,7 @@ const DATA = /*__DATA__*/{
           "time": "15:45"
         }
       ],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -688,11 +688,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "12:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -966,18 +961,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Thea Giggster in Studio 509A"
     },
     {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "AI (automation)",
-      "created": "Sep 6 · 00:02",
-      "send_after": "12:30",
-      "send_after_iso": "2026-09-06T12:30:00-04:00",
-      "label": "AVA for Diana Leal in Studio 527"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1053,7 +1036,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     },
     {
       "level": "crit",
@@ -1422,6 +1405,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T16:13:00.068802Z",
         "until": "2026-09-06T16:13:06.319671Z"
+      },
+      {
+        "since": "2026-09-06T16:19:00.109339Z",
+        "until": "2026-09-06T16:19:06.430832Z"
+      },
+      {
+        "since": "2026-09-06T16:24:59.046011Z",
+        "until": "2026-09-06T16:25:05.347134Z"
       }
     ],
     "down": false
@@ -1438,6 +1429,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-06T00:58:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1445,7 +1446,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:16:00-04:00"
+      "lastISO": "2026-09-06T12:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1455,7 +1456,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:10:00-04:00"
+      "lastISO": "2026-09-06T12:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1465,7 +1466,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:15:00-04:00"
+      "lastISO": "2026-09-06T12:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1475,7 +1476,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:15:00-04:00"
+      "lastISO": "2026-09-06T12:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1535,7 +1536,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T10:45:00-04:00"
+      "lastISO": "2026-09-06T12:35:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1596,16 +1597,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-05T19:39:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:10:00-04:00"
     },
     {
       "run": "The Timekeeper",
