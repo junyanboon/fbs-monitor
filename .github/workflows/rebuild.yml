@@ -171,10 +171,6 @@ jobs:
           # Legacy: build.py had a time gate until 2026-09-05; it ignores this now.
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
           DEBUG_ARM: ${{ github.event.inputs.debug_arm == 'true' && '1' || '0' }}
-          # HTA watchdog first flight (2026-09-06): log the Actions rows and
-          # Booking links it WOULD write, write nothing. Remove once one clean
-          # run has been read.
-          HTA_WATCH_DRYRUN: "1"
         run: python build.py
 
       # Vercel edition (server/app.py): push the built files into the app's
