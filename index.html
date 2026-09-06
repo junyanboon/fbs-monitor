@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 1:22 PM ET",
-  "generatedAtISO": "2026-09-06T13:22:20-04:00",
+  "generatedAt": "Sep 6, 1:31 PM ET",
+  "generatedAtISO": "2026-09-06T13:31:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -576,10 +576,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "11:30",
-      "departed": null,
+      "departed": "13:30",
       "facilitator": null,
       "arrived_by": "Jia L",
-      "departed_by": null,
+      "departed_by": "Jia L",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1101,6 +1101,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788715161126,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia L",
+      "time": "13:30",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788715858711,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1444,6 +1453,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T17:13:06.605538Z",
         "until": "2026-09-06T17:18:23.499061Z"
+      },
+      {
+        "since": "2026-09-06T17:23:53.761598Z",
+        "until": "2026-09-06T17:24:04.195412Z"
+      },
+      {
+        "since": "2026-09-06T17:29:53.848226Z",
+        "until": "2026-09-06T17:30:04.250643Z"
       }
     ],
     "down": false
@@ -1467,7 +1484,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:22:00-04:00"
+      "lastISO": "2026-09-06T13:28:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1477,7 +1494,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:20:00-04:00"
+      "lastISO": "2026-09-06T13:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1487,7 +1504,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:15:00-04:00"
+      "lastISO": "2026-09-06T13:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1497,7 +1514,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:20:00-04:00"
+      "lastISO": "2026-09-06T13:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1667,7 +1684,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:16:00-04:00"
+      "lastISO": "2026-09-06T13:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
