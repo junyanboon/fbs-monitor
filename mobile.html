@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 11:45 AM ET",
-  "generatedAtISO": "2026-09-06T11:45:51-04:00",
+  "generatedAt": "Sep 6, 12:01 PM ET",
+  "generatedAtISO": "2026-09-06T12:01:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -304,11 +304,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "12:00"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -707,17 +702,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "BC-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 6 · 10:31",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "COURTESY — Jessica M. [Giggster] accepts the alcohol-free condition ••• [responder:1a0771216f718d6d]",
       "kind": null,
       "channel": "Manual Send",
@@ -739,18 +723,6 @@ const DATA = /*__DATA__*/{
       "send_after": "14:45",
       "send_after_iso": "2026-09-06T14:45:00-04:00",
       "label": "EOB for Aakanksha Patel in Studio 901"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 6 · 00:02",
-      "send_after": "12:00",
-      "send_after_iso": "2026-09-06T12:00:00-04:00",
-      "label": "AVA for Thea Giggster in Studio 509A"
     },
     {
       "code": "EOB-sweep-•••A",
@@ -1201,6 +1173,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T15:37:27.812858Z",
         "until": "2026-09-06T15:43:26.525867Z"
+      },
+      {
+        "since": "2026-09-06T15:48:59.118202Z",
+        "until": "2026-09-06T15:49:05.578709Z"
+      },
+      {
+        "since": "2026-09-06T15:54:05.054449Z",
+        "until": "2026-09-06T15:54:16.872476Z"
       }
     ],
     "down": false
@@ -1224,7 +1204,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:44:00-04:00"
+      "lastISO": "2026-09-06T12:00:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1234,7 +1214,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:40:00-04:00"
+      "lastISO": "2026-09-06T12:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1244,7 +1224,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:45:00-04:00"
+      "lastISO": "2026-09-06T12:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1254,7 +1234,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:45:00-04:00"
+      "lastISO": "2026-09-06T12:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1264,7 +1244,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:00:00-04:00"
+      "lastISO": "2026-09-06T12:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1274,7 +1254,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:01:00-04:00"
+      "lastISO": "2026-09-06T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1354,7 +1334,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:04:00-04:00"
+      "lastISO": "2026-09-06T12:05:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1364,17 +1344,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T10:59:00-04:00"
-    },
-    {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
-      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-06T10:54:00-04:00"
+      "lastISO": "2026-09-06T12:05:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1434,7 +1404,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:46:00-04:00"
+      "lastISO": "2026-09-06T12:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1455,6 +1425,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
+      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-06T10:54:00-04:00"
     },
     {
       "run": "The Opener",
