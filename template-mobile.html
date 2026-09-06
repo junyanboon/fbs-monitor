@@ -102,6 +102,8 @@
            border-radius:99px;font-family:var(--sans);font-size:13.5px;font-weight:900;line-height:1;flex:none;
            color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
   /* Filled discs, one weight for all three (Junyan, 2026-09-05). */
+  /* The red dot: a message from this renter is waiting for a reply. */
+  .msgdot{display:inline-block;width:9px;height:9px;border-radius:99px;background:#ff3b30;flex:none}
   .verdict.ok{background:var(--ok)}
   .verdict.odd{background:var(--watch)}
   .verdict.bad{background:var(--crit)}
@@ -552,7 +554,7 @@ function render(){
       }).join("")+`</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
-      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span>${typeChip}${gtgChip}${verdictChip(verdictOf(e,n))}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span>${typeChip}${gtgChip}${verdictChip(verdictOf(e,n))}${e.unread?`<span class="msgdot" title="Message waiting for a reply" aria-label="Message waiting for a reply"></span>`:""}</div>
       <div class="meta">${meta}</div>
       ${tlHTML(e,st,n)}
       <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}${dispatch}</div>

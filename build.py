@@ -2265,6 +2265,60 @@ def fetch_inbound_texts(token, since_dt):
     return out
 
 
+def fetch_reply_state(token, since_dt):
+    """Per renter: when they last wrote to us, and when we last wrote back.
+
+    Reads the Correspondence Log in BOTH directions and every medium (Junyan,
+    2026-09-05: "text and email"), plus the Message Queue's Sent At — a robot
+    reply stamps Sent At within a minute, the log row follows minutes later.
+    Returns two {artist_id: datetime} maps and nothing else: no subjects, no
+    bodies, no numbers. `Content` is verbatim customer text and is never read.
+    """
+    last_in, last_out = {}, {}
+    def _note(store, aid, when):
+        if aid and when and (aid not in store or when > store[aid]):
+            store[aid] = when
+    rows = _notion_query(token, CORRESPONDENCE_DS, {
+        "filter": {"property": "Date & Time",
+                   "date": {"on_or_after": since_dt.isoformat()}},
+        "page_size": 100,
+    })
+    for r in rows:
+        p = r.get("properties", {})
+        aid = _relation_id(p.get("Artist"))
+        when = _row_datetime({"t": _prop_text(p.get("Date & Time"))}, "t")
+        direction = (_prop_text(p.get("Direction")) or "").strip()
+        if direction == "→ Us":
+            _note(last_in, aid, when)
+        elif direction == "→ Them":
+            _note(last_out, aid, when)
+    sent = _notion_query(token, MESSAGES_DS, {
+        "filter": {"property": "Sent At",
+                   "date": {"on_or_after": since_dt.isoformat()}},
+        "page_size": 100,
+    })
+    for r in sent:
+        p = r.get("properties", {})
+        _note(last_out, _relation_id(p.get("Artist")),
+              _row_datetime({"t": _prop_text(p.get("Sent At"))}, "t"))
+    return last_in, last_out
+
+
+def apply_unread(events, last_in, last_out):
+    """The red dot: the renter's latest message is newer than our latest reply.
+
+    Junyan, 2026-09-05: "indicate that there is a message from someone (red
+    dot) and then that red dot disappears when we reply." Any reply clears it —
+    a robot send (queue Sent At) or a human one (log row). Matching is by
+    Artist page-id, never by name. Boolean only crosses to the page."""
+    for e in events:
+        aid = e.get("_artist_id")
+        came = last_in.get(aid) if aid else None
+        went = last_out.get(aid) if aid else None
+        e["unread"] = bool(came and (went is None or came > went))
+    return events
+
+
 def apply_heard(events, texted_ids):
     """Mark bookings whose renter has texted us today.
 
@@ -2912,6 +2966,9 @@ def prepare_board_events(events):
         # Boolean only: "this renter has texted us today". Suppresses the No GTG
         # chip — see apply_heard(). No content of any kind crosses.
         "heard": bool(e.get("heard")),
+        # Boolean only: the renter's latest message is newer than our latest
+        # reply — the red dot. See apply_unread(). No content crosses.
+        "unread": bool(e.get("unread")),
         "arrived": e.get("arrived"), "departed": e.get("departed"),
         # Who keyed in / out, per the panel — a name, same class of data as
         # `who` (renter names are published by design; see redact()). Paired
@@ -2994,6 +3051,13 @@ def build_data(now):
         events = apply_heard(events, fetch_inbound_texts(token, win_start))
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Correspondence fetch failed ({e}); No GTG chips not text-cleared.")
+    # The red dot — same soft posture. A day's lookback before the board day,
+    # so a text that came in last night and was never answered still shows
+    # this morning. An unreadable log means no dots, never false ones.
+    try:
+        events = apply_unread(events, *fetch_reply_state(token, win_start - timedelta(days=1)))
+    except Exception as e:  # noqa: BLE001
+        emit_fallback_note(f"Reply-state fetch failed ({e}); message dots absent this edition.")
     # Messages tab — same soft posture: an unreadable queue costs the tab's
     # list this edition, never the board.
     try:

@@ -100,6 +100,12 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_messages_tab.py
 
+      # Guards the red dot: newest inbound vs newest reply, per renter, by
+      # Artist id. Only a boolean may cross to the public page.
+      - name: Unread-dot regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_unread.py
+
       # Guards open-shift placeholder parsing for the Shifts tab. Placeholders
       # must never read as a person's coverage, and nothing from an event
       # description except the studio number may reach the public page.

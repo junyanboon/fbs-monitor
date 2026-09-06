@@ -209,6 +209,10 @@
            cursor:default;flex:none;color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
   /* Filled discs, one weight for all three (Junyan, 2026-09-05: the old
      tinted 19px chips did not read from across the desk). */
+  /* The red dot: a message from this renter is waiting for a reply. Solid,
+     badge-style, nothing else (Junyan, 2026-09-05). Any reply clears it. */
+  .msgdot{display:inline-block;width:10px;height:10px;border-radius:99px;background:#ff3b30;
+          margin-left:8px;vertical-align:middle;flex:none}
   .verdict.ok{background:var(--ok)}
   .verdict.odd{background:var(--watch)}
   .verdict.bad{background:var(--crit)}
@@ -967,7 +971,7 @@ function render(){
       }).join("") + `</span>` : "";
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}${verdictChip(verdictOf(e,n))}</span>${tlHTML(e,st)}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}${verdictChip(verdictOf(e,n))}${e.unread?`<span class="msgdot" title="Message waiting for a reply" aria-label="Message waiting for a reply"></span>`:""}</span>${tlHTML(e,st)}</div>
       <div class="warns">${warns}${dispatch}</div>
     </div>`;
   };
