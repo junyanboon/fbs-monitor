@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 10:01 AM ET",
-  "generatedAtISO": "2026-09-06T10:01:10-04:00",
+  "generatedAt": "Sep 6, 10:06 AM ET",
+  "generatedAtISO": "2026-09-06T10:06:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -628,6 +628,18 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "start": 13.25,
       "end": 13.75
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 20.25,
+      "end": 20.75
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "start": 21.75,
+      "end": 22.25
     }
   ],
   "openShifts": [
@@ -701,30 +713,6 @@ const DATA = /*__DATA__*/{
       "date": "2026-09-06",
       "startISO": "2026-09-06T17:15:00-04:00",
       "endISO": "2026-09-06T17:45:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 20.25,
-      "end": 20.75,
-      "id": "14cc057b827e",
-      "date": "2026-09-06",
-      "startISO": "2026-09-06T20:15:00-04:00",
-      "endISO": "2026-09-06T20:45:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 21.75,
-      "end": 22.25,
-      "id": "f5f475625df0",
-      "date": "2026-09-06",
-      "startISO": "2026-09-06T21:45:00-04:00",
-      "endISO": "2026-09-06T22:15:00-04:00",
       "day": "Today"
     }
   ],
@@ -893,6 +881,17 @@ const DATA = /*__DATA__*/{
       "send_after": "21:45",
       "send_after_iso": "2026-09-06T21:45:00-04:00",
       "label": "EOB for Hannah Cho in Studio 509B"
+    },
+    {
+      "code": "Returning Access 693 RA-manual-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Host",
+      "created": "Sep 6 · 10:06",
+      "send_after": "10:12",
+      "send_after_iso": "2026-09-06T10:12:00-04:00"
     }
   ],
   "attention": [
@@ -1198,7 +1197,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T09:58:00-04:00"
+      "lastISO": "2026-09-06T10:03:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1228,7 +1227,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T10:00:00-04:00"
+      "lastISO": "2026-09-06T10:05:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1258,7 +1257,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T09:07:00-04:00"
+      "lastISO": "2026-09-06T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1341,6 +1340,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T09:59:00-04:00"
     },
     {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
+      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-06T09:02:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1358,7 +1367,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T09:28:00-04:00"
+      "lastISO": "2026-09-06T10:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1419,16 +1428,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
-    },
-    {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "retired 2026-09-06 - see Runtime",
-      "produces": "≤480-character Dance Annex digest to Junyan + Workflow Report heartbeat",
-      "monitoring": "Paused",
-      "status": "plain",
-      "statusLabel": "Paused",
-      "lastISO": "2026-09-06T09:02:00-04:00"
     },
     {
       "run": "The Opener",
