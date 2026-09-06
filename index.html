@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 1:36 PM ET",
-  "generatedAtISO": "2026-09-06T13:36:22-04:00",
+  "generatedAt": "Sep 6, 1:44 PM ET",
+  "generatedAtISO": "2026-09-06T13:44:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -529,10 +529,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "13:38",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Thea Thea",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -953,6 +953,28 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "PBF — Jia L. [Peerspace] ••• [responder:pbf-509B-••••]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Sep 6 · 13:42",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Quick answer — Thea [Giggster] assistants arriving 20 min early, 509A ••• [responder:sms-58ebd8da-f056-4fdd-92bf-69431be1eb04]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Responder",
+      "created": "Sep 6 · 13:42",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1110,27 +1132,25 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788715858711,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Thea Thea",
+      "time": "13:38",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788716297677,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Simona Horova",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "19:52",
-      "ts": 1788652356861,
-      "when": "Sat 19:52"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-06T17:33:02+00:00",
+    "updatedAt": "2026-09-06T17:44:02+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1465,6 +1485,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T17:35:00.507586Z",
         "until": "2026-09-06T17:35:10.881267Z"
+      },
+      {
+        "since": "2026-09-06T17:41:00.576871Z",
+        "until": "2026-09-06T17:41:14.071996Z"
       }
     ],
     "down": false
@@ -1488,7 +1512,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:33:00-04:00"
+      "lastISO": "2026-09-06T13:44:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1498,7 +1522,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:30:00-04:00"
+      "lastISO": "2026-09-06T13:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1518,7 +1542,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:35:00-04:00"
+      "lastISO": "2026-09-06T13:40:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1648,7 +1672,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T13:02:00-04:00"
+      "lastISO": "2026-09-06T13:45:00-04:00"
     },
     {
       "run": "The Timekeeper",
