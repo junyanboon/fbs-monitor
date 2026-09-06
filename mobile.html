@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 8:30 AM ET",
-  "generatedAtISO": "2026-09-06T08:30:57-04:00",
+  "generatedAt": "Sep 6, 8:45 AM ET",
+  "generatedAtISO": "2026-09-06T08:45:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -424,7 +424,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 20.0,
       "end": 22.0,
-      "access_gap": true
+      "access_gap": false
     },
     {
       "studio": "527",
@@ -940,7 +940,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     },
     {
       "level": "crit",
@@ -1147,21 +1147,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T12:24:51.887459Z",
         "until": "2026-09-06T12:25:01.800566Z"
+      },
+      {
+        "since": "2026-09-06T12:30:51.964495Z",
+        "until": "2026-09-06T12:31:33.543901Z"
+      },
+      {
+        "since": "2026-09-06T12:37:04.906379Z",
+        "until": "2026-09-06T12:37:16.348830Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-06T00:24:00-04:00"
-    },
     {
       "run": "The Concierge — 2026-09-05 20:10 interrupted",
       "cadence": null,
@@ -1190,7 +1188,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T08:29:00-04:00"
+      "lastISO": "2026-09-06T08:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1200,7 +1198,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T08:30:00-04:00"
+      "lastISO": "2026-09-06T08:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1210,7 +1208,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T08:30:00-04:00"
+      "lastISO": "2026-09-06T08:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1220,7 +1218,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T08:30:00-04:00"
+      "lastISO": "2026-09-06T08:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1273,6 +1271,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T06:00:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-06T09:05:00-04:00"
+    },
+    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -1310,7 +1318,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T08:31:00-04:00"
+      "lastISO": "2026-09-06T08:45:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1380,7 +1388,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T08:17:00-04:00"
+      "lastISO": "2026-09-06T08:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
