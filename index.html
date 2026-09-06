@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 7:23 PM ET",
-  "generatedAtISO": "2026-09-06T19:23:21-04:00",
+  "generatedAt": "Sep 6, 7:31 PM ET",
+  "generatedAtISO": "2026-09-06T19:31:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -545,12 +545,12 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "dispatch": [],
-      "heard": false,
+      "heard": true,
       "arrived": "16:13",
-      "departed": null,
+      "departed": "19:27",
       "facilitator": null,
       "arrived_by": "Kyle FitzGerald",
-      "departed_by": null,
+      "departed_by": "Kyle FitzGerald",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -648,12 +648,12 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "dispatch": [],
-      "heard": false,
+      "heard": true,
       "arrived": "11:30",
       "departed": "14:03",
       "facilitator": null,
       "arrived_by": "Kyle FitzGerald",
-      "departed_by": "Kyle FitzGerald",
+      "departed_by": "",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -946,7 +946,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "name": "Kyle FitzGerald",
+      "name": "",
       "time": "14:03",
       "kind": "departure",
       "remote": false,
@@ -1015,6 +1015,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788735674043,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Kyle FitzGerald",
+      "time": "19:27",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788737226938,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1022,15 +1031,9 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
-    "mail": "ok",
+    "mail": "failed",
     "doors": "ok",
     "updatedAt": "2026-09-06T23:06:01+00:00",
-    "mailCheck": {
-      "matched": 5,
-      "inGap": 1,
-      "missed": [],
-      "missedCount": 0
-    },
     "doorGaps": [
       {
         "since": "2026-09-06T09:01:28.149033Z",
@@ -1595,6 +1598,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T23:21:26.899919Z",
         "until": "2026-09-06T23:21:39.305194Z"
+      },
+      {
+        "since": "2026-09-06T23:27:27.092670Z",
+        "until": "2026-09-06T23:27:28.567704Z"
       }
     ],
     "down": false
@@ -1628,7 +1635,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T19:19:00-04:00"
+      "lastISO": "2026-09-06T19:30:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1638,7 +1645,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T19:20:00-04:00"
+      "lastISO": "2026-09-06T19:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1648,7 +1655,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T19:15:00-04:00"
+      "lastISO": "2026-09-06T19:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1658,7 +1665,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T19:20:00-04:00"
+      "lastISO": "2026-09-06T19:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1818,7 +1825,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T19:16:00-04:00"
+      "lastISO": "2026-09-06T19:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
