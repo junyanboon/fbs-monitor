@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 5:36 PM ET",
-  "generatedAtISO": "2026-09-06T17:36:52-04:00",
+  "generatedAt": "Sep 6, 5:46 PM ET",
+  "generatedAtISO": "2026-09-06T17:46:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -827,20 +827,7 @@ const DATA = /*__DATA__*/{
       "end": 22.25
     }
   ],
-  "openShifts": [
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "473bd698f817",
-      "date": "2026-09-06",
-      "startISO": "2026-09-06T17:15:00-04:00",
-      "endISO": "2026-09-06T17:45:00-04:00",
-      "day": "Today"
-    }
-  ],
+  "openShifts": [],
   "messages": [
     {
       "code": "Untitled message",
@@ -850,6 +837,17 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Responder",
       "created": "Sep 6 · 17:26",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Quick answer — Megan Cartwright [Fixed Option] 901 already disarmed on arrival ••• [responder:sms-080af067-99c6-403b-••••-fda0a8507528]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Sep 6 · 17:37",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1028,6 +1026,24 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1788730104330,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "17:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788731131452,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "17:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788731135313,
       "source": "doors"
     }
   ],
@@ -1533,6 +1549,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T21:30:55.302983Z",
         "until": "2026-09-06T21:31:09.705887Z"
+      },
+      {
+        "since": "2026-09-06T21:36:55.266267Z",
+        "until": "2026-09-06T21:37:07.911855Z"
+      },
+      {
+        "since": "2026-09-06T21:42:27.078220Z",
+        "until": "2026-09-06T21:42:38.585773Z"
       }
     ],
     "down": false
@@ -1576,7 +1600,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T17:34:00-04:00"
+      "lastISO": "2026-09-06T17:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1586,7 +1610,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T17:30:00-04:00"
+      "lastISO": "2026-09-06T17:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1596,7 +1620,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T17:30:00-04:00"
+      "lastISO": "2026-09-06T17:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1606,7 +1630,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T17:35:00-04:00"
+      "lastISO": "2026-09-06T17:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1716,7 +1740,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T17:05:00-04:00"
+      "lastISO": "2026-09-06T17:41:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1756,7 +1780,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T17:31:00-04:00"
+      "lastISO": "2026-09-06T17:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
