@@ -209,18 +209,12 @@
   .ev .tags{display:inline-flex;gap:5px;margin-left:8px;vertical-align:middle;flex-wrap:wrap}
   /* Session verdict glyph (verdictOf): last in the tag cluster, so it reads as
      the verdict ON the booking rather than another attribute of it. */
-  .verdict{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
-           border-radius:99px;font-family:var(--sans);font-size:16px;font-weight:900;line-height:1;
-           cursor:default;flex:none;color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
-  /* Filled discs, one weight for all three (Junyan, 2026-09-05: the old
-     tinted 19px chips did not read from across the desk). */
-  /* The red dot: a message from this renter is waiting for a reply. Solid,
-     badge-style, nothing else (Junyan, 2026-09-05). Any reply clears it. */
-  .msgdot{display:inline-block;width:10px;height:10px;border-radius:99px;background:#ff3b30;
-          margin-left:8px;vertical-align:middle;flex:none}
-  .verdict.ok{background:var(--ok)}
-  .verdict.odd{background:var(--watch)}
-  .verdict.bad{background:var(--crit)}
+  .verdict{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;
+           border-radius:99px;font-family:var(--sans);font-size:12px;font-weight:700;line-height:1;
+           cursor:default;flex:none}
+  .verdict.ok{background:var(--ok-bg);color:var(--ok)}
+  .verdict.odd{background:var(--watch-bg);color:var(--watch)}
+  .verdict.bad{background:var(--crit);color:#fff}
   /* Warnings column (was the countdown, dropped 2026-08-25 — the timeline
      itself says where things stand). */
   .ev .warns{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
@@ -238,9 +232,9 @@
   .dispatch-seg.scheduled.ava .dk{background:color-mix(in srgb,#2f6fd0 12%,var(--scrim));color:#2f6fd0}
   .dispatch-seg.scheduled.eob{border-color:color-mix(in srgb,var(--ok) 30%,var(--line))}
   .dispatch-seg.scheduled.eob .dk{background:var(--ok-bg);color:var(--ok)}
-  .dispatch-seg.missing{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
-  .dispatch-seg.missing .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
-  .dispatch-seg.missing .dv{color:var(--crit)}
+  .dispatch-seg.missing,.dispatch-seg.stuck,.dispatch-seg.awaiting{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
+  .dispatch-seg.missing .dk,.dispatch-seg.stuck .dk,.dispatch-seg.awaiting .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
+  .dispatch-seg.missing .dv,.dispatch-seg.stuck .dv,.dispatch-seg.awaiting .dv{color:var(--crit)}
   /* Mini timeline: the bordered track IS the booked window, identical length
      on every card; presence >16 min outside it is an amber stub added OUTSIDE
      the track so the window never shrinks. */
@@ -490,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 10:34 PM ET",
-  "generatedAtISO": "2026-09-05T22:34:20-04:00",
+  "generatedAt": "Sep 5, 10:42 PM ET",
+  "generatedAtISO": "2026-09-05T22:42:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -529,7 +523,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": true,
-      "unread": false,
       "arrived": "09:02",
       "departed": "10:22",
       "facilitator": null,
@@ -553,7 +546,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": false,
-      "unread": false,
       "arrived": "10:23",
       "departed": "11:33",
       "facilitator": null,
@@ -577,7 +569,6 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "unread": false,
       "arrived": "16:36",
       "departed": "17:51",
       "facilitator": null,
@@ -601,7 +592,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": true,
-      "unread": false,
       "arrived": "18:40",
       "departed": "19:52",
       "facilitator": null,
@@ -625,7 +615,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": true,
-      "unread": false,
       "arrived": "08:48",
       "departed": "10:33",
       "facilitator": null,
@@ -649,7 +638,6 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "unread": false,
       "arrived": "10:33",
       "departed": "12:28",
       "facilitator": null,
@@ -673,7 +661,6 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "unread": false,
       "arrived": "13:49",
       "departed": "16:34",
       "facilitator": null,
@@ -697,7 +684,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": true,
-      "unread": true,
       "arrived": "16:50",
       "departed": "22:04",
       "facilitator": null,
@@ -721,7 +707,6 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "unread": false,
       "arrived": "07:51",
       "departed": "11:46",
       "facilitator": null,
@@ -845,13 +830,13 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Review ask — Rebecca Wise (527, ••• PBF reply)",
+      "code": "T1-halloween-rebecca-wise-••••",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Responder",
-      "created": "Sep 5 · 22:29",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 5 · 22:38",
       "send_after": null,
       "send_after_iso": null
     }
@@ -859,7 +844,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1811,26 +1796,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-05T08:15:00-04:00"
-    },
-    {
-      "run": "The Concierge — 2026-09-05 20:10 interrupted",
-      "cadence": null,
-      "expected": "2026-09-05 20:10 America/Toronto",
-      "produces": "interrupted by Hermes container restart 20:22–20:30; outcome unknown; no inbox writes made",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-05T08:15:00-04:00"
-    },
-    {
       "run": "The Loop",
       "cadence": "Hourly",
       "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
@@ -1868,7 +1833,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T22:32:00-04:00"
+      "lastISO": "2026-09-05T22:37:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1878,7 +1843,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T22:30:00-04:00"
+      "lastISO": "2026-09-05T22:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1898,7 +1863,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T22:25:00-04:00"
+      "lastISO": "2026-09-05T22:40:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1939,6 +1904,26 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-05T06:07:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-05T22:52:00-04:00"
+    },
+    {
+      "run": "The Concierge — 2026-09-05 20:10 interrupted",
+      "cadence": null,
+      "expected": "2026-09-05 20:10 America/Toronto",
+      "produces": "interrupted by Hermes container restart 20:22–20:30; outcome unknown; no inbox writes made",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2591,16 +2576,22 @@ function render(){
     if(st.flagged && !e.dup_studios) warns += `<span class="chip crit">Missing</span>`;
     const dispatch = (e.dispatch||[]).length ? `<span class="dispatch-cluster">` +
       e.dispatch.map(d=>{
+        /* HTA states (watchdog, 2026-09-06): STUCK = a Ready to Send row is
+           past its send time; UNSENT = the only row still awaits review. */
         const value = d.state==="scheduled" ? d.time
-          : d.state==="queued" ? "QUEUED" : "MISSING";
+          : d.state==="queued" ? "QUEUED"
+          : d.state==="stuck" ? "STUCK"
+          : d.state==="awaiting" ? "UNSENT" : "MISSING";
         const title = d.state==="scheduled" ? `Scheduled for ${d.time}`
           : d.state==="queued" ? "Queue row exists; no send time yet"
+          : d.state==="stuck" ? "Queue row is Ready to Send but has not dispatched"
+          : d.state==="awaiting" ? "Queue row still awaits review — nothing has been sent"
           : "Expected queue row not found";
         return `<span class="dispatch-seg ${d.state} ${d.kind.toLowerCase()}" title="${title}"><span class="dk">${d.kind}</span><span class="dv">${value}</span></span>`;
       }).join("") + `</span>` : "";
     return `<div class="${cls}" title="${esc(e.who)}">
       <div class="tm">${hm(e.start)}–${hm(e.end)}${act}</div>
-      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}${verdictChip(verdictOf(e,n))}${e.unread?`<span class="msgdot" title="Message waiting for a reply" aria-label="Message waiting for a reply"></span>`:""}</span>${tlHTML(e,st)}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span><span class="tags">${tag}${gtgChip}${verdictChip(verdictOf(e,n))}</span>${tlHTML(e,st)}</div>
       <div class="warns">${warns}${dispatch}</div>
     </div>`;
   };
