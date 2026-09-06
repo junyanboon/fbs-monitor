@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 11:15 AM ET",
-  "generatedAtISO": "2026-09-06T11:15:52-04:00",
+  "generatedAt": "Sep 6, 11:31 AM ET",
+  "generatedAtISO": "2026-09-06T11:31:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -586,10 +586,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "11:30",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Jia L",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -671,10 +671,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:30",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Kyle FitzGerald",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -784,11 +784,6 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "11:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -963,18 +958,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 6 · 00:02",
-      "send_after": "11:30",
-      "send_after_iso": "2026-09-06T11:30:00-04:00",
-      "label": "AVA for Aakanksha Patel in Studio 901"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1132,6 +1115,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788707221000,
       "source": "panel"
+    },
+    {
+      "studio": "527",
+      "name": "Kyle FitzGerald",
+      "time": "11:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788708631811,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia L",
+      "time": "11:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788708633033,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1144,16 +1145,6 @@ const DATA = /*__DATA__*/{
       "time": "19:52",
       "ts": 1788652356861,
       "when": "Sat 19:52"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "509B",
-      "time": "11:02",
-      "ts": 1788620547561,
-      "when": "Sat 11:02"
     },
     "901": {
       "kind": "departure",
@@ -1174,7 +1165,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-06T15:07:01+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 3,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1423,6 +1414,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T15:13:59.673173Z",
         "until": "2026-09-06T15:14:08.115051Z"
+      },
+      {
+        "since": "2026-09-06T15:19:59.728591Z",
+        "until": "2026-09-06T15:20:04.886165Z"
+      },
+      {
+        "since": "2026-09-06T15:25:59.751126Z",
+        "until": "2026-09-06T15:26:07.115339Z"
       }
     ],
     "down": false
@@ -1446,7 +1445,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:16:00-04:00"
+      "lastISO": "2026-09-06T11:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1456,7 +1455,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:10:00-04:00"
+      "lastISO": "2026-09-06T11:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1466,7 +1465,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:15:00-04:00"
+      "lastISO": "2026-09-06T11:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1476,7 +1475,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:15:00-04:00"
+      "lastISO": "2026-09-06T11:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1616,7 +1615,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:07:00-04:00"
+      "lastISO": "2026-09-06T11:31:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1656,7 +1655,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:16:00-04:00"
+      "lastISO": "2026-09-06T11:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
