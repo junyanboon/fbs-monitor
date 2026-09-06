@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 7:31 PM ET",
-  "generatedAtISO": "2026-09-06T19:31:15-04:00",
+  "generatedAt": "Sep 6, 7:33 PM ET",
+  "generatedAtISO": "2026-09-06T19:33:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -653,7 +653,7 @@ const DATA = /*__DATA__*/{
       "departed": "14:03",
       "facilitator": null,
       "arrived_by": "Kyle FitzGerald",
-      "departed_by": "",
+      "departed_by": "Kyle FitzGerald",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -837,6 +837,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "Review ask — Diana Leal [Skedda] ••• [responder:sms-7fb54eb6-933c-4a23-a910-9b09dc92f010]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Responder",
+      "created": "Sep 6 · 19:32",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -946,7 +957,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "name": "",
+      "name": "Kyle FitzGerald",
       "time": "14:03",
       "kind": "departure",
       "remote": false,
@@ -1031,9 +1042,15 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
-    "mail": "failed",
+    "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-06T23:06:01+00:00",
+    "updatedAt": "2026-09-06T23:33:01+00:00",
+    "mailCheck": {
+      "matched": 5,
+      "inGap": 1,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-06T09:01:28.149033Z",
@@ -1618,16 +1635,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-05T19:39:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1776,6 +1783,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-06T19:00:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-06T19:33:00-04:00"
     },
     {
       "run": "The Responder",
