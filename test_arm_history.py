@@ -228,7 +228,76 @@ def main():
         {"studio": "693", "name": "", "time": "18:02", "kind": "arrival"}])
     fails += check("nameless event is not foreign", nameless["arrived_foreign"], False)
 
-    print("FAILED" if fails else "ok — 42 checks passed")
+
+    # ---- panel_backstop: the phantom of 2026-09-05 ------------------------
+    #
+    # The board printed a second, nameless arrival on 509A at 18:53 while
+    # Simona Horova was alone in the studio. Alarm.com's own PastEvents export
+    # has no 18:53 event at all — only her 18:40:07 disarm and 19:52:36 arm.
+    # The builder made it: the listener was down 18:45:53-18:52:52 and the
+    # panel ledger's tick stalled with it, so the ledger wrote her disarm at
+    # 18:53:46 — 13m38s late, past the 8-minute same-kind window that was
+    # sized off a measured 1-6 minute lag. These are the real timestamps.
+    MIN = 60 * 1000
+    door_509a = [
+        {"studio": "509A", "kind": "arrival", "ts": 1788648007997},   # 18:40:07
+        {"studio": "509A", "kind": "departure", "ts": 1788652356861},  # 19:52:36
+    ]
+    phantom = {"studio": "509A", "kind": "arrival", "name": "",
+               "ts": 1788648826000}                                   # 18:53:46
+    fails += check("13m38s-late restatement is dropped",
+                   build.panel_backstop([phantom], door_509a), [])
+
+    # The ordinary case the old window already handled must not regress.
+    fails += check("3-minute-late restatement is dropped",
+                   build.panel_backstop(
+                       [{"studio": "509A", "kind": "arrival",
+                         "ts": 1788648007997 + 3 * MIN}], door_509a), [])
+
+    # An hour late and still a restatement — no window would have caught this.
+    fails += check("60-minute-late restatement is dropped",
+                   build.panel_backstop(
+                       [{"studio": "509A", "kind": "arrival",
+                         "ts": 1788648007997 + 60 * MIN}], door_509a), [])
+
+    # THE BACKSTOP MUST STILL BACKSTOP. An event the socket genuinely lost
+    # changes the state, so it survives however late it lands.
+    missed = {"studio": "509A", "kind": "departure",
+              "ts": 1788648007997 + 40 * MIN}
+    fails += check("a real missed departure survives",
+                   build.panel_backstop([missed], door_509a[:1]), [missed])
+
+    # A disarm and re-arm that BOTH fell inside one gap: each flips the state,
+    # so each survives. This is the case a naive last-door-event check loses.
+    out = build.panel_backstop(
+        [{"studio": "509A", "kind": "departure", "ts": 1788648007997 + 20 * MIN},
+         {"studio": "509A", "kind": "arrival", "ts": 1788648007997 + 25 * MIN}],
+        door_509a[:1])
+    fails += check("both halves of an in-gap round trip survive", len(out), 2)
+
+    # A studio the door feed never saw has no known state — keep it, an
+    # unknown state is not evidence of a duplicate.
+    lone = {"studio": "693", "kind": "arrival", "ts": 1788648826000}
+    fails += check("panel event for an unseen studio survives",
+                   build.panel_backstop([lone], door_509a), [lone])
+
+    # Another studio's events must not mask this one's.
+    fails += check("dedup does not cross studios",
+                   build.panel_backstop(
+                       [{"studio": "693", "kind": "arrival",
+                         "ts": 1788648007997 + MIN}], door_509a),
+                   [{"studio": "693", "kind": "arrival",
+                     "ts": 1788648007997 + MIN}])
+
+    # A door twin stamped just AFTER the panel copy — the one shape state
+    # cannot see, which is why the same-kind window survives as rule two.
+    fails += check("same-kind twin arriving later is still dropped",
+                   build.panel_backstop(
+                       [{"studio": "527", "kind": "arrival", "ts": 1788648007997}],
+                       [{"studio": "527", "kind": "arrival",
+                         "ts": 1788648007997 + 4 * MIN}]), [])
+
+    print("FAILED" if fails else "ok — 50 checks passed")
     return 1 if fails else 0
 
 

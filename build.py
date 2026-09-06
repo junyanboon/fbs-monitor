@@ -1717,6 +1717,67 @@ def _parse_iso_utc(s):
         return None
 
 
+def panel_backstop(panel_events, door_events, window_ms=8 * 60 * 1000):
+    """The panel-ledger events the door feed genuinely MISSED — no phantoms.
+
+    Both feeds report the same arm/disarm. The door feed (websocket) carries
+    the actor and the true second. The panel ledger carries no actor and
+    stamps the event at its own watchdog tick, so it always lands late. Only
+    the ledger events with no door counterpart are worth keeping: those are
+    the ones the socket lost inside a gap, which is the backstop's whole job.
+
+    WHY NOT A TIME WINDOW ALONE. That is what this used to be — drop a panel
+    event if a door event of the same studio+kind sat within 8 minutes, sized
+    off a measured 1-6 minute tick lag (2026-08-20). It broke on 2026-09-05:
+    the listener was down 18:45:53-18:52:52 and the ledger's own tick stalled
+    with it, so Simona Horova's 18:40:07 disarm of 509A was not written until
+    18:53:46 — 13m38s late, past the window. The panel copy survived, and
+    because the ledger names nobody the board printed a second, nameless
+    arrival on a studio that had one person in it. Alarm.com's own record has
+    no 18:53 event; the board invented it. Any fixed window has this bug — the
+    lag is normal tick lag PLUS however long the writer stalled, which is
+    unbounded.
+
+    SO DEDUP ON STATE, NOT ELAPSED TIME. `arrival` means "this partition is
+    disarmed"; `departure` means "armed". A panel event that restates the
+    state the timeline is already in is a restatement, not an event — you
+    cannot disarm an already-disarmed panel. Drop it however late it is. An
+    event that CHANGES the state is real and the socket missed it: keep it.
+    This holds for any stall length, and it still keeps the case the backstop
+    exists for, including a disarm and re-arm that both fell inside one gap
+    (each flips the state, so each survives).
+
+    A studio with no door event before the panel event has no known state.
+    That is kept — an unknown state is not evidence of a duplicate, and
+    dropping it would lose a real arrival on a studio the socket never saw.
+
+    The old same-kind window check stays as a second drop rule, for the one
+    shape state cannot see: a door twin timestamped just AFTER the panel copy.
+
+    Pure and order-independent: takes both lists, returns the survivors.
+    """
+    by_studio = {}
+    for d in door_events or []:
+        by_studio.setdefault(d.get("studio"), []).append(
+            (d.get("ts") or 0, d.get("kind")))
+    for evs in by_studio.values():
+        evs.sort()
+
+    kept = []
+    for p in sorted(panel_events or [], key=lambda e: e.get("ts") or 0):
+        ts, kind, studio = p.get("ts") or 0, p.get("kind"), p.get("studio")
+        if any(k == kind and abs(dts - ts) <= window_ms
+               for dts, k in by_studio.get(studio, [])):
+            continue                    # same-kind twin, either side of the tick
+        prior = [k for dts, k in by_studio.get(studio, []) if dts <= ts]
+        if prior and prior[-1] == kind:
+            continue                    # restates the state we are already in
+        kept.append(p)
+        by_studio.setdefault(studio, []).append((ts, kind))
+        by_studio[studio].sort()
+    return kept
+
+
 def feed_is_down(arm_events, arm_feed, now, win_start, quiet_hours=5):
     """Is the silence an outage rather than a quiet morning?
 
@@ -3308,20 +3369,17 @@ def build_data(now):
         arm_feed["mail"] = "unconfigured"
 
     # When the door feed answered, IT is the timeline — named and true-timed.
-    # The panel ledger's minute tick reports the same arm changes 1-6 minutes
-    # late (measured 2026-08-20: 13:26:24 -> 13:29), which is wider than
-    # enrich_arm_names' 2-minute match window — so laying one over the other
-    # would keep both copies. Instead, a panel event survives only if no door
-    # event of the same studio+kind sits within 8 minutes: those survivors are
-    # exactly the events the websocket missed (its gaps are real — the panel
-    # poll is immune to them), which is the backstop role canon gives it.
+    # The panel ledger's tick reports the same arm changes late (1-6 minutes
+    # measured 2026-08-20, and 13m38s on 2026-09-05 when its writer stalled
+    # with the socket), so laying one over the other keeps both copies — the
+    # second of them nameless, because the ledger records the event and not
+    # the actor. panel_backstop() drops the restatements and keeps only the
+    # events the websocket actually missed, which is the backstop role canon
+    # gives it. It dedups on STATE, not elapsed time; see its docstring for
+    # the phantom that killed the fixed window.
     # Mail events ride along for the rare account still emailing.
     if door_events:
-        def _door_twin(p):
-            return any(d["studio"] == p["studio"] and d["kind"] == p["kind"]
-                       and abs((d.get("ts") or 0) - (p.get("ts") or 0)) <= 8 * 60 * 1000
-                       for d in door_events)
-        backstop = [p for p in panel_events if not _door_twin(p)]
+        backstop = panel_backstop(panel_events, door_events)
         arm_events = sorted(door_events + backstop, key=lambda e: e.get("ts") or 0)
         if mail_events:
             arm_events = enrich_arm_names(arm_events, mail_events)
