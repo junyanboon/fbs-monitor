@@ -270,8 +270,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 9:30 PM ET",
-  "generatedAtISO": "2026-09-05T21:30:55-04:00",
+  "generatedAt": "Sep 5, 9:45 PM ET",
+  "generatedAtISO": "2026-09-05T21:45:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -475,15 +475,9 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "21:45"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
-      "unread": true,
+      "unread": false,
       "arrived": "16:50",
       "departed": null,
       "facilitator": null,
@@ -631,22 +625,21 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "EOB",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
+      "code": "booking_move_hannah_cho_20260906",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "509B",
       "raised_by": "AI (automation)",
-      "created": "Sep 5 · 11:44",
-      "send_after": "21:45",
-      "send_after_iso": "2026-09-05T21:45:00-04:00",
-      "label": "EOB for Rebecca Wise in Studio 527"
+      "created": "Sep 5 · 21:42",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1547,21 +1540,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T01:17:00.704069Z",
         "until": "2026-09-06T01:23:02.295686Z"
+      },
+      {
+        "since": "2026-09-06T01:28:01.069487Z",
+        "until": "2026-09-06T01:33:17.273193Z"
+      },
+      {
+        "since": "2026-09-06T01:39:00.968580Z",
+        "until": "2026-09-06T01:39:11.423261Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-05T08:15:00-04:00"
-    },
     {
       "run": "The Loop",
       "cadence": "Hourly",
@@ -1590,7 +1581,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T21:29:00-04:00"
+      "lastISO": "2026-09-05T21:41:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1600,7 +1591,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T21:30:00-04:00"
+      "lastISO": "2026-09-05T21:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1610,7 +1601,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T21:30:00-04:00"
+      "lastISO": "2026-09-05T21:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1620,7 +1611,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T21:30:00-04:00"
+      "lastISO": "2026-09-05T21:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1661,6 +1652,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-05T06:07:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-05T20:22:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1720,7 +1721,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T21:03:00-04:00"
+      "lastISO": "2026-09-05T21:34:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1760,7 +1761,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T21:31:00-04:00"
+      "lastISO": "2026-09-05T21:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
