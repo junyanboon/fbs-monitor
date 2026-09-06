@@ -107,6 +107,8 @@
            border-radius:99px;font-family:var(--sans);font-size:13.5px;font-weight:900;line-height:1;flex:none;
            color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
   /* Filled discs, one weight for all three (Junyan, 2026-09-05). */
+  /* The red dot: a message from this renter is waiting for a reply. */
+  .msgdot{display:inline-block;width:9px;height:9px;border-radius:99px;background:#ff3b30;flex:none}
   .verdict.ok{background:var(--ok)}
   .verdict.odd{background:var(--watch)}
   .verdict.bad{background:var(--crit)}
@@ -268,8 +270,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 5, 2026",
   "shiftBaseDay": "2026-09-05",
-  "generatedAt": "Sep 5, 8:45 PM ET",
-  "generatedAtISO": "2026-09-05T20:45:50-04:00",
+  "generatedAt": "Sep 5, 9:01 PM ET",
+  "generatedAtISO": "2026-09-05T21:01:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -307,6 +309,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": true,
+      "unread": false,
       "arrived": "09:02",
       "departed": "10:22",
       "facilitator": null,
@@ -330,6 +333,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": false,
+      "unread": false,
       "arrived": "10:23",
       "departed": "11:33",
       "facilitator": null,
@@ -353,6 +357,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
+      "unread": false,
       "arrived": "16:36",
       "departed": "17:51",
       "facilitator": null,
@@ -376,6 +381,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": true,
+      "unread": false,
       "arrived": "18:40",
       "departed": "19:52",
       "facilitator": null,
@@ -399,6 +405,7 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [],
       "heard": true,
+      "unread": false,
       "arrived": "08:48",
       "departed": "10:33",
       "facilitator": null,
@@ -422,6 +429,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
+      "unread": false,
       "arrived": "10:33",
       "departed": "12:28",
       "facilitator": null,
@@ -445,6 +453,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
+      "unread": false,
       "arrived": "13:49",
       "departed": "16:34",
       "facilitator": null,
@@ -474,6 +483,7 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": true,
+      "unread": true,
       "arrived": "16:50",
       "departed": null,
       "facilitator": null,
@@ -497,6 +507,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
+      "unread": false,
       "arrived": "07:51",
       "departed": "11:46",
       "facilitator": null,
@@ -631,18 +642,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "HTA-manual-•••A — Thea [Giggster] first-ever codes",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "AI (automation)",
-      "created": "Sep 5 · 20:31",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-06T09:00:00-04:00",
-      "label": "HTA · Studio 509A"
-    },
-    {
       "code": "EOB",
       "kind": "EOB",
       "channel": "SMS",
@@ -653,6 +652,18 @@ const DATA = /*__DATA__*/{
       "send_after": "21:45",
       "send_after_iso": "2026-09-05T21:45:00-04:00",
       "label": "EOB for Rebecca Wise in Studio 527"
+    },
+    {
+      "code": "HTA-manual-•••A — Thea [Giggster] first-ever codes",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "AI (automation)",
+      "created": "Sep 5 · 20:31",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-06T09:00:00-04:00",
+      "label": "HTA · Studio 509A"
     }
   ],
   "attention": [
@@ -1539,6 +1550,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T00:43:00.847487Z",
         "until": "2026-09-06T00:43:05.731364Z"
+      },
+      {
+        "since": "2026-09-06T00:48:28.921092Z",
+        "until": "2026-09-06T00:48:37.366014Z"
+      },
+      {
+        "since": "2026-09-06T00:54:00.839963Z",
+        "until": "2026-09-06T00:54:08.321627Z"
+      },
+      {
+        "since": "2026-09-06T00:59:28.912280Z",
+        "until": "2026-09-06T01:00:12.230179Z"
       }
     ],
     "down": false
@@ -1565,6 +1588,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-04T09:58:00-04:00"
     },
     {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "04:06 America/Toronto · Codex production fallback",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-04T23:15:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1572,7 +1605,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:46:00-04:00"
+      "lastISO": "2026-09-05T21:02:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1582,7 +1615,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:40:00-04:00"
+      "lastISO": "2026-09-05T21:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1592,7 +1625,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:45:00-04:00"
+      "lastISO": "2026-09-05T21:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1602,7 +1635,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:45:00-04:00"
+      "lastISO": "2026-09-05T21:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1612,7 +1645,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:00:00-04:00"
+      "lastISO": "2026-09-05T21:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1622,7 +1655,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:00:00-04:00"
+      "lastISO": "2026-09-05T21:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1633,16 +1666,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-05T20:07:00-04:00"
-    },
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "04:06 America/Toronto · Codex production fallback",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-04T23:15:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -1692,7 +1715,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:00:00-04:00"
+      "lastISO": "2026-09-05T21:00:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1752,7 +1775,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-05T20:46:00-04:00"
+      "lastISO": "2026-09-05T21:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2127,7 +2150,7 @@ function render(){
       }).join("")+`</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">
       <div class="bar"></div>
-      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span>${typeChip}${gtgChip}${verdictChip(verdictOf(e,n))}</div>
+      <div class="who"><span class="nm">${e.facilitator?esc(e.facilitator):shortWho(e.who)}</span>${typeChip}${gtgChip}${verdictChip(verdictOf(e,n))}${e.unread?`<span class="msgdot" title="Message waiting for a reply" aria-label="Message waiting for a reply"></span>`:""}</div>
       <div class="meta">${meta}</div>
       ${tlHTML(e,st,n)}
       <div class="right"><span class="studio">${esc(e.studio)}</span>${warnChips(e,st)}${dispatch}</div>
