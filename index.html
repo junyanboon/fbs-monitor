@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 2:18 PM ET",
-  "generatedAtISO": "2026-09-06T14:18:00-04:00",
+  "generatedAt": "Sep 6, 2:24 PM ET",
+  "generatedAtISO": "2026-09-06T14:24:30-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1480,6 +1480,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T18:14:58.896516Z",
         "until": "2026-09-06T18:15:08.381165Z"
+      },
+      {
+        "since": "2026-09-06T18:20:07.021520Z",
+        "until": "2026-09-06T18:20:10.185909Z"
       }
     ],
     "down": false
@@ -1496,6 +1500,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-05T19:39:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1503,7 +1517,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T14:15:00-04:00"
+      "lastISO": "2026-09-06T14:21:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1513,7 +1527,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T14:10:00-04:00"
+      "lastISO": "2026-09-06T14:20:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1533,7 +1547,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T14:15:00-04:00"
+      "lastISO": "2026-09-06T14:20:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1644,16 +1658,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-06T14:00:00-04:00"
-    },
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-05T19:39:00-04:00"
     },
     {
       "run": "The Responder",
