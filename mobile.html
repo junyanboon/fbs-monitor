@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 7:29 AM ET",
-  "generatedAtISO": "2026-09-06T07:29:38-04:00",
+  "generatedAt": "Sep 6, 7:48 AM ET",
+  "generatedAtISO": "2026-09-06T07:48:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -746,24 +746,24 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Greeter — Peerspace request + phone ask — Ghunwa M. — 509A Sat Sep 26 6:00 PM–7:30 PM [greeter:1a074bfe05d9fd62]",
+      "code": "COURTESY — Harleen C [Peerspace] accepts the 901 after-9pm exit condition ••• [responder:1a075d8d7ecfdaa5]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Sep 6 · 07:30",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Greeter — Peerspace confirmed (pointer → main thread) — Ghunwa M. — 509A Sat Sep 26 6:00 PM–7:30 PM [greeter:1a0768471d7ba406]",
       "kind": null,
       "channel": "Email",
       "status": "Pending Review",
       "studio": "509A",
       "raised_by": "AI (automation)",
-      "created": "Sep 5 · 23:30",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "COURTESY — Thea [Giggster] closing thanks ••• [responder:sms-64dbcbdb-49dc-••••-af9e-7d5320841b55]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Responder",
-      "created": "Sep 6 · 00:10",
+      "created": "Sep 6 · 07:40",
       "send_after": null,
       "send_after_iso": null
     },
@@ -946,12 +946,23 @@ const DATA = /*__DATA__*/{
       "send_after": "21:45",
       "send_after_iso": "2026-09-06T21:45:00-04:00",
       "label": "EOB for Hannah Cho in Studio 509B"
+    },
+    {
+      "code": "COURTESY — Thea [Giggster] closing thanks ••• [responder:sms-64dbcbdb-49dc-••••-af9e-7d5320841b55]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Responder",
+      "created": "Sep 6 · 00:10",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     },
     {
       "level": "crit",
@@ -1126,6 +1137,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T11:28:27.942316Z",
         "until": "2026-09-06T11:28:41.824711Z"
+      },
+      {
+        "since": "2026-09-06T11:34:27.963035Z",
+        "until": "2026-09-06T11:39:58.468870Z"
+      },
+      {
+        "since": "2026-09-06T11:45:51.670989Z",
+        "until": "2026-09-06T11:46:05.141576Z"
       }
     ],
     "down": false
@@ -1142,16 +1161,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-06T00:59:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1159,7 +1168,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T07:28:00-04:00"
+      "lastISO": "2026-09-06T07:44:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1252,6 +1261,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T19:39:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-06T07:32:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1289,7 +1308,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T07:15:00-04:00"
+      "lastISO": "2026-09-06T07:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1299,7 +1318,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T07:25:00-04:00"
+      "lastISO": "2026-09-06T07:45:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
