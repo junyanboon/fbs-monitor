@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 12:01 PM ET",
-  "generatedAtISO": "2026-09-06T12:01:54-04:00",
+  "generatedAt": "Sep 6, 12:15 PM ET",
+  "generatedAtISO": "2026-09-06T12:15:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -593,7 +593,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 11.5,
       "end": 13.5,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "509B",
@@ -922,11 +922,22 @@ const DATA = /*__DATA__*/{
     {
       "code": "COURTESY — Jessica M. [Giggster] accepts the alcohol-free condition ••• [responder:1a0771216f718d6d]",
       "kind": null,
-      "channel": "Manual Send",
+      "channel": "SMS",
       "status": "Pending Review",
       "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 6 · 10:35",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "BC-sweep-••• — platform SMS confirmation (requeued •••)",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 6 · 12:03",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1403,6 +1414,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-06T15:59:59.143812Z",
         "until": "2026-09-06T16:01:42.487913Z"
+      },
+      {
+        "since": "2026-09-06T16:07:04.968963Z",
+        "until": "2026-09-06T16:07:18.401093Z"
+      },
+      {
+        "since": "2026-09-06T16:13:00.068802Z",
+        "until": "2026-09-06T16:13:06.319671Z"
       }
     ],
     "down": false
@@ -1426,7 +1445,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:00:00-04:00"
+      "lastISO": "2026-09-06T12:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1436,7 +1455,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:00:00-04:00"
+      "lastISO": "2026-09-06T12:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1446,7 +1465,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:00:00-04:00"
+      "lastISO": "2026-09-06T12:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1456,7 +1475,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:00:00-04:00"
+      "lastISO": "2026-09-06T12:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1486,7 +1505,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:07:00-04:00"
+      "lastISO": "2026-09-06T12:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1586,7 +1605,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:31:00-04:00"
+      "lastISO": "2026-09-06T12:10:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1616,7 +1635,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T11:10:00-04:00"
+      "lastISO": "2026-09-06T12:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1626,7 +1645,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:01:00-04:00"
+      "lastISO": "2026-09-06T12:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
