@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 12:30 PM ET",
-  "generatedAtISO": "2026-09-06T12:30:25-04:00",
+  "generatedAt": "Sep 6, 12:31 PM ET",
+  "generatedAtISO": "2026-09-06T12:31:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -696,28 +696,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
-    {
-      "code": "COURTESY — Jessica M. [Giggster] accepts the alcohol-free condition ••• [responder:1a0771216f718d6d]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 6 · 10:35",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "BC-sweep-••• — platform SMS confirmation (requeued •••)",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 6 · 12:03",
-      "send_after": null,
-      "send_after_iso": null
-    },
     {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
@@ -1381,6 +1359,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T19:39:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-06T12:31:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1418,7 +1406,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T12:16:00-04:00"
+      "lastISO": "2026-09-06T12:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
