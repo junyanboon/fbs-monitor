@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 9:04 PM ET",
-  "generatedAtISO": "2026-09-06T21:04:41-04:00",
+  "generatedAt": "Sep 6, 9:10 PM ET",
+  "generatedAtISO": "2026-09-06T21:10:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -771,10 +771,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "17:00",
-      "departed": null,
+      "departed": "21:05",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Megan Cartwright",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": "open",
@@ -885,24 +885,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "527",
-      "day_offset": 1,
-      "start": 17.75,
-      "end": 18.25,
-      "id": "57d1842ff52a",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T17:45:00-04:00",
-      "endISO": "2026-09-07T18:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": "693",
       "day_offset": 1,
       "start": 17.75,
       "end": 18.25,
       "id": "9b328b92b98b",
+      "date": "2026-09-07",
+      "startISO": "2026-09-07T17:45:00-04:00",
+      "endISO": "2026-09-07T18:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 17.75,
+      "end": 18.25,
+      "id": "57d1842ff52a",
       "date": "2026-09-07",
       "startISO": "2026-09-07T17:45:00-04:00",
       "endISO": "2026-09-07T18:15:00-04:00",
@@ -1208,6 +1208,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788741036439,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Megan Cartwright",
+      "time": "21:05",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788743135493,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1217,7 +1226,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-07T00:36:02+00:00",
+    "updatedAt": "2026-09-07T01:10:02+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 1,
@@ -1856,6 +1865,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T01:02:19.595791Z",
         "until": "2026-09-07T01:02:28.063372Z"
+      },
+      {
+        "since": "2026-09-07T01:08:21.200795Z",
+        "until": "2026-09-07T01:08:30.681781Z"
       }
     ],
     "down": false
@@ -1879,7 +1892,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:05:00-04:00"
+      "lastISO": "2026-09-06T21:10:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1889,7 +1902,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:00:00-04:00"
+      "lastISO": "2026-09-06T21:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1909,7 +1922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:00:00-04:00"
+      "lastISO": "2026-09-06T21:10:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1939,7 +1952,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T20:07:00-04:00"
+      "lastISO": "2026-09-06T21:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2069,7 +2082,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T20:10:00-04:00"
+      "lastISO": "2026-09-06T21:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
