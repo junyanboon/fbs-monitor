@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 1:15 PM ET",
-  "generatedAtISO": "2026-09-07T13:15:59-04:00",
+  "generatedAt": "Sep 7, 1:17 PM ET",
+  "generatedAtISO": "2026-09-07T13:17:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -440,7 +440,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Sent",
       "dispatch": [
         {
           "kind": "EOB",
@@ -469,7 +469,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Sent",
       "dispatch": [
         {
           "kind": "AVA",
@@ -745,7 +745,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Unsent",
+      "hta": "Sent",
       "dispatch": [
         {
           "kind": "AVA",
@@ -974,7 +974,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1438,16 +1438,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-06T04:58:00-04:00"
-    },
-    {
       "run": "The Mechanic",
       "cadence": "Hourly",
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
@@ -1576,6 +1566,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-07T06:35:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-07T13:17:00-04:00"
     },
     {
       "run": "The Loop",
