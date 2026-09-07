@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 9:31 PM ET",
-  "generatedAtISO": "2026-09-06T21:31:09-04:00",
+  "generatedAt": "Sep 6, 9:46 PM ET",
+  "generatedAtISO": "2026-09-06T21:46:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -373,11 +373,6 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "21:45"
-        },
         {
           "kind": "HTA",
           "state": "missing",
@@ -498,13 +493,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "21:45"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": "20:30",
       "departed": null,
@@ -667,24 +656,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "527",
-      "day_offset": 1,
-      "start": 17.75,
-      "end": 18.25,
-      "id": "57d1842ff52a",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T17:45:00-04:00",
-      "endISO": "2026-09-07T18:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": "693",
       "day_offset": 1,
       "start": 17.75,
       "end": 18.25,
       "id": "9b328b92b98b",
+      "date": "2026-09-07",
+      "startISO": "2026-09-07T17:45:00-04:00",
+      "endISO": "2026-09-07T18:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 17.75,
+      "end": 18.25,
+      "id": "57d1842ff52a",
       "date": "2026-09-07",
       "startISO": "2026-09-07T17:45:00-04:00",
       "endISO": "2026-09-07T18:15:00-04:00",
@@ -794,30 +783,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 6 · 21:25",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "AI (automation)",
-      "created": "Sep 6 · 00:02",
-      "send_after": "21:45",
-      "send_after_iso": "2026-09-06T21:45:00-04:00",
-      "label": "EOB for Janet Zamora in Studio 693"
-    },
-    {
-      "code": "EOB-sweep-•••B",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "AI (automation)",
-      "created": "Sep 6 · 00:02",
-      "send_after": "21:45",
-      "send_after_iso": "2026-09-06T21:45:00-04:00",
-      "label": "EOB for Hannah Cho in Studio 509B"
     }
   ],
   "attention": [
@@ -1678,6 +1643,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T01:30:27.674595Z",
         "until": "2026-09-07T01:30:39.081105Z"
+      },
+      {
+        "since": "2026-09-07T01:36:26.655199Z",
+        "until": "2026-09-07T01:36:36.093778Z"
+      },
+      {
+        "since": "2026-09-07T01:42:26.704012Z",
+        "until": "2026-09-07T01:42:37.078836Z"
       }
     ],
     "down": false
@@ -1701,7 +1674,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:28:00-04:00"
+      "lastISO": "2026-09-06T21:44:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1711,7 +1684,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:30:00-04:00"
+      "lastISO": "2026-09-06T21:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1721,7 +1694,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:30:00-04:00"
+      "lastISO": "2026-09-06T21:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1731,7 +1704,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:30:00-04:00"
+      "lastISO": "2026-09-06T21:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1831,7 +1804,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T20:57:00-04:00"
+      "lastISO": "2026-09-06T21:55:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1901,7 +1874,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:31:00-04:00"
+      "lastISO": "2026-09-06T21:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
