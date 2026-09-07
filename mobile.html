@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 4:40 PM ET",
-  "generatedAtISO": "2026-09-07T16:40:22-04:00",
+  "generatedAt": "Sep 7, 4:45 PM ET",
+  "generatedAtISO": "2026-09-07T16:45:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -464,13 +464,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "16:45"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": "16:09",
       "departed": null,
@@ -851,17 +845,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-10T09:00:00-04:00"
     },
     {
-      "code": "ALARM-CHECKIN-ANGUS-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Concierge",
-      "created": "Sep 7 · 16:37",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Sales — tour inquiry — Jerimi Santana [concierge:gmail-1a07e1d9030d4525]",
       "kind": null,
       "channel": "Email",
@@ -869,6 +852,17 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Concierge",
       "created": "Sep 7 · 16:38",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "PBF — xavier [Tagvenue] ••• [responder:pbf-•••-xavier]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Responder",
+      "created": "Sep 7 · 16:43",
       "send_after": null,
       "send_after_iso": null
     },
@@ -895,18 +889,6 @@ const DATA = /*__DATA__*/{
       "send_after": "19:45",
       "send_after_iso": "2026-09-07T19:45:00-04:00",
       "label": "EOB for Laura Flores in Studio 693"
-    },
-    {
-      "code": "EOB-sweep-•••B",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 00:02",
-      "send_after": "16:45",
-      "send_after_iso": "2026-09-07T16:45:00-04:00",
-      "label": "EOB for Samuel Boucher in Studio 509B"
     }
   ],
   "attention": [
@@ -1603,6 +1585,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T20:39:25.021382Z",
         "until": "2026-09-07T20:39:36.347822Z"
+      },
+      {
+        "since": "2026-09-07T20:44:37.652492Z",
+        "until": "2026-09-07T20:44:44.053586Z"
       }
     ],
     "down": false
@@ -1646,7 +1632,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:36:00-04:00"
+      "lastISO": "2026-09-07T16:41:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1666,7 +1652,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:30:00-04:00"
+      "lastISO": "2026-09-07T16:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1676,7 +1662,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:40:00-04:00"
+      "lastISO": "2026-09-07T16:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1796,7 +1782,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:18:00-04:00"
+      "lastISO": "2026-09-07T16:43:00-04:00"
     },
     {
       "run": "The Timekeeper",
