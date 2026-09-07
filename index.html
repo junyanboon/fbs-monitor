@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 4:46 PM ET",
-  "generatedAtISO": "2026-09-07T16:46:57-04:00",
+  "generatedAt": "Sep 7, 5:02 PM ET",
+  "generatedAtISO": "2026-09-07T17:02:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -546,10 +546,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "16:59",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Sierra Goulding",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1085,6 +1085,28 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "ACCESS-CODE-ROTATION-THEA-••••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "Other",
+      "created": "Sep 7 · 16:50",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Sales — Halloween date/time ask — Rebecca Wise [concierge:deskdrop-3d47503281c48155af1cc983e7ed7f9e]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 7 · 16:56",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1294,6 +1316,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1788811758706,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Sierra Goulding",
+      "time": "16:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788814755193,
       "source": "doors"
     }
   ],
@@ -1807,6 +1838,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T20:44:37.652492Z",
         "until": "2026-09-07T20:44:44.053586Z"
+      },
+      {
+        "since": "2026-09-07T20:50:26.864255Z",
+        "until": "2026-09-07T20:50:39.120477Z"
+      },
+      {
+        "since": "2026-09-07T20:55:34.719796Z",
+        "until": "2026-09-07T20:55:50.171912Z"
+      },
+      {
+        "since": "2026-09-07T21:01:24.910114Z",
+        "until": "2026-09-07T21:01:38.289991Z"
       }
     ],
     "down": false
@@ -1850,7 +1893,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:47:00-04:00"
+      "lastISO": "2026-09-07T16:58:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1860,7 +1903,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:40:00-04:00"
+      "lastISO": "2026-09-07T17:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1870,7 +1913,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:45:00-04:00"
+      "lastISO": "2026-09-07T17:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1880,7 +1923,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:45:00-04:00"
+      "lastISO": "2026-09-07T17:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1890,7 +1933,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:00:00-04:00"
+      "lastISO": "2026-09-07T17:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1900,7 +1943,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:40:00-04:00"
+      "lastISO": "2026-09-07T17:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1910,7 +1953,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:00:00-04:00"
+      "lastISO": "2026-09-07T17:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1980,7 +2023,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:44:00-04:00"
+      "lastISO": "2026-09-07T16:55:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -2040,7 +2083,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:46:00-04:00"
+      "lastISO": "2026-09-07T17:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
