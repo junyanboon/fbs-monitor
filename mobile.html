@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 6, 2026",
   "shiftBaseDay": "2026-09-06",
-  "generatedAt": "Sep 6, 10:01 PM ET",
-  "generatedAtISO": "2026-09-06T22:01:17-04:00",
+  "generatedAt": "Sep 6, 10:05 PM ET",
+  "generatedAtISO": "2026-09-06T22:05:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -490,10 +490,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "20:30",
-      "departed": null,
+      "departed": "22:03",
       "facilitator": null,
       "arrived_by": "Janet Zamora",
-      "departed_by": null,
+      "departed_by": "Janet Zamora",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -698,24 +698,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 1,
-      "start": 19.75,
-      "end": 20.25,
-      "id": "52ef0eb280a4",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T19:45:00-04:00",
-      "endISO": "2026-09-07T20:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "527",
       "day_offset": 1,
       "start": 19.75,
       "end": 20.25,
       "id": "a4d9b43c209c",
+      "date": "2026-09-07",
+      "startISO": "2026-09-07T19:45:00-04:00",
+      "endISO": "2026-09-07T20:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 19.75,
+      "end": 20.25,
+      "id": "52ef0eb280a4",
       "date": "2026-09-07",
       "startISO": "2026-09-07T19:45:00-04:00",
       "endISO": "2026-09-07T20:15:00-04:00",
@@ -775,6 +775,17 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "raised_by": "The Registrar",
       "created": "Sep 6 · 21:25",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Quick answer — Sol R [Peerspace] asks whether the desk will be staffed, ••• [responder:1a0798a91ef59e7e]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Sep 6 · 22:03",
       "send_after": null,
       "send_after_iso": null
     }
@@ -965,6 +976,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788743135493,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Janet Zamora",
+      "time": "22:03",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788746637416,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -974,7 +994,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-07T01:10:02+00:00",
+    "updatedAt": "2026-09-07T02:05:02+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 1,
@@ -1653,6 +1673,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T02:00:19.950312Z",
         "until": "2026-09-07T02:00:26.409196Z"
+      },
+      {
+        "since": "2026-09-07T02:05:21.990415Z",
+        "until": "2026-09-07T02:05:27.437535Z"
       }
     ],
     "down": false
@@ -1706,7 +1730,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T22:00:00-04:00"
+      "lastISO": "2026-09-06T22:05:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1836,7 +1860,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-06T21:33:00-04:00"
+      "lastISO": "2026-09-06T22:05:00-04:00"
     },
     {
       "run": "The Timekeeper",
