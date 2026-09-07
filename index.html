@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 11:16 AM ET",
-  "generatedAtISO": "2026-09-07T11:16:57-04:00",
+  "generatedAt": "Sep 7, 11:30 AM ET",
+  "generatedAtISO": "2026-09-07T11:30:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -616,10 +616,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "11:11",
-      "departed": null,
+      "departed": "11:30",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -666,11 +666,6 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Unsent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "11:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1226,18 +1221,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Laura Flores in Studio 693"
     },
     {
-      "code": "AVA-sweep-•••B",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 00:02",
-      "send_after": "11:30",
-      "send_after_iso": "2026-09-07T11:30:00-04:00",
-      "label": "AVA for Jia L. Peerspace in Studio 509B"
-    },
-    {
       "code": "EOB-sweep-•••B",
       "kind": "EOB",
       "channel": "SMS",
@@ -1329,6 +1312,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788793898612,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "11:30",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788795000133,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1359,7 +1351,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-07T15:14:08+00:00",
+    "updatedAt": "2026-09-07T15:30:16+00:00",
     "doorGaps": [
       {
         "since": "2026-09-07T09:01:30.297592Z",
@@ -1624,6 +1616,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T15:12:35.626219Z",
         "until": "2026-09-07T15:12:49.093331Z"
+      },
+      {
+        "since": "2026-09-07T15:18:32.538186Z",
+        "until": "2026-09-07T15:18:42.012397Z"
+      },
+      {
+        "since": "2026-09-07T15:24:20.579863Z",
+        "until": "2026-09-07T15:24:31.957187Z"
+      },
+      {
+        "since": "2026-09-07T15:30:25.420825Z",
+        "until": "2026-09-07T15:30:39.734023Z"
       }
     ],
     "down": false
@@ -1667,7 +1671,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T11:15:00-04:00"
+      "lastISO": "2026-09-07T11:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1677,7 +1681,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T11:10:00-04:00"
+      "lastISO": "2026-09-07T11:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1687,7 +1691,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T11:15:00-04:00"
+      "lastISO": "2026-09-07T11:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1697,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T11:15:00-04:00"
+      "lastISO": "2026-09-07T11:30:00-04:00"
     },
     {
       "run": "QA release check",
