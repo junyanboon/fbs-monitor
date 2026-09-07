@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 7:44 PM ET",
-  "generatedAtISO": "2026-09-07T19:44:26-04:00",
+  "generatedAt": "Sep 7, 7:46 PM ET",
+  "generatedAtISO": "2026-09-07T19:46:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -648,13 +648,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "19:45"
-        }
-      ],
+      "dispatch": [],
       "heard": true,
       "arrived": "17:59",
       "departed": null,
@@ -880,18 +874,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 7 · 19:38",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 00:02",
-      "send_after": "19:45",
-      "send_after_iso": "2026-09-07T19:45:00-04:00",
-      "label": "EOB for Laura Flores in Studio 693"
     }
   ],
   "attention": [
@@ -1196,6 +1178,24 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1788824574292,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "19:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1788824713214,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "19:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1788824716559,
       "source": "doors"
     }
   ],
@@ -1856,7 +1856,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:41:00-04:00"
+      "lastISO": "2026-09-07T19:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1876,7 +1876,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:30:00-04:00"
+      "lastISO": "2026-09-07T19:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1886,7 +1886,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:40:00-04:00"
+      "lastISO": "2026-09-07T19:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2026,7 +2026,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:33:00-04:00"
+      "lastISO": "2026-09-07T19:46:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2066,7 +2066,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:31:00-04:00"
+      "lastISO": "2026-09-07T19:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
