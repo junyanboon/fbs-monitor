@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 9:47 AM ET",
-  "generatedAtISO": "2026-09-07T09:47:00-04:00",
+  "generatedAt": "Sep 7, 9:52 AM ET",
+  "generatedAtISO": "2026-09-07T09:52:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1034,17 +1034,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "COURTESY — Laura Flores — •••:12",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 7 · 09:37",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -1175,12 +1164,23 @@ const DATA = /*__DATA__*/{
       "send_after": "16:45",
       "send_after_iso": "2026-09-07T16:45:00-04:00",
       "label": "EOB for Samuel Boucher in Studio 509B"
+    },
+    {
+      "code": "Follow-up — Megan Cartwright recurring weekday rehearsal options — •••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 7 · 09:49",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1463,6 +1463,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-06T04:52:00-04:00"
+    },
+    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1473,16 +1483,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T04:58:00-04:00"
     },
     {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-06T04:52:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1490,7 +1490,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:42:00-04:00"
+      "lastISO": "2026-09-07T09:48:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1500,7 +1500,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:40:00-04:00"
+      "lastISO": "2026-09-07T09:50:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1520,7 +1520,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:45:00-04:00"
+      "lastISO": "2026-09-07T09:50:00-04:00"
     },
     {
       "run": "QA release check",
