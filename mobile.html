@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 8:02 AM ET",
-  "generatedAtISO": "2026-09-07T08:02:18-04:00",
+  "generatedAt": "Sep 7, 8:06 AM ET",
+  "generatedAtISO": "2026-09-07T08:06:32-04:00",
   "studios": [
     {
       "id": "509A",
@@ -782,24 +782,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 17.75,
-      "end": 18.25,
-      "id": "9b328b92b98b",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T17:45:00-04:00",
-      "endISO": "2026-09-07T18:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "527",
       "day_offset": 0,
       "start": 17.75,
       "end": 18.25,
       "id": "57d1842ff52a",
+      "date": "2026-09-07",
+      "startISO": "2026-09-07T17:45:00-04:00",
+      "endISO": "2026-09-07T18:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 0,
+      "start": 17.75,
+      "end": 18.25,
+      "id": "9b328b92b98b",
       "date": "2026-09-07",
       "startISO": "2026-09-07T17:45:00-04:00",
       "endISO": "2026-09-07T18:15:00-04:00",
@@ -830,24 +830,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 19.75,
-      "end": 20.25,
-      "id": "52ef0eb280a4",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T19:45:00-04:00",
-      "endISO": "2026-09-07T20:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "527",
       "day_offset": 0,
       "start": 19.75,
       "end": 20.25,
       "id": "a4d9b43c209c",
+      "date": "2026-09-07",
+      "startISO": "2026-09-07T19:45:00-04:00",
+      "endISO": "2026-09-07T20:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 0,
+      "start": 19.75,
+      "end": 20.25,
+      "id": "52ef0eb280a4",
       "date": "2026-09-07",
       "startISO": "2026-09-07T19:45:00-04:00",
       "endISO": "2026-09-07T20:15:00-04:00",
@@ -1038,7 +1038,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1229,6 +1229,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T11:58:20.047990Z",
         "until": "2026-09-07T11:58:29.524012Z"
+      },
+      {
+        "since": "2026-09-07T12:03:34.538003Z",
+        "until": "2026-09-07T12:03:38.768770Z"
       }
     ],
     "down": false
@@ -1265,16 +1269,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T22:57:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-06T22:46:00-04:00"
-    },
-    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1302,7 +1296,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T07:59:00-04:00"
+      "lastISO": "2026-09-07T08:04:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1332,7 +1326,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T08:00:00-04:00"
+      "lastISO": "2026-09-07T08:05:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1463,6 +1457,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-07T03:10:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-07T08:02:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
