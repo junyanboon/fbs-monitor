@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 2:37 PM ET",
-  "generatedAtISO": "2026-09-07T14:37:26-04:00",
+  "generatedAt": "Sep 7, 2:45 PM ET",
+  "generatedAtISO": "2026-09-07T14:45:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -957,7 +957,7 @@ const DATA = /*__DATA__*/{
       "who": "Greg Samba — Afro 101 HIIT",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
+      "gtg": true,
       "hta": "Sent",
       "dispatch": [
         {
@@ -1109,28 +1109,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 7 · 13:33",
       "send_after": "09:00",
       "send_after_iso": "2026-09-07T09:00:00-04:00"
-    },
-    {
-      "code": "PBF — Hayden DiMarco ••• [responder:pbf-509B-••••-haydendimarco]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Sep 7 · 13:48",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "COURTESY — xavier [Tagvenue] accepts no-staff support notice ••• [responder:acceptance-7a88f6cd]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 7 · 14:31",
-      "send_after": null,
-      "send_after_iso": null
     },
     {
       "code": "EOB-sweep-•••",
@@ -1757,6 +1735,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T18:34:26.065626Z",
         "until": "2026-09-07T18:34:36.000589Z"
+      },
+      {
+        "since": "2026-09-07T18:40:25.182593Z",
+        "until": "2026-09-07T18:40:32.669547Z"
       }
     ],
     "down": false
@@ -1771,6 +1753,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-05T22:52:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-07T12:46:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1790,7 +1782,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T14:34:00-04:00"
+      "lastISO": "2026-09-07T14:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1800,7 +1792,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T14:30:00-04:00"
+      "lastISO": "2026-09-07T14:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1810,7 +1802,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T14:30:00-04:00"
+      "lastISO": "2026-09-07T14:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1820,7 +1812,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T14:35:00-04:00"
+      "lastISO": "2026-09-07T14:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1873,16 +1865,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-07T06:00:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-07T12:46:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -1920,7 +1902,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T13:44:00-04:00"
+      "lastISO": "2026-09-07T14:44:00-04:00"
     },
     {
       "run": "The Mechanic",
