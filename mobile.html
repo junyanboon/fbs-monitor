@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 9:52 AM ET",
-  "generatedAtISO": "2026-09-07T09:52:59-04:00",
+  "generatedAt": "Sep 7, 10:01 AM ET",
+  "generatedAtISO": "2026-09-07T10:01:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -373,11 +373,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "10:00"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -816,6 +811,39 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "GTG-nudge-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 7 · 09:56",
+      "send_after": "14:00",
+      "send_after_iso": "2026-09-07T14:00:00-04:00"
+    },
+    {
+      "code": "GTG-nudge-sweep-•••B",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 7 · 09:56",
+      "send_after": "12:00",
+      "send_after_iso": "2026-09-07T12:00:00-04:00"
+    },
+    {
+      "code": "GTG-nudge-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 7 · 09:56",
+      "send_after": "14:30",
+      "send_after_iso": "2026-09-07T14:30:00-04:00"
+    },
+    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -862,18 +890,6 @@ const DATA = /*__DATA__*/{
       "send_after": "19:15",
       "send_after_iso": "2026-09-07T19:15:00-04:00",
       "label": "EOB for Greg Samba in Studio 901"
-    },
-    {
-      "code": "AVA-sweep-•••B",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 00:02",
-      "send_after": "10:00",
-      "send_after_iso": "2026-09-07T10:00:00-04:00",
-      "label": "AVA for Hayden DiMarco in Studio 509B"
     },
     {
       "code": "EOB-sweep-•••B",
@@ -951,7 +967,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1222,6 +1238,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T13:52:35.139893Z",
         "until": "2026-09-07T13:52:47.625246Z"
+      },
+      {
+        "since": "2026-09-07T13:58:19.896274Z",
+        "until": "2026-09-07T13:58:25.341713Z"
       }
     ],
     "down": false
@@ -1238,6 +1258,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-06T04:58:00-04:00"
+    },
+    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1248,16 +1278,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T04:52:00-04:00"
     },
     {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-06T04:58:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1265,7 +1285,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:48:00-04:00"
+      "lastISO": "2026-09-07T09:59:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1275,7 +1295,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:50:00-04:00"
+      "lastISO": "2026-09-07T10:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1285,7 +1305,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:45:00-04:00"
+      "lastISO": "2026-09-07T10:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1295,7 +1315,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:50:00-04:00"
+      "lastISO": "2026-09-07T10:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1305,7 +1325,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:00:00-04:00"
+      "lastISO": "2026-09-07T10:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1315,7 +1335,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:00:00-04:00"
+      "lastISO": "2026-09-07T10:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1365,7 +1385,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T02:57:00-04:00"
+      "lastISO": "2026-09-07T10:00:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1455,7 +1475,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:47:00-04:00"
+      "lastISO": "2026-09-07T10:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
