@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 4:02 PM ET",
-  "generatedAtISO": "2026-09-07T16:02:10-04:00",
+  "generatedAt": "Sep 7, 4:05 PM ET",
+  "generatedAtISO": "2026-09-07T16:05:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -840,17 +840,6 @@ const DATA = /*__DATA__*/{
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "509B",
-      "raised_by": "The Analyst",
-      "created": "Sep 7 · 13:33",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-07T09:00:00-04:00"
-    },
-    {
-      "code": "ANALYST-SOUND-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
       "raised_by": "The Analyst",
       "created": "Sep 7 · 13:33",
       "send_after": "09:00",
@@ -1608,6 +1597,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T19:59:25.036378Z",
         "until": "2026-09-07T19:59:35.203516Z"
+      },
+      {
+        "since": "2026-09-07T20:05:26.594166Z",
+        "until": "2026-09-07T20:05:33.111077Z"
       }
     ],
     "down": false
@@ -1641,7 +1634,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:57:00-04:00"
+      "lastISO": "2026-09-07T16:03:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1671,7 +1664,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:00:00-04:00"
+      "lastISO": "2026-09-07T16:05:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1682,6 +1675,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-07T16:00:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-07T16:05:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1781,7 +1784,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:03:00-04:00"
+      "lastISO": "2026-09-07T16:03:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1842,16 +1845,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-09-06T03:50:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Paused",
-      "status": "plain",
-      "statusLabel": "Paused",
-      "lastISO": null
     },
     {
       "run": "The Closer",
