@@ -304,6 +304,31 @@ the Reports tab existed, that answer lived only in Notion, and the board that is
 actually open when a call comes in showed a green robot. Do not merge the two
 tabs on the grounds that they both list runs.
 
+### 14a. The lease panel asks who was *supposed* to run it
+
+Above the watched runs, the Robots tab shows the fleet lease: who holds the
+fleet, and for each lane where its body actually runs. It reads the ⚖️ Active
+Runtime page's JSON block, the same block every Claude trigger and every Codex
+lane reads before it writes anything.
+
+It sits above the roster because the two are read in order. A lane that is not
+held is **supposed** to be silent, so a quiet row only means something once you
+know who owned it. Reading a green board without that is how a lane parked on a
+sleeping laptop looks identical to a lane running fine on the server.
+
+Two rules it holds, both pinned by `test_lease.py`:
+
+- **A lane with no `executors` entry inherits `mac`** — the lease page's own
+  rule. Mac needs the Codex desktop app open and the machine awake, so it is the
+  fragile mode: it sorts to the top and is chipped `fragile`. Never infer `vps`
+  from the majority; that reports a fragile lane as settled.
+- **Only exceptions get a chip.** Eleven green VPS chips beside eleven "Hermes
+  cron · VPS" labels hide the one row that matters. Settled lanes are quiet.
+
+Soft source, same posture as Robots and Reports: an unreadable lease costs the
+panel and shows a notice. It never falls back to guessing from the roster, and
+it never takes the tab down.
+
 ### 15. AVA/EOB pills are queue state, not message content
 
 FBS and Monitor booking cards carry a right-side AVA/EOB dispatch cluster:
@@ -473,8 +498,11 @@ Only `Sent` BC rows are read. A BC row is proof a send happened, never a
 promise that one will, so a queued or errored BC row is ignored and a booking
 with nothing else still reads `MISSING`. The residual risk is a `Sent` BC row
 carrying no codes, which would quiet a real gap; `shape` on each row records
-which evidence answered. The `HTA Verified` rollup is unchanged — whether it
-counts a linked BC row is the `Is Sent HTA` formula's call, not this builder's.
+which evidence answered. The `HTA Verified` rollup was widened to match on
+2026-09-07: `Is Sent HTA` had read `Template == "hta_studio_access" and Status
+== "Sent"`, and a merged BC row has no Template, so the rollup would have kept
+reading a gap the card no longer showed. It now also accepts a `Sent` row whose
+Message Code starts `BC`.
 
 Inside 18 h of the start, a non-verified booking gets an `HTA` pill in the
 dispatch cluster, a red line in the attention strip, and ONE open ✅ Actions to
