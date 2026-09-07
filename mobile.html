@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 1:17 PM ET",
-  "generatedAtISO": "2026-09-07T13:17:03-04:00",
+  "generatedAt": "Sep 7, 1:23 PM ET",
+  "generatedAtISO": "2026-09-07T13:23:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -622,10 +622,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "12:57",
-      "departed": null,
+      "departed": "13:20",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1058,6 +1058,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788800225188,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "13:20",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788801602930,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1067,7 +1076,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-07T17:02:03+00:00",
+    "updatedAt": "2026-09-07T17:23:01+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1422,6 +1431,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T17:13:19.554947Z",
         "until": "2026-09-07T17:13:34.053323Z"
+      },
+      {
+        "since": "2026-09-07T17:19:25.306568Z",
+        "until": "2026-09-07T17:19:38.735660Z"
       }
     ],
     "down": false
@@ -1455,7 +1468,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T13:16:00-04:00"
+      "lastISO": "2026-09-07T13:22:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1465,7 +1478,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T13:10:00-04:00"
+      "lastISO": "2026-09-07T13:20:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1485,7 +1498,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T13:15:00-04:00"
+      "lastISO": "2026-09-07T13:20:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1570,7 +1583,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "The Host",
       "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
+      "expected": "04:05 America/Toronto · Cloud Scheduler",
       "produces": "FBS itinerary built + board seeded",
       "monitoring": "Live",
       "status": "ok",
