@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 12:52 PM ET",
-  "generatedAtISO": "2026-09-07T12:52:19-04:00",
+  "generatedAt": "Sep 7, 12:56 PM ET",
+  "generatedAtISO": "2026-09-07T12:56:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -627,10 +627,10 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "12:57",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1084,20 +1084,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788799700220,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "12:57",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788800225188,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "693": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "693",
-      "time": "22:15",
-      "ts": 1788747332943,
-      "when": "Sun 22:15"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
@@ -1443,6 +1441,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T16:50:25.298154Z",
         "until": "2026-09-07T16:50:31.615709Z"
+      },
+      {
+        "since": "2026-09-07T16:55:36.271112Z",
+        "until": "2026-09-07T16:55:50.717229Z"
       }
     ],
     "down": false
@@ -1476,7 +1478,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T12:49:00-04:00"
+      "lastISO": "2026-09-07T12:55:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1506,7 +1508,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T12:50:00-04:00"
+      "lastISO": "2026-09-07T12:55:00-04:00"
     },
     {
       "run": "QA release check",
