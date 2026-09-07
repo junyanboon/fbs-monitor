@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 7:51 AM ET",
-  "generatedAtISO": "2026-09-07T07:51:49-04:00",
+  "generatedAt": "Sep 7, 7:59 AM ET",
+  "generatedAtISO": "2026-09-07T07:59:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -496,7 +496,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": null,
       "gtg": true,
-      "hta": null,
+      "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
       "arrived": null,
@@ -830,18 +830,6 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 19.75,
-      "end": 20.25,
-      "id": "a4d9b43c209c",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T19:45:00-04:00",
-      "endISO": "2026-09-07T20:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "693",
       "day_offset": 0,
@@ -852,17 +840,29 @@ const DATA = /*__DATA__*/{
       "startISO": "2026-09-07T19:45:00-04:00",
       "endISO": "2026-09-07T20:15:00-04:00",
       "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "527",
+      "day_offset": 0,
+      "start": 19.75,
+      "end": 20.25,
+      "id": "a4d9b43c209c",
+      "date": "2026-09-07",
+      "startISO": "2026-09-07T19:45:00-04:00",
+      "endISO": "2026-09-07T20:15:00-04:00",
+      "day": "Today"
     }
   ],
   "messages": [
     {
-      "code": "Diaspora-call-•••",
+      "code": "Viktoriia Osipovych — insurance certificate follow-up •••",
       "kind": null,
-      "channel": "Email",
-      "status": "Error",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Sep 6 · 22:59",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Sep 7 · 08:00",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1221,6 +1221,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T11:46:26.638062Z",
         "until": "2026-09-07T11:46:31.393134Z"
+      },
+      {
+        "since": "2026-09-07T11:52:20.053766Z",
+        "until": "2026-09-07T11:52:29.485206Z"
+      },
+      {
+        "since": "2026-09-07T11:58:20.047990Z",
+        "until": "2026-09-07T11:58:29.524012Z"
       }
     ],
     "down": false
@@ -1264,7 +1272,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T07:48:00-04:00"
+      "lastISO": "2026-09-07T07:59:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1394,7 +1402,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-07T07:50:00-04:00"
+      "lastISO": "2026-09-07T07:55:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
