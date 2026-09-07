@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 3:48 PM ET",
-  "generatedAtISO": "2026-09-07T15:48:35-04:00",
+  "generatedAt": "Sep 7, 4:00 PM ET",
+  "generatedAtISO": "2026-09-07T16:00:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -634,10 +634,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": true,
       "arrived": "14:48",
-      "departed": null,
+      "departed": "15:56",
       "facilitator": null,
       "arrived_by": "",
-      "departed_by": null,
+      "departed_by": "xavier xavier",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1108,6 +1108,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788809391838,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "xavier xavier",
+      "time": "15:56",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788811011326,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1117,7 +1126,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-07T19:35:01+00:00",
+    "updatedAt": "2026-09-07T20:00:05+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1576,6 +1585,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T19:43:19.315969Z",
         "until": "2026-09-07T19:43:29.700042Z"
+      },
+      {
+        "since": "2026-09-07T19:48:34.124558Z",
+        "until": "2026-09-07T19:48:39.692814Z"
+      },
+      {
+        "since": "2026-09-07T19:53:34.163436Z",
+        "until": "2026-09-07T19:53:43.675015Z"
+      },
+      {
+        "since": "2026-09-07T19:59:25.036378Z",
+        "until": "2026-09-07T19:59:35.203516Z"
       }
     ],
     "down": false
@@ -1609,7 +1630,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:46:00-04:00"
+      "lastISO": "2026-09-07T15:57:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1619,7 +1640,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:40:00-04:00"
+      "lastISO": "2026-09-07T16:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1629,7 +1650,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:45:00-04:00"
+      "lastISO": "2026-09-07T16:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1639,7 +1660,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:45:00-04:00"
+      "lastISO": "2026-09-07T16:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1649,7 +1670,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:00:00-04:00"
+      "lastISO": "2026-09-07T16:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1659,7 +1680,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:00:00-04:00"
+      "lastISO": "2026-09-07T16:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1810,6 +1831,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-09-06T03:50:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": null
     },
     {
       "run": "The Closer",
