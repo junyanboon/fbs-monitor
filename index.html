@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 4:17 PM ET",
-  "generatedAtISO": "2026-09-07T16:17:06-04:00",
+  "generatedAt": "Sep 7, 4:31 PM ET",
+  "generatedAtISO": "2026-09-07T16:31:35-04:00",
   "studios": [
     {
       "id": "509A",
@@ -949,11 +949,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "16:30"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "19:15"
@@ -1041,17 +1036,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "ANALYST-TTT-•••B-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Analyst",
-      "created": "Sep 7 · 13:33",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-07T09:00:00-04:00"
-    },
-    {
       "code": "Kateryna Zozulia — Template 223 Rental Agreement with Bookings Attached (•••)",
       "kind": null,
       "channel": "Email",
@@ -1063,7 +1047,7 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Review ask — Thea [Giggster] — 509A ••• [responder:gmail-1a07d4b1b669ba85]",
+      "code": "Courtesy — Thea [Giggster] — 509A ••• [responder:gmail-1a07d4b1b669ba85]",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
@@ -1085,16 +1069,37 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
       "channel": "SMS",
-      "status": "Ready to Send",
+      "status": "Pending Review",
       "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 00:02",
-      "send_after": "16:30",
-      "send_after_iso": "2026-09-07T16:30:00-04:00",
-      "label": "AVA for Greg Samba in Studio 901"
+      "raised_by": "The Analyst",
+      "created": "Sep 7 · 16:30",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-27T09:00:00-04:00"
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 7 · 16:30",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-19T09:00:00-04:00"
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 7 · 16:30",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-10T09:00:00-04:00"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1811,6 +1816,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T20:16:34.547554Z",
         "until": "2026-09-07T20:16:40.992280Z"
+      },
+      {
+        "since": "2026-09-07T20:22:26.690332Z",
+        "until": "2026-09-07T20:22:37.181135Z"
+      },
+      {
+        "since": "2026-09-07T20:28:19.232746Z",
+        "until": "2026-09-07T20:28:30.590180Z"
       }
     ],
     "down": false
@@ -1854,7 +1867,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:14:00-04:00"
+      "lastISO": "2026-09-07T16:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1864,7 +1877,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:10:00-04:00"
+      "lastISO": "2026-09-07T16:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1874,7 +1887,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:15:00-04:00"
+      "lastISO": "2026-09-07T16:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1884,7 +1897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:15:00-04:00"
+      "lastISO": "2026-09-07T16:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1904,7 +1917,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:10:00-04:00"
+      "lastISO": "2026-09-07T16:30:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2004,7 +2017,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:14:00-04:00"
+      "lastISO": "2026-09-07T16:18:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2044,7 +2057,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:16:00-04:00"
+      "lastISO": "2026-09-07T16:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
