@@ -2727,12 +2727,29 @@ def fetch_hta_watch_bookings(token, base_day):
 
 
 def fetch_hta_rows(token, since_dt):
-    """Queue rows of the HTA shape created since `since_dt`.
+    """Queue rows that carry a How-to-Access, created since `since_dt`.
 
     Shape = Template `hta_studio_access`, or a Message Code starting `HTA` /
     `How to Access` (the sweep's and the Host's legacy codes). Bodies, Reply To
     and every recipient rollup are never read: the row is judged on status,
     clocks and the relation ids alone.
+
+    A FOURTH shape counts, added 2026-09-06: a **Sent** `BC-` row. The booking
+    sweep merges a booking-change confirmation and the Returning Access text
+    into one message (the one-renter-one-text rule of 2026-08-21) and titles it
+    `BC-sweep-…`, with no Template. Under the three shapes above that delivered
+    access message was structurally invisible, so the watchdog read `missing`
+    and kept alarming until the booking passed — three character-identical
+    Action rows for Hannah Cho / 509B in eight hours on 2026-09-06, each one
+    re-verified by hand (Sweep Feedback 3d375032-81c4-81ba-b199-d38296a8f56d).
+
+    Only `Sent` BC rows are read, and that restriction is the safety margin.
+    A BC row is not built to be a How-to-Access, so it is accepted as PROOF a
+    send happened and never as a promise that one will: a queued or errored BC
+    row is ignored, and a booking with nothing else still reads `missing`
+    rather than being quieted into `scheduled`. The residual risk is a Sent BC
+    row that carries no codes, which would silence a real gap; `shape` is
+    carried on every row so a reader can tell which evidence answered.
     """
     filt = {"and": [
         {"timestamp": "created_time",
@@ -2741,6 +2758,10 @@ def fetch_hta_rows(token, since_dt):
             {"property": "Template", "select": {"equals": "hta_studio_access"}},
             {"property": "Message Code", "title": {"starts_with": "HTA"}},
             {"property": "Message Code", "title": {"starts_with": "How to Access"}},
+            {"and": [
+                {"property": "Message Code", "title": {"starts_with": "BC"}},
+                {"property": "Status", "status": {"equals": "Sent"}},
+            ]},
         ]},
     ]}
     rows = _notion_query(token, MESSAGES_DS, {"filter": filt, "page_size": 100})
@@ -2757,8 +2778,15 @@ def fetch_hta_rows(token, since_dt):
             "created": row.get("created_time") or "",
             "receipt": bool(_prop_text(p.get("Dispatch Receipt"))),
             "linked": bool((p.get("Booking") or {}).get("relation")),
+            "shape": _hta_shape(p),
         })
     return out
+
+
+def _hta_shape(properties):
+    """"HTA" for a purpose-built How-to-Access row, "BC" for a merged send."""
+    code = (_prop_text(properties.get("Message Code")) or "").strip().upper()
+    return "BC" if code.startswith("BC") else "HTA"
 
 
 def _booking_start(booking):

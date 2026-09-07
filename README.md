@@ -461,6 +461,21 @@ start. Anything else is one of:
 - a clock — a `Ready to Send` row is timed and not yet due (`QUEUED` if untimed
   and young).
 
+A **`Sent` `BC-` row counts as the same evidence** (2026-09-06). The booking
+sweep merges a booking-change confirmation and the Returning Access text into
+one message under the one-renter-one-text rule of 2026-08-21, and titles it
+`BC-sweep-…` with no `Template`. Matching the `HTA` prefix alone made every
+merged access send invisible: Hannah Cho had her codes by 01:32 on 2026-09-06
+and her 509B card still read `MISSING` and `VERIFY ACCESS`, raising three
+character-identical Action rows in eight hours, each dismissed by hand.
+
+Only `Sent` BC rows are read. A BC row is proof a send happened, never a
+promise that one will, so a queued or errored BC row is ignored and a booking
+with nothing else still reads `MISSING`. The residual risk is a `Sent` BC row
+carrying no codes, which would quiet a real gap; `shape` on each row records
+which evidence answered. The `HTA Verified` rollup is unchanged — whether it
+counts a linked BC row is the `Is Sent HTA` formula's call, not this builder's.
+
 Inside 18 h of the start, a non-verified booking gets an `HTA` pill in the
 dispatch cluster, a red line in the attention strip, and ONE open ✅ Actions to
 Perform row (`Access / PIN`, for Junyan, raised by `Gap audit`), deduplicated on

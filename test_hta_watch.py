@@ -104,6 +104,47 @@ def test_newest_row_wins_when_a_replacement_was_sent():
     assert v["state"] == "verified" and v["row"]["id"] == "q-new"
 
 
+def test_merged_bc_row_counts_as_a_sent_access_message():
+    # 2026-09-06 Hannah Cho / 509B: the sweep merged the booking-change
+    # confirmation and the Returning Access text into BC-sweep-0905-2000-509B,
+    # Sent 01:32 with the door and alarm codes. It must verify.
+    bc = row("Sent", studio="509B", rid="BC-sweep-0905-2000-509B",
+             sent_at="2026-09-06T01:32:00.000Z")
+    v = verdict(booking(studio="509B"), [bc])
+    assert v["state"] == "verified" and v["row"]["id"].startswith("BC-")
+
+
+def test_hta_row_filter_accepts_a_sent_bc_row_only():
+    # The BC clause is a proof-of-send shape, never a promise-to-send one.
+    seen = {}
+
+    def fake_query(token, ds, payload):
+        seen["filter"] = payload["filter"]
+        return []
+
+    real = build._notion_query
+    build._notion_query = fake_query
+    try:
+        build.fetch_hta_rows("tok", NOW)
+    finally:
+        build._notion_query = real
+    clauses = seen["filter"]["and"][1]["or"]
+    bc = [c for c in clauses if "and" in c]
+    assert len(bc) == 1, clauses
+    terms = bc[0]["and"]
+    assert {"property": "Message Code", "title": {"starts_with": "BC"}} in terms
+    assert {"property": "Status", "status": {"equals": "Sent"}} in terms
+
+
+def test_shape_names_the_evidence():
+    def props(code):
+        return {"Message Code": {"type": "title",
+                                 "title": [{"plain_text": code}]}}
+    assert build._hta_shape(props("BC-sweep-0905-2000-509B")) == "BC"
+    assert build._hta_shape(props("HTA-sweep-0906-1400-509A")) == "HTA"
+    assert build._hta_shape(props("How to Access 527")) == "HTA"
+
+
 def test_no_artist_or_no_clock_is_unknown_not_missing():
     assert build.hta_verdicts([booking(artist=None)], [], NOW) == []
     assert build.hta_verdicts([booking(start=None)], [], NOW) == []
