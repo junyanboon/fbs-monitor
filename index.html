@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 10:42 AM ET",
-  "generatedAtISO": "2026-09-07T10:42:23-04:00",
+  "generatedAt": "Sep 7, 10:46 AM ET",
+  "generatedAtISO": "2026-09-07T10:46:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -844,10 +844,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "10:47",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Laura Flores",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1210,7 +1210,17 @@ const DATA = /*__DATA__*/{
       "text": "3 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "901",
+      "name": "Laura Flores",
+      "time": "10:47",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788792426453,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1251,20 +1261,10 @@ const DATA = /*__DATA__*/{
       "time": "22:15",
       "ts": 1788747332943,
       "when": "Sun 22:15"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Megan Cartwright",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "21:05",
-      "ts": 1788743135493,
-      "when": "Sun 21:05"
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
@@ -1510,6 +1510,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T14:38:25.485243Z",
         "until": "2026-09-07T14:38:30.926297Z"
+      },
+      {
+        "since": "2026-09-07T14:44:19.823820Z",
+        "until": "2026-09-07T14:44:28.152625Z"
       }
     ],
     "down": false
@@ -1553,7 +1557,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T10:41:00-04:00"
+      "lastISO": "2026-09-07T10:47:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1573,7 +1577,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T10:30:00-04:00"
+      "lastISO": "2026-09-07T10:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1583,7 +1587,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T10:40:00-04:00"
+      "lastISO": "2026-09-07T10:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1673,7 +1677,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:42:00-04:00"
+      "lastISO": "2026-09-07T10:46:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1743,7 +1747,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T10:31:00-04:00"
+      "lastISO": "2026-09-07T10:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
