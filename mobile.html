@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 10:15 AM ET",
-  "generatedAtISO": "2026-09-07T10:15:21-04:00",
+  "generatedAt": "Sep 7, 10:17 AM ET",
+  "generatedAtISO": "2026-09-07T10:17:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1458,16 +1458,16 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T10:01:00-04:00"
+      "lastISO": "2026-09-07T10:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
       "cadence": "Daily",
-      "expected": "Once daily, 03:50 America/Toronto (before the Doorman's 04:00 pass). Stamps Self-heartbeat only on a LIVE pass; shadow stamps nothing. Monitoring = Paused until Junyan flips the env var, then Live with Stale after 1560 min (26h).",
+      "expected": "Nothing. This lane is not scheduled and must not be judged stale. Before any revival, fix what the two passes proved: the immediate post-grant read is not a verification on this account — it reads no window and the panels restore the original schedule within hours, so both passes reported 'migrated' for people still temporary that evening. Commit 60c0497 verifies on a later pass and has never run.",
       "produces": "📊 Workflow Reports row '🚪 Window Migration — <day> · migrated N · fallback N · escalated N · skipped N' (Headline = attempted ids, the stateless pass counter); at most ONE ✅ Actions to Perform row per user still temporary after 3 passes (Access / PIN, Raised by The Doorman, Human-confirmed); one notify-after SMS to on-call per pass that migrated anyone. Never a code, never a ⏭️ Next Action row.",
-      "monitoring": "Paused",
+      "monitoring": "Not reporting",
       "status": "plain",
-      "statusLabel": "Paused",
+      "statusLabel": "Not reporting",
       "lastISO": "2026-09-06T03:50:00-04:00"
     },
     {
