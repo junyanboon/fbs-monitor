@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 12:00 PM ET",
-  "generatedAtISO": "2026-09-07T12:00:59-04:00",
+  "generatedAt": "Sep 7, 12:02 PM ET",
+  "generatedAtISO": "2026-09-07T12:02:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -535,10 +535,10 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "12:02",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1101,19 +1101,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788796784182,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "12:02",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788796936271,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "527": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "527",
-      "time": "17:45",
-      "ts": 1788731135313,
-      "when": "Sun 17:45"
-    },
     "693": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -1132,6 +1131,12 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-07T15:30:16+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-07T09:01:30.297592Z",
@@ -1601,7 +1606,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T11:09:00-04:00"
+      "lastISO": "2026-09-07T12:02:00-04:00"
     },
     {
       "run": "The Planner",
