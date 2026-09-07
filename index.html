@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 4:11 PM ET",
-  "generatedAtISO": "2026-09-07T16:11:58-04:00",
+  "generatedAt": "Sep 7, 4:17 PM ET",
+  "generatedAtISO": "2026-09-07T16:17:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1015,18 +1015,6 @@ const DATA = /*__DATA__*/{
   ],
   "openShifts": [
     {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 15.75,
-      "end": 16.25,
-      "id": "01bf160eb6e8",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T15:45:00-04:00",
-      "endISO": "2026-09-07T16:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "527",
       "day_offset": 0,
@@ -1143,23 +1131,12 @@ const DATA = /*__DATA__*/{
       "send_after": "16:45",
       "send_after_iso": "2026-09-07T16:45:00-04:00",
       "label": "EOB for Samuel Boucher in Studio 509B"
-    },
-    {
-      "code": "COURTESY — Kateryna Zozulia accepts amendment clarification ••• [responder:sms-in-0184aade-dedc-48e1-9a5d-cd0bde38c89a]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 7 · 15:47",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1830,11 +1807,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T20:10:37.437972Z",
         "until": "2026-09-07T20:10:38.860750Z"
+      },
+      {
+        "since": "2026-09-07T20:16:34.547554Z",
+        "until": "2026-09-07T20:16:40.992280Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-07T08:14:00-04:00"
+    },
     {
       "run": "The Concierge — 2026-09-05 20:10 interrupted",
       "cadence": null,
@@ -1863,7 +1854,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:08:00-04:00"
+      "lastISO": "2026-09-07T16:14:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1883,7 +1874,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:00:00-04:00"
+      "lastISO": "2026-09-07T16:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1893,7 +1884,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:10:00-04:00"
+      "lastISO": "2026-09-07T16:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1956,16 +1947,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-07T06:00:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-07T14:56:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -2023,7 +2004,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:47:00-04:00"
+      "lastISO": "2026-09-07T16:14:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2063,7 +2044,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:01:00-04:00"
+      "lastISO": "2026-09-07T16:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
