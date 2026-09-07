@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 3:08 PM ET",
-  "generatedAtISO": "2026-09-07T15:08:22-04:00",
+  "generatedAt": "Sep 7, 3:15 PM ET",
+  "generatedAtISO": "2026-09-07T15:15:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -441,13 +441,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "15:15"
-        }
-      ],
+      "dispatch": [],
       "heard": false,
       "arrived": "13:33",
       "departed": null,
@@ -810,18 +804,6 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 14.75,
-      "end": 15.25,
-      "id": "bb2250575a9b",
-      "date": "2026-09-07",
-      "startISO": "2026-09-07T14:45:00-04:00",
-      "endISO": "2026-09-07T15:15:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
       "studio": "509B",
       "day_offset": 0,
       "start": 15.25,
@@ -904,6 +886,28 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "authorized-user-t3-luma-aguiar-dana-brookman",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 7 · 15:13",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "authorized-user-t3-olivia-nieuwland-dana-brookman",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 7 · 15:13",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -950,18 +954,6 @@ const DATA = /*__DATA__*/{
       "send_after": "19:45",
       "send_after_iso": "2026-09-07T19:45:00-04:00",
       "label": "EOB for Laura Flores in Studio 693"
-    },
-    {
-      "code": "EOB-sweep-•••B",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 00:02",
-      "send_after": "15:15",
-      "send_after_iso": "2026-09-07T15:15:00-04:00",
-      "label": "EOB for Jia L. Peerspace in Studio 509B"
     },
     {
       "code": "EOB-sweep-•••B",
@@ -1566,6 +1558,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T19:02:20.142612Z",
         "until": "2026-09-07T19:02:35.599263Z"
+      },
+      {
+        "since": "2026-09-07T19:08:20.160257Z",
+        "until": "2026-09-07T19:08:35.609220Z"
+      },
+      {
+        "since": "2026-09-07T19:14:26.265795Z",
+        "until": "2026-09-07T19:14:39.003438Z"
       }
     ],
     "down": false
@@ -1599,7 +1599,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:07:00-04:00"
+      "lastISO": "2026-09-07T15:13:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1609,7 +1609,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:00:00-04:00"
+      "lastISO": "2026-09-07T15:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1619,7 +1619,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:00:00-04:00"
+      "lastISO": "2026-09-07T15:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1629,7 +1629,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:05:00-04:00"
+      "lastISO": "2026-09-07T15:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1779,7 +1779,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T14:10:00-04:00"
+      "lastISO": "2026-09-07T15:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
