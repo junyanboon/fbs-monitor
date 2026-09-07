@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 4:05 PM ET",
-  "generatedAtISO": "2026-09-07T16:05:45-04:00",
+  "generatedAt": "Sep 7, 4:11 PM ET",
+  "generatedAtISO": "2026-09-07T16:11:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -690,10 +690,10 @@ const DATA = /*__DATA__*/{
         }
       ],
       "heard": false,
-      "arrived": null,
+      "arrived": "16:09",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Samuel Boucher",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -927,10 +927,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "14:17",
-      "departed": null,
+      "departed": "16:07",
       "facilitator": null,
       "arrived_by": "Ishfaaq Jookhun",
-      "departed_by": null,
+      "departed_by": "Ishfaaq Jookhun",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1075,33 +1075,11 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "PBF — Jia L. [Peerspace] ••• [responder:pbf-509B-••••]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Sep 7 · 15:47",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Review ask — Thea [Giggster] — 509A ••• [responder:gmail-1a07d4b1b669ba85]",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "509A",
-      "raised_by": "The Responder",
-      "created": "Sep 7 · 15:47",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "COURTESY — Kateryna Zozulia accepts amendment clarification ••• [responder:sms-in-0184aade-dedc-48e1-9a5d-cd0bde38c89a]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 7 · 15:47",
       "send_after": null,
@@ -1165,6 +1143,17 @@ const DATA = /*__DATA__*/{
       "send_after": "16:45",
       "send_after_iso": "2026-09-07T16:45:00-04:00",
       "label": "EOB for Samuel Boucher in Studio 509B"
+    },
+    {
+      "code": "COURTESY — Kateryna Zozulia accepts amendment clarification ••• [responder:sms-in-0184aade-dedc-48e1-9a5d-cd0bde38c89a]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 7 · 15:47",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1335,6 +1324,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788811011326,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Ishfaaq Jookhun",
+      "time": "16:07",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788811650732,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Samuel Boucher",
+      "time": "16:09",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788811758706,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1344,7 +1351,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-07T20:00:05+00:00",
+    "updatedAt": "2026-09-07T20:11:02+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1819,6 +1826,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T20:05:26.594166Z",
         "until": "2026-09-07T20:05:33.111077Z"
+      },
+      {
+        "since": "2026-09-07T20:10:37.437972Z",
+        "until": "2026-09-07T20:10:38.860750Z"
       }
     ],
     "down": false
@@ -1852,7 +1863,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:03:00-04:00"
+      "lastISO": "2026-09-07T16:08:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1862,7 +1873,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:00:00-04:00"
+      "lastISO": "2026-09-07T16:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1882,7 +1893,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:05:00-04:00"
+      "lastISO": "2026-09-07T16:10:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1902,7 +1913,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T16:05:00-04:00"
+      "lastISO": "2026-09-07T16:10:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1922,7 +1933,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:07:00-04:00"
+      "lastISO": "2026-09-07T16:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2042,7 +2053,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T15:10:00-04:00"
+      "lastISO": "2026-09-07T16:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
