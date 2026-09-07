@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 10:02 AM ET",
-  "generatedAtISO": "2026-09-07T10:02:11-04:00",
+  "generatedAt": "Sep 7, 10:12 AM ET",
+  "generatedAtISO": "2026-09-07T10:12:30-04:00",
   "studios": [
     {
       "id": "509A",
@@ -592,16 +592,10 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "who": "Laura Flores — *hours 12 & Sep 19 — no price change, cheaper studio*",
       "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Unsent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "19:45"
-        }
-      ],
+      "tier": null,
+      "gtg": true,
+      "hta": "Sent",
+      "dispatch": [],
       "heard": true,
       "arrived": null,
       "departed": null,
@@ -811,39 +805,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "GTG-nudge-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 09:56",
-      "send_after": "14:00",
-      "send_after_iso": "2026-09-07T14:00:00-04:00"
-    },
-    {
-      "code": "GTG-nudge-sweep-•••B",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 09:56",
-      "send_after": "12:00",
-      "send_after_iso": "2026-09-07T12:00:00-04:00"
-    },
-    {
-      "code": "GTG-nudge-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 09:56",
-      "send_after": "14:30",
-      "send_after_iso": "2026-09-07T14:30:00-04:00"
-    },
-    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -904,18 +865,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Hayden DiMarco in Studio 509B"
     },
     {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 7 · 00:02",
-      "send_after": "19:45",
-      "send_after_iso": "2026-09-07T19:45:00-04:00",
-      "label": "EOB for Laura Flores in Studio 693"
-    },
-    {
       "code": "AVA-sweep-•••B",
       "kind": "AVA",
       "channel": "SMS",
@@ -962,6 +911,28 @@ const DATA = /*__DATA__*/{
       "send_after": "16:45",
       "send_after_iso": "2026-09-07T16:45:00-04:00",
       "label": "EOB for Samuel Boucher in Studio 509B"
+    },
+    {
+      "code": "GTG-nudge-sweep-•••B",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 7 · 09:56",
+      "send_after": "12:00",
+      "send_after_iso": "2026-09-07T12:00:00-04:00"
+    },
+    {
+      "code": "GTG-nudge-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 7 · 09:56",
+      "send_after": "14:30",
+      "send_after_iso": "2026-09-07T14:30:00-04:00"
     }
   ],
   "attention": [
@@ -1242,6 +1213,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T13:58:19.896274Z",
         "until": "2026-09-07T13:58:25.341713Z"
+      },
+      {
+        "since": "2026-09-07T14:03:32.099405Z",
+        "until": "2026-09-07T14:03:42.623123Z"
+      },
+      {
+        "since": "2026-09-07T14:09:35.251830Z",
+        "until": "2026-09-07T14:09:49.865793Z"
       }
     ],
     "down": false
@@ -1285,7 +1264,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:59:00-04:00"
+      "lastISO": "2026-09-07T10:10:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1295,7 +1274,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T10:00:00-04:00"
+      "lastISO": "2026-09-07T10:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1315,7 +1294,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T10:00:00-04:00"
+      "lastISO": "2026-09-07T10:10:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1345,7 +1324,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:07:00-04:00"
+      "lastISO": "2026-09-07T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1415,7 +1394,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:04:00-04:00"
+      "lastISO": "2026-09-07T10:02:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1445,7 +1424,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:37:00-04:00"
+      "lastISO": "2026-09-07T10:10:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1465,7 +1444,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T09:10:00-04:00"
+      "lastISO": "2026-09-07T10:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
