@@ -199,10 +199,13 @@
   .trow.bad .n,.trow.bad .tt,.trow.bad .in{color:var(--crit);font-weight:700}
   .trow.warn .n,.trow.warn .tt,.trow.warn .in{color:var(--watch);font-weight:700}
   .tcard.attn{border-color:var(--crit)}
-  .fleet{display:grid;gap:8px;margin:8px 0 14px}
-  .hrow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;
+  .fleet{margin:8px 0 14px}
+  .hrow{display:flex;align-items:center;margin-bottom:8px;
         padding:12px 14px;background:var(--scrim);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
-  .hrow .dot{width:9px;height:9px;border-radius:99px;background:var(--ok)}
+  .hrow .dot{width:9px;height:9px;border-radius:99px;background:var(--ok);flex:0 0 9px;margin-right:12px}
+  .hrow .nm{flex:1 1 0%}
+  .hrow .st{flex:0 0 auto;margin-left:12px;white-space:nowrap}
+  .hrow:last-of-type{margin-bottom:0}
   .hrow .dot.watch{background:var(--watch)} .hrow .dot.crit{background:var(--crit)}
   .hrow .nm{font-weight:700;font-size:15.5px;line-height:1.25;min-width:0}
   .hrow .nm small{display:block;font-weight:400;font-size:13px;color:var(--chalk-dim);margin-top:2px}
