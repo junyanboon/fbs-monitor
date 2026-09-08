@@ -503,8 +503,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 11:46 AM ET",
-  "generatedAtISO": "2026-09-08T11:46:58-04:00",
+  "generatedAt": "Sep 8, 11:49 AM ET",
+  "generatedAtISO": "2026-09-08T11:49:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -834,6 +834,17 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "The Responder",
       "created": "Sep 8 · 11:28",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Post-HTA go-ahead confirmation — Akira Huang — 901 [gtg:4d•••b-4b9e-9b88-ae8b4a27992d]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 8 · 11:50",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1250,6 +1261,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-08T11:16:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1267,7 +1288,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:40:00-04:00"
+      "lastISO": "2026-09-08T11:50:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1287,7 +1308,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:45:00-04:00"
+      "lastISO": "2026-09-08T11:50:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1307,7 +1328,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:40:00-04:00"
+      "lastISO": "2026-09-08T11:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1448,16 +1469,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-08T11:10:00-04:00"
-    },
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1700,19 +1711,23 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Analyst",
           "The Host",
           "The Loop",
           "The Planner",
           "The Weatherman",
-          "Watchlist sync",
           "The Closer",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "Watchlist sync",
+          "label": "Due",
+          "lastISO": "2026-09-08T11:16:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -1753,7 +1768,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:46"
+    "stamp": "11:49"
   }
 }/*__END_DATA__*/;
 
