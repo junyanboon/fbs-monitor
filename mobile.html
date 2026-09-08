@@ -204,6 +204,19 @@
   .trow.bad .n,.trow.bad .tt,.trow.bad .in{color:var(--crit);font-weight:700}
   .trow.warn .n,.trow.warn .tt,.trow.warn .in{color:var(--watch);font-weight:700}
   .tcard.attn{border-color:var(--crit)}
+  .fleet{display:grid;gap:8px;margin:8px 0 14px}
+  .hrow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;
+        padding:12px 14px;background:var(--scrim);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+  .hrow .dot{width:9px;height:9px;border-radius:99px;background:var(--ok)}
+  .hrow .dot.watch{background:var(--watch)} .hrow .dot.crit{background:var(--crit)}
+  .hrow .nm{font-weight:700;font-size:15.5px;line-height:1.25;min-width:0}
+  .hrow .nm small{display:block;font-weight:400;font-size:13px;color:var(--chalk-dim);margin-top:2px}
+  .hrow .st{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ok)}
+  .hrow.watch{border-color:var(--watch)} .hrow.watch .st{color:var(--watch)}
+  .hrow.crit{border-color:var(--crit)}  .hrow.crit .st{color:var(--crit)}
+  .hrow.watch .nm small,.hrow.crit .nm small{color:var(--chalk)}
+  .hrow.watch .nm small b{color:var(--watch)} .hrow.crit .nm small b{color:var(--crit)}
+  .fleet .who{font-family:var(--mono);font-size:11px;color:var(--chalk-faint);padding:2px 2px 0}
   .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
   .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
@@ -266,8 +279,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 10:02 AM ET",
-  "generatedAtISO": "2026-09-08T10:02:23-04:00",
+  "generatedAt": "Sep 8, 10:17 AM ET",
+  "generatedAtISO": "2026-09-08T10:17:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -900,6 +913,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T14:00:18.129380Z",
         "until": "2026-09-08T14:00:23.480034Z"
+      },
+      {
+        "since": "2026-09-08T14:06:17.605129Z",
+        "until": "2026-09-08T14:06:27.954662Z"
+      },
+      {
+        "since": "2026-09-08T14:12:17.552529Z",
+        "until": "2026-09-08T14:12:30.733319Z"
       }
     ],
     "down": false
@@ -933,7 +954,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:01:00-04:00"
+      "lastISO": "2026-09-08T10:17:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -943,7 +964,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:00:00-04:00"
+      "lastISO": "2026-09-08T10:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -953,7 +974,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:00:00-04:00"
+      "lastISO": "2026-09-08T10:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -963,7 +984,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:00:00-04:00"
+      "lastISO": "2026-09-08T10:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -983,7 +1004,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:00:00-04:00"
+      "lastISO": "2026-09-08T10:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -993,7 +1014,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T09:07:00-04:00"
+      "lastISO": "2026-09-08T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1093,7 +1114,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T09:28:00-04:00"
+      "lastISO": "2026-09-08T10:06:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1123,7 +1144,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T09:10:00-04:00"
+      "lastISO": "2026-09-08T10:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1133,7 +1154,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:01:00-04:00"
+      "lastISO": "2026-09-08T10:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1216,7 +1237,221 @@ const DATA = /*__DATA__*/{
       "lastISO": null
     }
   ],
-  "robotsNote": null
+  "robotsNote": null,
+  "lease": {
+    "holder": "codex",
+    "leaseId": "lease-2026-09-04-cutover-codex",
+    "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
+    "flippedBy": "human:Junyan via claude-session-2026-09-04",
+    "sinceISO": "2026-09-04T10:10:00-04:00",
+    "lanes": [
+      {
+        "lane": "analyst",
+        "name": "The Analyst",
+        "executor": "cloudrun",
+        "how": "Deterministic · Cloud Run",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "bookkeeper",
+        "name": "The Bookkeeper",
+        "executor": "cloudrun",
+        "how": "Deterministic · Cloud Run",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "concierge",
+        "name": "The Concierge",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "custodian",
+        "name": "The Custodian",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "doorman",
+        "name": "The Doorman",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "host",
+        "name": "The Host",
+        "executor": "cloudrun",
+        "how": "Deterministic · Cloud Run",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "loop",
+        "name": "The Loop",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "mechanic",
+        "name": "The Mechanic",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "morning-text",
+        "name": "The Morning Text",
+        "executor": "cloudrun",
+        "how": "Deterministic · Cloud Run",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "planner",
+        "name": "The Planner",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "responder",
+        "name": "The Responder",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "timekeeper",
+        "name": "The Timekeeper",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
+        "lane": "treasurer",
+        "name": "The Treasurer",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      }
+    ],
+    "counts": {
+      "cloudrun": 4,
+      "vps": 9
+    }
+  },
+  "leaseNote": null,
+  "fleet": {
+    "lines": [
+      {
+        "k": "doors",
+        "name": "Doors open",
+        "fine": "Codes work. Sirens get cleared.",
+        "down": "Someone gets locked out.",
+        "status": "ok",
+        "robots": [
+          "alarm-watchdog (Cloud Run)",
+          "The Doorman",
+          "migration-sweep (Cloud Run — alarm-mcp)",
+          "🔑 Code Mirror"
+        ],
+        "worst": null
+      },
+      {
+        "k": "mail",
+        "name": "Mail gets answered",
+        "fine": "Messages read. Replies drafted.",
+        "down": "People wait. Nobody replies.",
+        "status": "crit",
+        "robots": [
+          "The Concierge — 2026-09-05 20:10 interrupted",
+          "greeter-sweep (Cloud Run)",
+          "QA release check",
+          "The Concierge",
+          "The Responder",
+          "The Receptionist"
+        ],
+        "worst": {
+          "run": "The Concierge",
+          "label": "Overdue",
+          "lastISO": "2026-09-05T22:52:00-04:00"
+        }
+      },
+      {
+        "k": "plan",
+        "name": "Today's plan",
+        "fine": "Board built. Tomorrow staged.",
+        "down": "Staff show up with no plan.",
+        "status": "ok",
+        "robots": [
+          "desk-loop (Cloud Run)",
+          "The Analyst",
+          "The Host",
+          "The Loop",
+          "The Planner",
+          "The Weatherman",
+          "Watchlist sync",
+          "The Closer",
+          "The Opener"
+        ],
+        "worst": null
+      },
+      {
+        "k": "money",
+        "name": "Money adds up",
+        "fine": "Hours logged. Books balanced.",
+        "down": "Payroll and books go wrong.",
+        "status": "ok",
+        "robots": [
+          "The Bookkeeper",
+          "The Timekeeper",
+          "The Treasurer"
+        ],
+        "worst": null
+      },
+      {
+        "k": "watch",
+        "name": "Someone is watching",
+        "fine": "A robot texts you if one goes quiet.",
+        "down": "Things break and nobody knows. Trust nothing green above.",
+        "status": "crit",
+        "robots": [
+          "The Morning Text",
+          "drop-sweep (Cloud Run)",
+          "sentinel-sweep (Cloud Run)",
+          "The Custodian",
+          "The Mechanic",
+          "scribe (GitHub Actions)",
+          "The Sentinel",
+          "The Watchman"
+        ],
+        "worst": {
+          "run": "The Morning Text",
+          "label": "Overdue",
+          "lastISO": "2026-09-06T17:25:00-04:00"
+        }
+      }
+    ],
+    "liveCount": 23,
+    "holder": "codex",
+    "where": "on the VPS",
+    "stamp": "10:17"
+  }
 }/*__END_DATA__*/;
 
 const $=s=>document.querySelector(s);
@@ -1707,10 +1942,31 @@ function cdTxt(nr){
   return `${nr.hhmm} · ${c}`;
 }
 
+  /* Lease — who owns the lanes, above the departure board. A lane that is not
+     held is SUPPOSED to be silent, so "who holds it" has to be read before a
+     quiet row means anything. The phone gets the one-line shape plus only the
+     lanes sitting somewhere fragile; the full 13-row table is the desktop tab. */
+  /* Five lines (Junyan, 2026-09-08): what each part of the fleet does and
+     what happens if it stops, in plain words. Replaces the lease block; the
+     departure board stays below as the detail. */
+  const F=DATA.fleet;
+  let leaseHtml="";
+  if(F){
+    const ago=iso=>{if(!iso)return"never";const m=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/60000));
+      return m<60?`${m}m`:m<1440?`${Math.floor(m/60)}h`:`${Math.floor(m/1440)}d`;};
+    const label={ok:"fine",watch:"look",crit:"broken"};
+    leaseHtml=`<div class="fleet">`+F.lines.map(l=>{
+      const s=l.status,w=l.worst;
+      const small=s==="ok"?esc(l.fine):`<b>${esc(l.down)}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+ago(w.lastISO)+".":""}`;
+      return `<div class="hrow ${s==="ok"?"":s}"><span class="dot ${s==="ok"?"":s}"></span>`+
+        `<span class="nm">${esc(l.name)}<small>${small}</small></span><span class="st">${label[s]||"fine"}</span></div>`;}).join("")+
+      `<div class="who">${F.liveCount} robots${F.holder?` · run by ${esc(F.holder)}`:""}${F.where?` ${esc(F.where)}`:""} · ${esc(F.stamp)}</div></div>`;
+  }
+
   const R=DATA.robots;
   const ago=iso=>{if(!iso)return"never";const m=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/60000));
     return m<60?`${m}m ago`:m<1440?`${Math.floor(m/60)}h ago`:`${Math.floor(m/1440)}d ago`;};
-  if(!R){$('#robots').innerHTML=`<div class="quiet">${esc(DATA.robotsNote||"Run Monitor could not be read this edition")}</div>`;}
+  if(!R){$('#robots').innerHTML=leaseHtml+`<div class="quiet">${esc(DATA.robotsNote||"Run Monitor could not be read this edition")}</div>`;}
   else{
     /* Departure board (redesign 2026-08-25, Junyan's pick): rows grouped by
        when each robot fires NEXT — attention first, then Next hour / Later
@@ -1736,12 +1992,15 @@ function cdTxt(nr){
       <span class="in">${cls?`${esc(r.statusLabel.toLowerCase())} · silent ${ago(r.lastISO).replace(" ago","")}`
                           :(r.nr&&r.nr.mins!=null&&r.nr.mins<=60?`in ${r.nr.mins}m`:"")}</span>
     </div>`;
-    $('#robots').innerHTML=
+    /* The || fallback covers the departure board only — leaseHtml is always
+       truthy, so it must stay OUTSIDE the parentheses or "Nothing watched"
+       can never render. */
+    $('#robots').innerHTML=leaseHtml+(
       (attn.length?`<div class="grp" style="color:var(--crit)">Needs attention</div>
         <div class="tcard attn">${attn.map(r=>trow(r,r.status==="crit"?"bad":"warn")).join("")}</div>`:"")+
       buckets.filter(([,list])=>list.length).map(([label,list])=>
         `<div class="grp">${label}</div><div class="tcard">${list.map(r=>trow(r)).join("")}</div>`).join("")||
-      `<div class="quiet">Nothing watched.</div>`;
+      `<div class="quiet">Nothing watched.</div>`);
   }
 
   /* Issues tab removed 2026-08-25 — access problems are a red pill on the
