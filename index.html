@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 6:47 PM ET",
-  "generatedAtISO": "2026-09-08T18:47:04-04:00",
+  "generatedAt": "Sep 8, 6:48 PM ET",
+  "generatedAtISO": "2026-09-08T18:48:18-04:00",
   "studios": [
     {
       "id": "509A",
@@ -974,7 +974,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-08T22:36:01+00:00",
+    "updatedAt": "2026-09-08T22:48:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1577,6 +1577,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T22:42:00.556582Z",
         "until": "2026-09-08T22:42:06.913806Z"
+      },
+      {
+        "since": "2026-09-08T22:47:53.086398Z",
+        "until": "2026-09-08T22:47:59.428891Z"
       }
     ],
     "down": false
@@ -1591,6 +1595,16 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-09-08T16:31:00-04:00"
+    },
+    {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-08T17:40:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1721,16 +1735,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-08T04:05:00-04:00"
-    },
-    {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-08T17:40:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -2055,20 +2059,20 @@ const DATA = /*__DATA__*/{
         "down": "Staff show up with no plan.",
         "status": "watch",
         "robots": [
+          "The Loop",
           "The Planner",
           "desk-loop (Cloud Run)",
           "The Analyst",
           "The Host",
-          "The Loop",
           "The Weatherman",
           "Watchlist sync",
           "The Closer",
           "The Opener"
         ],
         "worst": {
-          "run": "The Planner",
+          "run": "The Loop",
           "label": "Due",
-          "lastISO": "2026-09-07T20:06:00-04:00"
+          "lastISO": "2026-09-08T17:40:00-04:00"
         }
       },
       {
@@ -2106,7 +2110,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:47"
+    "stamp": "18:48"
   }
 }/*__END_DATA__*/;
 
