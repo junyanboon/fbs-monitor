@@ -304,30 +304,31 @@ the Reports tab existed, that answer lived only in Notion, and the board that is
 actually open when a call comes in showed a green robot. Do not merge the two
 tabs on the grounds that they both list runs.
 
-### 14a. The lease panel asks who was *supposed* to run it
+### 14a. The Robots tab is five lines, not a roster
 
-Above the watched runs, the Robots tab shows the fleet lease: who holds the
-fleet, and for each lane where its body actually runs. It reads the ⚖️ Active
-Runtime page's JSON block, the same block every Claude trigger and every Codex
-lane reads before it writes anything.
+Junyan, 2026-09-08: the 30-row roster was "too huge and cumbersome … what needs
+to be clear to me is who is doing what and what are the implications when
+things are down." So the tab is five lines — Doors open · Mail gets answered ·
+Today's plan · Money adds up · Someone is watching — each saying in plain words
+what that part of the fleet does and, when it is not fine, what happens because
+of it. No headline, no overdue count bar. The roster is still there, folded.
 
-It sits above the roster because the two are read in order. A lane that is not
-held is **supposed** to be silent, so a quiet row only means something once you
-know who owned it. Reading a green board without that is how a lane parked on a
-sleeping laptop looks identical to a lane running fine on the server.
+`fleet_lines()` in `build.py` shapes it; `test_fleet_lines.py` pins the rules:
 
-Two rules it holds, both pinned by `test_lease.py`:
+- **A line is as bad as its worst LIVE robot.** Paused, retired and off-hours
+  robots never colour a line. The worst robot is named so a bad line can say
+  what broke in one sentence ("The Concierge — overdue, quiet 2d.").
+- **A robot that matches no line colours nothing.** Every Run Monitor row maps
+  by name in `FLEET_NEEDLES`; specific needles ("Watchlist", "desk-loop") sit
+  above general ones ("Watch", "Loop"). A new persona must be mapped on purpose.
+- **The dot, the border and the status word take the same colour.** A bad line
+  is unmissable; a fine one is quiet.
+- **"Someone is watching" says "Trust nothing green above" when it is red.**
+  That is the one case where four green lines lie.
 
-- **A lane with no `executors` entry inherits `mac`** — the lease page's own
-  rule. Mac needs the Codex desktop app open and the machine awake, so it is the
-  fragile mode: it sorts to the top and is chipped `fragile`. Never infer `vps`
-  from the majority; that reports a fragile lane as settled.
-- **Only exceptions get a chip.** Eleven green VPS chips beside eleven "Hermes
-  cron · VPS" labels hide the one row that matters. Settled lanes are quiet.
-
-Soft source, same posture as Robots and Reports: an unreadable lease costs the
-panel and shows a notice. It never falls back to guessing from the roster, and
-it never takes the tab down.
+The footer line names who holds the fleet and where most lanes run, read from
+the ⚖️ Active Runtime lease page (`fetch_lease()`, `test_lease.py`). Soft
+source: an unreadable lease drops the footer words, never the lines.
 
 ### 15. AVA/EOB pills are queue state, not message content
 

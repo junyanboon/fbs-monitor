@@ -114,6 +114,21 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_open_shifts.py
 
+      # Guards the lease panel on the Robots tab. The rule that matters: a lane
+      # with no executors entry inherits "mac", and mac needs a laptop awake —
+      # reporting it as the VPS would call a fragile lane settled. Pure logic —
+      # no network, no secrets.
+      - name: Fleet lease tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_lease.py
+
+      # Guards the five lines on the Robots tab. A line is as bad as its worst
+      # LIVE robot; paused/retired/off-hours never colour it; an unmapped
+      # robot never colours anything. Pure logic — no network, no secrets.
+      - name: Fleet lines tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_fleet_lines.py
+
       # Guards the PANEL arrival source and the feed-down guard. The email feed
       # has died twice, and each time the board rendered the outage as a red
       # "no arrival" against whoever had a finished booking. Pure logic — no

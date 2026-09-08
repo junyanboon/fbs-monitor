@@ -51,6 +51,12 @@ STUDIO_IDS = {s["id"] for s in STUDIOS}
 NOTION_DATA_SOURCE = "36475032-81c4-80d6-b18a-000b8d6f9421"
 # 🚥 Run Monitor DB (Staff Console) — robot heartbeat roster for the Robots tab.
 RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
+# ⚖️ Active Runtime — the fleet lease page. One JSON code block on it names the
+# runtime that owns every lane (`holder`) and where each lane's body actually
+# runs (`executors`). Every Claude trigger and every Codex lane reads it before
+# any write, so the Robots tab reads it too: "did it run?" is worth little if
+# you cannot see who was supposed to run it. Read-only, soft source.
+LEASE_PAGE = "3d175032-81c4-81ed-aa57-c1d2f92bcb06"
 # 📊 Workflow Reports — one row per fleet run, rendered as the Reports tab.
 # Read title-only; see fetch_reports() for why bodies must stay off this board.
 WORKFLOW_REPORTS_DS = "469a877b-83fa-4387-ac97-94aa656481dd"
@@ -3209,6 +3215,208 @@ def fetch_robots(token, now):
     return out
 
 
+# ── The fleet lease ─────────────────────────────────────────────────────────
+# Lane slug → the name the rest of the page already uses. A slug missing from
+# this map still renders (title-cased); the map exists so "morning-text" reads
+# as "The Morning Text" and not as a database key.
+LEASE_LANE_NAMES = {
+    "analyst": "The Analyst", "bookkeeper": "The Bookkeeper",
+    "concierge": "The Concierge", "custodian": "The Custodian",
+    "doorman": "The Doorman", "host": "The Host", "loop": "The Loop",
+    "mechanic": "The Mechanic", "morning-text": "The Morning Text",
+    "planner": "The Planner", "responder": "The Responder",
+    "timekeeper": "The Timekeeper", "treasurer": "The Treasurer",
+}
+
+# Executor value → (how it runs, status class). The classes mirror the Robots
+# tab's so one stylesheet serves both.
+#   vps      Hermes cron on the VPS — the normal home since 2026-09-05.
+#   cloudrun a deterministic event-gate lane owns the surface; both LLM copies exit.
+#   mac      the Codex desktop app on Junyan's Mac. Needs the Mac awake and the
+#            app open, so it is the fragile mode and reads as "watch", not "ok".
+#   retired  the lane is switched off on purpose; every body exits at its gate.
+LEASE_EXECUTORS = {
+    "vps": ("Hermes cron · VPS", "ok"),
+    "cloudrun": ("Deterministic · Cloud Run", "ok"),
+    "mac": ("Codex app · Mac", "watch"),
+    "retired": ("Retired", "plain"),
+}
+# The lease page's own rule: a lane with no `executors` entry defaults to mac.
+LEASE_DEFAULT_EXECUTOR = "mac"
+
+
+def _notion_blocks(token, page_id):
+    """Read a page's top-level blocks. Raises RuntimeError on failure —
+    the caller decides fatal vs soft (this one is soft)."""
+    url = f"https://api.notion.com/v1/blocks/{page_id}/children"
+    h = {"Authorization": f"Bearer {token}", "Notion-Version": "2022-06-28"}
+    out, cursor = [], None
+    while True:
+        params = {"page_size": 100}
+        if cursor:
+            params["start_cursor"] = cursor
+        r = requests.get(url, headers=h, params=params, timeout=30)
+        if r.status_code != 200:
+            raise RuntimeError(f"{r.status_code} {r.text[:200]}")
+        data = r.json()
+        out.extend(data.get("results", []))
+        if not data.get("has_more"):
+            break
+        cursor = data.get("next_cursor")
+    return out
+
+
+def parse_lease(raw, now):
+    """Project the lease JSON onto what the Robots tab shows.
+
+    Answers two questions and no others: who holds the fleet (`holder`), and
+    for each lane, where its body runs (`executors`). Deliberately does NOT
+    infer health — a lane can be correctly leased and still be overdue, and
+    that second question is the watched-runs list right below it.
+    """
+    d = json.loads(raw)
+    if not isinstance(d, dict):
+        raise RuntimeError("lease JSON is not an object")
+    lease = d.get("lease", d)          # lease.py wraps; the page block does not
+    execs = lease.get("executors") or {}
+    slugs = sorted(set(LEASE_LANE_NAMES) | set(execs))
+    lanes = []
+    for slug in slugs:
+        ex = execs.get(slug) or LEASE_DEFAULT_EXECUTOR
+        how, cls = LEASE_EXECUTORS.get(ex, (ex, "plain"))
+        lanes.append({
+            "lane": slug,
+            "name": LEASE_LANE_NAMES.get(slug, slug.replace("-", " ").title()),
+            "executor": ex,
+            "how": how,
+            "status": cls,
+            "default": slug not in execs,   # inherited, not written down
+        })
+    rank = {"watch": 0, "ok": 1, "plain": 2}
+    lanes.sort(key=lambda x: (rank.get(x["status"], 9), x["name"].lower()))
+    since = _parse_notion_ts(lease.get("since"))
+    counts = {}
+    for l in lanes:
+        counts[l["executor"]] = counts.get(l["executor"], 0) + 1
+    return {
+        "holder": lease.get("holder") or "unknown",
+        "leaseId": lease.get("lease_id") or "",
+        "reason": lease.get("reason") or "",
+        "flippedBy": lease.get("flipped_by") or "",
+        "sinceISO": since.replace(microsecond=0).isoformat() if since else None,
+        "lanes": lanes,
+        "counts": counts,
+    }
+
+
+# ── The five lines ──────────────────────────────────────────────────────────
+# The Robots tab used to be a 30-row roster. Junyan (2026-09-08): "the list is
+# just too huge … what needs to be clear to me is who is doing what and what
+# are the implications when things are down." So the tab is five lines, one
+# per thing the studio needs, each saying in kid words what it does and what
+# happens if it stops. The roster is still there, folded. Every robot in the
+# Run Monitor maps to a line by name; the first matching needle wins, so keep
+# the specific ones ("Watchlist", "desk-loop") above the general ("Watch",
+# "Loop"). A robot that matches nothing never colours a line; it lives only
+# in the fold, so a new persona cannot silently turn a line red or green.
+FLEET_LINES = [
+    {"k": "doors", "name": "Doors open",
+     "fine": "Codes work. Sirens get cleared.",
+     "down": "Someone gets locked out."},
+    {"k": "mail", "name": "Mail gets answered",
+     "fine": "Messages read. Replies drafted.",
+     "down": "People wait. Nobody replies."},
+    {"k": "plan", "name": "Today's plan",
+     "fine": "Board built. Tomorrow staged.",
+     "down": "Staff show up with no plan."},
+    {"k": "money", "name": "Money adds up",
+     "fine": "Hours logged. Books balanced.",
+     "down": "Payroll and books go wrong."},
+    {"k": "watch", "name": "Someone is watching",
+     "fine": "A robot texts you if one goes quiet.",
+     "down": "Things break and nobody knows. Trust nothing green above."},
+]
+FLEET_NEEDLES = [
+    ("watchlist", "plan"), ("desk-loop", "plan"),
+    ("doorman", "doors"), ("alarm-watchdog", "doors"), ("code mirror", "doors"),
+    ("migration", "doors"),
+    ("concierge", "mail"), ("responder", "mail"), ("greeter", "mail"),
+    ("qa release", "mail"), ("receptionist", "mail"),
+    ("host", "plan"), ("analyst", "plan"), ("planner", "plan"), ("loop", "plan"),
+    ("weatherman", "plan"), ("opener", "plan"), ("closer", "plan"),
+    ("bookkeeper", "money"), ("timekeeper", "money"), ("treasurer", "money"),
+    ("sentinel", "watch"), ("morning text", "watch"), ("mechanic", "watch"),
+    ("custodian", "watch"), ("drop-sweep", "watch"), ("scribe", "watch"),
+    ("watchman", "watch"),
+]
+
+
+def fleet_line_for(run):
+    low = (run or "").lower()
+    for needle, k in FLEET_NEEDLES:
+        if needle in low:
+            return k
+    return None
+
+
+def fleet_lines(robots, lease, now):
+    """Five lines from the roster. A line is as bad as its worst LIVE robot;
+    Paused / Not-reporting / Off-hours robots ("plain") never colour it. The
+    worst robot is named so the line can say what broke in one sentence."""
+    rank = {"crit": 2, "watch": 1, "ok": 0, "plain": 0}
+    worst = {}
+    members = {}
+    for r in robots or []:
+        k = fleet_line_for(r["run"])
+        if not k:
+            continue
+        members.setdefault(k, []).append(r["run"])
+        if r.get("monitoring") != "Live" or r["status"] not in ("crit", "watch"):
+            continue
+        cur = worst.get(k)
+        if cur is None or rank[r["status"]] > rank[cur["status"]]:
+            worst[k] = r
+    out = []
+    for line in FLEET_LINES:
+        w = worst.get(line["k"])
+        out.append({
+            **line,
+            "status": w["status"] if w else "ok",
+            "robots": members.get(line["k"], []),
+            # Run Monitor titles carry a suffix for one-off rows ("The Concierge
+            # — 2026-09-05 20:10 interrupted"); the sentence wants the name.
+            "worst": ({"run": w["run"].split(" — ")[0].strip(), "label": w["statusLabel"],
+                       "lastISO": w.get("lastISO")} if w else None),
+        })
+    live = [r for r in (robots or []) if r.get("monitoring") == "Live"]
+    holder = (lease or {}).get("holder") or ""
+    where = ""
+    if lease:
+        c = lease.get("counts") or {}
+        top = max(c, key=c.get) if c else ""
+        where = {"vps": "on the VPS", "cloudrun": "on Cloud Run",
+                 "mac": "on the Mac"}.get(top, top)
+    return {"lines": out, "liveCount": len(live),
+            "holder": holder, "where": where,
+            "stamp": now.strftime("%H:%M")}
+
+
+def fetch_lease(token, now):
+    """The ⚖️ Active Runtime page, read for the Robots tab."""
+    raw = None
+    for b in _notion_blocks(token, LEASE_PAGE):
+        if b.get("type") != "code":
+            continue
+        txt = "".join(t.get("plain_text", "")
+                      for t in (b.get("code") or {}).get("rich_text", []))
+        if txt.strip().startswith("{"):
+            raw = txt
+            break
+    if raw is None:
+        raise RuntimeError("no JSON code block on the lease page")
+    return parse_lease(raw, now)
+
+
 def prepare_board_events(events):
     """The per-event dicts the board carries.
 
@@ -3498,6 +3706,16 @@ def build_data(now):
         robots_note = "Run Monitor unreadable — share the 🚥 Run Monitor DB with the integration."
         emit_fallback_note(f"Run Monitor fetch failed ({e}); Robots tab shows a notice.")
 
+    # The fleet lease — same soft posture. An unreadable lease costs the panel
+    # that says who owns the lanes; it never takes the Robots tab or the board
+    # down, and it must never be guessed at from the roster.
+    lease, lease_note = None, None
+    try:
+        lease = fetch_lease(token, now)
+    except Exception as e:  # noqa: BLE001
+        lease_note = "Lease unreadable — share the ⚖️ Active Runtime page with the integration."
+        emit_fallback_note(f"Lease fetch failed ({e}); Robots tab shows no ownership panel.")
+
     # Reports tab — same soft posture: an unreadable Workflow Reports DB shows a
     # notice, it never takes the board down.
     reports, reports_note = None, None
@@ -3546,6 +3764,9 @@ def build_data(now):
         "armFeed": arm_feed,
         "robots": robots,
         "robotsNote": robots_note,
+        "lease": lease,
+        "leaseNote": lease_note,
+        "fleet": fleet_lines(robots, lease, now) if robots else None,
         # Internal: consumed by sync_hta_watch() in main() and popped before
         # the pages are spliced. Carries booking/artist ids — never publish.
         "_hta_verdicts": verdicts,

@@ -385,6 +385,25 @@
   .robot .ago{font-family:var(--mono);font-size:13px;color:var(--chalk-dim);white-space:nowrap;
               font-variant-numeric:tabular-nums;text-align:right}
   .robot.dim{opacity:.55}
+  /* The five lines. One per thing the studio needs; the dot, the border and
+     the status word all take the same colour so a bad line is unmissable. */
+  .fleet{display:grid;gap:10px;margin:16px 0 0;max-width:760px}
+  .hrow{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:14px;align-items:center;
+        padding:14px 16px;background:var(--scrim);border:1px solid var(--line);border-radius:12px}
+  .hrow .dot{width:10px;height:10px;border-radius:99px;background:var(--ok);flex:none}
+  .hrow .dot.watch{background:var(--watch)} .hrow .dot.crit{background:var(--crit)}
+  .hrow .nm{font-family:var(--sans);font-weight:700;font-size:17px;line-height:1.25;min-width:0}
+  .hrow .nm small{display:block;font-family:var(--body);font-weight:400;font-size:14px;color:var(--chalk-dim);margin-top:2px}
+  .hrow .st{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);white-space:nowrap}
+  .hrow.watch{border-color:var(--watch)} .hrow.watch .st{color:var(--watch)}
+  .hrow.crit{border-color:var(--crit)}  .hrow.crit .st{color:var(--crit)}
+  .hrow.watch .nm small,.hrow.crit .nm small{color:var(--chalk)}
+  .hrow.watch .nm small b{color:var(--watch)} .hrow.crit .nm small b{color:var(--crit)}
+  .fleet .who{font-family:var(--mono);font-size:11.5px;color:var(--chalk-faint);padding:4px 2px 0}
+  details.fold{margin:22px 0 0}
+  details.fold summary{cursor:pointer;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--chalk-faint);padding:6px 0 10px}
+  details.fold summary:focus-visible{outline:2px solid var(--tungsten);outline-offset:3px}
   /* Issues tab — one line each, scanned in a second, no wrapping games. The
      tag says the class, the text says the thing, the age says how stale. */
   .issue{display:grid;grid-template-columns:82px minmax(0,1fr) auto;gap:12px;padding:11px 16px;
@@ -1295,10 +1314,25 @@ function renderRobots(){
   }
   const nT = torontoNow().t;
   const live = R.filter(r=>r.monitoring==="Live");   // retired/paused personas are bookkeeping, not ops
-  const overdue = live.filter(r=>r.status==="crit").length;
-  const head = overdue ? `${overdue} robot${overdue>1?"s":""} overdue` : "All robots reporting";
-  let html = `<div class="statusbar ${overdue?"crit":"ok"}" style="margin-top:16px"><span class="dot"></span>
-    <span class="head">${head}</span><span class="items"><span class="statusitem">${live.length} watched · as of the last rebuild — The Sentinel does the paging, this is the glanceable view</span></span></div>`;
+  /* Five lines (Junyan, 2026-09-08): what each part of the fleet does, in
+     plain words, and what happens if it stops. No headline, no count bar.
+     A bad line turns its own colour and says the consequence first, then
+     which robot and how long it has been quiet. The roster is folded below. */
+  const F = DATA.fleet;
+  let html = "";
+  if(F){
+    const label={ok:"fine",watch:"look",crit:"broken"};
+    html += `<div class="fleet">` + F.lines.map(l=>{
+      const s=l.status, w=l.worst;
+      const small = s==="ok" ? esc(l.fine)
+        : `<b>${esc(l.down)}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+agoTxt(w.lastISO).replace(" ago","")+".":""}`;
+      return `<div class="hrow ${s==="ok"?"":s}" title="${esc(l.robots.join(", "))}">
+        <span class="dot ${s==="ok"?"":s}"></span>
+        <span class="nm">${esc(l.name)}<small>${small}</small></span>
+        <span class="st">${label[s]||"fine"}</span>
+      </div>`;}).join("") +
+      `<div class="who">${F.liveCount} robots${F.holder?` · run by ${esc(F.holder)}`:""}${F.where?` ${esc(F.where)}`:""} · ${esc(F.stamp)}</div></div>`;
+  }
   const row = r => {
     const chip = {ok:"ok", watch:"watch", crit:"crit", plain:"plain"}[r.status] || "plain";
     const nr = nextRun(r, nT);
@@ -1309,8 +1343,8 @@ function renderRobots(){
       <span class="ago">${agoTxt(r.lastISO)}</span>
     </div>`;
   };
-  html += `<p class="lane-label">Watched runs</p><div class="panelwrap">` +
-    (live.length ? live.map(row).join("") : `<div class="robot">Nothing watched</div>`) + `</div>`;
+  html += `<details class="fold"><summary>${live.length} robots — the full list</summary><div class="panelwrap">` +
+    (live.length ? live.map(row).join("") : `<div class="robot">Nothing watched</div>`) + `</div></details>`;
   $('#robotpanel').innerHTML = html;
 }
 
