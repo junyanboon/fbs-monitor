@@ -387,10 +387,13 @@
   .robot.dim{opacity:.55}
   /* The five lines. One per thing the studio needs; the dot, the border and
      the status word all take the same colour so a bad line is unmissable. */
-  .fleet{display:grid;gap:10px;margin:16px 0 0;max-width:760px}
-  .hrow{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:14px;align-items:center;
+  .fleet{margin:16px 0 0;max-width:760px}
+  .hrow{display:flex;align-items:center;margin-bottom:10px;
         padding:14px 16px;background:var(--scrim);border:1px solid var(--line);border-radius:12px}
-  .hrow .dot{width:10px;height:10px;border-radius:99px;background:var(--ok);flex:none}
+  .hrow .dot{width:10px;height:10px;border-radius:99px;background:var(--ok);flex:0 0 10px;margin-right:14px}
+  .hrow .nm{flex:1 1 0%}
+  .hrow .st{flex:0 0 auto;margin-left:14px}
+  .hrow:last-of-type{margin-bottom:0}
   .hrow .dot.watch{background:var(--watch)} .hrow .dot.crit{background:var(--crit)}
   .hrow .nm{font-family:var(--sans);font-weight:700;font-size:17px;line-height:1.25;min-width:0}
   .hrow .nm small{display:block;font-family:var(--body);font-weight:400;font-size:14px;color:var(--chalk-dim);margin-top:2px}
