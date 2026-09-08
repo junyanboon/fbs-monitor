@@ -279,8 +279,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 2:32 PM ET",
-  "generatedAtISO": "2026-09-08T14:32:09-04:00",
+  "generatedAt": "Sep 8, 2:46 PM ET",
+  "generatedAtISO": "2026-09-08T14:46:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1166,6 +1166,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T18:31:16.933864Z",
         "until": "2026-09-08T18:31:29.339362Z"
+      },
+      {
+        "since": "2026-09-08T18:37:17.712367Z",
+        "until": "2026-09-08T18:37:28.181405Z"
+      },
+      {
+        "since": "2026-09-08T18:42:26.783648Z",
+        "until": "2026-09-08T18:42:38.333671Z"
       }
     ],
     "down": false
@@ -1192,16 +1200,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-08T11:16:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-08T12:37:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1209,7 +1207,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T14:29:00-04:00"
+      "lastISO": "2026-09-08T14:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1219,7 +1217,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T14:30:00-04:00"
+      "lastISO": "2026-09-08T14:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1229,7 +1227,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T14:30:00-04:00"
+      "lastISO": "2026-09-08T14:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1239,7 +1237,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T14:30:00-04:00"
+      "lastISO": "2026-09-08T14:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1259,7 +1257,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T14:30:00-04:00"
+      "lastISO": "2026-09-08T14:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1290,6 +1288,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-08T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T14:34:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1329,7 +1337,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T13:39:00-04:00"
+      "lastISO": "2026-09-08T14:40:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1625,9 +1633,9 @@ const DATA = /*__DATA__*/{
         "status": "crit",
         "robots": [
           "The Concierge — 2026-09-05 20:10 interrupted",
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
+          "The Concierge",
           "The Responder",
           "The Receptionist"
         ],
@@ -1695,7 +1703,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "14:32"
+    "stamp": "14:46"
   }
 }/*__END_DATA__*/;
 
