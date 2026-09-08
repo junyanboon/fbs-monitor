@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 5:20 PM ET",
-  "generatedAtISO": "2026-09-08T17:20:02-04:00",
+  "generatedAt": "Sep 8, 5:32 PM ET",
+  "generatedAtISO": "2026-09-08T17:32:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -442,13 +442,13 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "17:22",
+      "departed": "17:23",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
+      "arrived_foreign": true,
+      "departed_foreign": true,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -649,7 +649,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -733,6 +733,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788901385842,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "17:22",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788902563721,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "17:23",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788902634741,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -745,16 +763,6 @@ const DATA = /*__DATA__*/{
       "time": "18:56",
       "ts": 1788821787254,
       "when": "Mon 18:56"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "Ishfaaq Jookhun",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "22:22",
-      "ts": 1788834156025,
-      "when": "Mon 22:22"
     }
   },
   "alarmAlerts": [],
@@ -764,6 +772,12 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-08T21:08:01+00:00",
+    "mailCheck": {
+      "matched": 2,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-08T09:01:18.625192Z",
@@ -1300,21 +1314,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T21:18:13.843585Z",
         "until": "2026-09-08T21:18:20.172005Z"
+      },
+      {
+        "since": "2026-09-08T21:24:00.741088Z",
+        "until": "2026-09-08T21:24:13.182319Z"
+      },
+      {
+        "since": "2026-09-08T21:29:18.053288Z",
+        "until": "2026-09-08T21:29:30.357103Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge — 2026-09-05 20:10 interrupted",
-      "cadence": null,
-      "expected": "2026-09-05 20:10 America/Toronto",
-      "produces": "interrupted by Hermes container restart 20:22–20:30; outcome unknown; no inbox writes made",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-05T22:52:00-04:00"
-    },
     {
       "run": "Watchlist sync",
       "cadence": "15-min",
@@ -1343,7 +1355,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T17:17:00-04:00"
+      "lastISO": "2026-09-08T17:28:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1353,7 +1365,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T17:20:00-04:00"
+      "lastISO": "2026-09-08T17:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1363,7 +1375,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T17:15:00-04:00"
+      "lastISO": "2026-09-08T17:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1373,7 +1385,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T17:20:00-04:00"
+      "lastISO": "2026-09-08T17:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1393,7 +1405,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T17:20:00-04:00"
+      "lastISO": "2026-09-08T17:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1493,7 +1505,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T16:41:00-04:00"
+      "lastISO": "2026-09-08T17:30:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1554,6 +1566,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Concierge — 2026-09-05 20:10 interrupted",
+      "cadence": null,
+      "expected": "2026-09-05 20:10 America/Toronto",
+      "produces": "interrupted by Hermes container restart 20:22–20:30; outcome unknown; no inbox writes made",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1756,20 +1778,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Concierge — 2026-09-05 20:10 interrupted",
           "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge",
           "The Responder",
+          "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Overdue",
-          "lastISO": "2026-09-05T22:52:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -1826,10 +1844,10 @@ const DATA = /*__DATA__*/{
         "worst": null
       }
     ],
-    "liveCount": 23,
+    "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:20"
+    "stamp": "17:32"
   }
 }/*__END_DATA__*/;
 
