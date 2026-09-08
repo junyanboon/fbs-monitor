@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 8:32 AM ET",
-  "generatedAtISO": "2026-09-08T08:32:05-04:00",
+  "generatedAt": "Sep 8, 8:47 AM ET",
+  "generatedAtISO": "2026-09-08T08:47:08-04:00",
   "studios": [
     {
       "id": "509A",
@@ -785,28 +785,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 8 · 04:06",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-09T09:00:00-04:00"
-    },
-    {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 8 · 04:06",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-09T09:00:00-04:00"
-    },
-    {
       "code": "HTA-sweep-•••",
       "kind": "HTA",
       "channel": "SMS",
@@ -869,7 +847,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1084,6 +1062,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T12:28:31.433742Z",
         "until": "2026-09-08T12:28:38.988077Z"
+      },
+      {
+        "since": "2026-09-08T12:33:40.025147Z",
+        "until": "2026-09-08T12:33:54.479278Z"
+      },
+      {
+        "since": "2026-09-08T12:39:17.562545Z",
+        "until": "2026-09-08T12:39:22.809193Z"
+      },
+      {
+        "since": "2026-09-08T12:42:38.162394Z",
+        "until": "2026-09-08T12:42:40.707076Z"
       }
     ],
     "down": false
@@ -1098,16 +1088,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-05T22:52:00-04:00"
-    },
-    {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-07T22:46:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1127,7 +1107,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:31:00-04:00"
+      "lastISO": "2026-09-08T08:44:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1137,7 +1117,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:30:00-04:00"
+      "lastISO": "2026-09-08T08:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1147,7 +1127,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:30:00-04:00"
+      "lastISO": "2026-09-08T08:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1157,7 +1137,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:30:00-04:00"
+      "lastISO": "2026-09-08T08:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1177,7 +1157,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:30:00-04:00"
+      "lastISO": "2026-09-08T08:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1217,7 +1197,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:13:00-04:00"
+      "lastISO": "2026-09-08T08:43:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1248,6 +1228,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-08T04:05:00-04:00"
+    },
+    {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T08:38:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1317,7 +1307,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:31:00-04:00"
+      "lastISO": "2026-09-08T08:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
