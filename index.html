@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 8, 12:02 AM ET",
-  "generatedAtISO": "2026-09-08T00:02:13-04:00",
+  "generatedAt": "Sep 8, 12:08 AM ET",
+  "generatedAtISO": "2026-09-08T00:08:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1018,18 +1018,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "HTA-sweep-•••B",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 8 · 00:01",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-08T09:00:00-04:00",
-      "label": "HTA · Studio 509B"
-    },
-    {
       "code": "HTA-sweep-•••",
       "kind": "HTA",
       "channel": "SMS",
@@ -1052,6 +1040,18 @@ const DATA = /*__DATA__*/{
       "send_after": "18:30",
       "send_after_iso": "2026-09-08T18:30:00-04:00",
       "label": "EOB · Studio 509A"
+    },
+    {
+      "code": "HTA-sweep-•••B",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 8 · 00:01",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-08T09:00:00-04:00",
+      "label": "HTA · Studio 509B"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -2279,6 +2279,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T03:58:40.120823Z",
         "until": "2026-09-08T03:58:49.412381Z"
+      },
+      {
+        "since": "2026-09-08T04:04:19.376450Z",
+        "until": "2026-09-08T04:04:31.777688Z"
       }
     ],
     "down": false
@@ -2302,7 +2306,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T00:00:00-04:00"
+      "lastISO": "2026-09-08T00:06:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2332,7 +2336,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T23:07:00-04:00"
+      "lastISO": "2026-09-08T00:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2382,7 +2386,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T23:05:00-04:00"
+      "lastISO": "2026-09-08T00:05:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2442,7 +2446,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-08T00:00:00-04:00"
+      "lastISO": "2026-09-08T00:05:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
