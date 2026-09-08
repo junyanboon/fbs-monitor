@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 5:32 PM ET",
-  "generatedAtISO": "2026-09-08T17:32:58-04:00",
+  "generatedAt": "Sep 8, 5:34 PM ET",
+  "generatedAtISO": "2026-09-08T17:34:08-04:00",
   "studios": [
     {
       "id": "509A",
@@ -646,12 +646,7 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Laurie-Eve Bastiani in Studio 509A"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "693",
@@ -1328,16 +1323,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-08T11:16:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1355,7 +1340,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T17:28:00-04:00"
+      "lastISO": "2026-09-08T17:34:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1536,6 +1521,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-08T17:10:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T17:34:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1794,22 +1789,22 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "crit",
+        "status": "watch",
         "robots": [
-          "Watchlist sync",
           "The Planner",
           "desk-loop (Cloud Run)",
           "The Analyst",
           "The Host",
           "The Loop",
           "The Weatherman",
+          "Watchlist sync",
           "The Closer",
           "The Opener"
         ],
         "worst": {
-          "run": "Watchlist sync",
-          "label": "Overdue",
-          "lastISO": "2026-09-08T11:16:00-04:00"
+          "run": "The Planner",
+          "label": "Due",
+          "lastISO": "2026-09-07T20:06:00-04:00"
         }
       },
       {
@@ -1847,7 +1842,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:32"
+    "stamp": "17:34"
   }
 }/*__END_DATA__*/;
 
