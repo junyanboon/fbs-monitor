@@ -266,8 +266,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 7:56 AM ET",
-  "generatedAtISO": "2026-09-08T07:56:51-04:00",
+  "generatedAt": "Sep 8, 8:02 AM ET",
+  "generatedAtISO": "2026-09-08T08:02:17-04:00",
   "studios": [
     {
       "id": "509A",
@@ -600,6 +600,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "COURTESY — Zoe Young confirmation thanks [responder:sms-in-0e5707da-f6de-4aef-a3fc-80c7a2e29591]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Responder",
+      "created": "Sep 8 · 07:58",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "HTA-sweep-•••",
       "kind": "HTA",
       "channel": "SMS",
@@ -662,7 +673,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -853,11 +864,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T11:54:32.374892Z",
         "until": "2026-09-08T11:54:44.796507Z"
+      },
+      {
+        "since": "2026-09-08T12:00:32.395294Z",
+        "until": "2026-09-08T12:00:38.836312Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-07T22:42:00-04:00"
+    },
     {
       "run": "The Concierge — 2026-09-05 20:10 interrupted",
       "cadence": null,
@@ -869,6 +894,26 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
+      "run": "The Loop",
+      "cadence": "Hourly",
+      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
+      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-07T22:46:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
+      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-06T17:25:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -876,7 +921,37 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T07:52:00-04:00"
+      "lastISO": "2026-09-08T07:58:00-04:00"
+    },
+    {
+      "run": "desk-loop (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
+      "produces": "No report row. Closes 🎯 Next Actions rows reality has already satisfied, flags mismatches, absorbs reviewer rewrites into 🔧 Sweep Feedback, and runs the handback pass. An idle tick writes nothing at all — which is exactly why Self-heartbeat is this row's primary signal rather than a linked report.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T08:00:00-04:00"
+    },
+    {
+      "run": "drop-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
+      "produces": "Buzz #desk-drops → 📸 Desk Drops rows (media re-uploaded to Media property + page body, 📥 receipt), and carries the Concierge's ✅/❓ verdict back to the channel",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T08:00:00-04:00"
+    },
+    {
+      "run": "greeter-sweep (Cloud Run)",
+      "cadence": "5-min",
+      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c).",
+      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T08:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -886,7 +961,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T07:00:00-04:00"
+      "lastISO": "2026-09-08T08:00:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T08:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -896,7 +981,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T07:00:00-04:00"
+      "lastISO": "2026-09-08T08:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -929,6 +1014,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-08T06:00:00-04:00"
     },
     {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
+      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T03:03:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -956,7 +1051,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T06:59:00-04:00"
+      "lastISO": "2026-09-08T07:59:00-04:00"
     },
     {
       "run": "The Planner",
@@ -976,7 +1071,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T07:36:00-04:00"
+      "lastISO": "2026-09-08T07:58:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -989,6 +1084,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-08T04:13:00-04:00"
     },
     {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-01T10:12:00-04:00"
+    },
+    {
       "run": "The Weatherman",
       "cadence": "Daily",
       "expected": "03:10 + hourly 09:10–23:10 America/Toronto · Codex production fallback",
@@ -999,34 +1104,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-08T03:10:00-04:00"
     },
     {
-      "run": "desk-loop (Cloud Run)",
+      "run": "Watchlist sync",
       "cadence": "15-min",
-      "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
-      "produces": "No report row. Closes 🎯 Next Actions rows reality has already satisfied, flags mismatches, absorbs reviewer rewrites into 🔧 Sweep Feedback, and runs the handback pass. An idle tick writes nothing at all — which is exactly why Self-heartbeat is this row's primary signal rather than a linked report.",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
       "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-07T22:50:00-04:00"
-    },
-    {
-      "run": "drop-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
-      "produces": "Buzz #desk-drops → 📸 Desk Drops rows (media re-uploaded to Media property + page body, 📥 receipt), and carries the Concierge's ✅/❓ verdict back to the channel",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-08T07:45:00-04:00"
-    },
-    {
-      "run": "greeter-sweep (Cloud Run)",
-      "cadence": "5-min",
-      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c).",
-      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-08T07:55:00-04:00"
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T08:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1039,16 +1124,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T03:50:00-04:00"
     },
     {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-08T07:50:00-04:00"
-    },
-    {
       "run": "The Closer",
       "cadence": "Daily",
       "expected": "RETIRED 2026-07-23 (ticket 007) — cloud trigger DELETED, persona dissolved. Do NOT set back to Live. Arm-and-sweep → The Doorman evening arm-check (23:35); day review → The Custodian 02:35 (ticket 027).",
@@ -1057,46 +1132,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-07T22:42:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
-      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-08T03:03:00-04:00"
-    },
-    {
-      "run": "The Loop",
-      "cadence": "Hourly",
-      "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
-      "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-07T22:46:00-04:00"
-    },
-    {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
-      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
       "run": "The Opener",
@@ -1129,16 +1164,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-02T07:07:00-04:00"
     },
     {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-01T10:12:00-04:00"
-    },
-    {
       "run": "The Watchman",
       "cadence": "Hourly",
       "expected": "RETIRED 2026-08-26 by Junyan — trigger trig_011mpmLosff2dYEf3Pg5VT35 DISABLED, persona dissolved. Do NOT set back to Live, never alert on this row. Its job (watch the Sentinel) is replaced by: the Morning Text's daily watchdog-silent check (08:45), and — once out of shadow — the deterministic sentinel-sweep in event-gate.",
@@ -1147,16 +1172,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-08-26T10:33:00-04:00"
-    },
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-07T22:46:00-04:00"
     },
     {
       "run": "🔑 Code Mirror",
