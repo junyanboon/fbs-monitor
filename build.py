@@ -1106,7 +1106,7 @@ def _notion_query(token, ds_id, body):
         (f"https://api.notion.com/v1/data_sources/{ds_id}/query", "2025-09-03"),
         (f"https://api.notion.com/v1/databases/{ds_id}/query", "2022-06-28"),
     ]
-    last_err = None
+    errs = []          # every endpoint's answer — the FIRST one is the real fault
     for url, ver in endpoints:
         try:
             h = {"Authorization": f"Bearer {token}", "Notion-Version": ver,
@@ -1118,7 +1118,7 @@ def _notion_query(token, ds_id, body):
                     b["start_cursor"] = cursor
                 r = requests.post(url, headers=h, json=b, timeout=30)
                 if r.status_code != 200:
-                    last_err = f"{r.status_code} {r.text[:200]}"
+                    errs.append(f"{ver}: {r.status_code} {r.text[:200]}")
                     ok = False
                     break
                 data = r.json()
@@ -1129,8 +1129,12 @@ def _notion_query(token, ds_id, body):
             if ok:
                 return rows
         except Exception as e:  # noqa: BLE001
-            last_err = str(e)
-    raise RuntimeError(f"Notion query failed for {ds_id}: {last_err}")
+            errs.append(f"{ver}: {e}")
+    # Report every attempt. The legacy /databases/ endpoint answers 404 for a
+    # data-source id no matter what went wrong on the new one, so reporting
+    # only the last error turned every 400 into "not shared with you" — three
+    # days of misdiagnosis on the HTA watch, 2026-09-07/08.
+    raise RuntimeError(f"Notion query failed for {ds_id}: " + " | ".join(errs))
 
 
 def fetch_notion_rows(token, today_iso):
@@ -2757,6 +2761,13 @@ def fetch_hta_rows(token, since_dt):
     row that carries no codes, which would silence a real gap; `shape` is
     carried on every row so a reader can tell which evidence answered.
     """
+    # Notion compound filters nest TWO levels deep, no more. The BC rule is
+    # "starts with BC AND Sent", and putting that `and` inside this `or`
+    # inside the outer `and` is three — the API answers 400, the legacy
+    # fallback answers 404, and from 2026-09-07 03:02Z every build logged
+    # "Could not find database" for a database that was shared all along.
+    # So the `or` fetches every BC row and the Sent test runs below, in
+    # Python, where the safety margin in the docstring is enforced instead.
     filt = {"and": [
         {"timestamp": "created_time",
          "created_time": {"on_or_after": since_dt.isoformat()}},
@@ -2764,16 +2775,16 @@ def fetch_hta_rows(token, since_dt):
             {"property": "Template", "select": {"equals": "hta_studio_access"}},
             {"property": "Message Code", "title": {"starts_with": "HTA"}},
             {"property": "Message Code", "title": {"starts_with": "How to Access"}},
-            {"and": [
-                {"property": "Message Code", "title": {"starts_with": "BC"}},
-                {"property": "Status", "status": {"equals": "Sent"}},
-            ]},
+            {"property": "Message Code", "title": {"starts_with": "BC"}},
         ]},
     ]}
+    assert _filter_depth(filt) <= 2, "Notion rejects compound filters deeper than 2"
     rows = _notion_query(token, MESSAGES_DS, {"filter": filt, "page_size": 100})
     out = []
     for row in rows:
         p = row.get("properties", {})
+        if _hta_shape(p) == "BC" and (_prop_text(p.get("Status")) or "") != "Sent":
+            continue        # a queued or errored BC row is not proof of anything
         out.append({
             "id": row.get("id"),
             "artist": _relation_id(p.get("Artist")),
@@ -2787,6 +2798,17 @@ def fetch_hta_rows(token, since_dt):
             "shape": _hta_shape(p),
         })
     return out
+
+
+def _filter_depth(f):
+    """Nesting depth of a Notion compound filter. A leaf is 0; `{"and": [leaf]}`
+    is 1. The API accepts at most 2."""
+    if not isinstance(f, dict):
+        return 0
+    for key in ("and", "or"):
+        if key in f:
+            return 1 + max((_filter_depth(x) for x in f[key]), default=0)
+    return 0
 
 
 def _hta_shape(properties):

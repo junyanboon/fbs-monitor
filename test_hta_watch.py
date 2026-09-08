@@ -116,6 +116,11 @@ def test_merged_bc_row_counts_as_a_sent_access_message():
 
 def test_hta_row_filter_accepts_a_sent_bc_row_only():
     # The BC clause is a proof-of-send shape, never a promise-to-send one.
+    # Since 2026-09-08 the Sent test lives in Python, not the filter: nesting
+    # it inside the OR inside the AND made three levels and Notion allows two
+    # (every build from 2026-09-07 03:02Z failed the HTA watch on it). The
+    # filter fetches BC rows; fetch_hta_rows drops the unsent ones — see
+    # test_unsent_bc_rows_are_dropped_after_the_query.
     seen = {}
 
     def fake_query(token, ds, payload):
@@ -129,11 +134,8 @@ def test_hta_row_filter_accepts_a_sent_bc_row_only():
     finally:
         build._notion_query = real
     clauses = seen["filter"]["and"][1]["or"]
-    bc = [c for c in clauses if "and" in c]
-    assert len(bc) == 1, clauses
-    terms = bc[0]["and"]
-    assert {"property": "Message Code", "title": {"starts_with": "BC"}} in terms
-    assert {"property": "Status", "status": {"equals": "Sent"}} in terms
+    assert {"property": "Message Code", "title": {"starts_with": "BC"}} in clauses
+    assert not any("and" in c or "or" in c for c in clauses), "no third level"
 
 
 def test_shape_names_the_evidence():
@@ -244,3 +246,53 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ── filter shape ──────────────────────────────────────────────────────────
+# 2026-09-06 nested "BC AND Sent" inside the OR inside the AND: three levels.
+# Notion allows two. Every build from 03:02Z on 2026-09-07 failed the HTA
+# watch with a misleading "Could not find database" and dropped the pills.
+def test_hta_filter_never_exceeds_notion_two_level_limit():
+    import datetime
+    captured = {}
+    def fake_query(token, ds, body):
+        captured["filter"] = body["filter"]; return []
+    orig = build._notion_query; build._notion_query = fake_query
+    try:
+        build.fetch_hta_rows("t", datetime.datetime(2026, 9, 6, tzinfo=datetime.timezone.utc))
+    finally:
+        build._notion_query = orig
+    assert build._filter_depth(captured["filter"]) <= 2
+
+
+def test_unsent_bc_rows_are_dropped_after_the_query():
+    """The Sent test moved from the filter into Python; the safety margin
+    (a queued or errored BC row is not proof) must survive the move."""
+    import datetime
+    def mk(code, status):
+        return {"id": code, "properties": {
+            "Message Code": {"type": "title", "title": [{"plain_text": code}]},
+            "Status": {"type": "status", "status": {"name": status}},
+            "Artist": {"type": "relation", "relation": []},
+            "Studio": {"type": "select", "select": None},
+            "Booking": {"type": "relation", "relation": []},
+            "Send After": {"type": "date", "date": None},
+            "Sent At": {"type": "date", "date": None},
+            "Created time": {"type": "created_time", "created_time": "2026-09-06T00:00:00.000Z"},
+        }}
+    rows = [mk("BC-sweep-1", "Sent"), mk("BC-sweep-2", "Pending Review"),
+            mk("BC-sweep-3", "Error"), mk("HTA-1", "Pending Review")]
+    orig = build._notion_query; build._notion_query = lambda t, d, b: rows
+    try:
+        out = build.fetch_hta_rows("t", datetime.datetime(2026, 9, 6, tzinfo=datetime.timezone.utc))
+    finally:
+        build._notion_query = orig
+    assert sorted(r["id"] for r in out) == ["BC-sweep-1", "HTA-1"]
+
+
+def test_filter_depth_counts_like_notion():
+    leaf = {"property": "x", "title": {"starts_with": "a"}}
+    assert build._filter_depth(leaf) == 0
+    assert build._filter_depth({"and": [leaf]}) == 1
+    assert build._filter_depth({"and": [leaf, {"or": [leaf]}]}) == 2
+    assert build._filter_depth({"and": [{"or": [leaf, {"and": [leaf]}]}]}) == 3
