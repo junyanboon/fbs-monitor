@@ -503,8 +503,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 10:32 AM ET",
-  "generatedAtISO": "2026-09-08T10:32:24-04:00",
+  "generatedAt": "Sep 8, 10:45 AM ET",
+  "generatedAtISO": "2026-09-08T10:45:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -866,7 +866,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1169,20 +1169,38 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T14:29:17.389062Z",
         "until": "2026-09-08T14:29:30.172863Z"
+      },
+      {
+        "since": "2026-09-08T14:34:41.377207Z",
+        "until": "2026-09-08T14:34:48.718306Z"
+      },
+      {
+        "since": "2026-09-08T14:40:18.045567Z",
+        "until": "2026-09-08T14:40:31.213133Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "greeter-sweep (Cloud Run)",
-      "cadence": "5-min",
-      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c).",
-      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
+      "run": "desk-loop (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
+      "produces": "No report row. Closes 🎯 Next Actions rows reality has already satisfied, flags mismatches, absorbs reviewer rewrites into 🔧 Sweep Feedback, and runs the handback pass. An idle tick writes nothing at all — which is exactly why Self-heartbeat is this row's primary signal rather than a linked report.",
       "monitoring": "Live",
       "status": "crit",
       "statusLabel": "Overdue",
-      "lastISO": "2026-09-08T10:15:00-04:00"
+      "lastISO": "2026-09-08T10:10:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-08T10:10:00-04:00"
     },
     {
       "run": "The Concierge — 2026-09-05 20:10 interrupted",
@@ -1212,17 +1230,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:33:00-04:00"
-    },
-    {
-      "run": "desk-loop (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
-      "produces": "No report row. Closes 🎯 Next Actions rows reality has already satisfied, flags mismatches, absorbs reviewer rewrites into 🔧 Sweep Feedback, and runs the handback pass. An idle tick writes nothing at all — which is exactly why Self-heartbeat is this row's primary signal rather than a linked report.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:10:00-04:00"
+      "lastISO": "2026-09-08T10:44:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1232,7 +1240,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:15:00-04:00"
+      "lastISO": "2026-09-08T10:45:00-04:00"
+    },
+    {
+      "run": "greeter-sweep (Cloud Run)",
+      "cadence": "5-min",
+      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c).",
+      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-08T10:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1243,16 +1261,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-08T10:00:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1292,7 +1300,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:43:00-04:00"
+      "lastISO": "2026-09-08T10:43:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1332,7 +1340,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T09:39:00-04:00"
+      "lastISO": "2026-09-08T10:39:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1627,17 +1635,17 @@ const DATA = /*__DATA__*/{
         "down": "People wait. Nobody replies.",
         "status": "crit",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge — 2026-09-05 20:10 interrupted",
+          "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge",
           "The Responder",
           "The Receptionist"
         ],
         "worst": {
-          "run": "greeter-sweep (Cloud Run)",
+          "run": "The Concierge",
           "label": "Overdue",
-          "lastISO": "2026-09-08T10:15:00-04:00"
+          "lastISO": "2026-09-05T22:52:00-04:00"
         }
       },
       {
@@ -1645,7 +1653,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
           "desk-loop (Cloud Run)",
           "The Analyst",
@@ -1657,7 +1665,11 @@ const DATA = /*__DATA__*/{
           "The Closer",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "desk-loop (Cloud Run)",
+          "label": "Overdue",
+          "lastISO": "2026-09-08T10:10:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -1698,7 +1710,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:32"
+    "stamp": "10:45"
   }
 }/*__END_DATA__*/;
 
