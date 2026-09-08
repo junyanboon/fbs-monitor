@@ -503,8 +503,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 10:18 AM ET",
-  "generatedAtISO": "2026-09-08T10:18:42-04:00",
+  "generatedAt": "Sep 8, 10:32 AM ET",
+  "generatedAtISO": "2026-09-08T10:32:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -827,6 +827,18 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "HTA-sweep-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 8 · 10:20",
+      "send_after": "10:20",
+      "send_after_iso": "2026-09-08T10:20:00-04:00",
+      "label": "HTA · Studio 901"
+    },
+    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -854,7 +866,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1149,11 +1161,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T14:17:40.663220Z",
         "until": "2026-09-08T14:17:47.835121Z"
+      },
+      {
+        "since": "2026-09-08T14:23:18.130725Z",
+        "until": "2026-09-08T14:23:23.487182Z"
+      },
+      {
+        "since": "2026-09-08T14:29:17.389062Z",
+        "until": "2026-09-08T14:29:30.172863Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "greeter-sweep (Cloud Run)",
+      "cadence": "5-min",
+      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c).",
+      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-08T10:15:00-04:00"
+    },
     {
       "run": "The Concierge — 2026-09-05 20:10 interrupted",
       "cadence": null,
@@ -1182,7 +1212,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:17:00-04:00"
+      "lastISO": "2026-09-08T10:33:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1199,16 +1229,6 @@ const DATA = /*__DATA__*/{
       "cadence": "15-min",
       "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
       "produces": "Buzz #desk-drops → 📸 Desk Drops rows (media re-uploaded to Media property + page body, 📥 receipt), and carries the Concierge's ✅/❓ verdict back to the channel",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:15:00-04:00"
-    },
-    {
-      "run": "greeter-sweep (Cloud Run)",
-      "cadence": "5-min",
-      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c).",
-      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
@@ -1342,7 +1362,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:06:00-04:00"
+      "lastISO": "2026-09-08T10:28:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1382,7 +1402,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T10:16:00-04:00"
+      "lastISO": "2026-09-08T10:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1607,17 +1627,17 @@ const DATA = /*__DATA__*/{
         "down": "People wait. Nobody replies.",
         "status": "crit",
         "robots": [
-          "The Concierge — 2026-09-05 20:10 interrupted",
           "greeter-sweep (Cloud Run)",
+          "The Concierge — 2026-09-05 20:10 interrupted",
           "QA release check",
           "The Concierge",
           "The Responder",
           "The Receptionist"
         ],
         "worst": {
-          "run": "The Concierge",
+          "run": "greeter-sweep (Cloud Run)",
           "label": "Overdue",
-          "lastISO": "2026-09-05T22:52:00-04:00"
+          "lastISO": "2026-09-08T10:15:00-04:00"
         }
       },
       {
@@ -1678,7 +1698,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:18"
+    "stamp": "10:32"
   }
 }/*__END_DATA__*/;
 
