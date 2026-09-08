@@ -395,11 +395,11 @@
   .fleet{margin:16px 0 0;max-width:760px}
   .hrow{display:flex;align-items:center;margin-bottom:10px;
         padding:14px 16px;background:var(--scrim);border:1px solid var(--line);border-radius:12px}
-  .hrow .dot{width:10px;height:10px;border-radius:99px;background:var(--ok);flex:0 0 10px;margin-right:14px}
+  .hrow .fleet-status-dot{position:static;display:block;transform:none;align-self:center;width:10px;height:10px;border-radius:99px;background:var(--ok);flex:0 0 10px;margin-right:14px}
   .hrow .nm{flex:1 1 0%}
   .hrow .st{flex:0 0 auto;margin-left:14px}
   .hrow:last-of-type{margin-bottom:0}
-  .hrow .dot.watch{background:var(--watch)} .hrow .dot.crit{background:var(--crit)}
+  .hrow .fleet-status-dot.watch{background:var(--watch)} .hrow .fleet-status-dot.crit{background:var(--crit)}
   .hrow .nm{font-family:var(--sans);font-weight:700;font-size:17px;line-height:1.25;min-width:0}
   .hrow .nm small{display:block;font-family:var(--body);font-weight:400;font-size:14px;color:var(--chalk-dim);margin-top:2px}
   .hrow .st{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);white-space:nowrap}
@@ -2919,7 +2919,7 @@ function renderRobots(){
       const small = s==="ok" ? esc(l.fine)
         : `<b>${esc(l.down)}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+agoTxt(w.lastISO).replace(" ago","")+".":""}`;
       return `<div class="hrow ${s==="ok"?"":s}" title="${esc(l.robots.join(", "))}">
-        <span class="dot ${s==="ok"?"":s}"></span>
+        <span class="fleet-status-dot ${s==="ok"?"":s}"></span>
         <span class="nm">${esc(l.name)}<small>${small}</small></span>
         <span class="st">${label[s]||"fine"}</span>
       </div>`;}).join("") +
