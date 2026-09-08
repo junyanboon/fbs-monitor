@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 9:32 AM ET",
-  "generatedAtISO": "2026-09-08T09:32:05-04:00",
+  "generatedAt": "Sep 8, 9:38 AM ET",
+  "generatedAtISO": "2026-09-08T09:38:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -695,10 +695,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:32",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Adalia Knight",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -849,7 +849,17 @@ const DATA = /*__DATA__*/{
       "text": "2 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "693",
+      "name": "Adalia Knight",
+      "time": "09:32",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788874370818,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -881,16 +891,6 @@ const DATA = /*__DATA__*/{
       "ts": 1788834156025,
       "when": "Mon 22:22"
     },
-    "693": {
-      "kind": "departure",
-      "name": "Junyan Boon",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "20:40",
-      "ts": 1788828053360,
-      "when": "Mon 20:40"
-    },
     "901": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -903,12 +903,12 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-08T03:10:10+00:00",
+    "updatedAt": "2026-09-08T13:38:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-08T09:01:18.625192Z",
@@ -1105,6 +1105,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T13:26:32.932511Z",
         "until": "2026-09-08T13:26:41.275011Z"
+      },
+      {
+        "since": "2026-09-08T13:32:18.210797Z",
+        "until": "2026-09-08T13:32:29.552123Z"
+      },
+      {
+        "since": "2026-09-08T13:37:43.927888Z",
+        "until": "2026-09-08T13:37:56.386100Z"
       }
     ],
     "down": false
@@ -1138,7 +1146,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T09:28:00-04:00"
+      "lastISO": "2026-09-08T09:34:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1168,7 +1176,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T09:30:00-04:00"
+      "lastISO": "2026-09-08T09:35:00-04:00"
     },
     {
       "run": "QA release check",
