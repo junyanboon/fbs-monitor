@@ -279,8 +279,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 11:49 AM ET",
-  "generatedAtISO": "2026-09-08T11:49:47-04:00",
+  "generatedAt": "Sep 8, 12:02 PM ET",
+  "generatedAtISO": "2026-09-08T12:02:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -318,10 +318,10 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "12:00",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Samuel Boucher",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -664,19 +664,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788874370818,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Samuel Boucher",
+      "time": "12:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788883228770,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "David Garzon",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "23:05",
-      "ts": 1788836738650,
-      "when": "Mon 23:05"
-    },
     "509B": {
       "kind": "departure",
       "name": "Kyle FitzGerald",
@@ -714,7 +713,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-08T13:38:01+00:00",
+    "updatedAt": "2026-09-08T16:02:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-08T09:01:18.625192Z",
@@ -1011,6 +1010,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T15:46:17.233735Z",
         "until": "2026-09-08T15:46:24.826231Z"
+      },
+      {
+        "since": "2026-09-08T15:51:41.255103Z",
+        "until": "2026-09-08T15:51:55.275689Z"
+      },
+      {
+        "since": "2026-09-08T15:57:34.056314Z",
+        "until": "2026-09-08T15:57:49.339517Z"
       }
     ],
     "down": false
@@ -1027,23 +1034,13 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-05T22:52:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
-      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-06T17:25:00-04:00"
-    },
-    {
       "run": "Watchlist sync",
       "cadence": "15-min",
       "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
       "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-08T11:16:00-04:00"
     },
     {
@@ -1054,7 +1051,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:45:00-04:00"
+      "lastISO": "2026-09-08T12:02:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1064,7 +1061,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:50:00-04:00"
+      "lastISO": "2026-09-08T12:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1074,7 +1071,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:45:00-04:00"
+      "lastISO": "2026-09-08T12:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1084,7 +1081,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:50:00-04:00"
+      "lastISO": "2026-09-08T12:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1094,7 +1091,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:00:00-04:00"
+      "lastISO": "2026-09-08T12:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1104,7 +1101,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:50:00-04:00"
+      "lastISO": "2026-09-08T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1194,7 +1191,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T11:00:00-04:00"
+      "lastISO": "2026-09-08T12:00:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1275,6 +1272,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-07-20T02:58:00-04:00"
+    },
+    {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
+      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
       "run": "The Opener",
@@ -1487,7 +1494,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "Watchlist sync",
           "desk-loop (Cloud Run)",
@@ -1501,7 +1508,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "Watchlist sync",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-08T11:16:00-04:00"
         }
       },
@@ -1523,28 +1530,24 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Morning Text",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
           "The Mechanic",
           "scribe (GitHub Actions)",
+          "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Morning Text",
-          "label": "Overdue",
-          "lastISO": "2026-09-06T17:25:00-04:00"
-        }
+        "worst": null
       }
     ],
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:49"
+    "stamp": "12:02"
   }
 }/*__END_DATA__*/;
 
