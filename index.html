@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 8:17 AM ET",
-  "generatedAtISO": "2026-09-08T08:17:13-04:00",
+  "generatedAt": "Sep 8, 8:32 AM ET",
+  "generatedAtISO": "2026-09-08T08:32:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -807,28 +807,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-09T09:00:00-04:00"
     },
     {
-      "code": "PBF — Samuel Boucher •••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Sep 8 · 07:36",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "COURTESY — Zoe Young confirmation thanks [responder:sms-in-0e5707da-f6de-4aef-a3fc-80c7a2e29591]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Sep 8 · 07:58",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "HTA-sweep-•••",
       "kind": "HTA",
       "channel": "SMS",
@@ -1098,6 +1076,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T12:17:18.710143Z",
         "until": "2026-09-08T12:17:33.189906Z"
+      },
+      {
+        "since": "2026-09-08T12:22:43.125821Z",
+        "until": "2026-09-08T12:22:50.756208Z"
+      },
+      {
+        "since": "2026-09-08T12:28:31.433742Z",
+        "until": "2026-09-08T12:28:38.988077Z"
       }
     ],
     "down": false
@@ -1141,7 +1127,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:15:00-04:00"
+      "lastISO": "2026-09-08T08:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1151,7 +1137,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:10:00-04:00"
+      "lastISO": "2026-09-08T08:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1161,7 +1147,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:15:00-04:00"
+      "lastISO": "2026-09-08T08:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1171,7 +1157,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:15:00-04:00"
+      "lastISO": "2026-09-08T08:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1191,17 +1177,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:10:00-04:00"
-    },
-    {
-      "run": "scribe (GitHub Actions)",
-      "cadence": "Hourly",
-      "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
-      "produces": "Ships Junyan's Deck rulings on HTR suggestions: Approved rows ship the proposal, Declined-with-note rows ship the note; verified edits flip the Sweep Feedback row to Applied",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:00:00-04:00"
+      "lastISO": "2026-09-08T08:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1301,7 +1277,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T07:58:00-04:00"
+      "lastISO": "2026-09-08T08:27:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1341,7 +1317,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T08:16:00-04:00"
+      "lastISO": "2026-09-08T08:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1352,6 +1328,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-09-06T03:50:00-04:00"
+    },
+    {
+      "run": "scribe (GitHub Actions)",
+      "cadence": "Hourly",
+      "expected": "Retired September 8, 2026; no runs expected. HTR rulings are handled in interactive Fixer.",
+      "produces": "Retired. Fixer owns HTR review, implementation, verification and closure.",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-09-08T08:00:00-04:00"
     },
     {
       "run": "The Closer",
