@@ -484,8 +484,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 7, 2026",
   "shiftBaseDay": "2026-09-07",
-  "generatedAt": "Sep 7, 8:02 PM ET",
-  "generatedAtISO": "2026-09-07T20:02:11-04:00",
+  "generatedAt": "Sep 7, 8:09 PM ET",
+  "generatedAtISO": "2026-09-07T20:09:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -777,10 +777,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "17:45",
-      "departed": null,
+      "departed": "20:10",
       "facilitator": null,
       "arrived_by": "Enrico Casertano",
-      "departed_by": null,
+      "departed_by": "Enrico Casertano",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -799,12 +799,12 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "20:10",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Claudia Dzierbicki",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -1028,19 +1028,7 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     }
   ],
-  "messages": [
-    {
-      "code": "ACCESS-CODE-ROTATION-THEA-••••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "Other",
-      "created": "Sep 7 · 16:50",
-      "send_after": null,
-      "send_after_iso": null
-    }
-  ],
+  "messages": [],
   "attention": [
     {
       "level": "warn",
@@ -1362,6 +1350,24 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1788824716559,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Enrico Casertano",
+      "time": "20:10",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788826205845,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Claudia Dzierbicki",
+      "time": "20:10",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788826213409,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1373,7 +1379,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-07T23:44:11+00:00",
     "mailCheck": {
-      "matched": 5,
+      "matched": 6,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -2014,6 +2020,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-07T23:58:19.690001Z",
         "until": "2026-09-07T23:58:27.300710Z"
+      },
+      {
+        "since": "2026-09-08T00:03:35.629819Z",
+        "until": "2026-09-08T00:03:43.546472Z"
+      },
+      {
+        "since": "2026-09-08T00:09:19.578282Z",
+        "until": "2026-09-08T00:09:29.062361Z"
       }
     ],
     "down": false
@@ -2037,7 +2051,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:58:00-04:00"
+      "lastISO": "2026-09-07T20:09:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2047,7 +2061,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T20:00:00-04:00"
+      "lastISO": "2026-09-07T20:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2067,7 +2081,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T20:00:00-04:00"
+      "lastISO": "2026-09-07T20:10:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2087,7 +2101,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T20:00:00-04:00"
+      "lastISO": "2026-09-07T20:10:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2107,7 +2121,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:07:00-04:00"
+      "lastISO": "2026-09-07T20:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2197,7 +2211,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:43:00-04:00"
+      "lastISO": "2026-09-07T20:06:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2237,7 +2251,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-07T19:10:00-04:00"
+      "lastISO": "2026-09-07T20:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
