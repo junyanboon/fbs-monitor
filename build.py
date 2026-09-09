@@ -2702,6 +2702,7 @@ HTA_WATCH_HOURS = 18          # alert inside this many hours before the start
 HTA_STUCK_MINUTES = 10        # Ready to Send past its send time by this much = stuck
 HTA_LOOKBACK_DAYS = 7         # a Sent HTA counts for a booking only inside this window
 HTA_WATCH_TIERS = ("FBS", "Monitor", "Viewing")
+HTA_ACTION_DEDUPE_DAYS = 30   # how far back a filed Action still suppresses
 HTA_ACTION_PREFIX = "🔔 HTA not sent — "
 # ✅ Actions to Perform — the DATABASE id (parent for page creation on the
 # legacy API version); ACTIONS_DS above is its data source id.
@@ -2940,10 +2941,26 @@ def _hta_action_title(booking):
             f"{str(booking.get('date') or '')[:10]} {booking.get('start') or ''}").strip()
 
 
-def _open_hta_action_titles(token):
+def _raised_hta_action_titles(token, since_dt):
+    """Titles this watchdog has ALREADY filed, at any status, since `since_dt`.
+
+    Deliberately not filtered to Pending Review. A title carries the renter,
+    the studio and the exact start time, so it names one booking occurrence and
+    nothing else — once a row exists for it, the question has been asked and
+    answered, and asking again is noise, not diligence.
+
+    The old filter read open rows only. A Processed row therefore stopped
+    suppressing, and the next 15-minute tick re-filed the identical title:
+    five character-identical rows for Hannah Cho / 509B / 2026-09-06 20:00 in
+    eighteen hours, each one re-verified by hand before being closed again.
+
+    HTA_ACTION_DEDUPE_DAYS bounds the read so the set cannot grow without end.
+    It only has to outlast HTA_WATCH_HOURS, which it does by a wide margin.
+    """
     rows = _notion_query(token, ACTIONS_DS, {
         "filter": {"and": [
-            {"property": "Status", "select": {"equals": "Pending Review"}},
+            {"timestamp": "created_time",
+             "created_time": {"on_or_after": since_dt.isoformat()}},
             {"property": "Type", "select": {"equals": "Access / PIN"}},
             {"property": "Request", "title": {"starts_with": HTA_ACTION_PREFIX}},
         ]},
@@ -3021,7 +3038,8 @@ def sync_hta_watch(verdicts, now):
         title = _hta_action_title(b)
         if open_titles is None:
             try:
-                open_titles = _open_hta_action_titles(token)
+                open_titles = _raised_hta_action_titles(
+                    token, now - timedelta(days=HTA_ACTION_DEDUPE_DAYS))
             except Exception as exc:  # noqa: BLE001
                 print(f"  ! HTA watch: cannot read open Actions ({exc}); raising nothing.")
                 return
@@ -3943,8 +3961,9 @@ def write_open_shifts(data):
 
     Same rows the pages already carry in DATA — nothing extra crosses here —
     written beside the pages so the server never has to parse a built page to
-    answer "is this id still open?". Local to the host that builds; the GitHub
-    workflow does not add it, and the Pages edition needs nothing from it.
+    answer "is this id still open?". Also committed and published on Pages
+    (2026-09-09) so The Deck on Cloudflare can read it — public-safe: the
+    same rows DATA.openShifts already carries.
     """
     with open(OPEN_SHIFTS, "w", encoding="utf-8") as fh:
         json.dump({"generatedAtISO": data["generatedAtISO"],

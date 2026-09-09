@@ -213,7 +213,7 @@ jobs:
             STAMP="$(date -u +'%Y-%m-%d %H:%MZ')"
             MSG="FBS Monitor rebuild ${STAMP}"
             if [ -n "${FALLBACK_NOTE:-}" ]; then MSG="${MSG} — ${FALLBACK_NOTE}"; fi
-            git add index.html mobile.html panel-state.json booking-state.json version.json
+            git add index.html mobile.html panel-state.json booking-state.json open-shifts.json version.json
             git commit -m "${MSG}"
             # Another run (or a local push) may have advanced main since checkout —
             # rebase and retry so concurrent pushes don't fail the run red.
