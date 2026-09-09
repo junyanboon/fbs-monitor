@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 11:32 PM ET",
-  "generatedAtISO": "2026-09-08T23:32:38-04:00",
+  "generatedAt": "Sep 8, 11:43 PM ET",
+  "generatedAtISO": "2026-09-08T23:43:17-04:00",
   "studios": [
     {
       "id": "509A",
@@ -753,12 +753,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "22:00",
-      "departed": null,
+      "departed": "23:36",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Angus Dirnbeck",
       "arrived_foreign": false,
-      "departed_foreign": false,
+      "departed_foreign": true,
       "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
@@ -1038,6 +1038,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788920426820,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "23:36",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788924985481,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1047,7 +1056,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-09T02:25:01+00:00",
+    "updatedAt": "2026-09-09T03:43:01+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1858,6 +1867,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T03:32:20.212925Z",
         "until": "2026-09-09T03:32:31.548452Z"
+      },
+      {
+        "since": "2026-09-09T03:38:20.236360Z",
+        "until": "2026-09-09T03:38:29.577452Z"
       }
     ],
     "down": false
@@ -1881,7 +1894,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T23:29:00-04:00"
+      "lastISO": "2026-09-08T23:41:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2021,7 +2034,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-08T23:30:00-04:00"
+      "lastISO": "2026-09-08T23:40:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2041,7 +2054,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-08T23:30:00-04:00"
+      "lastISO": "2026-09-08T23:40:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2383,7 +2396,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:32"
+    "stamp": "23:43"
   }
 }/*__END_DATA__*/;
 
