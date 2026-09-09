@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 6:17 PM ET",
-  "generatedAtISO": "2026-09-09T18:17:02-04:00",
+  "generatedAt": "Sep 9, 6:23 PM ET",
+  "generatedAtISO": "2026-09-09T18:23:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -568,10 +568,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:23",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Anita Pandey",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -742,18 +742,6 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "901",
-      "day_offset": 1,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "b3a8eaa05803",
-      "date": "2026-09-10",
-      "startISO": "2026-09-10T18:45:00-04:00",
-      "endISO": "2026-09-10T19:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "901",
       "day_offset": 2,
@@ -826,24 +814,24 @@ const DATA = /*__DATA__*/{
       "day": "Fri Sep 11"
     },
     {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 2,
-      "start": 19.75,
-      "end": 20.25,
-      "id": "e18cbff9f3aa",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T19:45:00-04:00",
-      "endISO": "2026-09-11T20:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
       "role": "Monitoring",
       "studio": "509B",
       "day_offset": 2,
       "start": 19.75,
       "end": 20.25,
       "id": "6522c321f371",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T19:45:00-04:00",
+      "endISO": "2026-09-11T20:15:00-04:00",
+      "day": "Fri Sep 11"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 2,
+      "start": 19.75,
+      "end": 20.25,
+      "id": "e18cbff9f3aa",
       "date": "2026-09-11",
       "startISO": "2026-09-11T19:45:00-04:00",
       "endISO": "2026-09-11T20:15:00-04:00",
@@ -875,17 +863,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Availability — Jeremy Carter-Gordon — 527 Oct 25 [responder:•••:vps:gmail-1a0878a3f33ecf8b]",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 9 · 16:01",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "T4 neighbour check — Liz (Pink Lemon) — Wed ••• overlap [concierge:b2-neighbour:•••:901]",
       "kind": null,
       "channel": "SMS",
@@ -893,17 +870,6 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Sep 9 · 16:19",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Quick answer — Marilyn Hintsa — still open + call time [responder:•••:vps:sms-in-20353e07]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 9 · 16:28",
       "send_after": null,
       "send_after_iso": null
     },
@@ -952,6 +918,17 @@ const DATA = /*__DATA__*/{
       "created": "Sep 9 · 04:06",
       "send_after": "09:00",
       "send_after_iso": "2026-09-10T09:00:00-04:00"
+    },
+    {
+      "code": "Quick answer — Marilyn Hintsa — still open + call time [responder:•••:vps:sms-in-20353e07]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 9 · 16:28",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1103,6 +1080,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1788991282712,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "18:23",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788992606235,
       "source": "doors"
     }
   ],
@@ -1688,6 +1674,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T22:16:26.837762Z",
         "until": "2026-09-09T22:16:34.161556Z"
+      },
+      {
+        "since": "2026-09-09T22:21:58.208778Z",
+        "until": "2026-09-09T22:22:14.097671Z"
       }
     ],
     "down": false
@@ -1704,16 +1694,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-09T15:02:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-09T16:21:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1721,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T18:17:00-04:00"
+      "lastISO": "2026-09-09T18:22:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1731,7 +1711,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T18:10:00-04:00"
+      "lastISO": "2026-09-09T18:20:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1751,7 +1731,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T18:15:00-04:00"
+      "lastISO": "2026-09-09T18:20:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1771,7 +1751,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T18:10:00-04:00"
+      "lastISO": "2026-09-09T18:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1802,6 +1782,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-09T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-09T18:26:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2144,20 +2134,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
+          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Due",
-          "lastISO": "2026-09-09T16:21:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2217,7 +2203,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:17"
+    "stamp": "18:23"
   }
 }/*__END_DATA__*/;
 
