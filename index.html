@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 10:25 PM ET",
-  "generatedAtISO": "2026-09-08T22:25:22-04:00",
+  "generatedAt": "Sep 8, 10:32 PM ET",
+  "generatedAtISO": "2026-09-08T22:32:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1855,6 +1855,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T02:24:00.200445Z",
         "until": "2026-09-09T02:24:05.354589Z"
+      },
+      {
+        "since": "2026-09-09T02:29:29.466744Z",
+        "until": "2026-09-09T02:29:40.923007Z"
       }
     ],
     "down": false
@@ -1871,6 +1875,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-07T20:06:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-08T20:39:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1878,7 +1892,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T22:23:00-04:00"
+      "lastISO": "2026-09-08T22:28:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1888,7 +1902,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T22:20:00-04:00"
+      "lastISO": "2026-09-08T22:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1898,7 +1912,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T22:15:00-04:00"
+      "lastISO": "2026-09-08T22:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1908,7 +1922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T22:25:00-04:00"
+      "lastISO": "2026-09-08T22:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1928,7 +1942,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T22:20:00-04:00"
+      "lastISO": "2026-09-08T22:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1959,16 +1973,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-08T21:34:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-08T20:39:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2058,7 +2062,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T22:16:00-04:00"
+      "lastISO": "2026-09-08T22:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2311,16 +2315,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
-          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-08T20:39:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2380,7 +2388,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "22:25"
+    "stamp": "22:32"
   }
 }/*__END_DATA__*/;
 
