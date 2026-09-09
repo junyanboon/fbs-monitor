@@ -1811,6 +1811,16 @@ def feed_is_down(arm_events, arm_feed, now, win_start, quiet_hours=5):
     studios open at 07:00. Firing before then would cry wolf every morning, and
     a banner that appears daily is a banner nobody reads by the second week.
     """
+    # Fourth condition, added 2026-09-08 (20:31 Toronto build): BOTH timeline
+    # sources failed — the panel ledger and the door ledger — while the ADT
+    # mail feed still answered with a couple of events. Two arrivals is not
+    # "something is watching"; it is the secondary source alone, and the
+    # timeline that decides `arrived` for everyone else is gone. The guard
+    # stayed quiet and nine renters were marked MISSING / "No arrival" on a
+    # busy Tuesday evening. When the timeline is down, silence is an outage
+    # no matter what the mail says.
+    if arm_feed.get("panel") == "failed" and arm_feed.get("doors") in ("failed", "unconfigured"):
+        return True
     if arm_events:
         return False
     if arm_feed.get("panel") == "ok":

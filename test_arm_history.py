@@ -16,7 +16,17 @@ import sys
 from datetime import datetime, timedelta
 
 import build
-from test_adt_parsing import check
+from test_adt_parsing import check as _check
+
+CHECKS = 0
+
+
+def check(*args, **kwargs):
+    """Count every check so the summary line cannot drift from the file.
+    (It read a hard-coded "50" while three new checks ran unannounced, 2026-09-08.)"""
+    global CHECKS
+    CHECKS += 1
+    return _check(*args, **kwargs)
 
 TZ = build.TZ
 
@@ -167,6 +177,26 @@ def main():
                                       late, win_start),
                    True)
 
+    # 2026-09-08 20:31 Toronto: both timeline sources failed (alarm-mcp
+    # unreachable from the runner), the ADT mail feed still gave two arrivals.
+    # Two events from the SECONDARY source do not mean the timeline is alive;
+    # nine renters read MISSING. Timeline down = outage, whatever the mail says.
+    both_down = {"panel": "failed", "doors": "failed", "mail": "ok"}
+    fails += check("timeline down + a few mail events is still an outage",
+                   build.feed_is_down([panel("527", "17:22"), panel("527", "18:04")],
+                                      both_down, late, win_start),
+                   True)
+    fails += check("timeline down is an outage even early in the day",
+                   build.feed_is_down([], both_down, early, win_start), True)
+
+    # The door ledger alone is a full timeline (it is the primary since the
+    # websocket went live); a dead panel beside a live door feed is not an outage.
+    fails += check("panel failed but doors ok is not an outage",
+                   build.feed_is_down([panel("509A", "07:31")],
+                                      {"panel": "failed", "doors": "ok", "mail": "ok"},
+                                      late, win_start),
+                   False)
+
     # ---- pass 2 must not spend one event on two bookings ------------------
     # The 2026-08-20 case verbatim: Vanessa's 13:00-13:15 viewing in 509A went
     # unseen by the panel tick (2m24s visit, inside one tick), Anneka's 13:30
@@ -297,7 +327,7 @@ def main():
                        [{"studio": "527", "kind": "arrival",
                          "ts": 1788648007997 + 4 * MIN}]), [])
 
-    print("FAILED" if fails else "ok — 50 checks passed")
+    print("FAILED" if fails else f"ok — {CHECKS} checks passed")
     return 1 if fails else 0
 
 
