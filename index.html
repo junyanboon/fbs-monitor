@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 2:52 PM ET",
-  "generatedAtISO": "2026-09-09T14:52:59-04:00",
+  "generatedAt": "Sep 9, 2:53 PM ET",
+  "generatedAtISO": "2026-09-09T14:53:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -544,6 +544,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -567,6 +568,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -590,6 +592,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": "08:54",
       "departed": "10:28",
@@ -619,6 +622,10 @@ const DATA = /*__DATA__*/{
           "time": null
         }
       ],
+      "booking_studios": [
+        "509B",
+        "527"
+      ],
       "heard": true,
       "arrived": "11:01",
       "departed": "11:12",
@@ -644,6 +651,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -667,6 +675,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -689,7 +698,17 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Will Not Send",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "queued",
+          "time": null
+        }
+      ],
+      "booking_studios": [
+        "509B",
+        "527"
+      ],
       "heard": true,
       "arrived": "11:15",
       "departed": "13:12",
@@ -715,6 +734,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -738,6 +758,7 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": "10:47",
       "departed": "13:03",
@@ -761,6 +782,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -784,6 +806,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": "13:22",
       "departed": null,
@@ -807,6 +830,7 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -841,6 +865,7 @@ const DATA = /*__DATA__*/{
           "time": "22:15"
         }
       ],
+      "booking_studios": [],
       "heard": false,
       "arrived": null,
       "departed": null,
@@ -1076,24 +1101,24 @@ const DATA = /*__DATA__*/{
       "day": "Fri Sep 11"
     },
     {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 2,
-      "start": 19.75,
-      "end": 20.25,
-      "id": "6522c321f371",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T19:45:00-04:00",
-      "endISO": "2026-09-11T20:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
       "role": "FBS",
       "studio": "527",
       "day_offset": 2,
       "start": 19.75,
       "end": 20.25,
       "id": "e18cbff9f3aa",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T19:45:00-04:00",
+      "endISO": "2026-09-11T20:15:00-04:00",
+      "day": "Fri Sep 11"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 2,
+      "start": 19.75,
+      "end": 20.25,
+      "id": "6522c321f371",
       "date": "2026-09-11",
       "startISO": "2026-09-11T19:45:00-04:00",
       "endISO": "2026-09-11T20:15:00-04:00",
@@ -2246,7 +2271,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "14:52"
+    "stamp": "14:53"
   }
 }/*__END_DATA__*/;
 
