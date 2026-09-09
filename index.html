@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 11:03 AM ET",
-  "generatedAtISO": "2026-09-09T11:03:20-04:00",
+  "generatedAt": "Sep 9, 11:07 AM ET",
+  "generatedAtISO": "2026-09-09T11:07:11-04:00",
   "studios": [
     {
       "id": "509A",
@@ -840,28 +840,6 @@ const DATA = /*__DATA__*/{
   "openShifts": [],
   "messages": [
     {
-      "code": "Lost & found — Julie Marouze — shoes 509A [concierge:sms-in-d8491c7f]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Sep 9 · 10:19",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Post-HTA go-ahead confirmation — Amanda-May Wilson — 509B [gtg:57611aaf-783a-4fcd-820a-b4548ad9b8db]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 9 · 10:57",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1003,7 +981,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-09T14:51:01+00:00",
+    "updatedAt": "2026-09-09T15:07:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-09T09:00:31.704150Z",
@@ -1260,6 +1238,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T14:58:51.147318Z",
         "until": "2026-09-09T14:58:59.395863Z"
+      },
+      {
+        "since": "2026-09-09T15:04:20.376249Z",
+        "until": "2026-09-09T15:04:20.965889Z"
       }
     ],
     "down": false
@@ -1274,6 +1256,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-07T20:06:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-09T10:31:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1313,7 +1305,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T11:00:00-04:00"
+      "lastISO": "2026-09-09T11:05:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1343,7 +1335,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T10:07:00-04:00"
+      "lastISO": "2026-09-09T11:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1454,16 +1446,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-09T10:10:00-04:00"
-    },
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-09T10:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1735,11 +1717,11 @@ const DATA = /*__DATA__*/{
         "status": "crit",
         "robots": [
           "The Planner",
+          "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Analyst",
           "The Host",
           "The Weatherman",
-          "Watchlist sync",
           "The Closer",
           "The Loop",
           "The Opener"
@@ -1785,7 +1767,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:03"
+    "stamp": "11:07"
   }
 }/*__END_DATA__*/;
 
