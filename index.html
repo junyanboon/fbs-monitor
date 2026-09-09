@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 11:13 AM ET",
-  "generatedAtISO": "2026-09-09T11:13:20-04:00",
+  "generatedAt": "Sep 9, 11:17 AM ET",
+  "generatedAtISO": "2026-09-09T11:17:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -629,7 +629,9 @@ const DATA = /*__DATA__*/{
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
-      "dup_studios": null,
+      "dup_studios": [
+        "527"
+      ],
       "start": 11.0,
       "end": 13.0,
       "access_gap": false
@@ -678,6 +680,31 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 21.0,
       "end": 23.0,
+      "access_gap": false
+    },
+    {
+      "studio": "527",
+      "who": "Amanda-May Wilson — Amanda-May Wilson — Private Session",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "heard": false,
+      "arrived": "11:15",
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": "Amanda-May Wilson",
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": [
+        "509B"
+      ],
+      "start": 11.0,
+      "end": 13.0,
       "access_gap": false
     },
     {
@@ -902,7 +929,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -950,6 +977,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788966738149,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Amanda-May Wilson",
+      "time": "11:15",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788966944740,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -962,16 +998,6 @@ const DATA = /*__DATA__*/{
       "time": "22:20",
       "ts": 1788920426820,
       "when": "Tue 22:20"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "Khalid Roach-McLeod",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "22:13",
-      "ts": 1788920031172,
-      "when": "Tue 22:13"
     },
     "901": {
       "kind": "departure",
@@ -991,6 +1017,12 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-09T15:13:01+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-09T09:00:31.704150Z",
@@ -1255,6 +1287,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T15:09:24.309338Z",
         "until": "2026-09-09T15:09:35.586328Z"
+      },
+      {
+        "since": "2026-09-09T15:15:20.422130Z",
+        "until": "2026-09-09T15:15:30.582160Z"
       }
     ],
     "down": false
@@ -1276,8 +1312,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
       "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-09T10:31:00-04:00"
     },
     {
@@ -1308,7 +1344,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T11:00:00-04:00"
+      "lastISO": "2026-09-09T11:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1318,7 +1354,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T11:10:00-04:00"
+      "lastISO": "2026-09-09T11:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1780,7 +1816,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:13"
+    "stamp": "11:17"
   }
 }/*__END_DATA__*/;
 
