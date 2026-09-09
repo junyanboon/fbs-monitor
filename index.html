@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 9:02 PM ET",
-  "generatedAtISO": "2026-09-08T21:02:15-04:00",
+  "generatedAt": "Sep 8, 9:16 PM ET",
+  "generatedAtISO": "2026-09-08T21:16:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -848,9 +848,25 @@ const DATA = /*__DATA__*/{
       "created": "Sep 8 · 20:56",
       "send_after": null,
       "send_after_iso": null
+    },
+    {
+      "code": "AMENITY-Sangah-•••-chairs",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 8 · 21:05",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "693",
@@ -1752,6 +1768,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T01:00:15.213796Z",
         "until": "2026-09-09T01:00:26.375119Z"
+      },
+      {
+        "since": "2026-09-09T01:05:28.953048Z",
+        "until": "2026-09-09T01:05:41.970585Z"
+      },
+      {
+        "since": "2026-09-09T01:11:00.285075Z",
+        "until": "2026-09-09T01:11:05.639922Z"
+      },
+      {
+        "since": "2026-09-09T01:16:30.317165Z",
+        "until": "2026-09-09T01:16:36.656811Z"
       }
     ],
     "down": false
@@ -1763,8 +1791,8 @@ const DATA = /*__DATA__*/{
       "expected": "19:30 America/Toronto · Codex production fallback",
       "produces": "Tomorrow staged for approval",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-07T20:06:00-04:00"
     },
     {
@@ -1775,7 +1803,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T21:02:00-04:00"
+      "lastISO": "2026-09-08T21:13:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1785,7 +1813,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T21:00:00-04:00"
+      "lastISO": "2026-09-08T21:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1795,7 +1823,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T21:00:00-04:00"
+      "lastISO": "2026-09-08T21:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1805,7 +1833,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T21:00:00-04:00"
+      "lastISO": "2026-09-08T21:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1825,7 +1853,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T21:00:00-04:00"
+      "lastISO": "2026-09-08T21:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1835,7 +1863,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T20:07:00-04:00"
+      "lastISO": "2026-09-08T21:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1945,7 +1973,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T20:10:00-04:00"
+      "lastISO": "2026-09-08T21:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2224,7 +2252,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Planner",
           "desk-loop (Cloud Run)",
@@ -2238,7 +2266,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Planner",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-07T20:06:00-04:00"
         }
       },
@@ -2277,7 +2305,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "21:02"
+    "stamp": "21:16"
   }
 }/*__END_DATA__*/;
 
