@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 5:32 PM ET",
-  "generatedAtISO": "2026-09-09T17:32:05-04:00",
+  "generatedAt": "Sep 9, 5:47 PM ET",
+  "generatedAtISO": "2026-09-09T17:47:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -322,10 +322,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:45",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Enrico Casertano",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1108,20 +1108,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788981550306,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Enrico Casertano",
+      "time": "17:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788990344073,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Fabio Hernandez",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "22:20",
-      "ts": 1788920426820,
-      "when": "Tue 22:20"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
@@ -1667,6 +1665,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T21:27:26.526084Z",
         "until": "2026-09-09T21:27:32.678338Z"
+      },
+      {
+        "since": "2026-09-09T21:32:46.787268Z",
+        "until": "2026-09-09T21:32:53.839216Z"
+      },
+      {
+        "since": "2026-09-09T21:37:50.468982Z",
+        "until": "2026-09-09T21:38:00.641033Z"
+      },
+      {
+        "since": "2026-09-09T21:43:46.878463Z",
+        "until": "2026-09-09T21:43:52.047275Z"
       }
     ],
     "down": false
@@ -1690,7 +1700,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T17:28:00-04:00"
+      "lastISO": "2026-09-09T17:44:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1700,7 +1710,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T17:30:00-04:00"
+      "lastISO": "2026-09-09T17:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1710,7 +1720,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T17:30:00-04:00"
+      "lastISO": "2026-09-09T17:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1720,7 +1730,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T17:30:00-04:00"
+      "lastISO": "2026-09-09T17:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1740,7 +1750,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T17:30:00-04:00"
+      "lastISO": "2026-09-09T17:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2192,7 +2202,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:32"
+    "stamp": "17:47"
   }
 }/*__END_DATA__*/;
 
