@@ -2768,9 +2768,17 @@ def fetch_hta_rows(token, since_dt):
     A BC row is not built to be a How-to-Access, so it is accepted as PROOF a
     send happened and never as a promise that one will: a queued or errored BC
     row is ignored, and a booking with nothing else still reads `missing`
-    rather than being quieted into `scheduled`. The residual risk is a Sent BC
-    row that carries no codes, which would silence a real gap; `shape` is
-    carried on every row so a reader can tell which evidence answered.
+    rather than being quieted into `scheduled`. `shape` is carried on every row
+    so a reader can tell which evidence answered.
+
+    The Sent test alone was not enough (2026-09-09). Most BC sends are a bare
+    confirmation — "you're all set for Tuesday in Studio 509A" — with no codes
+    anywhere in the body, and the merged access variant is the minority. Read
+    on the title prefix alone, those silenced a real question: Laurie-Eve
+    Bastiani's 509A booking of 2026-09-08 read verified off a message that told
+    her only the day and the room. So a BC row must ALSO carry an access code
+    in its body to count. That closes the residual risk the earlier docstring
+    named and left open.
     """
     # Notion compound filters nest TWO levels deep, no more. The BC rule is
     # "starts with BC AND Sent", and putting that `and` inside this `or`
@@ -2794,8 +2802,11 @@ def fetch_hta_rows(token, since_dt):
     out = []
     for row in rows:
         p = row.get("properties", {})
-        if _hta_shape(p) == "BC" and (_prop_text(p.get("Status")) or "") != "Sent":
-            continue        # a queued or errored BC row is not proof of anything
+        if _hta_shape(p) == "BC":
+            if (_prop_text(p.get("Status")) or "") != "Sent":
+                continue    # a queued or errored BC row is not proof of anything
+            if not _carries_access(p):
+                continue    # a confirmation with no codes in it is not access
         out.append({
             "id": row.get("id"),
             "artist": _relation_id(p.get("Artist")),
@@ -2820,6 +2831,18 @@ def _filter_depth(f):
         if key in f:
             return 1 + max((_filter_depth(x) for x in f[key]), default=0)
     return 0
+
+
+def _carries_access(properties):
+    """Does this queue row's body actually hand the renter a way in?
+
+    The sweep writes every access line as "Door Code: NNNN" / "Alarm Code:
+    NNNN", in the merged BC send and the purpose-built HTA send alike, so the
+    label is the marker. Matched case-insensitively and on the label only: the
+    digits are never read, logged or compared here.
+    """
+    body = (_prop_text(properties.get("Message Body")) or "").lower()
+    return "door code" in body or "alarm code" in body
 
 
 def _hta_shape(properties):

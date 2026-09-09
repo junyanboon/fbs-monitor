@@ -241,11 +241,18 @@ def main():
     test_sync_dry_run_raises_once_and_links_verified()
     test_kill_switch_writes_nothing()
     test_templates_render_the_new_states()
+    # Defined below this function, so main() runs LAST in the file. It used to
+    # run here, at which point none of them existed yet: every test after this
+    # point was dead code that never once executed, including both BC ones.
+    test_merged_bc_row_counts_as_a_sent_access_message()
+    test_hta_row_filter_accepts_a_sent_bc_row_only()
+    test_shape_names_the_evidence()
+    test_hta_filter_never_exceeds_notion_two_level_limit()
+    test_unsent_bc_rows_are_dropped_after_the_query()
+    test_bc_row_without_codes_is_not_access()
+    test_carries_access_reads_the_label_not_the_digits()
+    test_filter_depth_counts_like_notion()
     print("HTA watch regression tests: OK")
-
-
-if __name__ == "__main__":
-    main()
 
 
 # ── filter shape ──────────────────────────────────────────────────────────
@@ -269,9 +276,11 @@ def test_unsent_bc_rows_are_dropped_after_the_query():
     """The Sent test moved from the filter into Python; the safety margin
     (a queued or errored BC row is not proof) must survive the move."""
     import datetime
-    def mk(code, status):
+    def mk(code, status, body="Door Code: 5123"):
         return {"id": code, "properties": {
             "Message Code": {"type": "title", "title": [{"plain_text": code}]},
+            "Message Body": {"type": "rich_text",
+                             "rich_text": [{"plain_text": body}]},
             "Status": {"type": "status", "status": {"name": status}},
             "Artist": {"type": "relation", "relation": []},
             "Studio": {"type": "select", "select": None},
@@ -290,9 +299,64 @@ def test_unsent_bc_rows_are_dropped_after_the_query():
     assert sorted(r["id"] for r in out) == ["BC-sweep-1", "HTA-1"]
 
 
+def test_bc_row_without_codes_is_not_access():
+    """2026-09-09. A Sent BC row is only proof if it actually carries a code.
+
+    Laurie-Eve Bastiani / 509A / 2026-09-08 read verified off BC-sweep-0908-
+    1700-509A, whose whole body was "you're all set for Tuesday, September 8 in
+    Studio 509A". No door code, no alarm code. The bare confirmation is the
+    COMMON shape of a BC send and the merged access variant is the exception,
+    so the title prefix alone quietly verified bookings nobody had been told
+    how to enter. An HTA-shaped row is unaffected: it is a How-to-Access by
+    construction and is judged on status and clocks alone.
+    """
+    import datetime
+    def mk(code, body):
+        return {"id": code, "properties": {
+            "Message Code": {"type": "title", "title": [{"plain_text": code}]},
+            "Message Body": {"type": "rich_text",
+                             "rich_text": [{"plain_text": body}]},
+            "Status": {"type": "status", "status": {"name": "Sent"}},
+            "Artist": {"type": "relation", "relation": []},
+            "Studio": {"type": "select", "select": None},
+            "Booking": {"type": "relation", "relation": []},
+            "Send After": {"type": "date", "date": None},
+            "Sent At": {"type": "date", "date": None},
+            "Created time": {"type": "created_time", "created_time": "2026-09-06T00:00:00.000Z"},
+        }}
+    rows = [
+        mk("BC-with-codes", "Please use the same codes as before:\nDoor Code: 5123"),
+        mk("BC-alarm-only", "Alarm Code: 6284"),
+        mk("BC-bare", "Hi Laurie-Eve, you're all set for Tuesday, September 8."),
+        mk("HTA-no-body-marker", "Watch our quick video walkthrough."),
+    ]
+    orig = build._notion_query; build._notion_query = lambda t, d, b: rows
+    try:
+        out = build.fetch_hta_rows("t", datetime.datetime(2026, 9, 6, tzinfo=datetime.timezone.utc))
+    finally:
+        build._notion_query = orig
+    assert sorted(r["id"] for r in out) == [
+        "BC-alarm-only", "BC-with-codes", "HTA-no-body-marker"]
+
+
+def test_carries_access_reads_the_label_not_the_digits():
+    def props(body):
+        return {"Message Body": {"type": "rich_text",
+                                 "rich_text": [{"plain_text": body}]}}
+    assert build._carries_access(props("door code: 5123"))
+    assert build._carries_access(props("∙ Alarm Code: 4509"))
+    assert not build._carries_access(props("You're all set for Tuesday."))
+    assert not build._carries_access(props(""))
+    assert not build._carries_access({})
+
+
 def test_filter_depth_counts_like_notion():
     leaf = {"property": "x", "title": {"starts_with": "a"}}
     assert build._filter_depth(leaf) == 0
     assert build._filter_depth({"and": [leaf]}) == 1
     assert build._filter_depth({"and": [leaf, {"or": [leaf]}]}) == 2
     assert build._filter_depth({"and": [{"or": [leaf, {"and": [leaf]}]}]}) == 3
+
+
+if __name__ == "__main__":
+    main()
