@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 11:30 AM ET",
-  "generatedAtISO": "2026-09-09T11:30:36-04:00",
+  "generatedAt": "Sep 9, 11:31 AM ET",
+  "generatedAtISO": "2026-09-09T11:31:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -410,7 +410,7 @@ const DATA = /*__DATA__*/{
       ],
       "start": 11.0,
       "end": 13.0,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "509B",
@@ -462,11 +462,22 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "who": "Amanda-May Wilson — Amanda-May Wilson — Private Session",
       "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "heard": false,
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Unsent",
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        },
+        {
+          "kind": "HTA",
+          "state": "awaiting",
+          "time": null
+        }
+      ],
+      "heard": true,
       "arrived": "11:15",
       "departed": null,
       "facilitator": null,
@@ -481,7 +492,7 @@ const DATA = /*__DATA__*/{
       ],
       "start": 11.0,
       "end": 13.0,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "527",
@@ -643,6 +654,18 @@ const DATA = /*__DATA__*/{
   "openShifts": [],
   "messages": [
     {
+      "code": "HTA-sweep-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Registrar",
+      "created": "Sep 9 · 11:31",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "HTA for Amanda-May Wilson in Studio 527"
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -709,7 +732,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "crit",
-      "text": "HTA not queued · Amanda-May Wilson · 527 · 11:00"
+      "text": "HTA awaiting review · Amanda-May Wilson · 527 · 11:00"
     }
   ],
   "armEvents": [
@@ -1604,7 +1627,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:30"
+    "stamp": "11:31"
   }
 }/*__END_DATA__*/;
 
