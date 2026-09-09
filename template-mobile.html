@@ -549,6 +549,7 @@ function render(){
     const st=stateOf(e,n);
     const plan=`plan-${e.plan||"oneoff"}`;
     let meta=`${hm(e.start)}–${hm(e.end)}`;
+    if((e.booking_studios||[]).length>1)meta+=` · ${esc(e.booking_studios.join(" + "))} booking`;
     /* In the building but in the wrong room — a different job from a no-show
        (which lives on the timeline + Missing pill). */
     if(e.wrong_studio)meta+=` <span class="wrong">⚠ in ${e.wrong_studio.studio} at ${e.wrong_studio.at}</span>`;
