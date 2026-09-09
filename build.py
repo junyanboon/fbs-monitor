@@ -1168,6 +1168,7 @@ def parse_notion(rows):
         out.append({
             "id": row.get("id"),
             "artist": _relation_id(p.get("🎨 Artist Database")),
+            "skedda_id": _prop_text(p.get("Skedda Booking ID")),
             "status": (_prop_text(p.get("Booking Status")) or "").strip(),
             "studio": studio,
             "start": _prop_text(p.get("Start Time")),
@@ -1265,7 +1266,19 @@ def join_notion(events, notion_rows):
             e["_board_armed"] = best["board_armed"]
             e["_notion_id"] = best["id"]
             e["_artist_id"] = best.get("artist")
+            e["_skedda_id"] = best.get("skedda_id")
             e["_board_status"] = best["status"]
+    for e in events:
+        if not e.get("_skedda_id") or not e.get("_artist_id"):
+            continue
+        rooms = sorted({other["studio"] for other in events
+                        if other.get("kind") == "booking"
+                        and other.get("_skedda_id") == e["_skedda_id"]
+                        and other.get("_artist_id") == e["_artist_id"]
+                        and other.get("start") == e.get("start")
+                        and other.get("end") == e.get("end")})
+        if len(rooms) > 1:
+            e["booking_studios"] = rooms
     return events
 
 
@@ -2521,6 +2534,7 @@ def fetch_message_dispatch(token, win_start, win_end):
             continue
         out.append({
             "kind": kind,
+            "bookings": [r.get("id", "").replace("-", "") for r in (p.get("Booking") or {}).get("relation", [])],
             "artist": artist,
             "studio": studio,
             "status": _prop_text(p.get("Status")) or "",
@@ -2635,13 +2649,29 @@ def apply_message_dispatch(events, rows, base_day):
         if not artist or not studio:
             continue
         for kind, field in (("AVA", "_ava_status"), ("EOB", "_eob_status")):
-            candidates = by_key.get((artist, studio, kind), [])
+            candidates = list(by_key.get((artist, studio, kind), []))
+            # Booking relations are explicit coverage. EOB can also use a
+            # sibling room only when the source booking ID AND exact span agree.
+            related = [r for r in rows if r.get("artist") == artist and r.get("kind") == kind
+                       and event.get("_notion_id", "").replace("-", "") in r.get("bookings", [])]
+            if kind == "EOB" and event.get("_skedda_id"):
+                siblings = {e.get("studio") for e in events
+                            if e.get("kind") == "booking" and e.get("_artist_id") == artist
+                            and e.get("_skedda_id") == event["_skedda_id"]
+                            and e.get("start") == event.get("start") and e.get("end") == event.get("end")}
+                related += [r for r in rows if r.get("artist") == artist
+                            and r.get("kind") == kind and r.get("studio") in siblings]
+            candidates += [r for r in related if r not in candidates]
             expected = _expected_dispatch_at(event, kind, base_day)
             timed = [r for r in candidates
                      if _row_datetime(r, "send_after") is not None
                      and expected is not None
                      and abs((_row_datetime(r, "send_after") - expected).total_seconds()) <= 300]
-            if timed:
+            linked = [r for r in candidates if event.get("_notion_id", "").replace("-", "")
+                      in r.get("bookings", [])]
+            if linked:
+                matches = linked
+            elif timed:
                 matches = timed
             elif booking_count.get((artist, studio)) == 1:
                 matches = [r for r in candidates if _row_datetime(r, "send_after") is None]
@@ -3502,6 +3532,7 @@ def prepare_board_events(events):
         # Public-safe AVA/EOB projection: kind + small state vocabulary + local
         # clock only. No queue ids, Artist ids, recipients or message content.
         "dispatch": e.get("dispatch", []),
+        "booking_studios": e.get("booking_studios", []),
         # Boolean only: "this renter has texted us today". Suppresses the No GTG
         # chip — see apply_heard(). No content of any kind crosses.
         "heard": bool(e.get("heard")),
