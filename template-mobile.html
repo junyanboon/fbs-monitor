@@ -797,8 +797,8 @@ function cdTxt(nr){
        per-row status pills dropped deliberately. Live rows only —
        retired/paused personas are Run-Monitor bookkeeping, not operations. */
     const liveR=R.filter(r=>r.monitoring==="Live").map(r=>({...r,nr:nextRun(r,n)}));
-    const attn=liveR.filter(r=>r.status!=="ok");
-    const fine=liveR.filter(r=>r.status==="ok")
+    const attn=liveR.filter(r=>r.status==="crit");
+    const fine=liveR.filter(r=>r.status!=="crit")
       .sort((a,b)=>((a.nr&&a.nr.mins)??1e9)-((b.nr&&b.nr.mins)??1e9));
     const buckets=[["Next hour",[]],["Later today",[]],["Overnight",[]],["Tomorrow",[]],["Later",[]]];
     for(const r of fine){
