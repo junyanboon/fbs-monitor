@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 8, 2026",
   "shiftBaseDay": "2026-09-08",
-  "generatedAt": "Sep 8, 7:58 PM ET",
-  "generatedAtISO": "2026-09-08T19:58:47-04:00",
+  "generatedAt": "Sep 8, 8:01 PM ET",
+  "generatedAtISO": "2026-09-08T20:01:16-04:00",
   "studios": [
     {
       "id": "509A",
@@ -592,10 +592,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "heard": false,
       "arrived": "18:58",
-      "departed": null,
+      "departed": "20:01",
       "facilitator": null,
       "arrived_by": "Julie Marouze",
-      "departed_by": null,
+      "departed_by": "Julie Marouze",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -798,10 +798,10 @@ const DATA = /*__DATA__*/{
       "hta": null,
       "dispatch": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "19:59",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Viktoriia Osipovych",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -815,7 +815,19 @@ const DATA = /*__DATA__*/{
   ],
   "staff": [],
   "openShifts": [],
-  "messages": [],
+  "messages": [
+    {
+      "code": "BC-sweep-•••B|BC-sweep-•••B",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 8 · 20:01",
+      "send_after": null,
+      "send_after_iso": null
+    }
+  ],
   "attention": [
     {
       "level": "warn",
@@ -975,6 +987,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1788911467156,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Viktoriia Osipovych",
+      "time": "19:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788911945845,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "19:59",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1788911959028,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "20:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1788912056157,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -984,7 +1023,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-08T23:57:01+00:00",
+    "updatedAt": "2026-09-09T00:01:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1639,6 +1678,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-08T23:54:30.787326Z",
         "until": "2026-09-08T23:54:41.140544Z"
+      },
+      {
+        "since": "2026-09-09T00:00:00.466133Z",
+        "until": "2026-09-09T00:00:12.797534Z"
       }
     ],
     "down": false
@@ -1682,7 +1725,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:55:00-04:00"
+      "lastISO": "2026-09-08T20:00:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1692,7 +1735,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:50:00-04:00"
+      "lastISO": "2026-09-08T20:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1702,7 +1745,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:45:00-04:00"
+      "lastISO": "2026-09-08T20:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1712,7 +1755,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:55:00-04:00"
+      "lastISO": "2026-09-08T20:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1722,7 +1765,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:00:00-04:00"
+      "lastISO": "2026-09-08T20:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1732,7 +1775,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:50:00-04:00"
+      "lastISO": "2026-09-08T20:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1802,7 +1845,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:00:00-04:00"
+      "lastISO": "2026-09-08T19:59:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1852,7 +1895,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-08T19:46:00-04:00"
+      "lastISO": "2026-09-08T20:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2168,7 +2211,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:58"
+    "stamp": "20:01"
   }
 }/*__END_DATA__*/;
 
