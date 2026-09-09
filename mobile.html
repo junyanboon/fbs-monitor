@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 10:02 AM ET",
-  "generatedAtISO": "2026-09-09T10:02:13-04:00",
+  "generatedAt": "Sep 9, 10:12 AM ET",
+  "generatedAtISO": "2026-09-09T10:12:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -622,50 +622,6 @@ const DATA = /*__DATA__*/{
   "openShifts": [],
   "messages": [
     {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 9 · 04:06",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-10T09:00:00-04:00"
-    },
-    {
-      "code": "GTG-nudge-sweep-•••B",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 9 · 04:31",
-      "send_after": "07:00",
-      "send_after_iso": "2026-09-09T07:00:00-04:00"
-    },
-    {
-      "code": "PBF overtime — Ishfaaq Jookhun — 901 — •••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "Other",
-      "created": "Sep 9 · 08:13",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "COURTESY — Amanda-May Wilson [responder:•••:vps:sms-in-65dce09b]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 9 · 10:00",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -712,6 +668,17 @@ const DATA = /*__DATA__*/{
       "send_after": "18:30",
       "send_after_iso": "2026-09-09T18:30:00-04:00",
       "label": "AVA for Nina Li in Studio 901"
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 9 · 04:06",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-10T09:00:00-04:00"
     },
     {
       "code": "EOB-sweep-•••B",
@@ -1008,6 +975,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T14:01:51.327050Z",
         "until": "2026-09-09T14:02:01.530660Z"
+      },
+      {
+        "since": "2026-09-09T14:07:20.027697Z",
+        "until": "2026-09-09T14:07:31.375727Z"
       }
     ],
     "down": false
@@ -1024,6 +995,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-07T20:06:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-09T08:19:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1031,7 +1012,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T10:00:00-04:00"
+      "lastISO": "2026-09-09T10:12:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1041,7 +1022,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T10:00:00-04:00"
+      "lastISO": "2026-09-09T10:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1061,7 +1042,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T10:00:00-04:00"
+      "lastISO": "2026-09-09T10:10:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1081,7 +1062,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T10:00:00-04:00"
+      "lastISO": "2026-09-09T10:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1091,7 +1072,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T09:07:00-04:00"
+      "lastISO": "2026-09-09T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1112,16 +1093,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-09T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-09T08:19:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1201,7 +1172,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T09:10:00-04:00"
+      "lastISO": "2026-09-09T10:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1464,16 +1435,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
-          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-09T08:19:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -1533,7 +1508,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:02"
+    "stamp": "10:12"
   }
 }/*__END_DATA__*/;
 
