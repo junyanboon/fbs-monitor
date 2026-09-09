@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 3:38 PM ET",
-  "generatedAtISO": "2026-09-09T15:38:24-04:00",
+  "generatedAt": "Sep 9, 3:47 PM ET",
+  "generatedAtISO": "2026-09-09T15:47:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -837,24 +837,24 @@ const DATA = /*__DATA__*/{
       "day": "Fri Sep 11"
     },
     {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 2,
-      "start": 19.75,
-      "end": 20.25,
-      "id": "e18cbff9f3aa",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T19:45:00-04:00",
-      "endISO": "2026-09-11T20:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
       "role": "Monitoring",
       "studio": "509B",
       "day_offset": 2,
       "start": 19.75,
       "end": 20.25,
       "id": "6522c321f371",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T19:45:00-04:00",
+      "endISO": "2026-09-11T20:15:00-04:00",
+      "day": "Fri Sep 11"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 2,
+      "start": 19.75,
+      "end": 20.25,
+      "id": "e18cbff9f3aa",
       "date": "2026-09-11",
       "startISO": "2026-09-11T19:45:00-04:00",
       "endISO": "2026-09-11T20:15:00-04:00",
@@ -921,7 +921,12 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-10T09:00:00-04:00"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -1527,6 +1532,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-09T19:34:22.002602Z",
         "until": "2026-09-09T19:34:35.375059Z"
+      },
+      {
+        "since": "2026-09-09T19:39:51.136676Z",
+        "until": "2026-09-09T19:39:58.578700Z"
+      },
+      {
+        "since": "2026-09-09T19:44:58.433793Z",
+        "until": "2026-09-09T19:45:04.578896Z"
       }
     ],
     "down": false
@@ -1538,8 +1551,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
       "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-09T15:02:00-04:00"
     },
     {
@@ -1550,7 +1563,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T15:39:00-04:00"
+      "lastISO": "2026-09-09T15:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1560,7 +1573,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T15:30:00-04:00"
+      "lastISO": "2026-09-09T15:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1570,7 +1583,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T15:30:00-04:00"
+      "lastISO": "2026-09-09T15:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1580,7 +1593,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T15:35:00-04:00"
+      "lastISO": "2026-09-09T15:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1600,7 +1613,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T15:30:00-04:00"
+      "lastISO": "2026-09-09T15:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1999,7 +2012,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "Watchlist sync",
           "desk-loop (Cloud Run)",
@@ -2013,7 +2026,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "Watchlist sync",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-09T15:02:00-04:00"
         }
       },
@@ -2052,7 +2065,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "15:38"
+    "stamp": "15:47"
   }
 }/*__END_DATA__*/;
 
