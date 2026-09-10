@@ -2242,6 +2242,24 @@ def robot_status(r, now):
             and ws is not None and we is not None and ws < we):
         opening = now.replace(hour=int(ws), minute=0, second=0, microsecond=0)
         age_min = (now - max(last, opening)).total_seconds() / 60
+    # A daily fixed-time lane is due at its declared Toronto occurrence,
+    # not at 75% of the previous heartbeat's age. Keep the existing allowance.
+    expected = str(r.get("expected") or "")
+    clock = expected.split(" America/Toronto", 1)[0]
+    if (cadence == "daily" and expected.startswith(clock + " America/Toronto")
+            and len(clock) == 5 and clock[2] == ":"
+            and clock[:2].isdigit() and clock[3:].isdigit()
+            and int(clock[:2]) < 24 and int(clock[3:]) < 60
+            and stale >= 1440):
+        from datetime import timedelta
+        due = now.replace(hour=int(clock[:2]), minute=int(clock[3:]), second=0, microsecond=0)
+        if now < due:
+            due -= timedelta(days=1)
+        if last >= due:
+            return "ok", "On time"
+        if now <= due + timedelta(minutes=stale - 1440):
+            return "watch", "Awaiting completion"
+        return "crit", "Overdue"
     if cadence == "monthly":
         if last.year == now.year and last.month == now.month:
             return "ok", "On time"

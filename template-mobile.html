@@ -790,7 +790,7 @@ function cdTxt(nr){
     const label={ok:"fine",watch:"look",crit:"broken"};
     leaseHtml=`<div class="fleet">`+F.lines.map(l=>{
       const s=l.status,w=l.worst;
-      const small=s==="ok"?esc(l.fine):`<b>${esc(l.down)}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+ago(w.lastISO)+".":""}`;
+      const small=s==="ok"?esc(l.fine):`<b>${esc(s==="crit" ? "Completion is overdue." : "Awaiting the next completion.")}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+ago(w.lastISO)+".":""}`;
       return `<div class="hrow ${s==="ok"?"":s}"><span class="dot ${s==="ok"?"":s}"></span>`+
         `<span class="nm">${esc(l.name)}<small>${small}</small></span><span class="st">${label[s]||"fine"}</span></div>`;}).join("")+
       `<div class="who">${F.liveCount} robots${F.holder?` · run by ${esc(F.holder)}`:""}${F.where?` ${esc(F.where)}`:""} · ${esc(F.stamp)}</div></div>`;
