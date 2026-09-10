@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 10, 2:17 AM ET",
-  "generatedAtISO": "2026-09-10T02:17:11-04:00",
+  "generatedAt": "Sep 10, 2:32 AM ET",
+  "generatedAtISO": "2026-09-10T02:32:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -2325,6 +2325,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T06:16:49.997297Z",
         "until": "2026-09-10T06:16:56.280963Z"
+      },
+      {
+        "since": "2026-09-10T06:22:27.728490Z",
+        "until": "2026-09-10T06:22:38.056411Z"
+      },
+      {
+        "since": "2026-09-10T06:28:29.790344Z",
+        "until": "2026-09-10T06:28:39.749016Z"
       }
     ],
     "down": false
@@ -2371,6 +2379,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-09T04:05:00-04:00"
     },
     {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-09T04:35:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2378,7 +2396,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T02:12:00-04:00"
+      "lastISO": "2026-09-10T02:29:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2421,16 +2439,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-09T19:47:00-04:00"
     },
     {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-09T04:35:00-04:00"
-    },
-    {
       "run": "The Weatherman",
       "cadence": "Daily",
       "expected": "03:10 + hourly 09:10–23:10 America/Toronto · Codex production fallback",
@@ -2458,7 +2466,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T02:15:00-04:00"
+      "lastISO": "2026-09-10T02:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2468,7 +2476,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T02:15:00-04:00"
+      "lastISO": "2026-09-10T02:30:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2488,7 +2496,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T02:10:00-04:00"
+      "lastISO": "2026-09-10T02:30:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2858,7 +2866,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "02:17"
+    "stamp": "02:32"
   }
 }/*__END_DATA__*/;
 
