@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 8:47 AM ET",
-  "generatedAtISO": "2026-09-10T08:47:07-04:00",
+  "generatedAt": "Sep 10, 8:55 AM ET",
+  "generatedAtISO": "2026-09-10T08:55:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -328,10 +328,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "08:53",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Annie Ng",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -896,18 +896,18 @@ const DATA = /*__DATA__*/{
       "text": "HTA not queued · Natascha M Peerspace) · 901 · 17:30"
     }
   ],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Fabio Hernandez",
-      "remote": false,
-      "source": "doors",
+  "armEvents": [
+    {
       "studio": "509A",
-      "time": "22:25",
-      "ts": 1789007152678,
-      "when": "Wed 22:25"
-    },
+      "name": "Annie Ng",
+      "time": "08:53",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789044785828,
+      "source": "doors"
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "kind": "departure",
       "name": "David Garzon",
@@ -949,12 +949,12 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-10T03:12:01+00:00",
+    "updatedAt": "2026-09-10T12:55:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-10T09:03:30.572851Z",
@@ -1119,6 +1119,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T12:42:27.129601Z",
         "until": "2026-09-10T12:42:42.182172Z"
+      },
+      {
+        "since": "2026-09-10T12:48:31.574184Z",
+        "until": "2026-09-10T12:48:37.902182Z"
+      },
+      {
+        "since": "2026-09-10T12:54:16.501539Z",
+        "until": "2026-09-10T12:54:23.614559Z"
       }
     ],
     "down": false
@@ -1132,7 +1140,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:45:00-04:00"
+      "lastISO": "2026-09-10T08:51:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1142,7 +1150,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:40:00-04:00"
+      "lastISO": "2026-09-10T08:50:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1162,7 +1170,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:45:00-04:00"
+      "lastISO": "2026-09-10T08:55:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1182,7 +1190,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:40:00-04:00"
+      "lastISO": "2026-09-10T08:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1640,7 +1648,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "08:47"
+    "stamp": "08:55"
   }
 }/*__END_DATA__*/;
 
