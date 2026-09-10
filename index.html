@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 11:12 PM ET",
-  "generatedAtISO": "2026-09-09T23:12:23-04:00",
+  "generatedAt": "Sep 9, 11:17 PM ET",
+  "generatedAtISO": "2026-09-09T23:17:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -877,15 +877,15 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
+      "role": "FBS",
+      "studio": "509B",
       "day_offset": 1,
-      "start": 9.5,
-      "end": 10.0,
-      "id": "c553be146eec",
+      "start": 8.75,
+      "end": 9.25,
+      "id": "0f88a1eca9bd",
       "date": "2026-09-10",
-      "startISO": "2026-09-10T09:30:00-04:00",
-      "endISO": "2026-09-10T10:00:00-04:00",
+      "startISO": "2026-09-10T08:45:00-04:00",
+      "endISO": "2026-09-10T09:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -1021,30 +1021,6 @@ const DATA = /*__DATA__*/{
       "day": "Fri Sep 11"
     },
     {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 2,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "b8d60334d874",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T18:45:00-04:00",
-      "endISO": "2026-09-11T19:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 2,
-      "start": 19.75,
-      "end": 20.25,
-      "id": "6522c321f371",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T19:45:00-04:00",
-      "endISO": "2026-09-11T20:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
       "role": "FBS",
       "studio": "527",
       "day_offset": 2,
@@ -1058,6 +1034,17 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
+    {
+      "code": "Greeter — Peerspace instant + phone ask — June P. — 509A Sun Sep 13 5:00 PM–7:00 PM [greeter:1a0894e21079ee11]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Greeter",
+      "created": "Sep 9 · 23:15",
+      "send_after": null,
+      "send_after_iso": null
+    },
     {
       "code": "ANALYST-TTT-•••-T•••",
       "kind": null,
@@ -2097,6 +2084,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T03:09:51.839772Z",
         "until": "2026-09-10T03:10:01.173305Z"
+      },
+      {
+        "since": "2026-09-10T03:15:46.875049Z",
+        "until": "2026-09-10T03:15:53.336843Z"
       }
     ],
     "down": false
@@ -2110,7 +2101,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T23:10:00-04:00"
+      "lastISO": "2026-09-09T23:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2250,7 +2241,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:00:00-04:00"
+      "lastISO": "2026-09-09T23:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2260,7 +2251,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:10:00-04:00"
+      "lastISO": "2026-09-09T23:15:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2400,7 +2391,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T15:02:00-04:00"
+      "lastISO": "2026-09-09T23:14:00-04:00"
     },
     {
       "run": "🔑 Code Mirror",
@@ -2618,7 +2609,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:12"
+    "stamp": "23:17"
   }
 }/*__END_DATA__*/;
 
