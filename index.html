@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 11:36 PM ET",
-  "generatedAtISO": "2026-09-09T23:36:01-04:00",
+  "generatedAt": "Sep 9, 11:40 PM ET",
+  "generatedAtISO": "2026-09-09T23:40:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1031,6 +1031,26 @@ const DATA = /*__DATA__*/{
       "startISO": "2026-09-11T20:45:00-04:00",
       "endISO": "2026-09-11T21:15:00-04:00",
       "day": "Fri Sep 11"
+    }
+  ],
+  "staffAhead": [
+    {
+      "name": "Junyan",
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "day": "Tomorrow",
+      "start": 8.25,
+      "end": 8.75
+    },
+    {
+      "name": "Ela",
+      "role": "FBS",
+      "studio": null,
+      "day_offset": 1,
+      "day": "Tomorrow",
+      "start": 18.75,
+      "end": 19.25
     }
   ],
   "messages": [
@@ -2105,6 +2125,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T03:32:28.700137Z",
         "until": "2026-09-10T03:32:41.983232Z"
+      },
+      {
+        "since": "2026-09-10T03:37:48.915316Z",
+        "until": "2026-09-10T03:38:04.075760Z"
       }
     ],
     "down": false
@@ -2118,7 +2142,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T23:32:00-04:00"
+      "lastISO": "2026-09-09T23:38:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2268,7 +2292,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:35:00-04:00"
+      "lastISO": "2026-09-09T23:40:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2288,7 +2312,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:30:00-04:00"
+      "lastISO": "2026-09-09T23:40:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2626,7 +2650,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:36"
+    "stamp": "23:40"
   }
 }/*__END_DATA__*/;
 
@@ -3162,6 +3186,14 @@ function render(){
     </div>`;
   };
   const monBk = bookings.filter(e=>e.tier).sort((a,b)=>a.start-b.start);
+  /* tomorrow's named shifts (DATA.staffAhead, builder 2026-09-10) */
+  const AHEAD = (DATA.staffAhead||[]).slice().sort((a,b)=>a.start-b.start);
+  const aheadRow = s => `<div class="shift">
+      <span class="tm">${hm(s.start)}–${hm(s.end)}</span>
+      <span class="nm">${esc(s.name)}${s.studio?` <span class="chip plain">${esc(s.studio)}</span>`:""}</span>
+      <span class="chip type">${esc(s.role)}</span>
+      <span class="chip watch">Tomorrow</span>
+    </div>`;
   /* Open (claimable) shifts. Amber row, day label because these run days
      ahead. On the claim server FBS_AUTH.rowExtra adds the Claim control; on
      the static edition it adds nothing and Notion stays the claim path. */
@@ -3180,6 +3212,8 @@ function render(){
      <a class="nbtn" href="https://app.notion.com/p/3897503281c480f2ade3c6bc1f299c60?v=3897503281c480dc8131000c1bbf52e2" target="_blank" rel="noopener" style="margin-top:12px">Claim a shift in Notion${arrow}</a>
      <p class="lane-label">Staff shifts</p>
      <div class="panelwrap">${STAFF.length? STAFF.map(shiftRow).join("") : '<div class="shift">No staff shifts today</div>'}</div>
+     <p class="lane-label">Staff shifts tomorrow</p>
+     <div class="panelwrap">${AHEAD.length? AHEAD.map(aheadRow).join("") : '<div class="shift">Nothing scheduled for tomorrow yet</div>'}</div>
      <p class="lane-label">Monitored bookings — coverage</p>
      <div class="panelwrap">${monBk.length? monBk.map(covRow).join("") : '<div class="shift">No monitored bookings today</div>'}</div>`;
 
