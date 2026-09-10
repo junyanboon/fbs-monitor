@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 5:35 AM ET",
-  "generatedAtISO": "2026-09-10T05:35:16-04:00",
+  "generatedAt": "Sep 10, 6:31 AM ET",
+  "generatedAtISO": "2026-09-10T06:31:08-04:00",
   "studios": [
     {
       "id": "509A",
@@ -544,11 +544,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "06:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1111,18 +1106,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-10T09:00:00-04:00"
     },
     {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 00:02",
-      "send_after": "06:30",
-      "send_after_iso": "2026-09-10T06:30:00-04:00",
-      "label": "AVA for Annie Ng in Studio 509A"
-    },
-    {
       "code": "Returning Access 693 RA-sweep-•••",
       "kind": null,
       "channel": "SMS",
@@ -1234,21 +1217,55 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T09:32:30.798581Z",
         "until": "2026-09-10T09:32:46.133799Z"
+      },
+      {
+        "since": "2026-09-10T09:38:30.817658Z",
+        "until": "2026-09-10T09:38:39.140232Z"
+      },
+      {
+        "since": "2026-09-10T09:43:51.038440Z",
+        "until": "2026-09-10T09:44:02.377114Z"
+      },
+      {
+        "since": "2026-09-10T09:49:08.413152Z",
+        "until": "2026-09-10T09:49:22.751860Z"
+      },
+      {
+        "since": "2026-09-10T09:55:08.411380Z",
+        "until": "2026-09-10T09:55:18.549616Z"
+      },
+      {
+        "since": "2026-09-10T10:00:51.157433Z",
+        "until": "2026-09-10T10:01:04.489668Z"
+      },
+      {
+        "since": "2026-09-10T10:06:30.966044Z",
+        "until": "2026-09-10T10:06:37.292071Z"
+      },
+      {
+        "since": "2026-09-10T10:12:31.017783Z",
+        "until": "2026-09-10T10:12:41.148728Z"
+      },
+      {
+        "since": "2026-09-10T10:17:51.556546Z",
+        "until": "2026-09-10T10:18:00.062274Z"
+      },
+      {
+        "since": "2026-09-10T10:18:45.276425Z",
+        "until": "2026-09-10T10:18:54.766460Z"
+      },
+      {
+        "since": "2026-09-10T10:24:27.309692Z",
+        "until": "2026-09-10T10:24:41.647276Z"
+      },
+      {
+        "since": "2026-09-10T10:30:08.356152Z",
+        "until": "2026-09-10T10:30:21.681021Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Bookkeeper",
-      "cadence": "Daily",
-      "expected": "06:00 America/Toronto · Codex production fallback",
-      "produces": "Staff hours logged → FBS Itinerary",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-09T06:00:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1257,7 +1274,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T05:30:00-04:00"
+      "lastISO": "2026-09-10T06:26:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1267,7 +1284,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T05:00:00-04:00"
+      "lastISO": "2026-09-10T06:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1277,7 +1294,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T05:07:00-04:00"
+      "lastISO": "2026-09-10T06:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1290,6 +1307,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-10T04:06:00-04:00"
     },
     {
+      "run": "The Bookkeeper",
+      "cadence": "Daily",
+      "expected": "06:00 America/Toronto · Codex production fallback",
+      "produces": "Staff hours logged → FBS Itinerary",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-10T06:00:00-04:00"
+    },
+    {
       "run": "The Doorman",
       "cadence": "Daily",
       "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
@@ -1297,7 +1324,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T04:06:00-04:00"
+      "lastISO": "2026-09-10T06:12:00-04:00"
     },
     {
       "run": "The Host",
@@ -1317,7 +1344,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T05:05:00-04:00"
+      "lastISO": "2026-09-10T06:04:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1367,7 +1394,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T05:30:00-04:00"
+      "lastISO": "2026-09-10T06:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1377,7 +1404,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T05:35:00-04:00"
+      "lastISO": "2026-09-10T06:30:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1397,7 +1424,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T05:30:00-04:00"
+      "lastISO": "2026-09-10T06:30:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1725,17 +1752,13 @@ const DATA = /*__DATA__*/{
         "name": "Money adds up",
         "fine": "Hours logged. Books balanced.",
         "down": "Payroll and books go wrong.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
           "The Bookkeeper",
           "The Timekeeper",
           "The Treasurer"
         ],
-        "worst": {
-          "run": "The Bookkeeper",
-          "label": "Due",
-          "lastISO": "2026-09-09T06:00:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "watch",
@@ -1759,7 +1782,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "05:35"
+    "stamp": "06:31"
   }
 }/*__END_DATA__*/;
 
