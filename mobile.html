@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 2:43 PM ET",
-  "generatedAtISO": "2026-09-10T14:43:25-04:00",
+  "generatedAt": "Sep 10, 2:46 PM ET",
+  "generatedAtISO": "2026-09-10T14:46:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -550,12 +550,12 @@ const DATA = /*__DATA__*/{
       "who": "Natascha M Peerspace",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
+      "gtg": true,
       "hta": "Sent",
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "scheduled",
+          "state": "awaiting",
           "time": "15:30"
         },
         {
@@ -778,6 +778,18 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "AVA-sweep-••• | Post-HTA go-ahead confirmation — Natascha M [Peerspace] — 901 [gtg:5e7402c8-6dd3-42b4-bfbd-4c16a7937e8a]",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 10 · 00:02",
+      "send_after": "15:30",
+      "send_after_iso": "2026-09-10T15:30:00-04:00",
+      "label": "AVA for Natascha M Peerspace in Studio 901"
+    },
+    {
       "code": "GTG-nudge-sweep-•••",
       "kind": null,
       "channel": "SMS",
@@ -809,18 +821,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 10 · 14:01",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 00:02",
-      "send_after": "15:30",
-      "send_after_iso": "2026-09-10T15:30:00-04:00",
-      "label": "AVA for Natascha M Peerspace in Studio 901"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1389,6 +1389,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T18:39:33.792628Z",
         "until": "2026-09-10T18:39:49.157669Z"
+      },
+      {
+        "since": "2026-09-10T18:44:54.319414Z",
+        "until": "2026-09-10T18:45:04.056986Z"
       }
     ],
     "down": false
@@ -1412,7 +1416,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T14:39:00-04:00"
+      "lastISO": "2026-09-10T14:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1432,7 +1436,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T14:30:00-04:00"
+      "lastISO": "2026-09-10T14:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1442,7 +1446,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T14:40:00-04:00"
+      "lastISO": "2026-09-10T14:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1592,7 +1596,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T14:31:00-04:00"
+      "lastISO": "2026-09-10T14:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1914,7 +1918,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "14:43"
+    "stamp": "14:46"
   }
 }/*__END_DATA__*/;
 
