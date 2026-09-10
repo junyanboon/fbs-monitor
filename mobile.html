@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 8:02 AM ET",
-  "generatedAtISO": "2026-09-10T08:02:19-04:00",
+  "generatedAt": "Sep 10, 8:14 AM ET",
+  "generatedAtISO": "2026-09-10T08:14:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -900,10 +900,6 @@ const DATA = /*__DATA__*/{
   ],
   "attention": [
     {
-      "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
-    },
-    {
       "level": "crit",
       "text": "HTA not queued · Natascha M Peerspace) · 901 · 17:30"
     }
@@ -1099,31 +1095,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T11:57:15.833833Z",
         "until": "2026-09-10T11:57:29.149334Z"
+      },
+      {
+        "since": "2026-09-10T12:03:15.819838Z",
+        "until": "2026-09-10T12:03:30.188679Z"
+      },
+      {
+        "since": "2026-09-10T12:09:08.220504Z",
+        "until": "2026-09-10T12:09:16.495781Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-09T22:20:00-04:00"
-    },
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-09T23:14:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1132,7 +1116,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:00:00-04:00"
+      "lastISO": "2026-09-10T08:11:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1142,7 +1126,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:00:00-04:00"
+      "lastISO": "2026-09-10T08:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1162,7 +1146,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:00:00-04:00"
+      "lastISO": "2026-09-10T08:10:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1182,7 +1166,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:00:00-04:00"
+      "lastISO": "2026-09-10T08:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1192,7 +1176,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T07:07:00-04:00"
+      "lastISO": "2026-09-10T08:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1213,6 +1197,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-10T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-09T22:20:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1303,6 +1297,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-10T03:10:00-04:00"
+    },
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-10T08:03:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1555,43 +1559,35 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
+          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Overdue",
-          "lastISO": "2026-09-09T22:20:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Analyst",
           "The Host",
           "The Planner",
           "The Weatherman",
+          "Watchlist sync",
           "The Closer",
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "Watchlist sync",
-          "label": "Overdue",
-          "lastISO": "2026-09-09T23:14:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -1628,7 +1624,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "08:02"
+    "stamp": "08:14"
   }
 }/*__END_DATA__*/;
 
