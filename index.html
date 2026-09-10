@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 11:12 AM ET",
-  "generatedAtISO": "2026-09-10T11:12:22-04:00",
+  "generatedAt": "Sep 10, 11:17 AM ET",
+  "generatedAtISO": "2026-09-10T11:17:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -797,11 +797,6 @@ const DATA = /*__DATA__*/{
           "kind": "EOB",
           "state": "scheduled",
           "time": "18:45"
-        },
-        {
-          "kind": "HTA",
-          "state": "awaiting",
-          "time": null
         }
       ],
       "booking_studios": [],
@@ -994,18 +989,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "HTA-sweep-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 10:56",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "HTA for Natascha M Peerspace in Studio 901"
-    },
-    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -1030,12 +1013,7 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Jia Chian Lee in Studio 509B"
     }
   ],
-  "attention": [
-    {
-      "level": "crit",
-      "text": "HTA awaiting review · Natascha M Peerspace) · 901 · 17:30"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -1386,6 +1364,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T15:09:07.812372Z",
         "until": "2026-09-10T15:09:22.323254Z"
+      },
+      {
+        "since": "2026-09-10T15:14:50.993784Z",
+        "until": "2026-09-10T15:15:06.168344Z"
       }
     ],
     "down": false
@@ -1399,7 +1381,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T11:12:00-04:00"
+      "lastISO": "2026-09-10T11:17:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1419,7 +1401,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T11:00:00-04:00"
+      "lastISO": "2026-09-10T11:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1429,7 +1411,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T11:10:00-04:00"
+      "lastISO": "2026-09-10T11:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1589,7 +1571,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T11:03:00-04:00"
+      "lastISO": "2026-09-10T11:17:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1907,7 +1889,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:12"
+    "stamp": "11:17"
   }
 }/*__END_DATA__*/;
 
