@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 4:17 PM ET",
-  "generatedAtISO": "2026-09-10T16:17:22-04:00",
+  "generatedAt": "Sep 10, 4:21 PM ET",
+  "generatedAtISO": "2026-09-10T16:21:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1031,28 +1031,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 10 · 15:24",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "BC-sweep-•••B",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 15:32",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••B",
       "kind": "EOB",
       "channel": "SMS",
@@ -1063,6 +1041,17 @@ const DATA = /*__DATA__*/{
       "send_after": "18:15",
       "send_after_iso": "2026-09-10T18:15:00-04:00",
       "label": "EOB for Jia Chian Lee in Studio 509B"
+    },
+    {
+      "code": "Risa — Thursday series confirmation Sep 24–Dec 3",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 10 · 16:19",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [],
@@ -1663,11 +1652,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T20:14:34.446754Z",
         "until": "2026-09-10T20:14:48.755983Z"
+      },
+      {
+        "since": "2026-09-10T20:20:34.431364Z",
+        "until": "2026-09-10T20:20:44.792899Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-10T14:25:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1696,7 +1699,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:10:00-04:00"
+      "lastISO": "2026-09-10T16:20:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1716,7 +1719,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:15:00-04:00"
+      "lastISO": "2026-09-10T16:20:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1736,7 +1739,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:10:00-04:00"
+      "lastISO": "2026-09-10T16:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1767,16 +1770,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-10T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-10T14:25:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2119,16 +2112,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
-          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-10T14:25:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2188,7 +2185,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:17"
+    "stamp": "16:21"
   }
 }/*__END_DATA__*/;
 
