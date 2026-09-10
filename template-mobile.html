@@ -160,9 +160,9 @@
   .dispatch-seg.scheduled.ava .dk{background:color-mix(in srgb,#2f6fd0 12%,var(--scrim));color:#2f6fd0}
   .dispatch-seg.scheduled.eob{border-color:color-mix(in srgb,var(--ok) 30%,var(--line))}
   .dispatch-seg.scheduled.eob .dk{background:var(--ok-bg);color:var(--ok)}
-  .dispatch-seg.missing,.dispatch-seg.stuck,.dispatch-seg.awaiting{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
-  .dispatch-seg.missing .dk,.dispatch-seg.error .dk,.dispatch-seg.stuck .dk,.dispatch-seg.awaiting .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
-  .dispatch-seg.missing .dv,.dispatch-seg.error .dv,.dispatch-seg.stuck .dv,.dispatch-seg.awaiting .dv{color:var(--crit)}
+  .dispatch-seg.missing,.dispatch-seg.stuck,.dispatch-seg.blocked,.dispatch-seg.awaiting{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:var(--crit-bg)}
+  .dispatch-seg.missing .dk,.dispatch-seg.error .dk,.dispatch-seg.stuck .dk,.dispatch-seg.blocked .dk,.dispatch-seg.awaiting .dk{background:color-mix(in srgb,var(--crit) 15%,var(--scrim));color:var(--crit)}
+  .dispatch-seg.missing .dv,.dispatch-seg.error .dv,.dispatch-seg.stuck .dv,.dispatch-seg.blocked .dv,.dispatch-seg.awaiting .dv{color:var(--crit)}
   .quiet{color:var(--chalk-faint);text-align:center;padding:40px 0;font-size:14.5px}
 
   /* alarms + shifts panels reuse card look */
@@ -561,8 +561,8 @@ function render(){
     const gtgChip=noGtgChip(e,st);
     const dispatch=(e.dispatch||[]).length?`<span class="dispatch-cluster">`+
       e.dispatch.map(d=>{
-        const value=d.state==="scheduled"?d.time:d.state==="queued"?"QUEUED":d.state==="stuck"?"STUCK":d.state==="awaiting"?"UNSENT":"MISSING";
-        const title=d.state==="scheduled"?`Scheduled for ${d.time}`:d.state==="queued"?"Queue row exists; no send time yet":d.state==="stuck"?"Queue row is Ready to Send but has not dispatched":d.state==="awaiting"?"Queue row still awaits review — nothing has been sent":"Expected queue row not found";
+        const value=d.state==="scheduled"?d.time:d.state==="queued"?"QUEUED":d.state==="blocked"?"BLOCKED":d.state==="stuck"?"STUCK":d.state==="awaiting"?"UNSENT":"MISSING";
+        const title=d.state==="scheduled"?`Scheduled for ${d.time}`:d.state==="queued"?"Queue row exists; no send time yet":d.state==="blocked"?"Message failed validation or delivery; open Messages to review":d.state==="stuck"?"Queue row is Ready to Send but has not dispatched":d.state==="awaiting"?"Queue row still awaits review — nothing has been sent":"Expected queue row not found";
         return `<span class="dispatch-seg ${d.state} ${d.kind.toLowerCase()}" title="${title}"><span class="dk">${d.kind}</span><span class="dv">${value}</span></span>`;
       }).join("")+`</span>`:"";
     return `<div class="card ${plan} ${st.live?"live":""} ${st.done?"done":""} ${st.flagged?"flagged":""}">

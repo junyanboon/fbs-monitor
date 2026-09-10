@@ -16,7 +16,7 @@ def message(**kw):
 def test_one_source_booking_shares_reminder_across_rooms():
     events=[event('509B'), event('527',nid='room-2')]
     result=build.apply_message_dispatch(events,[message()],DAY)
-    assert [e['dispatch'] for e in result] == [[dict(kind='EOB',state='scheduled',time='13:00')]]*2
+    assert [e['dispatch'] for e in result] == [[dict(kind='EOB',state='awaiting',time='13:00')]]*2
 
 def test_same_artist_same_time_different_booking_does_not_share():
     result=build.apply_message_dispatch([event('509B'),event('527',sid='other')],[message()],DAY)
@@ -30,7 +30,7 @@ def test_same_source_different_artist_or_span_does_not_share():
 def test_explicit_booking_relation_survives_extension_and_no_schedule():
     r=message(bookings=['room1','room2']);r['send_after']=None
     result=build.apply_message_dispatch([event('527',nid='room-2')],[r],DAY)
-    assert result[0]['dispatch']==[dict(kind='EOB',state='queued',time=None)]
+    assert result[0]['dispatch']==[dict(kind='EOB',state='awaiting',time=None)]
 
 def test_grouping_does_not_copy_physical_evidence_or_access():
     events=[dict(event('509B'),arrived=11.01,departed=11.2,hta='Sent'),
