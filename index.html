@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 4:35 PM ET",
-  "generatedAtISO": "2026-09-10T16:35:36-04:00",
+  "generatedAt": "Sep 10, 4:45 PM ET",
+  "generatedAtISO": "2026-09-10T16:45:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -779,7 +779,7 @@ const DATA = /*__DATA__*/{
         },
         {
           "kind": "EOB",
-          "state": "blocked",
+          "state": "awaiting",
           "time": "18:45"
         }
       ],
@@ -1009,26 +1009,16 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Natascha M Peerspace in Studio 901"
     },
     {
-      "code": "COURTESY — Risa Waldman — instructor contacts supplied [responder:•••:vps:sms-in-19034c99]",
-      "kind": null,
+      "code": "EOB-sweep-•••",
+      "kind": "EOB",
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 10 · 14:01",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Quick answer — Grace Lui — community/subsidized rate (20% off) [responder:•••:vps:gmail-1a08c84863967c78]",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 10 · 14:59",
-      "send_after": null,
-      "send_after_iso": null
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 10 · 00:02",
+      "send_after": "18:45",
+      "send_after_iso": "2026-09-10T18:45:00-04:00",
+      "label": "EOB for Natascha M Peerspace in Studio 901"
     },
     {
       "code": "EOB-sweep-•••B",
@@ -1653,6 +1643,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T20:32:14.247831Z",
         "until": "2026-09-10T20:32:25.585390Z"
+      },
+      {
+        "since": "2026-09-10T20:38:07.328007Z",
+        "until": "2026-09-10T20:38:18.499636Z"
+      },
+      {
+        "since": "2026-09-10T20:43:55.054442Z",
+        "until": "2026-09-10T20:44:03.705364Z"
       }
     ],
     "down": false
@@ -1676,7 +1674,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:34:00-04:00"
+      "lastISO": "2026-09-10T16:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1686,7 +1684,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:30:00-04:00"
+      "lastISO": "2026-09-10T16:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1696,7 +1694,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:30:00-04:00"
+      "lastISO": "2026-09-10T16:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1706,7 +1704,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:35:00-04:00"
+      "lastISO": "2026-09-10T16:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1726,7 +1724,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:30:00-04:00"
+      "lastISO": "2026-09-10T16:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2178,7 +2176,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:35"
+    "stamp": "16:45"
   }
 }/*__END_DATA__*/;
 
