@@ -505,9 +505,9 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
-  "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 10, 2:47 AM ET",
-  "generatedAtISO": "2026-09-10T02:47:00-04:00",
+  "shiftBaseDay": "2026-09-10",
+  "generatedAt": "Sep 10, 5:35 AM ET",
+  "generatedAtISO": "2026-09-10T05:35:16-04:00",
   "studios": [
     {
       "id": "509A",
@@ -538,31 +538,42 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
-      "who": "Enrico Casertano (Toronto Baila",
+      "who": "Annie Ng — Dance practice",
       "kind": "booking",
-      "tier": null,
+      "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "06:30"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "09:30"
+        }
+      ],
       "booking_studios": [],
       "heard": false,
-      "arrived": "17:45",
-      "departed": "20:10",
+      "arrived": null,
+      "departed": null,
       "facilitator": null,
-      "arrived_by": "Enrico Casertano",
-      "departed_by": "Enrico Casertano",
+      "arrived_by": null,
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 18.0,
-      "end": 20.0,
+      "start": 8.5,
+      "end": 9.75,
       "access_gap": false
     },
     {
       "studio": "509A",
-      "who": "Fabio Hernandez (Toronto Bujinkan",
+      "who": "Anita Pandey",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -570,18 +581,77 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": "20:25",
-      "departed": "22:25",
+      "arrived": null,
+      "departed": null,
       "facilitator": null,
-      "arrived_by": "Fabio Hernandez",
-      "departed_by": "Fabio Hernandez",
+      "arrived_by": null,
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 20.25,
-      "end": 22.25,
+      "start": 18.5,
+      "end": 20.5,
+      "access_gap": false
+    },
+    {
+      "studio": "509A",
+      "who": "David Garzon",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 21.0,
+      "end": 23.0,
+      "access_gap": false
+    },
+    {
+      "studio": "509B",
+      "who": "Amanda-May Wilson — Amanda-May Wilson — Private Session",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "07:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "10:45"
+        }
+      ],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 9.0,
+      "end": 11.0,
       "access_gap": false
     },
     {
@@ -590,32 +660,19 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
-      "hta": "Will Not Send",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": true,
-      "arrived": "08:54",
-      "departed": "10:28",
-      "facilitator": null,
-      "arrived_by": "Jia Chian Lee",
-      "departed_by": "Jia Chian Lee",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 8.5,
-      "end": 10.5,
-      "access_gap": false
-    },
-    {
-      "studio": "509B",
-      "who": "Kyle FitzGerald",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "15:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "18:15"
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -629,84 +686,12 @@ const DATA = /*__DATA__*/{
       "wrong_studio": null,
       "dup_studios": null,
       "start": 17.0,
-      "end": 20.0,
-      "access_gap": false
-    },
-    {
-      "studio": "509B",
-      "who": "David Garzon",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "20:51",
-      "departed": "23:10",
-      "facilitator": null,
-      "arrived_by": "David Garzon",
-      "departed_by": "David Garzon",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 21.0,
-      "end": 23.0,
+      "end": 18.5,
       "access_gap": false
     },
     {
       "studio": "527",
-      "who": "Amanda-May Wilson — Amanda-May Wilson — Private Session",
-      "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Will Not Send",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": true,
-      "arrived": "11:15",
-      "departed": "13:12",
-      "facilitator": null,
-      "arrived_by": "Amanda-May Wilson",
-      "departed_by": "Amanda-May Wilson",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 11.0,
-      "end": 13.0,
-      "access_gap": false
-    },
-    {
-      "studio": "527",
-      "who": "Khalid Roach-McLeod — Khalid Roach-McLeod — retained after partial release 2026-09-09",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "19:10",
-      "departed": "22:27",
-      "facilitator": null,
-      "arrived_by": "Khalid Roach-McLeod",
-      "departed_by": "Khalid Roach-McLeod",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 19.25,
-      "end": 22.0,
-      "access_gap": false
-    },
-    {
-      "studio": "527",
-      "who": "Test",
+      "who": "Kateryna Zozulia — *Additional time added at no cost*",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -724,32 +709,32 @@ const DATA = /*__DATA__*/{
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 22.75,
-      "end": 23.25,
+      "start": 18.0,
+      "end": 21.25,
       "access_gap": false
     },
     {
       "studio": "693",
-      "who": "Abbey Richens (Meaningful Movement) — Rehearsal and Performance",
+      "who": "Adalia Knight (X Movement) — X Movement Training - X Others",
       "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Sent",
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": "10:47",
-      "departed": "13:03",
+      "arrived": null,
+      "departed": null,
       "facilitator": null,
-      "arrived_by": "Abbey Richens",
-      "departed_by": "Abbey Richens",
+      "arrived_by": null,
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 11.0,
-      "end": 13.0,
+      "start": 9.25,
+      "end": 12.5,
       "access_gap": false
     },
     {
@@ -762,288 +747,276 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": "18:01",
-      "departed": "21:33",
-      "facilitator": null,
-      "arrived_by": "Angus Dirnbeck",
-      "departed_by": "Angus Dirnbeck",
-      "arrived_foreign": true,
-      "departed_foreign": true,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 18.25,
-      "end": 22.0,
-      "access_gap": false
-    },
-    {
-      "studio": "901",
-      "who": "Junyan",
-      "kind": "staff",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "13:22",
-      "departed": "15:19",
-      "facilitator": null,
-      "arrived_by": "Junyan Boon",
-      "departed_by": "Junyan Boon",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 13.0,
-      "end": 15.25,
-      "access_gap": false
-    },
-    {
-      "studio": "901",
-      "who": "Anita Pandey",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "18:23",
+      "arrived": null,
       "departed": null,
       "facilitator": null,
-      "arrived_by": "Anita Pandey",
+      "arrived_by": null,
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 18.5,
-      "end": 20.5,
+      "start": 17.75,
+      "end": 22.0,
+      "access_gap": false
+    },
+    {
+      "studio": "693",
+      "who": "Caryl CUIZON (Private Classes) (iFreeStyle.ca) — practice",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 22.25,
+      "end": 23.5,
       "access_gap": false
     },
     {
       "studio": "901",
-      "who": "Nina Li — *bookings covered by June 29, Aug 24, Sep 7, 14* [Facilitator: Akira Huang]",
+      "who": "Natascha M Peerspace",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": true,
-      "hta": "Sent",
-      "dispatch": [],
+      "gtg": false,
+      "hta": null,
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "15:30"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "18:45"
+        },
+        {
+          "kind": "HTA",
+          "state": "missing",
+          "time": null
+        }
+      ],
       "booking_studios": [],
-      "heard": true,
-      "arrived": "20:30",
-      "departed": "22:41",
-      "facilitator": "Akira Huang",
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
       "arrived_by": null,
-      "departed_by": "Akira Huang",
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
-      "assumed": "open",
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 20.5,
-      "end": 22.5,
+      "start": 17.5,
+      "end": 19.0,
+      "access_gap": true
+    },
+    {
+      "studio": "901",
+      "who": "Sorina Colyn (Your Dance Class",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 19.0,
+      "end": 22.0,
       "access_gap": false
     }
   ],
   "staff": [
     {
-      "name": "Ela",
-      "role": "FBS",
-      "start": 20.25,
-      "end": 20.75
-    },
-    {
-      "name": "Ela",
-      "role": "FBS",
-      "start": 22.25,
-      "end": 22.75
-    }
-  ],
-  "openShifts": [
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 1,
-      "start": 16.75,
-      "end": 17.25,
-      "id": "36a91495a6b0",
-      "date": "2026-09-10",
-      "startISO": "2026-09-10T16:45:00-04:00",
-      "endISO": "2026-09-10T17:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
-      "studio": "901",
-      "day_offset": 1,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "111ba4eae398",
-      "date": "2026-09-10",
-      "startISO": "2026-09-10T17:15:00-04:00",
-      "endISO": "2026-09-10T17:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 1,
-      "start": 18.25,
-      "end": 18.75,
-      "id": "3d01ee31da70",
-      "date": "2026-09-10",
-      "startISO": "2026-09-10T18:15:00-04:00",
-      "endISO": "2026-09-10T18:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "901",
-      "day_offset": 2,
-      "start": 10.75,
-      "end": 11.25,
-      "id": "7ecfaec7a24a",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T10:45:00-04:00",
-      "endISO": "2026-09-11T11:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "901",
-      "day_offset": 2,
-      "start": 11.75,
-      "end": 12.25,
-      "id": "7e1c576ac2d7",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T11:45:00-04:00",
-      "endISO": "2026-09-11T12:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 2,
-      "start": 12.25,
-      "end": 12.75,
-      "id": "ce55b66cbd98",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T12:15:00-04:00",
-      "endISO": "2026-09-11T12:45:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 2,
-      "start": 14.25,
-      "end": 14.75,
-      "id": "8b61d4601021",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T14:15:00-04:00",
-      "endISO": "2026-09-11T14:45:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 2,
-      "start": 15.75,
-      "end": 16.25,
-      "id": "a02d81e47a21",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T15:45:00-04:00",
-      "endISO": "2026-09-11T16:15:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 2,
-      "start": 16.5,
-      "end": 17.0,
-      "id": "825468c5cf30",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T16:30:00-04:00",
-      "endISO": "2026-09-11T17:00:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 2,
-      "start": 17.5,
-      "end": 18.0,
-      "id": "1b49c1632ce3",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T17:30:00-04:00",
-      "endISO": "2026-09-11T18:00:00-04:00",
-      "day": "Fri Sep 11"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 2,
-      "start": 20.75,
-      "end": 21.25,
-      "id": "cf0e5c8b5138",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T20:45:00-04:00",
-      "endISO": "2026-09-11T21:15:00-04:00",
-      "day": "Fri Sep 11"
-    }
-  ],
-  "staffAhead": [
-    {
       "name": "Junyan",
       "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 1,
-      "day": "Tomorrow",
       "start": 8.25,
       "end": 8.75
     },
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509B",
-      "day_offset": 1,
-      "day": "Tomorrow",
       "start": 8.75,
       "end": 9.25
     },
     {
       "name": "Junyan",
       "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 1,
-      "day": "Tomorrow",
       "start": 9.5,
       "end": 10.0
     },
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509B",
-      "day_offset": 1,
-      "day": "Tomorrow",
       "start": 10.75,
       "end": 11.25
     },
     {
       "name": "Ela",
       "role": "FBS",
-      "studio": null,
-      "day_offset": 1,
-      "day": "Tomorrow",
       "start": 18.75,
       "end": 19.25
     }
   ],
+  "openShifts": [
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 0,
+      "start": 16.75,
+      "end": 17.25,
+      "id": "36a91495a6b0",
+      "date": "2026-09-10",
+      "startISO": "2026-09-10T16:45:00-04:00",
+      "endISO": "2026-09-10T17:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 0,
+      "start": 17.25,
+      "end": 17.75,
+      "id": "111ba4eae398",
+      "date": "2026-09-10",
+      "startISO": "2026-09-10T17:15:00-04:00",
+      "endISO": "2026-09-10T17:45:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 0,
+      "start": 18.25,
+      "end": 18.75,
+      "id": "3d01ee31da70",
+      "date": "2026-09-10",
+      "startISO": "2026-09-10T18:15:00-04:00",
+      "endISO": "2026-09-10T18:45:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 10.75,
+      "end": 11.25,
+      "id": "7ecfaec7a24a",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T10:45:00-04:00",
+      "endISO": "2026-09-11T11:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "start": 11.75,
+      "end": 12.25,
+      "id": "7e1c576ac2d7",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T11:45:00-04:00",
+      "endISO": "2026-09-11T12:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 12.25,
+      "end": 12.75,
+      "id": "ce55b66cbd98",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T12:15:00-04:00",
+      "endISO": "2026-09-11T12:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 1,
+      "start": 14.25,
+      "end": 14.75,
+      "id": "8b61d4601021",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T14:15:00-04:00",
+      "endISO": "2026-09-11T14:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 15.75,
+      "end": 16.25,
+      "id": "a02d81e47a21",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T15:45:00-04:00",
+      "endISO": "2026-09-11T16:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 16.5,
+      "end": 17.0,
+      "id": "825468c5cf30",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T16:30:00-04:00",
+      "endISO": "2026-09-11T17:00:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 17.5,
+      "end": 18.0,
+      "id": "1b49c1632ce3",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T17:30:00-04:00",
+      "endISO": "2026-09-11T18:00:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 1,
+      "start": 20.75,
+      "end": 21.25,
+      "id": "cf0e5c8b5138",
+      "date": "2026-09-11",
+      "startISO": "2026-09-11T20:45:00-04:00",
+      "endISO": "2026-09-11T21:15:00-04:00",
+      "day": "Tomorrow"
+    }
+  ],
+  "staffAhead": [],
   "messages": [
     {
       "code": "Review ask — Akira Huang — ••• [responder:•••:vps:sms-in-d79ead25]",
@@ -1089,7 +1062,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 10 · 00:02",
       "send_after": "15:30",
       "send_after_iso": "2026-09-10T15:30:00-04:00",
-      "label": "AVA · Studio 901"
+      "label": "AVA for Natascha M Peerspace in Studio 901"
     },
     {
       "code": "AVA-sweep-•••B",
@@ -1147,7 +1120,18 @@ const DATA = /*__DATA__*/{
       "created": "Sep 10 · 00:02",
       "send_after": "06:30",
       "send_after_iso": "2026-09-10T06:30:00-04:00",
-      "label": "AVA · Studio 509A"
+      "label": "AVA for Annie Ng in Studio 509A"
+    },
+    {
+      "code": "Returning Access 693 RA-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 10 · 04:31",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-10T09:00:00-04:00"
     },
     {
       "code": "ANALYST-TTT-•••-T•••",
@@ -1167,1199 +1151,94 @@ const DATA = /*__DATA__*/{
       "text": "HTA not queued · Natascha M Peerspace) · 901 · 17:30"
     }
   ],
-  "armEvents": [
-    {
-      "studio": "509B",
-      "name": "Jia Chian Lee",
-      "time": "08:54",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788958464444,
-      "source": "doors"
-    },
-    {
-      "studio": "509B",
-      "name": "Jia Chian Lee",
-      "time": "10:28",
+  "armEvents": [],
+  "panelPrior": {
+    "509A": {
       "kind": "departure",
-      "remote": false,
-      "ts": 1788964138364,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Abbey Richens",
-      "time": "10:47",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788965262400,
-      "source": "doors"
-    },
-    {
-      "studio": "509B",
-      "name": "Amanda-May Wilson",
-      "time": "11:01",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788966074982,
-      "source": "doors"
-    },
-    {
-      "studio": "509B",
-      "name": "Amanda-May Wilson",
-      "time": "11:12",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1788966738149,
-      "source": "doors"
-    },
-    {
-      "studio": "527",
-      "name": "Amanda-May Wilson",
-      "time": "11:15",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788966944740,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Abbey Richens",
-      "time": "13:03",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1788973388320,
-      "source": "doors"
-    },
-    {
-      "studio": "527",
-      "name": "Amanda-May Wilson",
-      "time": "13:12",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1788973945688,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Studio (remote)",
-      "time": "13:15",
-      "kind": "arrival",
-      "remote": true,
-      "ts": 1788974103537,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Studio (remote)",
-      "time": "13:15",
-      "kind": "departure",
-      "remote": true,
-      "ts": 1788974105553,
-      "source": "doors"
-    },
-    {
-      "studio": "901",
-      "name": "Junyan Boon",
-      "time": "13:22",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788974556925,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Studio (remote)",
-      "time": "14:31",
-      "kind": "arrival",
-      "remote": true,
-      "ts": 1788978694843,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Studio (remote)",
-      "time": "14:31",
-      "kind": "departure",
-      "remote": true,
-      "ts": 1788978698891,
-      "source": "doors"
-    },
-    {
-      "studio": "901",
-      "name": "Junyan Boon",
-      "time": "15:19",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1788981550306,
-      "source": "doors"
-    },
-    {
-      "studio": "509A",
-      "name": "Enrico Casertano",
-      "time": "17:45",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788990344073,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Angus Dirnbeck",
-      "time": "18:01",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788991282712,
-      "source": "doors"
-    },
-    {
-      "studio": "901",
-      "name": "Anita Pandey",
-      "time": "18:23",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788992606235,
-      "source": "doors"
-    },
-    {
-      "studio": "527",
-      "name": "Khalid Roach-McLeod",
-      "time": "19:10",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1788995420762,
-      "source": "doors"
-    },
-    {
-      "studio": "509A",
-      "name": "Enrico Casertano",
-      "time": "20:10",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1788999026392,
-      "source": "doors"
-    },
-    {
-      "studio": "509A",
       "name": "Fabio Hernandez",
-      "time": "20:25",
-      "kind": "arrival",
       "remote": false,
-      "ts": 1788999917159,
-      "source": "doors"
-    },
-    {
-      "studio": "509B",
-      "name": "David Garzon",
-      "time": "20:51",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789001492527,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Angus Dirnbeck",
-      "time": "21:33",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789004000710,
-      "source": "doors"
-    },
-    {
+      "source": "doors",
       "studio": "509A",
-      "name": "Fabio Hernandez",
       "time": "22:25",
-      "kind": "departure",
-      "remote": false,
       "ts": 1789007152678,
-      "source": "doors"
+      "when": "Wed 22:25"
     },
-    {
+    "509B": {
+      "kind": "departure",
+      "name": "David Garzon",
+      "remote": false,
+      "source": "doors",
+      "studio": "509B",
+      "time": "23:10",
+      "ts": 1789009824087,
+      "when": "Wed 23:10"
+    },
+    "527": {
       "studio": "527",
       "name": "Khalid Roach-McLeod",
       "time": "22:27",
       "kind": "departure",
       "remote": false,
-      "ts": 1789007236641,
-      "source": "doors"
+      "ts": 1789007237000,
+      "when": "Wed 22:27"
     },
-    {
-      "studio": "901",
+    "693": {
+      "kind": "departure",
+      "name": "Angus Dirnbeck",
+      "remote": false,
+      "source": "doors",
+      "studio": "693",
+      "time": "21:33",
+      "ts": 1789004000710,
+      "when": "Wed 21:33"
+    },
+    "901": {
+      "kind": "departure",
       "name": "Akira Huang",
+      "remote": false,
+      "source": "doors",
+      "studio": "901",
       "time": "22:41",
-      "kind": "departure",
-      "remote": false,
       "ts": 1789008099043,
-      "source": "doors"
-    },
-    {
-      "studio": "509B",
-      "name": "David Garzon",
-      "time": "23:10",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789009824087,
-      "source": "doors"
+      "when": "Wed 22:41"
     }
-  ],
-  "panelPrior": {},
+  },
   "alarmAlerts": [],
-  "armFallback": false,
+  "armFallback": true,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-10T03:12:01+00:00",
-    "mailCheck": {
-      "matched": 4,
-      "inGap": 0,
-      "missed": [],
-      "missedCount": 0
-    },
     "doorGaps": [
       {
-        "since": "2026-09-09T09:00:31.704150Z",
-        "until": "2026-09-09T09:00:38.061230Z"
+        "since": "2026-09-10T09:03:30.572851Z",
+        "until": "2026-09-10T09:03:40.913703Z"
       },
       {
-        "since": "2026-09-09T09:06:29.576763Z",
-        "until": "2026-09-09T09:06:39.718842Z"
+        "since": "2026-09-10T09:09:08.493647Z",
+        "until": "2026-09-10T09:09:21.644573Z"
       },
       {
-        "since": "2026-09-09T09:12:18.131881Z",
-        "until": "2026-09-09T09:12:30.495046Z"
+        "since": "2026-09-10T09:14:50.879219Z",
+        "until": "2026-09-10T09:15:00.230343Z"
       },
       {
-        "since": "2026-09-09T09:17:59.492210Z",
-        "until": "2026-09-09T09:18:07.834045Z"
+        "since": "2026-09-10T09:20:27.428972Z",
+        "until": "2026-09-10T09:20:40.772730Z"
       },
       {
-        "since": "2026-09-09T09:23:59.428727Z",
-        "until": "2026-09-09T09:24:06.771089Z"
+        "since": "2026-09-10T09:26:27.413897Z",
+        "until": "2026-09-10T09:26:40.728116Z"
       },
       {
-        "since": "2026-09-09T09:29:22.261816Z",
-        "until": "2026-09-09T09:29:33.601802Z"
-      },
-      {
-        "since": "2026-09-09T09:35:22.626591Z",
-        "until": "2026-09-09T09:35:35.975223Z"
-      },
-      {
-        "since": "2026-09-09T09:40:51.757632Z",
-        "until": "2026-09-09T09:41:02.085203Z"
-      },
-      {
-        "since": "2026-09-09T09:45:59.448515Z",
-        "until": "2026-09-09T09:46:12.818765Z"
-      },
-      {
-        "since": "2026-09-09T09:51:59.435738Z",
-        "until": "2026-09-09T09:52:12.584613Z"
-      },
-      {
-        "since": "2026-09-09T09:57:32.056337Z",
-        "until": "2026-09-09T09:57:42.239695Z"
-      },
-      {
-        "since": "2026-09-09T10:03:32.118456Z",
-        "until": "2026-09-09T10:03:38.468224Z"
-      },
-      {
-        "since": "2026-09-09T10:09:29.474020Z",
-        "until": "2026-09-09T10:09:43.812201Z"
-      },
-      {
-        "since": "2026-09-09T10:15:22.554595Z",
-        "until": "2026-09-09T10:15:32.666634Z"
-      },
-      {
-        "since": "2026-09-09T10:20:32.230860Z",
-        "until": "2026-09-09T10:20:46.578711Z"
-      },
-      {
-        "since": "2026-09-09T10:26:22.586219Z",
-        "until": "2026-09-09T10:26:33.873807Z"
-      },
-      {
-        "since": "2026-09-09T10:31:59.359128Z",
-        "until": "2026-09-09T10:32:12.735635Z"
-      },
-      {
-        "since": "2026-09-09T10:37:22.647572Z",
-        "until": "2026-09-09T10:37:33.947122Z"
-      },
-      {
-        "since": "2026-09-09T10:43:22.682241Z",
-        "until": "2026-09-09T10:43:29.285284Z"
-      },
-      {
-        "since": "2026-09-09T10:49:22.724029Z",
-        "until": "2026-09-09T10:49:29.742124Z"
-      },
-      {
-        "since": "2026-09-09T10:54:59.337126Z",
-        "until": "2026-09-09T10:55:08.863262Z"
-      },
-      {
-        "since": "2026-09-09T11:00:59.331792Z",
-        "until": "2026-09-09T11:01:10.679260Z"
-      },
-      {
-        "since": "2026-09-09T11:06:29.424297Z",
-        "until": "2026-09-09T11:06:38.781582Z"
-      },
-      {
-        "since": "2026-09-09T11:12:22.910248Z",
-        "until": "2026-09-09T11:12:31.037819Z"
-      },
-      {
-        "since": "2026-09-09T11:17:32.606820Z",
-        "until": "2026-09-09T11:17:39.937786Z"
-      },
-      {
-        "since": "2026-09-09T11:23:29.401640Z",
-        "until": "2026-09-09T11:23:32.979237Z"
-      },
-      {
-        "since": "2026-09-09T11:29:19.102104Z",
-        "until": "2026-09-09T11:29:29.267313Z"
-      },
-      {
-        "since": "2026-09-09T11:34:33.177305Z",
-        "until": "2026-09-09T11:34:45.544484Z"
-      },
-      {
-        "since": "2026-09-09T11:40:29.579400Z",
-        "until": "2026-09-09T11:40:39.979887Z"
-      },
-      {
-        "since": "2026-09-09T11:46:32.753467Z",
-        "until": "2026-09-09T11:46:43.910116Z"
-      },
-      {
-        "since": "2026-09-09T11:52:32.796291Z",
-        "until": "2026-09-09T11:52:42.143769Z"
-      },
-      {
-        "since": "2026-09-09T11:57:51.664317Z",
-        "until": "2026-09-09T11:57:59.002962Z"
-      },
-      {
-        "since": "2026-09-09T12:02:59.176992Z",
-        "until": "2026-09-09T12:03:06.079226Z"
-      },
-      {
-        "since": "2026-09-09T12:08:59.236002Z",
-        "until": "2026-09-09T12:09:06.538780Z"
-      },
-      {
-        "since": "2026-09-09T12:14:59.148345Z",
-        "until": "2026-09-09T12:15:13.307248Z"
-      },
-      {
-        "since": "2026-09-09T12:20:19.323441Z",
-        "until": "2026-09-09T12:20:33.650196Z"
-      },
-      {
-        "since": "2026-09-09T12:26:23.645144Z",
-        "until": "2026-09-09T12:26:36.967426Z"
-      },
-      {
-        "since": "2026-09-09T12:31:51.410751Z",
-        "until": "2026-09-09T12:32:03.759394Z"
-      },
-      {
-        "since": "2026-09-09T12:37:29.589662Z",
-        "until": "2026-09-09T12:37:38.785415Z"
-      },
-      {
-        "since": "2026-09-09T12:42:51.567354Z",
-        "until": "2026-09-09T12:43:06.989660Z"
-      },
-      {
-        "since": "2026-09-09T12:48:59.127105Z",
-        "until": "2026-09-09T12:49:05.288083Z"
-      },
-      {
-        "since": "2026-09-09T12:54:19.528385Z",
-        "until": "2026-09-09T12:54:26.861246Z"
-      },
-      {
-        "since": "2026-09-09T12:59:24.139024Z",
-        "until": "2026-09-09T12:59:32.501994Z"
-      },
-      {
-        "since": "2026-09-09T13:05:23.575200Z",
-        "until": "2026-09-09T13:05:33.963082Z"
-      },
-      {
-        "since": "2026-09-09T13:10:29.321288Z",
-        "until": "2026-09-09T13:10:40.852398Z"
-      },
-      {
-        "since": "2026-09-09T13:16:33.286826Z",
-        "until": "2026-09-09T13:16:42.232218Z"
-      },
-      {
-        "since": "2026-09-09T13:21:51.333410Z",
-        "until": "2026-09-09T13:21:58.933376Z"
-      },
-      {
-        "since": "2026-09-09T13:27:23.715605Z",
-        "until": "2026-09-09T13:27:34.048627Z"
-      },
-      {
-        "since": "2026-09-09T13:32:59.104604Z",
-        "until": "2026-09-09T13:33:09.437553Z"
-      },
-      {
-        "since": "2026-09-09T13:38:59.068537Z",
-        "until": "2026-09-09T13:39:07.408864Z"
-      },
-      {
-        "since": "2026-09-09T13:44:51.361073Z",
-        "until": "2026-09-09T13:45:04.728074Z"
-      },
-      {
-        "since": "2026-09-09T13:50:29.196169Z",
-        "until": "2026-09-09T13:50:41.358116Z"
-      },
-      {
-        "since": "2026-09-09T13:56:19.981993Z",
-        "until": "2026-09-09T13:56:33.328569Z"
-      },
-      {
-        "since": "2026-09-09T14:01:51.327050Z",
-        "until": "2026-09-09T14:02:01.530660Z"
-      },
-      {
-        "since": "2026-09-09T14:07:20.027697Z",
-        "until": "2026-09-09T14:07:31.375727Z"
-      },
-      {
-        "since": "2026-09-09T14:12:59.034717Z",
-        "until": "2026-09-09T14:13:13.477726Z"
-      },
-      {
-        "since": "2026-09-09T14:18:59.010691Z",
-        "until": "2026-09-09T14:19:11.349577Z"
-      },
-      {
-        "since": "2026-09-09T14:24:59.010277Z",
-        "until": "2026-09-09T14:25:14.371423Z"
-      },
-      {
-        "since": "2026-09-09T14:30:51.240203Z",
-        "until": "2026-09-09T14:31:02.388239Z"
-      },
-      {
-        "since": "2026-09-09T14:36:33.746859Z",
-        "until": "2026-09-09T14:36:40.515038Z"
-      },
-      {
-        "since": "2026-09-09T14:41:34.002558Z",
-        "until": "2026-09-09T14:41:48.218124Z"
-      },
-      {
-        "since": "2026-09-09T14:47:33.831947Z",
-        "until": "2026-09-09T14:47:42.178772Z"
-      },
-      {
-        "since": "2026-09-09T14:53:29.185033Z",
-        "until": "2026-09-09T14:53:41.542815Z"
-      },
-      {
-        "since": "2026-09-09T14:58:51.147318Z",
-        "until": "2026-09-09T14:58:59.395863Z"
-      },
-      {
-        "since": "2026-09-09T15:04:20.376249Z",
-        "until": "2026-09-09T15:04:20.965889Z"
-      },
-      {
-        "since": "2026-09-09T15:09:24.309338Z",
-        "until": "2026-09-09T15:09:35.586328Z"
-      },
-      {
-        "since": "2026-09-09T15:15:20.422130Z",
-        "until": "2026-09-09T15:15:30.582160Z"
-      },
-      {
-        "since": "2026-09-09T15:21:20.474421Z",
-        "until": "2026-09-09T15:21:31.799822Z"
-      },
-      {
-        "since": "2026-09-09T15:27:24.420673Z",
-        "until": "2026-09-09T15:27:30.573522Z"
-      },
-      {
-        "since": "2026-09-09T15:33:20.524659Z",
-        "until": "2026-09-09T15:33:32.673346Z"
-      },
-      {
-        "since": "2026-09-09T15:38:34.101833Z",
-        "until": "2026-09-09T15:38:44.439061Z"
-      },
-      {
-        "since": "2026-09-09T15:43:59.578130Z",
-        "until": "2026-09-09T15:44:09.916575Z"
-      },
-      {
-        "since": "2026-09-09T15:49:58.863005Z",
-        "until": "2026-09-09T15:50:12.199817Z"
-      },
-      {
-        "since": "2026-09-09T15:55:52.648164Z",
-        "until": "2026-09-09T15:56:02.990234Z"
-      },
-      {
-        "since": "2026-09-09T16:00:58.807453Z",
-        "until": "2026-09-09T16:01:10.054629Z"
-      },
-      {
-        "since": "2026-09-09T16:06:20.754880Z",
-        "until": "2026-09-09T16:06:25.960690Z"
-      },
-      {
-        "since": "2026-09-09T16:11:34.312621Z",
-        "until": "2026-09-09T16:11:49.006816Z"
-      },
-      {
-        "since": "2026-09-09T16:16:51.061727Z",
-        "until": "2026-09-09T16:16:56.809546Z"
-      },
-      {
-        "since": "2026-09-09T16:21:58.785620Z",
-        "until": "2026-09-09T16:22:06.400115Z"
-      },
-      {
-        "since": "2026-09-09T16:27:59.084582Z",
-        "until": "2026-09-09T16:28:13.803279Z"
-      },
-      {
-        "since": "2026-09-09T16:33:24.761067Z",
-        "until": "2026-09-09T16:33:38.098673Z"
-      },
-      {
-        "since": "2026-09-09T16:38:52.644949Z",
-        "until": "2026-09-09T16:39:06.947063Z"
-      },
-      {
-        "since": "2026-09-09T16:44:50.995002Z",
-        "until": "2026-09-09T16:44:59.093037Z"
-      },
-      {
-        "since": "2026-09-09T16:50:51.398051Z",
-        "until": "2026-09-09T16:50:59.559879Z"
-      },
-      {
-        "since": "2026-09-09T16:55:58.884420Z",
-        "until": "2026-09-09T16:56:12.039570Z"
-      },
-      {
-        "since": "2026-09-09T17:01:21.063973Z",
-        "until": "2026-09-09T17:01:26.391536Z"
-      },
-      {
-        "since": "2026-09-09T17:06:50.937310Z",
-        "until": "2026-09-09T17:07:01.069698Z"
-      },
-      {
-        "since": "2026-09-09T17:12:59.043797Z",
-        "until": "2026-09-09T17:13:01.612487Z"
-      },
-      {
-        "since": "2026-09-09T17:18:25.042734Z",
-        "until": "2026-09-09T17:18:32.095138Z"
-      },
-      {
-        "since": "2026-09-09T17:23:52.557241Z",
-        "until": "2026-09-09T17:24:02.570719Z"
-      },
-      {
-        "since": "2026-09-09T17:29:52.807976Z",
-        "until": "2026-09-09T17:29:58.262832Z"
-      },
-      {
-        "since": "2026-09-09T17:35:25.373994Z",
-        "until": "2026-09-09T17:35:39.511939Z"
-      },
-      {
-        "since": "2026-09-09T17:41:21.316228Z",
-        "until": "2026-09-09T17:41:27.640954Z"
-      },
-      {
-        "since": "2026-09-09T17:46:58.621440Z",
-        "until": "2026-09-09T17:47:04.594502Z"
-      },
-      {
-        "since": "2026-09-09T17:52:58.628577Z",
-        "until": "2026-09-09T17:53:05.078493Z"
-      },
-      {
-        "since": "2026-09-09T17:58:34.940164Z",
-        "until": "2026-09-09T17:58:48.157756Z"
-      },
-      {
-        "since": "2026-09-09T18:04:21.446453Z",
-        "until": "2026-09-09T18:04:33.775443Z"
-      },
-      {
-        "since": "2026-09-09T18:09:58.581225Z",
-        "until": "2026-09-09T18:10:06.523510Z"
-      },
-      {
-        "since": "2026-09-09T18:15:58.993400Z",
-        "until": "2026-09-09T18:16:07.029688Z"
-      },
-      {
-        "since": "2026-09-09T18:21:25.645509Z",
-        "until": "2026-09-09T18:21:32.801104Z"
-      },
-      {
-        "since": "2026-09-09T18:27:21.725599Z",
-        "until": "2026-09-09T18:27:32.288132Z"
-      },
-      {
-        "since": "2026-09-09T18:33:26.246513Z",
-        "until": "2026-09-09T18:33:38.444354Z"
-      },
-      {
-        "since": "2026-09-09T18:38:58.599855Z",
-        "until": "2026-09-09T18:39:06.062416Z"
-      },
-      {
-        "since": "2026-09-09T18:44:35.238506Z",
-        "until": "2026-09-09T18:44:45.555438Z"
-      },
-      {
-        "since": "2026-09-09T18:49:50.749707Z",
-        "until": "2026-09-09T18:50:03.101641Z"
-      },
-      {
-        "since": "2026-09-09T18:55:52.424702Z",
-        "until": "2026-09-09T18:56:01.564490Z"
-      },
-      {
-        "since": "2026-09-09T19:01:35.326657Z",
-        "until": "2026-09-09T19:01:48.666131Z"
-      },
-      {
-        "since": "2026-09-09T19:06:52.464214Z",
-        "until": "2026-09-09T19:07:00.604981Z"
-      },
-      {
-        "since": "2026-09-09T19:12:35.399885Z",
-        "until": "2026-09-09T19:12:41.836728Z"
-      },
-      {
-        "since": "2026-09-09T19:17:52.453561Z",
-        "until": "2026-09-09T19:18:03.783774Z"
-      },
-      {
-        "since": "2026-09-09T19:22:58.496453Z",
-        "until": "2026-09-09T19:23:07.812607Z"
-      },
-      {
-        "since": "2026-09-09T19:28:58.516035Z",
-        "until": "2026-09-09T19:29:12.666868Z"
-      },
-      {
-        "since": "2026-09-09T19:34:22.002602Z",
-        "until": "2026-09-09T19:34:35.375059Z"
-      },
-      {
-        "since": "2026-09-09T19:39:51.136676Z",
-        "until": "2026-09-09T19:39:58.578700Z"
-      },
-      {
-        "since": "2026-09-09T19:44:58.433793Z",
-        "until": "2026-09-09T19:45:04.578896Z"
-      },
-      {
-        "since": "2026-09-09T19:50:35.788225Z",
-        "until": "2026-09-09T19:50:45.055420Z"
-      },
-      {
-        "since": "2026-09-09T19:56:35.715679Z",
-        "until": "2026-09-09T19:56:45.592983Z"
-      },
-      {
-        "since": "2026-09-09T20:02:35.849444Z",
-        "until": "2026-09-09T20:02:44.170330Z"
-      },
-      {
-        "since": "2026-09-09T20:07:52.380528Z",
-        "until": "2026-09-09T20:08:05.636820Z"
-      },
-      {
-        "since": "2026-09-09T20:13:22.238306Z",
-        "until": "2026-09-09T20:13:28.560877Z"
-      },
-      {
-        "since": "2026-09-09T20:18:26.123781Z",
-        "until": "2026-09-09T20:18:40.626199Z"
-      },
-      {
-        "since": "2026-09-09T20:23:50.571036Z",
-        "until": "2026-09-09T20:24:04.903534Z"
-      },
-      {
-        "since": "2026-09-09T20:29:52.606696Z",
-        "until": "2026-09-09T20:30:01.947709Z"
-      },
-      {
-        "since": "2026-09-09T20:35:52.334795Z",
-        "until": "2026-09-09T20:35:57.677156Z"
-      },
-      {
-        "since": "2026-09-09T20:41:50.574434Z",
-        "until": "2026-09-09T20:42:05.896386Z"
-      },
-      {
-        "since": "2026-09-09T20:47:26.893013Z",
-        "until": "2026-09-09T20:47:40.626719Z"
-      },
-      {
-        "since": "2026-09-09T20:53:27.012189Z",
-        "until": "2026-09-09T20:53:38.346807Z"
-      },
-      {
-        "since": "2026-09-09T20:58:58.432479Z",
-        "until": "2026-09-09T20:59:05.820581Z"
-      },
-      {
-        "since": "2026-09-09T21:04:50.567600Z",
-        "until": "2026-09-09T21:04:51.509682Z"
-      },
-      {
-        "since": "2026-09-09T21:09:50.562703Z",
-        "until": "2026-09-09T21:10:03.896126Z"
-      },
-      {
-        "since": "2026-09-09T21:15:52.581191Z",
-        "until": "2026-09-09T21:16:00.915305Z"
-      },
-      {
-        "since": "2026-09-09T21:21:52.258369Z",
-        "until": "2026-09-09T21:21:59.051678Z"
-      },
-      {
-        "since": "2026-09-09T21:27:26.526084Z",
-        "until": "2026-09-09T21:27:32.678338Z"
-      },
-      {
-        "since": "2026-09-09T21:32:46.787268Z",
-        "until": "2026-09-09T21:32:53.839216Z"
-      },
-      {
-        "since": "2026-09-09T21:37:50.468982Z",
-        "until": "2026-09-09T21:38:00.641033Z"
-      },
-      {
-        "since": "2026-09-09T21:43:46.878463Z",
-        "until": "2026-09-09T21:43:52.047275Z"
-      },
-      {
-        "since": "2026-09-09T21:48:46.881972Z",
-        "until": "2026-09-09T21:48:55.225620Z"
-      },
-      {
-        "since": "2026-09-09T21:53:52.207883Z",
-        "until": "2026-09-09T21:54:07.557929Z"
-      },
-      {
-        "since": "2026-09-09T21:59:52.208026Z",
-        "until": "2026-09-09T22:00:01.878549Z"
-      },
-      {
-        "since": "2026-09-09T22:05:26.821847Z",
-        "until": "2026-09-09T22:05:37.971792Z"
-      },
-      {
-        "since": "2026-09-09T22:11:23.065637Z",
-        "until": "2026-09-09T22:11:27.120798Z"
-      },
-      {
-        "since": "2026-09-09T22:16:26.837762Z",
-        "until": "2026-09-09T22:16:34.161556Z"
-      },
-      {
-        "since": "2026-09-09T22:21:58.208778Z",
-        "until": "2026-09-09T22:22:14.097671Z"
-      },
-      {
-        "since": "2026-09-09T22:27:26.987733Z",
-        "until": "2026-09-09T22:27:28.465092Z"
-      },
-      {
-        "since": "2026-09-09T22:33:23.077758Z",
-        "until": "2026-09-09T22:33:28.964647Z"
-      },
-      {
-        "since": "2026-09-09T22:38:50.420633Z",
-        "until": "2026-09-09T22:39:04.971749Z"
-      },
-      {
-        "since": "2026-09-09T22:44:23.131006Z",
-        "until": "2026-09-09T22:44:29.882690Z"
-      },
-      {
-        "since": "2026-09-09T22:50:27.094314Z",
-        "until": "2026-09-09T22:50:42.225882Z"
-      },
-      {
-        "since": "2026-09-09T22:55:47.255447Z",
-        "until": "2026-09-09T22:56:00.815170Z"
-      },
-      {
-        "since": "2026-09-09T23:01:23.292882Z",
-        "until": "2026-09-09T23:01:31.719699Z"
-      },
-      {
-        "since": "2026-09-09T23:07:23.295381Z",
-        "until": "2026-09-09T23:07:29.614598Z"
-      },
-      {
-        "since": "2026-09-09T23:12:52.066701Z",
-        "until": "2026-09-09T23:13:00.244857Z"
-      },
-      {
-        "since": "2026-09-09T23:18:47.387168Z",
-        "until": "2026-09-09T23:19:01.724662Z"
-      },
-      {
-        "since": "2026-09-09T23:24:27.259299Z",
-        "until": "2026-09-09T23:24:33.565249Z"
-      },
-      {
-        "since": "2026-09-09T23:29:58.078242Z",
-        "until": "2026-09-09T23:30:04.010248Z"
-      },
-      {
-        "since": "2026-09-09T23:35:27.326949Z",
-        "until": "2026-09-09T23:35:40.692719Z"
-      },
-      {
-        "since": "2026-09-09T23:40:51.979013Z",
-        "until": "2026-09-09T23:41:01.107810Z"
-      },
-      {
-        "since": "2026-09-09T23:46:23.516039Z",
-        "until": "2026-09-09T23:46:35.361895Z"
-      },
-      {
-        "since": "2026-09-09T23:51:52.326064Z",
-        "until": "2026-09-09T23:51:58.649231Z"
-      },
-      {
-        "since": "2026-09-09T23:57:50.267520Z",
-        "until": "2026-09-09T23:58:00.598157Z"
-      },
-      {
-        "since": "2026-09-10T00:03:50.172393Z",
-        "until": "2026-09-10T00:04:03.320248Z"
-      },
-      {
-        "since": "2026-09-10T00:09:23.661853Z",
-        "until": "2026-09-10T00:09:33.955727Z"
-      },
-      {
-        "since": "2026-09-10T00:14:58.032031Z",
-        "until": "2026-09-10T00:15:07.788486Z"
-      },
-      {
-        "since": "2026-09-10T00:20:23.721555Z",
-        "until": "2026-09-10T00:20:32.918570Z"
-      },
-      {
-        "since": "2026-09-10T00:26:23.804344Z",
-        "until": "2026-09-10T00:26:30.082003Z"
-      },
-      {
-        "since": "2026-09-10T00:31:27.607978Z",
-        "until": "2026-09-10T00:31:37.899308Z"
-      },
-      {
-        "since": "2026-09-10T00:36:50.160278Z",
-        "until": "2026-09-10T00:36:57.493359Z"
-      },
-      {
-        "since": "2026-09-10T00:42:50.179026Z",
-        "until": "2026-09-10T00:42:59.557697Z"
-      },
-      {
-        "since": "2026-09-10T00:48:51.865359Z",
-        "until": "2026-09-10T00:48:59.198984Z"
-      },
-      {
-        "since": "2026-09-10T00:54:27.789578Z",
-        "until": "2026-09-10T00:54:37.890687Z"
-      },
-      {
-        "since": "2026-09-10T01:00:23.985371Z",
-        "until": "2026-09-10T01:00:34.287333Z"
-      },
-      {
-        "since": "2026-09-10T01:05:51.849989Z",
-        "until": "2026-09-10T01:06:04.166931Z"
-      },
-      {
-        "since": "2026-09-10T01:11:27.931562Z",
-        "until": "2026-09-10T01:11:42.215949Z"
-      },
-      {
-        "since": "2026-09-10T01:16:51.884726Z",
-        "until": "2026-09-10T01:17:04.223989Z"
-      },
-      {
-        "since": "2026-09-10T01:22:50.083504Z",
-        "until": "2026-09-10T01:22:55.473456Z"
-      },
-      {
-        "since": "2026-09-10T01:27:50.101355Z",
-        "until": "2026-09-10T01:28:03.434842Z"
-      },
-      {
-        "since": "2026-09-10T01:33:57.813602Z",
-        "until": "2026-09-10T01:34:04.147458Z"
-      },
-      {
-        "since": "2026-09-10T01:39:50.008668Z",
-        "until": "2026-09-10T01:39:59.156714Z"
-      },
-      {
-        "since": "2026-09-10T01:45:24.262081Z",
-        "until": "2026-09-10T01:45:30.411047Z"
-      },
-      {
-        "since": "2026-09-10T01:50:48.311684Z",
-        "until": "2026-09-10T01:51:02.824595Z"
-      },
-      {
-        "since": "2026-09-10T01:56:24.327273Z",
-        "until": "2026-09-10T01:56:34.461385Z"
-      },
-      {
-        "since": "2026-09-10T02:02:24.365236Z",
-        "until": "2026-09-10T02:02:37.760125Z"
-      },
-      {
-        "since": "2026-09-10T02:07:46.961046Z",
-        "until": "2026-09-10T02:07:55.109100Z"
-      },
-      {
-        "since": "2026-09-10T02:13:24.446380Z",
-        "until": "2026-09-10T02:13:35.584870Z"
-      },
-      {
-        "since": "2026-09-10T02:19:24.530878Z",
-        "until": "2026-09-10T02:19:31.870780Z"
-      },
-      {
-        "since": "2026-09-10T02:24:46.982563Z",
-        "until": "2026-09-10T02:24:58.735797Z"
-      },
-      {
-        "since": "2026-09-10T02:30:28.368445Z",
-        "until": "2026-09-10T02:30:41.656824Z"
-      },
-      {
-        "since": "2026-09-10T02:36:28.118954Z",
-        "until": "2026-09-10T02:36:39.212576Z"
-      },
-      {
-        "since": "2026-09-10T02:41:48.588514Z",
-        "until": "2026-09-10T02:41:58.904379Z"
-      },
-      {
-        "since": "2026-09-10T02:47:28.154573Z",
-        "until": "2026-09-10T02:47:34.294300Z"
-      },
-      {
-        "since": "2026-09-10T02:52:48.649202Z",
-        "until": "2026-09-10T02:53:01.974408Z"
-      },
-      {
-        "since": "2026-09-10T02:58:28.072206Z",
-        "until": "2026-09-10T02:58:37.213663Z"
-      },
-      {
-        "since": "2026-09-10T03:04:24.760963Z",
-        "until": "2026-09-10T03:04:32.111776Z"
-      },
-      {
-        "since": "2026-09-10T03:09:51.839772Z",
-        "until": "2026-09-10T03:10:01.173305Z"
-      },
-      {
-        "since": "2026-09-10T03:15:46.875049Z",
-        "until": "2026-09-10T03:15:53.336843Z"
-      },
-      {
-        "since": "2026-09-10T03:20:51.889461Z",
-        "until": "2026-09-10T03:21:02.036837Z"
-      },
-      {
-        "since": "2026-09-10T03:26:48.865248Z",
-        "until": "2026-09-10T03:27:00.199204Z"
-      },
-      {
-        "since": "2026-09-10T03:32:28.700137Z",
-        "until": "2026-09-10T03:32:41.983232Z"
-      },
-      {
-        "since": "2026-09-10T03:37:48.915316Z",
-        "until": "2026-09-10T03:38:04.075760Z"
-      },
-      {
-        "since": "2026-09-10T03:43:25.777608Z",
-        "until": "2026-09-10T03:43:34.119497Z"
-      },
-      {
-        "since": "2026-09-10T03:48:28.039872Z",
-        "until": "2026-09-10T03:48:34.182517Z"
-      },
-      {
-        "since": "2026-09-10T03:54:25.011204Z",
-        "until": "2026-09-10T03:54:40.360053Z"
-      },
-      {
-        "since": "2026-09-10T04:00:28.829049Z",
-        "until": "2026-09-10T04:00:36.178934Z"
-      },
-      {
-        "since": "2026-09-10T04:05:46.744506Z",
-        "until": "2026-09-10T04:05:57.504441Z"
-      },
-      {
-        "since": "2026-09-10T04:11:27.939498Z",
-        "until": "2026-09-10T04:11:33.312751Z"
-      },
-      {
-        "since": "2026-09-10T04:16:27.936231Z",
-        "until": "2026-09-10T04:16:42.280444Z"
-      },
-      {
-        "since": "2026-09-10T04:21:46.769760Z",
-        "until": "2026-09-10T04:21:56.098681Z"
-      },
-      {
-        "since": "2026-09-10T04:26:51.520280Z",
-        "until": "2026-09-10T04:27:04.846006Z"
-      },
-      {
-        "since": "2026-09-10T04:32:29.043362Z",
-        "until": "2026-09-10T04:32:41.183188Z"
-      },
-      {
-        "since": "2026-09-10T04:38:25.296644Z",
-        "until": "2026-09-10T04:38:38.637080Z"
-      },
-      {
-        "since": "2026-09-10T04:44:27.947258Z",
-        "until": "2026-09-10T04:44:37.088628Z"
-      },
-      {
-        "since": "2026-09-10T04:49:49.328259Z",
-        "until": "2026-09-10T04:50:01.566486Z"
-      },
-      {
-        "since": "2026-09-10T04:55:51.512254Z",
-        "until": "2026-09-10T04:56:02.107240Z"
-      },
-      {
-        "since": "2026-09-10T05:01:29.155032Z",
-        "until": "2026-09-10T05:01:43.476679Z"
-      },
-      {
-        "since": "2026-09-10T05:07:29.207608Z",
-        "until": "2026-09-10T05:07:44.530655Z"
-      },
-      {
-        "since": "2026-09-10T05:12:46.611116Z",
-        "until": "2026-09-10T05:12:57.767433Z"
-      },
-      {
-        "since": "2026-09-10T05:18:25.528781Z",
-        "until": "2026-09-10T05:18:33.997792Z"
-      },
-      {
-        "since": "2026-09-10T05:24:27.889339Z",
-        "until": "2026-09-10T05:24:34.232233Z"
-      },
-      {
-        "since": "2026-09-10T05:29:46.654452Z",
-        "until": "2026-09-10T05:29:52.948514Z"
-      },
-      {
-        "since": "2026-09-10T05:35:46.653772Z",
-        "until": "2026-09-10T05:35:58.784322Z"
-      },
-      {
-        "since": "2026-09-10T05:41:25.657079Z",
-        "until": "2026-09-10T05:41:33.982612Z"
-      },
-      {
-        "since": "2026-09-10T05:47:27.796811Z",
-        "until": "2026-09-10T05:47:36.455312Z"
-      },
-      {
-        "since": "2026-09-10T05:53:29.470876Z",
-        "until": "2026-09-10T05:53:36.940862Z"
-      },
-      {
-        "since": "2026-09-10T05:59:25.764359Z",
-        "until": "2026-09-10T05:59:33.907374Z"
-      },
-      {
-        "since": "2026-09-10T06:04:49.781575Z",
-        "until": "2026-09-10T06:05:02.924967Z"
-      },
-      {
-        "since": "2026-09-10T06:10:49.796683Z",
-        "until": "2026-09-10T06:10:56.896346Z"
-      },
-      {
-        "since": "2026-09-10T06:16:49.997297Z",
-        "until": "2026-09-10T06:16:56.280963Z"
-      },
-      {
-        "since": "2026-09-10T06:22:27.728490Z",
-        "until": "2026-09-10T06:22:38.056411Z"
-      },
-      {
-        "since": "2026-09-10T06:28:29.790344Z",
-        "until": "2026-09-10T06:28:39.749016Z"
-      },
-      {
-        "since": "2026-09-10T06:33:37.909257Z",
-        "until": "2026-09-10T06:34:40.262332Z"
-      },
-      {
-        "since": "2026-09-10T06:39:49.969267Z",
-        "until": "2026-09-10T06:39:57.246830Z"
-      },
-      {
-        "since": "2026-09-10T06:45:29.770444Z",
-        "until": "2026-09-10T06:45:37.906838Z"
+        "since": "2026-09-10T09:32:30.798581Z",
+        "until": "2026-09-10T09:32:46.133799Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "04:06 America/Toronto · Cloud Scheduler",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-09T04:06:00-04:00"
-    },
     {
       "run": "The Bookkeeper",
       "cadence": "Daily",
@@ -2371,36 +1250,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-09T06:00:00-04:00"
     },
     {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-09T06:26:00-04:00"
-    },
-    {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "04:05 America/Toronto · Cloud Scheduler",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-09T04:05:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-09T04:35:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2408,7 +1257,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T02:45:00-04:00"
+      "lastISO": "2026-09-10T05:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2418,7 +1267,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T02:00:00-04:00"
+      "lastISO": "2026-09-10T05:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2428,7 +1277,37 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T02:07:00-04:00"
+      "lastISO": "2026-09-10T05:07:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "04:06 America/Toronto · Cloud Scheduler",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-10T04:06:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-10T04:06:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "04:05 America/Toronto · Cloud Scheduler",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-10T04:05:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -2438,7 +1317,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T02:06:00-04:00"
+      "lastISO": "2026-09-10T05:05:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2451,6 +1330,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-09T19:47:00-04:00"
     },
     {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-10T04:30:00-04:00"
+    },
+    {
       "run": "The Weatherman",
       "cadence": "Daily",
       "expected": "03:10 + hourly 09:10–23:10 America/Toronto · Codex production fallback",
@@ -2458,7 +1347,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T23:10:00-04:00"
+      "lastISO": "2026-09-10T03:10:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2478,7 +1367,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T02:45:00-04:00"
+      "lastISO": "2026-09-10T05:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2488,7 +1377,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T02:45:00-04:00"
+      "lastISO": "2026-09-10T05:35:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2508,7 +1397,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-10T02:40:00-04:00"
+      "lastISO": "2026-09-10T05:30:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2787,18 +1676,14 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Doorman",
           "alarm-watchdog (Cloud Run)",
+          "The Doorman",
           "migration-sweep (Cloud Run — alarm-mcp)",
           "🔑 Code Mirror"
         ],
-        "worst": {
-          "run": "The Doorman",
-          "label": "Due",
-          "lastISO": "2026-09-09T06:26:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "mail",
@@ -2821,7 +1706,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
           "The Analyst",
           "The Host",
@@ -2833,11 +1718,7 @@ const DATA = /*__DATA__*/{
           "The Opener",
           "Watchlist sync"
         ],
-        "worst": {
-          "run": "The Analyst",
-          "label": "Due",
-          "lastISO": "2026-09-09T04:06:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2878,7 +1759,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "02:47"
+    "stamp": "05:35"
   }
 }/*__END_DATA__*/;
 
