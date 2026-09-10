@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 5:26 PM ET",
-  "generatedAtISO": "2026-09-10T17:26:16-04:00",
+  "generatedAt": "Sep 10, 5:32 PM ET",
+  "generatedAtISO": "2026-09-10T17:32:17-04:00",
   "studios": [
     {
       "id": "509A",
@@ -726,12 +726,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:30",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Angus Dirnbeck",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -980,6 +980,28 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
+      "code": "COURTESY — Best Omotayo — codes acknowledgement [responder:•••:vps:sms-in-e1677f3c]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 10 · 17:30",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "BC-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 10 · 17:31",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1090,6 +1112,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789074029963,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "17:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789075823595,
       "source": "doors"
     }
   ],
@@ -1654,6 +1685,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T21:22:55.238156Z",
         "until": "2026-09-10T21:22:59.708885Z"
+      },
+      {
+        "since": "2026-09-10T21:28:26.418197Z",
+        "until": "2026-09-10T21:28:37.845007Z"
       }
     ],
     "down": false
@@ -1677,7 +1712,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:25:00-04:00"
+      "lastISO": "2026-09-10T17:30:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1687,7 +1722,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:20:00-04:00"
+      "lastISO": "2026-09-10T17:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1697,7 +1732,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:15:00-04:00"
+      "lastISO": "2026-09-10T17:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1707,7 +1742,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:25:00-04:00"
+      "lastISO": "2026-09-10T17:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1727,7 +1762,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:20:00-04:00"
+      "lastISO": "2026-09-10T17:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1817,7 +1852,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:58:00-04:00"
+      "lastISO": "2026-09-10T17:30:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1857,7 +1892,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:16:00-04:00"
+      "lastISO": "2026-09-10T17:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2179,7 +2214,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:26"
+    "stamp": "17:32"
   }
 }/*__END_DATA__*/;
 
