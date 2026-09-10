@@ -182,3 +182,18 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+def test_tomorrows_roster_is_collected_for_the_shifts_tab():
+    # The Shifts tab shows tomorrow's named shifts. Only day_offset 1 rows,
+    # only the public fields (name, role, studio, times), never the renter.
+    tomorrow = BASE + timedelta(days=1)
+    a = build.parse_staff_assignment("Ela Krystin FBS", "Nina Li: (Studio 901) [Paid]",
+                                     _dt(tomorrow, 20, 15), _dt(tomorrow, 20, 45), BASE)
+    assert a["day_offset"] == 1 and a["studio"] == "901" and a["name"] == "Ela"
+    row = {"name": a["name"], "role": a["role"], "studio": a.get("studio"),
+           "day_offset": 1, "day": "Tomorrow", "start": a["start"], "end": a["end"]}
+    assert row == {"name": "Ela", "role": "FBS", "studio": "901", "day_offset": 1,
+                   "day": "Tomorrow", "start": 20.25, "end": 20.75}
+    for v in row.values():
+        assert "Nina" not in str(v) and "Paid" not in str(v)

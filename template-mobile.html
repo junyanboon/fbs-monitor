@@ -669,6 +669,13 @@ function render(){
       <span class="ev"><span class="chip watch">${esc(o.day)} · ${hm(o.start)}–${hm(o.end)}</span>${FBS_AUTH.rowExtra(o)}</span>
     </div>`).join(""):"";
   const roster=SFILTER==="open"?[]:(DATA.staff||[]).filter(s=>SFILTER==="all"||s.name===SFILTER);
+  /* tomorrow's named shifts (DATA.staffAhead, builder 2026-09-10): same row,
+     no on-now/done state — it is all still ahead */
+  const ahead=(DATA.staffAhead||[]).filter(s=>SFILTER==="all"||s.name===SFILTER).map(s=>`<div class="row">
+      <span class="tm">${hm(s.start)}</span>
+      <span class="nm">${esc(s.name)}<span class="st">${esc(s.role||"")}${s.studio?" · "+esc(s.studio):""}</span></span>
+      <span class="chip watch">${hm(s.start)}–${hm(s.end)}</span>
+    </div>`).join("");
   const st=roster.map(s=>{
     const on=s.start<=n&&n<s.end,past=n>=s.end;
     return `<div class="row" style="${past?"opacity:.55":""}">
@@ -683,7 +690,9 @@ function render(){
              :SFILTER==="open"?`<div class="quiet">No open shifts right now.</div>`:"")+
     (showOpen?claimBtn:"")+
     (SFILTER!=="open"?`<div class="grp">Scheduled today</div>`+
-      (st||`<div class="quiet">No staff shifts today.</div>`):"");
+      (st||`<div class="quiet">No staff shifts today.</div>`):"")+
+    (SFILTER!=="open"?`<div class="grp">Scheduled tomorrow</div>`+
+      (ahead||`<div class="quiet">Nothing scheduled for tomorrow yet.</div>`):"");
 
   /* messages: queue rows awaiting a human — titles only, bodies stay in
      Notion. The button is the tab's whole point: process them there. */

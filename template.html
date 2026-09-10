@@ -1033,6 +1033,14 @@ function render(){
     </div>`;
   };
   const monBk = bookings.filter(e=>e.tier).sort((a,b)=>a.start-b.start);
+  /* tomorrow's named shifts (DATA.staffAhead, builder 2026-09-10) */
+  const AHEAD = (DATA.staffAhead||[]).slice().sort((a,b)=>a.start-b.start);
+  const aheadRow = s => `<div class="shift">
+      <span class="tm">${hm(s.start)}–${hm(s.end)}</span>
+      <span class="nm">${esc(s.name)}${s.studio?` <span class="chip plain">${esc(s.studio)}</span>`:""}</span>
+      <span class="chip type">${esc(s.role)}</span>
+      <span class="chip watch">Tomorrow</span>
+    </div>`;
   /* Open (claimable) shifts. Amber row, day label because these run days
      ahead. On the claim server FBS_AUTH.rowExtra adds the Claim control; on
      the static edition it adds nothing and Notion stays the claim path. */
@@ -1051,6 +1059,8 @@ function render(){
      <a class="nbtn" href="https://app.notion.com/p/3897503281c480f2ade3c6bc1f299c60?v=3897503281c480dc8131000c1bbf52e2" target="_blank" rel="noopener" style="margin-top:12px">Claim a shift in Notion${arrow}</a>
      <p class="lane-label">Staff shifts</p>
      <div class="panelwrap">${STAFF.length? STAFF.map(shiftRow).join("") : '<div class="shift">No staff shifts today</div>'}</div>
+     <p class="lane-label">Staff shifts tomorrow</p>
+     <div class="panelwrap">${AHEAD.length? AHEAD.map(aheadRow).join("") : '<div class="shift">Nothing scheduled for tomorrow yet</div>'}</div>
      <p class="lane-label">Monitored bookings — coverage</p>
      <div class="panelwrap">${monBk.length? monBk.map(covRow).join("") : '<div class="shift">No monitored bookings today</div>'}</div>`;
 

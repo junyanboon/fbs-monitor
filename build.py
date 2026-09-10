@@ -567,7 +567,7 @@ def reconcile_open_shifts(open_shifts, assignments, now, base_day):
     return out
 
 
-def fetch_open_shifts(ics_map, win_start, base_day, now=None):
+def fetch_open_shifts(ics_map, win_start, base_day, now=None, ahead_out=None):
     """Unassigned placeholders from the Staff calendar, today + the posting
     lookahead. Separate fetch because the board window is today-only, while
     claimable shifts are posted days ahead. Own fetch also means an outage
@@ -593,6 +593,14 @@ def fetch_open_shifts(ics_map, win_start, base_day, now=None):
                                    ev["dtstart"], ev["dtend"], base_day)
         if a and a["day_offset"] >= 0:
             assignments.append(a)
+            # Tomorrow's roster for the Shifts tab (2026-09-10, Junyan: "add a
+            # schedule tomorrow section"). Same public fields as today's staff
+            # rail: a rostered name, role, studio and times. Nothing from the
+            # description beyond the studio number.
+            if ahead_out is not None and a["day_offset"] == 1:
+                ahead_out.append({"name": a["name"], "role": a["role"], "studio": a.get("studio"),
+                                  "day_offset": 1, "day": "Tomorrow",
+                                  "start": a["start"], "end": a["end"]})
     out = reconcile_open_shifts(open_shifts, assignments,
                                 now or datetime.now(TZ), base_day)
     out.sort(key=lambda o: (o["day_offset"], o["start"]))
@@ -3580,7 +3588,9 @@ def build_data(now):
     # fetch costs the Open list this edition, never the board. fetch_ics exits
     # via die() on failure, so SystemExit must be absorbed here too.
     try:
-        open_shifts = fetch_open_shifts(ics_map, win_start, base_day, now)
+        staff_ahead = []
+        open_shifts = fetch_open_shifts(ics_map, win_start, base_day, now, ahead_out=staff_ahead)
+        staff_ahead.sort(key=lambda a: (a["start"], a["name"]))
     except (Exception, SystemExit) as e:  # noqa: BLE001
         open_shifts = []
         emit_fallback_note(f"Staff ICS lookahead failed ({e}); open shifts absent this edition.")
@@ -3859,6 +3869,7 @@ def build_data(now):
         "events": board_events,
         "staff": sorted(staff, key=lambda s: s["start"]),
         "openShifts": open_shifts,
+        "staffAhead": staff_ahead,        # tomorrow's named shifts (Shifts tab)
         "messages": label_messages(messages, events),
         "attention": attention,
         "armEvents": arm_stream,
