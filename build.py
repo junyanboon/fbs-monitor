@@ -2235,6 +2235,13 @@ def robot_status(r, now):
     age_min = (now - last).total_seconds() / 60
     stale = r["stale_after"] or 120
     cadence = (r["cadence"] or "").lower()
+    # Intraday workers sleep outside their declared window. On reopening,
+    # judge silence from today's window start, as Sentinel does, rather than
+    # immediately declaring the entire overnight gap an outage.
+    if (cadence in {"hourly", "15-min", "5-min"}
+            and ws is not None and we is not None and ws < we):
+        opening = now.replace(hour=int(ws), minute=0, second=0, microsecond=0)
+        age_min = (now - max(last, opening)).total_seconds() / 60
     if cadence == "monthly":
         if last.year == now.year and last.month == now.month:
             return "ok", "On time"
