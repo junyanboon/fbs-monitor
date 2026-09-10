@@ -2575,7 +2575,7 @@ def _dispatch_time(value):
 # A row in one of these has already reached its end state: it went out, it was
 # ruled unnecessary, or it failed loudly somewhere that is not this board. None
 # of them is work still owed, so none of them draws a pill.
-DISPATCH_TERMINAL_STATUSES = ("will not send", "sent", "error")
+DISPATCH_TERMINAL_STATUSES = ("will not send", "sent")
 
 
 def _is_terminal_dispatch(status):
@@ -2591,8 +2591,14 @@ def _dispatch_pill(kind, board_status, row):
     if _is_terminal_dispatch(row.get("status")):
         return None
     send_time = _dispatch_time(row.get("send_after"))
-    return {"kind": kind, "state": "scheduled" if send_time else "queued",
-            "time": send_time}
+    status = (row.get("status") or "").strip().lower()
+    if status in {"error", "needs fix"}:
+        state = "blocked"
+    elif status != "ready to send":
+        state = "awaiting"
+    else:
+        state = "scheduled" if send_time else "queued"
+    return {"kind": kind, "state": state, "time": send_time}
 
 
 def _event_clock(base_day, decimal_hour):

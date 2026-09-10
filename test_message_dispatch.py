@@ -49,7 +49,7 @@ def dispatch(events, rows):
 def test_scheduled_queue_rows_publish_toronto_times_only():
     pills = dispatch([booking()], [
         message("AVA", "Ready to Send", send_after="2026-08-30T20:30:00Z"),
-        message("EOB", "Pending Review", send_after="2026-08-31T03:45:00Z"),
+        message("EOB", "Ready to Send", send_after="2026-08-31T03:45:00Z"),
     ])
     assert pills == [
         {"kind": "AVA", "state": "scheduled", "time": "16:30"},
@@ -60,7 +60,7 @@ def test_scheduled_queue_rows_publish_toronto_times_only():
 
 def test_existing_row_without_time_is_queued_not_missing():
     pills = dispatch([booking(eob="Will Not Send")], [
-        message("AVA", "Pending Review"),
+        message("AVA", "Ready to Send"),
     ])
     assert pills == [{"kind": "AVA", "state": "queued", "time": None}]
 
@@ -131,7 +131,7 @@ def test_will_not_send_is_intentional_absence_not_missing():
 def test_terminal_rows_do_not_render_queue_pills():
     pills = dispatch([booking()], [
         message("AVA", "Sent", sent_at="2026-08-30T15:02:00Z"),
-        message("EOB", "Error"),
+        message("EOB", "Will Not Send"),
     ])
     assert pills == []
 
@@ -147,7 +147,7 @@ def test_public_projection_contains_no_private_join_fields():
     build.apply_message_dispatch(
         [event], [message("AVA", "Pending Review")], date(2026, 8, 30))
     public = build.prepare_board_events([event])[0]
-    assert public["dispatch"] == [{"kind": "AVA", "state": "queued", "time": None},
+    assert public["dispatch"] == [{"kind": "AVA", "state": "awaiting", "time": None},
                                   {"kind": "EOB", "state": "missing", "time": None}]
     serialized = repr(public)
     assert "artist-kosi" not in serialized
@@ -160,7 +160,7 @@ def test_newest_duplicate_replacement_wins_over_stale_error():
         message("AVA", "Error", created="2026-08-30T08:00:00Z"),
         message("AVA", "Pending Review", created="2026-08-30T09:00:00Z"),
     ])
-    assert pills[0] == {"kind": "AVA", "state": "queued", "time": None}
+    assert pills[0] == {"kind": "AVA", "state": "awaiting", "time": None}
 
 
 def test_timed_rows_attach_to_their_exact_booking_only():
@@ -283,3 +283,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def test_unapproved_and_failed_messages_never_look_scheduled():
+    for status, state in [("Pending Review", "awaiting"), ("Needs Fix", "blocked"),
+                          ("Error", "blocked"), ("Unexpected", "awaiting")]:
+        for timestamp in [None, "2026-08-31T03:45:00Z"]:
+            pill = build._dispatch_pill("EOB", "Scheduled", message("EOB", status, send_after=timestamp))
+            assert pill == {"kind": "EOB", "state": state, "time": "23:45" if timestamp else None}
