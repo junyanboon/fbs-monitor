@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 10:56 AM ET",
-  "generatedAtISO": "2026-09-10T10:56:57-04:00",
+  "generatedAt": "Sep 10, 11:02 AM ET",
+  "generatedAtISO": "2026-09-10T11:02:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -616,33 +616,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "who": "Amanda-May Wilson — Amanda-May Wilson — Private Session",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": null,
-      "departed": null,
-      "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": {
-        "studio": "527",
-        "at": "08:56"
-      },
-      "dup_studios": null,
-      "start": 9.0,
-      "end": 11.0,
-      "access_gap": false
-    },
-    {
-      "studio": "509B",
       "who": "Jia Chian Lee — Dance Practice",
       "kind": "booking",
       "tier": "Monitor",
@@ -674,6 +647,41 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 17.0,
       "end": 18.5,
+      "access_gap": false
+    },
+    {
+      "studio": "527",
+      "who": "Amanda-May Wilson — Amanda-May Wilson — Private Session",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "missing",
+          "time": null
+        },
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        }
+      ],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": "08:56",
+      "departed": "10:49",
+      "facilitator": null,
+      "arrived_by": "Amanda-May Wilson",
+      "departed_by": "Amanda-May Wilson",
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 9.0,
+      "end": 11.0,
       "access_gap": false
     },
     {
@@ -996,6 +1004,17 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-10T18:45:00-04:00",
       "label": "EOB for Natascha M Peerspace in Studio 901"
+    },
+    {
+      "code": "Booking move and extension confirmed (901 Sep 13 19:00–22:00) — Janet Zamora [extender:ffdfe825-da7d-40b5-••••-b9457ad48336]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 10 · 08:25",
+      "send_after": null,
+      "send_after_iso": null
     },
     {
       "code": "Natascha — gentle sound heads-up — 901 Sep 10 [docket:••••]",
@@ -1389,6 +1408,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T14:51:26.929808Z",
         "until": "2026-09-10T14:52:10.572021Z"
+      },
+      {
+        "since": "2026-09-10T14:57:27.185215Z",
+        "until": "2026-09-10T14:57:39.553836Z"
       }
     ],
     "down": false
@@ -1402,7 +1425,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:54:00-04:00"
+      "lastISO": "2026-09-10T11:00:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1412,7 +1435,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:50:00-04:00"
+      "lastISO": "2026-09-10T11:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1422,7 +1445,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:45:00-04:00"
+      "lastISO": "2026-09-10T11:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1432,7 +1455,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:55:00-04:00"
+      "lastISO": "2026-09-10T11:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1442,7 +1465,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:00:00-04:00"
+      "lastISO": "2026-09-10T11:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1452,7 +1475,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:50:00-04:00"
+      "lastISO": "2026-09-10T11:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1532,7 +1555,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:08:00-04:00"
+      "lastISO": "2026-09-10T11:12:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1910,7 +1933,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:56"
+    "stamp": "11:02"
   }
 }/*__END_DATA__*/;
 
