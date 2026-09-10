@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 11:17 PM ET",
-  "generatedAtISO": "2026-09-09T23:17:03-04:00",
+  "generatedAt": "Sep 9, 11:32 PM ET",
+  "generatedAtISO": "2026-09-09T23:32:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -641,18 +641,6 @@ const DATA = /*__DATA__*/{
   ],
   "openShifts": [
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 8.25,
-      "end": 8.75,
-      "id": "5a107ed3d244",
-      "date": "2026-09-10",
-      "startISO": "2026-09-10T08:15:00-04:00",
-      "endISO": "2026-09-10T08:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": "509B",
       "day_offset": 1,
@@ -662,6 +650,18 @@ const DATA = /*__DATA__*/{
       "date": "2026-09-10",
       "startISO": "2026-09-10T08:45:00-04:00",
       "endISO": "2026-09-10T09:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.5,
+      "end": 10.0,
+      "id": "c553be146eec",
+      "date": "2026-09-10",
+      "startISO": "2026-09-10T09:30:00-04:00",
+      "endISO": "2026-09-10T10:00:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -833,7 +833,12 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-10T09:00:00-04:00"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "crit",
+      "text": "HTA not queued · Natascha M Peerspace) · 901 · 17:30"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -1864,6 +1869,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T03:15:46.875049Z",
         "until": "2026-09-10T03:15:53.336843Z"
+      },
+      {
+        "since": "2026-09-10T03:20:51.889461Z",
+        "until": "2026-09-10T03:21:02.036837Z"
+      },
+      {
+        "since": "2026-09-10T03:26:48.865248Z",
+        "until": "2026-09-10T03:27:00.199204Z"
       }
     ],
     "down": false
@@ -1877,7 +1890,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T23:15:00-04:00"
+      "lastISO": "2026-09-09T23:32:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2017,7 +2030,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:15:00-04:00"
+      "lastISO": "2026-09-09T23:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2027,7 +2040,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:15:00-04:00"
+      "lastISO": "2026-09-09T23:30:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2047,7 +2060,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:10:00-04:00"
+      "lastISO": "2026-09-09T23:30:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2385,7 +2398,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:17"
+    "stamp": "23:32"
   }
 }/*__END_DATA__*/;
 
