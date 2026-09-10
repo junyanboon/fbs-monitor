@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 6:11 PM ET",
-  "generatedAtISO": "2026-09-10T18:11:21-04:00",
+  "generatedAt": "Sep 10, 6:16 PM ET",
+  "generatedAtISO": "2026-09-10T18:16:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -615,13 +615,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "18:15"
-        }
-      ],
+      "dispatch": [],
       "booking_studios": [],
       "heard": false,
       "arrived": "17:00",
@@ -990,18 +984,6 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-10T18:45:00-04:00",
       "label": "EOB for Natascha M Peerspace in Studio 901"
-    },
-    {
-      "code": "EOB-sweep-•••B",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 00:02",
-      "send_after": "18:15",
-      "send_after_iso": "2026-09-10T18:15:00-04:00",
-      "label": "EOB for Jia Chian Lee in Studio 509B"
     }
   ],
   "attention": [],
@@ -1697,11 +1679,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T22:08:35.336761Z",
         "until": "2026-09-10T22:08:50.759791Z"
+      },
+      {
+        "since": "2026-09-10T22:14:35.088116Z",
+        "until": "2026-09-10T22:14:40.457411Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-10T16:22:00-04:00"
+    },
     {
       "run": "The Planner",
       "cadence": "Daily",
@@ -1740,7 +1736,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T18:00:00-04:00"
+      "lastISO": "2026-09-10T18:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1750,7 +1746,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T18:10:00-04:00"
+      "lastISO": "2026-09-10T18:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1801,16 +1797,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-10T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-10T16:22:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1900,7 +1886,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T18:01:00-04:00"
+      "lastISO": "2026-09-10T18:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1981,6 +1967,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-08-01T10:01:00-04:00"
+    },
+    {
+      "run": "The Registrar (booking-sweep, Hostinger)",
+      "cadence": "Hourly",
+      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. Monitoring flips to Live only after the first stamp is observed on this row (wayfinder 086).",
+      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
+      "monitoring": "Not reporting",
+      "status": "plain",
+      "statusLabel": "Not reporting",
+      "lastISO": null
     },
     {
       "run": "The Sentinel",
@@ -2153,16 +2149,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
-          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-10T16:22:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2179,7 +2179,8 @@ const DATA = /*__DATA__*/{
           "Watchlist sync",
           "The Closer",
           "The Loop",
-          "The Opener"
+          "The Opener",
+          "The Registrar (booking-sweep, Hostinger)"
         ],
         "worst": {
           "run": "The Planner",
@@ -2222,7 +2223,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:11"
+    "stamp": "18:16"
   }
 }/*__END_DATA__*/;
 
