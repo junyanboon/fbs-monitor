@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 10:02 AM ET",
-  "generatedAtISO": "2026-09-10T10:02:16-04:00",
+  "generatedAt": "Sep 10, 10:17 AM ET",
+  "generatedAtISO": "2026-09-10T10:17:08-04:00",
   "studios": [
     {
       "id": "509A",
@@ -774,7 +774,7 @@ const DATA = /*__DATA__*/{
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 22.25,
+      "start": 22.0,
       "end": 23.5,
       "access_gap": false
     },
@@ -1038,6 +1038,17 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Responder",
       "created": "Sep 10 · 10:02",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Availability — Rebecca Wise — 693 Oct 31 [responder:•••:vps:gmail-1a08b754166f6fea]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Responder",
+      "created": "Sep 10 · 10:03",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1365,11 +1376,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T14:02:07.996680Z",
         "until": "2026-09-10T14:02:19.012532Z"
+      },
+      {
+        "since": "2026-09-10T14:07:16.591540Z",
+        "until": "2026-09-10T14:07:19.440894Z"
+      },
+      {
+        "since": "2026-09-10T14:12:32.146463Z",
+        "until": "2026-09-10T14:12:47.476076Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-10T08:24:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1378,7 +1407,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T09:57:00-04:00"
+      "lastISO": "2026-09-10T10:14:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1388,7 +1417,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:00:00-04:00"
+      "lastISO": "2026-09-10T10:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1398,7 +1427,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:00:00-04:00"
+      "lastISO": "2026-09-10T10:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1408,7 +1437,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:00:00-04:00"
+      "lastISO": "2026-09-10T10:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1428,7 +1457,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:00:00-04:00"
+      "lastISO": "2026-09-10T10:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1438,7 +1467,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T09:07:00-04:00"
+      "lastISO": "2026-09-10T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1459,16 +1488,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-10T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:24:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1528,7 +1547,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T09:27:00-04:00"
+      "lastISO": "2026-09-10T10:05:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1558,7 +1577,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T09:10:00-04:00"
+      "lastISO": "2026-09-10T10:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1568,7 +1587,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T10:01:00-04:00"
+      "lastISO": "2026-09-10T10:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1821,16 +1840,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
-          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-10T08:24:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -1886,7 +1909,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:02"
+    "stamp": "10:17"
   }
 }/*__END_DATA__*/;
 
