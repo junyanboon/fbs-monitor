@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 6:47 PM ET",
-  "generatedAtISO": "2026-09-10T18:47:14-04:00",
+  "generatedAt": "Sep 10, 6:56 PM ET",
+  "generatedAtISO": "2026-09-10T18:56:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -754,7 +754,12 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -1493,6 +1498,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T22:46:13.970374Z",
         "until": "2026-09-10T22:46:27.115632Z"
+      },
+      {
+        "since": "2026-09-10T22:51:35.328095Z",
+        "until": "2026-09-10T22:51:49.675450Z"
       }
     ],
     "down": false
@@ -1504,8 +1513,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-10T16:22:00-04:00"
     },
     {
@@ -1526,7 +1535,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T18:45:00-04:00"
+      "lastISO": "2026-09-10T18:57:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1536,7 +1545,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T18:40:00-04:00"
+      "lastISO": "2026-09-10T18:50:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1556,7 +1565,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T18:45:00-04:00"
+      "lastISO": "2026-09-10T18:55:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1576,7 +1585,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T18:40:00-04:00"
+      "lastISO": "2026-09-10T18:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1959,7 +1968,7 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Concierge",
           "greeter-sweep (Cloud Run)",
@@ -1970,7 +1979,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Concierge",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-10T16:22:00-04:00"
         }
       },
@@ -2033,7 +2042,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:47"
+    "stamp": "18:56"
   }
 }/*__END_DATA__*/;
 
