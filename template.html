@@ -1338,7 +1338,7 @@ function renderRobots(){
     html += `<div class="fleet">` + F.lines.map(l=>{
       const s=l.status, w=l.worst;
       const small = s==="ok" ? esc(l.fine)
-        : `<b>${esc(l.down)}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+agoTxt(w.lastISO).replace(" ago","")+".":""}`;
+        : `<b>${esc(s==="crit" ? "Completion is overdue." : "Awaiting the next completion.")}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+agoTxt(w.lastISO).replace(" ago","")+".":""}`;
       return `<div class="hrow ${s==="ok"?"":s}" title="${esc(l.robots.join(", "))}">
         <span class="fleet-status-dot ${s==="ok"?"":s}"></span>
         <span class="nm">${esc(l.name)}<small>${small}</small></span>

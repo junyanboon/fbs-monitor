@@ -40,6 +40,20 @@ class OpeningWindow(unittest.TestCase):
     def test_off_hours_remain_off_hours(self):
         self.assertEqual(status(row(), datetime(2026, 9, 10, 7, 59, tzinfo=TZ)), ('plain', 'Off-hours'))
 
+    def test_daily_fixed_schedule_waits_until_todays_occurrence(self):
+        r = row('Daily', 1500); r['expected'] = '19:30 America/Toronto · Codex production fallback'
+        r['window_start'] = r['window_end'] = None
+        r['_self_hb'] = datetime(2026, 9, 9, 19, 47, tzinfo=TZ)
+        self.assertEqual(status(r, datetime(2026, 9, 10, 19, 17, tzinfo=TZ)), ('ok', 'On time'))
+        self.assertEqual(status(r, datetime(2026, 9, 10, 19, 45, tzinfo=TZ)), ('watch', 'Awaiting completion'))
+        self.assertEqual(status(r, datetime(2026, 9, 10, 20, 31, tzinfo=TZ)), ('crit', 'Overdue'))
+
+    def test_missing_yesterday_is_not_hidden_by_todays_future_run(self):
+        r = row('Daily', 1500); r['expected'] = '19:30 America/Toronto'
+        r['window_start'] = r['window_end'] = None
+        r['_self_hb'] = datetime(2026, 9, 8, 19, 47, tzinfo=TZ)
+        self.assertEqual(status(r, datetime(2026, 9, 10, 19, 17, tzinfo=TZ)), ('crit', 'Overdue'))
+
     def test_daily_and_unbounded_rows_keep_elapsed_time(self):
         self.assertEqual(status(row('Daily'), datetime(2026, 9, 10, 8, 2, tzinfo=TZ))[0], 'crit')
         r = row(); r['window_start'] = r['window_end'] = None
