@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 11:04 PM ET",
-  "generatedAtISO": "2026-09-09T23:04:58-04:00",
+  "generatedAt": "Sep 9, 11:12 PM ET",
+  "generatedAtISO": "2026-09-09T23:12:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -419,10 +419,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "20:51",
-      "departed": null,
+      "departed": "23:10",
       "facilitator": null,
       "arrived_by": "David Garzon",
-      "departed_by": null,
+      "departed_by": "David Garzon",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -650,18 +650,6 @@ const DATA = /*__DATA__*/{
       "date": "2026-09-10",
       "startISO": "2026-09-10T08:15:00-04:00",
       "endISO": "2026-09-10T08:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
-      "studio": "509B",
-      "day_offset": 1,
-      "start": 8.75,
-      "end": 9.25,
-      "id": "0f88a1eca9bd",
-      "date": "2026-09-10",
-      "startISO": "2026-09-10T08:45:00-04:00",
-      "endISO": "2026-09-10T09:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -1084,6 +1072,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789008099043,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "David Garzon",
+      "time": "23:10",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789009824087,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1093,7 +1090,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-10T02:43:01+00:00",
+    "updatedAt": "2026-09-10T03:12:01+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1872,6 +1869,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T03:04:24.760963Z",
         "until": "2026-09-10T03:04:32.111776Z"
+      },
+      {
+        "since": "2026-09-10T03:09:51.839772Z",
+        "until": "2026-09-10T03:10:01.173305Z"
       }
     ],
     "down": false
@@ -1885,7 +1886,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T23:04:00-04:00"
+      "lastISO": "2026-09-09T23:10:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1905,7 +1906,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T22:07:00-04:00"
+      "lastISO": "2026-09-09T23:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2005,7 +2006,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T22:10:00-04:00"
+      "lastISO": "2026-09-09T23:10:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2035,7 +2036,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:05:00-04:00"
+      "lastISO": "2026-09-09T23:10:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2055,7 +2056,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-09T23:00:00-04:00"
+      "lastISO": "2026-09-09T23:10:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2393,7 +2394,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:04"
+    "stamp": "23:12"
   }
 }/*__END_DATA__*/;
 
