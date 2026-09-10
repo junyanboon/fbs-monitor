@@ -74,6 +74,10 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_adt_parsing.py
 
+      - name: Robot opening-window regression tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_robot_opening.py
+
       # Guards booking-title cleanup and the duplicate passes. A mangled title
       # is a renter nobody recognises at the door; a mishandled duplicate is a
       # false no-show. Pure string work — no network, no secrets.
