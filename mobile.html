@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 5:47 PM ET",
-  "generatedAtISO": "2026-09-10T17:47:02-04:00",
+  "generatedAt": "Sep 10, 5:50 PM ET",
+  "generatedAtISO": "2026-09-10T17:50:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -454,10 +454,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:50",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Kateryna Zozulia",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -902,6 +902,14 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789076181099,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Kateryna Zozulia",
+      "time": "17:50",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789077041000
     }
   ],
   "panelPrior": {},
@@ -915,8 +923,10 @@ const DATA = /*__DATA__*/{
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
-      "missed": [],
-      "missedCount": 0
+      "missed": [
+        "527 arrival 17:50 (Kateryna Zozulia)"
+      ],
+      "missedCount": 1
     },
     "doorGaps": [
       {
@@ -1493,7 +1503,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:42:00-04:00"
+      "lastISO": "2026-09-10T17:48:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1503,7 +1513,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:40:00-04:00"
+      "lastISO": "2026-09-10T17:50:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1523,7 +1533,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:45:00-04:00"
+      "lastISO": "2026-09-10T17:50:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1543,7 +1553,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T17:40:00-04:00"
+      "lastISO": "2026-09-10T17:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1995,7 +2005,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:47"
+    "stamp": "17:50"
   }
 }/*__END_DATA__*/;
 
