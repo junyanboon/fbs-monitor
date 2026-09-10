@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 9, 2026",
   "shiftBaseDay": "2026-09-09",
-  "generatedAt": "Sep 9, 10:32 PM ET",
-  "generatedAtISO": "2026-09-09T22:32:17-04:00",
+  "generatedAt": "Sep 9, 10:43 PM ET",
+  "generatedAtISO": "2026-09-09T22:43:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -811,10 +811,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "20:30",
-      "departed": null,
+      "departed": "22:41",
       "facilitator": "Akira Huang",
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Akira Huang",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": "open",
@@ -1047,17 +1047,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Holding reply — Amanda-May Wilson — 527 switch + rate [responder:•••:vps:sms-in-309ca4f6]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 9 · 15:26",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "T4 neighbour check — Liz (Pink Lemon) — Wed ••• overlap [concierge:b2-neighbour:•••:901]",
       "kind": null,
       "channel": "SMS",
@@ -1065,17 +1054,6 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Concierge",
       "created": "Sep 9 · 16:19",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "COURTESY — Marilyn Hintsa — closing thanks [responder:•••:vps:sms-in-••••]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 9 · 20:57",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1346,6 +1324,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789007236641,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Akira Huang",
+      "time": "22:41",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789008099043,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1355,7 +1342,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-10T02:30:11+00:00",
+    "updatedAt": "2026-09-10T02:43:01+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -2110,6 +2097,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T02:30:28.368445Z",
         "until": "2026-09-10T02:30:41.656824Z"
+      },
+      {
+        "since": "2026-09-10T02:36:28.118954Z",
+        "until": "2026-09-10T02:36:39.212576Z"
+      },
+      {
+        "since": "2026-09-10T02:41:48.588514Z",
+        "until": "2026-09-10T02:41:58.904379Z"
       }
     ],
     "down": false
@@ -2133,7 +2128,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T22:33:00-04:00"
+      "lastISO": "2026-09-09T22:43:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2143,7 +2138,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T22:30:00-04:00"
+      "lastISO": "2026-09-09T22:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2163,7 +2158,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T22:30:00-04:00"
+      "lastISO": "2026-09-09T22:40:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2183,7 +2178,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-09T22:30:00-04:00"
+      "lastISO": "2026-09-09T22:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2635,7 +2630,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "22:32"
+    "stamp": "22:43"
   }
 }/*__END_DATA__*/;
 
