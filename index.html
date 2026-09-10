@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 7:38 PM ET",
-  "generatedAtISO": "2026-09-10T19:38:58-04:00",
+  "generatedAt": "Sep 10, 7:41 PM ET",
+  "generatedAtISO": "2026-09-10T19:41:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -872,42 +872,6 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "Monitoring",
-      "studio": "901",
-      "day_offset": 1,
-      "start": 10.75,
-      "end": 11.25,
-      "id": "7ecfaec7a24a",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T10:45:00-04:00",
-      "endISO": "2026-09-11T11:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "901",
-      "day_offset": 1,
-      "start": 11.75,
-      "end": 12.25,
-      "id": "7e1c576ac2d7",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T11:45:00-04:00",
-      "endISO": "2026-09-11T12:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 1,
-      "start": 12.25,
-      "end": 12.75,
-      "id": "ce55b66cbd98",
-      "date": "2026-09-11",
-      "startISO": "2026-09-11T12:15:00-04:00",
-      "endISO": "2026-09-11T12:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "Monitoring",
       "studio": "509B",
       "day_offset": 1,
       "start": 14.25,
@@ -981,6 +945,33 @@ const DATA = /*__DATA__*/{
   ],
   "staffAhead": [
     {
+      "name": "Junyan",
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "day": "Tomorrow",
+      "start": 10.75,
+      "end": 11.25
+    },
+    {
+      "name": "Junyan",
+      "role": "Monitoring",
+      "studio": "901",
+      "day_offset": 1,
+      "day": "Tomorrow",
+      "start": 11.75,
+      "end": 12.25
+    },
+    {
+      "name": "Junyan",
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 1,
+      "day": "Tomorrow",
+      "start": 12.25,
+      "end": 12.75
+    },
+    {
       "name": "Ela",
       "role": "FBS",
       "studio": "693",
@@ -1023,12 +1014,7 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -1830,21 +1816,15 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T23:35:56.001996Z",
         "until": "2026-09-10T23:36:03.294661Z"
+      },
+      {
+        "since": "2026-09-10T23:41:06.931824Z",
+        "until": "2026-09-10T23:41:12.272496Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-10T16:22:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1853,7 +1833,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T19:36:00-04:00"
+      "lastISO": "2026-09-10T19:41:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1863,7 +1843,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T19:30:00-04:00"
+      "lastISO": "2026-09-10T19:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1883,7 +1863,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T19:35:00-04:00"
+      "lastISO": "2026-09-10T19:40:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1903,7 +1883,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T19:30:00-04:00"
+      "lastISO": "2026-09-10T19:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1934,6 +1914,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-10T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-10T18:31:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1983,7 +1973,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T19:35:00-04:00"
+      "lastISO": "2026-09-10T19:42:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2296,20 +2286,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
+          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Overdue",
-          "lastISO": "2026-09-10T16:22:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2366,7 +2352,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:38"
+    "stamp": "19:41"
   }
 }/*__END_DATA__*/;
 
