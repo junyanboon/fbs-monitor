@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 8:55 AM ET",
-  "generatedAtISO": "2026-09-10T08:55:20-04:00",
+  "generatedAt": "Sep 10, 9:00 AM ET",
+  "generatedAtISO": "2026-09-10T09:00:36-04:00",
   "studios": [
     {
       "id": "509A",
@@ -414,7 +414,10 @@ const DATA = /*__DATA__*/{
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
-      "wrong_studio": null,
+      "wrong_studio": {
+        "studio": "527",
+        "at": "08:56"
+      },
       "dup_studios": null,
       "start": 9.0,
       "end": 11.0,
@@ -810,18 +813,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-10T09:00:00-04:00"
     },
     {
-      "code": "HTA-sweep-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 00:01",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-10T09:00:00-04:00",
-      "label": "HTA · Studio 693"
-    },
-    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -844,39 +835,6 @@ const DATA = /*__DATA__*/{
       "send_after": "15:00",
       "send_after_iso": "2026-09-10T15:00:00-04:00",
       "label": "AVA for Jia Chian Lee in Studio 509B"
-    },
-    {
-      "code": "Returning Access 901 RA-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 00:02",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-10T09:00:00-04:00"
-    },
-    {
-      "code": "Returning Access 509B RA-sweep-•••B",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 00:02",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-10T09:00:00-04:00"
-    },
-    {
-      "code": "Returning Access 693 RA-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 10 · 04:31",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-10T09:00:00-04:00"
     },
     {
       "code": "ANALYST-TTT-•••-T•••",
@@ -905,6 +863,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789044785828,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Amanda-May Wilson",
+      "time": "08:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789044962062,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -917,15 +884,6 @@ const DATA = /*__DATA__*/{
       "time": "23:10",
       "ts": 1789009824087,
       "when": "Wed 23:10"
-    },
-    "527": {
-      "studio": "527",
-      "name": "Khalid Roach-McLeod",
-      "time": "22:27",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789007237000,
-      "when": "Wed 22:27"
     },
     "693": {
       "kind": "departure",
@@ -954,7 +912,13 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-10T12:55:01+00:00",
+    "updatedAt": "2026-09-10T13:00:11+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-10T09:03:30.572851Z",
@@ -1127,6 +1091,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T12:54:16.501539Z",
         "until": "2026-09-10T12:54:23.614559Z"
+      },
+      {
+        "since": "2026-09-10T12:59:52.229310Z",
+        "until": "2026-09-10T13:00:03.567368Z"
       }
     ],
     "down": false
@@ -1140,7 +1108,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:51:00-04:00"
+      "lastISO": "2026-09-10T08:57:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1150,7 +1118,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:50:00-04:00"
+      "lastISO": "2026-09-10T09:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1160,7 +1128,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:45:00-04:00"
+      "lastISO": "2026-09-10T09:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1170,7 +1138,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:55:00-04:00"
+      "lastISO": "2026-09-10T09:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1180,7 +1148,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:00:00-04:00"
+      "lastISO": "2026-09-10T09:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1190,7 +1158,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:50:00-04:00"
+      "lastISO": "2026-09-10T09:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1270,7 +1238,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:05:00-04:00"
+      "lastISO": "2026-09-10T09:07:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1290,7 +1258,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:31:00-04:00"
+      "lastISO": "2026-09-10T09:02:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1330,7 +1298,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T08:46:00-04:00"
+      "lastISO": "2026-09-10T09:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1648,7 +1616,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "08:55"
+    "stamp": "09:00"
   }
 }/*__END_DATA__*/;
 
