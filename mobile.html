@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 10, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 10, 1:47 PM ET",
-  "generatedAtISO": "2026-09-10T13:47:07-04:00",
+  "generatedAt": "Sep 10, 2:02 PM ET",
+  "generatedAtISO": "2026-09-10T14:02:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -789,6 +789,28 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-10T13:30:00-04:00"
     },
     {
+      "code": "Quick answer — Marilyn Hintsa — will confirm with her group by Monday [responder:•••:vps:sms-in-3a9c43f4]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 10 · 14:01",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "COURTESY — Risa Waldman — instructor contacts supplied [responder:•••:vps:sms-in-19034c99]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 10 · 14:01",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -837,7 +859,12 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Jia Chian Lee in Studio 509B"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -1327,6 +1354,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-10T17:44:07.874018Z",
         "until": "2026-09-10T17:44:16.267131Z"
+      },
+      {
+        "since": "2026-09-10T17:49:17.940754Z",
+        "until": "2026-09-10T17:49:27.092122Z"
+      },
+      {
+        "since": "2026-09-10T17:54:33.503331Z",
+        "until": "2026-09-10T17:54:46.856380Z"
+      },
+      {
+        "since": "2026-09-10T18:00:07.669090Z",
+        "until": "2026-09-10T18:00:21.067999Z"
       }
     ],
     "down": false
@@ -1338,8 +1377,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
       "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-10T11:26:00-04:00"
     },
     {
@@ -1350,7 +1389,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:47:00-04:00"
+      "lastISO": "2026-09-10T13:57:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1360,7 +1399,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:40:00-04:00"
+      "lastISO": "2026-09-10T14:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1370,7 +1409,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:45:00-04:00"
+      "lastISO": "2026-09-10T14:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1380,7 +1419,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:45:00-04:00"
+      "lastISO": "2026-09-10T14:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1390,7 +1429,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:00:00-04:00"
+      "lastISO": "2026-09-10T14:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1400,7 +1439,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:40:00-04:00"
+      "lastISO": "2026-09-10T14:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1470,7 +1509,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:09:00-04:00"
+      "lastISO": "2026-09-10T14:08:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1530,7 +1569,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T13:46:00-04:00"
+      "lastISO": "2026-09-10T14:01:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1783,7 +1822,7 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Concierge",
           "greeter-sweep (Cloud Run)",
@@ -1794,7 +1833,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Concierge",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-10T11:26:00-04:00"
         }
       },
@@ -1852,7 +1891,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:47"
+    "stamp": "14:02"
   }
 }/*__END_DATA__*/;
 
