@@ -2802,9 +2802,13 @@ def fetch_hta_rows(token, since_dt):
     """Queue rows that carry a How-to-Access, created since `since_dt`.
 
     Shape = Template `hta_studio_access`, or a Message Code starting `HTA` /
-    `How to Access` (the sweep's and the Host's legacy codes). Bodies, Reply To
-    and every recipient rollup are never read: the row is judged on status,
-    clocks and the relation ids alone.
+    `How to Access` (the sweep's and the Host's legacy codes). Recipient
+    rollups and Reply To are never read. Alternative shapes also require
+    access labels in the body; the body is never projected to the public board.
+
+    Returning Access messages count only as delivered evidence for Monitor
+    bookings, with an access label and dispatch receipt. They do not replace
+    a first-visit walkthrough. Self Serve bookings are outside this watchdog.
 
     A FOURTH shape counts, added 2026-09-06: a **Sent** `BC-` row. The booking
     sweep merges a booking-change confirmation and the Returning Access text
@@ -2846,6 +2850,7 @@ def fetch_hta_rows(token, since_dt):
             {"property": "Message Code", "title": {"starts_with": "HTA"}},
             {"property": "Message Code", "title": {"starts_with": "How to Access"}},
             {"property": "Message Code", "title": {"starts_with": "BC"}},
+            {"property": "Message Code", "title": {"starts_with": "Returning Access"}},
         ]},
     ]}
     assert _filter_depth(filt) <= 2, "Notion rejects compound filters deeper than 2"
@@ -2853,11 +2858,14 @@ def fetch_hta_rows(token, since_dt):
     out = []
     for row in rows:
         p = row.get("properties", {})
-        if _hta_shape(p) == "BC":
+        shape = _hta_shape(p)
+        if shape in ("BC", "RA"):
             if (_prop_text(p.get("Status")) or "") != "Sent":
                 continue    # a queued or errored BC row is not proof of anything
             if not _carries_access(p):
                 continue    # a confirmation with no codes in it is not access
+            if shape == "RA" and not _prop_text(p.get("Dispatch Receipt")):
+                continue    # require actual dispatch evidence for this new shape
         out.append({
             "id": row.get("id"),
             "artist": _relation_id(p.get("Artist")),
@@ -2868,7 +2876,7 @@ def fetch_hta_rows(token, since_dt):
             "created": row.get("created_time") or "",
             "receipt": bool(_prop_text(p.get("Dispatch Receipt"))),
             "linked": bool((p.get("Booking") or {}).get("relation")),
-            "shape": _hta_shape(p),
+            "shape": shape,
         })
     return out
 
@@ -2897,8 +2905,10 @@ def _carries_access(properties):
 
 
 def _hta_shape(properties):
-    """"HTA" for a purpose-built How-to-Access row, "BC" for a merged send."""
+    """Identify a walkthrough, merged confirmation, or returning reminder."""
     code = (_prop_text(properties.get("Message Code")) or "").strip().upper()
+    if code.startswith("RETURNING ACCESS"):
+        return "RA"
     return "BC" if code.startswith("BC") else "HTA"
 
 
@@ -2950,6 +2960,11 @@ def hta_verdicts(bookings, rows, now):
         high = start + timedelta(hours=2)
         cands = []
         for r in by_artist.get(b["artist"], []):
+            if r.get("shape") == "RA" and (
+                b.get("tier") != "Monitor" or not b.get("studio")
+                or r.get("studio") != b["studio"]
+            ):
+                continue    # reminder evidence is room-specific, not onboarding
             if r.get("studio") and b.get("studio") and r["studio"] != b["studio"]:
                 continue
             stamp = _row_datetime(r, "sent_at") or _row_datetime(r, "created")

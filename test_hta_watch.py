@@ -252,6 +252,8 @@ def main():
     test_bc_row_without_codes_is_not_access()
     test_carries_access_reads_the_label_not_the_digits()
     test_filter_depth_counts_like_notion()
+    test_returning_access_query_and_verdict()
+    test_self_serve_is_outside_hta_watch()
     print("HTA watch regression tests: OK")
 
 
@@ -356,6 +358,67 @@ def test_filter_depth_counts_like_notion():
     assert build._filter_depth({"and": [leaf]}) == 1
     assert build._filter_depth({"and": [leaf, {"or": [leaf]}]}) == 2
     assert build._filter_depth({"and": [{"or": [leaf, {"and": [leaf]}]}]}) == 3
+
+
+def test_returning_access_query_and_verdict():
+    """Replay the query boundary that hid Anita's delivered reminder."""
+    now = datetime(2026, 9, 10, 17, 2, tzinfo=TZ)
+    code = "Returning Access 901 RA-sweep-0911-1100-901"
+    def prop(kind, value):
+        if kind in ("title", "rich_text"):
+            return {"type": kind, kind: [{"plain_text": value}]}
+        return {"type": kind, kind: value}
+    p = {
+        "Message Code": prop("title", code),
+        "Message Body": prop("rich_text", "Use the same Door Code: [redacted]"),
+        "Status": prop("status", {"name": "Sent"}),
+        "Artist": prop("relation", [{"id": "artistanita"}]),
+        "Studio": prop("select", {"name": "901"}),
+        "Sent At": prop("date", {"start": "2026-09-10T13:00:00Z"}),
+        "Dispatch Receipt": prop("rich_text", "phonecom:fixture"),
+    }
+    raw = {"id": "ra-anita", "created_time": "2026-09-10T04:02:08Z", "properties": p}
+    def query(token, ds, payload):
+        clauses = payload["filter"]["and"][1]["or"]
+        selected = any(code.startswith(c.get("title", {}).get("starts_with", "\0"))
+                       for c in clauses)
+        return [raw] if selected else []
+    original = build._notion_query
+    build._notion_query = query
+    try:
+        b = booking(artist="artistanita", studio="901", date="2026-09-11",
+                    start="11:00", tier="Monitor")
+        rows = build.fetch_hta_rows("fixture", now - timedelta(days=7))
+        assert len(rows) == 1, "Returning Access is invisible to the query"
+        assert verdict(b, rows, now)["state"] == "verified"
+        # A repeat-renter reminder does not replace a first-visit walkthrough.
+        assert verdict(dict(b, tier="FBS"), rows, now)["state"] == "missing"
+        assert verdict(dict(b, studio="527"), rows, now)["state"] == "missing"
+        assert verdict(dict(b, artist="other"), rows, now)["state"] == "missing"
+        assert verdict(dict(b, date="2026-09-20"), rows, now)["state"] == "missing"
+        for status in ("Pending Review", "Ready to Send", "Error", "Will Not Send"):
+            p["Status"] = prop("status", {"name": status})
+            assert build.fetch_hta_rows("fixture", now) == []
+        p["Status"] = prop("status", {"name": "Sent"})
+        p["Dispatch Receipt"] = prop("rich_text", "")
+        assert build.fetch_hta_rows("fixture", now) == []
+        p["Dispatch Receipt"] = prop("rich_text", "phonecom:fixture")
+        p["Message Body"] = prop("rich_text", "Your booking is confirmed.")
+        assert build.fetch_hta_rows("fixture", now) == []
+    finally:
+        build._notion_query = original
+
+
+def test_self_serve_is_outside_hta_watch():
+    original = build._notion_query
+    build._notion_query = lambda *args: [{"id": "anita", "properties": {
+        "Type of Booking": {"type": "select", "select": {"name": "Self Serve"}},
+        "Booking Status": {"type": "select", "select": {"name": "Upcoming"}},
+    }}]
+    try:
+        assert build.fetch_hta_watch_bookings("fixture", NOW.date()) == []
+    finally:
+        build._notion_query = original
 
 
 if __name__ == "__main__":
