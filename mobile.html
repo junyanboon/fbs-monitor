@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 7:30 PM ET",
-  "generatedAtISO": "2026-09-11T19:30:24-04:00",
+  "generatedAt": "Sep 11, 7:31 PM ET",
+  "generatedAtISO": "2026-09-11T19:31:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -395,10 +395,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "18:10",
-      "departed": null,
+      "departed": "19:31",
       "facilitator": null,
       "arrived_by": "Tanisha Chakma",
-      "departed_by": null,
+      "departed_by": "Tanisha Chakma",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1089,7 +1089,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1098,7 +1098,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1384,6 +1384,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789168012852,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Tanisha Chakma",
+      "time": "19:31",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789169465864,
       "source": "doors"
     }
   ],
@@ -2201,6 +2210,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-11T19:04:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-11T19:31:00-04:00"
+    },
+    {
       "run": "The Registrar (booking-sweep, Hostinger)",
       "cadence": "Hourly",
       "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
@@ -2258,7 +2277,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T19:16:00-04:00"
+      "lastISO": "2026-09-11T19:31:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2582,7 +2601,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:30"
+    "stamp": "19:31"
   }
 }/*__END_DATA__*/;
 
