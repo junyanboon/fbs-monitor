@@ -1145,13 +1145,61 @@ def _notion_query(token, ds_id, body):
     raise RuntimeError(f"Notion query failed for {ds_id}: " + " | ".join(errs))
 
 
+def with_walkthrough_history(token, rows):
+    """Attach prior same-artist, same-room onboarding proof to FBS rows.
+
+    Support tier is independent of walkthrough completion. Never infer it
+    from a platform label, a permanent PIN, or a visit without HTA + GTG.
+    History stays private; only the resulting GTG boolean reaches the page.
+    """
+    history = {}
+    out = []
+    for row in rows:
+        p = row.get("properties", {})
+        enriched = dict(row, _prior_walkthrough=False)
+        out.append(enriched)
+        if (_prop_text(p.get("Type of Booking")) or "").lower() != "fbs":
+            continue
+        artist = _relation_id(p.get("🎨 Artist Database"))
+        studio = (_prop_text(p.get("Studio")) or "").strip()
+        day = (_prop_text(p.get("Booking Date")) or "")[:10]
+        if not artist or not studio or not day:
+            continue
+        key = (artist, studio, day)
+        if key not in history:
+            prior = _notion_query(token, NOTION_DATA_SOURCE, {
+                "filter": {"and": [
+                    {"property": "🎨 Artist Database", "relation": {"contains": artist}},
+                    {"property": "Studio", "select": {"equals": studio}},
+                    {"property": "Booking Date", "date": {"before": day}},
+                    {"property": "GTG", "status": {"equals": "Yes"}},
+                    {"property": "HTA", "status": {"equals": "Sent"}},
+                ]}, "page_size": 100})
+            history[key] = False
+            for old in prior:
+                q = old.get("properties", {})
+                old_day = (_prop_text(q.get("Booking Date")) or "")[:10]
+                status = (_prop_text(q.get("Booking Status")) or "").lower()
+                if (old.get("id") != row.get("id")
+                        and _relation_id(q.get("🎨 Artist Database")) == artist
+                        and (_prop_text(q.get("Studio")) or "").strip() == studio
+                        and old_day and old_day < day
+                        and (_prop_text(q.get("GTG")) or "").lower() == "yes"
+                        and (_prop_text(q.get("HTA")) or "").lower() == "sent"
+                        and not any(x in status for x in ("cancel", "missed"))):
+                    history[key] = True
+                    break
+        enriched["_prior_walkthrough"] = history[key]
+    return out
+
+
 def fetch_notion_rows(token, today_iso):
     body = {
         "filter": {"property": "Booking Date", "date": {"equals": today_iso}},
         "page_size": 100,
     }
     try:
-        return _notion_query(token, NOTION_DATA_SOURCE, body)
+        return with_walkthrough_history(token, _notion_query(token, NOTION_DATA_SOURCE, body))
     except RuntimeError as e:
         die(str(e))
 
@@ -1182,7 +1230,7 @@ def parse_notion(rows):
             "start": _prop_text(p.get("Start Time")),
             "end": _prop_text(p.get("End Time")),
             "tier": tier,
-            "gtg": gtg if tier else True,
+            "gtg": (gtg or row.get("_prior_walkthrough", False)) if tier else True,
             "hta": _prop_text(p.get("HTA")),
             "ava": _prop_text(p.get("AVA")),
             "eob": _prop_text(p.get("EOB")),
@@ -2793,7 +2841,7 @@ def fetch_hta_watch_bookings(token, base_day):
         "page_size": 100,
     })
     out = []
-    for row in rows:
+    for row in with_walkthrough_history(token, rows):
         p = row.get("properties", {})
         status = (_prop_text(p.get("Booking Status")) or "").lower()
         if "cancel" in status or "missed" in status or "complete" in status:
@@ -2810,6 +2858,7 @@ def fetch_hta_watch_bookings(token, base_day):
             "date": _prop_text(p.get("Booking Date")),
             "start": norm_hm(_prop_text(p.get("Start Time"))),
             "tier": tier,
+            "prior_walkthrough": row.get("_prior_walkthrough", False),
             "hta": (_prop_text(p.get("HTA")) or "").strip(),
             "who": _prop_text(p.get("Skedda Booking Title")) or "",
         })
@@ -2824,8 +2873,8 @@ def fetch_hta_rows(token, since_dt):
     rollups and Reply To are never read. Alternative shapes also require
     access labels in the body; the body is never projected to the public board.
 
-    Returning Access messages count only as delivered evidence for Monitor
-    bookings, with an access label and dispatch receipt. They do not replace
+    Returning Access messages count as delivered evidence for Monitor bookings
+    or FBS with prior same-room HTA + GTG, with an access label and dispatch receipt. They do not replace
     a first-visit walkthrough. Self Serve bookings are outside this watchdog.
 
     A FOURTH shape counts, added 2026-09-06: a **Sent** `BC-` row. The booking
@@ -2979,7 +3028,9 @@ def hta_verdicts(bookings, rows, now):
         cands = []
         for r in by_artist.get(b["artist"], []):
             if r.get("shape") == "RA" and (
-                b.get("tier") != "Monitor" or not b.get("studio")
+                not (b.get("tier") == "Monitor" or
+                     (b.get("tier") == "FBS" and b.get("prior_walkthrough")))
+                or not b.get("studio")
                 or r.get("studio") != b["studio"]
             ):
                 continue    # reminder evidence is room-specific, not onboarding

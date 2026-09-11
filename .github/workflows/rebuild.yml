@@ -98,7 +98,9 @@ jobs:
       # the pill. Pure logic — no network, no secrets.
       - name: HTA watch regression tests
         if: steps.gate.outputs.ready == 'true'
-        run: python test_hta_watch.py
+        run: |
+          python test_hta_watch.py
+          python test_returning_fbs.py
 
       - name: Message dispatch regression tests
         if: steps.gate.outputs.ready == 'true'

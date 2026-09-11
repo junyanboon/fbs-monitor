@@ -553,3 +553,14 @@ tick every 15 min, 08:00–02:45 Toronto; 03:00–06:59 the workflow's own cron
 fires once an hour (best-effort — GitHub throttles it) so the board rolls to the
 new day at 05:00 instead of freezing on yesterday until the first tick. The
 build skips green until `NOTION_TOKEN` is set.
+
+### Returning renters with FBS support
+
+Platform FBS is a support level, not proof that the renter is new to the room.
+The monitor reads earlier, non-cancelled/non-missed board rows for the exact
+artist and studio with HTA Sent and GTG Yes. This history satisfies the
+walkthrough indicator and lets a recent, delivered Returning Access reminder
+(with an access label and dispatch receipt) verify an FBS booking. It never
+substitutes for a first-room walkthrough, crosses studios, or changes support
+tier. History read failures fail the build instead of fabricating missing proof.
+Regression: `python test_returning_fbs.py`.
