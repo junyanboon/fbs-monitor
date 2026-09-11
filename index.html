@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-10",
-  "generatedAt": "Sep 11, 12:02 AM ET",
-  "generatedAtISO": "2026-09-11T00:02:11-04:00",
+  "generatedAt": "Sep 11, 12:16 AM ET",
+  "generatedAtISO": "2026-09-11T00:16:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1004,7 +1004,7 @@ const DATA = /*__DATA__*/{
       "code": "HTA-sweep-•••",
       "kind": "HTA",
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": "901",
       "raised_by": "The Registrar",
       "created": "Sep 11 · 00:01",
@@ -1013,16 +1013,40 @@ const DATA = /*__DATA__*/{
       "label": "HTA · Studio 901"
     },
     {
-      "code": "EOB-sweep-•••B",
+      "code": "AVA-sweep-•••",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "The Registrar",
+      "created": "Sep 11 · 00:02",
+      "send_after": "14:00",
+      "send_after_iso": "2026-09-11T14:00:00-04:00",
+      "label": "AVA · Studio 527"
+    },
+    {
+      "code": "EOB-sweep-•••",
       "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "The Registrar",
+      "created": "Sep 11 · 00:02",
+      "send_after": "20:45",
+      "send_after_iso": "2026-09-11T20:45:00-04:00",
+      "label": "EOB · Studio 527"
+    },
+    {
+      "code": "AVA-sweep-•••B",
+      "kind": "AVA",
       "channel": "SMS",
       "status": "Ready to Send",
       "studio": "509B",
       "raised_by": "The Registrar",
       "created": "Sep 11 · 00:02",
-      "send_after": "19:45",
-      "send_after_iso": "2026-09-11T19:45:00-04:00",
-      "label": "EOB · Studio 509B"
+      "send_after": "17:00",
+      "send_after_iso": "2026-09-11T17:00:00-04:00",
+      "label": "AVA · Studio 509B"
     },
     {
       "code": "AVA-sweep-•••B",
@@ -2184,6 +2208,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T04:00:06.516220Z",
         "until": "2026-09-11T04:00:21.869123Z"
+      },
+      {
+        "since": "2026-09-11T04:06:06.509568Z",
+        "until": "2026-09-11T04:06:16.811458Z"
+      },
+      {
+        "since": "2026-09-11T04:12:06.432304Z",
+        "until": "2026-09-11T04:12:18.532259Z"
       }
     ],
     "down": false
@@ -2197,7 +2229,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T23:57:00-04:00"
+      "lastISO": "2026-09-11T00:14:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2217,7 +2249,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-10T23:07:00-04:00"
+      "lastISO": "2026-09-11T00:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2317,7 +2349,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T00:00:00-04:00"
+      "lastISO": "2026-09-11T00:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2327,7 +2359,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T00:00:00-04:00"
+      "lastISO": "2026-09-11T00:15:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2347,7 +2379,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T00:00:00-04:00"
+      "lastISO": "2026-09-11T00:10:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2716,7 +2748,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 20,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "00:02"
+    "stamp": "00:16"
   }
 }/*__END_DATA__*/;
 
