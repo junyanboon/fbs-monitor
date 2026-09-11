@@ -176,12 +176,12 @@ def main():
     test_expired_and_cross_midnight_shifts()
     test_templates_age_out_open_rows_between_rebuilds()
     test_fetch_reconciles_the_same_lookahead_feed()
+    test_future_roster_preserves_all_posted_dates()
     print("open-shift regression tests: OK")
     return 0
 
 
-if __name__ == "__main__":
-    sys.exit(main())
+
 
 
 def test_tomorrows_roster_is_collected_for_the_shifts_tab():
@@ -197,3 +197,23 @@ def test_tomorrows_roster_is_collected_for_the_shifts_tab():
                    "day": "Tomorrow", "start": 20.25, "end": 20.75}
     for v in row.values():
         assert "Nina" not in str(v) and "Paid" not in str(v)
+
+
+def test_future_roster_preserves_all_posted_dates():
+    original = build.fetch_ics
+    build.fetch_ics = lambda *_: [
+        {"summary": "Junyan Monitoring", "description": "Private renter (Studio 509B) [Paid]",
+         "dtstart": _dt(BASE + timedelta(days=off), 9),
+         "dtend": _dt(BASE + timedelta(days=off), 9, 30)} for off in (1, 2, 3)]
+    ahead = []
+    try:
+        build.fetch_open_shifts({"Staff": "private"}, _dt(BASE, 0), BASE, _dt(BASE, 8), ahead_out=ahead)
+    finally:
+        build.fetch_ics = original
+    assert [r["day_offset"] for r in ahead] == [1, 2, 3]
+    assert ahead[0]["day"] == "Tomorrow" and ahead[1]["day"] != "Tomorrow"
+    assert "Private renter" not in str(ahead) and "Paid" not in str(ahead)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
