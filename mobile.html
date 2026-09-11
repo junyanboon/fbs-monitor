@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 7:31 PM ET",
-  "generatedAtISO": "2026-09-11T19:31:23-04:00",
+  "generatedAt": "Sep 11, 7:32 PM ET",
+  "generatedAtISO": "2026-09-11T19:32:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1034,8 +1034,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 13.25,
@@ -1043,8 +1043,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 13.25,
@@ -1125,7 +1125,7 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Availability — Camila Avendano — 509A Sep 12",
+      "code": "Availability — Camila Avendano — 509A Sep 12 | BC-sweep-•••A",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
@@ -2040,16 +2040,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Awaiting completion",
-      "lastISO": "2026-09-10T19:42:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2057,7 +2047,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T19:27:00-04:00"
+      "lastISO": "2026-09-11T19:33:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2227,7 +2217,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T19:00:00-04:00"
+      "lastISO": "2026-09-11T19:30:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2546,13 +2536,13 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Planner",
           "desk-loop (Cloud Run)",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
+          "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
           "The Weatherman",
           "Watchlist sync",
@@ -2560,11 +2550,7 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "The Planner",
-          "label": "Awaiting completion",
-          "lastISO": "2026-09-10T19:42:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2601,7 +2587,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:31"
+    "stamp": "19:32"
   }
 }/*__END_DATA__*/;
 
