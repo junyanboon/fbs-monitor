@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 12:14 PM ET",
-  "generatedAtISO": "2026-09-11T12:14:20-04:00",
+  "generatedAt": "Sep 11, 12:15 PM ET",
+  "generatedAtISO": "2026-09-11T12:15:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -322,11 +322,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:16",
+      "departed": "10:42",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Brad Wong",
+      "departed_by": "Brad Wong",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -346,11 +346,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:08",
+      "departed": "11:29",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -442,11 +442,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:05",
+      "departed": "11:35",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -720,11 +720,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:45",
+      "departed": "10:40",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -916,6 +916,87 @@ const DATA = /*__DATA__*/{
   ],
   "armEvents": [
     {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "09:16",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789132608459,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "09:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789134322643,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "10:40",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789137653736,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "10:42",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789137759430,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Shack",
+      "time": "10:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789137950797,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "11:05",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789139127914,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "11:08",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789139295374,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "11:29",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789140598846,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "11:35",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789140926143,
+      "source": "doors"
+    },
+    {
       "studio": "527",
       "name": "Stefan Lovecchio",
       "time": "11:43",
@@ -935,26 +1016,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "11:29",
-      "ts": 1789140598846,
-      "when": "Fri 11:29"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "11:35",
-      "ts": 1789140926143,
-      "when": "Fri 11:35"
-    },
     "693": {
       "kind": "departure",
       "name": "",
@@ -964,22 +1025,12 @@ const DATA = /*__DATA__*/{
       "time": "23:41",
       "ts": 1789098061000,
       "when": "Thu 23:41"
-    },
-    "901": {
-      "kind": "arrival",
-      "name": "Anita Shack",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "10:45",
-      "ts": 1789137950797,
-      "when": "Fri 10:45"
     }
   },
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-11T16:12:01+00:00",
@@ -1297,6 +1348,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T16:09:18.752540Z",
         "until": "2026-09-11T16:09:30.093630Z"
+      },
+      {
+        "since": "2026-09-11T16:14:40.183495Z",
+        "until": "2026-09-11T16:14:53.507857Z"
       }
     ],
     "down": false
@@ -1330,7 +1385,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T12:00:00-04:00"
+      "lastISO": "2026-09-11T12:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1340,7 +1395,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T12:10:00-04:00"
+      "lastISO": "2026-09-11T12:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1829,7 +1884,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "12:14"
+    "stamp": "12:15"
   }
 }/*__END_DATA__*/;
 
