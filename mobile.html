@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 4:16 PM ET",
-  "generatedAtISO": "2026-09-11T16:16:57-04:00",
+  "generatedAt": "Sep 11, 4:30 PM ET",
+  "generatedAtISO": "2026-09-11T16:30:33-04:00",
   "studios": [
     {
       "id": "509A",
@@ -587,10 +587,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "14:57",
-      "departed": null,
+      "departed": "16:28",
       "facilitator": null,
       "arrived_by": "Shannon Bennett",
-      "departed_by": null,
+      "departed_by": "Shannon Bennett",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -894,11 +894,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
-      "id": "8c82bc585c96",
+      "id": "808fc29b58b2",
       "date": "2026-09-12",
       "startISO": "2026-09-12T13:45:00-04:00",
       "endISO": "2026-09-12T14:15:00-04:00",
@@ -906,11 +906,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
-      "id": "808fc29b58b2",
+      "id": "8c82bc585c96",
       "date": "2026-09-12",
       "startISO": "2026-09-12T13:45:00-04:00",
       "endISO": "2026-09-12T14:15:00-04:00",
@@ -1025,24 +1025,24 @@ const DATA = /*__DATA__*/{
       "day": "Sun Sep 13"
     },
     {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 2,
-      "start": 13.25,
-      "end": 13.75,
-      "id": "2bf220f6e233",
-      "date": "2026-09-13",
-      "startISO": "2026-09-13T13:15:00-04:00",
-      "endISO": "2026-09-13T13:45:00-04:00",
-      "day": "Sun Sep 13"
-    },
-    {
       "role": "Monitoring",
       "studio": "901",
       "day_offset": 2,
       "start": 13.25,
       "end": 13.75,
       "id": "114776c58264",
+      "date": "2026-09-13",
+      "startISO": "2026-09-13T13:15:00-04:00",
+      "endISO": "2026-09-13T13:45:00-04:00",
+      "day": "Sun Sep 13"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 2,
+      "start": 13.25,
+      "end": 13.75,
+      "id": "2bf220f6e233",
       "date": "2026-09-13",
       "startISO": "2026-09-13T13:15:00-04:00",
       "endISO": "2026-09-13T13:45:00-04:00",
@@ -1061,24 +1061,24 @@ const DATA = /*__DATA__*/{
       "day": "Sun Sep 13"
     },
     {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 2,
-      "start": 14.75,
-      "end": 15.25,
-      "id": "00c8c1e1b1b7",
-      "date": "2026-09-13",
-      "startISO": "2026-09-13T14:45:00-04:00",
-      "endISO": "2026-09-13T15:15:00-04:00",
-      "day": "Sun Sep 13"
-    },
-    {
       "role": "Monitoring",
       "studio": "901",
       "day_offset": 2,
       "start": 14.75,
       "end": 15.25,
       "id": "415707b3d7a8",
+      "date": "2026-09-13",
+      "startISO": "2026-09-13T14:45:00-04:00",
+      "endISO": "2026-09-13T15:15:00-04:00",
+      "day": "Sun Sep 13"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 2,
+      "start": 14.75,
+      "end": 15.25,
+      "id": "00c8c1e1b1b7",
       "date": "2026-09-13",
       "startISO": "2026-09-13T14:45:00-04:00",
       "endISO": "2026-09-13T15:15:00-04:00",
@@ -1392,6 +1392,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789153742089,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Shannon Bennett",
+      "time": "16:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789158501835,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1401,7 +1410,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-11T19:15:01+00:00",
+    "updatedAt": "2026-09-11T20:30:12+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1888,21 +1897,31 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T20:11:39.412129Z",
         "until": "2026-09-11T20:11:45.834562Z"
+      },
+      {
+        "since": "2026-09-11T20:17:39.590797Z",
+        "until": "2026-09-11T20:17:54.924001Z"
+      },
+      {
+        "since": "2026-09-11T20:18:55.014236Z",
+        "until": "2026-09-11T20:18:57.917663Z"
+      },
+      {
+        "since": "2026-09-11T20:24:12.068398Z",
+        "until": "2026-09-11T20:24:24.232575Z"
+      },
+      {
+        "since": "2026-09-11T20:24:48.956397Z",
+        "until": "2026-09-11T20:24:51.281212Z"
+      },
+      {
+        "since": "2026-09-11T20:30:17.483067Z",
+        "until": "2026-09-11T20:30:21.600306Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-11T14:24:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1911,7 +1930,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:15:00-04:00"
+      "lastISO": "2026-09-11T16:27:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1921,7 +1940,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:10:00-04:00"
+      "lastISO": "2026-09-11T16:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1931,7 +1950,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:15:00-04:00"
+      "lastISO": "2026-09-11T16:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1941,7 +1960,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:15:00-04:00"
+      "lastISO": "2026-09-11T16:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1951,7 +1970,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:15:00-04:00"
+      "lastISO": "2026-09-11T16:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1961,7 +1980,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:15:00-04:00"
+      "lastISO": "2026-09-11T16:30:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1981,7 +2000,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:10:00-04:00"
+      "lastISO": "2026-09-11T16:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2012,6 +2031,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-11T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-11T16:20:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2081,7 +2110,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:05:00-04:00"
+      "lastISO": "2026-09-11T16:41:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2374,20 +2403,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
           "QA release check",
+          "The Concierge",
           "The Responder",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Due",
-          "lastISO": "2026-09-11T14:24:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2445,7 +2470,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:16"
+    "stamp": "16:30"
   }
 }/*__END_DATA__*/;
 
