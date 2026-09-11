@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 5:44 PM ET",
-  "generatedAtISO": "2026-09-11T17:44:58-04:00",
+  "generatedAt": "Sep 11, 5:47 PM ET",
+  "generatedAtISO": "2026-09-11T17:47:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1303,8 +1303,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 13.25,
@@ -1312,8 +1312,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 13.25,
@@ -1330,8 +1330,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1339,8 +1339,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1358,7 +1358,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1367,7 +1367,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1428,7 +1428,12 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-12T09:00:00-04:00"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -2188,8 +2193,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
       "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-11T17:15:00-04:00"
     },
     {
@@ -2410,7 +2415,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:31:00-04:00"
+      "lastISO": "2026-09-11T17:46:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2679,7 +2684,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "handback-sweep (Hostinger)",
           "desk-loop (Cloud Run)",
@@ -2695,7 +2700,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "handback-sweep (Hostinger)",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-11T17:15:00-04:00"
         }
       },
@@ -2734,7 +2739,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:44"
+    "stamp": "17:47"
   }
 }/*__END_DATA__*/;
 
