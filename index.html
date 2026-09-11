@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 2:38 PM ET",
-  "generatedAtISO": "2026-09-11T14:38:10-04:00",
+  "generatedAt": "Sep 11, 2:46 PM ET",
+  "generatedAtISO": "2026-09-11T14:46:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -839,11 +839,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "14:45"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "17:30"
@@ -1079,18 +1074,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Best O. Peerspace in Studio 527"
     },
     {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 11 · 00:02",
-      "send_after": "14:45",
-      "send_after_iso": "2026-09-11T14:45:00-04:00",
-      "label": "AVA for Simona Horova in Studio 693"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1138,7 +1121,12 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-12T09:00:00-04:00"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -1693,6 +1681,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T18:35:25.058242Z",
         "until": "2026-09-11T18:35:39.394528Z"
+      },
+      {
+        "since": "2026-09-11T18:40:39.638716Z",
+        "until": "2026-09-11T18:40:52.393058Z"
+      },
+      {
+        "since": "2026-09-11T18:46:16.530618Z",
+        "until": "2026-09-11T18:46:23.113704Z"
       }
     ],
     "down": false
@@ -1704,8 +1700,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
       "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-11T13:30:00-04:00"
     },
     {
@@ -1716,7 +1712,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T14:33:00-04:00"
+      "lastISO": "2026-09-11T14:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1726,7 +1722,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T14:30:00-04:00"
+      "lastISO": "2026-09-11T14:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1736,7 +1732,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T14:30:00-04:00"
+      "lastISO": "2026-09-11T14:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1746,7 +1742,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T14:35:00-04:00"
+      "lastISO": "2026-09-11T14:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1756,7 +1752,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T14:25:00-04:00"
+      "lastISO": "2026-09-11T14:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1776,7 +1772,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T14:30:00-04:00"
+      "lastISO": "2026-09-11T14:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1916,7 +1912,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T14:31:00-04:00"
+      "lastISO": "2026-09-11T14:46:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1926,7 +1922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Paused",
       "status": "plain",
       "statusLabel": "Paused",
-      "lastISO": null
+      "lastISO": "2026-09-11T14:45:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2195,7 +2191,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Registrar (booking-sweep, Hostinger)",
           "desk-loop (Cloud Run)",
@@ -2211,7 +2207,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Registrar (booking-sweep, Hostinger)",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-11T13:30:00-04:00"
         }
       },
@@ -2250,7 +2246,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "14:38"
+    "stamp": "14:46"
   }
 }/*__END_DATA__*/;
 
