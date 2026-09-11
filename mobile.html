@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 4:47 PM ET",
-  "generatedAtISO": "2026-09-11T16:47:26-04:00",
+  "generatedAt": "Sep 11, 4:50 PM ET",
+  "generatedAtISO": "2026-09-11T16:50:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -616,10 +616,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "16:48",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Simona Horova",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1061,24 +1061,24 @@ const DATA = /*__DATA__*/{
       "day": "Sun Sep 13"
     },
     {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 2,
-      "start": 14.75,
-      "end": 15.25,
-      "id": "00c8c1e1b1b7",
-      "date": "2026-09-13",
-      "startISO": "2026-09-13T14:45:00-04:00",
-      "endISO": "2026-09-13T15:15:00-04:00",
-      "day": "Sun Sep 13"
-    },
-    {
       "role": "Monitoring",
       "studio": "901",
       "day_offset": 2,
       "start": 14.75,
       "end": 15.25,
       "id": "415707b3d7a8",
+      "date": "2026-09-13",
+      "startISO": "2026-09-13T14:45:00-04:00",
+      "endISO": "2026-09-13T15:15:00-04:00",
+      "day": "Sun Sep 13"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 2,
+      "start": 14.75,
+      "end": 15.25,
+      "id": "00c8c1e1b1b7",
       "date": "2026-09-13",
       "startISO": "2026-09-13T14:45:00-04:00",
       "endISO": "2026-09-13T15:15:00-04:00",
@@ -1098,11 +1098,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 2,
       "start": 16.75,
       "end": 17.25,
-      "id": "21774e7ee7cd",
+      "id": "b21a534d0d65",
       "date": "2026-09-13",
       "startISO": "2026-09-13T16:45:00-04:00",
       "endISO": "2026-09-13T17:15:00-04:00",
@@ -1110,11 +1110,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 2,
       "start": 16.75,
       "end": 17.25,
-      "id": "b21a534d0d65",
+      "id": "21774e7ee7cd",
       "date": "2026-09-13",
       "startISO": "2026-09-13T16:45:00-04:00",
       "endISO": "2026-09-13T17:15:00-04:00",
@@ -1410,6 +1410,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789159133738,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Simona Horova",
+      "time": "16:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789159711871,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1419,7 +1428,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-11T20:44:01+00:00",
+    "updatedAt": "2026-09-11T20:50:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1934,6 +1943,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T20:42:17.219733Z",
         "until": "2026-09-11T20:42:22.600968Z"
+      },
+      {
+        "since": "2026-09-11T20:48:10.118671Z",
+        "until": "2026-09-11T20:48:20.469850Z"
       }
     ],
     "down": false
@@ -1947,7 +1960,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:44:00-04:00"
+      "lastISO": "2026-09-11T16:50:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1957,7 +1970,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:40:00-04:00"
+      "lastISO": "2026-09-11T16:50:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1977,7 +1990,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:45:00-04:00"
+      "lastISO": "2026-09-11T16:50:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1997,7 +2010,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:45:00-04:00"
+      "lastISO": "2026-09-11T16:50:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2017,7 +2030,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:40:00-04:00"
+      "lastISO": "2026-09-11T16:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2487,7 +2500,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:47"
+    "stamp": "16:50"
   }
 }/*__END_DATA__*/;
 
