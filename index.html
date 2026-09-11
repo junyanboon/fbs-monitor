@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 5:47 PM ET",
-  "generatedAtISO": "2026-09-11T17:47:04-04:00",
+  "generatedAt": "Sep 11, 6:02 PM ET",
+  "generatedAtISO": "2026-09-11T18:02:17-04:00",
   "studios": [
     {
       "id": "509A",
@@ -835,10 +835,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": "16:48",
-      "departed": null,
+      "departed": "17:55",
       "facilitator": null,
       "arrived_by": "Simona Horova",
-      "departed_by": null,
+      "departed_by": "Simona Horova",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -864,10 +864,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:58",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Nabil Fairbairn",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1112,11 +1112,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
-      "id": "8c82bc585c96",
+      "id": "808fc29b58b2",
       "date": "2026-09-12",
       "startISO": "2026-09-12T13:45:00-04:00",
       "endISO": "2026-09-12T14:15:00-04:00",
@@ -1124,11 +1124,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
-      "id": "808fc29b58b2",
+      "id": "8c82bc585c96",
       "date": "2026-09-12",
       "startISO": "2026-09-12T13:45:00-04:00",
       "endISO": "2026-09-12T14:15:00-04:00",
@@ -1330,8 +1330,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1339,8 +1339,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1358,7 +1358,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1367,7 +1367,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1405,6 +1405,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "Booking extension request [fbs-extension:d53744277e94c42fa1b75ff0]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 11 · 17:51",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1428,12 +1439,7 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-12T09:00:00-04:00"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509A",
@@ -1613,6 +1619,24 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1789159830360,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Simona Horova",
+      "time": "17:55",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789163713857,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Nabil Fairbairn",
+      "time": "17:58",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789163880965,
       "source": "doors"
     }
   ],
@@ -2182,21 +2206,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T21:45:17.617149Z",
         "until": "2026-09-11T21:45:26.938889Z"
+      },
+      {
+        "since": "2026-09-11T21:51:10.068894Z",
+        "until": "2026-09-11T21:51:18.409972Z"
+      },
+      {
+        "since": "2026-09-11T21:56:39.217706Z",
+        "until": "2026-09-11T21:56:51.361719Z"
+      },
+      {
+        "since": "2026-09-11T22:02:17.729239Z",
+        "until": "2026-09-11T22:02:29.282710Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-11T17:15:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2205,7 +2231,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:42:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2215,7 +2241,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:40:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2225,7 +2251,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:45:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2235,7 +2261,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:45:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
+    },
+    {
+      "run": "handback-sweep (Hostinger)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-11T17:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2245,7 +2281,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:45:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2255,7 +2291,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:00:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2265,7 +2301,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:40:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2345,7 +2381,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:05:00-04:00"
+      "lastISO": "2026-09-11T18:12:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2365,7 +2401,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:30:00-04:00"
+      "lastISO": "2026-09-11T18:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2375,7 +2411,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T17:32:00-04:00"
+      "lastISO": "2026-09-11T18:02:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2684,10 +2720,10 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "handback-sweep (Hostinger)",
           "desk-loop (Cloud Run)",
+          "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
@@ -2698,11 +2734,7 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "handback-sweep (Hostinger)",
-          "label": "Overdue",
-          "lastISO": "2026-09-11T17:15:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2739,7 +2771,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:47"
+    "stamp": "18:02"
   }
 }/*__END_DATA__*/;
 
