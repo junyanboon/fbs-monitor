@@ -145,6 +145,7 @@ def test_shape_names_the_evidence():
     assert build._hta_shape(props("BC-sweep-0905-2000-509B")) == "BC"
     assert build._hta_shape(props("HTA-sweep-0906-1400-509A")) == "HTA"
     assert build._hta_shape(props("How to Access 527")) == "HTA"
+    assert build._hta_shape(props("Returning Access 527 RA-sweep-0911-1600-527")) == "RA"
 
 
 def test_no_artist_or_no_clock_is_unknown_not_missing():
@@ -254,6 +255,8 @@ def main():
     test_filter_depth_counts_like_notion()
     test_returning_access_query_and_verdict()
     test_self_serve_is_outside_hta_watch()
+    test_returning_access_verifies_and_is_held_to_the_bc_margin()
+    test_returning_access_is_in_the_filter_at_two_levels()
     print("HTA watch regression tests: OK")
 
 
@@ -350,6 +353,81 @@ def test_carries_access_reads_the_label_not_the_digits():
     assert not build._carries_access(props("You're all set for Tuesday."))
     assert not build._carries_access(props(""))
     assert not build._carries_access({})
+
+
+def test_returning_access_verifies_and_is_held_to_the_bc_margin():
+    """2026-09-11. A Sent `Returning Access …` row is proof of access.
+
+    Best O. / 527 / 2026-09-11 16:00 and Anita Shack / 901 / 11:00 both drew a
+    false "🔔 HTA not sent" from the Gap audit on 2026-09-10, hours AFTER their
+    codes had gone out. A returning renter keeps permanent codes, so the sweep
+    sends the short `RA-sweep-…` text instead of a second walkthrough (the
+    xavier rule, 2026-09-06). That row carries no Template and a code starting
+    with neither HTA nor BC, so the filter never fetched it: the watchdog read
+    `missing`, alarmed, and never wrote the `Booking` relation the board's
+    `HTA Verified` rollup counts. Same failure class as the BC gap.
+
+    The BC safety margin applies unchanged — Sent, and codes in the body.
+    """
+    import datetime
+    def mk(code, status, body="Door Code: 5123\nAlarm Code: 4463",
+           receipt="phonecom:260086375"):
+        return {"id": code, "properties": {
+            "Message Code": {"type": "title", "title": [{"plain_text": code}]},
+            "Message Body": {"type": "rich_text",
+                             "rich_text": [{"plain_text": body}]},
+            "Status": {"type": "status", "status": {"name": status}},
+            "Artist": {"type": "relation", "relation": []},
+            "Studio": {"type": "select", "select": None},
+            "Booking": {"type": "relation", "relation": []},
+            "Dispatch Receipt": {"type": "rich_text", "rich_text": (
+                [{"plain_text": receipt}] if receipt else [])},
+            "Send After": {"type": "date", "date": None},
+            "Sent At": {"type": "date", "date": None},
+            "Created time": {"type": "created_time", "created_time": "2026-09-06T00:00:00.000Z"},
+        }}
+    rows = [
+        mk("Returning Access 527 RA-sweep-0911-1600-527", "Sent"),
+        mk("Returning Access 901 RA-sweep-0911-1100-901", "Pending Review"),
+        mk("Returning Access 693 RA-sweep-0911-1800-693", "Sent",
+           body="For your upcoming booking, see you Thursday."),
+        # Sent, codes in the body, but the provider never acknowledged it.
+        # Status alone is a promise; the receipt is the proof.
+        mk("Returning Access 509B RA-sweep-0911-1900-509B", "Sent", receipt=""),
+    ]
+    orig = build._notion_query; build._notion_query = lambda t, d, b: rows
+    try:
+        out = build.fetch_hta_rows("t", datetime.datetime(2026, 9, 6, tzinfo=datetime.timezone.utc))
+    finally:
+        build._notion_query = orig
+    assert [r["id"] for r in out] == ["Returning Access 527 RA-sweep-0911-1600-527"]
+    assert out[0]["shape"] == "RA"
+
+    # …and the surviving row verifies the booking, so no alarm is raised.
+    ra = row("Sent", studio="527", rid="Returning Access 527 RA-sweep-0911-1600-527",
+             sent_at="2026-09-06T01:00:00.000Z")
+    v = verdict(booking(studio="527"), [ra])
+    assert v["state"] == "verified"
+
+
+def test_returning_access_is_in_the_filter_at_two_levels():
+    seen = {}
+
+    def fake_query(token, ds, payload):
+        seen["filter"] = payload["filter"]
+        return []
+
+    real = build._notion_query
+    build._notion_query = fake_query
+    try:
+        build.fetch_hta_rows("tok", NOW)
+    finally:
+        build._notion_query = real
+    clauses = seen["filter"]["and"][1]["or"]
+    assert {"property": "Message Code",
+            "title": {"starts_with": "Returning Access"}} in clauses
+    assert not any("and" in c or "or" in c for c in clauses), "no third level"
+    assert build._filter_depth(seen["filter"]) <= 2
 
 
 def test_filter_depth_counts_like_notion():

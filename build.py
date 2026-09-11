@@ -2928,7 +2928,7 @@ def fetch_hta_rows(token, since_dt):
         shape = _hta_shape(p)
         if shape in ("BC", "RA"):
             if (_prop_text(p.get("Status")) or "") != "Sent":
-                continue    # a queued or errored BC row is not proof of anything
+                continue    # a queued or errored BC/RA row is not proof of anything
             if not _carries_access(p):
                 continue    # a confirmation with no codes in it is not access
             if shape == "RA" and not _prop_text(p.get("Dispatch Receipt")):
@@ -2972,11 +2972,31 @@ def _carries_access(properties):
 
 
 def _hta_shape(properties):
-    """Identify a walkthrough, merged confirmation, or returning reminder."""
+    """"HTA" purpose-built, "BC" merged confirmation, "RA" returning access.
+
+    A FIFTH shape counts, added 2026-09-11: a **Sent** `Returning Access …`
+    row. A returning renter keeps permanent codes, so the booking sweep sends
+    the short `RA-sweep-…` codes text instead of a second walkthrough (the
+    xavier rule, 2026-09-06) — and that row carries no Template and a code
+    that starts with neither HTA nor BC. Under the four shapes above the
+    delivered access message was structurally invisible: the watchdog read
+    `missing`, alarmed, and never wrote the `Booking` relation the board's
+    `HTA Verified` rollup counts. Best O. / 527 and Anita Shack / 901 both
+    drew a false "🔔 HTA not sent" on 2026-09-10 that way, hours after their
+    codes had gone out. Same failure class as the BC gap, same remedy.
+
+    RA rows are held to a margin stricter than either of the shapes above:
+    only `Sent` counts, only with an access code in the body, and only with a
+    provider Dispatch Receipt. A queued, errored or unreceipted RA row is
+    proof of nothing, and a booking with no other evidence still reads
+    `missing` rather than being quieted into `scheduled`.
+    """
     code = (_prop_text(properties.get("Message Code")) or "").strip().upper()
+    if code.startswith("BC"):
+        return "BC"
     if code.startswith("RETURNING ACCESS"):
         return "RA"
-    return "BC" if code.startswith("BC") else "HTA"
+    return "HTA"
 
 
 def _booking_start(booking):
@@ -3160,6 +3180,10 @@ def sync_hta_watch(verdicts, now):
         return
     token = os.environ.get("NOTION_TOKEN")
     if not token or not verdicts:
+        # Say which side was empty. A silent return here read identically to a
+        # clean pass for four days (desk watch, 2026-09-08..11) and hid whether
+        # the watchdog had run at all.
+        print(f"HTA watch: no write pass ({'no NOTION_TOKEN' if not token else 'no verdicts'}).")
         return
     dry = os.environ.get("HTA_WATCH_DRYRUN") == "1"
     headers = {"Authorization": f"Bearer {token}",
@@ -3241,8 +3265,12 @@ def sync_hta_watch(verdicts, now):
         except Exception as exc:
             failed += 1
             print(f"  ! HTA action error for {who}: {exc}")
-    if linked or raised or failed:
-        print(f"HTA watch: {linked} linked, {raised} raised, {failed} failed.")
+    # Unconditional: a quiet pass and a pass that never ran must not look the
+    # same in the build log. Guarded by `if linked or raised or failed` this
+    # line was absent from every real build, so the only "HTA watch:" lines in
+    # the workflow came from the regression-test step and the true counts were
+    # unreadable (desk watch, four consecutive days).
+    print(f"HTA watch: {linked} linked, {raised} raised, {failed} failed.")
 
 
 def _access_row_hits(row, event, day):
