@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 3:51 PM ET",
-  "generatedAtISO": "2026-09-11T15:51:41-04:00",
+  "generatedAt": "Sep 11, 3:58 PM ET",
+  "generatedAtISO": "2026-09-11T15:58:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -539,11 +539,11 @@ const DATA = /*__DATA__*/{
         {
           "kind": "EOB",
           "state": "scheduled",
-          "time": "20:45"
+          "time": "19:45"
         }
       ],
       "booking_studios": [],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -845,8 +845,8 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "The Registrar",
       "created": "Sep 11 · 00:02",
-      "send_after": "20:45",
-      "send_after_iso": "2026-09-11T20:45:00-04:00",
+      "send_after": "19:45",
+      "send_after_iso": "2026-09-11T19:45:00-04:00",
       "label": "EOB for Best O. Peerspace in Studio 527"
     },
     {
@@ -1522,11 +1522,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T19:49:18.415499Z",
         "until": "2026-09-11T19:49:27.891960Z"
+      },
+      {
+        "since": "2026-09-11T19:54:39.502436Z",
+        "until": "2026-09-11T19:54:48.146502Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Registrar (booking-sweep, Hostinger)",
+      "cadence": "Hourly",
+      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
+      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-11T15:00:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1535,7 +1549,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T15:47:00-04:00"
+      "lastISO": "2026-09-11T15:58:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1565,7 +1579,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T15:50:00-04:00"
+      "lastISO": "2026-09-11T15:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1575,7 +1589,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T15:45:00-04:00"
+      "lastISO": "2026-09-11T15:55:00-04:00"
+    },
+    {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-11T15:55:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1688,16 +1712,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-10T19:42:00-04:00"
     },
     {
-      "run": "The Registrar (booking-sweep, Hostinger)",
-      "cadence": "Hourly",
-      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
-      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-11T15:00:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
@@ -1746,16 +1760,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-11T15:46:00-04:00"
-    },
-    {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Paused",
-      "status": "plain",
-      "statusLabel": "Paused",
-      "lastISO": "2026-09-11T15:50:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2024,21 +2028,25 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Registrar (booking-sweep, Hostinger)",
           "desk-loop (Cloud Run)",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
-          "The Registrar (booking-sweep, Hostinger)",
           "The Weatherman",
           "Watchlist sync",
           "The Closer",
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Registrar (booking-sweep, Hostinger)",
+          "label": "Due",
+          "lastISO": "2026-09-11T15:00:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2072,10 +2080,10 @@ const DATA = /*__DATA__*/{
         "worst": null
       }
     ],
-    "liveCount": 22,
+    "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "15:51"
+    "stamp": "15:58"
   }
 }/*__END_DATA__*/;
 
