@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 4:38 PM ET",
-  "generatedAtISO": "2026-09-11T16:38:26-04:00",
+  "generatedAt": "Sep 11, 4:44 PM ET",
+  "generatedAtISO": "2026-09-11T16:44:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -762,10 +762,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "16:38",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Best Omotayo",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1118,11 +1118,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
-      "id": "808fc29b58b2",
+      "id": "8c82bc585c96",
       "date": "2026-09-12",
       "startISO": "2026-09-12T13:45:00-04:00",
       "endISO": "2026-09-12T14:15:00-04:00",
@@ -1130,11 +1130,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
-      "id": "8c82bc585c96",
+      "id": "808fc29b58b2",
       "date": "2026-09-12",
       "startISO": "2026-09-12T13:45:00-04:00",
       "endISO": "2026-09-12T14:15:00-04:00",
@@ -1249,24 +1249,24 @@ const DATA = /*__DATA__*/{
       "day": "Sun Sep 13"
     },
     {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 2,
-      "start": 13.25,
-      "end": 13.75,
-      "id": "2bf220f6e233",
-      "date": "2026-09-13",
-      "startISO": "2026-09-13T13:15:00-04:00",
-      "endISO": "2026-09-13T13:45:00-04:00",
-      "day": "Sun Sep 13"
-    },
-    {
       "role": "Monitoring",
       "studio": "901",
       "day_offset": 2,
       "start": 13.25,
       "end": 13.75,
       "id": "114776c58264",
+      "date": "2026-09-13",
+      "startISO": "2026-09-13T13:15:00-04:00",
+      "endISO": "2026-09-13T13:45:00-04:00",
+      "day": "Sun Sep 13"
+    },
+    {
+      "role": "FBS",
+      "studio": "693",
+      "day_offset": 2,
+      "start": 13.25,
+      "end": 13.75,
+      "id": "2bf220f6e233",
       "date": "2026-09-13",
       "startISO": "2026-09-13T13:15:00-04:00",
       "endISO": "2026-09-13T13:45:00-04:00",
@@ -1625,6 +1625,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789158501835,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Best Omotayo",
+      "time": "16:38",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789159133738,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1634,9 +1643,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-11T20:30:12+00:00",
+    "updatedAt": "2026-09-11T20:44:01+00:00",
     "mailCheck": {
-      "matched": 2,
+      "matched": 3,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -2145,6 +2154,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T20:36:09.623527Z",
         "until": "2026-09-11T20:36:22.102506Z"
+      },
+      {
+        "since": "2026-09-11T20:42:17.219733Z",
+        "until": "2026-09-11T20:42:22.600968Z"
       }
     ],
     "down": false
@@ -2158,7 +2171,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:39:00-04:00"
+      "lastISO": "2026-09-11T16:44:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2168,7 +2181,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:30:00-04:00"
+      "lastISO": "2026-09-11T16:40:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2178,7 +2191,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:30:00-04:00"
+      "lastISO": "2026-09-11T16:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2188,7 +2201,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:35:00-04:00"
+      "lastISO": "2026-09-11T16:40:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2208,7 +2221,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:35:00-04:00"
+      "lastISO": "2026-09-11T16:40:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2228,7 +2241,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T16:30:00-04:00"
+      "lastISO": "2026-09-11T16:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2698,7 +2711,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:38"
+    "stamp": "16:44"
   }
 }/*__END_DATA__*/;
 
