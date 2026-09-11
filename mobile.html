@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 9:04 AM ET",
-  "generatedAtISO": "2026-09-11T09:04:19-04:00",
+  "generatedAt": "Sep 11, 9:17 AM ET",
+  "generatedAtISO": "2026-09-11T09:17:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -322,10 +322,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:16",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Brad Wong",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -996,18 +996,18 @@ const DATA = /*__DATA__*/{
       "text": "HTA not queued · Best O. Peerspace · 527 · 16:00"
     }
   ],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "David Garzon",
-      "remote": false,
-      "source": "doors",
+  "armEvents": [
+    {
       "studio": "509A",
-      "time": "23:09",
-      "ts": 1789096149355,
-      "when": "Thu 23:09"
-    },
+      "name": "Brad Wong",
+      "time": "09:16",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789132608459,
+      "source": "doors"
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "kind": "departure",
       "name": "David Garzon",
@@ -1050,7 +1050,7 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
@@ -1232,6 +1232,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-11T13:03:24.688635Z",
         "until": "2026-09-11T13:03:38.019398Z"
+      },
+      {
+        "since": "2026-09-11T13:09:05.596515Z",
+        "until": "2026-09-11T13:09:16.730120Z"
+      },
+      {
+        "since": "2026-09-11T13:15:06.987684Z",
+        "until": "2026-09-11T13:15:18.284042Z"
       }
     ],
     "down": false
@@ -1245,7 +1253,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T08:59:00-04:00"
+      "lastISO": "2026-09-11T09:15:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1255,7 +1263,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T09:00:00-04:00"
+      "lastISO": "2026-09-11T09:10:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1265,7 +1273,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T09:00:00-04:00"
+      "lastISO": "2026-09-11T09:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1275,7 +1283,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T09:00:00-04:00"
+      "lastISO": "2026-09-11T09:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1295,7 +1303,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T09:00:00-04:00"
+      "lastISO": "2026-09-11T09:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1305,7 +1313,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T08:07:00-04:00"
+      "lastISO": "2026-09-11T09:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1435,7 +1443,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T03:10:00-04:00"
+      "lastISO": "2026-09-11T09:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1445,7 +1453,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T09:01:00-04:00"
+      "lastISO": "2026-09-11T09:16:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1764,7 +1772,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "09:04"
+    "stamp": "09:17"
   }
 }/*__END_DATA__*/;
 
