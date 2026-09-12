@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 12:14 PM ET",
-  "generatedAtISO": "2026-09-12T12:14:22-04:00",
+  "generatedAt": "Sep 12, 12:16 PM ET",
+  "generatedAtISO": "2026-09-12T12:16:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -368,11 +368,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Will Not Send",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "12:15"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1023,8 +1018,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1032,8 +1027,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1078,7 +1073,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1087,7 +1082,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1132,6 +1127,17 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "The Responder",
       "created": "Sep 12 · 11:24",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Booking move clarification — Vlada Havrylenko [mover:91f363f7-d8b8-••••-b29e-bdde02fa5ce3]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 12:15",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1194,18 +1200,6 @@ const DATA = /*__DATA__*/{
       "send_after": "15:45",
       "send_after_iso": "2026-09-12T15:45:00-04:00",
       "label": "EOB for Jia L. Peerspace in Studio 509B"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 12 · 08:05",
-      "send_after": "12:15",
-      "send_after_iso": "2026-09-12T12:15:00-04:00",
-      "label": "AVA for Vicky Yeung in Studio 509A"
     },
     {
       "code": "EOB-sweep-•••A",
@@ -1674,6 +1668,16 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-12T10:22:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1691,7 +1695,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T12:00:00-04:00"
+      "lastISO": "2026-09-12T12:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1701,7 +1705,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T12:10:00-04:00"
+      "lastISO": "2026-09-12T12:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1711,7 +1715,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T12:05:00-04:00"
+      "lastISO": "2026-09-12T12:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1721,7 +1725,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T12:10:00-04:00"
+      "lastISO": "2026-09-12T12:15:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1762,16 +1766,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-12T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-12T10:22:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1881,7 +1875,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T12:01:00-04:00"
+      "lastISO": "2026-09-12T12:15:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2154,16 +2148,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-12T10:22:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2221,7 +2219,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "12:14"
+    "stamp": "12:16"
   }
 }/*__END_DATA__*/;
 
