@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 9:51 AM ET",
-  "generatedAtISO": "2026-09-12T09:51:20-04:00",
+  "generatedAt": "Sep 12, 9:52 AM ET",
+  "generatedAtISO": "2026-09-12T09:52:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1066,8 +1066,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1075,8 +1075,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1543,6 +1543,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T13:46:45.166053Z",
         "until": "2026-09-12T13:46:52.308334Z"
+      },
+      {
+        "since": "2026-09-12T13:52:15.699702Z",
+        "until": "2026-09-12T13:52:23.059812Z"
       }
     ],
     "down": false
@@ -1597,16 +1601,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-12T09:50:00-04:00"
-    },
-    {
-      "run": "QA release check",
-      "cadence": "Hourly",
-      "expected": "hourly, 24/7 (cron-job.org workflow_dispatch)",
-      "produces": "Releases held QA- rows in the Message Queue to Ready to Send (backstop to event-gate's inline review)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-12T09:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1787,6 +1781,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-09-06T03:50:00-04:00"
+    },
+    {
+      "run": "QA release check",
+      "cadence": "Hourly",
+      "expected": "Retired September 12, 2026 by Junyan: hourly automatic QA reviewer no longer required. GitHub workflow disabled; external dispatcher cleanup pending.",
+      "produces": "Retired automatic QA release backstop. Customer messages remain for Junyan's review; historical reports retained.",
+      "monitoring": "Paused",
+      "status": "plain",
+      "statusLabel": "Paused",
+      "lastISO": "2026-09-12T09:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2032,9 +2036,9 @@ const DATA = /*__DATA__*/{
         "status": "ok",
         "robots": [
           "greeter-sweep (Cloud Run)",
-          "QA release check",
           "The Concierge",
           "The Responder",
+          "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
@@ -2093,10 +2097,10 @@ const DATA = /*__DATA__*/{
         "worst": null
       }
     ],
-    "liveCount": 22,
+    "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "09:51"
+    "stamp": "09:52"
   }
 }/*__END_DATA__*/;
 
