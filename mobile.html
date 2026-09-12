@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 7:16 PM ET",
-  "generatedAtISO": "2026-09-12T19:16:54-04:00",
+  "generatedAt": "Sep 12, 7:19 PM ET",
+  "generatedAtISO": "2026-09-12T19:19:17-04:00",
   "studios": [
     {
       "id": "509A",
@@ -986,8 +986,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -995,8 +995,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1061,17 +1061,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Lordasa — acknowledgement of September 12 update",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Sep 12 · 16:50",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Alex Smith — subsidized form: confirm future date",
       "kind": null,
       "channel": "SMS",
@@ -1112,6 +1101,17 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Registrar",
       "created": "Sep 12 · 19:00",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Lordasa — acknowledgement of September 12 update",
+      "kind": null,
+      "channel": "Email",
+      "status": "Sent",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 12 · 16:50",
       "send_after": null,
       "send_after_iso": null
     }
@@ -1407,7 +1407,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-12T23:02:00+00:00",
+    "updatedAt": "2026-09-12T23:19:01+00:00",
     "mailCheck": {
       "matched": 7,
       "inGap": 0,
@@ -2032,16 +2032,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-12T16:48:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2130,6 +2120,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-12T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-12T19:18:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2512,20 +2512,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
+          "The Concierge",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Due",
-          "lastISO": "2026-09-12T16:48:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2583,7 +2579,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:16"
+    "stamp": "19:19"
   }
 }/*__END_DATA__*/;
 
