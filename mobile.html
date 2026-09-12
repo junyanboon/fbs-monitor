@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 12, 1:02 AM ET",
-  "generatedAtISO": "2026-09-12T01:02:14-04:00",
+  "generatedAt": "Sep 12, 1:14 AM ET",
+  "generatedAtISO": "2026-09-12T01:14:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1067,8 +1067,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1076,8 +1076,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1095,7 +1095,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1104,7 +1104,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -2599,11 +2599,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T04:57:17.382146Z",
         "until": "2026-09-12T04:57:23.716485Z"
+      },
+      {
+        "since": "2026-09-12T05:02:38.480187Z",
+        "until": "2026-09-12T05:02:45.798318Z"
+      },
+      {
+        "since": "2026-09-12T05:08:29.156034Z",
+        "until": "2026-09-12T05:08:36.287074Z"
+      },
+      {
+        "since": "2026-09-12T05:14:20.300098Z",
+        "until": "2026-09-12T05:14:27.623883Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-11T06:22:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2612,7 +2634,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T01:00:00-04:00"
+      "lastISO": "2026-09-12T01:11:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2632,7 +2654,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T00:07:00-04:00"
+      "lastISO": "2026-09-12T01:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2653,16 +2675,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-11T06:00:00-04:00"
-    },
-    {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-11T06:22:00-04:00"
     },
     {
       "run": "The Host",
@@ -2702,7 +2714,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T00:30:00-04:00"
+      "lastISO": "2026-09-12T01:00:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2742,7 +2754,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T01:00:00-04:00"
+      "lastISO": "2026-09-12T01:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2752,7 +2764,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T01:00:00-04:00"
+      "lastISO": "2026-09-12T01:10:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2762,7 +2774,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T00:55:00-04:00"
+      "lastISO": "2026-09-12T01:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2772,7 +2784,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T01:00:00-04:00"
+      "lastISO": "2026-09-12T01:10:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2792,7 +2804,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T01:00:00-04:00"
+      "lastISO": "2026-09-12T01:10:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -3071,14 +3083,18 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "alarm-watchdog (Cloud Run)",
           "The Doorman",
+          "alarm-watchdog (Cloud Run)",
           "migration-sweep (Cloud Run — alarm-mcp)",
           "🔑 Code Mirror"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Doorman",
+          "label": "Due",
+          "lastISO": "2026-09-11T06:22:00-04:00"
+        }
       },
       {
         "k": "mail",
@@ -3152,7 +3168,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "01:02"
+    "stamp": "01:14"
   }
 }/*__END_DATA__*/;
 
