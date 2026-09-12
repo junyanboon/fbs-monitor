@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 7:11 AM ET",
-  "generatedAtISO": "2026-09-12T07:11:59-04:00",
+  "generatedAt": "Sep 12, 7:26 AM ET",
+  "generatedAtISO": "2026-09-12T07:26:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1286,8 +1286,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1295,8 +1295,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1341,7 +1341,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1350,7 +1350,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1766,6 +1766,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T11:11:30.923495Z",
         "until": "2026-09-12T11:11:39.478431Z"
+      },
+      {
+        "since": "2026-09-12T11:16:45.337253Z",
+        "until": "2026-09-12T11:17:00.650771Z"
+      },
+      {
+        "since": "2026-09-12T11:22:16.785255Z",
+        "until": "2026-09-12T11:22:26.150078Z"
       }
     ],
     "down": false
@@ -1779,7 +1787,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:11:00-04:00"
+      "lastISO": "2026-09-12T07:23:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1789,7 +1797,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:10:00-04:00"
+      "lastISO": "2026-09-12T07:25:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1916,9 +1924,9 @@ const DATA = /*__DATA__*/{
       "cadence": "15-min",
       "expected": "every 10 min, 08:00–22:50 Toronto (Cloud Scheduler job desk-loop). Cadence reads '15-min' because the board has no 10-min option AND the Sentinel only applies its overnight window clamp to Hourly/15-min/5-min; Stale after (min) = 30 is set from the real 10-minute cadence = three missed passes. Alert window 08:00–22:59 only: the lane does not run overnight, and window_start clamps the heartbeat to 08:00 so the 22:50→08:00 gap is not a page.",
       "produces": "No report row. Closes 🎯 Next Actions rows reality has already satisfied, flags mismatches, absorbs reviewer rewrites into 🔧 Sweep Feedback, and runs the handback pass. An idle tick writes nothing at all — which is exactly why Self-heartbeat is this row's primary signal rather than a linked report.",
-      "monitoring": "Live",
+      "monitoring": "Not reporting",
       "status": "plain",
-      "statusLabel": "Off-hours",
+      "statusLabel": "Not reporting",
       "lastISO": "2026-09-11T22:50:00-04:00"
     },
     {
@@ -1929,7 +1937,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T07:00:00-04:00"
+      "lastISO": "2026-09-12T07:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1939,7 +1947,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T07:10:00-04:00"
+      "lastISO": "2026-09-12T07:25:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1949,7 +1957,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T07:05:00-04:00"
+      "lastISO": "2026-09-12T07:25:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2026,9 +2034,9 @@ const DATA = /*__DATA__*/{
       "cadence": "Hourly",
       "expected": "hourly at :35, 08:35–22:35 America/Toronto (cron 35 0-2,12-23 UTC)",
       "produces": "An hourly Loop report page; the fleet's in-day fix/verify pass between the morning and evening runs.",
-      "monitoring": "Paused",
+      "monitoring": "Not reporting",
       "status": "plain",
-      "statusLabel": "Paused",
+      "statusLabel": "Not reporting",
       "lastISO": "2026-09-08T20:36:00-04:00"
     },
     {
@@ -2099,7 +2107,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T23:43:00-04:00"
+      "lastISO": "2026-09-12T07:21:00-04:00"
     },
     {
       "run": "🔑 Code Mirror",
@@ -2316,10 +2324,10 @@ const DATA = /*__DATA__*/{
         "worst": null
       }
     ],
-    "liveCount": 23,
+    "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "07:11"
+    "stamp": "07:26"
   }
 }/*__END_DATA__*/;
 
