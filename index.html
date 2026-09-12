@@ -504,10 +504,10 @@
    Support board (tier, GTG/HTA) and Gmail ADT arrivals/departures.
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
-  "date": "Friday, September 11, 2026",
+  "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 11:48 PM ET",
-  "generatedAtISO": "2026-09-11T23:48:33-04:00",
+  "generatedAt": "Sep 12, 12:02 AM ET",
+  "generatedAtISO": "2026-09-12T00:02:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1319,7 +1319,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1328,7 +1328,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 16.75,
@@ -1354,6 +1354,54 @@ const DATA = /*__DATA__*/{
     }
   ],
   "messages": [
+    {
+      "code": "HTA-sweep-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 00:01",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-12T09:00:00-04:00",
+      "label": "HTA · Studio 693"
+    },
+    {
+      "code": "HTA-sweep-•••A",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 00:02",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-12T09:00:00-04:00",
+      "label": "HTA · Studio 509A"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 00:02",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-12T09:00:00-04:00",
+      "label": "HTA · Studio 527"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 00:02",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-12T09:00:00-04:00",
+      "label": "HTA · Studio 693"
+    },
     {
       "code": "ANALYST-SOUND-•••-T•••",
       "kind": null,
@@ -2547,6 +2595,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T03:44:12.119397Z",
         "until": "2026-09-12T03:44:22.451190Z"
+      },
+      {
+        "since": "2026-09-12T03:49:38.559884Z",
+        "until": "2026-09-12T03:49:53.882000Z"
+      },
+      {
+        "since": "2026-09-12T03:55:17.632381Z",
+        "until": "2026-09-12T03:55:25.956348Z"
+      },
+      {
+        "since": "2026-09-12T04:00:28.540880Z",
+        "until": "2026-09-12T04:00:41.868568Z"
       }
     ],
     "down": false
@@ -2560,17 +2620,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T23:47:00-04:00"
-    },
-    {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-11T23:45:00-04:00"
+      "lastISO": "2026-09-11T23:58:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2580,7 +2630,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T23:00:00-04:00"
+      "lastISO": "2026-09-12T00:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2640,7 +2690,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T23:05:00-04:00"
+      "lastISO": "2026-09-12T00:05:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2663,16 +2713,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-11T23:00:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-11T23:33:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -2681,16 +2721,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-11T04:35:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-01T10:12:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2720,7 +2750,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T23:45:00-04:00"
+      "lastISO": "2026-09-12T00:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2730,7 +2760,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T23:45:00-04:00"
+      "lastISO": "2026-09-12T00:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2740,7 +2770,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T23:45:00-04:00"
+      "lastISO": "2026-09-11T23:55:00-04:00"
+    },
+    {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-12T00:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2760,7 +2800,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-11T23:40:00-04:00"
+      "lastISO": "2026-09-12T00:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2853,6 +2893,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-11T23:56:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "retired 2026-09-02 - see Runtime",
@@ -2861,6 +2911,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-09-02T07:07:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-01T10:12:00-04:00"
     },
     {
       "run": "The Watchman",
@@ -3036,11 +3096,11 @@ const DATA = /*__DATA__*/{
         "status": "ok",
         "robots": [
           "QA release check",
-          "The Responder",
           "greeter-sweep (Cloud Run)",
           "The Concierge",
           "The Concierge — 2026-09-05 20:10 interrupted",
-          "The Receptionist"
+          "The Receptionist",
+          "The Responder"
         ],
         "worst": null
       },
@@ -3100,7 +3160,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:48"
+    "stamp": "00:02"
   }
 }/*__END_DATA__*/;
 
