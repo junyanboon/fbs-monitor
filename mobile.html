@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 2:48 PM ET",
-  "generatedAtISO": "2026-09-12T14:48:47-04:00",
+  "generatedAt": "Sep 12, 3:00 PM ET",
+  "generatedAtISO": "2026-09-12T15:00:28-04:00",
   "studios": [
     {
       "id": "509A",
@@ -398,11 +398,6 @@ const DATA = /*__DATA__*/{
       "gtg": false,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "15:00"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1033,8 +1028,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1042,8 +1037,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1061,7 +1056,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1070,7 +1065,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1097,16 +1092,15 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
+      "code": "PBF — Vlada Havrylenko ••• [pbf:3d67503281c4812da047f0b74276a2e5]",
+      "kind": null,
       "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
+      "status": "Pending Review",
+      "studio": "901",
       "raised_by": "The Registrar",
-      "created": "Sep 12 · 00:03",
-      "send_after": "15:00",
-      "send_after_iso": "2026-09-12T15:00:00-04:00",
-      "label": "AVA for Teresa Smith in Studio 509A"
+      "created": "Sep 12 · 15:00",
+      "send_after": null,
+      "send_after_iso": null
     },
     {
       "code": "EOB-sweep-•••A",
@@ -1800,6 +1794,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T18:44:18.536279Z",
         "until": "2026-09-12T18:44:20.547111Z"
+      },
+      {
+        "since": "2026-09-12T18:49:37.287591Z",
+        "until": "2026-09-12T18:49:46.622608Z"
+      },
+      {
+        "since": "2026-09-12T18:55:15.984057Z",
+        "until": "2026-09-12T18:55:21.551852Z"
       }
     ],
     "down": false
@@ -1813,7 +1815,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:45:00-04:00"
+      "lastISO": "2026-09-12T14:57:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1823,7 +1825,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:45:00-04:00"
+      "lastISO": "2026-09-12T15:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1833,7 +1835,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:45:00-04:00"
+      "lastISO": "2026-09-12T15:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1853,7 +1855,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:45:00-04:00"
+      "lastISO": "2026-09-12T15:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1863,7 +1865,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:40:00-04:00"
+      "lastISO": "2026-09-12T15:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1973,7 +1975,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:33:00-04:00"
+      "lastISO": "2026-09-12T15:05:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2353,7 +2355,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "14:48"
+    "stamp": "15:00"
   }
 }/*__END_DATA__*/;
 
