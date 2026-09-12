@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 11:32 AM ET",
-  "generatedAtISO": "2026-09-12T11:32:08-04:00",
+  "generatedAt": "Sep 12, 11:36 AM ET",
+  "generatedAtISO": "2026-09-12T11:36:17-04:00",
   "studios": [
     {
       "id": "509A",
@@ -547,10 +547,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "10:28",
-      "departed": null,
+      "departed": "11:33",
       "facilitator": null,
       "arrived_by": "Julie Marouze",
-      "departed_by": null,
+      "departed_by": "Julie Marouze",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -570,10 +570,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:35",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Maryna Stupak",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1257,8 +1257,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1266,8 +1266,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1542,6 +1542,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789224014227,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "11:33",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789227218490,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Maryna Stupak",
+      "time": "11:35",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789227332453,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1562,7 +1580,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-12T14:43:01+00:00",
+    "updatedAt": "2026-09-12T15:36:00+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1849,6 +1867,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T15:29:16.259288Z",
         "until": "2026-09-12T15:29:24.881728Z"
+      },
+      {
+        "since": "2026-09-12T15:34:32.531131Z",
+        "until": "2026-09-12T15:34:40.847364Z"
       }
     ],
     "down": false
@@ -1862,7 +1884,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T11:32:00-04:00"
+      "lastISO": "2026-09-12T11:37:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1882,7 +1904,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T11:30:00-04:00"
+      "lastISO": "2026-09-12T11:35:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1892,7 +1914,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T11:25:00-04:00"
+      "lastISO": "2026-09-12T11:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1902,7 +1924,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T11:30:00-04:00"
+      "lastISO": "2026-09-12T11:35:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2402,7 +2424,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:32"
+    "stamp": "11:36"
   }
 }/*__END_DATA__*/;
 
