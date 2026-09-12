@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 8:02 AM ET",
-  "generatedAtISO": "2026-09-12T08:02:09-04:00",
+  "generatedAt": "Sep 12, 8:17 AM ET",
+  "generatedAtISO": "2026-09-12T08:17:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -370,13 +370,13 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "missing",
+          "state": "awaiting",
           "time": null
         },
         {
           "kind": "EOB",
-          "state": "missing",
-          "time": null
+          "state": "awaiting",
+          "time": "16:00"
         }
       ],
       "booking_studios": [],
@@ -1164,6 +1164,30 @@ const DATA = /*__DATA__*/{
       "label": "HTA · Studio 527"
     },
     {
+      "code": "AVA-sweep-•••A",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 08:05",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "AVA for Vicky Yeung in Studio 509A"
+    },
+    {
+      "code": "EOB-sweep-•••A",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 08:07",
+      "send_after": "16:00",
+      "send_after_iso": "2026-09-12T16:00:00-04:00",
+      "label": "EOB for Vicky Yeung in Studio 509A"
+    },
+    {
       "code": "ANALYST-SOUND-•••-T•••",
       "kind": null,
       "channel": "SMS",
@@ -1564,6 +1588,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T11:57:16.960314Z",
         "until": "2026-09-12T11:57:27.306111Z"
+      },
+      {
+        "since": "2026-09-12T12:02:45.532410Z",
+        "until": "2026-09-12T12:02:58.664247Z"
+      },
+      {
+        "since": "2026-09-12T12:08:23.122474Z",
+        "until": "2026-09-12T12:08:34.216442Z"
+      },
+      {
+        "since": "2026-09-12T12:14:22.878009Z",
+        "until": "2026-09-12T12:14:37.174679Z"
       }
     ],
     "down": false
@@ -1577,7 +1613,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:00:00-04:00"
+      "lastISO": "2026-09-12T08:17:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1587,7 +1623,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:00:00-04:00"
+      "lastISO": "2026-09-12T08:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1597,7 +1633,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:00:00-04:00"
+      "lastISO": "2026-09-12T08:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1607,7 +1643,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:55:00-04:00"
+      "lastISO": "2026-09-12T08:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1617,7 +1653,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:00:00-04:00"
+      "lastISO": "2026-09-12T08:15:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1637,7 +1673,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:50:00-04:00"
+      "lastISO": "2026-09-12T08:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1647,7 +1683,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:07:00-04:00"
+      "lastISO": "2026-09-12T08:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1787,7 +1823,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:21:00-04:00"
+      "lastISO": "2026-09-12T08:02:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2117,7 +2153,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "08:02"
+    "stamp": "08:17"
   }
 }/*__END_DATA__*/;
 
