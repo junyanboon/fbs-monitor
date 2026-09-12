@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 7:26 AM ET",
-  "generatedAtISO": "2026-09-12T07:26:53-04:00",
+  "generatedAt": "Sep 12, 7:56 AM ET",
+  "generatedAtISO": "2026-09-12T07:56:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -534,7 +534,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "EOB",
-          "state": "blocked",
+          "state": "scheduled",
           "time": "10:15"
         }
       ],
@@ -642,10 +642,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "07:49",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Tunde Ifafore",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1117,7 +1117,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1126,7 +1126,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1162,17 +1162,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 12 · 00:03",
       "send_after": "13:00",
       "send_after_iso": "2026-09-12T13:00:00-04:00"
-    },
-    {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 12 · 04:06",
-      "send_after": null,
-      "send_after_iso": null
     },
     {
       "code": "ANALYST-TTT-•••-T•••",
@@ -1338,6 +1327,18 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Tunde Ifafore in Studio 693"
     },
     {
+      "code": "EOB-sweep-•••",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 00:04",
+      "send_after": "10:15",
+      "send_after_iso": "2026-09-12T10:15:00-04:00",
+      "label": "EOB for Kaushik Boga in Studio 527"
+    },
+    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -1387,7 +1388,17 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "693",
+      "name": "Tunde Ifafore",
+      "time": "07:49",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789213774924,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1418,16 +1429,6 @@ const DATA = /*__DATA__*/{
       "ts": 1789176098000,
       "when": "Fri 21:21"
     },
-    "693": {
-      "kind": "departure",
-      "name": "Amandeep Kaur",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "22:04",
-      "ts": 1789178670428,
-      "when": "Fri 22:04"
-    },
     "901": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -1440,12 +1441,12 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-12T02:09:01+00:00",
+    "updatedAt": "2026-09-12T11:56:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-12T09:02:45.653288Z",
@@ -1550,6 +1551,26 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T11:22:16.785255Z",
         "until": "2026-09-12T11:22:26.150078Z"
+      },
+      {
+        "since": "2026-09-12T11:27:45.462134Z",
+        "until": "2026-09-12T11:27:51.806984Z"
+      },
+      {
+        "since": "2026-09-12T11:33:16.708150Z",
+        "until": "2026-09-12T11:33:31.033753Z"
+      },
+      {
+        "since": "2026-09-12T11:39:16.697067Z",
+        "until": "2026-09-12T11:39:23.125569Z"
+      },
+      {
+        "since": "2026-09-12T11:45:14.933631Z",
+        "until": "2026-09-12T11:45:29.066970Z"
+      },
+      {
+        "since": "2026-09-12T11:51:22.740121Z",
+        "until": "2026-09-12T11:51:34.023410Z"
       }
     ],
     "down": false
@@ -1563,7 +1584,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:23:00-04:00"
+      "lastISO": "2026-09-12T07:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1573,7 +1594,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:25:00-04:00"
+      "lastISO": "2026-09-12T07:55:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1663,7 +1684,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T07:00:00-04:00"
+      "lastISO": "2026-09-12T07:30:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1673,7 +1694,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T01:02:00-04:00"
+      "lastISO": "2026-09-12T07:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1713,7 +1734,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T07:15:00-04:00"
+      "lastISO": "2026-09-12T07:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1723,7 +1744,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T07:25:00-04:00"
+      "lastISO": "2026-09-12T07:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1733,7 +1754,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T07:25:00-04:00"
+      "lastISO": "2026-09-12T07:55:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1753,7 +1774,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-12T07:10:00-04:00"
+      "lastISO": "2026-09-12T07:50:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2103,7 +2124,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "07:26"
+    "stamp": "07:56"
   }
 }/*__END_DATA__*/;
 
