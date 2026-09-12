@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 9:32 AM ET",
-  "generatedAtISO": "2026-09-12T09:32:04-04:00",
+  "generatedAt": "Sep 12, 9:37 AM ET",
+  "generatedAtISO": "2026-09-12T09:37:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -594,12 +594,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "awaiting",
+          "state": "scheduled",
           "time": "12:15"
         },
         {
           "kind": "EOB",
-          "state": "awaiting",
+          "state": "scheduled",
           "time": "16:00"
         }
       ],
@@ -1268,8 +1268,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1277,8 +1277,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1295,8 +1295,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1304,8 +1304,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1368,41 +1368,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 12 · 00:03",
       "send_after": "13:00",
       "send_after_iso": "2026-09-12T13:00:00-04:00"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 12 · 08:05",
-      "send_after": "12:15",
-      "send_after_iso": "2026-09-12T12:15:00-04:00",
-      "label": "AVA for Vicky Yeung in Studio 509A"
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 12 · 08:07",
-      "send_after": "16:00",
-      "send_after_iso": "2026-09-12T16:00:00-04:00",
-      "label": "EOB for Vicky Yeung in Studio 509A"
-    },
-    {
-      "code": "Authorized user setup — Jillian under Risa Waldman — T3b",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Concierge",
-      "created": "Sep 12 · 08:19",
-      "send_after": null,
-      "send_after_iso": null
     },
     {
       "code": "AVA-sweep-•••B",
@@ -1511,6 +1476,30 @@ const DATA = /*__DATA__*/{
       "send_after": "15:45",
       "send_after_iso": "2026-09-12T15:45:00-04:00",
       "label": "EOB for Jia L. Peerspace in Studio 509B"
+    },
+    {
+      "code": "AVA-sweep-•••A",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 08:05",
+      "send_after": "12:15",
+      "send_after_iso": "2026-09-12T12:15:00-04:00",
+      "label": "AVA for Vicky Yeung in Studio 509A"
+    },
+    {
+      "code": "EOB-sweep-•••A",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 08:07",
+      "send_after": "16:00",
+      "send_after_iso": "2026-09-12T16:00:00-04:00",
+      "label": "EOB for Vicky Yeung in Studio 509A"
     }
   ],
   "attention": [],
@@ -1775,6 +1764,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T13:29:45.427106Z",
         "until": "2026-09-12T13:29:57.585806Z"
+      },
+      {
+        "since": "2026-09-12T13:35:23.389452Z",
+        "until": "2026-09-12T13:35:37.710862Z"
       }
     ],
     "down": false
@@ -1788,7 +1781,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T09:32:00-04:00"
+      "lastISO": "2026-09-12T09:37:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1808,7 +1801,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T09:30:00-04:00"
+      "lastISO": "2026-09-12T09:35:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1818,7 +1811,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T09:25:00-04:00"
+      "lastISO": "2026-09-12T09:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1828,7 +1821,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T09:30:00-04:00"
+      "lastISO": "2026-09-12T09:35:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1948,7 +1941,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T09:00:00-04:00"
+      "lastISO": "2026-09-12T09:30:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2328,7 +2321,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "09:32"
+    "stamp": "09:37"
   }
 }/*__END_DATA__*/;
 
