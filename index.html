@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 2:16 PM ET",
-  "generatedAtISO": "2026-09-12T14:16:52-04:00",
+  "generatedAt": "Sep 12, 2:26 PM ET",
+  "generatedAtISO": "2026-09-12T14:26:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1236,8 +1236,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1245,8 +1245,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1327,13 +1327,24 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "Booking move — 24-hour notice — Vlada Havrylenko [mover:91f363f7-d8b8-••••-b29e-bdde02fa5ce3]",
+      "code": "GEMMA-ACCESS-RESTORED-••••",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 12 · 12:15",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 12 · 14:26",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "TAYLOR-GEMMA-RESTORED-••••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 12 · 14:26",
       "send_after": null,
       "send_after_iso": null
     },
@@ -2024,6 +2035,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T18:15:37.026932Z",
         "until": "2026-09-12T18:15:43.352670Z"
+      },
+      {
+        "since": "2026-09-12T18:21:33.441577Z",
+        "until": "2026-09-12T18:21:46.590530Z"
       }
     ],
     "down": false
@@ -2037,7 +2052,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:17:00-04:00"
+      "lastISO": "2026-09-12T14:22:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2057,7 +2072,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:15:00-04:00"
+      "lastISO": "2026-09-12T14:25:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2067,7 +2082,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:15:00-04:00"
+      "lastISO": "2026-09-12T14:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2077,7 +2092,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:15:00-04:00"
+      "lastISO": "2026-09-12T14:25:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2087,7 +2102,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:10:00-04:00"
+      "lastISO": "2026-09-12T14:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2127,7 +2142,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T12:25:00-04:00"
+      "lastISO": "2026-09-12T14:40:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2197,7 +2212,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T14:05:00-04:00"
+      "lastISO": "2026-09-12T14:33:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2262,7 +2277,7 @@ const DATA = /*__DATA__*/{
     {
       "run": "QA release check",
       "cadence": "Hourly",
-      "expected": "Retired September 12, 2026 by Junyan: hourly automatic QA reviewer no longer required. GitHub workflow disabled; external dispatcher cleanup pending.",
+      "expected": "Retired September 12, 2026 by Junyan. GitHub qa-review workflow disabled; cron-job.org dispatcher 8153106 disabled and verified Inactive. No further scheduled QA reviews.",
       "produces": "Retired automatic QA release backstop. Customer messages remain for Junyan's review; historical reports retained.",
       "monitoring": "Paused",
       "status": "plain",
@@ -2577,7 +2592,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "14:16"
+    "stamp": "14:26"
   }
 }/*__END_DATA__*/;
 
