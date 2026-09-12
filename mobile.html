@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 11, 2026",
   "shiftBaseDay": "2026-09-11",
-  "generatedAt": "Sep 11, 9:19 PM ET",
-  "generatedAtISO": "2026-09-11T21:19:32-04:00",
+  "generatedAt": "Sep 11, 9:29 PM ET",
+  "generatedAtISO": "2026-09-11T21:29:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -942,7 +942,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.75,
@@ -951,7 +951,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.75,
@@ -1067,8 +1067,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1076,8 +1076,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 2,
       "day": "Sun Sep 13",
       "start": 14.75,
@@ -1153,13 +1153,13 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Quick answer — Best O. — 527 garbage disposal",
+      "code": "COURTESY — Best O. — 527 PBF positive reply [responder:•••:vps:sms-in-2baecd21]",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "527",
       "raised_by": "The Responder",
-      "created": "Sep 11 · 20:57",
+      "created": "Sep 11 · 21:26",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1482,6 +1482,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789175653974,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Shiela",
+      "time": "21:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789176092348,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Shiela",
+      "time": "21:21",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789176097459,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1493,7 +1511,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-12T01:15:01+00:00",
     "mailCheck": {
-      "matched": 4,
+      "matched": 6,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -2198,6 +2216,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T01:14:27.367277Z",
         "until": "2026-09-12T01:14:39.630453Z"
+      },
+      {
+        "since": "2026-09-12T01:20:18.928537Z",
+        "until": "2026-09-12T01:20:26.074156Z"
+      },
+      {
+        "since": "2026-09-12T01:26:11.307425Z",
+        "until": "2026-09-12T01:26:17.411424Z"
       }
     ],
     "down": false
@@ -2211,7 +2237,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T21:17:00-04:00"
+      "lastISO": "2026-09-11T21:28:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2241,7 +2267,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T21:15:00-04:00"
+      "lastISO": "2026-09-11T21:25:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2251,7 +2277,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T21:15:00-04:00"
+      "lastISO": "2026-09-11T21:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2261,7 +2287,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T21:15:00-04:00"
+      "lastISO": "2026-09-11T21:25:00-04:00"
     },
     {
       "run": "QA release check",
@@ -2281,7 +2307,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T21:10:00-04:00"
+      "lastISO": "2026-09-11T21:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2391,7 +2417,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-11T21:02:00-04:00"
+      "lastISO": "2026-09-11T21:33:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2751,7 +2777,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "21:19"
+    "stamp": "21:29"
   }
 }/*__END_DATA__*/;
 
