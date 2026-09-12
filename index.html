@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 7:26 PM ET",
-  "generatedAtISO": "2026-09-12T19:26:50-04:00",
+  "generatedAt": "Sep 12, 7:31 PM ET",
+  "generatedAtISO": "2026-09-12T19:31:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1183,8 +1183,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1192,8 +1192,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1210,8 +1210,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1219,8 +1219,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -2225,11 +2225,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T23:25:19.052374Z",
         "until": "2026-09-12T23:25:33.386845Z"
+      },
+      {
+        "since": "2026-09-12T23:30:35.269775Z",
+        "until": "2026-09-12T23:30:47.408956Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Awaiting completion",
+      "lastISO": "2026-09-11T19:56:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2238,7 +2252,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T19:22:00-04:00"
+      "lastISO": "2026-09-12T19:28:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2248,7 +2262,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T19:15:00-04:00"
+      "lastISO": "2026-09-12T19:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2258,7 +2272,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T19:25:00-04:00"
+      "lastISO": "2026-09-12T19:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2278,7 +2292,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T19:25:00-04:00"
+      "lastISO": "2026-09-12T19:30:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2288,7 +2302,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T19:20:00-04:00"
+      "lastISO": "2026-09-12T19:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2371,16 +2385,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-12T19:02:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-11T19:56:00-04:00"
-    },
-    {
       "run": "The Registrar (booking-sweep, Hostinger)",
       "cadence": "Hourly",
       "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
@@ -2438,7 +2442,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T19:15:00-04:00"
+      "lastISO": "2026-09-12T19:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2727,12 +2731,12 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Planner",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
-          "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
           "The Weatherman",
           "Watchlist sync",
@@ -2741,7 +2745,11 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Planner",
+          "label": "Awaiting completion",
+          "lastISO": "2026-09-11T19:56:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2778,7 +2786,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:26"
+    "stamp": "19:31"
   }
 }/*__END_DATA__*/;
 
