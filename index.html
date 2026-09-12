@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 8:32 AM ET",
-  "generatedAtISO": "2026-09-12T08:32:01-04:00",
+  "generatedAt": "Sep 12, 8:46 AM ET",
+  "generatedAtISO": "2026-09-12T08:46:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -595,7 +595,7 @@ const DATA = /*__DATA__*/{
         {
           "kind": "AVA",
           "state": "awaiting",
-          "time": null
+          "time": "12:15"
         },
         {
           "kind": "EOB",
@@ -866,10 +866,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": "07:49",
+      "arrived": null,
       "departed": null,
       "facilitator": null,
-      "arrived_by": "Tunde Ifafore",
+      "arrived_by": null,
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1301,8 +1301,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1310,8 +1310,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1376,18 +1376,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-12T13:00:00-04:00"
     },
     {
-      "code": "HTA-sweep-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 12 · 08:00",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "HTA · Studio 527"
-    },
-    {
       "code": "AVA-sweep-•••A",
       "kind": "AVA",
       "channel": "SMS",
@@ -1395,8 +1383,8 @@ const DATA = /*__DATA__*/{
       "studio": "509A",
       "raised_by": "The Registrar",
       "created": "Sep 12 · 08:05",
-      "send_after": null,
-      "send_after_iso": null,
+      "send_after": "12:15",
+      "send_after_iso": "2026-09-12T12:15:00-04:00",
       "label": "AVA for Vicky Yeung in Studio 509A"
     },
     {
@@ -1633,20 +1621,22 @@ const DATA = /*__DATA__*/{
       "send_after": "15:45",
       "send_after_iso": "2026-09-12T15:45:00-04:00",
       "label": "EOB for Jia L. Peerspace in Studio 509B"
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "The Registrar",
+      "created": "Sep 12 · 08:00",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-12T09:00:00-04:00",
+      "label": "HTA · Studio 527"
     }
   ],
   "attention": [],
-  "armEvents": [
-    {
-      "studio": "693",
-      "name": "Tunde Ifafore",
-      "time": "07:49",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789213774924,
-      "source": "doors"
-    }
-  ],
+  "armEvents": [],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1677,6 +1667,16 @@ const DATA = /*__DATA__*/{
       "ts": 1789176098000,
       "when": "Fri 21:21"
     },
+    "693": {
+      "kind": "arrival",
+      "name": "Tunde Ifafore",
+      "remote": false,
+      "source": "doors",
+      "studio": "693",
+      "time": "07:49",
+      "ts": 1789213774924,
+      "when": "Sat 07:49"
+    },
     "901": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -1689,179 +1689,16 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": false,
+  "armFallback": true,
   "armFeed": {
-    "panel": "ok",
+    "panel": "failed",
     "mail": "ok",
-    "doors": "ok",
-    "updatedAt": "2026-09-12T11:56:01+00:00",
-    "doorGaps": [
-      {
-        "since": "2026-09-12T09:02:45.653288Z",
-        "until": "2026-09-12T09:02:52.794187Z"
-      },
-      {
-        "since": "2026-09-12T09:08:21.719524Z",
-        "until": "2026-09-12T09:08:33.850273Z"
-      },
-      {
-        "since": "2026-09-12T09:14:21.768792Z",
-        "until": "2026-09-12T09:14:28.872346Z"
-      },
-      {
-        "since": "2026-09-12T09:20:16.982323Z",
-        "until": "2026-09-12T09:20:22.274506Z"
-      },
-      {
-        "since": "2026-09-12T09:25:45.554287Z",
-        "until": "2026-09-12T09:25:56.878475Z"
-      },
-      {
-        "since": "2026-09-12T09:31:16.924612Z",
-        "until": "2026-09-12T09:31:27.221929Z"
-      },
-      {
-        "since": "2026-09-12T09:36:37.930170Z",
-        "until": "2026-09-12T09:36:47.247430Z"
-      },
-      {
-        "since": "2026-09-12T09:42:30.331073Z",
-        "until": "2026-09-12T09:42:44.470320Z"
-      },
-      {
-        "since": "2026-09-12T09:48:14.217301Z",
-        "until": "2026-09-12T09:48:19.616820Z"
-      },
-      {
-        "since": "2026-09-12T09:53:37.977299Z",
-        "until": "2026-09-12T09:53:48.317098Z"
-      },
-      {
-        "since": "2026-09-12T09:58:45.606080Z",
-        "until": "2026-09-12T09:58:58.961970Z"
-      },
-      {
-        "since": "2026-09-12T10:04:37.909539Z",
-        "until": "2026-09-12T10:04:45.042669Z"
-      },
-      {
-        "since": "2026-09-12T10:10:14.671612Z",
-        "until": "2026-09-12T10:10:22.811894Z"
-      },
-      {
-        "since": "2026-09-12T10:16:14.475428Z",
-        "until": "2026-09-12T10:16:21.828733Z"
-      },
-      {
-        "since": "2026-09-12T10:21:37.897002Z",
-        "until": "2026-09-12T10:21:45.430341Z"
-      },
-      {
-        "since": "2026-09-12T10:27:30.662453Z",
-        "until": "2026-09-12T10:27:41.983168Z"
-      },
-      {
-        "since": "2026-09-12T10:32:45.442110Z",
-        "until": "2026-09-12T10:32:54.580566Z"
-      },
-      {
-        "since": "2026-09-12T10:38:14.509957Z",
-        "until": "2026-09-12T10:38:28.826485Z"
-      },
-      {
-        "since": "2026-09-12T10:43:31.087234Z",
-        "until": "2026-09-12T10:43:37.094161Z"
-      },
-      {
-        "since": "2026-09-12T10:48:45.420830Z",
-        "until": "2026-09-12T10:48:58.771343Z"
-      },
-      {
-        "since": "2026-09-12T10:54:37.850260Z",
-        "until": "2026-09-12T10:54:44.182721Z"
-      },
-      {
-        "since": "2026-09-12T11:00:16.831036Z",
-        "until": "2026-09-12T11:00:31.154573Z"
-      },
-      {
-        "since": "2026-09-12T11:05:31.140994Z",
-        "until": "2026-09-12T11:05:36.420568Z"
-      },
-      {
-        "since": "2026-09-12T11:11:30.923495Z",
-        "until": "2026-09-12T11:11:39.478431Z"
-      },
-      {
-        "since": "2026-09-12T11:16:45.337253Z",
-        "until": "2026-09-12T11:17:00.650771Z"
-      },
-      {
-        "since": "2026-09-12T11:22:16.785255Z",
-        "until": "2026-09-12T11:22:26.150078Z"
-      },
-      {
-        "since": "2026-09-12T11:27:45.462134Z",
-        "until": "2026-09-12T11:27:51.806984Z"
-      },
-      {
-        "since": "2026-09-12T11:33:16.708150Z",
-        "until": "2026-09-12T11:33:31.033753Z"
-      },
-      {
-        "since": "2026-09-12T11:39:16.697067Z",
-        "until": "2026-09-12T11:39:23.125569Z"
-      },
-      {
-        "since": "2026-09-12T11:45:14.933631Z",
-        "until": "2026-09-12T11:45:29.066970Z"
-      },
-      {
-        "since": "2026-09-12T11:51:22.740121Z",
-        "until": "2026-09-12T11:51:34.023410Z"
-      },
-      {
-        "since": "2026-09-12T11:57:16.960314Z",
-        "until": "2026-09-12T11:57:27.306111Z"
-      },
-      {
-        "since": "2026-09-12T12:02:45.532410Z",
-        "until": "2026-09-12T12:02:58.664247Z"
-      },
-      {
-        "since": "2026-09-12T12:08:23.122474Z",
-        "until": "2026-09-12T12:08:34.216442Z"
-      },
-      {
-        "since": "2026-09-12T12:14:22.878009Z",
-        "until": "2026-09-12T12:14:37.174679Z"
-      },
-      {
-        "since": "2026-09-12T12:19:37.672715Z",
-        "until": "2026-09-12T12:19:44.814112Z"
-      },
-      {
-        "since": "2026-09-12T12:25:22.929012Z",
-        "until": "2026-09-12T12:25:35.251411Z"
-      },
-      {
-        "since": "2026-09-12T12:30:31.358579Z",
-        "until": "2026-09-12T12:30:42.668526Z"
-      }
-    ],
-    "down": false
+    "doors": "failed",
+    "updatedAt": null,
+    "doorGaps": [],
+    "down": true
   },
   "robots": [
-    {
-      "run": "The Registrar (booking-sweep, Hostinger)",
-      "cadence": "Hourly",
-      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
-      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-12T07:30:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1870,7 +1707,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:28:00-04:00"
+      "lastISO": "2026-09-12T08:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1880,7 +1717,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:30:00-04:00"
+      "lastISO": "2026-09-12T08:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1890,7 +1727,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:30:00-04:00"
+      "lastISO": "2026-09-12T08:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1900,7 +1737,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:25:00-04:00"
+      "lastISO": "2026-09-12T08:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1910,7 +1747,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:30:00-04:00"
+      "lastISO": "2026-09-12T08:45:00-04:00"
     },
     {
       "run": "QA release check",
@@ -1930,7 +1767,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:30:00-04:00"
+      "lastISO": "2026-09-12T08:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2023,6 +1860,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-11T19:56:00-04:00"
     },
     {
+      "run": "The Registrar (booking-sweep, Hostinger)",
+      "cadence": "Hourly",
+      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
+      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-12T08:30:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
@@ -2070,7 +1917,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T08:31:00-04:00"
+      "lastISO": "2026-09-12T08:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2349,13 +2196,13 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Registrar (booking-sweep, Hostinger)",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
+          "The Registrar (booking-sweep, Hostinger)",
           "The Weatherman",
           "Watchlist sync",
           "desk-loop (Cloud Run)",
@@ -2363,11 +2210,7 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "The Registrar (booking-sweep, Hostinger)",
-          "label": "Due",
-          "lastISO": "2026-09-12T07:30:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2404,7 +2247,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "08:32"
+    "stamp": "08:46"
   }
 }/*__END_DATA__*/;
 
