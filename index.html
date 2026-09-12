@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 5:46 AM ET",
-  "generatedAtISO": "2026-09-12T05:46:01-04:00",
+  "generatedAt": "Sep 12, 5:47 AM ET",
+  "generatedAtISO": "2026-09-12T05:47:30-04:00",
   "studios": [
     {
       "id": "509A",
@@ -591,7 +591,18 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "missing",
+          "time": null
+        },
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -615,7 +626,18 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "15:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "18:45"
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -663,7 +685,18 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "09:45"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "13:30"
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -687,7 +720,18 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "12:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "15:45"
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -711,7 +755,18 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "07:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "blocked",
+          "time": "10:15"
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -807,9 +862,15 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "09:15"
+        }
+      ],
       "booking_studios": [],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -876,7 +937,7 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "who": "Tufan Bhattarai",
       "kind": "booking",
-      "tier": null,
+      "tier": "FBS",
       "gtg": true,
       "hta": "Will Not Send",
       "dispatch": [],
@@ -903,7 +964,18 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": false,
       "hta": "Sent",
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "12:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "14:45"
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -1219,8 +1291,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1228,8 +1300,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1246,8 +1318,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1255,8 +1327,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -2200,7 +2272,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 23,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "05:46"
+    "stamp": "05:47"
   }
 }/*__END_DATA__*/;
 
