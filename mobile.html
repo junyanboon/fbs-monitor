@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 10:12 AM ET",
-  "generatedAtISO": "2026-09-12T10:12:33-04:00",
+  "generatedAt": "Sep 12, 10:16 AM ET",
+  "generatedAtISO": "2026-09-12T10:16:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -526,13 +526,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "10:15"
-        }
-      ],
+      "dispatch": [],
       "booking_studios": [],
       "heard": false,
       "arrived": "08:53",
@@ -1039,8 +1033,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1048,8 +1042,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1094,7 +1088,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1103,7 +1097,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1164,18 +1158,6 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-12T18:45:00-04:00",
       "label": "EOB for Teresa Smith in Studio 509A"
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 12 · 00:04",
-      "send_after": "10:15",
-      "send_after_iso": "2026-09-12T10:15:00-04:00",
-      "label": "EOB for Kaushik Boga in Studio 527"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1548,6 +1530,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-12T14:09:16.509321Z",
         "until": "2026-09-12T14:09:25.429350Z"
+      },
+      {
+        "since": "2026-09-12T14:15:16.509022Z",
+        "until": "2026-09-12T14:15:31.083596Z"
       }
     ],
     "down": false
@@ -1571,7 +1557,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T10:00:00-04:00"
+      "lastISO": "2026-09-12T10:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1581,7 +1567,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T10:10:00-04:00"
+      "lastISO": "2026-09-12T10:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1591,7 +1577,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T10:05:00-04:00"
+      "lastISO": "2026-09-12T10:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1601,7 +1587,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T10:10:00-04:00"
+      "lastISO": "2026-09-12T10:15:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1761,7 +1747,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T10:01:00-04:00"
+      "lastISO": "2026-09-12T10:15:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2101,7 +2087,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:12"
+    "stamp": "10:16"
   }
 }/*__END_DATA__*/;
 
