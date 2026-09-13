@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 11:51 AM ET",
-  "generatedAtISO": "2026-09-13T11:51:17-04:00",
+  "generatedAt": "Sep 13, 11:57 AM ET",
+  "generatedAtISO": "2026-09-13T11:57:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -546,11 +546,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:20",
+      "departed": "10:49",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Camila Avendano",
+      "departed_by": "Camila Avendano",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -570,10 +570,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:53",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Shamir Panchal",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -666,11 +666,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:21",
+      "departed": "11:13",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Jia Chian Lee",
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -690,11 +690,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:28",
+      "departed": "11:32",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Shamir Panchal",
+      "departed_by": "Shamir Panchal",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -883,10 +883,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:44",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Jesse Giggster",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -996,10 +996,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:56",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Laura Flores",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1122,13 +1122,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
@@ -1551,7 +1551,26 @@ const DATA = /*__DATA__*/{
       "time": "09:00",
       "kind": "arrival",
       "remote": false,
-      "ts": 1789304426000
+      "ts": 1789304425849,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "09:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789305639452,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "09:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789305689900,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1559,60 +1578,395 @@ const DATA = /*__DATA__*/{
       "time": "10:26",
       "kind": "departure",
       "remote": false,
-      "ts": 1789309564000
+      "ts": 1789309563830,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Jesse Giggster",
+      "time": "10:44",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789310659664,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "10:49",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789310955459,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Shamir Panchal",
+      "time": "10:53",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789311199442,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "11:13",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789312430549,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Shamir Panchal",
+      "time": "11:28",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789313307849,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Shamir Panchal",
+      "time": "11:32",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789313552797,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "11:51",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789314660000,
+      "source": "panel"
+    },
+    {
+      "studio": "901",
+      "name": "Laura Flores",
+      "time": "11:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789315014877,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "arrival",
-      "name": "Shamir Panchal",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "10:53",
-      "ts": 1789311199442,
-      "when": "Sun 10:53"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "Shamir Panchal",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "11:32",
-      "ts": 1789313552797,
-      "when": "Sun 11:32"
-    },
-    "693": {
-      "kind": "arrival",
-      "name": "Jesse Giggster",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "10:44",
-      "ts": 1789310659664,
-      "when": "Sun 10:44"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "901",
-      "time": "21:30",
-      "ts": 1789176615557,
-      "when": "Fri 21:30"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
-    "doors": "failed",
-    "updatedAt": null,
-    "doorGaps": [],
-    "down": true
+    "doors": "ok",
+    "updatedAt": "2026-09-13T15:57:01+00:00",
+    "mailCheck": {
+      "matched": 2,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "doorGaps": [
+      {
+        "since": "2026-09-13T09:00:43.350077Z",
+        "until": "2026-09-13T09:00:52.628788Z"
+      },
+      {
+        "since": "2026-09-13T09:06:14.479401Z",
+        "until": "2026-09-13T09:06:23.820423Z"
+      },
+      {
+        "since": "2026-09-13T09:11:26.756177Z",
+        "until": "2026-09-13T09:11:36.088865Z"
+      },
+      {
+        "since": "2026-09-13T09:16:38.754088Z",
+        "until": "2026-09-13T09:16:41.209640Z"
+      },
+      {
+        "since": "2026-09-13T09:22:30.576380Z",
+        "until": "2026-09-13T09:22:40.900968Z"
+      },
+      {
+        "since": "2026-09-13T09:28:14.436101Z",
+        "until": "2026-09-13T09:28:24.798495Z"
+      },
+      {
+        "since": "2026-09-13T09:33:26.721338Z",
+        "until": "2026-09-13T09:33:37.863148Z"
+      },
+      {
+        "since": "2026-09-13T09:38:33.627542Z",
+        "until": "2026-09-13T09:38:42.778524Z"
+      },
+      {
+        "since": "2026-09-13T09:44:30.733329Z",
+        "until": "2026-09-13T09:44:39.866612Z"
+      },
+      {
+        "since": "2026-09-13T09:50:30.760207Z",
+        "until": "2026-09-13T09:50:38.093483Z"
+      },
+      {
+        "since": "2026-09-13T09:56:14.395563Z",
+        "until": "2026-09-13T09:56:25.556207Z"
+      },
+      {
+        "since": "2026-09-13T10:01:30.843579Z",
+        "until": "2026-09-13T10:01:45.077517Z"
+      },
+      {
+        "since": "2026-09-13T10:06:43.254880Z",
+        "until": "2026-09-13T10:06:54.545762Z"
+      },
+      {
+        "since": "2026-09-13T10:12:43.245106Z",
+        "until": "2026-09-13T10:12:52.522517Z"
+      },
+      {
+        "since": "2026-09-13T10:18:14.391230Z",
+        "until": "2026-09-13T10:18:16.451474Z"
+      },
+      {
+        "since": "2026-09-13T10:24:14.407414Z",
+        "until": "2026-09-13T10:24:28.748829Z"
+      },
+      {
+        "since": "2026-09-13T10:29:26.612830Z",
+        "until": "2026-09-13T10:29:34.749030Z"
+      },
+      {
+        "since": "2026-09-13T10:34:31.037602Z",
+        "until": "2026-09-13T10:34:36.371334Z"
+      },
+      {
+        "since": "2026-09-13T10:40:14.358638Z",
+        "until": "2026-09-13T10:40:24.674320Z"
+      },
+      {
+        "since": "2026-09-13T10:46:14.351524Z",
+        "until": "2026-09-13T10:46:18.858587Z"
+      },
+      {
+        "since": "2026-09-13T10:51:26.597186Z",
+        "until": "2026-09-13T10:51:36.910281Z"
+      },
+      {
+        "since": "2026-09-13T10:57:14.289946Z",
+        "until": "2026-09-13T10:57:19.773347Z"
+      },
+      {
+        "since": "2026-09-13T11:02:31.196858Z",
+        "until": "2026-09-13T11:02:39.537133Z"
+      },
+      {
+        "since": "2026-09-13T11:08:26.511021Z",
+        "until": "2026-09-13T11:08:37.240451Z"
+      },
+      {
+        "since": "2026-09-13T11:13:34.191251Z",
+        "until": "2026-09-13T11:13:45.654254Z"
+      },
+      {
+        "since": "2026-09-13T11:18:43.204162Z",
+        "until": "2026-09-13T11:18:50.527060Z"
+      },
+      {
+        "since": "2026-09-13T11:24:14.293317Z",
+        "until": "2026-09-13T11:24:22.033031Z"
+      },
+      {
+        "since": "2026-09-13T11:29:39.482568Z",
+        "until": "2026-09-13T11:29:45.290842Z"
+      },
+      {
+        "since": "2026-09-13T11:35:14.241425Z",
+        "until": "2026-09-13T11:35:23.072784Z"
+      },
+      {
+        "since": "2026-09-13T11:40:31.467228Z",
+        "until": "2026-09-13T11:40:40.795864Z"
+      },
+      {
+        "since": "2026-09-13T11:45:39.793041Z",
+        "until": "2026-09-13T11:45:53.930047Z"
+      },
+      {
+        "since": "2026-09-13T11:51:39.685725Z",
+        "until": "2026-09-13T11:51:48.834449Z"
+      },
+      {
+        "since": "2026-09-13T11:57:31.542774Z",
+        "until": "2026-09-13T11:57:44.874621Z"
+      },
+      {
+        "since": "2026-09-13T12:02:43.103746Z",
+        "until": "2026-09-13T12:02:52.246456Z"
+      },
+      {
+        "since": "2026-09-13T12:08:31.648093Z",
+        "until": "2026-09-13T12:08:40.019821Z"
+      },
+      {
+        "since": "2026-09-13T12:14:14.213167Z",
+        "until": "2026-09-13T12:14:23.541938Z"
+      },
+      {
+        "since": "2026-09-13T12:19:39.855494Z",
+        "until": "2026-09-13T12:19:48.180718Z"
+      },
+      {
+        "since": "2026-09-13T12:25:14.156653Z",
+        "until": "2026-09-13T12:25:27.342180Z"
+      },
+      {
+        "since": "2026-09-13T12:31:14.192802Z",
+        "until": "2026-09-13T12:31:26.506807Z"
+      },
+      {
+        "since": "2026-09-13T12:37:14.187703Z",
+        "until": "2026-09-13T12:37:19.325934Z"
+      },
+      {
+        "since": "2026-09-13T12:42:34.716094Z",
+        "until": "2026-09-13T12:42:44.849637Z"
+      },
+      {
+        "since": "2026-09-13T12:48:34.762470Z",
+        "until": "2026-09-13T12:48:44.916802Z"
+      },
+      {
+        "since": "2026-09-13T12:54:31.914511Z",
+        "until": "2026-09-13T12:54:44.244868Z"
+      },
+      {
+        "since": "2026-09-13T12:59:43.018507Z",
+        "until": "2026-09-13T12:59:54.153570Z"
+      },
+      {
+        "since": "2026-09-13T13:05:31.957245Z",
+        "until": "2026-09-13T13:05:42.291863Z"
+      },
+      {
+        "since": "2026-09-13T13:10:40.092419Z",
+        "until": "2026-09-13T13:10:55.263878Z"
+      },
+      {
+        "since": "2026-09-13T13:16:34.942281Z",
+        "until": "2026-09-13T13:16:46.280121Z"
+      },
+      {
+        "since": "2026-09-13T13:22:26.328832Z",
+        "until": "2026-09-13T13:22:40.645811Z"
+      },
+      {
+        "since": "2026-09-13T13:27:40.298562Z",
+        "until": "2026-09-13T13:27:47.646995Z"
+      },
+      {
+        "since": "2026-09-13T13:33:40.342491Z",
+        "until": "2026-09-13T13:33:49.472000Z"
+      },
+      {
+        "since": "2026-09-13T13:39:32.177202Z",
+        "until": "2026-09-13T13:39:44.526376Z"
+      },
+      {
+        "since": "2026-09-13T13:45:26.248558Z",
+        "until": "2026-09-13T13:45:34.822747Z"
+      },
+      {
+        "since": "2026-09-13T13:50:40.333028Z",
+        "until": "2026-09-13T13:50:55.650049Z"
+      },
+      {
+        "since": "2026-09-13T13:56:40.379575Z",
+        "until": "2026-09-13T13:56:50.530722Z"
+      },
+      {
+        "since": "2026-09-13T14:02:35.205957Z",
+        "until": "2026-09-13T14:02:42.344151Z"
+      },
+      {
+        "since": "2026-09-13T14:08:32.358631Z",
+        "until": "2026-09-13T14:08:36.967296Z"
+      },
+      {
+        "since": "2026-09-13T14:14:13.961926Z",
+        "until": "2026-09-13T14:14:22.277292Z"
+      },
+      {
+        "since": "2026-09-13T14:20:13.958146Z",
+        "until": "2026-09-13T14:20:20.295751Z"
+      },
+      {
+        "since": "2026-09-13T14:25:40.620439Z",
+        "until": "2026-09-13T14:25:46.936106Z"
+      },
+      {
+        "since": "2026-09-13T14:31:40.665028Z",
+        "until": "2026-09-13T14:31:48.097855Z"
+      },
+      {
+        "since": "2026-09-13T14:37:26.148102Z",
+        "until": "2026-09-13T14:37:36.495386Z"
+      },
+      {
+        "since": "2026-09-13T14:42:40.760817Z",
+        "until": "2026-09-13T14:42:47.090110Z"
+      },
+      {
+        "since": "2026-09-13T14:48:13.928287Z",
+        "until": "2026-09-13T14:48:19.323721Z"
+      },
+      {
+        "since": "2026-09-13T14:53:40.911147Z",
+        "until": "2026-09-13T14:53:55.056235Z"
+      },
+      {
+        "since": "2026-09-13T14:59:32.697039Z",
+        "until": "2026-09-13T14:59:41.789755Z"
+      },
+      {
+        "since": "2026-09-13T15:04:42.887117Z",
+        "until": "2026-09-13T15:04:52.233778Z"
+      },
+      {
+        "since": "2026-09-13T15:10:42.836888Z",
+        "until": "2026-09-13T15:10:48.180470Z"
+      },
+      {
+        "since": "2026-09-13T15:16:40.915050Z",
+        "until": "2026-09-13T15:16:53.284960Z"
+      },
+      {
+        "since": "2026-09-13T15:22:42.874993Z",
+        "until": "2026-09-13T15:22:56.209837Z"
+      },
+      {
+        "since": "2026-09-13T15:28:13.920878Z",
+        "until": "2026-09-13T15:28:26.247422Z"
+      },
+      {
+        "since": "2026-09-13T15:33:42.810219Z",
+        "until": "2026-09-13T15:33:44.890183Z"
+      },
+      {
+        "since": "2026-09-13T15:39:41.079264Z",
+        "until": "2026-09-13T15:39:53.447387Z"
+      },
+      {
+        "since": "2026-09-13T15:45:42.840064Z",
+        "until": "2026-09-13T15:45:55.983591Z"
+      },
+      {
+        "since": "2026-09-13T15:51:35.896539Z",
+        "until": "2026-09-13T15:51:43.318726Z"
+      }
+    ],
+    "down": false
   },
   "robots": [
     {
@@ -1623,7 +1977,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:49:00-04:00"
+      "lastISO": "2026-09-13T11:54:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1643,7 +1997,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:50:00-04:00"
+      "lastISO": "2026-09-13T11:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1653,7 +2007,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:45:00-04:00"
+      "lastISO": "2026-09-13T11:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1663,7 +2017,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:50:00-04:00"
+      "lastISO": "2026-09-13T11:55:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2181,7 +2535,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:51"
+    "stamp": "11:57"
   }
 }/*__END_DATA__*/;
 
