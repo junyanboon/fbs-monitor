@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 8:46 AM ET",
-  "generatedAtISO": "2026-09-13T08:46:54-04:00",
+  "generatedAt": "Sep 13, 9:01 AM ET",
+  "generatedAtISO": "2026-09-13T09:01:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -379,11 +379,6 @@ const DATA = /*__DATA__*/{
           "kind": "EOB",
           "state": "scheduled",
           "time": "16:00"
-        },
-        {
-          "kind": "HTA",
-          "state": "scheduled",
-          "time": "09:00"
         }
       ],
       "booking_studios": [],
@@ -545,10 +540,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:00",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Scott Vandenberg",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -661,11 +656,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "09:00"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -923,13 +913,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
@@ -1210,18 +1200,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "HTA-sweep-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:01",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-13T09:00:00-04:00",
-      "label": "HTA · Studio 693"
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1282,40 +1260,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Zad Abouhatab in Studio 693"
     },
     {
-      "code": "Returning Access 901 RA-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:02",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-13T09:00:00-04:00"
-    },
-    {
-      "code": "Returning Access 527 RA-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:02",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-13T09:00:00-04:00"
-    },
-    {
-      "code": "HTA-sweep-•••B",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:02",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-13T09:00:00-04:00",
-      "label": "HTA · Studio 509B"
-    },
-    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -1326,18 +1270,6 @@ const DATA = /*__DATA__*/{
       "send_after": "15:30",
       "send_after_iso": "2026-09-13T15:30:00-04:00",
       "label": "AVA for Jerimi Jones in Studio 693"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:03",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-13T09:00:00-04:00",
-      "label": "AVA for Jesse Dwyre in Studio 693"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1458,21 +1390,20 @@ const DATA = /*__DATA__*/{
       "send_after": "15:00",
       "send_after_iso": "2026-09-13T15:00:00-04:00",
       "label": "AVA for June P. Peerspace in Studio 509A"
-    },
-    {
-      "code": "Returning Access 509A RA-sweep-•••A",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:33",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-13T09:00:00-04:00"
     }
   ],
   "attention": [],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "527",
+      "name": "Scott Vandenberg",
+      "time": "09:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789304425849,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1493,16 +1424,6 @@ const DATA = /*__DATA__*/{
       "time": "15:58",
       "ts": 1789243093920,
       "when": "Sat 15:58"
-    },
-    "527": {
-      "kind": "departure",
-      "name": "AlisonCarlos Murray",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "19:14",
-      "ts": 1789254850592,
-      "when": "Sat 19:14"
     },
     "693": {
       "kind": "departure",
@@ -1526,12 +1447,18 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-12T23:19:01+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-13T09:00:43.350077Z",
@@ -1696,6 +1623,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T12:42:34.716094Z",
         "until": "2026-09-13T12:42:44.849637Z"
+      },
+      {
+        "since": "2026-09-13T12:48:34.762470Z",
+        "until": "2026-09-13T12:48:44.916802Z"
+      },
+      {
+        "since": "2026-09-13T12:54:31.914511Z",
+        "until": "2026-09-13T12:54:44.244868Z"
+      },
+      {
+        "since": "2026-09-13T12:59:43.018507Z",
+        "until": "2026-09-13T12:59:54.153570Z"
       }
     ],
     "down": false
@@ -1709,7 +1648,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T08:47:00-04:00"
+      "lastISO": "2026-09-13T08:57:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1719,7 +1658,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T08:45:00-04:00"
+      "lastISO": "2026-09-13T09:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1729,7 +1668,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T08:45:00-04:00"
+      "lastISO": "2026-09-13T09:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1739,7 +1678,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T08:45:00-04:00"
+      "lastISO": "2026-09-13T08:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1749,7 +1688,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T08:45:00-04:00"
+      "lastISO": "2026-09-13T09:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1759,7 +1698,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T08:40:00-04:00"
+      "lastISO": "2026-09-13T09:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1909,7 +1848,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T08:45:00-04:00"
+      "lastISO": "2026-09-13T09:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2249,7 +2188,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "08:46"
+    "stamp": "09:01"
   }
 }/*__END_DATA__*/;
 
