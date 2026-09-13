@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 6:32 PM ET",
-  "generatedAtISO": "2026-09-13T18:32:05-04:00",
+  "generatedAt": "Sep 13, 6:33 PM ET",
+  "generatedAtISO": "2026-09-13T18:33:36-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1090,13 +1090,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 14.75,
       "end": 15.25
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 14.75,
       "end": 15.25
     },
@@ -2261,11 +2261,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T22:27:38.160917Z",
         "until": "2026-09-13T22:27:52.292482Z"
+      },
+      {
+        "since": "2026-09-13T22:33:15.552395Z",
+        "until": "2026-09-13T22:33:20.865840Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-13T18:10:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2274,7 +2288,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:28:00-04:00"
+      "lastISO": "2026-09-13T18:34:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2325,16 +2339,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-13T18:23:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2434,7 +2438,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:00:00-04:00"
+      "lastISO": "2026-09-13T18:31:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2832,7 +2836,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:32"
+    "stamp": "18:33"
   }
 }/*__END_DATA__*/;
 
