@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 12, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 12, 9:46 PM ET",
-  "generatedAtISO": "2026-09-12T21:46:54-04:00",
+  "generatedAt": "Sep 12, 10:02 PM ET",
+  "generatedAtISO": "2026-09-12T22:02:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1207,8 +1207,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1216,8 +1216,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1234,8 +1234,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "527",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1243,8 +1243,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "527",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 14.75,
@@ -1323,7 +1323,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -2339,11 +2339,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T01:41:19.857675Z",
         "until": "2026-09-13T01:41:26.138065Z"
+      },
+      {
+        "since": "2026-09-13T01:47:15.266200Z",
+        "until": "2026-09-13T01:47:24.364972Z"
+      },
+      {
+        "since": "2026-09-13T01:52:27.857276Z",
+        "until": "2026-09-13T01:52:41.184649Z"
+      },
+      {
+        "since": "2026-09-13T01:57:36.283945Z",
+        "until": "2026-09-13T01:57:47.651120Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-12T19:18:00-04:00"
+    },
     {
       "run": "The Responder",
       "cadence": "Hourly",
@@ -2355,16 +2377,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-12T19:36:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-12T19:18:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2372,7 +2384,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:45:00-04:00"
+      "lastISO": "2026-09-12T21:57:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2382,7 +2394,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:45:00-04:00"
+      "lastISO": "2026-09-12T22:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2392,7 +2404,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:45:00-04:00"
+      "lastISO": "2026-09-12T22:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2402,7 +2414,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:45:00-04:00"
+      "lastISO": "2026-09-12T21:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2412,7 +2424,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:45:00-04:00"
+      "lastISO": "2026-09-12T22:00:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2422,7 +2434,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:40:00-04:00"
+      "lastISO": "2026-09-12T22:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2492,7 +2504,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T20:56:00-04:00"
+      "lastISO": "2026-09-12T21:56:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2512,7 +2524,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:30:00-04:00"
+      "lastISO": "2026-09-12T22:00:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2552,7 +2564,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-12T21:45:00-04:00"
+      "lastISO": "2026-09-12T22:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2827,17 +2839,17 @@ const DATA = /*__DATA__*/{
         "down": "People wait. Nobody replies.",
         "status": "crit",
         "robots": [
-          "The Responder",
           "The Concierge",
+          "The Responder",
           "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
         "worst": {
-          "run": "The Responder",
+          "run": "The Concierge",
           "label": "Overdue",
-          "lastISO": "2026-09-12T19:36:00-04:00"
+          "lastISO": "2026-09-12T19:18:00-04:00"
         }
       },
       {
@@ -2896,7 +2908,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "21:46"
+    "stamp": "22:02"
   }
 }/*__END_DATA__*/;
 
