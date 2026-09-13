@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 2:11 PM ET",
-  "generatedAtISO": "2026-09-13T14:11:21-04:00",
+  "generatedAt": "Sep 13, 2:16 PM ET",
+  "generatedAtISO": "2026-09-13T14:16:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -378,10 +378,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "14:14",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Vicky Yeung",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -510,7 +510,7 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [],
       "booking_studios": [],
-      "heard": false,
+      "heard": true,
       "arrived": null,
       "departed": null,
       "facilitator": null,
@@ -905,13 +905,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 14.75,
       "end": 15.25
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 14.75,
       "end": 15.25
     },
@@ -1229,7 +1229,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "6 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1402,6 +1402,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1789322939491,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Vicky Yeung",
+      "time": "14:14",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789323277767,
       "source": "doors"
     }
   ],
@@ -1823,6 +1832,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T18:08:13.599318Z",
         "until": "2026-09-13T18:08:19.929807Z"
+      },
+      {
+        "since": "2026-09-13T18:13:42.058220Z",
+        "until": "2026-09-13T18:13:51.157574Z"
       }
     ],
     "down": false
@@ -1884,9 +1897,19 @@ const DATA = /*__DATA__*/{
       "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
       "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
       "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-13T13:01:00-04:00"
+    },
+    {
+      "run": "sentinel-sweep (Cloud Run)",
+      "cadence": "Hourly",
+      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
+      "produces": null,
+      "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-13T13:01:00-04:00"
+      "lastISO": "2026-09-13T13:07:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1896,7 +1919,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T14:11:00-04:00"
+      "lastISO": "2026-09-13T14:17:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1907,16 +1930,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-13T14:08:00-04:00"
-    },
-    {
-      "run": "sentinel-sweep (Cloud Run)",
-      "cadence": "Hourly",
-      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-13T13:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2046,7 +2059,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T14:01:00-04:00"
+      "lastISO": "2026-09-13T14:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2406,7 +2419,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "14:11"
+    "stamp": "14:16"
   }
 }/*__END_DATA__*/;
 
