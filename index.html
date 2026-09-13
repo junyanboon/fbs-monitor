@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 1:33 PM ET",
-  "generatedAtISO": "2026-09-13T13:33:58-04:00",
+  "generatedAt": "Sep 13, 1:35 PM ET",
+  "generatedAtISO": "2026-09-13T13:35:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1489,7 +1489,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -2028,6 +2028,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T17:28:42.627203Z",
         "until": "2026-09-13T17:28:49.912381Z"
+      },
+      {
+        "since": "2026-09-13T17:34:41.773450Z",
+        "until": "2026-09-13T17:34:46.882722Z"
       }
     ],
     "down": false
@@ -2049,8 +2053,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
       "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-13T13:05:00-04:00"
     },
     {
@@ -2059,9 +2063,19 @@ const DATA = /*__DATA__*/{
       "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
       "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
       "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-13T13:15:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-13T13:15:00-04:00"
+      "lastISO": "2026-09-13T13:10:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2552,7 +2566,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "handback-sweep (Hostinger)",
           "The Analyst",
@@ -2568,7 +2582,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "handback-sweep (Hostinger)",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-13T13:05:00-04:00"
         }
       },
@@ -2607,7 +2621,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:33"
+    "stamp": "13:35"
   }
 }/*__END_DATA__*/;
 
