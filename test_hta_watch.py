@@ -400,7 +400,7 @@ def test_returning_access_verifies_and_is_held_to_the_bc_margin():
         out = build.fetch_hta_rows("t", datetime.datetime(2026, 9, 6, tzinfo=datetime.timezone.utc))
     finally:
         build._notion_query = orig
-    assert [r["id"] for r in out] == ["Returning Access 527 RA-sweep-0911-1600-527"]
+    assert [r["id"] for r in out] == ["Returning Access 527 RA-sweep-0911-1600-527", "Returning Access 901 RA-sweep-0911-1100-901"]
     assert out[0]["shape"] == "RA"
 
     # …and the surviving row verifies the booking, so no alarm is raised.
@@ -476,7 +476,12 @@ def test_returning_access_query_and_verdict():
         assert verdict(dict(b, date="2026-09-20"), rows, now)["state"] == "missing"
         for status in ("Pending Review", "Ready to Send", "Error", "Will Not Send"):
             p["Status"] = prop("status", {"name": status})
-            assert build.fetch_hta_rows("fixture", now) == []
+            pending = build.fetch_hta_rows("fixture", now)
+            if status == "Will Not Send":
+                assert pending == []
+            else:
+                assert len(pending) == 1
+                assert verdict(b, pending, now)["state"] != "verified"
         p["Status"] = prop("status", {"name": "Sent"})
         p["Dispatch Receipt"] = prop("rich_text", "")
         assert build.fetch_hta_rows("fixture", now) == []

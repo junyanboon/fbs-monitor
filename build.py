@@ -2887,6 +2887,9 @@ def fetch_hta_rows(token, since_dt):
     Action rows for Hannah Cho / 509B in eight hours on 2026-09-06, each one
     re-verified by hand (Sweep Feedback 3d375032-81c4-81ba-b199-d38296a8f56d).
 
+    Returning Access rows also expose pending state for their exact booking.
+    Scheduled is not verified: only Sent plus a receipt proves RA delivery.
+
     Only `Sent` BC rows are read, and that restriction is the safety margin.
     A BC row is not built to be a How-to-Access, so it is accepted as PROOF a
     send happened and never as a promise that one will: a queued or errored BC
@@ -2928,11 +2931,15 @@ def fetch_hta_rows(token, since_dt):
         p = row.get("properties", {})
         shape = _hta_shape(p)
         if shape in ("BC", "RA"):
-            if (_prop_text(p.get("Status")) or "") != "Sent":
-                continue    # a queued or errored BC/RA row is not proof of anything
+            status = (_prop_text(p.get("Status")) or "")
+            if shape == "BC" and status != "Sent":
+                continue    # merged confirmations still require delivered proof
+            if shape == "RA" and status not in (
+                    "Sent", "Ready to Send", "Pending Review", "Needs Fix", "Error"):
+                continue
             if not _carries_access(p):
                 continue    # a confirmation with no codes in it is not access
-            if shape == "RA" and not _prop_text(p.get("Dispatch Receipt")):
+            if shape == "RA" and status == "Sent" and not _prop_text(p.get("Dispatch Receipt")):
                 continue    # require actual dispatch evidence for this new shape
         out.append({
             "id": row.get("id"),
@@ -2945,6 +2952,8 @@ def fetch_hta_rows(token, since_dt):
             "receipt": bool(_prop_text(p.get("Dispatch Receipt"))),
             "linked": bool((p.get("Booking") or {}).get("relation")),
             "shape": shape,
+            "code": (_prop_text(p.get("Message Code")) or "").strip(),
+            "booking_ids": [x["id"].replace("-", "") for x in (p.get("Booking") or {}).get("relation", [])],
         })
     return out
 
@@ -2986,11 +2995,9 @@ def _hta_shape(properties):
     drew a false "🔔 HTA not sent" on 2026-09-10 that way, hours after their
     codes had gone out. Same failure class as the BC gap, same remedy.
 
-    RA rows are held to a margin stricter than either of the shapes above:
-    only `Sent` counts, only with an access code in the body, and only with a
-    provider Dispatch Receipt. A queued, errored or unreceipted RA row is
-    proof of nothing, and a booking with no other evidence still reads
-    `missing` rather than being quieted into `scheduled`.
+    RA delivery requires Sent, an access code label, and a provider receipt.
+    Pending RA rows with access labels are retained for scheduled/awaiting/stuck
+    display, scoped to their exact booking; they never verify delivery.
     """
     code = (_prop_text(properties.get("Message Code")) or "").strip().upper()
     if code.startswith("BC"):
@@ -3057,6 +3064,14 @@ def hta_verdicts(bookings, rows, now):
                 continue    # reminder evidence is room-specific, not onboarding
             if r.get("studio") and b.get("studio") and r["studio"] != b["studio"]:
                 continue
+            if r.get("shape") == "RA" and r["status"].lower() != "sent":
+                # Pending reminders belong to an exact booking, not a seven-day
+                # history window. Sent reminders retain the existing evidence rule.
+                key = f"RA-sweep-{start:%m%d-%H%M}-{b['studio']}"
+                if ((b.get("id") or "").replace("-", "") not in r.get("booking_ids", []) and
+                        not (r.get("code", "").endswith(key) and
+                             (_row_datetime(r, "created") or start).year == start.year)):
+                    continue
             stamp = _row_datetime(r, "sent_at") or _row_datetime(r, "created")
             if stamp is None or stamp < low or stamp > high:
                 continue
@@ -3325,7 +3340,7 @@ def _access_row_hits(row, event, day):
     return bool(who) and who in text.lower()
 
 
-def flag_access_gaps(events, rows, base_day):
+def flag_access_gaps(events, rows, base_day, verdicts=()):
     """Red pill on today's booking when an open Access / PIN row concerns it.
 
     The card is the ONLY access surface on this app (Junyan, 2026-08-25): a
@@ -3336,10 +3351,17 @@ def flag_access_gaps(events, rows, base_day):
     are internal text (see redact()).
     """
     day = base_day.isoformat()
+    resolved_messages = {
+        v["booking"]["id"]: _hta_action_title(v["booking"])
+        for v in verdicts if v["state"] in ("scheduled", "verified", "intentional")
+        and v["booking"].get("id")
+    }
     for e in events:
         if e.get("kind") != "booking":
             continue
         for row in rows:
+            if row.get("text") == resolved_messages.get(e.get("_notion_id")):
+                continue    # this exact message warning is superseded by live evidence
             if _access_row_hits(row, e, day):
                 e["access_gap"] = True
                 # A fixed label only — never the row text. "Lockbox key" for
@@ -3741,12 +3763,6 @@ def build_data(now):
         emit_fallback_note(f"Studio Holds fetch failed ({e}); staff blocks fall "
                            f"back to title detection this edition.")
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
-    # Access pills — soft source, same posture as Robots/Reports: an unreadable
-    # Actions DB costs the pills, never the board.
-    try:
-        events = flag_access_gaps(events, fetch_open_access_rows(token), base_day)
-    except Exception as e:  # noqa: BLE001
-        emit_fallback_note(f"Actions fetch failed ({e}); access pills absent this edition.")
     # Heard-from-them — soft: if the ledger is unreadable, the No GTG chip simply
     # behaves as it did before this existed (shown), never the reverse. Failing
     # this read must not HIDE a warning.
@@ -3786,6 +3802,13 @@ def build_data(now):
     except Exception as e:  # noqa: BLE001
         verdicts = []
         emit_fallback_note(f"HTA watch fetch failed ({e}); HTA pills absent this edition.")
+
+    # Access pills — soft source, same posture as Robots/Reports: an unreadable
+    # Actions DB costs the pills, never the board.
+    try:
+        events = flag_access_gaps(events, fetch_open_access_rows(token), base_day, verdicts)
+    except Exception as e:  # noqa: BLE001
+        emit_fallback_note(f"Actions fetch failed ({e}); access pills absent this edition.")
 
     # ---- Arrivals: panel ledger first, ADT email second ---------------------
     #
