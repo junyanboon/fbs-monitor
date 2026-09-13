@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 3:16 PM ET",
-  "generatedAtISO": "2026-09-13T15:16:58-04:00",
+  "generatedAt": "Sep 13, 3:31 PM ET",
+  "generatedAtISO": "2026-09-13T15:31:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -601,11 +601,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "15:30"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "19:15"
@@ -870,13 +865,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
@@ -1111,18 +1106,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for June P. Peerspace in Studio 509A"
     },
     {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:02",
-      "send_after": "15:30",
-      "send_after_iso": "2026-09-13T15:30:00-04:00",
-      "label": "AVA for Zoey Gould (Bees' Knees Dance in Studio 527"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1157,18 +1140,6 @@ const DATA = /*__DATA__*/{
       "send_after": "19:45",
       "send_after_iso": "2026-09-13T19:45:00-04:00",
       "label": "EOB for Zad Abouhatab in Studio 693"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:03",
-      "send_after": "15:30",
-      "send_after_iso": "2026-09-13T15:30:00-04:00",
-      "label": "AVA for Jerimi Jones in Studio 693"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1871,11 +1842,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T19:16:37.044443Z",
         "until": "2026-09-13T19:16:41.665832Z"
+      },
+      {
+        "since": "2026-09-13T19:22:34.295542Z",
+        "until": "2026-09-13T19:22:47.484650Z"
+      },
+      {
+        "since": "2026-09-13T19:28:37.100320Z",
+        "until": "2026-09-13T19:28:42.775944Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-13T14:11:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1884,7 +1873,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:13:00-04:00"
+      "lastISO": "2026-09-13T15:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1894,7 +1883,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:15:00-04:00"
+      "lastISO": "2026-09-13T15:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1904,7 +1893,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:15:00-04:00"
+      "lastISO": "2026-09-13T15:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1914,7 +1903,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:15:00-04:00"
+      "lastISO": "2026-09-13T15:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1924,7 +1913,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:15:00-04:00"
+      "lastISO": "2026-09-13T15:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1934,7 +1923,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:08:00-04:00"
+      "lastISO": "2026-09-13T15:23:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2017,16 +2006,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-13T04:05:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-13T14:11:00-04:00"
-    },
-    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -2094,7 +2073,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:16:00-04:00"
+      "lastISO": "2026-09-13T15:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2425,24 +2404,28 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
-          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Mechanic",
+          "label": "Due",
+          "lastISO": "2026-09-13T14:11:00-04:00"
+        }
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "15:16"
+    "stamp": "15:31"
   }
 }/*__END_DATA__*/;
 
