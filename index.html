@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 9:16 AM ET",
-  "generatedAtISO": "2026-09-13T09:16:57-04:00",
+  "generatedAt": "Sep 13, 9:22 AM ET",
+  "generatedAtISO": "2026-09-13T09:22:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -546,10 +546,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:20",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Camila Avendano",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -666,10 +666,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:21",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Jia Chian Lee",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1155,13 +1155,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 14.75,
       "end": 15.25
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 14.75,
       "end": 15.25
     },
@@ -1380,50 +1380,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 13 · 04:06",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 13 · 04:06",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "ANALYST-SOUND-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 13 · 04:06",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "COURTESY — @kilikinss — September12 comment",
-      "kind": null,
-      "channel": "Instagram",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 13 · 08:06",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1614,6 +1570,17 @@ const DATA = /*__DATA__*/{
       "send_after": "15:00",
       "send_after_iso": "2026-09-13T15:00:00-04:00",
       "label": "AVA for June P. Peerspace in Studio 509A"
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 13 · 04:06",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [],
@@ -1626,29 +1593,27 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789304425849,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Camila Avendano",
+      "time": "09:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789305639452,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "09:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789305689900,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Teresa Smith",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "18:57",
-      "ts": 1789253830903,
-      "when": "Sat 18:57"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "Jia Chian Lee",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "15:58",
-      "ts": 1789243093920,
-      "when": "Sat 15:58"
-    },
     "693": {
       "kind": "departure",
       "name": "Janet Zamora",
@@ -1676,7 +1641,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-13T13:03:01+00:00",
+    "updatedAt": "2026-09-13T13:22:01+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1871,6 +1836,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T13:16:34.942281Z",
         "until": "2026-09-13T13:16:46.280121Z"
+      },
+      {
+        "since": "2026-09-13T13:22:26.328832Z",
+        "until": "2026-09-13T13:22:40.645811Z"
       }
     ],
     "down": false
@@ -1884,7 +1853,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T09:14:00-04:00"
+      "lastISO": "2026-09-13T09:20:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1904,7 +1873,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T09:15:00-04:00"
+      "lastISO": "2026-09-13T09:20:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1924,7 +1893,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T09:15:00-04:00"
+      "lastISO": "2026-09-13T09:20:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1934,7 +1903,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T09:10:00-04:00"
+      "lastISO": "2026-09-13T09:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2424,7 +2393,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "09:16"
+    "stamp": "09:22"
   }
 }/*__END_DATA__*/;
 
