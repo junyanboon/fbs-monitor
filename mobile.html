@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 6:33 PM ET",
-  "generatedAtISO": "2026-09-13T18:33:36-04:00",
+  "generatedAt": "Sep 13, 6:46 PM ET",
+  "generatedAtISO": "2026-09-13T18:46:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -393,13 +393,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "18:45"
-        }
-      ],
+      "dispatch": [],
       "booking_studios": [],
       "heard": false,
       "arrived": "17:30",
@@ -848,13 +842,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
@@ -866,13 +860,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 14.75,
       "end": 15.25
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 14.75,
       "end": 15.25
     },
@@ -1075,18 +1069,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 13 · 18:04",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:02",
-      "send_after": "18:45",
-      "send_after_iso": "2026-09-13T18:45:00-04:00",
-      "label": "EOB for June P. Peerspace in Studio 509A"
     },
     {
       "code": "EOB-sweep-•••",
@@ -2041,20 +2023,28 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T22:33:15.552395Z",
         "until": "2026-09-13T22:33:20.865840Z"
+      },
+      {
+        "since": "2026-09-13T22:38:49.292101Z",
+        "until": "2026-09-13T22:38:59.763065Z"
+      },
+      {
+        "since": "2026-09-13T22:44:25.270742Z",
+        "until": "2026-09-13T22:44:30.290559Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-13T18:10:00-04:00"
+      "lastISO": "2026-09-13T16:51:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -2064,7 +2054,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:34:00-04:00"
+      "lastISO": "2026-09-13T18:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2074,7 +2064,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:30:00-04:00"
+      "lastISO": "2026-09-13T18:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2084,7 +2074,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:30:00-04:00"
+      "lastISO": "2026-09-13T18:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2094,7 +2084,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:25:00-04:00"
+      "lastISO": "2026-09-13T18:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2104,7 +2094,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:30:00-04:00"
+      "lastISO": "2026-09-13T18:45:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2114,7 +2104,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:23:00-04:00"
+      "lastISO": "2026-09-13T18:38:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-13T18:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2145,16 +2145,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-13T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:51:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2224,7 +2214,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:14:00-04:00"
+      "lastISO": "2026-09-13T18:35:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2264,7 +2254,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:15:00-04:00"
+      "lastISO": "2026-09-13T18:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2545,16 +2535,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-13T16:51:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2612,7 +2606,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:33"
+    "stamp": "18:46"
   }
 }/*__END_DATA__*/;
 
