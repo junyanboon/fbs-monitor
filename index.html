@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 11:18 AM ET",
-  "generatedAtISO": "2026-09-13T11:18:07-04:00",
+  "generatedAt": "Sep 13, 11:31 AM ET",
+  "generatedAtISO": "2026-09-13T11:31:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -690,10 +690,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:28",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Shamir Panchal",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -906,11 +906,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "11:30"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "16:45"
@@ -1023,11 +1018,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "11:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1150,13 +1140,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 14.75,
       "end": 15.25
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 14.75,
       "end": 15.25
     },
@@ -1482,18 +1472,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Taylor Yeung in Studio 527"
     },
     {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:03",
-      "send_after": "11:30",
-      "send_after_iso": "2026-09-13T11:30:00-04:00",
-      "label": "AVA for Aakanksha Patel in Studio 901"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1504,18 +1482,6 @@ const DATA = /*__DATA__*/{
       "send_after": "14:45",
       "send_after_iso": "2026-09-13T14:45:00-04:00",
       "label": "EOB for Aakanksha Patel in Studio 901"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:03",
-      "send_after": "11:30",
-      "send_after_iso": "2026-09-13T11:30:00-04:00",
-      "label": "AVA for Bella Zhou in Studio 693"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1564,17 +1530,6 @@ const DATA = /*__DATA__*/{
       "send_after": "15:00",
       "send_after_iso": "2026-09-13T15:00:00-04:00",
       "label": "AVA for June P. Peerspace in Studio 509A"
-    },
-    {
-      "code": "Post-HTA go-ahead confirmation — Harper  Drzymala-Bokitch — 509B [gtg:0608317d-b8c3-4feb-80c3-43fd84b714fd]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 10:40",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1654,6 +1609,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1789312430549,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Shamir Panchal",
+      "time": "11:28",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789313307849,
       "source": "doors"
     }
   ],
@@ -1954,20 +1918,28 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T15:16:40.915050Z",
         "until": "2026-09-13T15:16:53.284960Z"
+      },
+      {
+        "since": "2026-09-13T15:22:42.874993Z",
+        "until": "2026-09-13T15:22:56.209837Z"
+      },
+      {
+        "since": "2026-09-13T15:28:13.920878Z",
+        "until": "2026-09-13T15:28:26.247422Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "reconcile-sweep (Cloud Run)",
+      "run": "Ops Executor",
       "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "expected": null,
+      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
       "monitoring": "Live",
       "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-13T09:50:00-04:00"
+      "statusLabel": "Never checked in",
+      "lastISO": null
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1977,7 +1949,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:15:00-04:00"
+      "lastISO": "2026-09-13T11:32:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1987,7 +1959,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:15:00-04:00"
+      "lastISO": "2026-09-13T11:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1997,7 +1969,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:15:00-04:00"
+      "lastISO": "2026-09-13T11:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2007,7 +1979,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:15:00-04:00"
+      "lastISO": "2026-09-13T11:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2017,7 +1989,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:15:00-04:00"
+      "lastISO": "2026-09-13T11:30:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-13T11:31:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2127,7 +2109,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T10:30:00-04:00"
+      "lastISO": "2026-09-13T11:24:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2167,7 +2149,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:15:00-04:00"
+      "lastISO": "2026-09-13T11:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2188,16 +2170,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-09-06T03:50:00-04:00"
-    },
-    {
-      "run": "Ops Executor",
-      "cadence": "15-min",
-      "expected": null,
-      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
-      "monitoring": "Paused",
-      "status": "plain",
-      "statusLabel": "Paused",
-      "lastISO": null
     },
     {
       "run": "QA release check",
@@ -2319,6 +2291,14 @@ const DATA = /*__DATA__*/{
     "sinceISO": "2026-09-04T10:10:00-04:00",
     "lanes": [
       {
+        "lane": "ops-executor",
+        "name": "Ops Executor",
+        "executor": "vps",
+        "how": "Hermes cron · VPS",
+        "status": "ok",
+        "default": false
+      },
+      {
         "lane": "analyst",
         "name": "The Analyst",
         "executor": "cloudrun",
@@ -2424,8 +2404,8 @@ const DATA = /*__DATA__*/{
       }
     ],
     "counts": {
-      "cloudrun": 4,
-      "vps": 9
+      "vps": 10,
+      "cloudrun": 4
     }
   },
   "leaseNote": null,
@@ -2514,10 +2494,10 @@ const DATA = /*__DATA__*/{
         "worst": null
       }
     ],
-    "liveCount": 21,
+    "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:18"
+    "stamp": "11:31"
   }
 }/*__END_DATA__*/;
 
