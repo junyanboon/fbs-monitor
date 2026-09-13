@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 5:02 PM ET",
-  "generatedAtISO": "2026-09-13T17:02:15-04:00",
+  "generatedAt": "Sep 13, 5:15 PM ET",
+  "generatedAtISO": "2026-09-13T17:15:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -573,10 +573,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "15:42",
-      "departed": null,
+      "departed": "17:14",
       "facilitator": null,
       "arrived_by": "AlisonCarlos Murray",
-      "departed_by": null,
+      "departed_by": "AlisonCarlos Murray",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -696,11 +696,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "17:15"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -853,13 +848,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
@@ -1104,18 +1099,6 @@ const DATA = /*__DATA__*/{
       "send_after": "19:15",
       "send_after_iso": "2026-09-13T19:15:00-04:00",
       "label": "EOB for Zoey Gould (Bees' Knees Dance in Studio 527"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 00:02",
-      "send_after": "17:15",
-      "send_after_iso": "2026-09-13T17:15:00-04:00",
-      "label": "AVA for Zad Abouhatab in Studio 693"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1365,6 +1348,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789331147253,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "AlisonCarlos Murray",
+      "time": "17:14",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789334081570,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1374,9 +1366,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-13T20:29:01+00:00",
+    "updatedAt": "2026-09-13T21:15:01+00:00",
     "mailCheck": {
-      "matched": 5,
+      "matched": 6,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1909,6 +1901,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T21:01:37.677651Z",
         "until": "2026-09-13T21:01:45.225117Z"
+      },
+      {
+        "since": "2026-09-13T21:07:25.458570Z",
+        "until": "2026-09-13T21:07:33.606463Z"
+      },
+      {
+        "since": "2026-09-13T21:12:37.761758Z",
+        "until": "2026-09-13T21:12:47.196266Z"
       }
     ],
     "down": false
@@ -1922,7 +1922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:57:00-04:00"
+      "lastISO": "2026-09-13T17:14:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1932,7 +1932,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T17:00:00-04:00"
+      "lastISO": "2026-09-13T17:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1942,7 +1942,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T17:00:00-04:00"
+      "lastISO": "2026-09-13T17:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1952,7 +1952,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:55:00-04:00"
+      "lastISO": "2026-09-13T17:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1962,7 +1962,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T17:00:00-04:00"
+      "lastISO": "2026-09-13T17:15:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1972,7 +1972,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:53:00-04:00"
+      "lastISO": "2026-09-13T17:08:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1982,7 +1982,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T17:00:00-04:00"
+      "lastISO": "2026-09-13T17:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1992,7 +1992,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:07:00-04:00"
+      "lastISO": "2026-09-13T17:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2062,7 +2062,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:12:00-04:00"
+      "lastISO": "2026-09-13T17:08:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2082,7 +2082,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:31:00-04:00"
+      "lastISO": "2026-09-13T17:01:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2092,7 +2092,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:37:00-04:00"
+      "lastISO": "2026-09-13T17:03:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2122,7 +2122,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:10:00-04:00"
+      "lastISO": "2026-09-13T17:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2480,7 +2480,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:02"
+    "stamp": "17:15"
   }
 }/*__END_DATA__*/;
 
