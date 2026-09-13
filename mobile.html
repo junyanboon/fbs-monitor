@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 13, 12:32 AM ET",
-  "generatedAtISO": "2026-09-13T00:32:07-04:00",
+  "generatedAt": "Sep 13, 12:46 AM ET",
+  "generatedAtISO": "2026-09-13T00:46:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1038,7 +1038,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "509A",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1047,7 +1047,7 @@ const DATA = /*__DATA__*/{
     {
       "name": "Junyan",
       "role": "FBS",
-      "studio": "693",
+      "studio": "509A",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 16.75,
@@ -1333,9 +1333,25 @@ const DATA = /*__DATA__*/{
       "send_after": "15:00",
       "send_after_iso": "2026-09-13T15:00:00-04:00",
       "label": "AVA · Studio 509A"
+    },
+    {
+      "code": "Returning Access 509A RA-sweep-•••A",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 13 · 00:33",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-13T09:00:00-04:00"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "crit",
+      "text": "HTA not queued · Vicky Yeung · 509A · 14:15"
+    }
+  ],
   "armEvents": [
     {
       "studio": "693",
@@ -2469,6 +2485,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T04:28:28.852876Z",
         "until": "2026-09-13T04:28:41.008698Z"
+      },
+      {
+        "since": "2026-09-13T04:34:31.853270Z",
+        "until": "2026-09-13T04:34:37.290069Z"
+      },
+      {
+        "since": "2026-09-13T04:39:43.763199Z",
+        "until": "2026-09-13T04:39:55.908729Z"
+      },
+      {
+        "since": "2026-09-13T04:45:28.914260Z",
+        "until": "2026-09-13T04:45:37.196845Z"
       }
     ],
     "down": false
@@ -2482,7 +2510,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T00:29:00-04:00"
+      "lastISO": "2026-09-13T00:45:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2562,7 +2590,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T00:00:00-04:00"
+      "lastISO": "2026-09-13T00:30:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2602,7 +2630,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:30:00-04:00"
+      "lastISO": "2026-09-13T00:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2612,7 +2640,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:30:00-04:00"
+      "lastISO": "2026-09-13T00:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2622,7 +2650,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:15:00-04:00"
+      "lastISO": "2026-09-13T00:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2632,7 +2660,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:30:00-04:00"
+      "lastISO": "2026-09-13T00:45:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2662,7 +2690,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:30:00-04:00"
+      "lastISO": "2026-09-13T00:40:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2762,7 +2790,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:29:00-04:00"
+      "lastISO": "2026-09-13T00:33:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -3022,7 +3050,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "00:32"
+    "stamp": "00:46"
   }
 }/*__END_DATA__*/;
 
