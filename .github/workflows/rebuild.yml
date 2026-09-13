@@ -175,6 +175,8 @@ jobs:
       - name: Build index.html
         if: steps.gate.outputs.ready == 'true'
         env:
+          # Single-writer attendance transfer: rendering continues when status writes stop.
+          BOOKING_STATUS_SYNC_DISABLED: ${{ vars.BOOKING_STATUS_SYNC_DISABLED }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           # Empty when the GCP steps were skipped — build.py treats that as
           # "no enrichment", not as an error.
