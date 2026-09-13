@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-12",
-  "generatedAt": "Sep 13, 12:46 AM ET",
-  "generatedAtISO": "2026-09-13T00:46:56-04:00",
+  "generatedAt": "Sep 13, 1:02 AM ET",
+  "generatedAtISO": "2026-09-13T01:02:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -606,7 +606,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 14.25,
       "end": 16.25,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "509A",
@@ -678,7 +678,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 11.75,
       "end": 13.75,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "509B",
@@ -1207,8 +1207,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
-      "studio": "901",
+      "role": "FBS",
+      "studio": "693",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -1216,8 +1216,8 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
-      "studio": "693",
+      "role": "Monitoring",
+      "studio": "901",
       "day_offset": 1,
       "day": "Tomorrow",
       "start": 13.25,
@@ -2721,11 +2721,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T04:45:28.914260Z",
         "until": "2026-09-13T04:45:37.196845Z"
+      },
+      {
+        "since": "2026-09-13T04:51:14.965862Z",
+        "until": "2026-09-13T04:51:17.092728Z"
+      },
+      {
+        "since": "2026-09-13T04:56:37.175682Z",
+        "until": "2026-09-13T04:56:47.557475Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-12T06:12:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2734,7 +2752,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T00:45:00-04:00"
+      "lastISO": "2026-09-13T00:57:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2767,16 +2785,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-12T06:00:00-04:00"
     },
     {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-12T06:12:00-04:00"
-    },
-    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "04:05 America/Toronto · Cloud Scheduler",
@@ -2794,7 +2802,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T00:03:00-04:00"
+      "lastISO": "2026-09-13T01:01:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2854,7 +2862,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:45:00-04:00"
+      "lastISO": "2026-09-13T01:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2864,7 +2872,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:45:00-04:00"
+      "lastISO": "2026-09-13T01:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2874,7 +2882,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:45:00-04:00"
+      "lastISO": "2026-09-13T00:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2884,7 +2892,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:45:00-04:00"
+      "lastISO": "2026-09-13T01:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2914,7 +2922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:40:00-04:00"
+      "lastISO": "2026-09-13T01:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -3014,7 +3022,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T00:33:00-04:00"
+      "lastISO": "2026-09-13T01:01:00-04:00"
     },
     {
       "run": "The Sentinel",
@@ -3193,14 +3201,18 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "alarm-watchdog (Cloud Run)",
           "The Doorman",
+          "alarm-watchdog (Cloud Run)",
           "migration-sweep (Cloud Run — alarm-mcp)",
           "🔑 Code Mirror"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Doorman",
+          "label": "Due",
+          "lastISO": "2026-09-12T06:12:00-04:00"
+        }
       },
       {
         "k": "mail",
@@ -3274,7 +3286,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 21,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "00:46"
+    "stamp": "01:02"
   }
 }/*__END_DATA__*/;
 
