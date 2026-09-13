@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 3:32 PM ET",
-  "generatedAtISO": "2026-09-13T15:32:03-04:00",
+  "generatedAt": "Sep 13, 3:45 PM ET",
+  "generatedAtISO": "2026-09-13T15:45:31-04:00",
   "studios": [
     {
       "id": "509A",
@@ -802,10 +802,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "15:42",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "AlisonCarlos Murray",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1089,13 +1089,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
@@ -1296,28 +1296,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Maggie — Monday schedule updated Sep–Feb",
-      "kind": null,
-      "channel": "Manual Send",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Concierge",
-      "created": "Sep 13 · 14:27",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "PBF — Taylor Yeung ••• [pbf:3d77503281c481a4ae51fcfcfeda89f2]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 13 · 15:00",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1390,7 +1368,12 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Vicky Yeung in Studio 509A"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -1598,6 +1581,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789326721838,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "AlisonCarlos Murray",
+      "time": "15:42",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789328566251,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1607,9 +1599,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-13T19:13:01+00:00",
+    "updatedAt": "2026-09-13T19:45:11+00:00",
     "mailCheck": {
-      "matched": 4,
+      "matched": 5,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -2074,6 +2066,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T19:28:37.100320Z",
         "until": "2026-09-13T19:28:42.775944Z"
+      },
+      {
+        "since": "2026-09-13T19:34:34.365030Z",
+        "until": "2026-09-13T19:34:43.303555Z"
+      },
+      {
+        "since": "2026-09-13T19:40:25.638635Z",
+        "until": "2026-09-13T19:40:34.971535Z"
       }
     ],
     "down": false
@@ -2085,8 +2085,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-13T14:11:00-04:00"
     },
     {
@@ -2097,7 +2097,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:30:00-04:00"
+      "lastISO": "2026-09-13T15:42:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2107,7 +2107,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:30:00-04:00"
+      "lastISO": "2026-09-13T15:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2117,7 +2117,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:30:00-04:00"
+      "lastISO": "2026-09-13T15:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2127,7 +2127,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:25:00-04:00"
+      "lastISO": "2026-09-13T15:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2137,7 +2137,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:30:00-04:00"
+      "lastISO": "2026-09-13T15:45:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2147,7 +2147,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:23:00-04:00"
+      "lastISO": "2026-09-13T15:38:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2157,7 +2157,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:10:00-04:00"
+      "lastISO": "2026-09-13T15:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2247,7 +2247,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:01:00-04:00"
+      "lastISO": "2026-09-13T15:31:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2257,7 +2257,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:01:00-04:00"
+      "lastISO": "2026-09-13T15:40:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2297,7 +2297,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:31:00-04:00"
+      "lastISO": "2026-09-13T15:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2628,7 +2628,7 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Mechanic",
           "drop-sweep (Cloud Run)",
@@ -2641,7 +2641,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Mechanic",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-13T14:11:00-04:00"
         }
       }
@@ -2649,7 +2649,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "15:32"
+    "stamp": "15:45"
   }
 }/*__END_DATA__*/;
 
