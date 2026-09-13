@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 4:02 PM ET",
-  "generatedAtISO": "2026-09-13T16:02:13-04:00",
+  "generatedAt": "Sep 13, 4:17 PM ET",
+  "generatedAtISO": "2026-09-13T16:17:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -384,7 +384,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 14.25,
       "end": 16.25,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "509A",
@@ -442,7 +442,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "509B",
-      "who": "Shamir Panchal (Toronto Tabla Ensemble) — Toronto Tabla Ensemble Class",
+      "who": "Shamir Panchal (Toronto Tabla Ensemble) — Toronto Tabla Ensemble Class *additional time added due to internet issue*",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -462,7 +462,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": [
         "509A"
       ],
-      "start": 12.0,
+      "start": 11.5,
       "end": 13.0,
       "access_gap": false
     },
@@ -657,10 +657,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": "13:18",
-      "departed": null,
+      "departed": "16:16",
       "facilitator": null,
       "arrived_by": "Bella Zhou",
-      "departed_by": null,
+      "departed_by": "Bella Zhou",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1126,12 +1126,7 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Bella Zhou in Studio 693"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "527",
@@ -1347,6 +1342,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789328566251,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Bella Zhou",
+      "time": "16:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789330610918,
       "source": "doors"
     }
   ],
@@ -1848,21 +1852,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T19:59:21.361699Z",
         "until": "2026-09-13T19:59:34.889332Z"
+      },
+      {
+        "since": "2026-09-13T20:04:42.587988Z",
+        "until": "2026-09-13T20:04:54.060529Z"
+      },
+      {
+        "since": "2026-09-13T20:10:25.607227Z",
+        "until": "2026-09-13T20:10:37.941169Z"
+      },
+      {
+        "since": "2026-09-13T20:15:42.710447Z",
+        "until": "2026-09-13T20:15:51.994379Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-13T14:11:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1871,7 +1877,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:00:00-04:00"
+      "lastISO": "2026-09-13T16:17:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1881,7 +1887,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:00:00-04:00"
+      "lastISO": "2026-09-13T16:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1891,7 +1897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:00:00-04:00"
+      "lastISO": "2026-09-13T16:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1901,7 +1907,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:55:00-04:00"
+      "lastISO": "2026-09-13T16:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1911,7 +1917,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:00:00-04:00"
+      "lastISO": "2026-09-13T16:15:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1921,7 +1927,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:53:00-04:00"
+      "lastISO": "2026-09-13T16:08:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1931,7 +1937,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:00:00-04:00"
+      "lastISO": "2026-09-13T16:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1941,7 +1947,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:07:00-04:00"
+      "lastISO": "2026-09-13T16:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2004,6 +2010,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-13T04:05:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-13T16:12:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -2021,7 +2037,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:31:00-04:00"
+      "lastISO": "2026-09-13T16:01:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2031,7 +2047,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:40:00-04:00"
+      "lastISO": "2026-09-13T16:16:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2061,7 +2077,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T15:10:00-04:00"
+      "lastISO": "2026-09-13T16:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2071,7 +2087,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T16:01:00-04:00"
+      "lastISO": "2026-09-13T16:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2402,28 +2418,24 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
+          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Mechanic",
-          "label": "Overdue",
-          "lastISO": "2026-09-13T14:11:00-04:00"
-        }
+        "worst": null
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:02"
+    "stamp": "16:17"
   }
 }/*__END_DATA__*/;
 
