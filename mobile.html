@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 11:32 AM ET",
-  "generatedAtISO": "2026-09-13T11:32:25-04:00",
+  "generatedAt": "Sep 13, 11:46 AM ET",
+  "generatedAtISO": "2026-09-13T11:46:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -916,13 +916,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 14.75,
       "end": 15.25
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 14.75,
       "end": 15.25
     },
@@ -1319,12 +1319,7 @@ const DATA = /*__DATA__*/{
       "label": "AVA for June P. Peerspace in Studio 509A"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "527",
@@ -1722,21 +1717,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T15:28:13.920878Z",
         "until": "2026-09-13T15:28:26.247422Z"
+      },
+      {
+        "since": "2026-09-13T15:33:42.810219Z",
+        "until": "2026-09-13T15:33:44.890183Z"
+      },
+      {
+        "since": "2026-09-13T15:39:41.079264Z",
+        "until": "2026-09-13T15:39:53.447387Z"
+      },
+      {
+        "since": "2026-09-13T15:45:42.840064Z",
+        "until": "2026-09-13T15:45:55.983591Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "Ops Executor",
-      "cadence": "15-min",
-      "expected": null,
-      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Never checked in",
-      "lastISO": null
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1745,7 +1742,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:32:00-04:00"
+      "lastISO": "2026-09-13T11:43:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1755,7 +1752,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:30:00-04:00"
+      "lastISO": "2026-09-13T11:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1765,7 +1762,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:30:00-04:00"
+      "lastISO": "2026-09-13T11:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1775,7 +1772,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:25:00-04:00"
+      "lastISO": "2026-09-13T11:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1785,7 +1782,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:30:00-04:00"
+      "lastISO": "2026-09-13T11:45:00-04:00"
+    },
+    {
+      "run": "Ops Executor",
+      "cadence": "15-min",
+      "expected": null,
+      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-13T11:37:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1795,7 +1802,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:31:00-04:00"
+      "lastISO": "2026-09-13T11:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1895,7 +1902,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:01:00-04:00"
+      "lastISO": "2026-09-13T11:31:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1905,7 +1912,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:24:00-04:00"
+      "lastISO": "2026-09-13T11:35:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1945,7 +1952,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T11:31:00-04:00"
+      "lastISO": "2026-09-13T11:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2293,7 +2300,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:32"
+    "stamp": "11:46"
   }
 }/*__END_DATA__*/;
 
