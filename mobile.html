@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 12:46 PM ET",
-  "generatedAtISO": "2026-09-14T12:46:10-04:00",
+  "generatedAt": "Sep 14, 12:47 PM ET",
+  "generatedAtISO": "2026-09-14T12:47:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -449,10 +449,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": "10:58",
-      "departed": null,
+      "departed": "12:47",
       "facilitator": null,
       "arrived_by": "Amanda-May Wilson",
-      "departed_by": null,
+      "departed_by": "Amanda-May Wilson",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -760,18 +760,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
-      "day_offset": 2,
-      "start": 20.25,
-      "end": 20.75,
-      "id": "075ca2d9b26f",
-      "date": "2026-09-16",
-      "startISO": "2026-09-16T20:15:00-04:00",
-      "endISO": "2026-09-16T20:45:00-04:00",
-      "day": "Wed Sep 16"
-    },
-    {
-      "role": "FBS",
       "studio": null,
       "day_offset": 2,
       "start": 20.25,
@@ -786,9 +774,21 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": null,
       "day_offset": 2,
+      "start": 20.25,
+      "end": 20.75,
+      "id": "075ca2d9b26f",
+      "date": "2026-09-16",
+      "startISO": "2026-09-16T20:15:00-04:00",
+      "endISO": "2026-09-16T20:45:00-04:00",
+      "day": "Wed Sep 16"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "f96a0e68c41b",
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1028,6 +1028,14 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789402871500,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Amanda-May Wilson",
+      "time": "12:47",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789404447000
     }
   ],
   "panelPrior": {},
@@ -1041,8 +1049,10 @@ const DATA = /*__DATA__*/{
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
-      "missed": [],
-      "missedCount": 0
+      "missed": [
+        "527 departure 12:47 (Amanda-May Wilson)"
+      ],
+      "missedCount": 1
     },
     "doorGaps": [
       {
@@ -1951,7 +1961,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "12:46"
+    "stamp": "12:47"
   }
 }/*__END_DATA__*/;
 
