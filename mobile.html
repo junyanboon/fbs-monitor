@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 6:03 PM ET",
-  "generatedAtISO": "2026-09-14T18:03:31-04:00",
+  "generatedAt": "Sep 14, 6:07 PM ET",
+  "generatedAtISO": "2026-09-14T18:07:38-04:00",
   "studios": [
     {
       "id": "509A",
@@ -744,18 +744,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
-      "day_offset": 2,
-      "start": 20.25,
-      "end": 20.75,
-      "id": "c744d6c7223e",
-      "date": "2026-09-16",
-      "startISO": "2026-09-16T20:15:00-04:00",
-      "endISO": "2026-09-16T20:45:00-04:00",
-      "day": "Wed Sep 16"
-    },
-    {
-      "role": "FBS",
       "studio": "901",
       "day_offset": 2,
       "start": 20.25,
@@ -770,12 +758,12 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": null,
       "day_offset": 2,
-      "start": 22.25,
-      "end": 22.75,
-      "id": "f96a0e68c41b",
+      "start": 20.25,
+      "end": 20.75,
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
-      "startISO": "2026-09-16T22:15:00-04:00",
-      "endISO": "2026-09-16T22:45:00-04:00",
+      "startISO": "2026-09-16T20:15:00-04:00",
+      "endISO": "2026-09-16T20:45:00-04:00",
       "day": "Wed Sep 16"
     },
     {
@@ -785,6 +773,18 @@ const DATA = /*__DATA__*/{
       "start": 22.25,
       "end": 22.75,
       "id": "cffed2724e55",
+      "date": "2026-09-16",
+      "startISO": "2026-09-16T22:15:00-04:00",
+      "endISO": "2026-09-16T22:45:00-04:00",
+      "day": "Wed Sep 16"
+    },
+    {
+      "role": "FBS",
+      "studio": null,
+      "day_offset": 2,
+      "start": 22.25,
+      "end": 22.75,
+      "id": "f96a0e68c41b",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -818,28 +818,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "CC-reschedule-ask-••••-509B-Walters",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 14 · 18:03",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "CC-reschedule-holding-••••-509B-Morrison",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 14 · 18:03",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -862,14 +840,31 @@ const DATA = /*__DATA__*/{
       "send_after": "19:15",
       "send_after_iso": "2026-09-14T19:15:00-04:00",
       "label": "EOB for Greg Samba in Studio 901"
-    }
-  ],
-  "attention": [
+    },
     {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "code": "CC-reschedule-ask-••••-509B-Walters",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 14 · 18:03",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "CC-reschedule-holding-••••-509B-Morrison",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 14 · 18:03",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509B",
@@ -1653,21 +1648,15 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T22:01:30.864172Z",
         "until": "2026-09-14T22:01:40.153386Z"
+      },
+      {
+        "since": "2026-09-14T22:07:30.826064Z",
+        "until": "2026-09-14T22:07:40.727914Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "sentinel-sweep (Cloud Run)",
-      "cadence": "Hourly",
-      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-14T16:07:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1676,7 +1665,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:00:00-04:00"
+      "lastISO": "2026-09-14T18:06:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1696,7 +1685,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:00:00-04:00"
+      "lastISO": "2026-09-14T18:06:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1716,7 +1705,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:00:00-04:00"
+      "lastISO": "2026-09-14T18:05:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1736,7 +1725,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:45:00-04:00"
+      "lastISO": "2026-09-14T17:59:00-04:00"
+    },
+    {
+      "run": "sentinel-sweep (Cloud Run)",
+      "cadence": "Hourly",
+      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T18:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2207,10 +2206,10 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "sentinel-sweep (Cloud Run)",
           "drop-sweep (Cloud Run)",
+          "sentinel-sweep (Cloud Run)",
           "The Custodian",
           "The Mechanic",
           "scribe (GitHub Actions)",
@@ -2218,17 +2217,13 @@ const DATA = /*__DATA__*/{
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "sentinel-sweep (Cloud Run)",
-          "label": "Overdue",
-          "lastISO": "2026-09-14T16:07:00-04:00"
-        }
+        "worst": null
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:03"
+    "stamp": "18:07"
   }
 }/*__END_DATA__*/;
 
