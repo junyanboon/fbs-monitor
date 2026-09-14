@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 8:02 PM ET",
-  "generatedAtISO": "2026-09-13T20:02:23-04:00",
+  "generatedAt": "Sep 13, 8:17 PM ET",
+  "generatedAtISO": "2026-09-13T20:17:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -687,10 +687,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "19:00",
-      "departed": null,
+      "departed": "20:14",
       "facilitator": null,
       "arrived_by": "Zad Abouhatab",
-      "departed_by": null,
+      "departed_by": "Zad Abouhatab",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -830,13 +830,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
@@ -1053,28 +1053,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Booking confirmation — Megan Cartwright — Tuesdays Dec 1–Feb 16",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 13 · 17:50",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Responder — Shaka Lee, Studio 901 instructions before booking day",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Responder",
-      "created": "Sep 13 · 18:04",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "PBF — June P. ••• [pbf:3d77503281c481fc891cd4806a1bdcde]",
       "kind": null,
       "channel": "SMS",
@@ -1093,6 +1071,28 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "The Registrar",
       "created": "Sep 13 · 19:30",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Booking confirmation — Megan Cartwright — Tuesdays Dec 1–Feb 16",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "AI (automation)",
+      "created": "Sep 13 · 17:50",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Responder — Shaka Lee, Studio 901 instructions before booking day",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Responder",
+      "created": "Sep 13 · 18:04",
       "send_after": null,
       "send_after_iso": null
     }
@@ -1457,6 +1457,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1789343024886,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Zad Abouhatab",
+      "time": "20:14",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789344880892,
       "source": "doors"
     }
   ],
@@ -2130,6 +2139,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-13T23:57:38.691003Z",
         "until": "2026-09-13T23:57:51.014440Z"
+      },
+      {
+        "since": "2026-09-14T00:02:53.577607Z",
+        "until": "2026-09-14T00:03:04.894680Z"
+      },
+      {
+        "since": "2026-09-14T00:08:53.722859Z",
+        "until": "2026-09-14T00:09:02.864320Z"
+      },
+      {
+        "since": "2026-09-14T00:14:16.183074Z",
+        "until": "2026-09-14T00:14:27.528504Z"
       }
     ],
     "down": false
@@ -2143,7 +2164,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T19:58:00-04:00"
+      "lastISO": "2026-09-13T20:15:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2153,7 +2174,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T20:00:00-04:00"
+      "lastISO": "2026-09-13T20:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2163,7 +2184,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T20:00:00-04:00"
+      "lastISO": "2026-09-13T20:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2183,7 +2204,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T20:00:00-04:00"
+      "lastISO": "2026-09-13T20:15:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2193,7 +2214,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T19:53:00-04:00"
+      "lastISO": "2026-09-13T20:08:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2203,7 +2224,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T20:00:00-04:00"
+      "lastISO": "2026-09-13T20:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2213,7 +2234,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T19:07:00-04:00"
+      "lastISO": "2026-09-13T20:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2303,7 +2324,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T19:31:00-04:00"
+      "lastISO": "2026-09-13T20:01:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2313,7 +2334,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T19:36:00-04:00"
+      "lastISO": "2026-09-13T20:13:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2343,7 +2364,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T19:10:00-04:00"
+      "lastISO": "2026-09-13T20:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2353,7 +2374,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T20:01:00-04:00"
+      "lastISO": "2026-09-13T20:15:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2701,7 +2722,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "20:02"
+    "stamp": "20:17"
   }
 }/*__END_DATA__*/;
 
