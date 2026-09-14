@@ -528,6 +528,14 @@ Same publishing rule as 15: only `{kind, state, time}` crosses. A failed queue
 read publishes no HTA pill and writes nothing. Kill switch
 `HTA_WATCH_DISABLED=1`; `HTA_WATCH_DRYRUN=1` logs the writes it would make.
 
+Read-only Notion queries retry connection resets, timeouts, 429 and transient
+server errors up to three times per page (1/2-second backoff; server Retry-After
+seconds honored up to 30 seconds, longer/unknown values fail without retry).
+Retries preserve the exact cursor and never return a partial result as complete.
+This does not retry page creates, updates or sends. Exhausted reads retain the
+existing failure visibility and suppress false MISSING pills and HTA write-back.
+Regression: `python test_notion_query_retry.py`, run before each cloud rebuild.
+
 ---
 
 ## Working on it

@@ -28,6 +28,7 @@ import sys
 import hashlib
 import json
 import base64
+import time
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -1108,6 +1109,38 @@ def _relation_id(prop):
     return (rel[0].get("id") or "").replace("-", "") or None
 
 
+def _notion_query_page(url, headers, body):
+    """Retry only read-only query POSTs, never page creates or updates.
+
+    Three attempts per page; retry the same cursor before accumulating results.
+    Longer server backoffs fail visibly instead of sleeping without a bound.
+    """
+    for attempt in range(3):
+        try:
+            response = requests.post(url, headers=headers, json=body, timeout=30)
+        except (requests.ConnectionError, requests.Timeout):
+            if attempt == 2:
+                raise
+            delay = 2 ** attempt
+        else:
+            if response.status_code not in (429, 500, 502, 503, 504) or attempt == 2:
+                return response
+            delay = 2 ** attempt
+            retry_after = response.headers.get("Retry-After")
+            if retry_after is not None:
+                # Notion supplies seconds. Unknown/long values are not permission
+                # to retry sooner than the server requested.
+                try:
+                    seconds = int(retry_after)
+                except (ValueError, TypeError):
+                    return response
+                if seconds < 0 or seconds > 30:
+                    return response
+                delay = max(delay, seconds)
+        print(f"Notion query: transient read failure; retry {attempt + 2}/3 in {delay}s")
+        time.sleep(delay)
+
+
 def _notion_query(token, ds_id, body):
     """Query a Notion data source, trying the new then the legacy endpoint.
     Raises RuntimeError on failure — callers decide fatal vs soft."""
@@ -1125,7 +1158,7 @@ def _notion_query(token, ds_id, body):
                 b = dict(body)
                 if cursor:
                     b["start_cursor"] = cursor
-                r = requests.post(url, headers=h, json=b, timeout=30)
+                r = _notion_query_page(url, h, b)
                 if r.status_code != 200:
                     errs.append(f"{ver}: {r.status_code} {r.text[:200]}")
                     ok = False
