@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 1:17 PM ET",
-  "generatedAtISO": "2026-09-14T13:17:05-04:00",
+  "generatedAt": "Sep 14, 1:18 PM ET",
+  "generatedAtISO": "2026-09-14T13:18:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -984,11 +984,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "c744d6c7223e",
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -996,11 +996,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "075ca2d9b26f",
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -1275,7 +1275,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-14T16:54:00+00:00",
+    "updatedAt": "2026-09-14T17:18:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1634,11 +1634,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T17:11:59.521325Z",
         "until": "2026-09-14T17:12:12.128549Z"
+      },
+      {
+        "since": "2026-09-14T17:17:59.581620Z",
+        "until": "2026-09-14T17:18:12.722288Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "handback-sweep (Hostinger)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T12:55:00-04:00"
+    },
     {
       "run": "sentinel-sweep (Cloud Run)",
       "cadence": "Hourly",
@@ -1680,16 +1694,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-14T13:15:00-04:00"
     },
     {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:55:00-04:00"
-    },
-    {
       "run": "mail-rules (event-gate)",
       "cadence": "5-min",
       "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
@@ -1717,7 +1721,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:00:00-04:00"
+      "lastISO": "2026-09-14T13:13:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2154,7 +2158,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
           "handback-sweep (Hostinger)",
           "The Analyst",
@@ -2168,7 +2172,11 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "handback-sweep (Hostinger)",
+          "label": "Due",
+          "lastISO": "2026-09-14T12:55:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2209,7 +2217,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:17"
+    "stamp": "13:18"
   }
 }/*__END_DATA__*/;
 
