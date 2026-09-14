@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 6:21 PM ET",
-  "generatedAtISO": "2026-09-14T18:21:22-04:00",
+  "generatedAt": "Sep 14, 6:32 PM ET",
+  "generatedAtISO": "2026-09-14T18:32:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -732,11 +732,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "075ca2d9b26f",
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -744,11 +744,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "c744d6c7223e",
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -805,6 +805,17 @@ const DATA = /*__DATA__*/{
   ],
   "staffAhead": [],
   "messages": [
+    {
+      "code": "Kimberly — Oct 24 payment received confirmation",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Concierge",
+      "created": "Sep 14 · 18:29",
+      "send_after": null,
+      "send_after_iso": null
+    },
     {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
@@ -1054,9 +1065,15 @@ const DATA = /*__DATA__*/{
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
-    "mail": "failed",
+    "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-14T22:21:01+00:00",
+    "mailCheck": {
+      "matched": 8,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-14T09:02:19.385755Z",
@@ -1629,6 +1646,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T22:18:30.865267Z",
         "until": "2026-09-14T22:20:41.896276Z"
+      },
+      {
+        "since": "2026-09-14T22:26:24.366287Z",
+        "until": "2026-09-14T22:26:37.709422Z"
       }
     ],
     "down": false
@@ -1642,7 +1663,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:17:00-04:00"
+      "lastISO": "2026-09-14T18:28:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1652,7 +1673,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:15:00-04:00"
+      "lastISO": "2026-09-14T18:32:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1662,7 +1683,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:20:00-04:00"
+      "lastISO": "2026-09-14T18:32:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1672,7 +1693,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:05:00-04:00"
+      "lastISO": "2026-09-14T18:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1682,7 +1703,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:20:00-04:00"
+      "lastISO": "2026-09-14T18:32:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1692,7 +1713,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:21:00-04:00"
+      "lastISO": "2026-09-14T18:28:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1702,7 +1723,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:59:00-04:00"
+      "lastISO": "2026-09-14T18:21:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1742,7 +1763,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:36:00-04:00"
+      "lastISO": "2026-09-14T18:25:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1812,7 +1833,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:55:00-04:00"
+      "lastISO": "2026-09-14T18:28:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1852,7 +1873,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:16:00-04:00"
+      "lastISO": "2026-09-14T18:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2200,7 +2221,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:21"
+    "stamp": "18:32"
   }
 }/*__END_DATA__*/;
 
