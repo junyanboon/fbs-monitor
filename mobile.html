@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 1:14 PM ET",
-  "generatedAtISO": "2026-09-14T13:14:32-04:00",
+  "generatedAt": "Sep 14, 1:17 PM ET",
+  "generatedAtISO": "2026-09-14T13:17:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -418,10 +418,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "13:15",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Maggie Morrison",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -760,18 +760,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
-      "day_offset": 2,
-      "start": 20.25,
-      "end": 20.75,
-      "id": "075ca2d9b26f",
-      "date": "2026-09-16",
-      "startISO": "2026-09-16T20:15:00-04:00",
-      "endISO": "2026-09-16T20:45:00-04:00",
-      "day": "Wed Sep 16"
-    },
-    {
-      "role": "FBS",
       "studio": null,
       "day_offset": 2,
       "start": 20.25,
@@ -784,14 +772,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
-      "start": 22.25,
-      "end": 22.75,
-      "id": "f96a0e68c41b",
+      "start": 20.25,
+      "end": 20.75,
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
-      "startISO": "2026-09-16T22:15:00-04:00",
-      "endISO": "2026-09-16T22:45:00-04:00",
+      "startISO": "2026-09-16T20:15:00-04:00",
+      "endISO": "2026-09-16T20:45:00-04:00",
       "day": "Wed Sep 16"
     },
     {
@@ -801,6 +789,18 @@ const DATA = /*__DATA__*/{
       "start": 22.25,
       "end": 22.75,
       "id": "cffed2724e55",
+      "date": "2026-09-16",
+      "startISO": "2026-09-16T22:15:00-04:00",
+      "endISO": "2026-09-16T22:45:00-04:00",
+      "day": "Wed Sep 16"
+    },
+    {
+      "role": "FBS",
+      "studio": null,
+      "day_offset": 2,
+      "start": 22.25,
+      "end": 22.75,
+      "id": "f96a0e68c41b",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1032,6 +1032,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789404628186,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "13:15",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789406128842,
       "source": "doors"
     }
   ],
@@ -1424,7 +1433,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:12:00-04:00"
+      "lastISO": "2026-09-14T13:17:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1434,7 +1443,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:00:00-04:00"
+      "lastISO": "2026-09-14T13:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1444,7 +1453,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:14:00-04:00"
+      "lastISO": "2026-09-14T13:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1464,7 +1473,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:00:00-04:00"
+      "lastISO": "2026-09-14T13:15:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1624,7 +1633,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:01:00-04:00"
+      "lastISO": "2026-09-14T13:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1976,7 +1985,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:14"
+    "stamp": "13:17"
   }
 }/*__END_DATA__*/;
 
