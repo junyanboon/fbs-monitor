@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 7:32 PM ET",
-  "generatedAtISO": "2026-09-14T19:32:07-04:00",
+  "generatedAt": "Sep 14, 7:33 PM ET",
+  "generatedAtISO": "2026-09-14T19:33:53-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1671,6 +1671,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T23:26:30.683548Z",
         "until": "2026-09-14T23:27:18.517447Z"
+      },
+      {
+        "since": "2026-09-14T23:33:01.716215Z",
+        "until": "2026-09-14T23:33:11.103625Z"
       }
     ],
     "down": false
@@ -1685,16 +1689,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-09-14T19:04:00-04:00"
-    },
-    {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Awaiting completion",
-      "lastISO": "2026-09-13T19:49:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1835,6 +1829,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T19:03:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T19:34:00-04:00"
     },
     {
       "run": "The Registrar (booking-sweep, Hostinger)",
@@ -2191,12 +2195,12 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Planner",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
+          "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
           "The Weatherman",
           "Watchlist sync",
@@ -2205,11 +2209,7 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "The Planner",
-          "label": "Awaiting completion",
-          "lastISO": "2026-09-13T19:49:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2246,7 +2246,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:32"
+    "stamp": "19:33"
   }
 }/*__END_DATA__*/;
 
