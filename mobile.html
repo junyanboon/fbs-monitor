@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 11:02 PM ET",
-  "generatedAtISO": "2026-09-13T23:02:11-04:00",
+  "generatedAt": "Sep 13, 11:17 PM ET",
+  "generatedAtISO": "2026-09-13T23:17:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -830,13 +830,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 13.25,
       "end": 13.75
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 13.25,
       "end": 13.75
     },
@@ -2236,6 +2236,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T03:01:18.061343Z",
         "until": "2026-09-14T03:01:23.904514Z"
+      },
+      {
+        "since": "2026-09-14T03:07:18.042989Z",
+        "until": "2026-09-14T03:07:29.495616Z"
+      },
+      {
+        "since": "2026-09-14T03:12:49.091815Z",
+        "until": "2026-09-14T03:13:03.408096Z"
       }
     ],
     "down": false
@@ -2252,16 +2260,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-13T04:13:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-13T21:50:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2269,7 +2267,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T22:57:00-04:00"
+      "lastISO": "2026-09-13T23:14:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2279,7 +2277,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T23:00:00-04:00"
+      "lastISO": "2026-09-13T23:15:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2289,7 +2287,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T22:54:00-04:00"
+      "lastISO": "2026-09-13T23:09:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2299,7 +2297,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T22:07:00-04:00"
+      "lastISO": "2026-09-13T23:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2359,7 +2357,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T22:31:00-04:00"
+      "lastISO": "2026-09-13T23:01:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-13T23:13:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2389,7 +2397,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T22:10:00-04:00"
+      "lastISO": "2026-09-13T23:10:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2409,7 +2417,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T23:00:00-04:00"
+      "lastISO": "2026-09-13T23:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2419,7 +2427,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T23:00:00-04:00"
+      "lastISO": "2026-09-13T23:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2429,7 +2437,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T22:55:00-04:00"
+      "lastISO": "2026-09-13T23:15:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2459,7 +2467,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T23:00:00-04:00"
+      "lastISO": "2026-09-13T23:10:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2744,7 +2752,7 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
           "The Responder",
           "greeter-sweep (Cloud Run)",
@@ -2753,11 +2761,7 @@ const DATA = /*__DATA__*/{
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Responder",
-          "label": "Due",
-          "lastISO": "2026-09-13T21:50:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2815,7 +2819,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:02"
+    "stamp": "23:17"
   }
 }/*__END_DATA__*/;
 
