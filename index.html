@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 12:18 PM ET",
-  "generatedAtISO": "2026-09-14T12:18:18-04:00",
+  "generatedAt": "Sep 14, 12:23 PM ET",
+  "generatedAtISO": "2026-09-14T12:23:28-04:00",
   "studios": [
     {
       "id": "509A",
@@ -546,10 +546,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "12:21",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -619,10 +619,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "12:16",
-      "departed": null,
+      "departed": "12:21",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -666,7 +666,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "EOB",
-          "state": "scheduled",
+          "state": "blocked",
           "time": "12:15"
         }
       ],
@@ -996,11 +996,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "c744d6c7223e",
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -1008,11 +1008,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "075ca2d9b26f",
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -1130,18 +1130,6 @@ const DATA = /*__DATA__*/{
       "kind": "EOB",
       "channel": "SMS",
       "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 14 · 00:13",
-      "send_after": "12:15",
-      "send_after_iso": "2026-09-14T12:15:00-04:00",
-      "label": "EOB for Amanda-May Wilson in Studio 527"
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
       "studio": "693",
       "raised_by": "The Registrar",
       "created": "Sep 14 · 00:19",
@@ -1247,27 +1235,34 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789402572926,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "12:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789402866951,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "12:21",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789402871500,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "June P",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "18:51",
-      "ts": 1789339914749,
-      "when": "Sun 18:51"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-14T16:18:00+00:00",
+    "updatedAt": "2026-09-14T16:23:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1586,6 +1581,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T16:15:47.529984Z",
         "until": "2026-09-14T16:15:57.858593Z"
+      },
+      {
+        "since": "2026-09-14T16:20:59.284478Z",
+        "until": "2026-09-14T16:21:06.916347Z"
       }
     ],
     "down": false
@@ -1599,7 +1598,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:15:00-04:00"
+      "lastISO": "2026-09-14T12:21:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1619,7 +1618,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:15:00-04:00"
+      "lastISO": "2026-09-14T12:20:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1629,7 +1628,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:05:00-04:00"
+      "lastISO": "2026-09-14T12:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1639,7 +1638,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:15:00-04:00"
+      "lastISO": "2026-09-14T12:20:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2157,7 +2156,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "12:18"
+    "stamp": "12:23"
   }
 }/*__END_DATA__*/;
 
