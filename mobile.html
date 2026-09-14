@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 13, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 13, 8:18 PM ET",
-  "generatedAtISO": "2026-09-13T20:18:10-04:00",
+  "generatedAt": "Sep 13, 8:19 PM ET",
+  "generatedAtISO": "2026-09-13T20:19:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -848,13 +848,13 @@ const DATA = /*__DATA__*/{
     },
     {
       "name": "Junyan",
-      "role": "Monitoring",
+      "role": "FBS",
       "start": 14.75,
       "end": 15.25
     },
     {
       "name": "Junyan",
-      "role": "FBS",
+      "role": "Monitoring",
       "start": 14.75,
       "end": 15.25
     },
@@ -1073,31 +1073,14 @@ const DATA = /*__DATA__*/{
       "created": "Sep 13 · 19:30",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "Booking confirmation — Megan Cartwright — Tuesdays Dec 1–Feb 16",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "AI (automation)",
-      "created": "Sep 13 · 17:50",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Responder — Shaka Lee, Studio 901 instructions before booking day",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Responder",
-      "created": "Sep 13 · 18:04",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -2151,11 +2134,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T00:14:16.183074Z",
         "until": "2026-09-14T00:14:27.528504Z"
+      },
+      {
+        "since": "2026-09-14T00:19:25.092462Z",
+        "until": "2026-09-14T00:19:33.242365Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-13T08:24:00-04:00"
+    },
     {
       "run": "handback-sweep (Hostinger)",
       "cadence": "15-min",
@@ -2174,7 +2171,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-13T20:15:00-04:00"
+      "lastISO": "2026-09-13T20:20:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2255,16 +2252,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-13T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-13T18:56:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2655,16 +2642,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Overdue",
+          "lastISO": "2026-09-13T08:24:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2726,7 +2717,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "20:18"
+    "stamp": "20:19"
   }
 }/*__END_DATA__*/;
 
