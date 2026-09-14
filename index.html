@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 5:32 PM ET",
-  "generatedAtISO": "2026-09-14T17:32:05-04:00",
+  "generatedAt": "Sep 14, 5:46 PM ET",
+  "generatedAtISO": "2026-09-14T17:46:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -992,11 +992,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "cffed2724e55",
+      "id": "f96a0e68c41b",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1004,11 +1004,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "f96a0e68c41b",
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1066,7 +1066,12 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Greg Samba in Studio 901"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -1817,6 +1822,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T21:27:01.009147Z",
         "until": "2026-09-14T21:27:06.892278Z"
+      },
+      {
+        "since": "2026-09-14T21:32:31.032521Z",
+        "until": "2026-09-14T21:32:43.802270Z"
+      },
+      {
+        "since": "2026-09-14T21:38:01.152677Z",
+        "until": "2026-09-14T21:38:51.396524Z"
+      },
+      {
+        "since": "2026-09-14T21:44:24.076973Z",
+        "until": "2026-09-14T21:44:30.195103Z"
       }
     ],
     "down": false
@@ -1828,8 +1845,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
       "produces": null,
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-14T16:07:00-04:00"
     },
     {
@@ -1840,7 +1857,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:32:00-04:00"
+      "lastISO": "2026-09-14T17:43:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1850,7 +1867,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:30:00-04:00"
+      "lastISO": "2026-09-14T17:46:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1860,7 +1877,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:30:00-04:00"
+      "lastISO": "2026-09-14T17:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1870,7 +1887,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:15:00-04:00"
+      "lastISO": "2026-09-14T17:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1880,7 +1897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:30:00-04:00"
+      "lastISO": "2026-09-14T17:46:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1890,7 +1907,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:25:00-04:00"
+      "lastISO": "2026-09-14T17:45:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1900,7 +1917,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:13:00-04:00"
+      "lastISO": "2026-09-14T17:30:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1990,7 +2007,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:07:00-04:00"
+      "lastISO": "2026-09-14T17:36:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2040,7 +2057,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:31:00-04:00"
+      "lastISO": "2026-09-14T17:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2371,7 +2388,7 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "sentinel-sweep (Cloud Run)",
           "drop-sweep (Cloud Run)",
@@ -2384,7 +2401,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "sentinel-sweep (Cloud Run)",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-14T16:07:00-04:00"
         }
       }
@@ -2392,7 +2409,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:32"
+    "stamp": "17:46"
   }
 }/*__END_DATA__*/;
 
