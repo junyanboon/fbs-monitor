@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 6:49 PM ET",
-  "generatedAtISO": "2026-09-14T18:49:31-04:00",
+  "generatedAt": "Sep 14, 7:02 PM ET",
+  "generatedAtISO": "2026-09-14T19:02:16-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1042,12 +1042,7 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Greg Samba in Studio 901"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509B",
@@ -1872,21 +1867,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T22:48:24.459096Z",
         "until": "2026-09-14T22:48:33.748644Z"
+      },
+      {
+        "since": "2026-09-14T22:54:01.598619Z",
+        "until": "2026-09-14T22:54:09.939989Z"
+      },
+      {
+        "since": "2026-09-14T22:59:30.781505Z",
+        "until": "2026-09-14T22:59:36.062210Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-14T18:15:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1895,7 +1888,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:50:00-04:00"
+      "lastISO": "2026-09-14T19:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1905,7 +1898,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:32:00-04:00"
+      "lastISO": "2026-09-14T19:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1915,7 +1908,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:43:00-04:00"
+      "lastISO": "2026-09-14T19:00:00-04:00"
+    },
+    {
+      "run": "handback-sweep (Hostinger)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T18:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1925,7 +1928,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:43:00-04:00"
+      "lastISO": "2026-09-14T19:00:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1945,7 +1948,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:42:00-04:00"
+      "lastISO": "2026-09-14T18:52:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2025,7 +2028,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:04:00-04:00"
+      "lastISO": "2026-09-14T19:03:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2055,7 +2058,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:28:00-04:00"
+      "lastISO": "2026-09-14T18:58:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2095,7 +2098,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:45:00-04:00"
+      "lastISO": "2026-09-14T19:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2392,7 +2395,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "handback-sweep (Hostinger)",
           "The Analyst",
@@ -2406,11 +2409,7 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "handback-sweep (Hostinger)",
-          "label": "Overdue",
-          "lastISO": "2026-09-14T18:15:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2447,7 +2446,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:49"
+    "stamp": "19:02"
   }
 }/*__END_DATA__*/;
 
