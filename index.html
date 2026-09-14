@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 4:02 PM ET",
-  "generatedAtISO": "2026-09-14T16:02:13-04:00",
+  "generatedAt": "Sep 14, 4:17 PM ET",
+  "generatedAtISO": "2026-09-14T16:17:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -984,18 +984,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
-      "day_offset": 2,
-      "start": 20.25,
-      "end": 20.75,
-      "id": "c744d6c7223e",
-      "date": "2026-09-16",
-      "startISO": "2026-09-16T20:15:00-04:00",
-      "endISO": "2026-09-16T20:45:00-04:00",
-      "day": "Wed Sep 16"
-    },
-    {
-      "role": "FBS",
       "studio": "901",
       "day_offset": 2,
       "start": 20.25,
@@ -1008,14 +996,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
-      "start": 22.25,
-      "end": 22.75,
-      "id": "cffed2724e55",
+      "start": 20.25,
+      "end": 20.75,
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
-      "startISO": "2026-09-16T22:15:00-04:00",
-      "endISO": "2026-09-16T22:45:00-04:00",
+      "startISO": "2026-09-16T20:15:00-04:00",
+      "endISO": "2026-09-16T20:45:00-04:00",
       "day": "Wed Sep 16"
     },
     {
@@ -1025,6 +1013,18 @@ const DATA = /*__DATA__*/{
       "start": 22.25,
       "end": 22.75,
       "id": "f96a0e68c41b",
+      "date": "2026-09-16",
+      "startISO": "2026-09-16T22:15:00-04:00",
+      "endISO": "2026-09-16T22:45:00-04:00",
+      "day": "Wed Sep 16"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 2,
+      "start": 22.25,
+      "end": 22.75,
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1117,12 +1117,7 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Greg Samba in Studio 901"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509B",
@@ -1800,20 +1795,28 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T20:01:23.479741Z",
         "until": "2026-09-14T20:01:36.980564Z"
+      },
+      {
+        "since": "2026-09-14T20:07:16.520258Z",
+        "until": "2026-09-14T20:07:23.077470Z"
+      },
+      {
+        "since": "2026-09-14T20:12:47.393066Z",
+        "until": "2026-09-14T20:12:59.562724Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-14T14:24:00-04:00"
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T15:52:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1823,7 +1826,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T15:58:00-04:00"
+      "lastISO": "2026-09-14T16:14:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1833,7 +1836,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:00:00-04:00"
+      "lastISO": "2026-09-14T16:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1843,7 +1846,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:00:00-04:00"
+      "lastISO": "2026-09-14T16:16:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1853,7 +1856,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T15:55:00-04:00"
+      "lastISO": "2026-09-14T16:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1863,7 +1866,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:00:00-04:00"
+      "lastISO": "2026-09-14T16:15:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1876,16 +1879,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-14T15:57:00-04:00"
     },
     {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T15:52:00-04:00"
-    },
-    {
       "run": "sentinel-sweep (Cloud Run)",
       "cadence": "Hourly",
       "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
@@ -1893,7 +1886,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T15:07:00-04:00"
+      "lastISO": "2026-09-14T16:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1956,6 +1949,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-14T04:08:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T16:07:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1983,7 +1986,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T15:29:00-04:00"
+      "lastISO": "2026-09-14T16:08:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2013,7 +2016,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T15:10:00-04:00"
+      "lastISO": "2026-09-14T16:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2023,7 +2026,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:01:00-04:00"
+      "lastISO": "2026-09-14T16:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2354,28 +2357,24 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
+          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Mechanic",
-          "label": "Overdue",
-          "lastISO": "2026-09-14T14:24:00-04:00"
-        }
+        "worst": null
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:02"
+    "stamp": "16:17"
   }
 }/*__END_DATA__*/;
 
