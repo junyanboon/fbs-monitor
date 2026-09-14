@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-13",
-  "generatedAt": "Sep 14, 2:47 AM ET",
-  "generatedAtISO": "2026-09-14T02:47:06-04:00",
+  "generatedAt": "Sep 14, 3:00 AM ET",
+  "generatedAtISO": "2026-09-14T03:00:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -2481,11 +2481,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T06:46:48.468008Z",
         "until": "2026-09-14T06:47:02.982056Z"
+      },
+      {
+        "since": "2026-09-14T06:52:24.442397Z",
+        "until": "2026-09-14T06:52:36.729393Z"
+      },
+      {
+        "since": "2026-09-14T06:57:55.862714Z",
+        "until": "2026-09-14T06:58:03.208652Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "Ops Executor",
+      "cadence": "15-min",
+      "expected": null,
+      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T02:23:00-04:00"
+    },
     {
       "run": "The Doorman",
       "cadence": "Daily",
@@ -2504,17 +2522,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T02:46:00-04:00"
-    },
-    {
-      "run": "Ops Executor",
-      "cadence": "15-min",
-      "expected": null,
-      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T02:23:00-04:00"
+      "lastISO": "2026-09-14T02:57:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2624,7 +2632,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T02:45:00-04:00"
+      "lastISO": "2026-09-14T03:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2634,7 +2642,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T02:45:00-04:00"
+      "lastISO": "2026-09-14T03:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2644,7 +2652,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T02:25:00-04:00"
+      "lastISO": "2026-09-14T02:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2654,7 +2662,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T02:45:00-04:00"
+      "lastISO": "2026-09-14T03:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2684,7 +2692,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T02:23:00-04:00"
+      "lastISO": "2026-09-14T02:48:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2734,7 +2742,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-13T09:49:00-04:00"
+      "lastISO": "2026-09-14T02:58:00-04:00"
     },
     {
       "run": "The Loop",
@@ -3056,7 +3064,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "02:47"
+    "stamp": "03:00"
   }
 }/*__END_DATA__*/;
 
