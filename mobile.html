@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 8:47 AM ET",
-  "generatedAtISO": "2026-09-14T08:47:13-04:00",
+  "generatedAt": "Sep 14, 9:02 AM ET",
+  "generatedAtISO": "2026-09-14T09:02:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -376,10 +376,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "09:01",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Harper Drzymala-Bokitch",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -446,11 +446,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "09:00"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -771,18 +766,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
-      "day_offset": 2,
-      "start": 20.25,
-      "end": 20.75,
-      "id": "c744d6c7223e",
-      "date": "2026-09-16",
-      "startISO": "2026-09-16T20:15:00-04:00",
-      "endISO": "2026-09-16T20:45:00-04:00",
-      "day": "Wed Sep 16"
-    },
-    {
-      "role": "FBS",
       "studio": "901",
       "day_offset": 2,
       "start": 20.25,
@@ -795,14 +778,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
-      "start": 22.25,
-      "end": 22.75,
-      "id": "cffed2724e55",
+      "start": 20.25,
+      "end": 20.75,
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
-      "startISO": "2026-09-16T22:15:00-04:00",
-      "endISO": "2026-09-16T22:45:00-04:00",
+      "startISO": "2026-09-16T20:15:00-04:00",
+      "endISO": "2026-09-16T20:45:00-04:00",
       "day": "Wed Sep 16"
     },
     {
@@ -812,6 +795,18 @@ const DATA = /*__DATA__*/{
       "start": 22.25,
       "end": 22.75,
       "id": "f96a0e68c41b",
+      "date": "2026-09-16",
+      "startISO": "2026-09-16T22:15:00-04:00",
+      "endISO": "2026-09-16T22:45:00-04:00",
+      "day": "Wed Sep 16"
+    },
+    {
+      "role": "FBS",
+      "studio": "901",
+      "day_offset": 2,
+      "start": 22.25,
+      "end": 22.75,
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -902,18 +897,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Amanda-May Wilson in Studio 527"
     },
     {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 14 · 00:15",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-14T09:00:00-04:00",
-      "label": "AVA for Amanda-May Wilson in Studio 527"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -962,8 +945,23 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Harper Drzymala-Bokitch in Studio 509B"
     }
   ],
-  "attention": [],
-  "armEvents": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
+  "armEvents": [
+    {
+      "studio": "509B",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "09:01",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789390881482,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -974,16 +972,6 @@ const DATA = /*__DATA__*/{
       "time": "18:51",
       "ts": 1789339914749,
       "when": "Sun 18:51"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "Hannah Cho",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "19:01",
-      "ts": 1789340494490,
-      "when": "Sun 19:01"
     },
     "527": {
       "studio": "527",
@@ -1016,7 +1004,7 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
@@ -1186,6 +1174,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T12:46:47.878526Z",
         "until": "2026-09-14T12:47:01.215033Z"
+      },
+      {
+        "since": "2026-09-14T12:52:47.794118Z",
+        "until": "2026-09-14T12:52:56.095261Z"
+      },
+      {
+        "since": "2026-09-14T12:58:23.821124Z",
+        "until": "2026-09-14T12:58:30.213000Z"
       }
     ],
     "down": false
@@ -1197,8 +1193,8 @@ const DATA = /*__DATA__*/{
       "expected": "04:00 America/Toronto · Codex production fallback",
       "produces": "Overtime report (yesterday)",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Awaiting completion",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-13T04:24:00-04:00"
     },
     {
@@ -1209,7 +1205,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:43:00-04:00"
+      "lastISO": "2026-09-14T09:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1229,7 +1225,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:45:00-04:00"
+      "lastISO": "2026-09-14T08:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1239,7 +1235,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:35:00-04:00"
+      "lastISO": "2026-09-14T08:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1249,7 +1245,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:45:00-04:00"
+      "lastISO": "2026-09-14T08:55:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1259,7 +1255,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:23:00-04:00"
+      "lastISO": "2026-09-14T08:52:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1269,7 +1265,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:29:00-04:00"
+      "lastISO": "2026-09-14T08:44:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1309,7 +1305,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:14:00-04:00"
+      "lastISO": "2026-09-14T08:56:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1379,7 +1375,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:31:00-04:00"
+      "lastISO": "2026-09-14T09:01:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1409,7 +1405,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:31:00-04:00"
+      "lastISO": "2026-09-14T09:02:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1727,7 +1723,7 @@ const DATA = /*__DATA__*/{
         "name": "Money adds up",
         "fine": "Hours logged. Books balanced.",
         "down": "Payroll and books go wrong.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Timekeeper",
           "The Bookkeeper",
@@ -1735,7 +1731,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Timekeeper",
-          "label": "Awaiting completion",
+          "label": "Overdue",
           "lastISO": "2026-09-13T04:24:00-04:00"
         }
       },
@@ -1761,7 +1757,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "08:47"
+    "stamp": "09:02"
   }
 }/*__END_DATA__*/;
 
