@@ -2200,8 +2200,20 @@ RE_SWEEP_ARTIST_KEY = re.compile(
     r"\[sweep:access:([0-9a-fA-F-]{32,36}):(\d{4}-\d{2}-\d{2})")
 
 
+def _is_access_verification_row(text):
+    """Whether an Access / PIN row belongs on the access-warning surface.
+
+    The Actions database temporarily also carries operational delivery work
+    under this type.  An explicitly titled ``HTA not sent`` row means the
+    renter's How-to-Access message needs attention; it is not evidence that
+    their panel access needs verification.  Keep it in Actions for its owner,
+    but do not turn it into a public ``VERIFY ACCESS`` pill.
+    """
+    return not re.match(r"^\s*(?:🔔\s*)?HTA\s+not\s+sent\b", text or "", re.I)
+
+
 def fetch_open_access_rows(token):
-    """Open Access / PIN rows → [{text, artist}] for flag_access_gaps().
+    """Open access-verification rows → [{text, artist}] for flag_access_gaps().
 
     `text` is the row TITLE only and `artist` is a Notion page id — no notes, no
     bodies, no codes. Neither reaches the payload; only the boolean does.
@@ -2216,8 +2228,10 @@ def fetch_open_access_rows(token):
     out = []
     for r in rows:
         props = r.get("properties", {})
-        out.append({"text": _prop_text(props.get("Request")) or "",
-                    "artist": _relation_id(props.get("Artist"))})
+        text = _prop_text(props.get("Request")) or ""
+        if _is_access_verification_row(text):
+            out.append({"text": text,
+                        "artist": _relation_id(props.get("Artist"))})
     return out
 
 
