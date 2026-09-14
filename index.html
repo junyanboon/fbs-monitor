@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 4:45 PM ET",
-  "generatedAtISO": "2026-09-14T16:45:01-04:00",
+  "generatedAt": "Sep 14, 4:47 PM ET",
+  "generatedAtISO": "2026-09-14T16:47:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -744,10 +744,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "16:45",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Enrico Casertano",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1003,11 +1003,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "f96a0e68c41b",
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1015,11 +1015,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "cffed2724e55",
+      "id": "f96a0e68c41b",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1290,6 +1290,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789412922002,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Enrico Casertano",
+      "time": "16:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789418731852,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1301,7 +1310,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-14T19:11:01+00:00",
     "mailCheck": {
-      "matched": 7,
+      "matched": 8,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1810,6 +1819,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T20:41:00.760882Z",
         "until": "2026-09-14T20:41:13.928844Z"
+      },
+      {
+        "since": "2026-09-14T20:46:23.734879Z",
+        "until": "2026-09-14T20:46:32.880164Z"
       }
     ],
     "down": false
@@ -1823,7 +1836,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:41:00-04:00"
+      "lastISO": "2026-09-14T16:46:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1833,7 +1846,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:30:00-04:00"
+      "lastISO": "2026-09-14T16:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1843,7 +1856,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:40:00-04:00"
+      "lastISO": "2026-09-14T16:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1853,7 +1866,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:25:00-04:00"
+      "lastISO": "2026-09-14T16:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2033,7 +2046,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T16:31:00-04:00"
+      "lastISO": "2026-09-14T16:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2381,7 +2394,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "16:45"
+    "stamp": "16:47"
   }
 }/*__END_DATA__*/;
 
