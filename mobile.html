@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 9:47 AM ET",
-  "generatedAtISO": "2026-09-14T09:47:21-04:00",
+  "generatedAt": "Sep 14, 10:02 AM ET",
+  "generatedAtISO": "2026-09-14T10:02:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -790,11 +790,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "cffed2724e55",
+      "id": "f96a0e68c41b",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -802,11 +802,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "f96a0e68c41b",
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -959,7 +959,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1225,11 +1225,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T13:43:43.590066Z",
         "until": "2026-09-14T13:43:57.681892Z"
+      },
+      {
+        "since": "2026-09-14T13:49:43.912963Z",
+        "until": "2026-09-14T13:49:51.246759Z"
+      },
+      {
+        "since": "2026-09-14T13:55:23.664255Z",
+        "until": "2026-09-14T13:55:34.821891Z"
+      },
+      {
+        "since": "2026-09-14T14:00:43.680180Z",
+        "until": "2026-09-14T14:00:53.222974Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-14T08:30:00-04:00"
+    },
     {
       "run": "The Timekeeper",
       "cadence": "Daily",
@@ -1241,16 +1263,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-13T04:24:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-14T08:30:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1258,7 +1270,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:43:00-04:00"
+      "lastISO": "2026-09-14T09:59:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1268,7 +1280,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:45:00-04:00"
+      "lastISO": "2026-09-14T10:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1278,7 +1290,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:45:00-04:00"
+      "lastISO": "2026-09-14T10:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1288,7 +1300,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:35:00-04:00"
+      "lastISO": "2026-09-14T09:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1298,7 +1310,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:45:00-04:00"
+      "lastISO": "2026-09-14T10:00:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1308,7 +1320,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:25:00-04:00"
+      "lastISO": "2026-09-14T09:50:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1318,7 +1330,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:30:00-04:00"
+      "lastISO": "2026-09-14T09:45:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1358,7 +1370,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:14:00-04:00"
+      "lastISO": "2026-09-14T09:59:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1368,7 +1380,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T02:58:00-04:00"
+      "lastISO": "2026-09-14T09:58:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1418,7 +1430,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:27:00-04:00"
+      "lastISO": "2026-09-14T10:02:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1448,7 +1460,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:45:00-04:00"
+      "lastISO": "2026-09-14T10:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1783,7 +1795,7 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Mechanic",
           "drop-sweep (Cloud Run)",
@@ -1796,7 +1808,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Mechanic",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-14T08:30:00-04:00"
         }
       }
@@ -1804,7 +1816,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "09:47"
+    "stamp": "10:02"
   }
 }/*__END_DATA__*/;
 
