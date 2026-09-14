@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 10:17 AM ET",
-  "generatedAtISO": "2026-09-14T10:17:07-04:00",
+  "generatedAt": "Sep 14, 10:31 AM ET",
+  "generatedAtISO": "2026-09-14T10:31:32-04:00",
   "studios": [
     {
       "id": "509A",
@@ -334,6 +334,30 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 12.25,
       "end": 12.75,
+      "access_gap": false
+    },
+    {
+      "studio": "509A",
+      "who": "Ishfaaq Jookhun (C19 salsa",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 18.25,
+      "end": 19.0,
       "access_gap": false
     },
     {
@@ -766,11 +790,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "075ca2d9b26f",
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -778,11 +802,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "c744d6c7223e",
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -959,7 +983,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1245,21 +1269,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T14:11:23.633661Z",
         "until": "2026-09-14T14:11:33.854328Z"
+      },
+      {
+        "since": "2026-09-14T14:17:21.354622Z",
+        "until": "2026-09-14T14:17:35.486449Z"
+      },
+      {
+        "since": "2026-09-14T14:23:21.394559Z",
+        "until": "2026-09-14T14:23:32.542170Z"
+      },
+      {
+        "since": "2026-09-14T14:29:21.430173Z",
+        "until": "2026-09-14T14:29:36.831557Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "hourly at :54 America/Toronto · Codex production fallback",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-14T08:30:00-04:00"
-    },
     {
       "run": "The Timekeeper",
       "cadence": "Daily",
@@ -1278,7 +1304,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:15:00-04:00"
+      "lastISO": "2026-09-14T10:31:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1288,7 +1314,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:15:00-04:00"
+      "lastISO": "2026-09-14T10:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1298,7 +1324,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:15:00-04:00"
+      "lastISO": "2026-09-14T10:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1308,7 +1334,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:05:00-04:00"
+      "lastISO": "2026-09-14T10:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1318,7 +1344,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:15:00-04:00"
+      "lastISO": "2026-09-14T10:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1328,7 +1354,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:04:00-04:00"
+      "lastISO": "2026-09-14T10:24:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1338,7 +1364,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:59:00-04:00"
+      "lastISO": "2026-09-14T10:21:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1409,6 +1435,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T04:08:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "hourly at :54 America/Toronto · Codex production fallback",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T10:22:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1803,28 +1839,24 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
+          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Mechanic",
-          "label": "Overdue",
-          "lastISO": "2026-09-14T08:30:00-04:00"
-        }
+        "worst": null
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:17"
+    "stamp": "10:31"
   }
 }/*__END_DATA__*/;
 
