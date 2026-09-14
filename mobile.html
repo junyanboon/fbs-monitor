@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 11:32 AM ET",
-  "generatedAtISO": "2026-09-14T11:32:15-04:00",
+  "generatedAt": "Sep 14, 11:46 AM ET",
+  "generatedAtISO": "2026-09-14T11:46:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -627,10 +627,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:42",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -950,12 +950,7 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Greg Samba in Studio 901"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509B",
@@ -1001,6 +996,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789399802000,
       "source": "panel"
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "11:42",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789400572724,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1013,16 +1017,6 @@ const DATA = /*__DATA__*/{
       "time": "18:51",
       "ts": 1789339914749,
       "when": "Sun 18:51"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Janet Zamora",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "22:06",
-      "ts": 1789351614389,
-      "when": "Sun 22:06"
     }
   },
   "alarmAlerts": [],
@@ -1031,7 +1025,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-14T15:30:02+00:00",
+    "updatedAt": "2026-09-14T15:46:01+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1318,6 +1312,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T15:30:16.953784Z",
         "until": "2026-09-14T15:30:31.291882Z"
+      },
+      {
+        "since": "2026-09-14T15:35:58.951436Z",
+        "until": "2026-09-14T15:36:11.238825Z"
+      },
+      {
+        "since": "2026-09-14T15:41:23.514717Z",
+        "until": "2026-09-14T15:41:32.948243Z"
       }
     ],
     "down": false
@@ -1329,9 +1331,9 @@ const DATA = /*__DATA__*/{
       "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
       "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
       "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-14T10:49:00-04:00"
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T11:19:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1341,7 +1343,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T11:28:00-04:00"
+      "lastISO": "2026-09-14T11:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1351,7 +1353,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T11:30:00-04:00"
+      "lastISO": "2026-09-14T11:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1361,7 +1363,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T11:31:00-04:00"
+      "lastISO": "2026-09-14T11:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1371,7 +1373,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T11:19:00-04:00"
+      "lastISO": "2026-09-14T11:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1381,7 +1383,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T11:30:00-04:00"
+      "lastISO": "2026-09-14T11:45:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1541,7 +1543,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T11:31:00-04:00"
+      "lastISO": "2026-09-14T11:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1889,7 +1891,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "11:32"
+    "stamp": "11:46"
   }
 }/*__END_DATA__*/;
 
