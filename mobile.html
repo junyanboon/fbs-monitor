@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 1:02 PM ET",
-  "generatedAtISO": "2026-09-14T13:02:15-04:00",
+  "generatedAt": "Sep 14, 1:14 PM ET",
+  "generatedAtISO": "2026-09-14T13:14:32-04:00",
   "studios": [
     {
       "id": "509A",
@@ -760,11 +760,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "c744d6c7223e",
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -772,11 +772,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "075ca2d9b26f",
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -1393,11 +1393,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T17:00:59.447778Z",
         "until": "2026-09-14T17:01:11.043088Z"
+      },
+      {
+        "since": "2026-09-14T17:06:23.359612Z",
+        "until": "2026-09-14T17:06:36.684753Z"
+      },
+      {
+        "since": "2026-09-14T17:11:59.521325Z",
+        "until": "2026-09-14T17:12:12.128549Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "sentinel-sweep (Cloud Run)",
+      "cadence": "Hourly",
+      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T12:07:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1406,7 +1424,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:01:00-04:00"
+      "lastISO": "2026-09-14T13:12:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1426,7 +1444,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:00:00-04:00"
+      "lastISO": "2026-09-14T13:14:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1456,7 +1474,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:58:00-04:00"
+      "lastISO": "2026-09-14T13:12:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1466,17 +1484,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:45:00-04:00"
-    },
-    {
-      "run": "sentinel-sweep (Cloud Run)",
-      "cadence": "Hourly",
-      "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:07:00-04:00"
+      "lastISO": "2026-09-14T13:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1566,7 +1574,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:34:00-04:00"
+      "lastISO": "2026-09-14T13:05:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1606,7 +1614,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T12:10:00-04:00"
+      "lastISO": "2026-09-14T13:13:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1947,10 +1955,10 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
+          "drop-sweep (Cloud Run)",
           "The Custodian",
           "The Mechanic",
           "scribe (GitHub Actions)",
@@ -1958,13 +1966,17 @@ const DATA = /*__DATA__*/{
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": null
+        "worst": {
+          "run": "sentinel-sweep (Cloud Run)",
+          "label": "Due",
+          "lastISO": "2026-09-14T12:07:00-04:00"
+        }
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:02"
+    "stamp": "13:14"
   }
 }/*__END_DATA__*/;
 
