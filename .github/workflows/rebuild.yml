@@ -103,6 +103,7 @@ jobs:
       - name: HTA watch regression tests
         if: steps.gate.outputs.ready == 'true'
         run: |
+          python test_notion_query_retry.py
           python test_hta_watch.py
           python test_returning_fbs.py
 
