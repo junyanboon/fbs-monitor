@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 10:47 AM ET",
-  "generatedAtISO": "2026-09-14T10:47:06-04:00",
+  "generatedAt": "Sep 14, 10:54 AM ET",
+  "generatedAtISO": "2026-09-14T10:54:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -619,10 +619,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": "09:01",
-      "departed": null,
+      "departed": "10:50",
       "facilitator": null,
       "arrived_by": "Harper Drzymala-Bokitch",
-      "departed_by": null,
+      "departed_by": "Harper Drzymala-Bokitch",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1008,11 +1008,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "075ca2d9b26f",
+      "id": "c744d6c7223e",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -1020,11 +1020,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 20.25,
       "end": 20.75,
-      "id": "c744d6c7223e",
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -1212,6 +1212,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789390881482,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "10:50",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789397456811,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1261,7 +1270,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-14T13:05:01+00:00",
+    "updatedAt": "2026-09-14T14:54:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-14T09:02:19.385755Z",
@@ -1510,29 +1519,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T14:46:44.335649Z",
         "until": "2026-09-14T14:46:54.474749Z"
+      },
+      {
+        "since": "2026-09-14T14:52:21.581251Z",
+        "until": "2026-09-14T14:52:27.964955Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-13T04:24:00-04:00"
-    },
-    {
       "run": "reconcile-sweep (Cloud Run)",
       "cadence": "15-min",
       "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
       "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-14T10:21:00-04:00"
     },
     {
@@ -1543,7 +1546,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:42:00-04:00"
+      "lastISO": "2026-09-14T10:54:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1563,7 +1566,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:45:00-04:00"
+      "lastISO": "2026-09-14T10:50:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1573,7 +1576,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:35:00-04:00"
+      "lastISO": "2026-09-14T10:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1583,7 +1586,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:45:00-04:00"
+      "lastISO": "2026-09-14T10:50:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1593,7 +1596,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T10:24:00-04:00"
+      "lastISO": "2026-09-14T10:53:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1704,6 +1707,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T10:33:00-04:00"
+    },
+    {
+      "run": "The Timekeeper",
+      "cadence": "Daily",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "Overtime report (yesterday)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T10:53:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -2051,17 +2064,13 @@ const DATA = /*__DATA__*/{
         "name": "Money adds up",
         "fine": "Hours logged. Books balanced.",
         "down": "Payroll and books go wrong.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Timekeeper",
           "The Bookkeeper",
+          "The Timekeeper",
           "The Treasurer"
         ],
-        "worst": {
-          "run": "The Timekeeper",
-          "label": "Overdue",
-          "lastISO": "2026-09-13T04:24:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "watch",
@@ -2085,7 +2094,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "10:47"
+    "stamp": "10:54"
   }
 }/*__END_DATA__*/;
 
