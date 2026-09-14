@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 1:44 PM ET",
-  "generatedAtISO": "2026-09-14T13:44:22-04:00",
+  "generatedAt": "Sep 14, 1:47 PM ET",
+  "generatedAtISO": "2026-09-14T13:47:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -656,7 +656,7 @@ const DATA = /*__DATA__*/{
         },
         {
           "kind": "EOB",
-          "state": "awaiting",
+          "state": "scheduled",
           "time": "19:15"
         }
       ],
@@ -837,51 +837,6 @@ const DATA = /*__DATA__*/{
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 14 · 00:23",
-      "send_after": "19:15",
-      "send_after_iso": "2026-09-14T19:15:00-04:00",
-      "label": "EOB for Greg Samba in Studio 901"
-    },
-    {
-      "code": "ANALYST-SOUND-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 14 · 04:12",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 14 · 04:18",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "GTG-nudge-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 14 · 09:23",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
       "status": "Ready to Send",
       "studio": "693",
       "raised_by": "The Registrar",
@@ -903,6 +858,18 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Salia Magno in Studio 693"
     },
     {
+      "code": "EOB-sweep-•••",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 14 · 00:23",
+      "send_after": "19:15",
+      "send_after_iso": "2026-09-14T19:15:00-04:00",
+      "label": "EOB for Greg Samba in Studio 901"
+    },
+    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -913,6 +880,39 @@ const DATA = /*__DATA__*/{
       "send_after": "16:30",
       "send_after_iso": "2026-09-14T16:30:00-04:00",
       "label": "AVA for Greg Samba in Studio 901"
+    },
+    {
+      "code": "ANALYST-SOUND-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 14 · 04:12",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 14 · 04:18",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "GTG-nudge-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 14 · 09:23",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1083,6 +1083,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789407756969,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "13:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1789407928457,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1092,7 +1101,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-14T17:44:01+00:00",
+    "updatedAt": "2026-09-14T17:47:01+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -1471,6 +1480,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T17:41:16.726578Z",
         "until": "2026-09-14T17:41:22.060923Z"
+      },
+      {
+        "since": "2026-09-14T17:46:47.327165Z",
+        "until": "2026-09-14T17:46:55.780703Z"
       }
     ],
     "down": false
@@ -1485,6 +1498,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-14T12:07:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T13:24:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1514,7 +1537,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:30:00-04:00"
+      "lastISO": "2026-09-14T13:46:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1524,7 +1547,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:40:00-04:00"
+      "lastISO": "2026-09-14T13:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1544,7 +1567,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:40:00-04:00"
+      "lastISO": "2026-09-14T13:46:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1555,16 +1578,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T13:44:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:24:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1694,7 +1707,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T13:31:00-04:00"
+      "lastISO": "2026-09-14T13:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2046,7 +2059,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:44"
+    "stamp": "13:47"
   }
 }/*__END_DATA__*/;
 
