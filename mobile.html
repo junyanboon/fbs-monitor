@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 9:17 AM ET",
-  "generatedAtISO": "2026-09-14T09:17:06-04:00",
+  "generatedAt": "Sep 14, 9:32 AM ET",
+  "generatedAtISO": "2026-09-14T09:32:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -790,11 +790,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "f96a0e68c41b",
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -802,11 +802,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "cffed2724e55",
+      "id": "f96a0e68c41b",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -885,6 +885,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "GTG-nudge-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 14 · 09:23",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -948,7 +959,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1194,11 +1205,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T13:15:48.089484Z",
         "until": "2026-09-14T13:15:59.184135Z"
+      },
+      {
+        "since": "2026-09-14T13:21:21.000728Z",
+        "until": "2026-09-14T13:21:27.144142Z"
+      },
+      {
+        "since": "2026-09-14T13:26:43.474464Z",
+        "until": "2026-09-14T13:26:49.916731Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-14T08:56:00-04:00"
+    },
     {
       "run": "The Timekeeper",
       "cadence": "Daily",
@@ -1217,7 +1246,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:17:00-04:00"
+      "lastISO": "2026-09-14T09:32:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1227,7 +1256,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:15:00-04:00"
+      "lastISO": "2026-09-14T09:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1237,7 +1266,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:15:00-04:00"
+      "lastISO": "2026-09-14T09:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1247,7 +1276,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:05:00-04:00"
+      "lastISO": "2026-09-14T09:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1257,7 +1286,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:15:00-04:00"
+      "lastISO": "2026-09-14T09:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1267,17 +1296,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:52:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:56:00-04:00"
+      "lastISO": "2026-09-14T09:25:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1317,7 +1336,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:56:00-04:00"
+      "lastISO": "2026-09-14T08:14:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1377,7 +1396,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T08:35:00-04:00"
+      "lastISO": "2026-09-14T09:13:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1387,7 +1406,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:01:00-04:00"
+      "lastISO": "2026-09-14T09:27:00-04:00"
     },
     {
       "run": "The Treasurer",
@@ -1417,7 +1436,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T09:16:00-04:00"
+      "lastISO": "2026-09-14T09:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1769,7 +1788,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "09:17"
+    "stamp": "09:32"
   }
 }/*__END_DATA__*/;
 
