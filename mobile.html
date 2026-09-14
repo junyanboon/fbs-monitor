@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 7:22 PM ET",
-  "generatedAtISO": "2026-09-14T19:22:17-04:00",
+  "generatedAt": "Sep 14, 7:32 PM ET",
+  "generatedAtISO": "2026-09-14T19:32:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -664,10 +664,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "19:27",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Janet Zamora",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -738,11 +738,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "f96a0e68c41b",
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -750,11 +750,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "cffed2724e55",
+      "id": "f96a0e68c41b",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -1025,6 +1025,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789427893795,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Janet Zamora",
+      "time": "19:27",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789428475281,
       "source": "doors"
     }
   ],
@@ -1658,11 +1667,35 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-14T23:21:01.662591Z",
         "until": "2026-09-14T23:21:10.995068Z"
+      },
+      {
+        "since": "2026-09-14T23:26:30.683548Z",
+        "until": "2026-09-14T23:27:18.517447Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T19:04:00-04:00"
+    },
+    {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Awaiting completion",
+      "lastISO": "2026-09-13T19:49:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1671,7 +1704,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T19:21:00-04:00"
+      "lastISO": "2026-09-14T19:32:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1681,7 +1714,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T19:15:00-04:00"
+      "lastISO": "2026-09-14T19:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1691,7 +1724,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T19:20:00-04:00"
+      "lastISO": "2026-09-14T19:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1701,7 +1734,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T19:15:00-04:00"
+      "lastISO": "2026-09-14T19:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1711,7 +1744,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T19:20:00-04:00"
+      "lastISO": "2026-09-14T19:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1722,16 +1755,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T19:17:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T19:04:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1814,16 +1837,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-14T19:03:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-13T19:49:00-04:00"
-    },
-    {
       "run": "The Registrar (booking-sweep, Hostinger)",
       "cadence": "Hourly",
       "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
@@ -1841,7 +1854,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:58:00-04:00"
+      "lastISO": "2026-09-14T19:24:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1881,7 +1894,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T19:15:00-04:00"
+      "lastISO": "2026-09-14T19:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2178,12 +2191,12 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Planner",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
-          "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
           "The Weatherman",
           "Watchlist sync",
@@ -2192,7 +2205,11 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Planner",
+          "label": "Awaiting completion",
+          "lastISO": "2026-09-13T19:49:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2229,7 +2246,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "19:22"
+    "stamp": "19:32"
   }
 }/*__END_DATA__*/;
 
