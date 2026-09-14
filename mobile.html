@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 6:15 PM ET",
-  "generatedAtISO": "2026-09-14T18:15:35-04:00",
+  "generatedAt": "Sep 14, 6:17 PM ET",
+  "generatedAtISO": "2026-09-14T18:17:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -646,10 +646,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:15",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Greg Samba",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -746,9 +746,9 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": "901",
       "day_offset": 2,
-      "start": 22.25,
-      "end": 22.75,
-      "id": "cffed2724e55",
+      "start": 20.25,
+      "end": 20.75,
+      "id": "075ca2d9b26f",
       "date": "2026-09-16",
       "startISO": "2026-09-16T20:15:00-04:00",
       "endISO": "2026-09-16T20:45:00-04:00",
@@ -768,11 +768,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 2,
       "start": 22.25,
       "end": 22.75,
-      "id": "f96a0e68c41b",
+      "id": "cffed2724e55",
       "date": "2026-09-16",
       "startISO": "2026-09-16T22:15:00-04:00",
       "endISO": "2026-09-16T22:45:00-04:00",
@@ -806,17 +806,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "CC-extension-confirm-••••-527-Iversen",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 14 · 18:14",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -839,17 +828,6 @@ const DATA = /*__DATA__*/{
       "send_after": "19:15",
       "send_after_iso": "2026-09-14T19:15:00-04:00",
       "label": "EOB for Greg Samba in Studio 901"
-    },
-    {
-      "code": "CC-extension-confirm-••••-527-Iversen",
-      "kind": null,
-      "channel": "Email",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 14 · 18:14",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
   "attention": [],
@@ -1059,6 +1037,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789422523118,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Greg Samba",
+      "time": "18:15",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789424154522,
       "source": "doors"
     }
   ],
@@ -1657,7 +1644,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T18:12:00-04:00"
+      "lastISO": "2026-09-14T18:17:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1687,7 +1674,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T17:55:00-04:00"
+      "lastISO": "2026-09-14T18:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2215,7 +2202,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "18:15"
+    "stamp": "18:17"
   }
 }/*__END_DATA__*/;
 
