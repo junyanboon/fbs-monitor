@@ -200,6 +200,10 @@ a dormant panel user, or an unavailable Alarm.com directory read. It also never
 says WHO verifies — every one of these rows carries `For: Ops Lead`, and the
 answer is always the desk.
 
+An `HTA not sent` action is excluded even if it is temporarily typed `Access /
+PIN`: it is a delivery task, not evidence that the renter's credential needs
+verification. The action remains in the private Actions queue for its owner.
+
 Which rows reach which card (`_access_row_hits`, three shapes, narrowest first):
 
 | Row shape | Example key | Must match |

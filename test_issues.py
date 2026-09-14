@@ -87,6 +87,28 @@ def test_access_chip_describes_verification_not_a_missing_code():
         assert "Code ✗" not in text
 
 
+def test_hta_delivery_action_is_not_an_access_verification():
+    """A missing How-to-Access message is real desk work, but says nothing
+    about whether this renter's credential opens their studio."""
+    assert not build._is_access_verification_row(
+        "🔔 HTA not sent — Sample Renter · Studio 509A · 2026-09-13 14:15")
+    assert build._is_access_verification_row(
+        "Alarm code needs a person — Sample Renter")
+
+
+def test_hta_delivery_row_does_not_hide_a_real_access_action():
+    """Filter only the delivery row; any concurrent access fault remains a
+    red card warning for the same renter."""
+    event = booking("Sample Renter")
+    rows = [
+        row("🔔 HTA not sent — Sample Renter · Studio 509A · 2026-09-13 14:15"),
+        row("Alarm code needs a person — Sample Renter"),
+    ]
+    filtered = [r for r in rows if build._is_access_verification_row(r["text"])]
+    flag([event], filtered)
+    assert event.get("access_gap") is True
+
+
 def test_assumed_arrival_reason_does_not_cramp_timeline_endpoints():
     """The inferred-arrival reason is the compact rectangular middle column,
     between the arrival and departure endpoints."""
@@ -112,6 +134,8 @@ def main():
     test_unrelated_rows_and_staff_blocks_stay_dark()
     test_the_flag_is_a_plain_boolean()
     test_access_chip_describes_verification_not_a_missing_code()
+    test_hta_delivery_action_is_not_an_access_verification()
+    test_hta_delivery_row_does_not_hide_a_real_access_action()
     test_assumed_arrival_reason_does_not_cramp_timeline_endpoints()
     print("access warning regression tests: OK")
 
