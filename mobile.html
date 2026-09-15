@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 11:16 PM ET",
-  "generatedAtISO": "2026-09-14T23:16:58-04:00",
+  "generatedAt": "Sep 14, 11:32 PM ET",
+  "generatedAtISO": "2026-09-14T23:32:08-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1871,11 +1871,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T03:13:26.098253Z",
         "until": "2026-09-15T03:14:56.446250Z"
+      },
+      {
+        "since": "2026-09-15T03:20:03.054437Z",
+        "until": "2026-09-15T03:20:10.909984Z"
+      },
+      {
+        "since": "2026-09-15T03:25:15.833685Z",
+        "until": "2026-09-15T03:27:36.400610Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T23:15:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1884,17 +1902,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:14:00-04:00"
-    },
-    {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:15:00-04:00"
+      "lastISO": "2026-09-14T23:31:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1904,7 +1912,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:57:00-04:00"
+      "lastISO": "2026-09-14T23:24:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1994,7 +2002,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:57:00-04:00"
+      "lastISO": "2026-09-14T23:22:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2054,7 +2062,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:16:00-04:00"
+      "lastISO": "2026-09-14T23:29:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2064,7 +2072,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T22:49:00-04:00"
+      "lastISO": "2026-09-14T23:15:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2094,7 +2102,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T22:49:00-04:00"
+      "lastISO": "2026-09-14T23:15:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2442,7 +2450,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:16"
+    "stamp": "23:32"
   }
 }/*__END_DATA__*/;
 
