@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 1:02 PM ET",
-  "generatedAtISO": "2026-09-15T13:02:13-04:00",
+  "generatedAt": "Sep 15, 1:17 PM ET",
+  "generatedAtISO": "2026-09-15T13:17:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1151,21 +1151,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T17:02:07.927985Z",
         "until": "2026-09-15T17:02:08.082036Z"
+      },
+      {
+        "since": "2026-09-15T17:07:31.200623Z",
+        "until": "2026-09-15T17:07:31.519465Z"
+      },
+      {
+        "since": "2026-09-15T17:12:36.501594Z",
+        "until": "2026-09-15T17:12:36.805665Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "The Registrar (booking-sweep, Hostinger)",
-      "cadence": "Hourly",
-      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
-      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-15T12:04:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1174,7 +1172,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:00:00-04:00"
+      "lastISO": "2026-09-15T13:12:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1184,7 +1182,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:00:00-04:00"
+      "lastISO": "2026-09-15T13:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1194,7 +1192,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:00:00-04:00"
+      "lastISO": "2026-09-15T13:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1204,7 +1202,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T12:55:00-04:00"
+      "lastISO": "2026-09-15T13:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1214,7 +1212,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:00:00-04:00"
+      "lastISO": "2026-09-15T13:15:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1224,7 +1222,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T12:41:00-04:00"
+      "lastISO": "2026-09-15T13:16:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1234,7 +1232,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T12:50:00-04:00"
+      "lastISO": "2026-09-15T13:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1244,7 +1242,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T12:07:00-04:00"
+      "lastISO": "2026-09-15T13:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1327,6 +1325,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-14T19:41:00-04:00"
     },
     {
+      "run": "The Registrar (booking-sweep, Hostinger)",
+      "cadence": "Hourly",
+      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
+      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T13:04:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
@@ -1364,7 +1372,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T12:10:00-04:00"
+      "lastISO": "2026-09-15T13:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1374,7 +1382,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:01:00-04:00"
+      "lastISO": "2026-09-15T13:15:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1671,13 +1679,13 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Registrar (booking-sweep, Hostinger)",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
+          "The Registrar (booking-sweep, Hostinger)",
           "The Weatherman",
           "Watchlist sync",
           "desk-loop (Cloud Run)",
@@ -1685,11 +1693,7 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "The Registrar (booking-sweep, Hostinger)",
-          "label": "Due",
-          "lastISO": "2026-09-15T12:04:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -1726,7 +1730,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:02"
+    "stamp": "13:17"
   }
 }/*__END_DATA__*/;
 
