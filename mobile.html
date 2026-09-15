@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 6:17 PM ET",
-  "generatedAtISO": "2026-09-15T18:17:56-04:00",
+  "generatedAt": "Sep 15, 6:19 PM ET",
+  "generatedAtISO": "2026-09-15T18:19:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -727,17 +727,6 @@ const DATA = /*__DATA__*/{
   ],
   "messages": [
     {
-      "code": "BC-sweep-•••A|BC-sweep-•••B|BC-sweep-•••A",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 15 · 17:16",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Dennis Jun - pause moves to October - •••",
       "kind": null,
       "channel": "Email",
@@ -771,28 +760,6 @@ const DATA = /*__DATA__*/{
       "send_after": "18:30",
       "send_after_iso": "2026-09-15T18:30:00-04:00",
       "label": "AVA for Marco Alberto Villa in Studio 509B"
-    },
-    {
-      "code": "QA-sound-509B-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": null,
-      "raised_by": "Quick-Answer Lane",
-      "created": "Sep 15 · 18:00",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "PBF - overtime - Amanda-May Wilson •••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Timekeeper",
-      "created": "Sep 15 · 18:07",
-      "send_after": null,
-      "send_after_iso": null
     },
     {
       "code": "HTA-desksort-•••-krista-flynn",
@@ -1492,16 +1459,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T17:01:00-04:00"
     },
     {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-15T17:53:00-04:00"
-    },
-    {
       "run": "The Concierge",
       "cadence": "Hourly",
       "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
@@ -1570,6 +1527,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-15T18:18:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T18:01:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2079,7 +2046,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T18:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 14,
             "stale": false
           },
           {
@@ -2091,7 +2058,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-15T18:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 14,
             "stale": false
           }
         ],
@@ -2110,7 +2077,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "18:17"
+    "stamp": "18:19"
   }
 }/*__END_DATA__*/;
 
