@@ -234,6 +234,50 @@ def facilitator_of(title):
     return m.group(1).strip() if m else None
 
 
+def fetch_authorized_names(token, events):
+    """Attach `_allowed_names` to each booking: the account holder's Artist
+    Database Name / Company / Alarm Display Name, plus the same fields of every
+    page in its `Authorized Users` relation.
+
+    Why (Junyan, 2026-09-15): Avante Dance Company Inc. was keyed in by Claudia
+    Dzierbicki and armed by Ishfaaq Jookhun — both on the account — and both
+    rendered "not the expected person" because neither name shares a token with
+    the company title. Names only: the `Alarm Code` field is never read (this
+    board is public). Names never leave the build — only the foreign booleans.
+    Soft: a failed read keeps the old title-only match for that booking."""
+    h = {"Authorization": f"Bearer {token}", "Notion-Version": "2022-06-28"}
+    cache = {}
+
+    def page(pid):
+        if pid not in cache:
+            try:
+                r = requests.get(f"https://api.notion.com/v1/pages/{pid}",
+                                 headers=h, timeout=20)
+                cache[pid] = r.json().get("properties", {}) if r.status_code == 200 else None
+            except Exception:  # noqa: BLE001
+                cache[pid] = None
+        return cache[pid]
+
+    def names(props):
+        return [t for k in ("Name", "Company", "Alarm Display Name")
+                if (t := _prop_text((props or {}).get(k)))]
+
+    for e in events:
+        aid = e.get("_artist_id")
+        if e.get("kind") != "booking" or not aid:
+            continue
+        props = page(aid)
+        if props is None:
+            continue
+        allowed = names(props)
+        for rel in (props.get("Authorized Users") or {}).get("relation") or []:
+            rid = (rel.get("id") or "").replace("-", "")
+            if rid:
+                allowed += names(page(rid))
+        e["_allowed_names"] = allowed
+    return events
+
+
 def expected_name(e):
     """Whose name the keypad event should carry: the facilitator when one is
     named on the booking, else the booking title (name tokens and all — the
@@ -2262,7 +2306,8 @@ def apply_arm_events(events, arm_events, now_dec=None, alerts=None):
         want = expected_name(e)
         for k in ("arrived", "departed"):
             who = e.get(k + "_by")
-            e[k + "_foreign"] = bool(who) and not _name_match(want, who)
+            e[k + "_foreign"] = bool(who) and not any(
+                _name_match(n, who) for n in [want] + e.get("_allowed_names", []))
     return events
 
 
@@ -3810,6 +3855,8 @@ def build_data(now):
         emit_fallback_note(f"Studio Holds fetch failed ({e}); staff blocks fall "
                            f"back to title detection this edition.")
     events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
+    # Authorized users count as expected at the keypad. Soft, per booking.
+    events = fetch_authorized_names(token, events)
     # Heard-from-them — soft: if the ledger is unreadable, the No GTG chip simply
     # behaves as it did before this existed (shown), never the reverse. Failing
     # this read must not HIDE a warning.

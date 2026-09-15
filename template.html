@@ -690,6 +690,12 @@ const OVER_BIG = 1;       // an hour past the booked end stops being "a bit late
                  the overrun is big enough to bill or to have pushed the next
                  booking. Act on it. */
 function verdictOf(e, now){
+  /* Did the next renter in this studio take over the panel? A booking that
+     starts between 15 min before and 30 min after this one ends, with its own
+     arrival or departure on record. */
+  const handedOver = e => ((typeof DATA!=="undefined" && DATA.events) || []).some(o =>
+    o!==e && o.kind==="booking" && o.studio===e.studio
+    && o.start >= e.end-0.25 && o.start <= e.end+0.5 && (o.arrived || o.departed));
   if(FEED_DOWN || e.kind!=="booking") return null;
   const nrm = t => t==null ? null : (t < e.start-12 ? t+24 : t);
   const arr = nrm(parseHM(e.arrived)), dep = nrm(parseHM(e.departed));
@@ -720,8 +726,12 @@ function verdictOf(e, now){
        (see the pass-2 comment in build.py). Junyan's ruling, 2026-09-05: flag it
        anyway. An unclosed booking is worth a glance even when the explanation is
        boring, and the desk can tell a back-to-back from a real open studio far
-       faster than this builder can. */
-    odd.push("No departure seen — nobody armed after this booking");
+       faster than this builder can.
+       Narrowed 2026-09-15 (Junyan): when the next booking in the same studio
+       starts within 30 min and was itself seen at the panel, the panel passed
+       to that renter — a clean handover, not an open studio (Greg Samba →
+       Janet Zamora, 901). Only an unexplained open panel is flagged. */
+    if(!handedOver(e)) odd.push("No departure seen — nobody armed after this booking");
   }
   if(bad.length) return {cls:"bad", glyph:"!", why:bad.concat(odd).join(" · ")};
   if(odd.length) return {cls:"odd", glyph:"\u26a0", why:odd.join(" · ")};

@@ -18,7 +18,7 @@ TEMPLATES = ("template.html", "template-mobile.html")
 ROOT = Path(__file__).parent
 
 
-def _verdicts(cases, feed_down=False):
+def _verdicts(cases, feed_down=False, events=None):
     """Run the template's own verdictOf over `cases`, one template at a time."""
     out = {}
     for template in TEMPLATES:
@@ -30,6 +30,7 @@ def _verdicts(cases, feed_down=False):
             "const[a,b]=s.split(':').map(Number);return a+b/60;};\n"
             "const FLAG_MIN=16/60, OVER_BIG=1;\n"
             f"const FEED_DOWN={json.dumps(bool(feed_down))};\n"
+            f"const DATA={{events:{json.dumps(events or [])}}};\n"
             + helper.group(0) + "\n"
             f"const cases={json.dumps(cases)};\n"
             "console.log(JSON.stringify(cases.map(c=>verdictOf(c.e,c.now))));"
@@ -107,6 +108,19 @@ def test_an_unclosed_booking_is_amber_and_says_so():
     for template, (v,) in rendered.items():
         assert v["cls"] == "odd" and v["glyph"] == "\u26a0", template
         assert "No departure seen" in v["why"], template
+
+
+def test_a_handover_to_the_next_renter_is_not_flagged():
+    """Junyan, 2026-09-15: Greg Samba (901, 18:30-19:30) never armed because
+    Janet Zamora took the panel at 19:30 and armed at 22:41. That is a clean
+    handover, not an open studio. The same neighbour in another room is not."""
+    greg = booking(studio="901", start=18.5, end=19.5, arrived="18:15", departed=None)
+    janet = booking(studio="901", start=19.5, end=22.5, arrived="19:27", departed="22:41")
+    other_room = booking(studio="527", start=19.5, end=22.5, arrived="19:27", departed="22:41")
+    for events, want in (([greg, janet], "ok"), ([greg, other_room], "odd")):
+        rendered = _verdicts([{"e": greg, "now": 23.0}], events=events)
+        for template, (v,) in rendered.items():
+            assert v["cls"] == want, (template, v)
 
 
 def test_a_clean_verdict_is_a_check_mark_and_an_odd_one_a_warning_sign():
