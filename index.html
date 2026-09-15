@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 5:32 PM ET",
-  "generatedAtISO": "2026-09-15T17:32:25-04:00",
+  "generatedAt": "Sep 15, 5:47 PM ET",
+  "generatedAtISO": "2026-09-15T17:47:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -992,7 +992,12 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Marco Alberto Villa in Studio 509B"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -1605,11 +1610,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T21:28:09.534303Z",
         "until": "2026-09-15T21:28:09.836086Z"
+      },
+      {
+        "since": "2026-09-15T21:33:10.659085Z",
+        "until": "2026-09-15T21:33:11.008943Z"
+      },
+      {
+        "since": "2026-09-15T21:38:28.412980Z",
+        "until": "2026-09-15T21:38:28.564857Z"
+      },
+      {
+        "since": "2026-09-15T21:43:59.572276Z",
+        "until": "2026-09-15T21:43:59.677152Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-15T17:01:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1618,7 +1645,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:29:00-04:00"
+      "lastISO": "2026-09-15T17:45:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1628,7 +1655,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:30:00-04:00"
+      "lastISO": "2026-09-15T17:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1638,7 +1665,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:30:00-04:00"
+      "lastISO": "2026-09-15T17:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1648,7 +1675,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:25:00-04:00"
+      "lastISO": "2026-09-15T17:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1658,7 +1685,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:30:00-04:00"
+      "lastISO": "2026-09-15T17:45:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1668,7 +1695,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:18:00-04:00"
+      "lastISO": "2026-09-15T17:45:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1678,7 +1705,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:20:00-04:00"
+      "lastISO": "2026-09-15T17:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1778,7 +1805,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:06:00-04:00"
+      "lastISO": "2026-09-15T17:36:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1819,16 +1846,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-15T17:10:00-04:00"
-    },
-    {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2134,20 +2151,24 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
+          "Watchlist sync",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
-          "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Closer",
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "Watchlist sync",
+          "label": "Overdue",
+          "lastISO": "2026-09-15T17:01:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2197,22 +2218,22 @@ const DATA = /*__DATA__*/{
             "inside": 23.1,
             "setpoint": "COOL 22.95",
             "mode": "COOL",
-            "hvac": "OFF",
+            "hvac": "COOLING",
             "humidity": 49,
-            "whenISO": "2026-09-15T17:05:00-04:00",
-            "ageMin": 27,
+            "whenISO": "2026-09-15T17:43:00-04:00",
+            "ageMin": 4,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 23.3,
+            "inside": 23.8,
             "setpoint": "",
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 54,
-            "whenISO": "2026-09-15T17:05:00-04:00",
-            "ageMin": 27,
+            "whenISO": "2026-09-15T17:43:00-04:00",
+            "ageMin": 4,
             "stale": false
           }
         ],
@@ -2231,7 +2252,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "17:32"
+    "stamp": "17:47"
   }
 }/*__END_DATA__*/;
 
