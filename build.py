@@ -58,6 +58,9 @@ RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
 # any write, so the Robots tab reads it too: "did it run?" is worth little if
 # you cannot see who was supposed to run it. Read-only, soft source.
 LEASE_PAGE = "3d175032-81c4-81ed-aa57-c1d2f92bcb06"
+# 🥵 Thermal Log — hourly SDM thermostat readings (Kind=observation) written by
+# sdm-logger. The Weatherman's only eyes, and the Robots tab's climate card.
+THERMAL_LOG_DS = "6976717e-77db-471a-8b13-2eac63696685"
 # 📊 Workflow Reports — one row per fleet run, rendered as the Reports tab.
 # Read title-only; see fetch_reports() for why bodies must stay off this board.
 WORKFLOW_REPORTS_DS = "469a877b-83fa-4387-ac97-94aa656481dd"
@@ -3651,12 +3654,40 @@ def parse_lease(raw, now):
         counts[l["executor"]] = counts.get(l["executor"], 0) + 1
     return {
         "holder": lease.get("holder") or "unknown",
+        "provider": parse_provider(lease.get("provider")),
         "leaseId": lease.get("lease_id") or "",
         "reason": lease.get("reason") or "",
         "flippedBy": lease.get("flipped_by") or "",
         "sinceISO": since.replace(microsecond=0).isoformat() if since else None,
         "lanes": lanes,
         "counts": counts,
+    }
+
+
+# ── The Hermes provider ─────────────────────────────────────────────────────
+# Which MODEL Hermes thinks with. A different switch from `holder` (who runs
+# the lanes): the lease can read holder=codex while Hermes bills every thought
+# to the Claude subscription. The truth lives in config.yaml on the VPS, which
+# this build cannot read, so `hermes-provider.sh` records each swap as a
+# `provider` key in the lease JSON (lease.py set-provider). No key → "unknown",
+# shown as such; the tab never guesses from the holder.
+PROVIDER_NAMES = {"anthropic": "Claude", "openai-codex": "Codex"}
+
+
+def parse_provider(p):
+    if not isinstance(p, dict) or not p.get("primary"):
+        return None
+    primary = str(p.get("primary"))
+    fallback = str(p.get("fallback") or "")
+    set_at = _parse_notion_ts(p.get("set_at"))
+    return {
+        "name": PROVIDER_NAMES.get(primary, primary.title()),
+        "primary": primary,
+        "model": p.get("model") or "",
+        "fallbackName": PROVIDER_NAMES.get(fallback, fallback.title()) if fallback else "",
+        "fallbackModel": p.get("fallback_model") or "",
+        "setAtISO": set_at.replace(microsecond=0).isoformat() if set_at else None,
+        "setBy": p.get("set_by") or "",
     }
 
 
@@ -3686,6 +3717,9 @@ FLEET_LINES = [
     {"k": "watch", "name": "Someone is watching",
      "fine": "A robot texts you if one goes quiet.",
      "down": "Things break and nobody knows. Trust nothing green above."},
+    {"k": "climate", "name": "Weatherman",
+     "fine": "Thermostats read hourly. Cooling set by the bookings.",
+     "down": "Rooms drift. Dancers sweat or freeze."},
 ]
 FLEET_NEEDLES = [
     ("watchlist", "plan"), ("desk-loop", "plan"),
@@ -3694,7 +3728,8 @@ FLEET_NEEDLES = [
     ("concierge", "mail"), ("responder", "mail"), ("greeter", "mail"),
     ("qa release", "mail"), ("receptionist", "mail"),
     ("host", "plan"), ("analyst", "plan"), ("planner", "plan"), ("loop", "plan"),
-    ("weatherman", "plan"), ("opener", "plan"), ("closer", "plan"),
+    ("weatherman", "climate"), ("climate", "climate"), ("sdm", "climate"),
+    ("opener", "plan"), ("closer", "plan"),
     ("bookkeeper", "money"), ("timekeeper", "money"), ("treasurer", "money"),
     ("sentinel", "watch"), ("morning text", "watch"), ("mechanic", "watch"),
     ("custodian", "watch"), ("drop-sweep", "watch"), ("scribe", "watch"),
@@ -3710,10 +3745,13 @@ def fleet_line_for(run):
     return None
 
 
-def fleet_lines(robots, lease, now):
-    """Five lines from the roster. A line is as bad as its worst LIVE robot;
+def fleet_lines(robots, lease, now, climate=None):
+    """Six lines from the roster. A line is as bad as its worst LIVE robot;
     Paused / Not-reporting / Off-hours robots ("plain") never colour it. The
-    worst robot is named so the line can say what broke in one sentence."""
+    worst robot is named so the line can say what broke in one sentence.
+    The Weatherman line also carries the newest thermostat reading per studio
+    (`climate`, from fetch_climate); a reading older than CLIMATE_BLIND_MIN
+    turns that line red on its own, because the Weatherman is blind then."""
     rank = {"crit": 2, "watch": 1, "ok": 0, "plain": 0}
     worst = {}
     members = {}
@@ -3730,7 +3768,7 @@ def fleet_lines(robots, lease, now):
     out = []
     for line in FLEET_LINES:
         w = worst.get(line["k"])
-        out.append({
+        row = {
             **line,
             "status": w["status"] if w else "ok",
             "robots": members.get(line["k"], []),
@@ -3738,7 +3776,15 @@ def fleet_lines(robots, lease, now):
             # — 2026-09-05 20:10 interrupted"); the sentence wants the name.
             "worst": ({"run": w["run"].split(" — ")[0].strip(), "label": w["statusLabel"],
                        "lastISO": w.get("lastISO")} if w else None),
-        })
+        }
+        if line["k"] == "climate":
+            row["studios"] = climate["studios"] if climate else None
+            row["climateNote"] = climate.get("note") if climate else "Thermal Log unreadable"
+            if climate and climate.get("blind") and row["status"] != "crit":
+                row["status"] = "crit"
+                row["worst"] = row["worst"] or {"run": "Thermal Log", "label": "No fresh reading",
+                                                "lastISO": climate.get("newestISO")}
+        out.append(row)
     live = [r for r in (robots or []) if r.get("monitoring") == "Live"]
     holder = (lease or {}).get("holder") or ""
     where = ""
@@ -3749,7 +3795,83 @@ def fleet_lines(robots, lease, now):
                  "mac": "on the Mac"}.get(top, top)
     return {"lines": out, "liveCount": len(live),
             "holder": holder, "where": where,
+            "provider": (lease or {}).get("provider"),
             "stamp": now.strftime("%H:%M")}
+
+
+# ── Studio climate ──────────────────────────────────────────────────────────
+CLIMATE_STUDIOS = {"509": "509 Bloor", "901": "901 Yonge"}
+CLIMATE_BLIND_MIN = 120   # climate-controller.md: a reading ≤2h old is authoritative; older = blind
+
+
+def _parse_climate_notes(notes):
+    """`mode COOL · HVAC OFF · humidity 49% · via gh-actions` → parts."""
+    out = {"mode": "", "hvac": "", "humidity": None}
+    for part in (notes or "").split("·"):
+        p = part.strip()
+        low = p.lower()
+        if low.startswith("mode "):
+            out["mode"] = p[5:].strip().upper()
+        elif low.startswith("hvac "):
+            out["hvac"] = p[5:].strip().upper()
+        elif low.startswith("humidity "):
+            digits = "".join(ch for ch in p if ch.isdigit())
+            out["humidity"] = int(digits) if digits else None
+    return out
+
+
+def parse_climate(rows, now):
+    """Newest observation per studio. `rows` are Notion pages, newest first."""
+    studios = {}
+    newest = None
+    for row in rows:
+        p = row.get("properties", {})
+        if (_prop_text(p.get("Kind")) or "") != "observation":
+            continue
+        sid = _prop_text(p.get("Studio"))
+        if sid not in CLIMATE_STUDIOS or sid in studios:
+            continue
+        when = _parse_notion_ts(_prop_text(p.get("When"))) or _parse_notion_ts(row.get("created_time"))
+        parts = _parse_climate_notes(_prop_text(p.get("Notes")))
+        inside = _prop_text(p.get("Inside °C"))
+        studios[sid] = {
+            "studio": sid, "name": CLIMATE_STUDIOS[sid],
+            "inside": round(float(inside), 1) if isinstance(inside, (int, float)) else None,
+            "setpoint": _prop_text(p.get("Setpoint")) or "",   # "COOL 22.95" or blank = no cool setpoint
+            "mode": parts["mode"], "hvac": parts["hvac"], "humidity": parts["humidity"],
+            "whenISO": when.replace(microsecond=0).isoformat() if when else None,
+            "ageMin": int((now - when).total_seconds() // 60) if when else None,
+            "stale": (when is None) or ((now - when).total_seconds() / 60 > CLIMATE_BLIND_MIN),
+        }
+        if when and (newest is None or when > newest):
+            newest = when
+    ordered = [studios[k] for k in CLIMATE_STUDIOS if k in studios]
+    missing = [CLIMATE_STUDIOS[k] for k in CLIMATE_STUDIOS if k not in studios]
+    blind = bool(missing) or any(s["stale"] for s in ordered)
+    note = None
+    if missing:
+        note = "No reading on file for " + ", ".join(missing)
+    elif blind:
+        note = "Newest reading is older than 2 h — the Weatherman is blind"
+    return {"studios": ordered, "blind": blind, "note": note,
+            "newestISO": newest.replace(microsecond=0).isoformat() if newest else None}
+
+
+def fetch_climate(token, now):
+    """Newest SDM reading per studio from the 🥵 Thermal Log (soft source)."""
+    # _notion_query walks every page, so bound the window: readings older than
+    # a day are useless here anyway (older than 2 h already reads as blind).
+    from datetime import timedelta
+    since = (now - timedelta(hours=26)).isoformat()
+    rows = _notion_query(token, THERMAL_LOG_DS, {
+        "page_size": 100,
+        "filter": {"and": [
+            {"property": "Kind", "select": {"equals": "observation"}},
+            {"timestamp": "created_time", "created_time": {"on_or_after": since}},
+        ]},
+        "sorts": [{"property": "When", "direction": "descending"}],
+    })
+    return parse_climate(rows, now)
 
 
 def fetch_lease(token, now):
@@ -4073,6 +4195,13 @@ def build_data(now):
         lease_note = "Lease unreadable — share the ⚖️ Active Runtime page with the integration."
         emit_fallback_note(f"Lease fetch failed ({e}); Robots tab shows no ownership panel.")
 
+    # Studio climate for the Weatherman line — same soft posture.
+    climate = None
+    try:
+        climate = fetch_climate(token, now)
+    except Exception as e:  # noqa: BLE001
+        emit_fallback_note(f"Thermal Log fetch failed ({e}); Weatherman line shows no readings.")
+
     # Reports tab — same soft posture: an unreadable Workflow Reports DB shows a
     # notice, it never takes the board down.
     reports, reports_note = None, None
@@ -4124,7 +4253,7 @@ def build_data(now):
         "robotsNote": robots_note,
         "lease": lease,
         "leaseNote": lease_note,
-        "fleet": fleet_lines(robots, lease, now) if robots else None,
+        "fleet": fleet_lines(robots, lease, now, climate) if robots else None,
         # Internal: consumed by sync_hta_watch() in main() and popped before
         # the pages are spliced. Carries booking/artist ids — never publish.
         "_hta_verdicts": verdicts,

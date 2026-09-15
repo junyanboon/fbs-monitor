@@ -43,6 +43,35 @@ def test_holder_and_identity_survive():
     assert L["sinceISO"].startswith("2026-09-04")
 
 
+# ── The Hermes provider (which model thinks) is not the holder (who runs) ────
+def test_provider_absent_reads_as_unknown_never_the_holder():
+    L = build.parse_lease(LIVE, NOW)
+    assert L["holder"] == "codex" and L["provider"] is None
+
+
+def test_provider_recorded_by_hermes_provider_sh_is_projected():
+    d = json.loads(LIVE)
+    d["provider"] = {"name": "claude", "primary": "anthropic", "model": "claude-opus-5",
+                     "fallback": "openai-codex", "fallback_model": "gpt-6-astra",
+                     "set_at": "2026-09-15T21:30:00Z", "set_by": "hermes-provider.sh:jboon"}
+    P = build.parse_lease(json.dumps(d), NOW)["provider"]
+    assert P["name"] == "Claude" and P["model"] == "claude-opus-5"
+    assert P["fallbackName"] == "Codex" and P["fallbackModel"] == "gpt-6-astra"
+    assert P["setAtISO"].startswith("2026-09-15T17:30")        # Toronto
+    assert build.parse_provider({"primary": "openai-codex"})["name"] == "Codex"
+    assert build.parse_provider({"primary": "mistral"})["name"] == "Mistral"
+    assert build.parse_provider({"garbage": 1}) is None
+    assert build.parse_provider("codex") is None
+
+
+def test_fleet_footer_carries_the_provider():
+    d = json.loads(LIVE); d["provider"] = {"primary": "anthropic", "model": "claude-opus-5"}
+    L = build.parse_lease(json.dumps(d), NOW)
+    F = build.fleet_lines([{"run": "The Host", "status": "ok", "monitoring": "Live",
+                            "statusLabel": "On time", "lastISO": None}], L, NOW)
+    assert F["provider"]["name"] == "Claude" and F["holder"] == "codex"
+
+
 def test_every_lane_is_named_and_placed():
     L = build.parse_lease(LIVE, NOW)
     assert len(L["lanes"]) == 13

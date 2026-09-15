@@ -310,7 +310,7 @@ the Reports tab existed, that answer lived only in Notion, and the board that is
 actually open when a call comes in showed a green robot. Do not merge the two
 tabs on the grounds that they both list runs.
 
-### 14a. The Robots tab is five lines, not a roster
+### 14a. The Robots tab is six lines, not a roster
 
 Junyan, 2026-09-08: the 30-row roster was "too huge and cumbersome … what needs
 to be clear to me is who is doing what and what are the implications when
@@ -335,6 +335,29 @@ of it. No headline, no overdue count bar. The roster is still there, folded.
 The footer line names who holds the fleet and where most lanes run, read from
 the ⚖️ Active Runtime lease page (`fetch_lease()`, `test_lease.py`). Soft
 source: an unreadable lease drops the footer words, never the lines.
+
+### 14b. "Thinks with" and the Weatherman line (2026-09-15)
+
+Junyan, 2026-09-15: "indicate if it's actually being run on Codex or Claude in
+a clear way", and give the Weatherman "its own call out along with the
+temperatures in the studios / and what it's set to."
+
+- **THINKS WITH · CLAUDE / CODEX** is a banner above the lines. It is the
+  Hermes *provider* (which model thinks), NOT the lease *holder* (who runs the
+  lanes) — the footer used to say "run by codex" while Hermes was billing every
+  thought to Claude. The truth lives in `config.yaml` on the VPS, which this
+  build cannot read, so `hermes-provider.sh` records each swap as a `provider`
+  key in the lease JSON (`lease.py set-provider claude|codex`). `parse_provider()`
+  projects it; no key → "Model not recorded", never a guess from the holder.
+- **Weatherman** is the sixth line (needles `weatherman`, `climate`, `sdm`; it
+  left "Today's plan"). Under the sentence, one row per studio from the 🥵
+  Thermal Log (`fetch_climate()`, `THERMAL_LOG_DS`, newest `Kind=observation`
+  row per studio, 26 h window): inside °C, the cool setpoint ("no cool
+  setpoint" = 901 monitor-only), HVAC state, reading age. A reading older than
+  2 h turns the line red on its own ("the Weatherman is blind",
+  climate-controller.md). Soft source: unreadable log → "Thermal Log
+  unreadable" under the line, the line itself still speaks for the robot.
+  The Thermal Log DB must be shared with the build's Notion integration.
 
 ### 15. AVA/EOB pills are queue state, not message content
 
