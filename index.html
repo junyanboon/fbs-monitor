@@ -504,10 +504,10 @@
    Support board (tier, GTG/HTA) and Gmail ADT arrivals/departures.
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
-  "date": "Monday, September 14, 2026",
+  "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 11:46 PM ET",
-  "generatedAtISO": "2026-09-14T23:46:59-04:00",
+  "generatedAt": "Sep 15, 12:01 AM ET",
+  "generatedAtISO": "2026-09-15T00:01:54-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1001,6 +1001,39 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "The Responder",
       "created": "Sep 14 · 22:54",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Maggie - Thursday move declined by other renter",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Concierge",
+      "created": "Sep 14 · 23:51",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Megan - sign Dec 2026 to Feb 2027 Tuesday agreement",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Concierge",
+      "created": "Sep 14 · 23:51",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Teo - payment date for remaining $••• invoice",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Concierge",
+      "created": "Sep 14 · 23:51",
       "send_after": null,
       "send_after_iso": null
     }
@@ -2115,6 +2148,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T03:44:15.801770Z",
         "until": "2026-09-15T03:44:23.151294Z"
+      },
+      {
+        "since": "2026-09-15T03:49:30.270664Z",
+        "until": "2026-09-15T03:49:43.576818Z"
+      },
+      {
+        "since": "2026-09-15T03:55:15.836661Z",
+        "until": "2026-09-15T03:55:30.985668Z"
+      },
+      {
+        "since": "2026-09-15T04:01:03.270878Z",
+        "until": "2026-09-15T04:01:09.749147Z"
       }
     ],
     "down": false
@@ -2128,17 +2173,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:47:00-04:00"
-    },
-    {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:38:00-04:00"
+      "lastISO": "2026-09-14T23:59:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2148,7 +2183,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:24:00-04:00"
+      "lastISO": "2026-09-14T23:48:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2208,7 +2243,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:00:00-04:00"
+      "lastISO": "2026-09-15T00:02:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2228,17 +2263,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:08:00-04:00"
-    },
-    {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:22:00-04:00"
+      "lastISO": "2026-09-14T23:47:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2249,16 +2274,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T22:12:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-01T10:12:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2288,7 +2303,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:38:00-04:00"
+      "lastISO": "2026-09-15T00:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2298,7 +2313,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:39:00-04:00"
+      "lastISO": "2026-09-15T00:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2308,7 +2323,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:38:00-04:00"
+      "lastISO": "2026-09-14T23:55:00-04:00"
+    },
+    {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-15T00:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2338,7 +2363,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:28:00-04:00"
+      "lastISO": "2026-09-14T23:38:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2431,6 +2456,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-14T23:56:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "retired 2026-09-02 - see Runtime",
@@ -2439,6 +2474,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-09-02T07:07:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-01T10:12:00-04:00"
     },
     {
       "run": "The Watchman",
@@ -2621,12 +2666,12 @@ const DATA = /*__DATA__*/{
         "down": "People wait. Nobody replies.",
         "status": "ok",
         "robots": [
-          "The Responder",
           "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge",
           "The Concierge — 2026-09-05 20:10 interrupted",
-          "The Receptionist"
+          "The Receptionist",
+          "The Responder"
         ],
         "worst": null
       },
@@ -2686,7 +2731,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:46"
+    "stamp": "00:01"
   }
 }/*__END_DATA__*/;
 
