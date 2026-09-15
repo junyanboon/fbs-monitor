@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 9:25 PM ET",
-  "generatedAtISO": "2026-09-14T21:25:30-04:00",
+  "generatedAt": "Sep 14, 9:32 PM ET",
+  "generatedAtISO": "2026-09-14T21:32:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -2041,11 +2041,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T01:21:46.568745Z",
         "until": "2026-09-15T01:21:59.304281Z"
+      },
+      {
+        "since": "2026-09-15T01:27:25.420501Z",
+        "until": "2026-09-15T01:27:40.750327Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-14T21:05:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2054,7 +2068,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:22:00-04:00"
+      "lastISO": "2026-09-14T21:28:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2064,7 +2078,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:15:00-04:00"
+      "lastISO": "2026-09-14T21:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2074,7 +2088,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:25:00-04:00"
+      "lastISO": "2026-09-14T21:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2084,7 +2098,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:15:00-04:00"
+      "lastISO": "2026-09-14T21:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2094,7 +2108,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:25:00-04:00"
+      "lastISO": "2026-09-14T21:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2105,16 +2119,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T21:18:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:05:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2264,7 +2268,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:16:00-04:00"
+      "lastISO": "2026-09-14T21:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2612,7 +2616,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "21:25"
+    "stamp": "21:32"
   }
 }/*__END_DATA__*/;
 
