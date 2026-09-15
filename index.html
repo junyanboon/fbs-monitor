@@ -408,6 +408,21 @@
   .hrow.watch .nm small,.hrow.crit .nm small{color:var(--chalk)}
   .hrow.watch .nm small b{color:var(--watch)} .hrow.crit .nm small b{color:var(--crit)}
   .fleet .who{font-family:var(--mono);font-size:11.5px;color:var(--chalk-faint);padding:4px 2px 0}
+  /* Which model the fleet thinks with. Codex vs Claude is the one fact Junyan
+     asked to see at a glance (2026-09-15); it is NOT the lease holder. */
+  .brain{display:flex;align-items:center;gap:14px;margin:16px 0 12px;max-width:760px;
+         padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--scrim)}
+  .brain .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-faint);white-space:nowrap}
+  .brain .pv{font-family:var(--sans);font-weight:800;font-size:22px;letter-spacing:.02em;line-height:1;padding:6px 12px;border-radius:8px;
+             background:var(--ok);color:#fff}
+  .brain .pv.codex{background:#1f2937} .brain .pv.claude{background:#c96442} .brain .pv.unknown{background:var(--watch)}
+  .brain .det{font-family:var(--mono);font-size:12px;color:var(--chalk-dim);min-width:0;line-height:1.4}
+  .brain .det b{color:var(--chalk);font-weight:600}
+  /* Weatherman line: one reading per studio under the sentence. */
+  .clim{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin-top:8px;font-family:var(--mono);font-size:12.5px;color:var(--chalk)}
+  .clim .sid{color:var(--chalk-dim)} .clim .t{font-weight:700;font-size:14px} .clim .dim{color:var(--chalk-faint)}
+  .clim .stale{color:var(--crit)}
+  @media (max-width:640px){ .brain{flex-wrap:wrap} }
   details.fold{margin:22px 0 0}
   details.fold summary{cursor:pointer;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;
     text-transform:uppercase;color:var(--chalk-faint);padding:6px 0 10px}
@@ -506,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 5:22 PM ET",
-  "generatedAtISO": "2026-09-15T17:22:19-04:00",
+  "generatedAt": "Sep 15, 5:32 PM ET",
+  "generatedAtISO": "2026-09-15T17:32:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1582,6 +1597,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T21:16:09.442548Z",
         "until": "2026-09-15T21:16:41.576359Z"
+      },
+      {
+        "since": "2026-09-15T21:21:59.450838Z",
+        "until": "2026-09-15T21:22:31.429190Z"
+      },
+      {
+        "since": "2026-09-15T21:28:09.534303Z",
+        "until": "2026-09-15T21:28:09.836086Z"
       }
     ],
     "down": false
@@ -1595,7 +1618,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:18:00-04:00"
+      "lastISO": "2026-09-15T17:29:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1605,7 +1628,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:15:00-04:00"
+      "lastISO": "2026-09-15T17:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1615,7 +1638,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:20:00-04:00"
+      "lastISO": "2026-09-15T17:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1625,7 +1648,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:15:00-04:00"
+      "lastISO": "2026-09-15T17:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1635,7 +1658,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:20:00-04:00"
+      "lastISO": "2026-09-15T17:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1655,7 +1678,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:01:00-04:00"
+      "lastISO": "2026-09-15T17:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1941,6 +1964,15 @@ const DATA = /*__DATA__*/{
   "robotsNote": null,
   "lease": {
     "holder": "codex",
+    "provider": {
+      "name": "Claude",
+      "primary": "anthropic",
+      "model": "claude-opus-5",
+      "fallbackName": "Codex",
+      "fallbackModel": "gpt-6-astra",
+      "setAtISO": "2026-09-15T17:32:55-04:00",
+      "setBy": "human:jboon"
+    },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
     "flippedBy": "human:Junyan via claude-session-2026-09-04",
@@ -2109,7 +2141,6 @@ const DATA = /*__DATA__*/{
           "The Host",
           "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
-          "The Weatherman",
           "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Closer",
@@ -2148,12 +2179,59 @@ const DATA = /*__DATA__*/{
           "The Watchman"
         ],
         "worst": null
+      },
+      {
+        "k": "climate",
+        "name": "Weatherman",
+        "fine": "Thermostats read hourly. Cooling set by the bookings.",
+        "down": "Rooms drift. Dancers sweat or freeze.",
+        "status": "ok",
+        "robots": [
+          "The Weatherman"
+        ],
+        "worst": null,
+        "studios": [
+          {
+            "studio": "509",
+            "name": "509 Bloor",
+            "inside": 23.1,
+            "setpoint": "COOL 22.95",
+            "mode": "COOL",
+            "hvac": "OFF",
+            "humidity": 49,
+            "whenISO": "2026-09-15T17:05:00-04:00",
+            "ageMin": 27,
+            "stale": false
+          },
+          {
+            "studio": "901",
+            "name": "901 Yonge",
+            "inside": 23.3,
+            "setpoint": "",
+            "mode": "OFF",
+            "hvac": "OFF",
+            "humidity": 54,
+            "whenISO": "2026-09-15T17:05:00-04:00",
+            "ageMin": 27,
+            "stale": false
+          }
+        ],
+        "climateNote": null
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:22"
+    "provider": {
+      "name": "Claude",
+      "primary": "anthropic",
+      "model": "claude-opus-5",
+      "fallbackName": "Codex",
+      "fallbackModel": "gpt-6-astra",
+      "setAtISO": "2026-09-15T17:32:55-04:00",
+      "setBy": "human:jboon"
+    },
+    "stamp": "17:32"
   }
 }/*__END_DATA__*/;
 
@@ -2984,6 +3062,29 @@ function cdTxt(nr){
   const c=nr.mins<60?`in ${nr.mins}m`:`in ${Math.floor(nr.mins/60)}h ${nr.mins%60}m`;
   return `${nr.hhmm} · ${c}`;
 }
+/* The model behind the fleet. `provider` is recorded on the lease page by
+   hermes-provider.sh at every swap (lease.py set-provider); absent = unknown,
+   never guessed from the lease holder. */
+function brainHtml(p, F){
+  if(!p) return `<div class="brain"><span class="lbl">Thinks with</span><span class="pv unknown">?</span>
+    <span class="det"><b>Model not recorded.</b> Run <code>hermes-provider status</code>, then <code>lease.py set-provider claude|codex</code>.</span></div>`;
+  const cls = (p.name||"").toLowerCase();
+  const set = p.setAtISO ? ` · set ${agoTxt(p.setAtISO)}` : "";
+  return `<div class="brain"><span class="lbl">Thinks with</span><span class="pv ${esc(cls)}">${esc((p.name||"").toUpperCase())}</span>
+    <span class="det"><b>${esc(p.model||p.primary)}</b>${p.fallbackName?` · falls back to ${esc(p.fallbackName)}${p.fallbackModel?" ("+esc(p.fallbackModel)+")":""}`:""}${set}<br>
+    Lanes run by Hermes${F&&F.where?" "+esc(F.where):""}; the lease holder (${esc(F&&F.holder||"?")}) says who owns them, not which model thinks.</span></div>`;
+}
+/* Weatherman: newest thermostat reading per studio (🥵 Thermal Log). */
+function climateHtml(l){
+  if(!l.studios || !l.studios.length) return `<div class="clim"><span class="sid">—</span><span class="dim">${esc(l.climateNote||"No readings")}</span></div>`;
+  const fmt = v => v==null ? "?" : (Math.round(v*10)/10).toFixed(1).replace(/\.0$/,"");
+  return `<div class="clim">` + l.studios.map(s=>{
+    const sp = s.setpoint ? "set "+esc(s.setpoint.replace(/\d+(?:\.\d+)?/, n=>fmt(+n))) : "no cool setpoint";
+    const hv = s.hvac ? " · HVAC "+esc(s.hvac.toLowerCase()) : (s.mode ? " · mode "+esc(s.mode.toLowerCase()) : "");
+    const age = s.whenISO ? agoTxt(s.whenISO) : "no time";
+    return `<span class="sid">${esc(s.name)}</span><span><span class="t">${fmt(s.inside)}°</span> · ${sp}${hv} <span class="${s.stale?"stale":"dim"}">· ${esc(age)}</span></span>`;
+  }).join("") + (l.climateNote?`<span class="sid"></span><span class="stale">${esc(l.climateNote)}</span>`:"") + `</div>`;
+}
 function renderRobots(){
   const R = DATA.robots;
   if(!R){
@@ -3000,6 +3101,7 @@ function renderRobots(){
   const F = DATA.fleet;
   let html = "";
   if(F){
+    html += brainHtml(F.provider, F);
     const label={ok:"fine",watch:"look",crit:"broken"};
     html += `<div class="fleet">` + F.lines.map(l=>{
       const s=l.status, w=l.worst;
@@ -3007,10 +3109,10 @@ function renderRobots(){
         : `<b>${esc(s==="crit" ? "Completion is overdue." : "Awaiting the next completion.")}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+agoTxt(w.lastISO).replace(" ago","")+".":""}`;
       return `<div class="hrow ${s==="ok"?"":s}" title="${esc(l.robots.join(", "))}">
         <span class="fleet-status-dot ${s==="ok"?"":s}"></span>
-        <span class="nm">${esc(l.name)}<small>${small}</small></span>
+        <span class="nm">${esc(l.name)}<small>${small}</small>${l.k==="climate"?climateHtml(l):""}</span>
         <span class="st">${label[s]||"fine"}</span>
       </div>`;}).join("") +
-      `<div class="who">${F.liveCount} robots${F.holder?` · run by ${esc(F.holder)}`:""}${F.where?` ${esc(F.where)}`:""} · ${esc(F.stamp)}</div></div>`;
+      `<div class="who">${F.liveCount} robots${F.where?` · lanes run by Hermes ${esc(F.where)}`:""}${F.holder?` · lease: ${esc(F.holder)}`:""} · ${esc(F.stamp)}</div></div>`;
   }
   const row = r => {
     const chip = {ok:"ok", watch:"watch", crit:"crit", plain:"plain"}[r.status] || "plain";

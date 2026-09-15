@@ -220,6 +220,15 @@
   .hrow.watch .nm small,.hrow.crit .nm small{color:var(--chalk)}
   .hrow.watch .nm small b{color:var(--watch)} .hrow.crit .nm small b{color:var(--crit)}
   .fleet .who{font-family:var(--mono);font-size:11px;color:var(--chalk-faint);padding:2px 2px 0}
+  .brain{display:flex;align-items:center;gap:12px;margin:8px 0 10px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;
+         background:var(--scrim);box-shadow:var(--shadow);flex-wrap:wrap}
+  .brain .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-faint)}
+  .brain .pv{font-weight:800;font-size:19px;line-height:1;padding:6px 10px;border-radius:8px;background:var(--ok);color:#fff}
+  .brain .pv.codex{background:#1f2937} .brain .pv.claude{background:#c96442} .brain .pv.unknown{background:var(--watch)}
+  .brain .det{font-family:var(--mono);font-size:11.5px;color:var(--chalk-dim);flex:1 1 100%;line-height:1.4}
+  .brain .det b{color:var(--chalk);font-weight:600}
+  .clim{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin-top:6px;font-family:var(--mono);font-size:12px;color:var(--chalk)}
+  .clim .sid{color:var(--chalk-dim)} .clim .t{font-weight:700;font-size:13.5px} .clim .dim{color:var(--chalk-faint)} .clim .stale{color:var(--crit)}
   .row .tm{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums}
   .row .nm{font-weight:600;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .nm .st{color:var(--chalk-faint);font-weight:400;margin-left:6px}
@@ -282,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 5:22 PM ET",
-  "generatedAtISO": "2026-09-15T17:22:19-04:00",
+  "generatedAt": "Sep 15, 5:32 PM ET",
+  "generatedAtISO": "2026-09-15T17:32:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1358,6 +1367,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T21:16:09.442548Z",
         "until": "2026-09-15T21:16:41.576359Z"
+      },
+      {
+        "since": "2026-09-15T21:21:59.450838Z",
+        "until": "2026-09-15T21:22:31.429190Z"
+      },
+      {
+        "since": "2026-09-15T21:28:09.534303Z",
+        "until": "2026-09-15T21:28:09.836086Z"
       }
     ],
     "down": false
@@ -1371,7 +1388,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:18:00-04:00"
+      "lastISO": "2026-09-15T17:29:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1381,7 +1398,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:15:00-04:00"
+      "lastISO": "2026-09-15T17:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1391,7 +1408,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:20:00-04:00"
+      "lastISO": "2026-09-15T17:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1401,7 +1418,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:15:00-04:00"
+      "lastISO": "2026-09-15T17:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1411,7 +1428,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:20:00-04:00"
+      "lastISO": "2026-09-15T17:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1431,7 +1448,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T17:01:00-04:00"
+      "lastISO": "2026-09-15T17:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1717,6 +1734,15 @@ const DATA = /*__DATA__*/{
   "robotsNote": null,
   "lease": {
     "holder": "codex",
+    "provider": {
+      "name": "Claude",
+      "primary": "anthropic",
+      "model": "claude-opus-5",
+      "fallbackName": "Codex",
+      "fallbackModel": "gpt-6-astra",
+      "setAtISO": "2026-09-15T17:32:55-04:00",
+      "setBy": "human:jboon"
+    },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
     "flippedBy": "human:Junyan via claude-session-2026-09-04",
@@ -1885,7 +1911,6 @@ const DATA = /*__DATA__*/{
           "The Host",
           "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
-          "The Weatherman",
           "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Closer",
@@ -1924,12 +1949,59 @@ const DATA = /*__DATA__*/{
           "The Watchman"
         ],
         "worst": null
+      },
+      {
+        "k": "climate",
+        "name": "Weatherman",
+        "fine": "Thermostats read hourly. Cooling set by the bookings.",
+        "down": "Rooms drift. Dancers sweat or freeze.",
+        "status": "ok",
+        "robots": [
+          "The Weatherman"
+        ],
+        "worst": null,
+        "studios": [
+          {
+            "studio": "509",
+            "name": "509 Bloor",
+            "inside": 23.1,
+            "setpoint": "COOL 22.95",
+            "mode": "COOL",
+            "hvac": "OFF",
+            "humidity": 49,
+            "whenISO": "2026-09-15T17:05:00-04:00",
+            "ageMin": 27,
+            "stale": false
+          },
+          {
+            "studio": "901",
+            "name": "901 Yonge",
+            "inside": 23.3,
+            "setpoint": "",
+            "mode": "OFF",
+            "hvac": "OFF",
+            "humidity": 54,
+            "whenISO": "2026-09-15T17:05:00-04:00",
+            "ageMin": 27,
+            "stale": false
+          }
+        ],
+        "climateNote": null
       }
     ],
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "17:22"
+    "provider": {
+      "name": "Claude",
+      "primary": "anthropic",
+      "model": "claude-opus-5",
+      "fallbackName": "Codex",
+      "fallbackModel": "gpt-6-astra",
+      "setAtISO": "2026-09-15T17:32:55-04:00",
+      "setBy": "human:jboon"
+    },
+    "stamp": "17:32"
   }
 }/*__END_DATA__*/;
 
@@ -2449,12 +2521,26 @@ function cdTxt(nr){
     const ago=iso=>{if(!iso)return"never";const m=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/60000));
       return m<60?`${m}m`:m<1440?`${Math.floor(m/60)}h`:`${Math.floor(m/1440)}d`;};
     const label={ok:"fine",watch:"look",crit:"broken"};
-    leaseHtml=`<div class="fleet">`+F.lines.map(l=>{
+    const p=F.provider;
+    const brain=!p?`<div class="brain"><span class="lbl">Thinks with</span><span class="pv unknown">?</span><span class="det"><b>Model not recorded.</b> Run hermes-provider status, then lease.py set-provider.</span></div>`
+      :`<div class="brain"><span class="lbl">Thinks with</span><span class="pv ${esc((p.name||"").toLowerCase())}">${esc((p.name||"").toUpperCase())}</span>`+
+       `<span class="det"><b>${esc(p.model||p.primary)}</b>${p.fallbackName?` · falls back to ${esc(p.fallbackName)}`:""}${p.setAtISO?` · set ${ago(p.setAtISO)} ago`:""}<br>Lanes run by Hermes${F.where?" "+esc(F.where):""}; lease holder ${esc(F.holder||"?")} says who owns them, not which model thinks.</span></div>`;
+    const clim=l=>{
+      if(l.k!=="climate")return"";
+      if(!l.studios||!l.studios.length)return`<div class="clim"><span class="sid">—</span><span class="dim">${esc(l.climateNote||"No readings")}</span></div>`;
+      const fmt=v=>v==null?"?":(Math.round(v*10)/10).toFixed(1).replace(/\.0$/,"");
+      return `<div class="clim">`+l.studios.map(s=>{
+        const sp=s.setpoint?"set "+esc(s.setpoint.replace(/\d+(?:\.\d+)?/,n=>fmt(+n))):"no cool setpoint";
+        const hv=s.hvac?" · HVAC "+esc(s.hvac.toLowerCase()):(s.mode?" · mode "+esc(s.mode.toLowerCase()):"");
+        return `<span class="sid">${esc(s.name)}</span><span><span class="t">${fmt(s.inside)}°</span> · ${sp}${hv} <span class="${s.stale?"stale":"dim"}">· ${s.whenISO?ago(s.whenISO)+" ago":"no time"}</span></span>`;
+      }).join("")+(l.climateNote?`<span class="sid"></span><span class="stale">${esc(l.climateNote)}</span>`:"")+`</div>`;
+    };
+    leaseHtml=brain+`<div class="fleet">`+F.lines.map(l=>{
       const s=l.status,w=l.worst;
       const small=s==="ok"?esc(l.fine):`<b>${esc(s==="crit" ? "Completion is overdue." : "Awaiting the next completion.")}</b> ${w?esc(w.run)+" — "+esc(w.label.toLowerCase())+", quiet "+ago(w.lastISO)+".":""}`;
       return `<div class="hrow ${s==="ok"?"":s}"><span class="dot ${s==="ok"?"":s}"></span>`+
-        `<span class="nm">${esc(l.name)}<small>${small}</small></span><span class="st">${label[s]||"fine"}</span></div>`;}).join("")+
-      `<div class="who">${F.liveCount} robots${F.holder?` · run by ${esc(F.holder)}`:""}${F.where?` ${esc(F.where)}`:""} · ${esc(F.stamp)}</div></div>`;
+        `<span class="nm">${esc(l.name)}<small>${small}</small>${clim(l)}</span><span class="st">${label[s]||"fine"}</span></div>`;}).join("")+
+      `<div class="who">${F.liveCount} robots${F.where?` · lanes run by Hermes ${esc(F.where)}`:""}${F.holder?` · lease: ${esc(F.holder)}`:""} · ${esc(F.stamp)}</div></div>`;
   }
 
   const R=DATA.robots;
