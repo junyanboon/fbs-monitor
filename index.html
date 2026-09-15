@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 11:32 PM ET",
-  "generatedAtISO": "2026-09-14T23:32:08-04:00",
+  "generatedAt": "Sep 14, 11:46 PM ET",
+  "generatedAtISO": "2026-09-14T23:46:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -2103,21 +2103,23 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T03:25:15.833685Z",
         "until": "2026-09-15T03:27:36.400610Z"
+      },
+      {
+        "since": "2026-09-15T03:33:26.188241Z",
+        "until": "2026-09-15T03:33:39.533677Z"
+      },
+      {
+        "since": "2026-09-15T03:38:46.342929Z",
+        "until": "2026-09-15T03:38:54.639999Z"
+      },
+      {
+        "since": "2026-09-15T03:44:15.801770Z",
+        "until": "2026-09-15T03:44:23.151294Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-14T23:15:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2126,7 +2128,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T23:31:00-04:00"
+      "lastISO": "2026-09-14T23:47:00-04:00"
+    },
+    {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T23:38:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -2276,7 +2288,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:16:00-04:00"
+      "lastISO": "2026-09-14T23:38:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2286,7 +2298,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:29:00-04:00"
+      "lastISO": "2026-09-14T23:39:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2296,7 +2308,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:15:00-04:00"
+      "lastISO": "2026-09-14T23:38:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2326,7 +2338,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-14T23:15:00-04:00"
+      "lastISO": "2026-09-14T23:28:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2674,7 +2686,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "23:32"
+    "stamp": "23:46"
   }
 }/*__END_DATA__*/;
 
@@ -2867,6 +2879,12 @@ const OVER_BIG = 1;       // an hour past the booked end stops being "a bit late
                  the overrun is big enough to bill or to have pushed the next
                  booking. Act on it. */
 function verdictOf(e, now){
+  /* Did the next renter in this studio take over the panel? A booking that
+     starts between 15 min before and 30 min after this one ends, with its own
+     arrival or departure on record. */
+  const handedOver = e => ((typeof DATA!=="undefined" && DATA.events) || []).some(o =>
+    o!==e && o.kind==="booking" && o.studio===e.studio
+    && o.start >= e.end-0.25 && o.start <= e.end+0.5 && (o.arrived || o.departed));
   if(FEED_DOWN || e.kind!=="booking") return null;
   const nrm = t => t==null ? null : (t < e.start-12 ? t+24 : t);
   const arr = nrm(parseHM(e.arrived)), dep = nrm(parseHM(e.departed));
@@ -2897,8 +2915,12 @@ function verdictOf(e, now){
        (see the pass-2 comment in build.py). Junyan's ruling, 2026-09-05: flag it
        anyway. An unclosed booking is worth a glance even when the explanation is
        boring, and the desk can tell a back-to-back from a real open studio far
-       faster than this builder can. */
-    odd.push("No departure seen — nobody armed after this booking");
+       faster than this builder can.
+       Narrowed 2026-09-15 (Junyan): when the next booking in the same studio
+       starts within 30 min and was itself seen at the panel, the panel passed
+       to that renter — a clean handover, not an open studio (Greg Samba →
+       Janet Zamora, 901). Only an unexplained open panel is flagged. */
+    if(!handedOver(e)) odd.push("No departure seen — nobody armed after this booking");
   }
   if(bad.length) return {cls:"bad", glyph:"!", why:bad.concat(odd).join(" · ")};
   if(odd.length) return {cls:"odd", glyph:"\u26a0", why:odd.join(" · ")};
