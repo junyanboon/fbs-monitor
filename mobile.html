@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 10:17 PM ET",
-  "generatedAtISO": "2026-09-14T22:17:02-04:00",
+  "generatedAt": "Sep 14, 10:23 PM ET",
+  "generatedAtISO": "2026-09-14T22:23:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -770,17 +770,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "COURTESY — Richard 'Morpheus' Walters — Sep 17 shift decline ack",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Responder",
-      "created": "Sep 14 · 21:54",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "PBF overtime (arrived-early) — Alison Murray •••",
       "kind": null,
       "channel": "SMS",
@@ -799,6 +788,17 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "Other",
       "created": "Sep 14 · 22:15",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "COURTESY — Salia Magno — PBF positive reply ack [responder:•••:vps:sms-1a0a2ccd3cb996c2]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Responder",
+      "created": "Sep 14 · 22:22",
       "send_after": null,
       "send_after_iso": null
     }
@@ -1831,20 +1831,24 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T02:11:25.694448Z",
         "until": "2026-09-15T02:11:32.835254Z"
+      },
+      {
+        "since": "2026-09-15T02:17:25.732510Z",
+        "until": "2026-09-15T02:17:35.260766Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-14T20:24:00-04:00"
+      "lastISO": "2026-09-14T22:00:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1854,7 +1858,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:13:00-04:00"
+      "lastISO": "2026-09-14T22:19:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1874,7 +1878,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:16:00-04:00"
+      "lastISO": "2026-09-14T22:20:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1894,7 +1898,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:15:00-04:00"
+      "lastISO": "2026-09-14T22:20:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1904,17 +1908,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:44:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:00:00-04:00"
+      "lastISO": "2026-09-14T22:18:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1945,6 +1939,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T22:22:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2004,7 +2008,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:36:00-04:00"
+      "lastISO": "2026-09-14T22:07:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2335,20 +2339,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
+          "The Concierge",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Due",
-          "lastISO": "2026-09-14T20:24:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2406,7 +2406,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "22:17"
+    "stamp": "22:23"
   }
 }/*__END_DATA__*/;
 
