@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 9:17 AM ET",
-  "generatedAtISO": "2026-09-15T09:17:08-04:00",
+  "generatedAt": "Sep 15, 9:32 AM ET",
+  "generatedAtISO": "2026-09-15T09:32:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -618,10 +618,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:31",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Jia Chian Lee",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1001,7 +1001,17 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "09:31",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789479114770,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1012,16 +1022,6 @@ const DATA = /*__DATA__*/{
       "time": "20:46",
       "ts": 1789433190290,
       "when": "Mon 20:46"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "Maggie Morrison",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "20:38",
-      "ts": 1789432726991,
-      "when": "Mon 20:38"
     },
     "527": {
       "studio": "527",
@@ -1054,7 +1054,7 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
@@ -1244,6 +1244,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T13:15:11.376972Z",
         "until": "2026-09-15T13:15:24.709411Z"
+      },
+      {
+        "since": "2026-09-15T13:21:06.694625Z",
+        "until": "2026-09-15T13:21:14.077137Z"
+      },
+      {
+        "since": "2026-09-15T13:26:46.263209Z",
+        "until": "2026-09-15T13:27:00.592452Z"
+      },
+      {
+        "since": "2026-09-15T13:32:11.266703Z",
+        "until": "2026-09-15T13:32:17.611105Z"
       }
     ],
     "down": false
@@ -1257,7 +1269,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T09:14:00-04:00"
+      "lastISO": "2026-09-15T09:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1267,7 +1279,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T09:15:00-04:00"
+      "lastISO": "2026-09-15T09:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1277,7 +1289,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T09:15:00-04:00"
+      "lastISO": "2026-09-15T09:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1287,7 +1299,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T09:05:00-04:00"
+      "lastISO": "2026-09-15T09:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1297,7 +1309,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T09:15:00-04:00"
+      "lastISO": "2026-09-15T09:30:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1317,7 +1329,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T09:00:00-04:00"
+      "lastISO": "2026-09-15T09:22:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1427,7 +1439,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T08:52:00-04:00"
+      "lastISO": "2026-09-15T09:25:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1467,7 +1479,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T09:16:00-04:00"
+      "lastISO": "2026-09-15T09:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1815,7 +1827,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "09:17"
+    "stamp": "09:32"
   }
 }/*__END_DATA__*/;
 
