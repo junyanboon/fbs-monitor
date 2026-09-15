@@ -506,8 +506,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 1:48 PM ET",
-  "generatedAtISO": "2026-09-15T13:48:14-04:00",
+  "generatedAt": "Sep 15, 2:02 PM ET",
+  "generatedAtISO": "2026-09-15T14:02:16-04:00",
   "studios": [
     {
       "id": "509A",
@@ -546,11 +546,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:59",
+      "departed": "11:27",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "August TenWolde",
+      "departed_by": "August TenWolde",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -618,11 +618,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:31",
+      "departed": "11:29",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Jia Chian Lee",
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -642,10 +642,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "12:45",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Maggie Morrison",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -957,28 +957,54 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "August TenWolde",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "11:27",
-      "ts": 1789486026851,
-      "when": "Tue 11:27"
-    },
-    "509B": {
-      "kind": "arrival",
-      "name": "Maggie Morrison",
-      "remote": false,
-      "source": "doors",
+  "armEvents": [
+    {
       "studio": "509B",
-      "time": "12:45",
-      "ts": 1789490712126,
-      "when": "Tue 12:45"
+      "name": "Jia Chian Lee",
+      "time": "09:31",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789479114770,
+      "source": "doors"
     },
+    {
+      "studio": "509A",
+      "name": "August TenWolde",
+      "time": "09:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789480780002,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "August TenWolde",
+      "time": "11:27",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789486026851,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "11:29",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789486192890,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "12:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789490712126,
+      "source": "doors"
+    }
+  ],
+  "panelPrior": {
     "527": {
       "studio": "527",
       "name": "Ishfaaq Jookhun",
@@ -1010,9 +1036,9 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-15T16:48:00+00:00",
@@ -1392,6 +1418,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T17:45:08.153256Z",
         "until": "2026-09-15T17:45:52.422945Z"
+      },
+      {
+        "since": "2026-09-15T17:51:08.238679Z",
+        "until": "2026-09-15T17:51:08.636106Z"
+      },
+      {
+        "since": "2026-09-15T17:56:10.881588Z",
+        "until": "2026-09-15T17:56:11.022619Z"
+      },
+      {
+        "since": "2026-09-15T18:02:08.281388Z",
+        "until": "2026-09-15T18:02:08.622016Z"
       }
     ],
     "down": false
@@ -1405,7 +1443,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:45:00-04:00"
+      "lastISO": "2026-09-15T13:57:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1415,7 +1453,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:45:00-04:00"
+      "lastISO": "2026-09-15T14:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1425,7 +1463,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:45:00-04:00"
+      "lastISO": "2026-09-15T14:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1435,7 +1473,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:35:00-04:00"
+      "lastISO": "2026-09-15T13:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1445,7 +1483,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:45:00-04:00"
+      "lastISO": "2026-09-15T14:00:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1465,7 +1503,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:30:00-04:00"
+      "lastISO": "2026-09-15T13:52:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1545,7 +1583,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:02:00-04:00"
+      "lastISO": "2026-09-15T14:00:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1575,7 +1613,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:24:00-04:00"
+      "lastISO": "2026-09-15T13:55:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1615,7 +1653,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T13:46:00-04:00"
+      "lastISO": "2026-09-15T14:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1963,7 +2001,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "13:48"
+    "stamp": "14:02"
   }
 }/*__END_DATA__*/;
 
