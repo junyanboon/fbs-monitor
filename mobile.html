@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 12:16 PM ET",
-  "generatedAtISO": "2026-09-15T12:16:59-04:00",
+  "generatedAt": "Sep 15, 12:18 PM ET",
+  "generatedAtISO": "2026-09-15T12:18:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -730,17 +730,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 15 · 11:10",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "PBF — Jia Chian Lee ••• [pbf:3da7503281c481bda860e12ce82c7e23]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Sent",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 15 · 11:31",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
   "attention": [],
@@ -1128,20 +1117,24 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T16:12:11.092984Z",
         "until": "2026-09-15T16:12:11.441084Z"
+      },
+      {
+        "since": "2026-09-15T16:17:28.912221Z",
+        "until": "2026-09-15T16:17:29.264786Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "reconcile-sweep (Cloud Run)",
+      "run": "Ops Executor",
       "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "expected": null,
+      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-15T11:52:00-04:00"
+      "lastISO": "2026-09-15T11:44:00-04:00"
     },
     {
       "run": "The Concierge",
@@ -1204,14 +1197,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T12:15:00-04:00"
     },
     {
-      "run": "Ops Executor",
+      "run": "reconcile-sweep (Cloud Run)",
       "cadence": "15-min",
-      "expected": null,
-      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T11:44:00-04:00"
+      "lastISO": "2026-09-15T12:01:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1703,7 +1696,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "12:16"
+    "stamp": "12:18"
   }
 }/*__END_DATA__*/;
 
