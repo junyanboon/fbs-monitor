@@ -282,8 +282,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 14, 2026",
   "shiftBaseDay": "2026-09-14",
-  "generatedAt": "Sep 14, 10:23 PM ET",
-  "generatedAtISO": "2026-09-14T22:23:05-04:00",
+  "generatedAt": "Sep 14, 10:30 PM ET",
+  "generatedAtISO": "2026-09-14T22:30:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -539,12 +539,12 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "20:09",
-      "departed": null,
+      "departed": "22:24",
       "facilitator": null,
       "arrived_by": "Claudia Dzierbicki",
-      "departed_by": null,
+      "departed_by": "Ishfaaq Jookhun",
       "arrived_foreign": true,
-      "departed_foreign": false,
+      "departed_foreign": true,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -770,28 +770,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "PBF overtime (arrived-early) — Alison Murray •••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Timekeeper",
-      "created": "Sep 14 · 22:10",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Ops draft [ops:3ef476423b2583a58f5daba8eb6700c1]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "Other",
-      "created": "Sep 14 · 22:15",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "COURTESY — Salia Magno — PBF positive reply ack [responder:•••:vps:sms-1a0a2ccd3cb996c2]",
       "kind": null,
       "channel": "SMS",
@@ -799,6 +777,17 @@ const DATA = /*__DATA__*/{
       "studio": "693",
       "raised_by": "The Responder",
       "created": "Sep 14 · 22:22",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Ops draft [ops:3ef476423b2583a58f5daba8eb6700c1]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "Other",
+      "created": "Sep 14 · 22:15",
       "send_after": null,
       "send_after_iso": null
     }
@@ -1083,6 +1072,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789433761000,
       "source": "panel"
+    },
+    {
+      "studio": "527",
+      "name": "Ishfaaq Jookhun",
+      "time": "22:24",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789439041737,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1092,9 +1090,9 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-15T00:56:01+00:00",
+    "updatedAt": "2026-09-15T02:30:01+00:00",
     "mailCheck": {
-      "matched": 10,
+      "matched": 11,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1835,20 +1833,28 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T02:17:25.732510Z",
         "until": "2026-09-15T02:17:35.260766Z"
+      },
+      {
+        "since": "2026-09-15T02:23:15.932685Z",
+        "until": "2026-09-15T02:23:31.455079Z"
+      },
+      {
+        "since": "2026-09-15T02:29:15.917207Z",
+        "until": "2026-09-15T02:29:26.261854Z"
       }
     ],
     "down": false
   },
   "robots": [
     {
-      "run": "reconcile-sweep (Cloud Run)",
+      "run": "handback-sweep (Hostinger)",
       "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-14T22:00:00-04:00"
+      "lastISO": "2026-09-14T22:05:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1858,7 +1864,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:19:00-04:00"
+      "lastISO": "2026-09-14T22:30:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1878,17 +1884,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:20:00-04:00"
-    },
-    {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:05:00-04:00"
+      "lastISO": "2026-09-14T22:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1898,7 +1894,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T22:20:00-04:00"
+      "lastISO": "2026-09-14T22:25:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1909,6 +1905,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-14T22:18:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-14T22:23:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2018,7 +2024,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-14T21:56:00-04:00"
+      "lastISO": "2026-09-14T22:26:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2355,7 +2361,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
           "handback-sweep (Hostinger)",
           "The Analyst",
@@ -2369,7 +2375,11 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "handback-sweep (Hostinger)",
+          "label": "Due",
+          "lastISO": "2026-09-14T22:05:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2406,7 +2416,7 @@ const DATA = /*__DATA__*/{
     "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
-    "stamp": "22:23"
+    "stamp": "22:30"
   }
 }/*__END_DATA__*/;
 
