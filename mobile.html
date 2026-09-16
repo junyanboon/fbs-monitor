@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 16, 1:02 AM ET",
-  "generatedAtISO": "2026-09-16T01:02:19-04:00",
+  "generatedAt": "Sep 16, 1:10 AM ET",
+  "generatedAtISO": "2026-09-16T01:10:30-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1926,6 +1926,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T05:01:12.113569Z",
         "until": "2026-09-16T05:01:12.454896Z"
+      },
+      {
+        "since": "2026-09-16T05:06:41.047637Z",
+        "until": "2026-09-16T05:06:41.395525Z"
       }
     ],
     "down": false
@@ -1949,7 +1953,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T00:59:00-04:00"
+      "lastISO": "2026-09-16T01:05:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1969,7 +1973,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T01:02:00-04:00"
+      "lastISO": "2026-09-16T01:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1979,7 +1983,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T00:07:00-04:00"
+      "lastISO": "2026-09-16T01:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2099,7 +2103,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-16T01:01:00-04:00"
+      "lastISO": "2026-09-16T01:06:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2119,7 +2123,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-16T01:00:00-04:00"
+      "lastISO": "2026-09-16T01:10:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2159,7 +2163,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-16T00:50:00-04:00"
+      "lastISO": "2026-09-16T01:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2540,11 +2544,15 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
           "The Weatherman"
         ],
-        "worst": null,
+        "worst": {
+          "run": "Thermal Log",
+          "label": "No fresh reading",
+          "lastISO": "2026-09-15T23:05:00-04:00"
+        },
         "studios": [
           {
             "studio": "509",
@@ -2555,8 +2563,8 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 49,
             "whenISO": "2026-09-15T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 125,
+            "stale": true
           },
           {
             "studio": "901",
@@ -2567,11 +2575,11 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 54,
             "whenISO": "2026-09-15T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 125,
+            "stale": true
           }
         ],
-        "climateNote": null
+        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind"
       }
     ],
     "liveCount": 24,
@@ -2586,7 +2594,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "01:02"
+    "stamp": "01:10"
   }
 }/*__END_DATA__*/;
 
