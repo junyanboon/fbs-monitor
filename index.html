@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 10:02 AM ET",
-  "generatedAtISO": "2026-09-16T10:02:26-04:00",
+  "generatedAt": "Sep 16, 10:17 AM ET",
+  "generatedAtISO": "2026-09-16T10:17:08-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1096,13 +1096,13 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Taylor Yeung — OHDC workshop room advice (Sep 21–26)",
+      "code": "Overtime notice — Caryl CUIZON (Ifreestyle) — 693 Sep 15 [desk-sort:•••:•••]",
       "kind": null,
-      "channel": "WhatsApp",
+      "channel": "Email",
       "status": "Pending Review",
-      "studio": null,
-      "raised_by": "Staff (manual)",
-      "created": "Sep 16 · 10:02",
+      "studio": "693",
+      "raised_by": "Other",
+      "created": "Sep 16 · 10:10",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1480,6 +1480,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T14:02:06.488522Z",
         "until": "2026-09-16T14:02:07.111383Z"
+      },
+      {
+        "since": "2026-09-16T14:07:43.979931Z",
+        "until": "2026-09-16T14:08:30.419523Z"
       }
     ],
     "down": false
@@ -1496,16 +1500,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T17:01:00-04:00"
     },
     {
-      "run": "Desk Sort",
-      "cadence": "Hourly",
-      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
-      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-16T08:13:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1513,7 +1507,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T09:59:00-04:00"
+      "lastISO": "2026-09-16T10:15:00-04:00"
+    },
+    {
+      "run": "Desk Sort",
+      "cadence": "Hourly",
+      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
+      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-16T10:36:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1533,7 +1537,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T10:00:00-04:00"
+      "lastISO": "2026-09-16T10:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1543,7 +1547,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T10:01:00-04:00"
+      "lastISO": "2026-09-16T10:16:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1553,7 +1557,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T09:55:00-04:00"
+      "lastISO": "2026-09-16T10:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1563,7 +1567,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T10:00:00-04:00"
+      "lastISO": "2026-09-16T10:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1573,7 +1577,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T10:02:00-04:00"
+      "lastISO": "2026-09-16T10:17:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1583,7 +1587,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T09:50:00-04:00"
+      "lastISO": "2026-09-16T10:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1593,7 +1597,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T09:07:00-04:00"
+      "lastISO": "2026-09-16T10:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1683,7 +1687,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T09:34:00-04:00"
+      "lastISO": "2026-09-16T10:04:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1723,7 +1727,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T09:10:00-04:00"
+      "lastISO": "2026-09-16T10:10:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2104,24 +2108,24 @@ const DATA = /*__DATA__*/{
             "studio": "509",
             "name": "509 Bloor",
             "inside": 23.1,
-            "setpoint": "",
-            "mode": "OFF",
+            "setpoint": "COOL 26",
+            "mode": "COOL",
             "hvac": "OFF",
             "humidity": 55,
-            "whenISO": "2026-09-16T09:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-16T10:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 20.2,
+            "inside": 19.8,
             "setpoint": "COOL 20",
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 54,
-            "whenISO": "2026-09-16T09:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-16T10:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           }
         ],
@@ -2140,7 +2144,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "10:02"
+    "stamp": "10:17"
   }
 }/*__END_DATA__*/;
 
