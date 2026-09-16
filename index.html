@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 10:17 PM ET",
-  "generatedAtISO": "2026-09-15T22:17:14-04:00",
+  "generatedAt": "Sep 15, 10:18 PM ET",
+  "generatedAtISO": "2026-09-15T22:18:11-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1023,6 +1023,28 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "The Greeter",
       "created": "Sep 15 · 22:10",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Alison Murray - ring found in 527 after Sep 13 class",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Concierge",
+      "created": "Sep 15 · 22:17",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Zoey Gould - thanks for the ring in Lost and Found",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "The Concierge",
+      "created": "Sep 15 · 22:17",
       "send_after": null,
       "send_after_iso": null
     }
@@ -1950,6 +1972,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T17:01:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-15T20:25:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1957,7 +1989,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:12:00-04:00"
+      "lastISO": "2026-09-15T22:18:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -2007,7 +2039,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:17:00-04:00"
+      "lastISO": "2026-09-15T22:18:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2048,16 +2080,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-15T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-15T20:25:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2477,16 +2499,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-15T20:25:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2563,7 +2589,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 13,
             "stale": false
           },
           {
@@ -2575,7 +2601,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 13,
             "stale": false
           }
         ],
@@ -2594,7 +2620,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "22:17"
+    "stamp": "22:18"
   }
 }/*__END_DATA__*/;
 
