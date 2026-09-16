@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 10:02 PM ET",
-  "generatedAtISO": "2026-09-15T22:02:14-04:00",
+  "generatedAt": "Sep 15, 10:03 PM ET",
+  "generatedAtISO": "2026-09-15T22:03:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1697,6 +1697,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T17:01:00-04:00"
     },
     {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-15T21:40:00-04:00"
+    },
+    {
       "run": "The Registrar (booking-sweep, Hostinger)",
       "cadence": "Hourly",
       "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
@@ -1764,17 +1774,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:02:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:40:00-04:00"
+      "lastISO": "2026-09-15T22:03:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2310,7 +2310,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T21:05:00-04:00",
-            "ageMin": 57,
+            "ageMin": 58,
             "stale": false
           },
           {
@@ -2322,7 +2322,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 51,
             "whenISO": "2026-09-15T21:05:00-04:00",
-            "ageMin": 57,
+            "ageMin": 58,
             "stale": false
           }
         ],
@@ -2341,7 +2341,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "22:02"
+    "stamp": "22:03"
   }
 }/*__END_DATA__*/;
 
