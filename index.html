@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 2:37 PM ET",
-  "generatedAtISO": "2026-09-16T14:37:18-04:00",
+  "generatedAt": "Sep 16, 2:47 PM ET",
+  "generatedAtISO": "2026-09-16T14:47:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -561,10 +561,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "14:45",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Harmoni Bodi",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -573,7 +573,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 14.75,
       "end": 15.75,
-      "access_gap": false
+      "access_gap": true
     },
     {
       "studio": "509A",
@@ -866,18 +866,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "openShifts": [
-    {
-      "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 14.25,
-      "end": 14.75,
-      "id": "ac7f33d31440",
-      "date": "2026-09-16",
-      "startISO": "2026-09-16T14:15:00-04:00",
-      "endISO": "2026-09-16T14:45:00-04:00",
-      "day": "Today"
-    },
     {
       "role": "Monitoring",
       "studio": "509A",
@@ -1174,19 +1162,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789583715591,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Harmoni Bodi",
+      "time": "14:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789584316089,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Fabio Hernandez",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "22:29",
-      "ts": 1789525791857,
-      "when": "Tue 22:29"
-    },
     "527": {
       "studio": "527",
       "name": "Khalid Roach-McLeod",
@@ -1213,7 +1200,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-16T18:37:01+00:00",
+    "updatedAt": "2026-09-16T18:48:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-16T09:03:06.920325Z",
@@ -1622,6 +1609,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T18:34:20.799596Z",
         "until": "2026-09-16T18:34:21.147268Z"
+      },
+      {
+        "since": "2026-09-16T18:40:06.198138Z",
+        "until": "2026-09-16T18:40:46.393084Z"
+      },
+      {
+        "since": "2026-09-16T18:46:17.492477Z",
+        "until": "2026-09-16T18:46:17.647755Z"
       }
     ],
     "down": false
@@ -1635,7 +1630,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:33:00-04:00"
+      "lastISO": "2026-09-16T14:44:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1655,7 +1650,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T13:47:00-04:00"
+      "lastISO": "2026-09-16T14:48:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1665,7 +1660,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:30:00-04:00"
+      "lastISO": "2026-09-16T14:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1675,7 +1670,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:36:00-04:00"
+      "lastISO": "2026-09-16T14:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1685,7 +1680,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:25:00-04:00"
+      "lastISO": "2026-09-16T14:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1695,7 +1690,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:35:00-04:00"
+      "lastISO": "2026-09-16T14:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1705,7 +1700,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:37:00-04:00"
+      "lastISO": "2026-09-16T14:47:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1715,7 +1710,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:20:00-04:00"
+      "lastISO": "2026-09-16T14:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1815,7 +1810,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:08:00-04:00"
+      "lastISO": "2026-09-16T14:38:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1865,7 +1860,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:31:00-04:00"
+      "lastISO": "2026-09-16T14:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2247,7 +2242,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 52,
             "whenISO": "2026-09-16T14:05:00-04:00",
-            "ageMin": 32,
+            "ageMin": 42,
             "stale": false
           },
           {
@@ -2259,7 +2254,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-16T14:05:00-04:00",
-            "ageMin": 32,
+            "ageMin": 42,
             "stale": false
           }
         ],
@@ -2278,7 +2273,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "14:37"
+    "stamp": "14:47"
   }
 }/*__END_DATA__*/;
 
