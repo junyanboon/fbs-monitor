@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 10:25 PM ET",
-  "generatedAtISO": "2026-09-15T22:25:47-04:00",
+  "generatedAt": "Sep 15, 10:31 PM ET",
+  "generatedAtISO": "2026-09-15T22:31:32-04:00",
   "studios": [
     {
       "id": "509A",
@@ -380,10 +380,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "20:21",
-      "departed": null,
+      "departed": "22:29",
       "facilitator": null,
       "arrived_by": "Fabio Hernandez",
-      "departed_by": null,
+      "departed_by": "Fabio Hernandez",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -977,6 +977,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1789524877696,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Fabio Hernandez",
+      "time": "22:29",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789525791857,
       "source": "doors"
     }
   ],
@@ -1730,6 +1739,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T02:23:10.027371Z",
         "until": "2026-09-16T02:23:10.436694Z"
+      },
+      {
+        "since": "2026-09-16T02:28:10.037692Z",
+        "until": "2026-09-16T02:28:10.350681Z"
       }
     ],
     "down": false
@@ -1746,16 +1759,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T17:01:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-15T20:25:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1763,7 +1766,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:23:00-04:00"
+      "lastISO": "2026-09-15T22:28:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1773,7 +1776,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:15:00-04:00"
+      "lastISO": "2026-09-15T22:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1783,7 +1786,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:26:00-04:00"
+      "lastISO": "2026-09-15T22:31:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1793,7 +1796,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:15:00-04:00"
+      "lastISO": "2026-09-15T22:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1803,7 +1806,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:25:00-04:00"
+      "lastISO": "2026-09-15T22:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1813,7 +1816,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:25:00-04:00"
+      "lastISO": "2026-09-15T22:31:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1823,7 +1826,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:14:00-04:00"
+      "lastISO": "2026-09-15T22:24:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1854,6 +1857,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-15T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T22:30:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2273,20 +2286,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
+          "The Concierge",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Due",
-          "lastISO": "2026-09-15T20:25:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2363,7 +2372,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 20,
+            "ageMin": 26,
             "stale": false
           },
           {
@@ -2375,7 +2384,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 20,
+            "ageMin": 26,
             "stale": false
           }
         ],
@@ -2394,7 +2403,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "22:25"
+    "stamp": "22:31"
   }
 }/*__END_DATA__*/;
 
