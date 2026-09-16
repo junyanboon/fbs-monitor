@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 5:32 PM ET",
-  "generatedAtISO": "2026-09-16T17:32:06-04:00",
+  "generatedAt": "Sep 16, 5:47 PM ET",
+  "generatedAtISO": "2026-09-16T17:47:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -385,10 +385,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:45",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Enrico Casertano",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -818,7 +818,12 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Nina Li in Studio 901"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -872,6 +877,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1789592881453,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Enrico Casertano",
+      "time": "17:45",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789595158997,
       "source": "doors"
     }
   ],
@@ -1432,6 +1446,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T21:26:18.452346Z",
         "until": "2026-09-16T21:26:18.587130Z"
+      },
+      {
+        "since": "2026-09-16T21:31:18.471643Z",
+        "until": "2026-09-16T21:33:06.481688Z"
+      },
+      {
+        "since": "2026-09-16T21:38:18.700928Z",
+        "until": "2026-09-16T21:38:19.171984Z"
+      },
+      {
+        "since": "2026-09-16T21:43:18.546658Z",
+        "until": "2026-09-16T21:43:18.702578Z"
       }
     ],
     "down": false
@@ -1443,8 +1469,8 @@ const DATA = /*__DATA__*/{
       "expected": "hourly at :54 America/Toronto · Codex production fallback",
       "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-16T16:06:00-04:00"
     },
     {
@@ -1455,7 +1481,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:28:00-04:00"
+      "lastISO": "2026-09-16T17:43:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1485,7 +1511,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:30:00-04:00"
+      "lastISO": "2026-09-16T17:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1495,7 +1521,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:31:00-04:00"
+      "lastISO": "2026-09-16T17:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1505,7 +1531,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:25:00-04:00"
+      "lastISO": "2026-09-16T17:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1515,7 +1541,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:30:00-04:00"
+      "lastISO": "2026-09-16T17:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1525,7 +1551,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:32:00-04:00"
+      "lastISO": "2026-09-16T17:47:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1535,7 +1561,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:20:00-04:00"
+      "lastISO": "2026-09-16T17:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1625,7 +1651,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:08:00-04:00"
+      "lastISO": "2026-09-16T17:37:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1675,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:31:00-04:00"
+      "lastISO": "2026-09-16T17:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2024,7 +2050,7 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Mechanic",
           "drop-sweep (Cloud Run)",
@@ -2037,7 +2063,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Mechanic",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-16T16:06:00-04:00"
         }
       },
@@ -2055,25 +2081,25 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 22.4,
-            "setpoint": "COOL 21.85",
+            "inside": 22.2,
+            "setpoint": "COOL 19.05",
             "mode": "COOL",
             "hvac": "COOLING",
-            "humidity": 52,
-            "whenISO": "2026-09-16T17:05:00-04:00",
-            "ageMin": 27,
+            "humidity": 49,
+            "whenISO": "2026-09-16T17:39:00-04:00",
+            "ageMin": 8,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 22.7,
+            "inside": 22.2,
             "setpoint": "COOL 17.5",
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 53,
-            "whenISO": "2026-09-16T17:05:00-04:00",
-            "ageMin": 27,
+            "whenISO": "2026-09-16T17:39:00-04:00",
+            "ageMin": 8,
             "stale": false
           }
         ],
@@ -2092,7 +2118,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "17:32"
+    "stamp": "17:47"
   }
 }/*__END_DATA__*/;
 
