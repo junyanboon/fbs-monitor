@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 10:13 PM ET",
-  "generatedAtISO": "2026-09-15T22:13:24-04:00",
+  "generatedAt": "Sep 15, 10:14 PM ET",
+  "generatedAtISO": "2026-09-15T22:14:33-04:00",
   "studios": [
     {
       "id": "509A",
@@ -712,10 +712,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "17:51",
-      "departed": null,
+      "departed": "22:14",
       "facilitator": null,
       "arrived_by": "Khalid Roach-McLeod",
-      "departed_by": null,
+      "departed_by": "Khalid Roach-McLeod",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1195,6 +1195,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789524781000,
       "source": "panel"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "22:14",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789524877696,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1206,7 +1215,7 @@ const DATA = /*__DATA__*/{
     "doors": "ok",
     "updatedAt": "2026-09-16T02:13:01+00:00",
     "mailCheck": {
-      "matched": 1,
+      "matched": 2,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -2022,7 +2031,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:13:00-04:00"
+      "lastISO": "2026-09-15T22:14:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T22:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2568,7 +2587,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 8,
+            "ageMin": 9,
             "stale": false
           },
           {
@@ -2580,7 +2599,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 8,
+            "ageMin": 9,
             "stale": false
           }
         ],
@@ -2599,7 +2618,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "22:13"
+    "stamp": "22:14"
   }
 }/*__END_DATA__*/;
 
