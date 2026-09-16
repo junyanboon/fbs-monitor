@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 2:18 PM ET",
-  "generatedAtISO": "2026-09-16T14:18:18-04:00",
+  "generatedAt": "Sep 16, 2:32 PM ET",
+  "generatedAtISO": "2026-09-16T14:32:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -685,11 +685,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "14:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1088,6 +1083,17 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "The Concierge",
       "created": "Sep 16 · 14:16",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "PBF — Danica  Bradshaw ••• [pbf:3dd7503281c481169f10f•••f6]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 16 · 14:32",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1607,6 +1613,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T18:18:07.101929Z",
         "until": "2026-09-16T18:18:07.434228Z"
+      },
+      {
+        "since": "2026-09-16T18:23:38.684741Z",
+        "until": "2026-09-16T18:23:39.357553Z"
+      },
+      {
+        "since": "2026-09-16T18:28:38.737369Z",
+        "until": "2026-09-16T18:28:39.054016Z"
       }
     ],
     "down": false
@@ -1620,7 +1634,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:16:00-04:00"
+      "lastISO": "2026-09-16T14:28:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1650,7 +1664,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:15:00-04:00"
+      "lastISO": "2026-09-16T14:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1660,7 +1674,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:16:00-04:00"
+      "lastISO": "2026-09-16T14:32:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1670,7 +1684,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:05:00-04:00"
+      "lastISO": "2026-09-16T14:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1680,7 +1694,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:15:00-04:00"
+      "lastISO": "2026-09-16T14:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1690,7 +1704,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:18:00-04:00"
+      "lastISO": "2026-09-16T14:32:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1700,7 +1714,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:00:00-04:00"
+      "lastISO": "2026-09-16T14:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1740,7 +1754,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T13:31:00-04:00"
+      "lastISO": "2026-09-16T14:33:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1810,7 +1824,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T13:55:00-04:00"
+      "lastISO": "2026-09-16T14:25:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1850,7 +1864,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T14:15:00-04:00"
+      "lastISO": "2026-09-16T14:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2232,7 +2246,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 52,
             "whenISO": "2026-09-16T14:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2244,7 +2258,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-16T14:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2263,7 +2277,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "14:18"
+    "stamp": "14:32"
   }
 }/*__END_DATA__*/;
 
