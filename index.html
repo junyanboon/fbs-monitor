@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 5:47 PM ET",
-  "generatedAtISO": "2026-09-16T17:47:00-04:00",
+  "generatedAt": "Sep 16, 5:52 PM ET",
+  "generatedAtISO": "2026-09-16T17:52:18-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1137,7 +1137,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-16T21:14:00+00:00",
+    "updatedAt": "2026-09-16T21:52:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1688,6 +1688,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T21:43:18.546658Z",
         "until": "2026-09-16T21:43:18.702578Z"
+      },
+      {
+        "since": "2026-09-16T21:49:08.373771Z",
+        "until": "2026-09-16T21:49:08.676471Z"
       }
     ],
     "down": false
@@ -1711,7 +1715,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:43:00-04:00"
+      "lastISO": "2026-09-16T17:49:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1731,7 +1735,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T16:48:00-04:00"
+      "lastISO": "2026-09-16T17:48:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1751,7 +1755,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:46:00-04:00"
+      "lastISO": "2026-09-16T17:51:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1761,7 +1765,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:35:00-04:00"
+      "lastISO": "2026-09-16T17:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1771,7 +1775,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:45:00-04:00"
+      "lastISO": "2026-09-16T17:50:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1781,7 +1785,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T17:47:00-04:00"
+      "lastISO": "2026-09-16T17:52:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2317,7 +2321,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-16T17:39:00-04:00",
-            "ageMin": 8,
+            "ageMin": 13,
             "stale": false
           },
           {
@@ -2329,11 +2333,46 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-16T17:39:00-04:00",
-            "ageMin": 8,
+            "ageMin": 13,
             "stale": false
           }
         ],
-        "climateNote": null
+        "climateNote": null,
+        "rules": {
+          "model": {
+            "ceiling": 24.0,
+            "coolBaseline": 26.0,
+            "heatBaseline": 20.0,
+            "frostFloor": 10.0,
+            "gapMin": 90.0,
+            "pullDown": 1.5,
+            "warmUp": 0.56,
+            "leadMid": 75.0,
+            "leadHigh": 165.0,
+            "lastRefit": "2026-08-30",
+            "missing": [],
+            "pageUrl": "https://www.notion.so/3ad7503281c48169978bc176f07a6735"
+          },
+          "code": {
+            "mirroredOn": "2026-09-16",
+            "passes": "hourly at :10, 09:10–23:10, plus 03:10",
+            "occupiedMargin": 1.0,
+            "nightWindow": [
+              23,
+              6
+            ],
+            "gapMinDefault": 90,
+            "cool901": 20.0,
+            "liz901": [
+              11,
+              19
+            ],
+            "alert901Over": 23.0,
+            "heats": false,
+            "clearsEco": false
+          },
+          "note": null
+        }
       }
     ],
     "liveCount": 24,
@@ -2348,7 +2387,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "17:47"
+    "stamp": "17:52"
   }
 }/*__END_DATA__*/;
 
