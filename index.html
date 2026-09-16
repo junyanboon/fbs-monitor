@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 8:02 PM ET",
-  "generatedAtISO": "2026-09-15T20:02:18-04:00",
+  "generatedAt": "Sep 15, 8:08 PM ET",
+  "generatedAtISO": "2026-09-15T20:08:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -586,10 +586,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "17:58",
-      "departed": null,
+      "departed": "20:04",
       "facilitator": null,
       "arrived_by": "Julie Marouze",
-      "departed_by": null,
+      "departed_by": "Julie Marouze",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1139,6 +1139,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789511785925,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Julie Marouze",
+      "time": "20:04",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789517073541,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1148,7 +1157,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-15T22:22:00+00:00",
+    "updatedAt": "2026-09-16T00:08:01+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1787,6 +1796,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-15T23:55:38.851840Z",
         "until": "2026-09-15T23:57:04.562767Z"
+      },
+      {
+        "since": "2026-09-16T00:03:00.403175Z",
+        "until": "2026-09-16T00:03:00.757212Z"
+      },
+      {
+        "since": "2026-09-16T00:08:28.095190Z",
+        "until": "2026-09-16T00:08:28.490585Z"
       }
     ],
     "down": false
@@ -1810,7 +1827,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T20:02:00-04:00"
+      "lastISO": "2026-09-15T20:08:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1830,7 +1847,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T20:00:00-04:00"
+      "lastISO": "2026-09-15T20:05:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1850,7 +1867,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T20:00:00-04:00"
+      "lastISO": "2026-09-15T20:05:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1870,7 +1887,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T19:52:00-04:00"
+      "lastISO": "2026-09-15T20:04:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1880,7 +1897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T19:07:00-04:00"
+      "lastISO": "2026-09-15T20:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2400,25 +2417,25 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 22.8,
-            "setpoint": "COOL 22.95",
+            "inside": 22.2,
+            "setpoint": "COOL 20.1",
             "mode": "COOL",
-            "hvac": "OFF",
+            "hvac": "COOLING",
             "humidity": 49,
-            "whenISO": "2026-09-15T19:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-15T20:05:00-04:00",
+            "ageMin": 3,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 22.7,
-            "setpoint": "COOL 19.5",
+            "inside": 20.7,
+            "setpoint": "COOL 20",
             "mode": "COOL",
             "hvac": "COOLING",
-            "humidity": 54,
-            "whenISO": "2026-09-15T19:05:00-04:00",
-            "ageMin": 57,
+            "humidity": 51,
+            "whenISO": "2026-09-15T20:05:00-04:00",
+            "ageMin": 3,
             "stale": false
           }
         ],
@@ -2437,7 +2454,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "20:02"
+    "stamp": "20:08"
   }
 }/*__END_DATA__*/;
 
