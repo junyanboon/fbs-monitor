@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 9:03 AM ET",
-  "generatedAtISO": "2026-09-16T09:03:28-04:00",
+  "generatedAt": "Sep 16, 9:04 AM ET",
+  "generatedAtISO": "2026-09-16T09:04:47-04:00",
   "studios": [
     {
       "id": "509A",
@@ -878,18 +878,6 @@ const DATA = /*__DATA__*/{
       "label": "HTA · Studio 509B"
     },
     {
-      "code": "HTA-sweep-•••A",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 16 · 00:14",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-16T09:00:00-04:00",
-      "label": "HTA · Studio 509A"
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1219,6 +1207,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T12:58:44.245420Z",
         "until": "2026-09-16T12:58:44.635317Z"
+      },
+      {
+        "since": "2026-09-16T13:04:11.225113Z",
+        "until": "2026-09-16T13:04:11.560643Z"
       }
     ],
     "down": false
@@ -1302,7 +1294,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T09:00:00-04:00"
+      "lastISO": "2026-09-16T09:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1833,27 +1825,23 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "The Weatherman"
         ],
-        "worst": {
-          "run": "Thermal Log",
-          "label": "No fresh reading",
-          "lastISO": "2026-09-16T03:05:00-04:00"
-        },
+        "worst": null,
         "studios": [
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 21.9,
+            "inside": 23.1,
             "setpoint": "",
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 55,
-            "whenISO": "2026-09-16T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "whenISO": "2026-09-16T09:05:00-04:00",
+            "ageMin": -1,
+            "stale": false
           },
           {
             "studio": "901",
@@ -1861,14 +1849,14 @@ const DATA = /*__DATA__*/{
             "inside": 20.2,
             "setpoint": "COOL 20",
             "mode": "COOL",
-            "hvac": "OFF",
+            "hvac": "COOLING",
             "humidity": 54,
-            "whenISO": "2026-09-16T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "whenISO": "2026-09-16T09:05:00-04:00",
+            "ageMin": -1,
+            "stale": false
           }
         ],
-        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind"
+        "climateNote": null
       }
     ],
     "liveCount": 24,
@@ -1883,7 +1871,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "09:03"
+    "stamp": "09:04"
   }
 }/*__END_DATA__*/;
 
