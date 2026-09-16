@@ -3745,7 +3745,7 @@ def fleet_line_for(run):
     return None
 
 
-def fleet_lines(robots, lease, now, climate=None):
+def fleet_lines(robots, lease, now, climate=None, rules=None):
     """Six lines from the roster. A line is as bad as its worst LIVE robot;
     Paused / Not-reporting / Off-hours robots ("plain") never colour it. The
     worst robot is named so the line can say what broke in one sentence.
@@ -3780,6 +3780,8 @@ def fleet_lines(robots, lease, now, climate=None):
         if line["k"] == "climate":
             row["studios"] = climate["studios"] if climate else None
             row["climateNote"] = climate.get("note") if climate else "Thermal Log unreadable"
+            row["rules"] = {"model": rules, "code": WEATHERMAN_CODE,
+                            "note": None if rules else "Thermal Model page unreadable — numbers not shown"}
             if climate and climate.get("blind") and row["status"] != "crit":
                 row["status"] = "crit"
                 row["worst"] = row["worst"] or {"run": "Thermal Log", "label": "No fresh reading",
@@ -3872,6 +3874,83 @@ def fetch_climate(token, now):
         "sorts": [{"property": "When", "direction": "descending"}],
     })
     return parse_climate(rows, now)
+
+
+# ── Weatherman rules (the "How it decides" fold on the Weatherman line) ──────
+# Two sources, shown side by side so a season change has an obvious place to go:
+#  - the 📐 Thermal Model page — the numbers staff and the Sunday re-fit edit;
+#  - WEATHERMAN_CODE — rules that live only in desk-correspondence
+#    services/event-gate/climate_sweep.py. MIRROR, not a source: when that file
+#    changes, change this dict in the same breath or the board tells staff an
+#    old rule. Mirrored 2026-09-16 from climate_sweep.py on desk-correspondence main.
+THERMAL_MODEL_PAGE = "3ad75032-81c4-8169-978b-c176f07a6735"
+WEATHERMAN_CODE = {
+    "mirroredOn": "2026-09-16",
+    "passes": "hourly at :10, 09:10–23:10, plus 03:10",
+    "occupiedMargin": 1.0,          # OCCUPIED_TARGET_MARGIN
+    "nightWindow": [23, 6],         # NIGHT_WINDOW
+    "gapMinDefault": 90,            # GAP_RULE_MIN
+    "cool901": 20.0,                # COOL_901
+    "liz901": [11, 19],             # LIZ_WINDOW
+    "alert901Over": 23.0,           # ALERT_901_OVER
+    "heats": False,                 # no HEAT command anywhere in climate_sweep.py
+    "clearsEco": False,             # no ThermostatEco command either
+}
+_RNUM = r"(-?\d+(?:\.\d+)?)"
+
+
+def _block_lines(token, page_id, depth=0):
+    """A page's blocks as plain-text lines; table rows flattened `a | b | c`."""
+    lines = []
+    for b in _notion_blocks(token, page_id):
+        kind = b.get("type")
+        content = b.get(kind, {}) or {}
+        text = "".join(t.get("plain_text", "") for t in content.get("rich_text", []) or [])
+        if text:
+            lines.append(text)
+        if kind == "table_row":
+            lines.append(" | ".join("".join(t.get("plain_text", "") for t in cell)
+                                    for cell in content.get("cells", [])))
+        if b.get("has_children") and depth < 2 and kind in ("table", "toggle", "bulleted_list_item"):
+            lines.extend(_block_lines(token, b["id"], depth + 1))
+    return lines
+
+
+def parse_thermal_model(lines):
+    """The Thermal Model numbers the Weatherman reads, by the same patterns
+    climate_sweep.parse_model uses. A value the page no longer states is
+    None and named in `missing` — never filled with a default, because the
+    board would then show a number the controller may not be using."""
+    import re
+    text = "\n".join(lines)
+
+    def num(pattern):
+        m = re.search(pattern, text)
+        return float(m.group(1)) if m else None
+
+    model = {
+        "ceiling": num(rf"Comfort ceiling[^:]*:\*?\*?\s*{_RNUM}"),
+        "coolBaseline": num(rf"Cool setpoint baseline:\*?\*?\s*{_RNUM}"),
+        "heatBaseline": num(rf"Heat setpoint baseline:\*?\*?\s*{_RNUM}"),
+        "frostFloor": num(rf"Frost floor:\*?\*?\s*{_RNUM}"),
+        "gapMin": num(rf"Gap rule:[^\n]*?longer than\s*{_RNUM}\s*min"),
+        "pullDown": num(rf"cool_pull_down_rate:\*?\*?\s*[\\~]*{_RNUM}"),
+        "warmUp": num(rf"warm_up_rate[^:]*:\*?\*?\s*[\\~]*{_RNUM}"),
+        "leadMid": num(rf"24[–-]28°C\s*\|\s*{_RNUM}\s*min"),
+        "leadHigh": num(rf"28°C and above\s*\|\s*{_RNUM}\s*min"),
+    }
+    m = re.search(r"Last re-fit:\*?\*?\s*(\d{4}-\d{2}-\d{2})", text)
+    model["lastRefit"] = m.group(1) if m else None
+    model["missing"] = [k for k in ("ceiling", "coolBaseline", "gapMin", "leadMid", "leadHigh")
+                        if model[k] is None]
+    return model
+
+
+def fetch_weatherman_rules(token):
+    """Soft source: the fold shows the code rules with a note if this fails."""
+    model = parse_thermal_model(_block_lines(token, THERMAL_MODEL_PAGE))
+    model["pageUrl"] = "https://www.notion.so/" + THERMAL_MODEL_PAGE.replace("-", "")
+    return model
 
 
 def fetch_lease(token, now):
@@ -4201,6 +4280,11 @@ def build_data(now):
         climate = fetch_climate(token, now)
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Thermal Log fetch failed ({e}); Weatherman line shows no readings.")
+    weather_rules = None
+    try:
+        weather_rules = fetch_weatherman_rules(token)
+    except Exception as e:  # noqa: BLE001
+        emit_fallback_note(f"Thermal Model fetch failed ({e}); Weatherman rules show code rules only.")
 
     # Reports tab — same soft posture: an unreadable Workflow Reports DB shows a
     # notice, it never takes the board down.
@@ -4253,7 +4337,7 @@ def build_data(now):
         "robotsNote": robots_note,
         "lease": lease,
         "leaseNote": lease_note,
-        "fleet": fleet_lines(robots, lease, now, climate) if robots else None,
+        "fleet": fleet_lines(robots, lease, now, climate, weather_rules) if robots else None,
         # Internal: consumed by sync_hta_watch() in main() and popped before
         # the pages are spliced. Carries booking/artist ids — never publish.
         "_hta_verdicts": verdicts,

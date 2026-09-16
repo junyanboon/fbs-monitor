@@ -189,3 +189,46 @@ if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):
             fn(); print("ok", name)
+
+
+# ── Weatherman rules fold ───────────────────────────────────────────────────
+# Plain-text lines as _block_lines returns them for the live 📐 Thermal Model
+# page (2026-08-30 edition, bold markers already stripped by the API).
+MODEL_LINES = [
+    "cool_pull_down_rate: ~1.5°C/hour — fitted 2026-07-26 from SDM ground-truth",
+    "warm_up_rate (masonry, summer): ~0.56°C/hour — re-fitted 2026-08-02",
+    "Outdoor peak | Lead time | Last changed",
+    "Below 24°C | None needed unless inside is already above 24°C | —",
+    "24–28°C | 75 min | Tightened 2026-07-26 (was 60 min)",
+    "28°C and above | 165 min | Tightened 2026-07-19 (was 135 min)",
+    "Comfort ceiling during occupancy: 24°C inside. A complaint is a violation.",
+    "Cool setpoint baseline: 26°C (staff-adjusted 2026-07-09, was 27°C)",
+    "Heat setpoint baseline: 20°C",
+    "Frost floor: 10°C",
+    "Gap rule: booking gap longer than 90 min → relax/off between, re-cool with full lead time.",
+    "Last re-fit: 2026-08-30 (see the Thermal Log model-refit row for details)",
+]
+
+
+def test_parse_thermal_model_reads_every_number_the_fold_shows():
+    m = build.parse_thermal_model(MODEL_LINES)
+    assert (m["ceiling"], m["coolBaseline"], m["heatBaseline"], m["frostFloor"]) == (24.0, 26.0, 20.0, 10.0)
+    assert (m["gapMin"], m["leadMid"], m["leadHigh"]) == (90.0, 75.0, 165.0)
+    assert (m["pullDown"], m["warmUp"]) == (1.5, 0.56)
+    assert m["lastRefit"] == "2026-08-30" and m["missing"] == []
+
+
+def test_a_number_the_page_drops_is_named_missing_never_defaulted():
+    m = build.parse_thermal_model([l for l in MODEL_LINES if not l.startswith("Comfort ceiling")])
+    assert m["ceiling"] is None and m["missing"] == ["ceiling"]
+
+
+def test_weatherman_line_carries_rules_and_says_when_the_page_is_unreadable():
+    model = build.parse_thermal_model(MODEL_LINES)
+    c = next(l for l in build.fleet_lines([rob("The Weatherman")], LEASE, NOW, FRESH, model)["lines"]
+             if l["k"] == "climate")
+    assert c["rules"]["model"]["ceiling"] == 24.0 and c["rules"]["note"] is None
+    assert c["rules"]["code"]["heats"] is False and c["rules"]["code"]["clearsEco"] is False
+    c = next(l for l in build.fleet_lines([rob("The Weatherman")], LEASE, NOW, FRESH)["lines"]
+             if l["k"] == "climate")
+    assert c["rules"]["model"] is None and "unreadable" in c["rules"]["note"]
