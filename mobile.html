@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 9:50 PM ET",
-  "generatedAtISO": "2026-09-15T21:50:43-04:00",
+  "generatedAt": "Sep 15, 10:02 PM ET",
+  "generatedAtISO": "2026-09-15T22:02:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -788,28 +788,6 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "Other",
       "created": "Sep 15 · 20:20",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Quick answer — Sangah Lee — 901 alarm handoff to next group [responder:phonecom-a2d41f5f-fbe5-••••-8eed-8acf175f2002]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Responder",
-      "created": "Sep 15 · 20:27",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Renewal dates confirm — Ivanka Moskaliuk [Fixed Option] — Mon 7:15–8:45pm 509A, Nov 2 → Jan 25 (+3 months)",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Concierge",
-      "created": "Sep 15 · 21:37",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1695,6 +1673,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T01:48:11.414322Z",
         "until": "2026-09-16T01:48:11.761194Z"
+      },
+      {
+        "since": "2026-09-16T01:53:12.420848Z",
+        "until": "2026-09-16T01:53:12.561888Z"
+      },
+      {
+        "since": "2026-09-16T01:59:01.116505Z",
+        "until": "2026-09-16T01:59:01.472951Z"
       }
     ],
     "down": false
@@ -1711,6 +1697,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T17:01:00-04:00"
     },
     {
+      "run": "The Registrar (booking-sweep, Hostinger)",
+      "cadence": "Hourly",
+      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
+      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-15T21:05:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1718,7 +1714,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:49:00-04:00"
+      "lastISO": "2026-09-15T22:00:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1728,7 +1724,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:45:00-04:00"
+      "lastISO": "2026-09-15T22:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1738,7 +1734,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:45:00-04:00"
+      "lastISO": "2026-09-15T22:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1748,7 +1744,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:45:00-04:00"
+      "lastISO": "2026-09-15T21:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1758,7 +1754,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:50:00-04:00"
+      "lastISO": "2026-09-15T22:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1768,7 +1764,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:50:00-04:00"
+      "lastISO": "2026-09-15T22:02:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1871,16 +1867,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:38:00-04:00"
     },
     {
-      "run": "The Registrar (booking-sweep, Hostinger)",
-      "cadence": "Hourly",
-      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
-      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:05:00-04:00"
-    },
-    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
@@ -1888,7 +1874,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:25:00-04:00"
+      "lastISO": "2026-09-15T21:58:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2257,11 +2243,11 @@ const DATA = /*__DATA__*/{
         "status": "crit",
         "robots": [
           "Watchlist sync",
+          "The Registrar (booking-sweep, Hostinger)",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
-          "The Registrar (booking-sweep, Hostinger)",
           "desk-loop (Cloud Run)",
           "The Closer",
           "The Loop",
@@ -2324,7 +2310,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T21:05:00-04:00",
-            "ageMin": 45,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2336,7 +2322,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 51,
             "whenISO": "2026-09-15T21:05:00-04:00",
-            "ageMin": 45,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2355,7 +2341,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "21:50"
+    "stamp": "22:02"
   }
 }/*__END_DATA__*/;
 
