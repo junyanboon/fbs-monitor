@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 8:02 AM ET",
-  "generatedAtISO": "2026-09-16T08:02:17-04:00",
+  "generatedAt": "Sep 16, 8:17 AM ET",
+  "generatedAtISO": "2026-09-16T08:17:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -585,7 +585,7 @@ const DATA = /*__DATA__*/{
         },
         {
           "kind": "EOB",
-          "state": "blocked",
+          "state": "scheduled",
           "time": "22:15"
         }
       ],
@@ -949,6 +949,18 @@ const DATA = /*__DATA__*/{
       "label": "AVA for Jia Chian Lee in Studio 527"
     },
     {
+      "code": "EOB-sweep-•••",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 16 · 00:23",
+      "send_after": "22:15",
+      "send_after_iso": "2026-09-16T22:15:00-04:00",
+      "label": "EOB for Nina Li in Studio 901"
+    },
+    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -1192,6 +1204,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T11:57:06.671117Z",
         "until": "2026-09-16T11:57:07.004450Z"
+      },
+      {
+        "since": "2026-09-16T12:02:43.169203Z",
+        "until": "2026-09-16T12:03:25.393874Z"
+      },
+      {
+        "since": "2026-09-16T12:09:04.816238Z",
+        "until": "2026-09-16T12:09:04.965293Z"
+      },
+      {
+        "since": "2026-09-16T12:14:15.174421Z",
+        "until": "2026-09-16T12:14:15.525852Z"
       }
     ],
     "down": false
@@ -1205,7 +1229,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T08:00:00-04:00"
+      "lastISO": "2026-09-16T08:12:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1215,7 +1239,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T07:22:00-04:00"
+      "lastISO": "2026-09-16T08:13:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1235,7 +1259,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T08:00:00-04:00"
+      "lastISO": "2026-09-16T08:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1245,7 +1269,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T08:01:00-04:00"
+      "lastISO": "2026-09-16T08:16:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1255,7 +1279,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T07:55:00-04:00"
+      "lastISO": "2026-09-16T08:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1265,7 +1289,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T08:00:00-04:00"
+      "lastISO": "2026-09-16T08:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1275,7 +1299,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T08:02:00-04:00"
+      "lastISO": "2026-09-16T08:17:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1285,7 +1309,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T07:50:00-04:00"
+      "lastISO": "2026-09-16T08:11:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1295,7 +1319,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T07:07:00-04:00"
+      "lastISO": "2026-09-16T08:11:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1385,7 +1409,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T07:35:00-04:00"
+      "lastISO": "2026-09-16T08:05:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1821,7 +1845,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 55,
             "whenISO": "2026-09-16T03:05:00-04:00",
-            "ageMin": 297,
+            "ageMin": 312,
             "stale": true
           },
           {
@@ -1833,7 +1857,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-16T03:05:00-04:00",
-            "ageMin": 297,
+            "ageMin": 312,
             "stale": true
           }
         ],
@@ -1852,7 +1876,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "08:02"
+    "stamp": "08:17"
   }
 }/*__END_DATA__*/;
 
