@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 9:47 PM ET",
-  "generatedAtISO": "2026-09-15T21:47:02-04:00",
+  "generatedAt": "Sep 15, 9:50 PM ET",
+  "generatedAtISO": "2026-09-15T21:50:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1691,6 +1691,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T01:42:12.488926Z",
         "until": "2026-09-16T01:43:01.404455Z"
+      },
+      {
+        "since": "2026-09-16T01:48:11.414322Z",
+        "until": "2026-09-16T01:48:11.761194Z"
       }
     ],
     "down": false
@@ -1714,7 +1718,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:43:00-04:00"
+      "lastISO": "2026-09-15T21:49:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1744,7 +1748,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:25:00-04:00"
+      "lastISO": "2026-09-15T21:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1754,7 +1758,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T21:45:00-04:00"
+      "lastISO": "2026-09-15T21:50:00-04:00"
+    },
+    {
+      "run": "main queue sender (Apps Script send engine)",
+      "cadence": "5-min",
+      "expected": "every 5 minutes, 24/7 — Apps Script time-driven trigger main() in project \"Message Queue Send Engine\". Sends the Ready to Send + due rows of the 📤 Message Queue (SMS via Phone.com, email via Gmail).",
+      "produces": "renter SMS and email sends, with dispatch receipts on the queue row",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T21:50:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1931,16 +1945,6 @@ const DATA = /*__DATA__*/{
       "cadence": "Hourly",
       "expected": "hourly at :47 America/Toronto — Apps Script time-driven trigger docIntakeTick in project \"Message Queue Send Engine\" (script id 12bMAcZISYPKSkJuRnGIYJ1QYTh1siC4ZBGdq2tBH2bws3YodOAz2cZFX). Three lanes: Dropbox Sign agreements, Duuo, direct-email insurance intake + the undated-certificate backfill. Window 0-24: documents arrive at night too.",
       "produces": "filed agreement / insurance PDFs in Drive + linked 📎 Docs rows",
-      "monitoring": "Not reporting",
-      "status": "plain",
-      "statusLabel": "Not reporting",
-      "lastISO": null
-    },
-    {
-      "run": "main queue sender (Apps Script send engine)",
-      "cadence": "5-min",
-      "expected": "every 5 minutes, 24/7 — Apps Script time-driven trigger main() in project \"Message Queue Send Engine\". Sends the Ready to Send + due rows of the 📤 Message Queue (SMS via Phone.com, email via Gmail).",
-      "produces": "renter SMS and email sends, with dispatch receipts on the queue row",
       "monitoring": "Not reporting",
       "status": "plain",
       "statusLabel": "Not reporting",
@@ -2320,7 +2324,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T21:05:00-04:00",
-            "ageMin": 42,
+            "ageMin": 45,
             "stale": false
           },
           {
@@ -2332,14 +2336,14 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 51,
             "whenISO": "2026-09-15T21:05:00-04:00",
-            "ageMin": 42,
+            "ageMin": 45,
             "stale": false
           }
         ],
         "climateNote": null
       }
     ],
-    "liveCount": 21,
+    "liveCount": 22,
     "holder": "codex",
     "where": "on the VPS",
     "provider": {
@@ -2351,7 +2355,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "21:47"
+    "stamp": "21:50"
   }
 }/*__END_DATA__*/;
 
