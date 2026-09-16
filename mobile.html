@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 10:46 PM ET",
-  "generatedAtISO": "2026-09-15T22:46:55-04:00",
+  "generatedAt": "Sep 15, 10:50 PM ET",
+  "generatedAtISO": "2026-09-15T22:50:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1742,6 +1742,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T02:44:01.373195Z",
         "until": "2026-09-16T02:44:01.725625Z"
+      },
+      {
+        "since": "2026-09-16T02:49:45.023248Z",
+        "until": "2026-09-16T02:49:45.179295Z"
       }
     ],
     "down": false
@@ -1765,7 +1769,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:45:00-04:00"
+      "lastISO": "2026-09-15T22:51:00-04:00"
+    },
+    {
+      "run": "docIntakeTick (Apps Script send engine)",
+      "cadence": "Hourly",
+      "expected": "hourly at :47 America/Toronto — Apps Script time-driven trigger docIntakeTick in project \"Message Queue Send Engine\" (script id 12bMAcZISYPKSkJuRnGIYJ1QYTh1siC4ZBGdq2tBH2bws3YodOAz2cZFX). Three lanes: Dropbox Sign agreements, Duuo, direct-email insurance intake + the undated-certificate backfill. Window 0-24: documents arrive at night too.",
+      "produces": "filed agreement / insurance PDFs in Drive + linked 📎 Docs rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T22:47:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1795,7 +1809,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:35:00-04:00"
+      "lastISO": "2026-09-15T22:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1805,7 +1819,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:45:00-04:00"
+      "lastISO": "2026-09-15T22:50:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1815,7 +1829,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T22:46:00-04:00"
+      "lastISO": "2026-09-15T22:50:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1970,11 +1984,11 @@ const DATA = /*__DATA__*/{
     {
       "run": "Desk Sort",
       "cadence": "Hourly",
-      "expected": "Every 30 min at :05 and :35 Toronto while Junyan's Claude app is open",
+      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
       "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
-      "monitoring": "Not reporting",
+      "monitoring": "Live",
       "status": "plain",
-      "statusLabel": "Not reporting",
+      "statusLabel": "Off-hours",
       "lastISO": "2026-09-15T22:14:00-04:00"
     },
     {
@@ -1986,16 +2000,6 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Not reporting",
       "lastISO": "2026-09-11T22:50:00-04:00"
-    },
-    {
-      "run": "docIntakeTick (Apps Script send engine)",
-      "cadence": "Hourly",
-      "expected": "hourly at :47 America/Toronto — Apps Script time-driven trigger docIntakeTick in project \"Message Queue Send Engine\" (script id 12bMAcZISYPKSkJuRnGIYJ1QYTh1siC4ZBGdq2tBH2bws3YodOAz2cZFX). Three lanes: Dropbox Sign agreements, Duuo, direct-email insurance intake + the undated-certificate backfill. Window 0-24: documents arrive at night too.",
-      "produces": "filed agreement / insurance PDFs in Drive + linked 📎 Docs rows",
-      "monitoring": "Not reporting",
-      "status": "plain",
-      "statusLabel": "Not reporting",
-      "lastISO": "2026-09-15T22:47:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2371,7 +2375,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 45,
             "stale": false
           },
           {
@@ -2383,14 +2387,14 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 54,
             "whenISO": "2026-09-15T22:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 45,
             "stale": false
           }
         ],
         "climateNote": null
       }
     ],
-    "liveCount": 22,
+    "liveCount": 24,
     "holder": "codex",
     "where": "on the VPS",
     "provider": {
@@ -2402,7 +2406,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "22:46"
+    "stamp": "22:50"
   }
 }/*__END_DATA__*/;
 
