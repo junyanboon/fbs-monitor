@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 6:18 PM ET",
-  "generatedAtISO": "2026-09-16T18:18:11-04:00",
+  "generatedAt": "Sep 16, 6:23 PM ET",
+  "generatedAtISO": "2026-09-16T18:23:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -783,10 +783,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:20",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Anita Pandey",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1103,27 +1103,25 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789596028079,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Pandey",
+      "time": "18:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789597240494,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "901": {
-      "kind": "departure",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "901",
-      "time": "22:13",
-      "ts": 1789524781000,
-      "when": "Tue 22:13"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-16T22:04:00+00:00",
+    "updatedAt": "2026-09-16T22:23:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1698,6 +1696,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T22:16:18.765626Z",
         "until": "2026-09-16T22:16:19.086060Z"
+      },
+      {
+        "since": "2026-09-16T22:21:38.229343Z",
+        "until": "2026-09-16T22:21:38.574039Z"
       }
     ],
     "down": false
@@ -1711,7 +1713,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T18:15:00-04:00"
+      "lastISO": "2026-09-16T18:21:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1751,7 +1753,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T18:16:00-04:00"
+      "lastISO": "2026-09-16T18:21:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1761,7 +1763,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T18:05:00-04:00"
+      "lastISO": "2026-09-16T18:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1771,7 +1773,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T18:15:00-04:00"
+      "lastISO": "2026-09-16T18:20:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1781,7 +1783,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T18:18:00-04:00"
+      "lastISO": "2026-09-16T18:23:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2323,7 +2325,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-16T18:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 18,
             "stale": false
           },
           {
@@ -2335,7 +2337,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-16T18:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 18,
             "stale": false
           }
         ],
@@ -2389,7 +2391,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "18:18"
+    "stamp": "18:23"
   }
 }/*__END_DATA__*/;
 
