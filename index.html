@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 15, 2026",
   "shiftBaseDay": "2026-09-15",
-  "generatedAt": "Sep 15, 8:22 PM ET",
-  "generatedAtISO": "2026-09-15T20:22:28-04:00",
+  "generatedAt": "Sep 15, 8:24 PM ET",
+  "generatedAtISO": "2026-09-15T20:24:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -687,10 +687,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "20:25",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Marco Villa",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1022,17 +1022,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Studio 693 location answer — Camila Avendano [desk-sort:•••]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "Quick-Answer Lane",
-      "created": "Sep 15 · 20:15",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Nicholas Walsh — facilitator phone numbers + access codes — •••",
       "kind": null,
       "channel": "Email",
@@ -1187,6 +1176,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1789518132925,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Marco Villa",
+      "time": "20:25",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789518300734,
       "source": "doors"
     }
   ],
@@ -1852,6 +1850,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-16T00:19:28.140517Z",
         "until": "2026-09-16T00:19:28.496685Z"
+      },
+      {
+        "since": "2026-09-16T00:24:39.104210Z",
+        "until": "2026-09-16T00:24:39.420883Z"
       }
     ],
     "down": false
@@ -1876,16 +1878,6 @@ const DATA = /*__DATA__*/{
       "status": "watch",
       "statusLabel": "Due",
       "lastISO": "2026-09-15T19:44:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-15T18:25:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1935,7 +1927,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-15T20:20:00-04:00"
+      "lastISO": "2026-09-15T20:25:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1976,6 +1968,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-15T06:00:00-04:00"
+    },
+    {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T20:25:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2385,20 +2387,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Concierge",
           "greeter-sweep (Cloud Run)",
+          "The Concierge",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Due",
-          "lastISO": "2026-09-15T18:25:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2475,7 +2473,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 49,
             "whenISO": "2026-09-15T20:05:00-04:00",
-            "ageMin": 17,
+            "ageMin": 19,
             "stale": false
           },
           {
@@ -2487,7 +2485,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 51,
             "whenISO": "2026-09-15T20:05:00-04:00",
-            "ageMin": 17,
+            "ageMin": 19,
             "stale": false
           }
         ],
@@ -2506,7 +2504,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "20:22"
+    "stamp": "20:24"
   }
 }/*__END_DATA__*/;
 
