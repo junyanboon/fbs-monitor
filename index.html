@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 4:57 PM ET",
-  "generatedAtISO": "2026-09-17T16:57:25-04:00",
+  "generatedAt": "Sep 17, 5:02 PM ET",
+  "generatedAtISO": "2026-09-17T17:02:17-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1260,17 +1260,6 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Responder",
       "created": "Sep 17 · 16:53",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Held reply — Grace Lui — Oct 4 booked elsewhere, keep in touch [responder:gmail:1a0b1229f9187b55]",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 17 · 16:54",
       "send_after": null,
       "send_after_iso": null
     },
@@ -2051,8 +2040,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
       "produces": "Clears tripped sirens (occupancy-guarded), restores stuck bypasses, sorts panel troubles to SMS/ticket, runs the Panel Tamper loop",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
+      "status": "watch",
+      "statusLabel": "Due",
       "lastISO": "2026-09-17T16:51:00-04:00"
     },
     {
@@ -2073,7 +2062,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:45:00-04:00"
+      "lastISO": "2026-09-17T17:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2083,7 +2072,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:56:00-04:00"
+      "lastISO": "2026-09-17T17:01:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2093,7 +2082,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:45:00-04:00"
+      "lastISO": "2026-09-17T16:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2103,7 +2092,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:55:00-04:00"
+      "lastISO": "2026-09-17T17:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2113,7 +2102,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:57:00-04:00"
+      "lastISO": "2026-09-17T17:02:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2123,7 +2112,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:43:00-04:00"
+      "lastISO": "2026-09-17T16:53:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2273,7 +2262,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:46:00-04:00"
+      "lastISO": "2026-09-17T17:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2559,14 +2548,18 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
           "alarm-watchdog (Cloud Run)",
           "The Doorman",
           "migration-sweep (Cloud Run — alarm-mcp)",
           "🔑 Code Mirror"
         ],
-        "worst": null
+        "worst": {
+          "run": "alarm-watchdog (Cloud Run)",
+          "label": "Due",
+          "lastISO": "2026-09-17T16:51:00-04:00"
+        }
       },
       {
         "k": "mail",
@@ -2655,7 +2648,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-17T16:05:00-04:00",
-            "ageMin": 52,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2667,7 +2660,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 57,
             "whenISO": "2026-09-17T16:05:00-04:00",
-            "ageMin": 52,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2721,7 +2714,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "16:57"
+    "stamp": "17:02"
   }
 }/*__END_DATA__*/;
 
