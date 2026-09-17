@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 11:32 AM ET",
-  "generatedAtISO": "2026-09-17T11:32:11-04:00",
+  "generatedAt": "Sep 17, 11:44 AM ET",
+  "generatedAtISO": "2026-09-17T11:44:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -561,11 +561,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:04",
+      "departed": "10:18",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -674,11 +674,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:56",
+      "departed": "10:06",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -704,10 +704,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "10:49",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Zoe Young",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -787,10 +787,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:20",
       "departed": "10:37",
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -835,11 +835,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:44",
+      "departed": "11:04",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -907,10 +907,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:25",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1344,66 +1344,414 @@ const DATA = /*__DATA__*/{
   ],
   "armEvents": [
     {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "09:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789653374317,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "10:04",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789653895150,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "10:06",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789653967429,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "10:18",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789654736284,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "10:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789654830389,
+      "source": "doors"
+    },
+    {
       "studio": "527",
       "name": "Stefan Lovecchio",
       "time": "10:37",
       "kind": "departure",
       "remote": false,
-      "ts": 1789655851000
+      "ts": 1789655850883,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:44",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789656294757,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Zoe Young",
+      "time": "10:49",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789656557147,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "11:04",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789657473346,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Stefan Lovecchio",
+      "time": "11:25",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789658732316,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "10:18",
-      "ts": 1789654736284,
-      "when": "Thu 10:18"
-    },
-    "509B": {
-      "kind": "arrival",
-      "name": "Zoe Young",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "10:49",
-      "ts": 1789656557147,
-      "when": "Thu 10:49"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "11:04",
-      "ts": 1789657473346,
-      "when": "Thu 11:04"
-    },
-    "901": {
-      "kind": "arrival",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "11:25",
-      "ts": 1789658732316,
-      "when": "Thu 11:25"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
-    "doors": "failed",
-    "updatedAt": null,
-    "polledAt": null,
-    "doorGaps": [],
-    "down": true
+    "doors": "ok",
+    "updatedAt": "2026-09-17T15:27:01+00:00",
+    "polledAt": "2026-09-17T15:44:01+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "doorGaps": [
+      {
+        "since": "2026-09-17T09:02:22.496053Z",
+        "until": "2026-09-17T09:02:22.792637Z"
+      },
+      {
+        "since": "2026-09-17T09:08:09.113994Z",
+        "until": "2026-09-17T09:08:09.448050Z"
+      },
+      {
+        "since": "2026-09-17T09:13:09.072085Z",
+        "until": "2026-09-17T09:13:09.400173Z"
+      },
+      {
+        "since": "2026-09-17T09:18:09.121270Z",
+        "until": "2026-09-17T09:18:09.454803Z"
+      },
+      {
+        "since": "2026-09-17T09:23:29.147549Z",
+        "until": "2026-09-17T09:23:29.440524Z"
+      },
+      {
+        "since": "2026-09-17T09:29:26.158545Z",
+        "until": "2026-09-17T09:29:26.439996Z"
+      },
+      {
+        "since": "2026-09-17T09:34:26.495520Z",
+        "until": "2026-09-17T09:34:52.657775Z"
+      },
+      {
+        "since": "2026-09-17T09:40:22.733715Z",
+        "until": "2026-09-17T09:40:35.899071Z"
+      },
+      {
+        "since": "2026-09-17T09:46:08.200289Z",
+        "until": "2026-09-17T09:46:08.519624Z"
+      },
+      {
+        "since": "2026-09-17T09:51:29.100256Z",
+        "until": "2026-09-17T09:51:29.417362Z"
+      },
+      {
+        "since": "2026-09-17T09:57:04.783034Z",
+        "until": "2026-09-17T09:57:05.119640Z"
+      },
+      {
+        "since": "2026-09-17T10:02:26.319635Z",
+        "until": "2026-09-17T10:02:26.596392Z"
+      },
+      {
+        "since": "2026-09-17T10:07:29.078225Z",
+        "until": "2026-09-17T10:07:29.367538Z"
+      },
+      {
+        "since": "2026-09-17T10:13:26.436778Z",
+        "until": "2026-09-17T10:13:26.716762Z"
+      },
+      {
+        "since": "2026-09-17T10:18:29.296680Z",
+        "until": "2026-09-17T10:18:55.454174Z"
+      },
+      {
+        "since": "2026-09-17T10:24:08.451920Z",
+        "until": "2026-09-17T10:24:08.837528Z"
+      },
+      {
+        "since": "2026-09-17T10:29:20.714892Z",
+        "until": "2026-09-17T10:29:20.847985Z"
+      },
+      {
+        "since": "2026-09-17T10:34:23.022567Z",
+        "until": "2026-09-17T10:34:36.185425Z"
+      },
+      {
+        "since": "2026-09-17T10:40:23.082143Z",
+        "until": "2026-09-17T10:40:49.279091Z"
+      },
+      {
+        "since": "2026-09-17T10:46:08.562230Z",
+        "until": "2026-09-17T10:46:08.905722Z"
+      },
+      {
+        "since": "2026-09-17T10:51:29.074813Z",
+        "until": "2026-09-17T10:51:29.178272Z"
+      },
+      {
+        "since": "2026-09-17T10:57:23.173340Z",
+        "until": "2026-09-17T10:57:23.514595Z"
+      },
+      {
+        "since": "2026-09-17T11:03:09.260624Z",
+        "until": "2026-09-17T11:03:22.445824Z"
+      },
+      {
+        "since": "2026-09-17T11:08:23.243668Z",
+        "until": "2026-09-17T11:08:23.584163Z"
+      },
+      {
+        "since": "2026-09-17T11:13:26.809525Z",
+        "until": "2026-09-17T11:13:27.158998Z"
+      },
+      {
+        "since": "2026-09-17T11:18:28.977192Z",
+        "until": "2026-09-17T11:18:29.324592Z"
+      },
+      {
+        "since": "2026-09-17T11:24:27.567607Z",
+        "until": "2026-09-17T11:24:27.754224Z"
+      },
+      {
+        "since": "2026-09-17T11:30:23.379215Z",
+        "until": "2026-09-17T11:30:23.512396Z"
+      },
+      {
+        "since": "2026-09-17T11:36:08.873349Z",
+        "until": "2026-09-17T11:36:22.036829Z"
+      },
+      {
+        "since": "2026-09-17T11:41:23.429034Z",
+        "until": "2026-09-17T11:41:23.760089Z"
+      },
+      {
+        "since": "2026-09-17T11:46:28.911719Z",
+        "until": "2026-09-17T11:46:29.238339Z"
+      },
+      {
+        "since": "2026-09-17T11:51:28.981469Z",
+        "until": "2026-09-17T11:51:29.319842Z"
+      },
+      {
+        "since": "2026-09-17T11:57:20.815043Z",
+        "until": "2026-09-17T11:57:21.146885Z"
+      },
+      {
+        "since": "2026-09-17T12:03:09.142597Z",
+        "until": "2026-09-17T12:03:09.589686Z"
+      },
+      {
+        "since": "2026-09-17T12:08:09.201156Z",
+        "until": "2026-09-17T12:08:35.407481Z"
+      },
+      {
+        "since": "2026-09-17T12:14:09.121841Z",
+        "until": "2026-09-17T12:14:09.466981Z"
+      },
+      {
+        "since": "2026-09-17T12:19:20.559757Z",
+        "until": "2026-09-17T12:19:20.904723Z"
+      },
+      {
+        "since": "2026-09-17T12:24:28.851572Z",
+        "until": "2026-09-17T12:24:29.203960Z"
+      },
+      {
+        "since": "2026-09-17T12:30:20.492642Z",
+        "until": "2026-09-17T12:30:20.810300Z"
+      },
+      {
+        "since": "2026-09-17T12:35:27.621118Z",
+        "until": "2026-09-17T12:35:27.758793Z"
+      },
+      {
+        "since": "2026-09-17T12:41:23.785716Z",
+        "until": "2026-09-17T12:41:24.115013Z"
+      },
+      {
+        "since": "2026-09-17T12:46:28.819415Z",
+        "until": "2026-09-17T12:46:28.989362Z"
+      },
+      {
+        "since": "2026-09-17T12:52:09.336848Z",
+        "until": "2026-09-17T12:52:09.696866Z"
+      },
+      {
+        "since": "2026-09-17T12:57:09.064880Z",
+        "until": "2026-09-17T12:57:09.413161Z"
+      },
+      {
+        "since": "2026-09-17T13:02:20.460808Z",
+        "until": "2026-09-17T13:02:20.803831Z"
+      },
+      {
+        "since": "2026-09-17T13:08:09.110799Z",
+        "until": "2026-09-17T13:08:22.447353Z"
+      },
+      {
+        "since": "2026-09-17T13:13:24.001793Z",
+        "until": "2026-09-17T13:13:24.348229Z"
+      },
+      {
+        "since": "2026-09-17T13:19:09.023968Z",
+        "until": "2026-09-17T13:19:09.361314Z"
+      },
+      {
+        "since": "2026-09-17T13:24:09.086757Z",
+        "until": "2026-09-17T13:25:35.529791Z"
+      },
+      {
+        "since": "2026-09-17T13:31:24.128881Z",
+        "until": "2026-09-17T13:31:24.262602Z"
+      },
+      {
+        "since": "2026-09-17T13:37:09.609492Z",
+        "until": "2026-09-17T13:37:09.943411Z"
+      },
+      {
+        "since": "2026-09-17T13:42:28.725169Z",
+        "until": "2026-09-17T13:42:54.935234Z"
+      },
+      {
+        "since": "2026-09-17T13:48:09.689352Z",
+        "until": "2026-09-17T13:48:10.032253Z"
+      },
+      {
+        "since": "2026-09-17T13:53:20.424867Z",
+        "until": "2026-09-17T13:53:33.588003Z"
+      },
+      {
+        "since": "2026-09-17T13:59:09.758960Z",
+        "until": "2026-09-17T13:59:22.926006Z"
+      },
+      {
+        "since": "2026-09-17T14:04:24.291363Z",
+        "until": "2026-09-17T14:04:24.608819Z"
+      },
+      {
+        "since": "2026-09-17T14:09:28.941517Z",
+        "until": "2026-09-17T14:09:30.364728Z"
+      },
+      {
+        "since": "2026-09-17T14:14:28.028806Z",
+        "until": "2026-09-17T14:14:28.338614Z"
+      },
+      {
+        "since": "2026-09-17T14:19:28.704265Z",
+        "until": "2026-09-17T14:19:29.259973Z"
+      },
+      {
+        "since": "2026-09-17T14:24:28.916712Z",
+        "until": "2026-09-17T14:24:29.241554Z"
+      },
+      {
+        "since": "2026-09-17T14:29:28.643154Z",
+        "until": "2026-09-17T14:29:28.953474Z"
+      },
+      {
+        "since": "2026-09-17T14:34:28.651083Z",
+        "until": "2026-09-17T14:34:29.003830Z"
+      },
+      {
+        "since": "2026-09-17T14:40:09.913859Z",
+        "until": "2026-09-17T14:40:23.081190Z"
+      },
+      {
+        "since": "2026-09-17T14:46:11.139567Z",
+        "until": "2026-09-17T14:46:11.286363Z"
+      },
+      {
+        "since": "2026-09-17T14:49:22.385095Z",
+        "until": "2026-09-17T14:49:48.762067Z"
+      },
+      {
+        "since": "2026-09-17T14:52:47.468017Z",
+        "until": "2026-09-17T14:53:00.593212Z"
+      },
+      {
+        "since": "2026-09-17T14:58:46.824300Z",
+        "until": "2026-09-17T14:58:46.931679Z"
+      },
+      {
+        "since": "2026-09-17T15:03:46.879043Z",
+        "until": "2026-09-17T15:03:46.981294Z"
+      },
+      {
+        "since": "2026-09-17T15:09:17.146466Z",
+        "until": "2026-09-17T15:09:17.479272Z"
+      },
+      {
+        "since": "2026-09-17T15:15:08.671477Z",
+        "until": "2026-09-17T15:15:09.311589Z"
+      },
+      {
+        "since": "2026-09-17T15:20:08.699175Z",
+        "until": "2026-09-17T15:20:09.080269Z"
+      },
+      {
+        "since": "2026-09-17T15:25:41.901385Z",
+        "until": "2026-09-17T15:25:42.054399Z"
+      },
+      {
+        "since": "2026-09-17T15:30:47.012548Z",
+        "until": "2026-09-17T15:30:47.299696Z"
+      },
+      {
+        "since": "2026-09-17T15:36:08.633985Z",
+        "until": "2026-09-17T15:36:08.974269Z"
+      },
+      {
+        "since": "2026-09-17T15:41:08.674206Z",
+        "until": "2026-09-17T15:41:09.017518Z"
+      }
+    ],
+    "down": false
   },
   "robots": [
     {
@@ -1424,7 +1772,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T11:29:00-04:00"
+      "lastISO": "2026-09-17T11:40:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1454,7 +1802,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T11:31:00-04:00"
+      "lastISO": "2026-09-17T11:41:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1464,7 +1812,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T11:25:00-04:00"
+      "lastISO": "2026-09-17T11:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1474,7 +1822,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T11:30:00-04:00"
+      "lastISO": "2026-09-17T11:40:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1484,7 +1832,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T11:33:00-04:00"
+      "lastISO": "2026-09-17T11:44:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1494,7 +1842,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T11:23:00-04:00"
+      "lastISO": "2026-09-17T11:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1594,7 +1942,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T11:05:00-04:00"
+      "lastISO": "2026-09-17T11:35:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2026,7 +2374,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-17T11:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 39,
             "stale": false
           },
           {
@@ -2038,7 +2386,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-17T11:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 39,
             "stale": false
           }
         ],
@@ -2092,7 +2440,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "11:32"
+    "stamp": "11:44"
   }
 }/*__END_DATA__*/;
 
