@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 6:57 PM ET",
-  "generatedAtISO": "2026-09-17T18:57:46-04:00",
+  "generatedAt": "Sep 17, 7:02 PM ET",
+  "generatedAtISO": "2026-09-17T19:02:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -794,7 +794,7 @@ const DATA = /*__DATA__*/{
         },
         {
           "kind": "EOB",
-          "state": "scheduled",
+          "state": "blocked",
           "time": "22:45"
         }
       ],
@@ -969,10 +969,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": "17:34",
-      "departed": null,
+      "departed": "18:59",
       "facilitator": null,
       "arrived_by": "Natascha M",
-      "departed_by": null,
+      "departed_by": "Natascha M",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -992,10 +992,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:59",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Sorina Colyn",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1254,28 +1254,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "COURTESY — Isabel Campo Jurado — Sep 18 setup hour paid ack",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": null,
-      "raised_by": "The Responder",
-      "created": "Sep 17 · 17:56",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Post-HTA go-ahead confirmation — Petra Ayedzi [Skedda] — 509A [gtg:85c139c7-ca83-4a4b-821d-746d02c60fea]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 17 · 18:52",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "GTG-nudge-sweep-•••B",
       "kind": null,
       "channel": "SMS",
@@ -1322,16 +1300,26 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Richard 'Morpheus' Walters in Studio 509B"
     },
     {
-      "code": "EOB-sweep-•••B",
-      "kind": "EOB",
+      "code": "COURTESY — Isabel Campo Jurado — Sep 18 setup hour paid ack",
+      "kind": null,
       "channel": "SMS",
       "status": "Ready to Send",
-      "studio": "509B",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 17 · 17:56",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Post-HTA go-ahead confirmation — Petra Ayedzi [Skedda] — 509A [gtg:85c139c7-ca83-4a4b-821d-746d02c60fea]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
       "raised_by": "The Registrar",
-      "created": "Sep 17 · 18:55",
-      "send_after": "22:45",
-      "send_after_iso": "2026-09-17T22:45:00-04:00",
-      "label": "EOB for Junyan Boon in Studio 509B"
+      "created": "Sep 17 · 18:52",
+      "send_after": null,
+      "send_after_iso": null
     },
     {
       "code": "AVA-sweep-•••B",
@@ -1545,6 +1533,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789683843086,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Natascha M",
+      "time": "18:59",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789685963560,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Sorina Colyn",
+      "time": "18:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789685969593,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1555,7 +1561,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T22:26:00+00:00",
-    "polledAt": "2026-09-17T22:58:00+00:00",
+    "polledAt": "2026-09-17T23:02:00+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -2162,6 +2168,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T22:55:13.713303Z",
         "until": "2026-09-17T22:55:14.122930Z"
+      },
+      {
+        "since": "2026-09-17T23:00:41.275862Z",
+        "until": "2026-09-17T23:00:41.436333Z"
       }
     ],
     "down": false
@@ -2205,7 +2215,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:45:00-04:00"
+      "lastISO": "2026-09-17T19:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2215,7 +2225,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:56:00-04:00"
+      "lastISO": "2026-09-17T19:01:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2225,7 +2235,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:45:00-04:00"
+      "lastISO": "2026-09-17T18:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2235,7 +2245,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:55:00-04:00"
+      "lastISO": "2026-09-17T19:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2245,7 +2255,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:57:00-04:00"
+      "lastISO": "2026-09-17T19:01:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2335,7 +2345,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:05:00-04:00"
+      "lastISO": "2026-09-17T19:02:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2405,7 +2415,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:46:00-04:00"
+      "lastISO": "2026-09-17T19:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2787,7 +2797,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 52,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2799,7 +2809,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 60,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 52,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2853,7 +2863,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "18:57"
+    "stamp": "19:02"
   }
 }/*__END_DATA__*/;
 
