@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 1:52 PM ET",
-  "generatedAtISO": "2026-09-17T13:52:24-04:00",
+  "generatedAt": "Sep 17, 2:02 PM ET",
+  "generatedAtISO": "2026-09-17T14:02:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -580,8 +580,8 @@ const DATA = /*__DATA__*/{
       "who": "Jia Chian Lee — Dance Practice",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
-      "hta": "Unsent",
+      "gtg": true,
+      "hta": "Sent",
       "dispatch": [
         {
           "kind": "EOB",
@@ -591,10 +591,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "14:02",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Jia Chian Lee",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1264,6 +1264,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "Post-HTA go-ahead confirmation — Jia Chian Lee — 509A [gtg:1739a761-39a5-••••-a145-4d34bad2a5fb]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 17 · 13:57",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1471,6 +1482,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789663511260,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "14:02",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789668140908,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1481,7 +1501,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T16:51:01+00:00",
-    "polledAt": "2026-09-17T17:53:01+00:00",
+    "polledAt": "2026-09-17T18:02:01+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1884,6 +1904,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T17:50:41.700734Z",
         "until": "2026-09-17T17:50:55.087754Z"
+      },
+      {
+        "since": "2026-09-17T17:56:48.118555Z",
+        "until": "2026-09-17T17:56:48.442436Z"
+      },
+      {
+        "since": "2026-09-17T18:02:11.628314Z",
+        "until": "2026-09-17T18:02:11.960760Z"
       }
     ],
     "down": false
@@ -1907,7 +1935,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:53:00-04:00"
+      "lastISO": "2026-09-17T13:59:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1927,7 +1955,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:45:00-04:00"
+      "lastISO": "2026-09-17T14:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1937,7 +1965,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:51:00-04:00"
+      "lastISO": "2026-09-17T14:01:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1947,7 +1975,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:45:00-04:00"
+      "lastISO": "2026-09-17T13:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1957,7 +1985,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:50:00-04:00"
+      "lastISO": "2026-09-17T14:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1967,7 +1995,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:52:00-04:00"
+      "lastISO": "2026-09-17T14:02:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1977,7 +2005,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:40:00-04:00"
+      "lastISO": "2026-09-17T13:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2057,7 +2085,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:12:00-04:00"
+      "lastISO": "2026-09-17T14:12:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2087,7 +2115,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:28:00-04:00"
+      "lastISO": "2026-09-17T13:56:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2127,7 +2155,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T13:46:00-04:00"
+      "lastISO": "2026-09-17T14:01:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2509,7 +2537,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-17T13:14:00-04:00",
-            "ageMin": 38,
+            "ageMin": 48,
             "stale": false
           },
           {
@@ -2521,7 +2549,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 57,
             "whenISO": "2026-09-17T13:14:00-04:00",
-            "ageMin": 38,
+            "ageMin": 48,
             "stale": false
           }
         ],
@@ -2575,7 +2603,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "13:52"
+    "stamp": "14:02"
   }
 }/*__END_DATA__*/;
 
