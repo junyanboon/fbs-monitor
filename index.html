@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 10:34 AM ET",
-  "generatedAtISO": "2026-09-17T10:34:25-04:00",
+  "generatedAt": "Sep 17, 10:40 AM ET",
+  "generatedAtISO": "2026-09-17T10:40:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -788,10 +788,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "10:20",
-      "departed": null,
+      "departed": "10:37",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1387,6 +1387,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789654830389,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "10:37",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789655850883,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1418,7 +1427,13 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T14:25:01+00:00",
-    "polledAt": "2026-09-17T14:34:01+00:00",
+    "polledAt": "2026-09-17T14:41:00+00:00",
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
     "doorGaps": [
       {
         "since": "2026-09-17T09:02:22.496053Z",
@@ -1663,6 +1678,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T14:29:28.643154Z",
         "until": "2026-09-17T14:29:28.953474Z"
+      },
+      {
+        "since": "2026-09-17T14:34:28.651083Z",
+        "until": "2026-09-17T14:34:29.003830Z"
+      },
+      {
+        "since": "2026-09-17T14:40:09.913859Z",
+        "until": "2026-09-17T14:40:23.081190Z"
       }
     ],
     "down": false
@@ -1686,7 +1709,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:35:00-04:00"
+      "lastISO": "2026-09-17T10:40:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1716,7 +1739,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:31:00-04:00"
+      "lastISO": "2026-09-17T10:36:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1736,7 +1759,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:30:00-04:00"
+      "lastISO": "2026-09-17T10:40:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1746,7 +1769,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:34:00-04:00"
+      "lastISO": "2026-09-17T10:40:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2288,7 +2311,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-17T10:05:00-04:00",
-            "ageMin": 29,
+            "ageMin": 35,
             "stale": false
           },
           {
@@ -2300,7 +2323,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-17T10:05:00-04:00",
-            "ageMin": 29,
+            "ageMin": 35,
             "stale": false
           }
         ],
@@ -2354,7 +2377,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "10:34"
+    "stamp": "10:40"
   }
 }/*__END_DATA__*/;
 
