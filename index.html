@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 9:47 PM ET",
-  "generatedAtISO": "2026-09-16T21:47:06-04:00",
+  "generatedAt": "Sep 16, 10:02 PM ET",
+  "generatedAtISO": "2026-09-16T22:02:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1107,12 +1107,7 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Nina Li in Studio 901"
     }
   ],
-  "attention": [
-    {
-      "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
-    }
-  ],
+  "attention": [],
   "armEvents": [
     {
       "studio": "509B",
@@ -2006,31 +2001,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T01:46:09.813025Z",
         "until": "2026-09-17T01:46:22.977275Z"
+      },
+      {
+        "since": "2026-09-17T01:52:09.840787Z",
+        "until": "2026-09-17T01:52:09.979357Z"
+      },
+      {
+        "since": "2026-09-17T01:57:19.996472Z",
+        "until": "2026-09-17T01:57:20.337600Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "Desk Sort",
-      "cadence": "Hourly",
-      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
-      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-16T19:13:00-04:00"
-    },
-    {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-16T21:15:00-04:00"
-    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2039,7 +2022,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:47:00-04:00"
+      "lastISO": "2026-09-16T21:58:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2059,7 +2042,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:45:00-04:00"
+      "lastISO": "2026-09-16T22:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2069,7 +2052,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:46:00-04:00"
+      "lastISO": "2026-09-16T22:01:00-04:00"
+    },
+    {
+      "run": "handback-sweep (Hostinger)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-16T21:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2079,7 +2072,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:45:00-04:00"
+      "lastISO": "2026-09-16T22:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2089,7 +2082,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:47:00-04:00"
+      "lastISO": "2026-09-16T22:02:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2099,7 +2092,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:42:00-04:00"
+      "lastISO": "2026-09-16T21:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2209,7 +2202,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:23:00-04:00"
+      "lastISO": "2026-09-16T21:52:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2249,7 +2242,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:46:00-04:00"
+      "lastISO": "2026-09-16T22:01:00-04:00"
+    },
+    {
+      "run": "Desk Sort",
+      "cadence": "Hourly",
+      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
+      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-16T19:13:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2565,7 +2568,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "handback-sweep (Hostinger)",
           "The Analyst",
@@ -2578,11 +2581,7 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "handback-sweep (Hostinger)",
-          "label": "Overdue",
-          "lastISO": "2026-09-16T21:15:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2635,7 +2634,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-16T21:05:00-04:00",
-            "ageMin": 42,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2647,7 +2646,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-16T21:05:00-04:00",
-            "ageMin": 42,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2701,7 +2700,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "21:47"
+    "stamp": "22:02"
   }
 }/*__END_DATA__*/;
 
