@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 17, 1:02 AM ET",
-  "generatedAtISO": "2026-09-17T01:02:11-04:00",
+  "generatedAt": "Sep 17, 1:17 AM ET",
+  "generatedAtISO": "2026-09-17T01:17:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -2311,11 +2311,33 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T04:59:05.144492Z",
         "until": "2026-09-17T04:59:05.439839Z"
+      },
+      {
+        "since": "2026-09-17T05:04:29.767786Z",
+        "until": "2026-09-17T05:05:09.000321Z"
+      },
+      {
+        "since": "2026-09-17T05:10:21.149373Z",
+        "until": "2026-09-17T05:10:21.485513Z"
+      },
+      {
+        "since": "2026-09-17T05:16:09.499408Z",
+        "until": "2026-09-17T05:16:09.662243Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-16T06:22:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2324,7 +2346,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T01:01:00-04:00"
+      "lastISO": "2026-09-17T01:13:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2344,7 +2366,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T01:02:00-04:00"
+      "lastISO": "2026-09-17T01:17:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2354,7 +2376,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T00:07:00-04:00"
+      "lastISO": "2026-09-17T01:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2375,16 +2397,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-16T06:00:00-04:00"
-    },
-    {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-16T06:22:00-04:00"
     },
     {
       "run": "The Host",
@@ -2474,7 +2486,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-17T01:00:00-04:00"
+      "lastISO": "2026-09-17T01:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2484,7 +2496,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-17T01:01:00-04:00"
+      "lastISO": "2026-09-17T01:16:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2494,7 +2506,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-17T00:55:00-04:00"
+      "lastISO": "2026-09-17T01:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2504,7 +2516,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-17T01:00:00-04:00"
+      "lastISO": "2026-09-17T01:15:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2544,7 +2556,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-17T00:53:00-04:00"
+      "lastISO": "2026-09-17T01:02:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2840,14 +2852,18 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "alarm-watchdog (Cloud Run)",
           "The Doorman",
+          "alarm-watchdog (Cloud Run)",
           "migration-sweep (Cloud Run — alarm-mcp)",
           "🔑 Code Mirror"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Doorman",
+          "label": "Due",
+          "lastISO": "2026-09-16T06:22:00-04:00"
+        }
       },
       {
         "k": "mail",
@@ -2921,11 +2937,15 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
           "The Weatherman"
         ],
-        "worst": null,
+        "worst": {
+          "run": "Thermal Log",
+          "label": "No fresh reading",
+          "lastISO": "2026-09-16T23:05:00-04:00"
+        },
         "studios": [
           {
             "studio": "509",
@@ -2936,8 +2956,8 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-16T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 132,
+            "stale": true
           },
           {
             "studio": "901",
@@ -2948,11 +2968,11 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 60,
             "whenISO": "2026-09-16T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 132,
+            "stale": true
           }
         ],
-        "climateNote": null,
+        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -3002,7 +3022,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "01:02"
+    "stamp": "01:17"
   }
 }/*__END_DATA__*/;
 
