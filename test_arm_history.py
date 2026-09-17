@@ -67,7 +67,8 @@ def main():
             {"studio": "509A", "kind": "departure", "at": "2026-08-18T13:28:00+00:00"},
         ],
     }
-    evs, updated = with_history(payload, lambda: build.fetch_arm_history(win_start))
+    payload["polled_at"] = "2026-08-18T13:44:00+00:00"
+    evs, updated, polled = with_history(payload, lambda: build.fetch_arm_history(win_start))
     fails += check("panel events parsed", len(evs), 2)
     fails += check("UTC converted to Toronto clock", evs[0]["time"], "07:31")
     fails += check("departure converted too", evs[1]["time"], "09:28")
@@ -75,11 +76,24 @@ def main():
     fails += check("panel events are never remote", evs[0]["remote"], False)
     fails += check("updated_at returned for staleness judging", updated,
                    "2026-08-18T13:40:00+00:00")
+    fails += check("polled_at returned for poller liveness", polled, "2026-08-18T13:44:00+00:00")
+
+    # ---- panel_status (polled_at, alarm-monitor #11) ----------------------
+    at = datetime(2026, 8, 18, 9, 50, tzinfo=TZ)          # 13:50Z
+    fails += check("fresh poll is ok", build.panel_status("2026-08-18T13:44:00+00:00", at), "ok")
+    fails += check("poll older than 10 min is stale",
+                   build.panel_status("2026-08-18T13:30:00+00:00", at), "stale")
+    fails += check("server without polled_at keeps old behaviour", build.panel_status(None, at), "ok")
+    fails += check("unparseable polled_at is stale", build.panel_status("junk", at), "stale")
+    fails += check("stale panel + dead doors is an outage",
+                   build.feed_is_down([{"x": 1}], {"panel": "stale", "doors": "failed"}, at, win_start), True)
+    fails += check("stale panel is not trusted as a quiet morning",
+                   build.feed_is_down([], {"panel": "stale", "doors": "ok"}, at + timedelta(hours=1), win_start), True)
 
     # Events before the window belong to yesterday's board, not today's.
     old = {"events": [{"studio": "527", "kind": "arrival",
                        "at": "2026-08-17T11:00:00+00:00"}]}
-    evs_old, _ = with_history(old, lambda: build.fetch_arm_history(win_start))
+    evs_old, _, _ = with_history(old, lambda: build.fetch_arm_history(win_start))
     fails += check("pre-window events dropped", evs_old, [])
 
     # Junk must be skipped, not crash the build — this feeds a page, and a
@@ -90,7 +104,7 @@ def main():
         {"studio": "509A", "kind": "wandered-off", "at": "2026-08-18T11:31:00+00:00"},
         {"studio": "509A", "kind": "arrival", "at": "2026-08-18T12:00:00+00:00"},
     ]}
-    evs_junk, _ = with_history(junk, lambda: build.fetch_arm_history(win_start))
+    evs_junk, _, _ = with_history(junk, lambda: build.fetch_arm_history(win_start))
     fails += check("only the sound row survives", len(evs_junk), 1)
     fails += check("and it is the right one", evs_junk[0]["time"], "08:00")
 
