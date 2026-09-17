@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 5:02 PM ET",
-  "generatedAtISO": "2026-09-17T17:02:17-04:00",
+  "generatedAt": "Sep 17, 5:07 PM ET",
+  "generatedAtISO": "2026-09-17T17:07:28-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1023,17 +1023,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "Held reply — Sebastian Fess — bass confirmation received, 901 Sun Sep 27 [responder:gmail:1a0b11708451efe0]",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Responder",
-      "created": "Sep 17 · 16:53",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1097,7 +1086,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1250,7 +1239,7 @@ const DATA = /*__DATA__*/{
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "ok",
+    "panel": "stale",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T20:25:01+00:00",
@@ -1795,6 +1784,16 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
+      "run": "alarm-watchdog (Cloud Run)",
+      "cadence": "5-min",
+      "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
+      "produces": "Clears tripped sirens (occupancy-guarded), restores stuck bypasses, sorts panel troubles to SMS/ticket, runs the Panel Tamper loop",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-17T16:51:00-04:00"
+    },
+    {
       "run": "Desk Sort",
       "cadence": "Hourly",
       "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
@@ -1803,16 +1802,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-16T19:13:00-04:00"
-    },
-    {
-      "run": "alarm-watchdog (Cloud Run)",
-      "cadence": "5-min",
-      "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
-      "produces": "Clears tripped sirens (occupancy-guarded), restores stuck bypasses, sorts panel troubles to SMS/ticket, runs the Panel Tamper loop",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-17T16:51:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1842,7 +1831,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:01:00-04:00"
+      "lastISO": "2026-09-17T17:07:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1862,7 +1851,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:00:00-04:00"
+      "lastISO": "2026-09-17T17:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1872,7 +1861,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:02:00-04:00"
+      "lastISO": "2026-09-17T17:07:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1892,7 +1881,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T16:07:00-04:00"
+      "lastISO": "2026-09-17T17:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2318,7 +2307,7 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "alarm-watchdog (Cloud Run)",
           "The Doorman",
@@ -2327,7 +2316,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "alarm-watchdog (Cloud Run)",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-17T16:51:00-04:00"
         }
       },
@@ -2412,25 +2401,25 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 21.7,
-            "setpoint": "COOL 19.1",
+            "inside": 21.9,
+            "setpoint": "COOL 22.9",
             "mode": "COOL",
-            "hvac": "COOLING",
+            "hvac": "OFF",
             "humidity": 50,
-            "whenISO": "2026-09-17T16:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-17T17:05:00-04:00",
+            "ageMin": 2,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 20.3,
+            "inside": 21.3,
             "setpoint": "",
             "mode": "OFF",
             "hvac": "OFF",
-            "humidity": 57,
-            "whenISO": "2026-09-17T16:05:00-04:00",
-            "ageMin": 57,
+            "humidity": 60,
+            "whenISO": "2026-09-17T17:05:00-04:00",
+            "ageMin": 2,
             "stale": false
           }
         ],
@@ -2484,7 +2473,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "17:02"
+    "stamp": "17:07"
   }
 }/*__END_DATA__*/;
 
