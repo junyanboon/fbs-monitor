@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 9:32 PM ET",
-  "generatedAtISO": "2026-09-16T21:32:14-04:00",
+  "generatedAt": "Sep 16, 9:43 PM ET",
+  "generatedAtISO": "2026-09-16T21:43:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -760,12 +760,12 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "18:00",
-      "departed": null,
+      "departed": "21:39",
       "facilitator": null,
       "arrived_by": "Angus Dirnbeck",
-      "departed_by": null,
+      "departed_by": "Angus Dirnbeck",
       "arrived_foreign": true,
-      "departed_foreign": false,
+      "departed_foreign": true,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
@@ -1257,6 +1257,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789607569472,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "21:39",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789609179865,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1266,7 +1275,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-17T01:14:00+00:00",
+    "updatedAt": "2026-09-17T01:43:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1985,6 +1994,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T01:29:30.094152Z",
         "until": "2026-09-17T01:29:30.255111Z"
+      },
+      {
+        "since": "2026-09-17T01:35:19.887321Z",
+        "until": "2026-09-17T01:35:20.033238Z"
+      },
+      {
+        "since": "2026-09-17T01:41:09.770263Z",
+        "until": "2026-09-17T01:41:09.916118Z"
       }
     ],
     "down": false
@@ -2001,6 +2018,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-16T19:13:00-04:00"
     },
     {
+      "run": "handback-sweep (Hostinger)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-16T21:15:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2008,7 +2035,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:30:00-04:00"
+      "lastISO": "2026-09-16T21:42:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2038,17 +2065,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:26:00-04:00"
-    },
-    {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:15:00-04:00"
+      "lastISO": "2026-09-16T21:42:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2058,7 +2075,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:32:00-04:00"
+      "lastISO": "2026-09-16T21:42:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2068,7 +2085,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:32:00-04:00"
+      "lastISO": "2026-09-16T21:43:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2078,7 +2095,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:24:00-04:00"
+      "lastISO": "2026-09-16T21:32:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2178,7 +2195,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:08:00-04:00"
+      "lastISO": "2026-09-16T21:38:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2544,7 +2561,7 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
           "handback-sweep (Hostinger)",
           "The Analyst",
@@ -2557,7 +2574,11 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "handback-sweep (Hostinger)",
+          "label": "Due",
+          "lastISO": "2026-09-16T21:15:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2610,7 +2631,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-16T21:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 38,
             "stale": false
           },
           {
@@ -2622,7 +2643,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-16T21:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 38,
             "stale": false
           }
         ],
@@ -2676,7 +2697,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "21:32"
+    "stamp": "21:43"
   }
 }/*__END_DATA__*/;
 
