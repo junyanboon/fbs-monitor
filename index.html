@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 5:27 PM ET",
-  "generatedAtISO": "2026-09-17T17:27:23-04:00",
+  "generatedAt": "Sep 17, 5:32 PM ET",
+  "generatedAtISO": "2026-09-17T17:32:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -763,11 +763,6 @@ const DATA = /*__DATA__*/{
       "hta": "Sent",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "17:30"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "21:15"
@@ -895,12 +890,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:30",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Angus Dirnbeck",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -1057,18 +1052,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "openShifts": [
-    {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 17.0,
-      "end": 17.5,
-      "id": "c28e73398a99",
-      "date": "2026-09-17",
-      "startISO": "2026-09-17T17:00:00-04:00",
-      "endISO": "2026-09-17T17:30:00-04:00",
-      "day": "Today"
-    },
     {
       "role": "FBS",
       "studio": "901",
@@ -1300,18 +1283,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Richard 'Morpheus' Walters in Studio 509B"
     },
     {
-      "code": "AVA-sweep-•••B",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 17 · 00:28",
-      "send_after": "17:30",
-      "send_after_iso": "2026-09-17T17:30:00-04:00",
-      "label": "AVA for Richard 'Morpheus' Walters in Studio 509B"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1483,6 +1454,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789680192528,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "17:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789680611176,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1492,8 +1472,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-17T21:27:00+00:00",
-    "polledAt": "2026-09-17T21:27:00+00:00",
+    "updatedAt": "2026-09-17T21:32:00+00:00",
+    "polledAt": "2026-09-17T21:32:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -2036,6 +2016,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T21:26:28.187512Z",
         "until": "2026-09-17T21:26:28.320000Z"
+      },
+      {
+        "since": "2026-09-17T21:31:49.211471Z",
+        "until": "2026-09-17T21:31:49.532896Z"
       }
     ],
     "down": false
@@ -2059,7 +2043,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:26:00-04:00"
+      "lastISO": "2026-09-17T17:31:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2079,7 +2063,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:15:00-04:00"
+      "lastISO": "2026-09-17T17:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2089,7 +2073,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:26:00-04:00"
+      "lastISO": "2026-09-17T17:32:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2099,7 +2083,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:15:00-04:00"
+      "lastISO": "2026-09-17T17:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2109,7 +2093,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:25:00-04:00"
+      "lastISO": "2026-09-17T17:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2119,7 +2103,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:27:00-04:00"
+      "lastISO": "2026-09-17T17:32:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2129,7 +2113,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:12:00-04:00"
+      "lastISO": "2026-09-17T17:24:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2279,7 +2263,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:16:00-04:00"
+      "lastISO": "2026-09-17T17:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2661,7 +2645,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-17T17:05:00-04:00",
-            "ageMin": 22,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2673,7 +2657,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 60,
             "whenISO": "2026-09-17T17:05:00-04:00",
-            "ageMin": 22,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2727,7 +2711,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "17:27"
+    "stamp": "17:32"
   }
 }/*__END_DATA__*/;
 
