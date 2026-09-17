@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 6:49 PM ET",
-  "generatedAtISO": "2026-09-17T18:49:52-04:00",
+  "generatedAt": "Sep 17, 6:56 PM ET",
+  "generatedAtISO": "2026-09-17T18:56:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -788,9 +788,14 @@ const DATA = /*__DATA__*/{
       "hta": "Unsent",
       "dispatch": [
         {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "20:45"
+        },
+        {
           "kind": "EOB",
-          "state": "missing",
-          "time": null
+          "state": "scheduled",
+          "time": "22:45"
         }
       ],
       "booking_studios": [],
@@ -1260,6 +1265,39 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "Post-HTA go-ahead confirmation — Petra Ayedzi [Skedda] — 509A [gtg:85c139c7-ca83-4a4b-821d-746d02c60fea]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 17 · 18:52",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "GTG-nudge-sweep-•••B",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 17 · 18:54",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "HR-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "AI (automation)",
+      "created": "Sep 17 · 18:56",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1282,6 +1320,30 @@ const DATA = /*__DATA__*/{
       "send_after": "21:15",
       "send_after_iso": "2026-09-17T21:15:00-04:00",
       "label": "EOB for Richard 'Morpheus' Walters in Studio 509B"
+    },
+    {
+      "code": "EOB-sweep-•••B",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 17 · 18:55",
+      "send_after": "22:45",
+      "send_after_iso": "2026-09-17T22:45:00-04:00",
+      "label": "EOB for Junyan Boon in Studio 509B"
+    },
+    {
+      "code": "AVA-sweep-•••B",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 17 · 18:57",
+      "send_after": "20:45",
+      "send_after_iso": "2026-09-17T20:45:00-04:00",
+      "label": "AVA for Junyan Boon in Studio 509B"
     }
   ],
   "attention": [
@@ -1493,7 +1555,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T22:26:00+00:00",
-    "polledAt": "2026-09-17T22:50:01+00:00",
+    "polledAt": "2026-09-17T22:57:01+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -2096,6 +2158,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T22:49:27.808260Z",
         "until": "2026-09-17T22:49:28.095215Z"
+      },
+      {
+        "since": "2026-09-17T22:55:13.713303Z",
+        "until": "2026-09-17T22:55:14.122930Z"
       }
     ],
     "down": false
@@ -2129,7 +2195,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:47:00-04:00"
+      "lastISO": "2026-09-17T18:53:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2159,7 +2225,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:47:00-04:00"
+      "lastISO": "2026-09-17T18:56:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2169,7 +2235,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:35:00-04:00"
+      "lastISO": "2026-09-17T18:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2179,7 +2245,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:50:00-04:00"
+      "lastISO": "2026-09-17T18:55:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2189,7 +2255,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:49:00-04:00"
+      "lastISO": "2026-09-17T18:56:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2299,7 +2365,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:31:00-04:00"
+      "lastISO": "2026-09-17T18:53:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2721,7 +2787,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 44,
+            "ageMin": 51,
             "stale": false
           },
           {
@@ -2733,7 +2799,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 60,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 44,
+            "ageMin": 51,
             "stale": false
           }
         ],
@@ -2787,7 +2853,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "18:49"
+    "stamp": "18:56"
   }
 }/*__END_DATA__*/;
 
