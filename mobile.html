@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 3:16 PM ET",
-  "generatedAtISO": "2026-09-17T15:16:54-04:00",
+  "generatedAt": "Sep 17, 3:32 PM ET",
+  "generatedAtISO": "2026-09-17T15:32:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -355,17 +355,17 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "EOB",
-          "state": "missing",
+          "state": "awaiting",
           "time": null
         }
       ],
       "booking_studios": [],
       "heard": true,
       "arrived": "14:02",
-      "departed": null,
+      "departed": "15:27",
       "facilitator": null,
       "arrived_by": "Jia Chian Lee",
-      "departed_by": null,
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -718,11 +718,6 @@ const DATA = /*__DATA__*/{
       "hta": "Will Not Send",
       "dispatch": [
         {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "15:30"
-        },
-        {
           "kind": "EOB",
           "state": "scheduled",
           "time": "18:45"
@@ -1020,6 +1015,29 @@ const DATA = /*__DATA__*/{
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 17 · 15:19",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "EOB for Jia Chian Lee in Studio 509A"
+    },
+    {
+      "code": "PBF — Jia Chian Lee ••• [pbf:3de7503281c48153a612e9df7ba2d9e5]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 17 · 15:32",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "EOB-sweep-•••A",
+      "kind": "EOB",
+      "channel": "SMS",
       "status": "Ready to Send",
       "studio": "509A",
       "raised_by": "The Registrar",
@@ -1075,18 +1093,6 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-17T18:45:00-04:00",
       "label": "EOB for Natascha M Peerspace in Studio 901"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 17 · 00:31",
-      "send_after": "15:30",
-      "send_after_iso": "2026-09-17T15:30:00-04:00",
-      "label": "AVA for Natascha M Peerspace in Studio 901"
     }
   ],
   "attention": [
@@ -1221,6 +1227,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789668140908,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "15:27",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789673277924,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1230,8 +1245,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-17T18:04:00+00:00",
-    "polledAt": "2026-09-17T19:17:01+00:00",
+    "updatedAt": "2026-09-17T19:32:00+00:00",
+    "polledAt": "2026-09-17T19:32:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1694,6 +1709,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T19:13:48.457348Z",
         "until": "2026-09-17T19:13:48.611571Z"
+      },
+      {
+        "since": "2026-09-17T19:18:48.439926Z",
+        "until": "2026-09-17T19:18:48.773521Z"
+      },
+      {
+        "since": "2026-09-17T19:23:48.513572Z",
+        "until": "2026-09-17T19:23:48.986461Z"
+      },
+      {
+        "since": "2026-09-17T19:29:28.188388Z",
+        "until": "2026-09-17T19:29:28.510548Z"
       }
     ],
     "down": false
@@ -1717,7 +1744,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:15:00-04:00"
+      "lastISO": "2026-09-17T15:32:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1737,7 +1764,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:15:00-04:00"
+      "lastISO": "2026-09-17T15:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1747,7 +1774,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:16:00-04:00"
+      "lastISO": "2026-09-17T15:32:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1757,7 +1784,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:05:00-04:00"
+      "lastISO": "2026-09-17T15:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1767,7 +1794,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:15:00-04:00"
+      "lastISO": "2026-09-17T15:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1777,7 +1804,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:16:00-04:00"
+      "lastISO": "2026-09-17T15:32:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1787,7 +1814,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:00:00-04:00"
+      "lastISO": "2026-09-17T15:23:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1827,7 +1854,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T14:32:00-04:00"
+      "lastISO": "2026-09-17T15:45:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1887,7 +1914,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T14:38:00-04:00"
+      "lastISO": "2026-09-17T15:08:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1897,7 +1924,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T14:52:00-04:00"
+      "lastISO": "2026-09-17T15:22:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1937,7 +1964,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T15:16:00-04:00"
+      "lastISO": "2026-09-17T15:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2319,7 +2346,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-17T15:05:00-04:00",
-            "ageMin": 11,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2331,7 +2358,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 57,
             "whenISO": "2026-09-17T15:05:00-04:00",
-            "ageMin": 11,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2385,7 +2412,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "15:16"
+    "stamp": "15:32"
   }
 }/*__END_DATA__*/;
 
