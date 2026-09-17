@@ -1732,7 +1732,26 @@ def fetch_arm_history(win_start):
             "ts": int(at.timestamp() * 1000),
             "source": "panel",
         })
-    return out, payload.get("updated_at")
+    return out, payload.get("updated_at"), payload.get("polled_at")
+
+
+# The panel poller ticks once a minute. `updated_at` only moves when an arm state
+# CHANGES, so a quiet night looks old while the poller is fine. `polled_at`
+# (alarm-monitor #11, 2026-09-17) moves on every successful tick: older than
+# this, the ledger is not listening and its silence is not evidence.
+PANEL_POLL_MAX_AGE_MIN = 10
+
+
+def panel_status(polled_at, now):
+    """'ok' while the poller is ticking, 'stale' when it stopped. A server that
+    predates `polled_at` sends none: keep the old behaviour ('ok')."""
+    if not polled_at:
+        return "ok"
+    try:
+        at = datetime.fromisoformat(str(polled_at).replace("Z", "+00:00"))
+    except ValueError:
+        return "stale"
+    return "ok" if (now - at).total_seconds() <= PANEL_POLL_MAX_AGE_MIN * 60 else "stale"
 
 
 def fetch_door_events(win_start):
@@ -1969,7 +1988,7 @@ def feed_is_down(arm_events, arm_feed, now, win_start, quiet_hours=5):
     # stayed quiet and nine renters were marked MISSING / "No arrival" on a
     # busy Tuesday evening. When the timeline is down, silence is an outage
     # no matter what the mail says.
-    if arm_feed.get("panel") == "failed" and arm_feed.get("doors") in ("failed", "unconfigured"):
+    if arm_feed.get("panel") in ("failed", "stale") and arm_feed.get("doors") in ("failed", "unconfigured"):
         return True
     if arm_events:
         return False
@@ -4125,7 +4144,7 @@ def build_data(now):
     arm_events, alarm_alerts, panel_prior = [], [], {}
     panel_events, mail_events, door_events, door_gaps = [], [], [], []
     door_covers_since = None
-    arm_feed = {"panel": None, "mail": None, "doors": None, "updatedAt": None}
+    arm_feed = {"panel": None, "mail": None, "doors": None, "updatedAt": None, "polledAt": None}
 
     # doors — the websocket event ledger (/door-history). The NAME source, and
     # better-timed than the panel tick. It can have recorded outage gaps, which
@@ -4142,8 +4161,10 @@ def build_data(now):
 
     if ARM_HISTORY_URL and ARM_HISTORY_TOKEN:
         try:
-            panel_events, arm_feed["updatedAt"] = fetch_arm_history(win_start)
-            arm_feed["panel"] = "ok"
+            panel_events, arm_feed["updatedAt"], arm_feed["polledAt"] = fetch_arm_history(win_start)
+            arm_feed["panel"] = panel_status(arm_feed["polledAt"], datetime.now(TZ))
+            if arm_feed["panel"] == "stale":
+                print(f"NOTE: panel arm-history poller stale (polled_at {arm_feed['polledAt']}).")
         except Exception as e:          # noqa: BLE001 — soft: the email feed may still answer
             arm_feed["panel"] = "failed"
             print(f"NOTE: panel arm-history failed ({e}); leaning on the ADT email feed.")
