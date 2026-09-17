@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 6:17 PM ET",
-  "generatedAtISO": "2026-09-17T18:17:04-04:00",
+  "generatedAt": "Sep 17, 6:25 PM ET",
+  "generatedAtISO": "2026-09-17T18:25:27-04:00",
   "studios": [
     {
       "id": "509A",
@@ -633,10 +633,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "18:24",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Anita Pandey",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -788,10 +788,16 @@ const DATA = /*__DATA__*/{
       "studio": "509B",
       "who": "Junyan Boon — Test",
       "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Unsent",
+      "dispatch": [
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        }
+      ],
       "booking_studios": [],
       "heard": false,
       "arrived": null,
@@ -1469,6 +1475,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789681652653,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Anita Pandey",
+      "time": "18:24",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789683843086,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1479,7 +1494,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T21:52:00+00:00",
-    "polledAt": "2026-09-17T22:17:00+00:00",
+    "polledAt": "2026-09-17T22:25:01+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -2058,6 +2073,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T22:16:49.499215Z",
         "until": "2026-09-17T22:16:49.633643Z"
+      },
+      {
+        "since": "2026-09-17T22:21:49.543108Z",
+        "until": "2026-09-17T22:21:49.694660Z"
       }
     ],
     "down": false
@@ -2091,7 +2110,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:14:00-04:00"
+      "lastISO": "2026-09-17T18:25:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2121,7 +2140,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:17:00-04:00"
+      "lastISO": "2026-09-17T18:22:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2131,7 +2150,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:05:00-04:00"
+      "lastISO": "2026-09-17T18:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2141,7 +2160,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:15:00-04:00"
+      "lastISO": "2026-09-17T18:25:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2151,7 +2170,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:17:00-04:00"
+      "lastISO": "2026-09-17T18:25:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2191,7 +2210,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:25:00-04:00"
+      "lastISO": "2026-09-17T18:22:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2683,7 +2702,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 20,
             "stale": false
           },
           {
@@ -2695,7 +2714,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 60,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 20,
             "stale": false
           }
         ],
@@ -2749,7 +2768,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "18:17"
+    "stamp": "18:25"
   }
 }/*__END_DATA__*/;
 
