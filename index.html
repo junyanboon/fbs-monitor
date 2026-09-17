@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 8:17 AM ET",
-  "generatedAtISO": "2026-09-17T08:17:01-04:00",
+  "generatedAt": "Sep 17, 8:23 AM ET",
+  "generatedAtISO": "2026-09-17T08:23:11-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1642,11 +1642,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T12:14:09.121841Z",
         "until": "2026-09-17T12:14:09.466981Z"
+      },
+      {
+        "since": "2026-09-17T12:19:20.559757Z",
+        "until": "2026-09-17T12:19:20.904723Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-17T08:00:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -1655,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T08:13:00-04:00"
+      "lastISO": "2026-09-17T08:24:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1695,7 +1709,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T08:16:00-04:00"
+      "lastISO": "2026-09-17T08:21:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1715,7 +1729,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T08:15:00-04:00"
+      "lastISO": "2026-09-17T08:20:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1725,17 +1739,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T08:16:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-17T08:00:00-04:00"
+      "lastISO": "2026-09-17T08:23:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1775,7 +1779,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T22:22:00-04:00"
+      "lastISO": "2026-09-17T08:45:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1835,7 +1839,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T07:37:00-04:00"
+      "lastISO": "2026-09-17T08:10:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1845,7 +1849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T07:53:00-04:00"
+      "lastISO": "2026-09-17T08:22:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2271,7 +2275,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-17T03:05:00-04:00",
-            "ageMin": 312,
+            "ageMin": 318,
             "stale": true
           },
           {
@@ -2283,7 +2287,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 57,
             "whenISO": "2026-09-17T03:05:00-04:00",
-            "ageMin": 312,
+            "ageMin": 318,
             "stale": true
           }
         ],
@@ -2337,7 +2341,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "08:17"
+    "stamp": "08:23"
   }
 }/*__END_DATA__*/;
 
