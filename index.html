@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 9:03 AM ET",
-  "generatedAtISO": "2026-09-17T09:03:48-04:00",
+  "generatedAt": "Sep 17, 9:05 AM ET",
+  "generatedAtISO": "2026-09-17T09:05:16-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1251,17 +1251,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "BC-sweep-•••B",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 17 · 00:17",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1672,7 +1661,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T09:00:00-04:00"
+      "lastISO": "2026-09-17T09:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1682,7 +1671,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T09:03:00-04:00"
+      "lastISO": "2026-09-17T09:05:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2209,15 +2198,11 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "The Weatherman"
         ],
-        "worst": {
-          "run": "Thermal Log",
-          "label": "No fresh reading",
-          "lastISO": "2026-09-17T03:05:00-04:00"
-        },
+        "worst": null,
         "studios": [
           {
             "studio": "509",
@@ -2227,9 +2212,9 @@ const DATA = /*__DATA__*/{
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 56,
-            "whenISO": "2026-09-17T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "whenISO": "2026-09-17T09:05:00-04:00",
+            "ageMin": 0,
+            "stale": false
           },
           {
             "studio": "901",
@@ -2237,14 +2222,14 @@ const DATA = /*__DATA__*/{
             "inside": 20.3,
             "setpoint": "COOL 20",
             "mode": "COOL",
-            "hvac": "OFF",
-            "humidity": 57,
-            "whenISO": "2026-09-17T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "hvac": "COOLING",
+            "humidity": 53,
+            "whenISO": "2026-09-17T09:05:00-04:00",
+            "ageMin": 0,
+            "stale": false
           }
         ],
-        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
+        "climateNote": null,
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -2294,7 +2279,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "09:03"
+    "stamp": "09:05"
   }
 }/*__END_DATA__*/;
 
