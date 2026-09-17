@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 16, 2026",
   "shiftBaseDay": "2026-09-16",
-  "generatedAt": "Sep 16, 9:02 PM ET",
-  "generatedAtISO": "2026-09-16T21:02:22-04:00",
+  "generatedAt": "Sep 16, 9:14 PM ET",
+  "generatedAtISO": "2026-09-16T21:14:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -664,10 +664,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "12:45",
-      "departed": null,
+      "departed": "21:12",
       "facilitator": null,
       "arrived_by": "Maggie Morrison",
-      "departed_by": null,
+      "departed_by": "Maggie Morrison",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1107,7 +1107,12 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Nina Li in Studio 901"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509B",
@@ -1243,6 +1248,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789605072190,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "21:12",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789607569472,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1252,7 +1266,7 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-17T00:10:01+00:00",
+    "updatedAt": "2026-09-17T01:14:00+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1947,6 +1961,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T00:54:38.028124Z",
         "until": "2026-09-17T00:57:42.554069Z"
+      },
+      {
+        "since": "2026-09-17T01:03:19.690109Z",
+        "until": "2026-09-17T01:03:20.027349Z"
+      },
+      {
+        "since": "2026-09-17T01:09:10.037545Z",
+        "until": "2026-09-17T01:09:21.310333Z"
+      },
+      {
+        "since": "2026-09-17T01:14:23.305429Z",
+        "until": "2026-09-17T01:14:23.607802Z"
       }
     ],
     "down": false
@@ -1958,8 +1984,8 @@ const DATA = /*__DATA__*/{
       "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
       "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-16T19:13:00-04:00"
     },
     {
@@ -1970,7 +1996,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:01:00-04:00"
+      "lastISO": "2026-09-16T21:12:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2000,7 +2026,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:01:00-04:00"
+      "lastISO": "2026-09-16T21:11:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2010,7 +2036,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T20:55:00-04:00"
+      "lastISO": "2026-09-16T21:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2020,7 +2046,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:00:00-04:00"
+      "lastISO": "2026-09-16T21:10:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2030,7 +2056,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T21:02:00-04:00"
+      "lastISO": "2026-09-16T21:14:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2040,7 +2066,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T20:44:00-04:00"
+      "lastISO": "2026-09-16T20:53:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2050,7 +2076,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T20:07:00-04:00"
+      "lastISO": "2026-09-16T21:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2180,7 +2206,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-16T20:10:00-04:00"
+      "lastISO": "2026-09-16T21:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2566,25 +2592,25 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 22.8,
-            "setpoint": "COOL 22.9",
+            "inside": 23.4,
+            "setpoint": "COOL 23.3",
             "mode": "COOL",
             "hvac": "OFF",
             "humidity": 56,
-            "whenISO": "2026-09-16T20:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-16T21:05:00-04:00",
+            "ageMin": 9,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 20.2,
+            "inside": 20.3,
             "setpoint": "COOL 20",
             "mode": "COOL",
-            "hvac": "COOLING",
-            "humidity": 53,
-            "whenISO": "2026-09-16T20:05:00-04:00",
-            "ageMin": 57,
+            "hvac": "OFF",
+            "humidity": 56,
+            "whenISO": "2026-09-16T21:05:00-04:00",
+            "ageMin": 9,
             "stale": false
           }
         ],
@@ -2638,7 +2664,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "21:02"
+    "stamp": "21:14"
   }
 }/*__END_DATA__*/;
 
