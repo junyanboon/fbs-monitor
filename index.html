@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 10:04 AM ET",
-  "generatedAtISO": "2026-09-17T10:04:29-04:00",
+  "generatedAt": "Sep 17, 10:06 AM ET",
+  "generatedAtISO": "2026-09-17T10:06:31-04:00",
   "studios": [
     {
       "id": "509A",
@@ -561,10 +561,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:04",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -675,10 +675,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "09:56",
-      "departed": null,
+      "departed": "10:06",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1384,19 +1384,27 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789653374317,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Stefan Lovecchio",
+      "time": "10:04",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789653895150,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stefan Lovecchio",
+      "time": "10:06",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789653967429,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Fabio Hernandez",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "22:27",
-      "ts": 1789612026487,
-      "when": "Wed 22:27"
-    },
     "527": {
       "kind": "departure",
       "name": "Khalid Roach-McLeod",
@@ -1435,6 +1443,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T14:02:00+00:00",
+    "polledAt": null,
     "doorGaps": [
       {
         "since": "2026-09-17T09:02:22.496053Z",
@@ -1682,7 +1691,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:00:00-04:00"
+      "lastISO": "2026-09-17T10:06:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1712,7 +1721,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:01:00-04:00"
+      "lastISO": "2026-09-17T10:06:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1732,7 +1741,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:00:00-04:00"
+      "lastISO": "2026-09-17T10:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1742,7 +1751,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:04:00-04:00"
+      "lastISO": "2026-09-17T10:06:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2284,7 +2293,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-17T10:05:00-04:00",
-            "ageMin": -1,
+            "ageMin": 1,
             "stale": false
           },
           {
@@ -2296,7 +2305,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-17T10:05:00-04:00",
-            "ageMin": -1,
+            "ageMin": 1,
             "stale": false
           }
         ],
@@ -2350,7 +2359,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "10:04"
+    "stamp": "10:06"
   }
 }/*__END_DATA__*/;
 
