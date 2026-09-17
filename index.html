@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 6:10 PM ET",
-  "generatedAtISO": "2026-09-17T18:10:04-04:00",
+  "generatedAt": "Sep 17, 6:15 PM ET",
+  "generatedAtISO": "2026-09-17T18:15:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1286,7 +1286,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
+      "text": "2 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1479,7 +1479,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-17T21:52:00+00:00",
-    "polledAt": "2026-09-17T22:10:01+00:00",
+    "polledAt": "2026-09-17T22:15:11+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -2050,6 +2050,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T22:05:41.384848Z",
         "until": "2026-09-17T22:06:33.699334Z"
+      },
+      {
+        "since": "2026-09-17T22:11:49.528713Z",
+        "until": "2026-09-17T22:11:49.721629Z"
       }
     ],
     "down": false
@@ -2071,8 +2075,8 @@ const DATA = /*__DATA__*/{
       "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
       "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
       "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-17T17:41:00-04:00"
     },
     {
@@ -2083,7 +2087,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:09:00-04:00"
+      "lastISO": "2026-09-17T18:14:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2113,7 +2117,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:06:00-04:00"
+      "lastISO": "2026-09-17T18:11:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2123,7 +2127,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:55:00-04:00"
+      "lastISO": "2026-09-17T18:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2133,7 +2137,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:10:00-04:00"
+      "lastISO": "2026-09-17T18:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2143,7 +2147,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T18:10:00-04:00"
+      "lastISO": "2026-09-17T18:15:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2283,7 +2287,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T17:10:00-04:00"
+      "lastISO": "2026-09-17T18:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2675,7 +2679,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 5,
+            "ageMin": 10,
             "stale": false
           },
           {
@@ -2687,7 +2691,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 60,
             "whenISO": "2026-09-17T18:05:00-04:00",
-            "ageMin": 5,
+            "ageMin": 10,
             "stale": false
           }
         ],
@@ -2741,7 +2745,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "18:10"
+    "stamp": "18:15"
   }
 }/*__END_DATA__*/;
 
