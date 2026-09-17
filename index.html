@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 10:20 AM ET",
-  "generatedAtISO": "2026-09-17T10:20:21-04:00",
+  "generatedAt": "Sep 17, 10:25 AM ET",
+  "generatedAtISO": "2026-09-17T10:25:18-04:00",
   "studios": [
     {
       "id": "509A",
@@ -787,10 +787,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:20",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Stefan Lovecchio",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1240,17 +1240,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Booking moved (693 Sep 23 → Sep 23) — Taylor Yeung [mover:83db1622-a6a1-4c74-bf6b-c474532a7311]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 17 · 09:04",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "BC-sweep-•••",
       "kind": null,
       "channel": "SMS",
@@ -1269,6 +1258,28 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "AI (automation)",
       "created": "Sep 17 · 10:03",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "CC-MOVE-T7-Ifreestyle-Oct20-22-to-Nov17-19",
+      "kind": null,
+      "channel": "Manual Send",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 17 · 10:23",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Nicholas Walsh — held acknowledgement: gmail receipt + facilitator access already sent [responder:gmail:1a0afb71c77aa7af]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 17 · 10:23",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1411,19 +1422,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789654736284,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "10:20",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789654830389,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "527": {
-      "kind": "departure",
-      "name": "Khalid Roach-McLeod",
-      "remote": false,
-      "source": "doors",
-      "studio": "527",
-      "time": "22:13",
-      "ts": 1789611217481,
-      "when": "Wed 22:13"
-    },
     "693": {
       "kind": "departure",
       "name": "Angus Dirnbeck",
@@ -1451,8 +1461,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-17T14:20:01+00:00",
-    "polledAt": "2026-09-17T14:20:01+00:00",
+    "updatedAt": "2026-09-17T14:25:01+00:00",
+    "polledAt": "2026-09-17T14:25:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-17T09:02:22.496053Z",
@@ -1689,6 +1699,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-17T14:19:28.704265Z",
         "until": "2026-09-17T14:19:29.259973Z"
+      },
+      {
+        "since": "2026-09-17T14:24:28.916712Z",
+        "until": "2026-09-17T14:24:29.241554Z"
       }
     ],
     "down": false
@@ -1712,7 +1726,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:18:00-04:00"
+      "lastISO": "2026-09-17T10:24:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1742,7 +1756,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:16:00-04:00"
+      "lastISO": "2026-09-17T10:21:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1762,7 +1776,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:20:00-04:00"
+      "lastISO": "2026-09-17T10:25:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1772,7 +1786,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:20:00-04:00"
+      "lastISO": "2026-09-17T10:25:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1782,7 +1796,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T10:10:00-04:00"
+      "lastISO": "2026-09-17T10:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1892,7 +1906,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T09:58:00-04:00"
+      "lastISO": "2026-09-17T10:25:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2314,7 +2328,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-17T10:05:00-04:00",
-            "ageMin": 15,
+            "ageMin": 20,
             "stale": false
           },
           {
@@ -2326,7 +2340,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-17T10:05:00-04:00",
-            "ageMin": 15,
+            "ageMin": 20,
             "stale": false
           }
         ],
@@ -2380,7 +2394,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-15T17:32:55-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "10:20"
+    "stamp": "10:25"
   }
 }/*__END_DATA__*/;
 
