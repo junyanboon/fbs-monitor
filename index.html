@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 17, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 17, 10:25 PM ET",
-  "generatedAtISO": "2026-09-17T22:25:30-04:00",
+  "generatedAt": "Sep 17, 10:32 PM ET",
+  "generatedAtISO": "2026-09-17T22:32:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -654,13 +654,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "22:30"
-        }
-      ],
+      "dispatch": [],
       "booking_studios": [],
       "heard": true,
       "arrived": null,
@@ -1343,20 +1337,7 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staffAhead": [],
-  "messages": [
-    {
-      "code": "EOB-sweep-•••A",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 17 · 00:24",
-      "send_after": "22:30",
-      "send_after_iso": "2026-09-17T22:30:00-04:00",
-      "label": "EOB for Petra ayedzi in Studio 509A"
-    }
-  ],
+  "messages": [],
   "attention": [
     {
       "level": "crit",
@@ -1661,7 +1642,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-18T01:44:00+00:00",
-    "polledAt": "2026-09-18T02:26:00+00:00",
+    "polledAt": "2026-09-18T02:32:00+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -2420,11 +2401,25 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-18T02:23:07.497192Z",
         "until": "2026-09-18T02:23:07.827751Z"
+      },
+      {
+        "since": "2026-09-18T02:28:07.460143Z",
+        "until": "2026-09-18T02:28:07.933322Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-17T22:05:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2433,7 +2428,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:24:00-04:00"
+      "lastISO": "2026-09-17T22:30:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2453,7 +2448,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:15:00-04:00"
+      "lastISO": "2026-09-17T22:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2463,7 +2458,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:21:00-04:00"
+      "lastISO": "2026-09-17T22:31:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2473,7 +2468,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:15:00-04:00"
+      "lastISO": "2026-09-17T22:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2483,7 +2478,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:25:00-04:00"
+      "lastISO": "2026-09-17T22:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2493,17 +2488,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:25:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:05:00-04:00"
+      "lastISO": "2026-09-17T22:32:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2543,7 +2528,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T21:18:00-04:00"
+      "lastISO": "2026-09-17T22:28:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2653,7 +2638,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-17T22:15:00-04:00"
+      "lastISO": "2026-09-17T22:31:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -3045,7 +3030,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-17T22:05:00-04:00",
-            "ageMin": 20,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -3057,7 +3042,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 56,
             "whenISO": "2026-09-17T22:05:00-04:00",
-            "ageMin": 20,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -3111,7 +3096,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-17T19:55:22-04:00",
       "setBy": "hermes-provider.sh:jboon"
     },
-    "stamp": "22:25"
+    "stamp": "22:32"
   }
 }/*__END_DATA__*/;
 
