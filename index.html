@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 10:32 AM ET",
-  "generatedAtISO": "2026-09-18T10:32:07-04:00",
+  "generatedAt": "Sep 18, 10:40 AM ET",
+  "generatedAtISO": "2026-09-18T10:40:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -815,10 +815,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:36",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Anita Shack",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1025,24 +1025,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "8a8166d09774",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 1,
       "start": 22.75,
       "end": 23.25,
       "id": "f766adbf069a",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "8a8166d09774",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1230,11 +1230,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1242,11 +1242,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1307,43 +1307,10 @@ const DATA = /*__DATA__*/{
       "code": "COURTESY — Petra Ayedzi — post-booking thanks | HR-•••",
       "kind": null,
       "channel": "SMS",
-      "status": "Pending Review",
+      "status": "Ready to Send",
       "studio": null,
       "raised_by": "The Responder",
       "created": "Sep 17 · 23:02",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "ANALYST-SOUND-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 18 · 04:13",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 18 · 04:18",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "GTG-nudge-sweep-•••B",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 18 · 09:47",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1370,6 +1337,28 @@ const DATA = /*__DATA__*/{
       "send_after": "22:45",
       "send_after_iso": "2026-09-18T22:45:00-04:00",
       "label": "EOB for Isabel Campo Jurado in Studio 509A"
+    },
+    {
+      "code": "ANALYST-SOUND-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 18 · 04:13",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 18 · 04:18",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1390,6 +1379,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789737517418,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Shack",
+      "time": "10:36",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789742200325,
       "source": "doors"
     }
   ],
@@ -1423,16 +1421,6 @@ const DATA = /*__DATA__*/{
       "time": "23:37",
       "ts": 1789702671698,
       "when": "Thu 23:37"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Sorina Colyn",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "20:56",
-      "ts": 1789692979045,
-      "when": "Thu 20:56"
     }
   },
   "alarmAlerts": [],
@@ -1441,8 +1429,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-18T13:22:01+00:00",
-    "polledAt": "2026-09-18T14:32:00+00:00",
+    "updatedAt": "2026-09-18T14:40:01+00:00",
+    "polledAt": "2026-09-18T14:40:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-18T09:02:41.162578Z",
@@ -1683,6 +1671,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-18T14:27:04.474765Z",
         "until": "2026-09-18T14:27:04.820590Z"
+      },
+      {
+        "since": "2026-09-18T14:32:43.061555Z",
+        "until": "2026-09-18T14:32:56.236893Z"
+      },
+      {
+        "since": "2026-09-18T14:38:25.431084Z",
+        "until": "2026-09-18T14:38:25.540845Z"
       }
     ],
     "down": false
@@ -1736,7 +1732,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T10:27:00-04:00"
+      "lastISO": "2026-09-18T10:38:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1766,7 +1762,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T10:30:00-04:00"
+      "lastISO": "2026-09-18T10:40:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1786,7 +1782,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T10:30:00-04:00"
+      "lastISO": "2026-09-18T10:40:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1796,7 +1792,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T10:32:00-04:00"
+      "lastISO": "2026-09-18T10:38:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1806,7 +1802,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T10:23:00-04:00"
+      "lastISO": "2026-09-18T10:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2316,7 +2312,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-18T10:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 35,
             "stale": false
           },
           {
@@ -2328,7 +2324,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-18T10:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 35,
             "stale": false
           }
         ],
@@ -2382,7 +2378,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-17T19:55:22-04:00",
       "setBy": "hermes-provider.sh:jboon"
     },
-    "stamp": "10:32"
+    "stamp": "10:40"
   }
 }/*__END_DATA__*/;
 
