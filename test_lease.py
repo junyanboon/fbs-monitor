@@ -148,6 +148,69 @@ def test_garbage_raises_so_the_caller_shows_its_notice():
         raise AssertionError(f"{bad!r} should not have parsed")
 
 
+# ── Token usage under the CLAUDE pill (2026-09-18) ──────────────────────────
+# Hermes' usage cron writes a `usage` key into the lease JSON every 15 min.
+# The rail shows it; no key → "Usage not recorded", never an estimate.
+USAGE = {
+    "as_of": "2026-09-07T02:50:00Z",          # 22:50 Toronto, 10 min before NOW
+    "alarm": False, "alarm_note": "",
+    "today": {"date": "2026-09-06", "fires": 61, "prompt_tokens": 41_200_000,
+              "cached_tokens": 38_900_000, "completion_tokens": 310_000,
+              "errors": 2, "max_fire_prompt_tokens": 2_900_000, "max_fire_job": "Mechanic"},
+    "yesterday": {"date": "2026-09-05", "fires": 88, "prompt_tokens": 120_000_000,
+                  "cached_tokens": 110_000_000, "completion_tokens": 600_000, "errors": 0},
+}
+
+
+def test_usage_absent_reads_as_not_recorded():
+    L = build.parse_lease(LIVE, NOW)
+    assert L["usage"] is None
+    assert build.parse_usage({"garbage": 1}, NOW) is None
+    assert build.parse_usage("41M", NOW) is None
+
+
+def test_usage_written_by_hermes_is_projected():
+    d = json.loads(LIVE); d["usage"] = USAGE
+    U = build.parse_lease(json.dumps(d), NOW)["usage"]
+    t = U["today"]
+    assert t["fires"] == 61 and t["promptTokens"] == 41_200_000
+    assert t["cachedPct"] == 94 and t["completionTokens"] == 310_000
+    assert t["maxFireJob"] == "Mechanic" and t["maxFireTokens"] == 2_900_000
+    assert U["yesterday"]["promptTokens"] == 120_000_000
+    assert U["asOfISO"].startswith("2026-09-06T22:50") and U["stale"] is False
+    assert U["alarm"] is False
+
+
+def test_usage_older_than_three_writes_is_stale():
+    d = json.loads(LIVE); d["usage"] = dict(USAGE, as_of="2026-09-07T01:00:00Z")   # 2h before NOW
+    assert build.parse_lease(json.dumps(d), NOW)["usage"]["stale"] is True
+
+
+def test_usage_alarm_and_cache_cap_survive():
+    d = json.loads(LIVE)
+    d["usage"] = dict(USAGE, alarm=True, alarm_note="Concierge fire 3.4M prompt tokens at 14:10")
+    d["usage"]["today"] = dict(USAGE["today"], cached_tokens=99_000_000)   # cannot exceed prompt
+    U = build.parse_lease(json.dumps(d), NOW)["usage"]
+    assert U["alarm"] is True and "Concierge" in U["alarmNote"]
+    assert U["today"]["cachedTokens"] == 41_200_000 and U["today"]["cachedPct"] == 100
+
+
+def test_provider_account_label_is_projected():
+    d = json.loads(LIVE)
+    d["provider"] = {"primary": "anthropic", "model": "claude-opus-5", "account": "claude-danceannex"}
+    L = build.parse_lease(json.dumps(d), NOW)
+    assert L["provider"]["account"] == "claude-danceannex"
+    assert build.parse_provider({"primary": "anthropic"})["account"] == ""
+
+
+def test_fleet_carries_usage_beside_provider():
+    d = json.loads(LIVE); d["provider"] = {"primary": "anthropic"}; d["usage"] = USAGE
+    L = build.parse_lease(json.dumps(d), NOW)
+    F = build.fleet_lines([{"run": "The Host", "status": "ok", "monitoring": "Live",
+                            "statusLabel": "On time", "lastISO": None}], L, NOW)
+    assert F["usage"]["today"]["fires"] == 61 and F["provider"]["name"] == "Claude"
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

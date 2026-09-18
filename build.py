@@ -3674,6 +3674,7 @@ def parse_lease(raw, now):
     return {
         "holder": lease.get("holder") or "unknown",
         "provider": parse_provider(lease.get("provider")),
+        "usage": parse_usage(lease.get("usage"), now),
         "leaseId": lease.get("lease_id") or "",
         "reason": lease.get("reason") or "",
         "flippedBy": lease.get("flipped_by") or "",
@@ -3707,6 +3708,56 @@ def parse_provider(p):
         "fallbackModel": p.get("fallback_model") or "",
         "setAtISO": set_at.replace(microsecond=0).isoformat() if set_at else None,
         "setBy": p.get("set_by") or "",
+        "account": p.get("account") or "",     # pooled credential label, e.g. claude-danceannex
+    }
+
+
+# ── Token usage ─────────────────────────────────────────────────────────────
+# Junyan, 2026-09-18, after a night that burned ~$140 of Codex and every
+# subscription at once: "I have no visual on the token usage of this system."
+# Hermes' usage cron (profile bin/, --no-agent, every 15 min) sums
+# cron/usage_audit.jsonl and writes a `usage` key into the lease JSON next to
+# `provider`. This build projects it for the rail under the CLAUDE pill. No
+# key → None, shown as "Usage not recorded"; never estimated from anything.
+#   usage = {"as_of": ISO, "alarm": bool, "alarm_note": str,
+#            "today": {"date", "fires", "prompt_tokens", "cached_tokens",
+#                      "completion_tokens", "errors",
+#                      "max_fire_prompt_tokens", "max_fire_job"},
+#            "yesterday": {same}}
+USAGE_STALE_MIN = 45   # three missed 15-minute writes = the cron is down
+
+
+def _usage_day(d):
+    if not isinstance(d, dict):
+        return None
+    n = lambda k: int(d.get(k) or 0)
+    prompt = n("prompt_tokens")
+    cached = min(n("cached_tokens"), prompt)
+    return {
+        "date": d.get("date") or "",
+        "fires": n("fires"),
+        "promptTokens": prompt,
+        "cachedTokens": cached,
+        "cachedPct": round(100 * cached / prompt) if prompt else 0,
+        "completionTokens": n("completion_tokens"),
+        "errors": n("errors"),
+        "maxFireTokens": n("max_fire_prompt_tokens"),
+        "maxFireJob": d.get("max_fire_job") or "",
+    }
+
+
+def parse_usage(u, now):
+    if not isinstance(u, dict) or not isinstance(u.get("today"), dict):
+        return None
+    as_of = _parse_notion_ts(u.get("as_of"))
+    stale = (as_of is None) or ((now - as_of).total_seconds() > USAGE_STALE_MIN * 60)
+    return {
+        "today": _usage_day(u.get("today")),
+        "yesterday": _usage_day(u.get("yesterday")),
+        "asOfISO": as_of.replace(microsecond=0).isoformat() if as_of else None,
+        "stale": stale,
+        "alarm": bool(u.get("alarm")),
+        "alarmNote": str(u.get("alarm_note") or ""),
     }
 
 
@@ -3817,6 +3868,7 @@ def fleet_lines(robots, lease, now, climate=None, rules=None):
     return {"lines": out, "liveCount": len(live),
             "holder": holder, "where": where,
             "provider": (lease or {}).get("provider"),
+            "usage": (lease or {}).get("usage"),
             "stamp": now.strftime("%H:%M")}
 
 

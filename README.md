@@ -599,3 +599,21 @@ walkthrough indicator and lets a recent, delivered Returning Access reminder
 substitutes for a first-room walkthrough, crosses studios, or changes support
 tier. History read failures fail the build instead of fabricating missing proof.
 Regression: `python test_returning_fbs.py`.
+
+### 14c. The rail pill and today's tokens (2026-09-18)
+
+Junyan, 2026-09-18, after one night burned ~$140 of Codex and ran every
+subscription dry at once: "I have no visual on the token usage of this system."
+And: "put the CLAUDE-DANCEANNEX pill on the side bar and a token count right
+under it." The Robots-tab banner stays; the rail (deck-app `fbs-template.html`,
+`railBrainHtml()`) shows the same provider as a pill named by the **credential
+label** (`provider.account`, e.g. `claude-danceannex`), with today's tokens under
+it.
+
+- Source: a `usage` key in the lease JSON beside `provider`, written every 15 min
+  by Hermes' usage cron (`--no-agent`, sums `cron/usage_audit.jsonl`). Shape in
+  `parse_usage()`; `test_lease.py` pins it. Cached tokens are capped at prompt
+  tokens. No key → "Usage not recorded", never an estimate.
+- `stale` = no write for 45 min (three missed ticks): the cron is down, amber.
+- `alarm` = Hermes' runaway rule fired (one fire > 3M prompt tokens or the day
+  > 250M): the number and the note turn red. That is the only red on the rail.
