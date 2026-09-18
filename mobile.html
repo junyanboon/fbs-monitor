@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 12:02 PM ET",
-  "generatedAtISO": "2026-09-18T12:02:16-04:00",
+  "generatedAt": "Sep 18, 12:11 PM ET",
+  "generatedAtISO": "2026-09-18T12:11:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -586,10 +586,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "10:36",
-      "departed": null,
+      "departed": "12:06",
       "facilitator": null,
       "arrived_by": "Anita Shack",
-      "departed_by": null,
+      "departed_by": "Anita Shack",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -699,24 +699,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "88ea635f960e",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 1,
       "start": 9.75,
       "end": 10.25,
       "id": "62e148adfe22",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "88ea635f960e",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1157,6 +1157,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789742616353,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Anita Shack",
+      "time": "12:06",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789747604952,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1197,8 +1206,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-18T14:48:01+00:00",
-    "polledAt": "2026-09-18T16:02:00+00:00",
+    "updatedAt": "2026-09-18T16:11:00+00:00",
+    "polledAt": "2026-09-18T16:11:00+00:00",
     "doorGaps": [
       {
         "since": "2026-09-18T09:02:41.162578Z",
@@ -1507,6 +1516,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-18T15:58:50.642434Z",
         "until": "2026-09-18T15:59:29.900218Z"
+      },
+      {
+        "since": "2026-09-18T16:05:25.935478Z",
+        "until": "2026-09-18T16:05:26.076424Z"
+      },
+      {
+        "since": "2026-09-18T16:10:56.073761Z",
+        "until": "2026-09-18T16:10:56.395622Z"
       }
     ],
     "down": false
@@ -1550,7 +1567,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T12:02:00-04:00"
+      "lastISO": "2026-09-18T12:08:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1580,7 +1597,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T12:00:00-04:00"
+      "lastISO": "2026-09-18T12:10:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1600,7 +1617,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T12:00:00-04:00"
+      "lastISO": "2026-09-18T12:10:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1610,7 +1627,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T12:02:00-04:00"
+      "lastISO": "2026-09-18T12:11:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1620,7 +1637,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T11:51:00-04:00"
+      "lastISO": "2026-09-18T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1630,7 +1647,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T11:07:00-04:00"
+      "lastISO": "2026-09-18T12:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1740,7 +1757,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T11:10:00-04:00"
+      "lastISO": "2026-09-18T12:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2139,20 +2156,20 @@ const DATA = /*__DATA__*/{
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 50,
-            "whenISO": "2026-09-18T11:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-18T12:05:00-04:00",
+            "ageMin": 6,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 21.8,
-            "setpoint": "COOL 20",
+            "inside": 22.2,
+            "setpoint": "COOL 17",
             "mode": "COOL",
             "hvac": "COOLING",
-            "humidity": 47,
-            "whenISO": "2026-09-18T11:05:00-04:00",
-            "ageMin": 57,
+            "humidity": 50,
+            "whenISO": "2026-09-18T12:05:00-04:00",
+            "ageMin": 6,
             "stale": false
           }
         ],
@@ -2206,7 +2223,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-18T11:13:43-04:00",
       "setBy": "human:jboon"
     },
-    "stamp": "12:02"
+    "stamp": "12:11"
   }
 }/*__END_DATA__*/;
 
