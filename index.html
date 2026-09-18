@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 2:29 PM ET",
-  "generatedAtISO": "2026-09-18T14:29:28-04:00",
+  "generatedAt": "Sep 18, 2:30 PM ET",
+  "generatedAtISO": "2026-09-18T14:30:33-04:00",
   "studios": [
     {
       "id": "509A",
@@ -617,13 +617,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "HTA",
-          "state": "missing",
-          "time": null
-        }
-      ],
+      "dispatch": [],
       "booking_studios": [],
       "heard": false,
       "arrived": "12:31",
@@ -907,24 +901,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "62e148adfe22",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
       "start": 9.75,
       "end": 10.25,
       "id": "88ea635f960e",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "62e148adfe22",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1003,24 +997,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "8a8166d09774",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 1,
       "start": 22.75,
       "end": 23.25,
       "id": "f766adbf069a",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "8a8166d09774",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1208,11 +1202,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1220,11 +1214,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1293,6 +1287,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "T4 neighbour check — Liz (Pink Lemon) — Wed ••• overlap [concierge:b2-neighbour:•••:901]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Concierge",
+      "created": "Sep 18 · 14:30",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-23T09:00:00-04:00"
+    },
+    {
       "code": "AVA-sweep-•••A",
       "kind": "AVA",
       "channel": "SMS",
@@ -1315,27 +1320,12 @@ const DATA = /*__DATA__*/{
       "send_after": "22:45",
       "send_after_iso": "2026-09-18T22:45:00-04:00",
       "label": "EOB for Isabel Campo Jurado in Studio 509A"
-    },
-    {
-      "code": "CC-BC-T•••-HimanshiMehta-moved-Oct10 (reissue) [responder:sms:•••:•••T17:29:31Z]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Responder",
-      "created": "Sep 18 · 13:55",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
   "attention": [
     {
       "level": "warn",
       "text": "1 robot overdue — see Robots tab"
-    },
-    {
-      "level": "crit",
-      "text": "HTA not queued · Jia Chian Lee · 509B · 12:30"
     }
   ],
   "armEvents": [
@@ -1423,7 +1413,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-18T17:20:01+00:00",
-    "polledAt": "2026-09-18T18:29:00+00:00",
+    "polledAt": "2026-09-18T18:31:00+00:00",
     "doorGaps": [
       {
         "since": "2026-09-18T09:02:41.162578Z",
@@ -1883,7 +1873,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T14:15:00-04:00"
+      "lastISO": "2026-09-18T14:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1893,7 +1883,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T14:26:00-04:00"
+      "lastISO": "2026-09-18T14:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1913,7 +1903,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T14:25:00-04:00"
+      "lastISO": "2026-09-18T14:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1923,7 +1913,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T14:28:00-04:00"
+      "lastISO": "2026-09-18T14:30:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2083,7 +2073,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T14:16:00-04:00"
+      "lastISO": "2026-09-18T14:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2244,7 +2234,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-18",
         "fires": 46,
         "promptTokens": 90788874,
-        "cachedTokens": 85557138,
+        "cachedTokens": 85779452,
         "cachedPct": 94,
         "completionTokens": 407520,
         "errors": 23,
@@ -2262,7 +2252,7 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 17916716,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-18T14:26:09-04:00",
+      "asOfISO": "2026-09-18T14:30:26-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": ""
@@ -2494,7 +2484,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 44,
             "whenISO": "2026-09-18T14:05:00-04:00",
-            "ageMin": 24,
+            "ageMin": 25,
             "stale": false
           },
           {
@@ -2506,7 +2496,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-18T14:05:00-04:00",
-            "ageMin": 24,
+            "ageMin": 25,
             "stale": false
           }
         ],
@@ -2566,7 +2556,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-18",
         "fires": 46,
         "promptTokens": 90788874,
-        "cachedTokens": 85557138,
+        "cachedTokens": 85779452,
         "cachedPct": 94,
         "completionTokens": 407520,
         "errors": 23,
@@ -2584,12 +2574,12 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 17916716,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-18T14:26:09-04:00",
+      "asOfISO": "2026-09-18T14:30:26-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": ""
     },
-    "stamp": "14:29"
+    "stamp": "14:30"
   }
 }/*__END_DATA__*/;
 
