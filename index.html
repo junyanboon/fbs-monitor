@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 10:41 AM ET",
-  "generatedAtISO": "2026-09-18T10:41:57-04:00",
+  "generatedAt": "Sep 18, 10:43 AM ET",
+  "generatedAtISO": "2026-09-18T10:43:33-04:00",
   "studios": [
     {
       "id": "509A",
@@ -562,10 +562,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "09:18",
-      "departed": null,
+      "departed": "10:43",
       "facilitator": null,
       "arrived_by": "Brad Wong",
-      "departed_by": null,
+      "departed_by": "Brad Wong",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -929,24 +929,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "62e148adfe22",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
       "start": 9.75,
       "end": 10.25,
       "id": "88ea635f960e",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "62e148adfe22",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1337,17 +1337,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 18 · 04:13",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 18 · 04:18",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1377,6 +1366,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789742200325,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "10:43",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789742616353,
       "source": "doors"
     }
   ],
@@ -1419,7 +1417,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-18T14:40:01+00:00",
-    "polledAt": "2026-09-18T14:42:01+00:00",
+    "polledAt": "2026-09-18T14:44:00+00:00",
     "doorGaps": [
       {
         "since": "2026-09-18T09:02:41.162578Z",
@@ -1721,7 +1719,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T10:38:00-04:00"
+      "lastISO": "2026-09-18T10:43:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2301,7 +2299,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-18T10:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 38,
             "stale": false
           },
           {
@@ -2313,7 +2311,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-18T10:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 38,
             "stale": false
           }
         ],
@@ -2367,7 +2365,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-17T19:55:22-04:00",
       "setBy": "hermes-provider.sh:jboon"
     },
-    "stamp": "10:41"
+    "stamp": "10:43"
   }
 }/*__END_DATA__*/;
 
