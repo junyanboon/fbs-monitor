@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 5:32 PM ET",
-  "generatedAtISO": "2026-09-18T17:32:06-04:00",
+  "generatedAt": "Sep 18, 5:42 PM ET",
+  "generatedAtISO": "2026-09-18T17:42:27-04:00",
   "studios": [
     {
       "id": "509A",
@@ -521,10 +521,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:40",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Tanisha Chakma",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -731,24 +731,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "f766adbf069a",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
       "start": 22.75,
       "end": 23.25,
       "id": "8a8166d09774",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "f766adbf069a",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1112,28 +1112,26 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789765868970,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Tanisha Chakma",
+      "time": "17:40",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789767645583,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "693": {
-      "kind": "departure",
-      "name": "Angus Dirnbeck",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "23:37",
-      "ts": 1789702671698,
-      "when": "Thu 23:37"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-18T21:12:01+00:00",
-    "polledAt": "2026-09-18T21:32:00+00:00",
+    "updatedAt": "2026-09-18T21:42:00+00:00",
+    "polledAt": "2026-09-18T21:43:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1688,6 +1686,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-18T21:31:50.078143Z",
         "until": "2026-09-18T21:31:50.858817Z"
+      },
+      {
+        "since": "2026-09-18T21:37:22.037127Z",
+        "until": "2026-09-18T21:37:22.407849Z"
       }
     ],
     "down": false
@@ -1761,7 +1763,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T17:32:00-04:00"
+      "lastISO": "2026-09-18T17:42:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1791,7 +1793,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T17:30:00-04:00"
+      "lastISO": "2026-09-18T17:40:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1801,7 +1803,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T17:25:00-04:00"
+      "lastISO": "2026-09-18T17:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1811,7 +1813,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T17:30:00-04:00"
+      "lastISO": "2026-09-18T17:40:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1821,7 +1823,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T17:32:00-04:00"
+      "lastISO": "2026-09-18T17:42:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1831,7 +1833,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T17:20:00-04:00"
+      "lastISO": "2026-09-18T17:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2350,7 +2352,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-18T17:12:00-04:00",
-            "ageMin": 20,
+            "ageMin": 30,
             "stale": false
           },
           {
@@ -2362,7 +2364,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-18T17:12:00-04:00",
-            "ageMin": 20,
+            "ageMin": 30,
             "stale": false
           }
         ],
@@ -2445,7 +2447,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "17:32"
+    "stamp": "17:42"
   }
 }/*__END_DATA__*/;
 
