@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 6:35 PM ET",
-  "generatedAtISO": "2026-09-18T18:35:22-04:00",
+  "generatedAt": "Sep 18, 6:47 PM ET",
+  "generatedAtISO": "2026-09-18T18:47:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -752,10 +752,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "17:40",
-      "departed": null,
+      "departed": "18:46",
       "facilitator": null,
       "arrived_by": "Tanisha Chakma",
-      "departed_by": null,
+      "departed_by": "Tanisha Chakma",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -820,18 +820,6 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
-      "start": 18.25,
-      "end": 18.75,
-      "id": "6c6203e54fe2",
-      "date": "2026-09-18",
-      "startISO": "2026-09-18T18:15:00-04:00",
-      "endISO": "2026-09-18T18:45:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "f761aaef7a23",
@@ -865,24 +853,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "88ea635f960e",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 1,
       "start": 9.75,
       "end": 10.25,
       "id": "62e148adfe22",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "88ea635f960e",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -961,24 +949,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "f766adbf069a",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
       "start": 22.75,
       "end": 23.25,
       "id": "8a8166d09774",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "f766adbf069a",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1387,6 +1375,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789770669171,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Tanisha Chakma",
+      "time": "18:46",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789771608808,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1397,7 +1394,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-18T22:35:01+00:00",
-    "polledAt": "2026-09-18T22:35:01+00:00",
+    "polledAt": "2026-09-18T22:47:00+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -1996,6 +1993,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-18T22:31:18.619868Z",
         "until": "2026-09-18T22:31:18.943830Z"
+      },
+      {
+        "since": "2026-09-18T22:36:19.111117Z",
+        "until": "2026-09-18T22:36:19.272274Z"
+      },
+      {
+        "since": "2026-09-18T22:41:58.432515Z",
+        "until": "2026-09-18T22:41:58.816017Z"
       }
     ],
     "down": false
@@ -2022,16 +2027,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-18T18:11:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -2049,7 +2044,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:32:00-04:00"
+      "lastISO": "2026-09-18T18:43:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2069,7 +2064,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:30:00-04:00"
+      "lastISO": "2026-09-18T18:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2079,7 +2074,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:35:00-04:00"
+      "lastISO": "2026-09-18T18:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2089,7 +2084,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:25:00-04:00"
+      "lastISO": "2026-09-18T18:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2099,7 +2094,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:35:00-04:00"
+      "lastISO": "2026-09-18T18:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2109,7 +2104,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:35:00-04:00"
+      "lastISO": "2026-09-18T18:47:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-18T18:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2199,7 +2204,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:05:00-04:00"
+      "lastISO": "2026-09-18T18:35:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2249,7 +2254,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T18:31:00-04:00"
+      "lastISO": "2026-09-18T18:45:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2418,7 +2423,7 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 17916716,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-18T18:30:37-04:00",
+      "asOfISO": "2026-09-18T18:45:39-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
@@ -2654,7 +2659,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-18T18:05:00-04:00",
-            "ageMin": 30,
+            "ageMin": 42,
             "stale": false
           },
           {
@@ -2666,7 +2671,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-18T18:05:00-04:00",
-            "ageMin": 30,
+            "ageMin": 42,
             "stale": false
           }
         ],
@@ -2744,12 +2749,12 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 17916716,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-18T18:30:37-04:00",
+      "asOfISO": "2026-09-18T18:45:39-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "18:35"
+    "stamp": "18:47"
   }
 }/*__END_DATA__*/;
 
