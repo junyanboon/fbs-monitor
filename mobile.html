@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-17",
-  "generatedAt": "Sep 18, 1:02 AM ET",
-  "generatedAtISO": "2026-09-18T01:02:08-04:00",
+  "generatedAt": "Sep 18, 1:06 AM ET",
+  "generatedAtISO": "2026-09-18T01:06:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1488,7 +1488,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-18T03:42:00+00:00",
-    "polledAt": "2026-09-18T05:02:01+00:00",
+    "polledAt": "2026-09-18T05:06:01+00:00",
     "mailCheck": {
       "matched": 3,
       "inGap": 0,
@@ -2386,7 +2386,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T01:00:00-04:00"
+      "lastISO": "2026-09-18T01:06:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2406,7 +2406,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T01:02:00-04:00"
+      "lastISO": "2026-09-18T01:06:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2456,7 +2456,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T00:05:00-04:00"
+      "lastISO": "2026-09-18T01:05:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2536,7 +2536,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-18T01:00:00-04:00"
+      "lastISO": "2026-09-18T01:05:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2556,7 +2556,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-18T01:00:00-04:00"
+      "lastISO": "2026-09-18T01:05:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2977,11 +2977,15 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
           "The Weatherman"
         ],
-        "worst": null,
+        "worst": {
+          "run": "Thermal Log",
+          "label": "No fresh reading",
+          "lastISO": "2026-09-17T23:05:00-04:00"
+        },
         "studios": [
           {
             "studio": "509",
@@ -2992,8 +2996,8 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-17T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 121,
+            "stale": true
           },
           {
             "studio": "901",
@@ -3004,11 +3008,11 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-17T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 121,
+            "stale": true
           }
         ],
-        "climateNote": null,
+        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -3058,7 +3062,7 @@ const DATA = /*__DATA__*/{
       "setAtISO": "2026-09-17T19:55:22-04:00",
       "setBy": "hermes-provider.sh:jboon"
     },
-    "stamp": "01:02"
+    "stamp": "01:06"
   }
 }/*__END_DATA__*/;
 
