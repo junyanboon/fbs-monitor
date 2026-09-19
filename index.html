@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 7:02 PM ET",
-  "generatedAtISO": "2026-09-19T19:02:07-04:00",
+  "generatedAt": "Sep 19, 7:17 PM ET",
+  "generatedAtISO": "2026-09-19T19:17:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -722,10 +722,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "16:19",
-      "departed": null,
+      "departed": "19:11",
       "facilitator": null,
       "arrived_by": "AlisonCarlos Murray",
-      "departed_by": null,
+      "departed_by": "AlisonCarlos Murray",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -955,24 +955,24 @@ const DATA = /*__DATA__*/{
   "staff": [],
   "openShifts": [
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "f766adbf069a",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "8a8166d09774",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "f766adbf069a",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1160,11 +1160,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1172,11 +1172,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1620,6 +1620,14 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789857241000,
       "source": "panel"
+    },
+    {
+      "studio": "527",
+      "name": "AlisonCarlos Murray",
+      "time": "19:11",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789859510000
     }
   ],
   "panelPrior": {},
@@ -1630,16 +1638,17 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T22:34:01+00:00",
-    "polledAt": "2026-09-19T23:02:00+00:00",
+    "polledAt": "2026-09-19T23:17:00+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
       "missed": [
+        "527 departure 19:11 (AlisonCarlos Murray)",
         "527 arrival 16:19 (AlisonCarlos Murray)",
         "527 departure 15:41 (Enrico Casertano)",
         "527 arrival 07:48 (Sheldon Shannon)"
       ],
-      "missedCount": 3
+      "missedCount": 4
     },
     "doorGaps": [
       {
@@ -1818,7 +1827,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T18:58:00-04:00"
+      "lastISO": "2026-09-19T19:15:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1848,7 +1857,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:00:00-04:00"
+      "lastISO": "2026-09-19T19:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1858,7 +1867,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:00:00-04:00"
+      "lastISO": "2026-09-19T19:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1868,7 +1877,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T18:55:00-04:00"
+      "lastISO": "2026-09-19T19:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1878,7 +1887,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:00:00-04:00"
+      "lastISO": "2026-09-19T19:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1888,7 +1897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:02:00-04:00"
+      "lastISO": "2026-09-19T19:17:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1908,7 +1917,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:00:00-04:00"
+      "lastISO": "2026-09-19T19:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1918,7 +1927,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T18:07:00-04:00"
+      "lastISO": "2026-09-19T19:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2008,7 +2017,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T18:30:00-04:00"
+      "lastISO": "2026-09-19T19:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2048,7 +2057,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T18:10:00-04:00"
+      "lastISO": "2026-09-19T19:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2058,7 +2067,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:01:00-04:00"
+      "lastISO": "2026-09-19T19:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2209,7 +2218,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-19",
         "fires": 64,
         "promptTokens": 269616143,
-        "cachedTokens": 254455545,
+        "cachedTokens": 254412751,
         "cachedPct": 94,
         "completionTokens": 1342280,
         "errors": 0,
@@ -2227,7 +2236,7 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-19T19:00:42-04:00",
+      "asOfISO": "2026-09-19T19:15:42-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Responder single fire 11,688,034 prompt tokens (limit 10,000,000); The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000); fleet"
@@ -2459,8 +2468,8 @@ const DATA = /*__DATA__*/{
             "mode": "COOL",
             "hvac": "OFF",
             "humidity": 48,
-            "whenISO": "2026-09-19T18:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-19T19:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           },
           {
@@ -2471,8 +2480,8 @@ const DATA = /*__DATA__*/{
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 53,
-            "whenISO": "2026-09-19T18:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-19T19:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           }
         ],
@@ -2532,7 +2541,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-19",
         "fires": 64,
         "promptTokens": 269616143,
-        "cachedTokens": 254455545,
+        "cachedTokens": 254412751,
         "cachedPct": 94,
         "completionTokens": 1342280,
         "errors": 0,
@@ -2550,12 +2559,12 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-19T19:00:42-04:00",
+      "asOfISO": "2026-09-19T19:15:42-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Responder single fire 11,688,034 prompt tokens (limit 10,000,000); The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000); fleet"
     },
-    "stamp": "19:02"
+    "stamp": "19:17"
   }
 }/*__END_DATA__*/;
 
