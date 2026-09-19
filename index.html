@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 8:02 AM ET",
-  "generatedAtISO": "2026-09-19T08:02:07-04:00",
+  "generatedAt": "Sep 19, 8:16 AM ET",
+  "generatedAtISO": "2026-09-19T08:16:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -585,8 +585,8 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "scheduled",
-          "time": "08:00"
+          "state": "awaiting",
+          "time": null
         },
         {
           "kind": "EOB",
@@ -625,8 +625,8 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "scheduled",
-          "time": "08:00"
+          "state": "awaiting",
+          "time": null
         },
         {
           "kind": "EOB",
@@ -1015,18 +1015,6 @@ const DATA = /*__DATA__*/{
   "staff": [],
   "openShifts": [
     {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 0,
-      "start": 7.75,
-      "end": 8.25,
-      "id": "732c9190527f",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T07:45:00-04:00",
-      "endISO": "2026-09-19T08:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "693",
       "day_offset": 0,
@@ -1039,24 +1027,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "62e148adfe22",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 9.75,
       "end": 10.25,
       "id": "88ea635f960e",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "62e148adfe22",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1543,6 +1531,18 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "AVA-sweep-•••A",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 19 · 00:17",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "AVA for Isabel Campo Jurado in Studio 509A"
+    },
+    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1655,18 +1655,6 @@ const DATA = /*__DATA__*/{
       "send_after": "09:00",
       "send_after_iso": "2026-09-19T09:00:00-04:00",
       "label": "HTA · Studio 693"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 19 · 00:17",
-      "send_after": "08:00",
-      "send_after_iso": "2026-09-19T08:00:00-04:00",
-      "label": "AVA for Isabel Campo Jurado in Studio 509A"
     },
     {
       "code": "Returning Access 901 RA-sweep-•••",
@@ -1826,7 +1814,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T11:49:00+00:00",
-    "polledAt": "2026-09-19T12:02:00+00:00",
+    "polledAt": "2026-09-19T12:17:00+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1859,7 +1847,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:00:00-04:00"
+      "lastISO": "2026-09-19T08:17:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1889,7 +1877,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:00:00-04:00"
+      "lastISO": "2026-09-19T08:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1899,7 +1887,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:00:00-04:00"
+      "lastISO": "2026-09-19T08:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1909,7 +1897,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T07:55:00-04:00"
+      "lastISO": "2026-09-19T08:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1919,7 +1907,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:00:00-04:00"
+      "lastISO": "2026-09-19T08:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1929,7 +1917,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T07:59:00-04:00"
+      "lastISO": "2026-09-19T08:17:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1939,7 +1927,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T07:52:00-04:00"
+      "lastISO": "2026-09-19T08:14:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1949,7 +1937,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T07:07:00-04:00"
+      "lastISO": "2026-09-19T08:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2039,7 +2027,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T07:35:00-04:00"
+      "lastISO": "2026-09-19T08:05:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2089,7 +2077,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T22:45:00-04:00"
+      "lastISO": "2026-09-19T08:16:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2230,7 +2218,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-19",
         "fires": 18,
         "promptTokens": 58886825,
-        "cachedTokens": 54697596,
+        "cachedTokens": 54624883,
         "cachedPct": 93,
         "completionTokens": 337579,
         "errors": 0,
@@ -2248,7 +2236,7 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-19T08:00:33-04:00",
+      "asOfISO": "2026-09-19T08:15:38-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
@@ -2484,7 +2472,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 297,
+            "ageMin": 311,
             "stale": true
           },
           {
@@ -2496,7 +2484,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 297,
+            "ageMin": 311,
             "stale": true
           }
         ],
@@ -2556,7 +2544,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-19",
         "fires": 18,
         "promptTokens": 58886825,
-        "cachedTokens": 54697596,
+        "cachedTokens": 54624883,
         "cachedPct": 93,
         "completionTokens": 337579,
         "errors": 0,
@@ -2574,12 +2562,12 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-19T08:00:33-04:00",
+      "asOfISO": "2026-09-19T08:15:38-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "08:02"
+    "stamp": "08:16"
   }
 }/*__END_DATA__*/;
 
