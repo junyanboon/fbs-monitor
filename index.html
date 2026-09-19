@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 8:48 AM ET",
-  "generatedAtISO": "2026-09-19T08:48:35-04:00",
+  "generatedAt": "Sep 19, 8:55 AM ET",
+  "generatedAtISO": "2026-09-19T08:55:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -551,30 +551,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "events": [
-    {
-      "studio": "509A",
-      "who": "Kateryna Zozulia (Private Classes) — Private dance class",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "08:48",
-      "departed": null,
-      "facilitator": null,
-      "arrived_by": "",
-      "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 8.75,
-      "end": 9.75,
-      "access_gap": false
-    },
     {
       "studio": "509A",
       "who": "Isabel Campo Jurado",
@@ -613,6 +589,30 @@ const DATA = /*__DATA__*/{
       ],
       "start": 10.0,
       "end": 23.0,
+      "access_gap": false
+    },
+    {
+      "studio": "509B",
+      "who": "Kateryna Zozulia (Private Classes) — Private dance class",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": "08:55",
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": "",
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 8.75,
+      "end": 9.75,
       "access_gap": false
     },
     {
@@ -1123,24 +1123,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "8a8166d09774",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "f766adbf069a",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "8a8166d09774",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1328,11 +1328,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1340,11 +1340,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1610,17 +1610,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "PBF — Isabel Campo Jurado ••• [pbf:3dd7503281c48100af16dc6dfc993f89]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 19 · 08:27",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "HTA-sweep-•••",
       "kind": "HTA",
       "channel": "SMS",
@@ -1772,19 +1761,27 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789822080000,
       "source": "panel"
+    },
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "08:55",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789822501000,
+      "source": "panel"
+    },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "08:55",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789822501000,
+      "source": "panel"
     }
   ],
   "panelPrior": {
-    "509B": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "509B",
-      "time": "23:45",
-      "ts": 1789789505706,
-      "when": "Fri 23:45"
-    },
     "693": {
       "kind": "departure",
       "name": "Tanisha Chakma",
@@ -1812,8 +1809,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-19T12:48:00+00:00",
-    "polledAt": "2026-09-19T12:49:01+00:00",
+    "updatedAt": "2026-09-19T12:55:01+00:00",
+    "polledAt": "2026-09-19T12:56:01+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1846,7 +1843,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:45:00-04:00"
+      "lastISO": "2026-09-19T08:56:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1886,7 +1883,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:45:00-04:00"
+      "lastISO": "2026-09-19T08:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1896,7 +1893,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:35:00-04:00"
+      "lastISO": "2026-09-19T08:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1906,7 +1903,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:45:00-04:00"
+      "lastISO": "2026-09-19T08:55:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1916,7 +1913,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:48:00-04:00"
+      "lastISO": "2026-09-19T08:55:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1926,7 +1923,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:30:00-04:00"
+      "lastISO": "2026-09-19T08:41:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2036,7 +2033,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:25:00-04:00"
+      "lastISO": "2026-09-19T08:55:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2471,7 +2468,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 343,
+            "ageMin": 350,
             "stale": true
           },
           {
@@ -2483,7 +2480,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 343,
+            "ageMin": 350,
             "stale": true
           }
         ],
@@ -2566,7 +2563,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "08:48"
+    "stamp": "08:55"
   }
 }/*__END_DATA__*/;
 
