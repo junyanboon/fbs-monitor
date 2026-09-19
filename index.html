@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 9:03 AM ET",
-  "generatedAtISO": "2026-09-19T09:03:18-04:00",
+  "generatedAt": "Sep 19, 9:04 AM ET",
+  "generatedAtISO": "2026-09-19T09:04:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1022,24 +1022,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "88ea635f960e",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 9.75,
       "end": 10.25,
       "id": "62e148adfe22",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "88ea635f960e",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1118,24 +1118,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "8a8166d09774",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "f766adbf069a",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "8a8166d09774",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1652,17 +1652,6 @@ const DATA = /*__DATA__*/{
       "label": "HTA · Studio 693"
     },
     {
-      "code": "Returning Access 901 RA-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Registrar",
-      "created": "Sep 19 · 00:19",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-19T09:00:00-04:00"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1804,7 +1793,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T12:55:01+00:00",
-    "polledAt": "2026-09-19T13:03:00+00:00",
+    "polledAt": "2026-09-19T13:05:01+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1877,7 +1866,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:00:00-04:00"
+      "lastISO": "2026-09-19T09:05:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1897,7 +1886,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:00:00-04:00"
+      "lastISO": "2026-09-19T09:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1917,7 +1906,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T08:51:00-04:00"
+      "lastISO": "2026-09-19T09:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2443,42 +2432,38 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "The Weatherman"
         ],
-        "worst": {
-          "run": "Thermal Log",
-          "label": "No fresh reading",
-          "lastISO": "2026-09-19T03:05:00-04:00"
-        },
+        "worst": null,
         "studios": [
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 24.2,
+            "inside": 23.7,
             "setpoint": "",
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 41,
-            "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "whenISO": "2026-09-19T09:05:00-04:00",
+            "ageMin": -1,
+            "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 21.7,
+            "inside": 19.7,
             "setpoint": "COOL 20",
             "mode": "COOL",
-            "hvac": "COOLING",
+            "hvac": "OFF",
             "humidity": 50,
-            "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "whenISO": "2026-09-19T09:05:00-04:00",
+            "ageMin": -1,
+            "stale": false
           }
         ],
-        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
+        "climateNote": null,
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -2557,7 +2542,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "09:03"
+    "stamp": "09:04"
   }
 }/*__END_DATA__*/;
 
