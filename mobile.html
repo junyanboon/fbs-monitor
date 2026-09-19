@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 7:46 PM ET",
-  "generatedAtISO": "2026-09-19T19:46:57-04:00",
+  "generatedAt": "Sep 19, 7:54 PM ET",
+  "generatedAtISO": "2026-09-19T19:54:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -515,11 +515,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": "19:18",
+      "arrived": "19:51",
+      "departed": null,
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": "",
+      "arrived_by": "Anastasia Markevitch",
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1415,6 +1415,23 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789860240000,
       "source": "panel"
+    },
+    {
+      "studio": "527",
+      "name": "Anastasia Markevitch",
+      "time": "19:51",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789861861000
+    },
+    {
+      "studio": "527",
+      "name": "",
+      "time": "19:54",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789862041000,
+      "source": "panel"
     }
   ],
   "panelPrior": {},
@@ -1424,18 +1441,19 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-19T23:24:00+00:00",
-    "polledAt": "2026-09-19T23:47:00+00:00",
+    "updatedAt": "2026-09-19T23:54:01+00:00",
+    "polledAt": "2026-09-19T23:54:01+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
       "missed": [
+        "527 arrival 19:51 (Anastasia Markevitch)",
         "527 departure 19:11 (AlisonCarlos Murray)",
         "527 arrival 16:19 (AlisonCarlos Murray)",
         "527 departure 15:41 (Enrico Casertano)",
         "527 arrival 07:48 (Sheldon Shannon)"
       ],
-      "missedCount": 4
+      "missedCount": 5
     },
     "doorGaps": [
       {
@@ -1614,7 +1632,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:43:00-04:00"
+      "lastISO": "2026-09-19T19:54:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1654,7 +1672,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:45:00-04:00"
+      "lastISO": "2026-09-19T19:50:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1664,7 +1682,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:35:00-04:00"
+      "lastISO": "2026-09-19T19:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1674,7 +1692,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:45:00-04:00"
+      "lastISO": "2026-09-19T19:50:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1684,7 +1702,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:47:00-04:00"
+      "lastISO": "2026-09-19T19:54:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1704,7 +1722,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:40:00-04:00"
+      "lastISO": "2026-09-19T19:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1814,7 +1832,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:25:00-04:00"
+      "lastISO": "2026-09-19T19:53:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1854,7 +1872,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T19:46:00-04:00"
+      "lastISO": "2026-09-19T19:52:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2256,7 +2274,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-19T19:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 49,
             "stale": false
           },
           {
@@ -2268,7 +2286,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-19T19:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 49,
             "stale": false
           }
         ],
@@ -2351,7 +2369,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Responder single fire 11,688,034 prompt tokens (limit 10,000,000); The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Planner single fire 19,001,874 prompt tokens (limit 10,000,000); The Cus"
     },
-    "stamp": "19:46"
+    "stamp": "19:54"
   }
 }/*__END_DATA__*/;
 
