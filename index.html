@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 9:18 AM ET",
-  "generatedAtISO": "2026-09-19T09:18:09-04:00",
+  "generatedAt": "Sep 19, 9:25 AM ET",
+  "generatedAtISO": "2026-09-19T09:25:36-04:00",
   "studios": [
     {
       "id": "509A",
@@ -575,10 +575,10 @@ const DATA = /*__DATA__*/{
         "509B"
       ],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:25",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1022,24 +1022,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "88ea635f960e",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 9.75,
       "end": 10.25,
       "id": "62e148adfe22",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "88ea635f960e",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1323,11 +1323,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1335,11 +1335,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1605,13 +1605,24 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "PBF — Isabel Campo Jurado ••• [pbf:3dc7503281c4818c910fca3f9cb50bbd]",
+      "code": "Post-HTA go-ahead confirmation — Matthew Jadd [Tagvenue] — 901 [gtg:638371a1-••••-4ace-969b-cdc7a38cb841]",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
-      "studio": "509A",
+      "studio": "901",
       "raised_by": "The Registrar",
-      "created": "Sep 19 · 08:57",
+      "created": "Sep 19 · 09:21",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Held reply — Nicholas Walsh (YTC) release Sun hour, reschedule next weekend [resp:1a0b9c805065e9f6]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "The Responder",
+      "created": "Sep 19 · 09:24",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1735,6 +1746,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789823161000,
       "source": "panel"
+    },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "09:25",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789824301000,
+      "source": "panel"
     }
   ],
   "panelPrior": {
@@ -1755,8 +1775,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-19T13:06:01+00:00",
-    "polledAt": "2026-09-19T13:18:01+00:00",
+    "updatedAt": "2026-09-19T13:25:01+00:00",
+    "polledAt": "2026-09-19T13:26:00+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1789,7 +1809,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:18:00-04:00"
+      "lastISO": "2026-09-19T09:24:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1829,7 +1849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:15:00-04:00"
+      "lastISO": "2026-09-19T09:25:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1839,7 +1859,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:05:00-04:00"
+      "lastISO": "2026-09-19T09:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1849,7 +1869,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:15:00-04:00"
+      "lastISO": "2026-09-19T09:25:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1859,7 +1879,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:18:00-04:00"
+      "lastISO": "2026-09-19T09:25:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1869,7 +1889,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:00:00-04:00"
+      "lastISO": "2026-09-19T09:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2410,7 +2430,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-19T09:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 20,
             "stale": false
           },
           {
@@ -2422,7 +2442,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-19T09:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 20,
             "stale": false
           }
         ],
@@ -2505,7 +2525,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "09:18"
+    "stamp": "09:25"
   }
 }/*__END_DATA__*/;
 
