@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 10:02 AM ET",
-  "generatedAtISO": "2026-09-19T10:02:24-04:00",
+  "generatedAt": "Sep 19, 10:04 AM ET",
+  "generatedAtISO": "2026-09-19T10:04:00-04:00",
   "studios": [
     {
       "id": "509A",
@@ -575,10 +575,10 @@ const DATA = /*__DATA__*/{
         "509B"
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "09:25",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -601,10 +601,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "08:55",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -671,7 +671,7 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": "07:48",
+      "arrived": "07:49",
       "departed": null,
       "facilitator": "Sheldon Shannon",
       "arrived_by": "Sheldon Shannon",
@@ -885,10 +885,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:06",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1306,11 +1306,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1318,11 +1318,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1684,33 +1684,59 @@ const DATA = /*__DATA__*/{
     {
       "studio": "527",
       "name": "Sheldon Shannon",
-      "time": "07:48",
+      "time": "07:49",
       "kind": "arrival",
       "remote": false,
-      "ts": 1789818513000
+      "ts": 1789818540000,
+      "source": "panel"
+    },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "08:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789822080000,
+      "source": "panel"
+    },
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "08:55",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789822501000,
+      "source": "panel"
+    },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "08:55",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789822501000,
+      "source": "panel"
+    },
+    {
+      "studio": "901",
+      "name": "",
+      "time": "09:06",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789823161000,
+      "source": "panel"
+    },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "09:25",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789824301000,
+      "source": "panel"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "arrival",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "509A",
-      "time": "09:25",
-      "ts": 1789824301000,
-      "when": "Sat 09:25"
-    },
-    "509B": {
-      "kind": "arrival",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "509B",
-      "time": "08:55",
-      "ts": 1789822501000,
-      "when": "Sat 08:55"
-    },
     "693": {
       "kind": "departure",
       "name": "Tanisha Chakma",
@@ -1720,28 +1746,18 @@ const DATA = /*__DATA__*/{
       "time": "18:46",
       "ts": 1789771608808,
       "when": "Fri 18:46"
-    },
-    "901": {
-      "kind": "arrival",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "901",
-      "time": "09:06",
-      "ts": 1789823161000,
-      "when": "Sat 09:06"
     }
   },
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T13:25:01+00:00",
-    "polledAt": "2026-09-19T14:02:00+00:00",
+    "polledAt": "2026-09-19T14:04:00+00:00",
     "doorGaps": [],
-    "down": true
+    "down": false
   },
   "robots": [
     {
@@ -2393,7 +2409,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-19T09:05:00-04:00",
-            "ageMin": 57,
+            "ageMin": 59,
             "stale": false
           },
           {
@@ -2405,7 +2421,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-19T09:05:00-04:00",
-            "ageMin": 57,
+            "ageMin": 59,
             "stale": false
           }
         ],
@@ -2488,7 +2504,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "10:02"
+    "stamp": "10:04"
   }
 }/*__END_DATA__*/;
 
