@@ -180,6 +180,28 @@ def test_action_title_is_stable_for_dedup():
     assert t == "🔔 HTA not sent — Thea Giggster · Studio 509A · 2026-09-06 14:00"
 
 
+def test_action_key_names_the_board_row_and_title_drift_does_not_refile():
+    b = booking()
+    key = build._hta_action_key(booking(id="3df75032-81c4-8173-9319-decaff4b2741"))
+    assert key == "[hta:3df7503281c481739319decaff4b2741]"
+    assert build._hta_action_key(booking(id=None)) == ""
+    title = build._hta_action_title(b)
+    # Same booking filed earlier under a drifted title: the key still matches.
+    drifted = "🔔 HTA not sent — *moved from June 13th* · Studio 509A · 2026-09-06 14:00 " + key
+    assert build._hta_already_raised(title, key, {drifted})
+    # A pre-key row (before 2026-09-18) still matches on its bare title.
+    assert build._hta_already_raised(title, key, {title})
+    assert build._hta_already_raised(title, key, {title + " [hta:" + "0" * 32 + "]"})
+    # A different booking, different key, different title: not suppressed.
+    other = build._hta_action_key(booking(id="bk-other"))
+    assert not build._hta_already_raised("🔔 HTA not sent — Someone Else · Studio 901 · 2026-09-06 14:00", other, {drifted})
+
+
+def test_studio_field_already_prefixed_does_not_double_the_word():
+    t = build._hta_action_title(booking(studio="Studio 527"))
+    assert t == "🔔 HTA not sent — Thea Giggster · Studio 527 · 2026-09-06 14:00"
+
+
 def test_sync_dry_run_raises_once_and_links_verified(monkeypatch=None):
     calls = []
     orig_query = build._notion_query

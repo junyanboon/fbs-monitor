@@ -3245,8 +3245,34 @@ def apply_hta_watch(events, verdicts):
 
 def _hta_action_title(booking):
     who = _display_name(booking.get("who") or "") or "renter"
-    return (f"{HTA_ACTION_PREFIX}{who} · Studio {booking.get('studio') or '?'} · "
+    # Some rows carry "Studio 527" in the Studio field already; "Studio Studio 527"
+    # broke the title dedupe and filed Vicky Yeung twice on 2026-09-18.
+    studio = re.sub(r"^\s*Studio\s+", "", str(booking.get("studio") or ""), flags=re.I).strip() or "?"
+    return (f"{HTA_ACTION_PREFIX}{who} · Studio {studio} · "
             f"{str(booking.get('date') or '')[:10]} {booking.get('start') or ''}").strip()
+
+
+HTA_ACTION_KEY_RE = re.compile(r"\[hta:([0-9a-f]{32})\]")
+
+
+def _hta_action_key(booking):
+    """`[hta:<board row id>]` — names the booking occurrence, not its rendering.
+
+    The title alone was the dedupe key until 2026-09-18. It carries the renter
+    name and the studio as text, and both drift: a Skedda title note replaces
+    the name, a Studio field arrives pre-prefixed. Each drift filed the same
+    booking again. The board row id does not drift.
+    """
+    rid = (booking.get("id") or "").replace("-", "")
+    return f"[hta:{rid}]" if rid else ""
+
+
+def _hta_already_raised(title, key, open_titles):
+    """True when a filed row names this booking, by key or by bare title."""
+    if key and any(key in t for t in open_titles):
+        return True
+    bare = {HTA_ACTION_KEY_RE.sub("", t).strip() for t in open_titles}
+    return title in bare
 
 
 def _raised_hta_action_titles(token, since_dt):
@@ -3348,6 +3374,7 @@ def sync_hta_watch(verdicts, now):
         if state not in ("missing", "stuck", "awaiting") or v["hours"] > HTA_WATCH_HOURS:
             continue
         title = _hta_action_title(b)
+        key = _hta_action_key(b)
         if open_titles is None:
             try:
                 open_titles = _raised_hta_action_titles(
@@ -3355,8 +3382,9 @@ def sync_hta_watch(verdicts, now):
             except Exception as exc:  # noqa: BLE001
                 print(f"  ! HTA watch: cannot read open Actions ({exc}); raising nothing.")
                 return
-        if title in open_titles:
+        if _hta_already_raised(title, key, open_titles):
             continue
+        title = f"{title} {key}".strip()
         why = {
             "missing": "No queue row of the HTA shape exists for this renter.",
             "stuck": "A Ready to Send HTA row is past its send time (or timed after the start) and has not dispatched.",
