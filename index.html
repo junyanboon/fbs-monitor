@@ -519,10 +519,10 @@
    Support board (tier, GTG/HTA) and Gmail ADT arrivals/departures.
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
-  "date": "Friday, September 18, 2026",
+  "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 11:49 PM ET",
-  "generatedAtISO": "2026-09-18T23:49:03-04:00",
+  "generatedAt": "Sep 19, 12:02 AM ET",
+  "generatedAtISO": "2026-09-19T00:02:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -835,24 +835,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "88ea635f960e",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 1,
       "start": 9.75,
       "end": 10.25,
       "id": "62e148adfe22",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "88ea635f960e",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1136,11 +1136,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1148,11 +1148,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1255,10 +1255,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "attention": [
-    {
-      "level": "warn",
-      "text": "1 robot overdue — see Robots tab"
-    },
     {
       "level": "crit",
       "text": "HTA not queued · Eri Tagawa · 693 · 16:00"
@@ -1494,7 +1490,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T03:36:00+00:00",
-    "polledAt": "2026-09-19T03:49:00+00:00",
+    "polledAt": "2026-09-19T04:02:01+00:00",
     "mailCheck": {
       "matched": 5,
       "inGap": 0,
@@ -2329,21 +2325,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-19T03:48:49.344341Z",
         "until": "2026-09-19T03:48:49.700511Z"
+      },
+      {
+        "since": "2026-09-19T03:54:20.415056Z",
+        "until": "2026-09-19T03:54:59.634221Z"
+      },
+      {
+        "since": "2026-09-19T04:00:00.361389Z",
+        "until": "2026-09-19T04:00:00.723575Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "Ops Executor",
-      "cadence": "15-min",
-      "expected": null,
-      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
-      "monitoring": "Retired",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-15T19:44:00-04:00"
-    },
     {
       "run": "The Doorman",
       "cadence": "Daily",
@@ -2362,7 +2356,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T23:49:00-04:00"
+      "lastISO": "2026-09-19T00:00:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2375,16 +2369,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-18T23:47:00-04:00"
     },
     {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-18T23:45:00-04:00"
-    },
-    {
       "run": "main queue sender (Apps Script send engine)",
       "cadence": "5-min",
       "expected": "every 5 minutes, 24/7 — Apps Script time-driven trigger main() in project \"Message Queue Send Engine\". Sends the Ready to Send + due rows of the 📤 Message Queue (SMS via Phone.com, email via Gmail).",
@@ -2392,7 +2376,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T23:49:00-04:00"
+      "lastISO": "2026-09-19T00:02:00-04:00"
+    },
+    {
+      "run": "Ops Executor",
+      "cadence": "15-min",
+      "expected": null,
+      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
+      "monitoring": "Retired",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2442,7 +2436,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T23:09:00-04:00"
+      "lastISO": "2026-09-19T00:03:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2465,16 +2459,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-18T23:34:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-18T23:26:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -2483,16 +2467,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-18T04:14:00-04:00"
-    },
-    {
-      "run": "The Treasurer",
-      "cadence": "Monthly",
-      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
-      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-15T08:01:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2532,7 +2506,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-18T23:45:00-04:00"
+      "lastISO": "2026-09-19T00:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2542,7 +2516,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-18T23:45:00-04:00"
+      "lastISO": "2026-09-19T00:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2552,7 +2526,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-18T23:45:00-04:00"
+      "lastISO": "2026-09-18T23:55:00-04:00"
+    },
+    {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-19T00:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2582,7 +2566,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-18T23:37:00-04:00"
+      "lastISO": "2026-09-18T23:52:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2675,6 +2659,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-18T23:52:00-04:00"
+    },
+    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "retired 2026-09-02 - see Runtime",
@@ -2683,6 +2677,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-09-02T07:07:00-04:00"
+    },
+    {
+      "run": "The Treasurer",
+      "cadence": "Monthly",
+      "expected": "1st of month at 08:00 America/Toronto · Codex production fallback",
+      "produces": "Monthly run report + payment reconciliation report + account-change Action rows + failed/missed-payment CC tickets",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-15T08:01:00-04:00"
     },
     {
       "run": "The Watchman",
@@ -2730,31 +2734,31 @@ const DATA = /*__DATA__*/{
     },
     "usage": {
       "today": {
+        "date": "2026-09-19",
+        "fires": 0,
+        "promptTokens": 0,
+        "cachedTokens": 0,
+        "cachedPct": 0,
+        "completionTokens": 0,
+        "errors": 0,
+        "maxFireTokens": 0,
+        "maxFireJob": "The Mechanic"
+      },
+      "yesterday": {
         "date": "2026-09-18",
-        "fires": 85,
-        "promptTokens": 226175911,
-        "cachedTokens": 213708180,
+        "fires": 86,
+        "promptTokens": 227063569,
+        "cachedTokens": 214458173,
         "cachedPct": 94,
-        "completionTokens": 984702,
+        "completionTokens": 992430,
         "errors": 37,
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "yesterday": {
-        "date": "2026-09-17",
-        "fires": 80,
-        "promptTokens": 406022633,
-        "cachedTokens": 384957156,
-        "cachedPct": 95,
-        "completionTokens": 1804738,
-        "errors": 1,
-        "maxFireTokens": 17916716,
-        "maxFireJob": "The Concierge"
-      },
-      "asOfISO": "2026-09-18T23:45:33-04:00",
+      "asOfISO": "2026-09-19T00:00:34-04:00",
       "stale": false,
-      "alarm": true,
-      "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
+      "alarm": false,
+      "alarmNote": ""
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2907,12 +2911,12 @@ const DATA = /*__DATA__*/{
         "down": "People wait. Nobody replies.",
         "status": "ok",
         "robots": [
-          "The Responder",
           "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge",
           "The Concierge — 2026-09-05 20:10 interrupted",
-          "The Receptionist"
+          "The Receptionist",
+          "The Responder"
         ],
         "worst": null
       },
@@ -2987,7 +2991,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 44,
             "whenISO": "2026-09-18T23:05:00-04:00",
-            "ageMin": 44,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2999,7 +3003,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-18T23:05:00-04:00",
-            "ageMin": 44,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -3056,33 +3060,33 @@ const DATA = /*__DATA__*/{
     },
     "usage": {
       "today": {
+        "date": "2026-09-19",
+        "fires": 0,
+        "promptTokens": 0,
+        "cachedTokens": 0,
+        "cachedPct": 0,
+        "completionTokens": 0,
+        "errors": 0,
+        "maxFireTokens": 0,
+        "maxFireJob": "The Mechanic"
+      },
+      "yesterday": {
         "date": "2026-09-18",
-        "fires": 85,
-        "promptTokens": 226175911,
-        "cachedTokens": 213708180,
+        "fires": 86,
+        "promptTokens": 227063569,
+        "cachedTokens": 214458173,
         "cachedPct": 94,
-        "completionTokens": 984702,
+        "completionTokens": 992430,
         "errors": 37,
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "yesterday": {
-        "date": "2026-09-17",
-        "fires": 80,
-        "promptTokens": 406022633,
-        "cachedTokens": 384957156,
-        "cachedPct": 95,
-        "completionTokens": 1804738,
-        "errors": 1,
-        "maxFireTokens": 17916716,
-        "maxFireJob": "The Concierge"
-      },
-      "asOfISO": "2026-09-18T23:45:33-04:00",
+      "asOfISO": "2026-09-19T00:00:34-04:00",
       "stale": false,
-      "alarm": true,
-      "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
+      "alarm": false,
+      "alarmNote": ""
     },
-    "stamp": "23:49"
+    "stamp": "00:02"
   }
 }/*__END_DATA__*/;
 
