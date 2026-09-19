@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 10:32 AM ET",
-  "generatedAtISO": "2026-09-19T10:32:35-04:00",
+  "generatedAt": "Sep 19, 10:33 AM ET",
+  "generatedAtISO": "2026-09-19T10:33:31-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1065,24 +1065,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "f766adbf069a",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "8a8166d09774",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "f766adbf069a",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1624,7 +1624,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     },
     {
       "level": "crit",
@@ -1713,7 +1713,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T14:12:01+00:00",
-    "polledAt": "2026-09-19T14:33:01+00:00",
+    "polledAt": "2026-09-19T14:34:00+00:00",
     "doorGaps": [
       {
         "since": "2026-09-19T14:26:13.704136Z",
@@ -1722,6 +1722,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-19T14:27:02.351851Z",
         "until": "2026-09-19T14:27:46.603486Z"
+      },
+      {
+        "since": "2026-09-19T14:33:04.238210Z",
+        "until": "2026-09-19T14:33:04.590224Z"
       }
     ],
     "down": false
@@ -1746,6 +1750,16 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-15T19:44:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-19T10:03:00-04:00"
     },
     {
       "run": "The Morning Text",
@@ -1835,7 +1849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T10:32:00-04:00"
+      "lastISO": "2026-09-19T10:33:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2376,7 +2390,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-19T10:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 28,
             "stale": false
           },
           {
@@ -2388,7 +2402,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-19T10:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 28,
             "stale": false
           }
         ],
@@ -2471,7 +2485,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "10:32"
+    "stamp": "10:33"
   }
 }/*__END_DATA__*/;
 
