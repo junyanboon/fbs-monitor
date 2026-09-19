@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 9:04 AM ET",
-  "generatedAtISO": "2026-09-19T09:04:26-04:00",
+  "generatedAt": "Sep 19, 9:06 AM ET",
+  "generatedAtISO": "2026-09-19T09:06:07-04:00",
   "studios": [
     {
       "id": "509A",
@@ -660,10 +660,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:06",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1093,11 +1093,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1105,11 +1105,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1410,18 +1410,6 @@ const DATA = /*__DATA__*/{
       "label": "HTA · Studio 901"
     },
     {
-      "code": "HTA-sweep-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 19 · 00:14",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-19T09:00:00-04:00",
-      "label": "HTA · Studio 693"
-    },
-    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1532,6 +1520,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789822501000,
       "source": "panel"
+    },
+    {
+      "studio": "901",
+      "name": "",
+      "time": "09:06",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789823161000,
+      "source": "panel"
     }
   ],
   "panelPrior": {
@@ -1544,16 +1541,6 @@ const DATA = /*__DATA__*/{
       "time": "18:46",
       "ts": 1789771608808,
       "when": "Fri 18:46"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "901",
-      "time": "21:00",
-      "ts": 1789779615242,
-      "when": "Fri 21:00"
     }
   },
   "alarmAlerts": [],
@@ -1562,8 +1549,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-19T12:55:01+00:00",
-    "polledAt": "2026-09-19T13:05:01+00:00",
+    "updatedAt": "2026-09-19T13:06:01+00:00",
+    "polledAt": "2026-09-19T13:06:01+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1596,7 +1583,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T09:01:00-04:00"
+      "lastISO": "2026-09-19T09:06:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -2217,7 +2204,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-19T09:05:00-04:00",
-            "ageMin": -1,
+            "ageMin": 1,
             "stale": false
           },
           {
@@ -2229,7 +2216,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-19T09:05:00-04:00",
-            "ageMin": -1,
+            "ageMin": 1,
             "stale": false
           }
         ],
@@ -2312,7 +2299,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "09:04"
+    "stamp": "09:06"
   }
 }/*__END_DATA__*/;
 
