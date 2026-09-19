@@ -3004,6 +3004,16 @@ def fetch_hta_rows(token, since_dt):
     Returning Access rows also expose pending state for their exact booking.
     Scheduled is not verified: only Sent plus a receipt proves RA delivery.
 
+    A SIXTH shape counts, added 2026-09-19: a **Sent** `Quick answer …` row
+    that carries an access label. The Responder answers an inbound question
+    with a Quick-Answer Lane row, and when the question is "are my codes the
+    same?" the answer hands the renter their Door Code and Alarm Code — a
+    delivered access message under a title none of the shapes above match.
+    Eri Tagawa / 693 / 2026-09-19 got her codes that way on 09-17 and still
+    drew "🔔 HTA not sent" plus an HTA MISSING pill. Same rule as BC: Sent
+    only, and the body must carry a code label. A queued Quick answer is not
+    a promise of access; a Sent one with no codes is just a reply.
+
     Only `Sent` BC rows are read, and that restriction is the safety margin.
     A BC row is not built to be a How-to-Access, so it is accepted as PROOF a
     send happened and never as a promise that one will: a queued or errored BC
@@ -3036,6 +3046,7 @@ def fetch_hta_rows(token, since_dt):
             {"property": "Message Code", "title": {"starts_with": "How to Access"}},
             {"property": "Message Code", "title": {"starts_with": "BC"}},
             {"property": "Message Code", "title": {"starts_with": "Returning Access"}},
+            {"property": "Message Code", "title": {"starts_with": "Quick answer"}},
         ]},
     ]}
     assert _filter_depth(filt) <= 2, "Notion rejects compound filters deeper than 2"
@@ -3044,10 +3055,10 @@ def fetch_hta_rows(token, since_dt):
     for row in rows:
         p = row.get("properties", {})
         shape = _hta_shape(p)
-        if shape in ("BC", "RA"):
+        if shape in ("BC", "RA", "QA"):
             status = (_prop_text(p.get("Status")) or "")
-            if shape == "BC" and status != "Sent":
-                continue    # merged confirmations still require delivered proof
+            if shape in ("BC", "QA") and status != "Sent":
+                continue    # merged confirmations and replies still require delivered proof
             if shape == "RA" and status not in (
                     "Sent", "Ready to Send", "Pending Review", "Needs Fix", "Error"):
                 continue
@@ -3096,7 +3107,8 @@ def _carries_access(properties):
 
 
 def _hta_shape(properties):
-    """"HTA" purpose-built, "BC" merged confirmation, "RA" returning access.
+    """"HTA" purpose-built, "BC" merged confirmation, "RA" returning access,
+    "QA" a Responder Quick-Answer reply (counts only when Sent with codes).
 
     A FIFTH shape counts, added 2026-09-11: a **Sent** `Returning Access …`
     row. A returning renter keeps permanent codes, so the booking sweep sends
@@ -3118,6 +3130,8 @@ def _hta_shape(properties):
         return "BC"
     if code.startswith("RETURNING ACCESS"):
         return "RA"
+    if code.startswith("QUICK ANSWER"):
+        return "QA"
     return "HTA"
 
 

@@ -146,6 +146,8 @@ def test_shape_names_the_evidence():
     assert build._hta_shape(props("HTA-sweep-0906-1400-509A")) == "HTA"
     assert build._hta_shape(props("How to Access 527")) == "HTA"
     assert build._hta_shape(props("Returning Access 527 RA-sweep-0911-1600-527")) == "RA"
+    assert build._hta_shape(props(
+        "Quick answer — Eri Tagawa — 693 Sep 19 security code unchanged")) == "QA"
 
 
 def test_no_artist_or_no_clock_is_unknown_not_missing():
@@ -279,6 +281,7 @@ def main():
     test_self_serve_is_outside_hta_watch()
     test_returning_access_verifies_and_is_held_to_the_bc_margin()
     test_returning_access_is_in_the_filter_at_two_levels()
+    test_quick_answer_with_codes_is_sent_access()
     print("HTA watch regression tests: OK")
 
 
@@ -364,6 +367,58 @@ def test_bc_row_without_codes_is_not_access():
         build._notion_query = orig
     assert sorted(r["id"] for r in out) == [
         "BC-alarm-only", "BC-with-codes", "HTA-no-body-marker"]
+
+
+def test_quick_answer_with_codes_is_sent_access():
+    """2026-09-19 Eri Tagawa / 693. She asked on 09-17 whether her 509A codes
+    still worked for 693; the Responder's Quick-Answer row replied Sent with
+    "Door Code: …" and "Alarm Code: …". The BC row for the booking was a bare
+    confirmation, so the watchdog read `missing`, filed "🔔 HTA not sent" and
+    painted HTA MISSING on the card for a renter who had her codes. Held to
+    the BC margin: Sent only, and the body must carry a code label.
+    """
+    import datetime
+    def mk(code, status, body):
+        return {"id": code, "properties": {
+            "Message Code": {"type": "title", "title": [{"plain_text": code}]},
+            "Message Body": {"type": "rich_text",
+                             "rich_text": [{"plain_text": body}]},
+            "Status": {"type": "status", "status": {"name": status}},
+            "Artist": {"type": "relation", "relation": []},
+            "Studio": {"type": "select", "select": None},
+            "Booking": {"type": "relation", "relation": []},
+            "Send After": {"type": "date", "date": None},
+            "Sent At": {"type": "date", "date": None},
+            "Created time": {"type": "created_time", "created_time": "2026-09-17T14:46:00.000Z"},
+        }}
+    codes = "Yes you got it.\nYour codes:\n- Door Code: 5123\n- Alarm Code: 5738"
+    rows = [
+        mk("Quick answer — Eri Tagawa — 693 Sep 19 security code unchanged", "Sent", codes),
+        mk("Quick answer — queued, not proof", "Ready to Send", codes),
+        mk("Quick answer — no codes in it", "Sent", "Yes, parking is free after 6."),
+    ]
+    seen = {}
+    def fake_query(t, d, payload):
+        seen["filter"] = payload["filter"]
+        return rows
+    orig = build._notion_query; build._notion_query = fake_query
+    try:
+        out = build.fetch_hta_rows("t", datetime.datetime(2026, 9, 12, tzinfo=datetime.timezone.utc))
+    finally:
+        build._notion_query = orig
+    assert [r["id"] for r in out] == [
+        "Quick answer — Eri Tagawa — 693 Sep 19 security code unchanged"]
+    assert out[0]["shape"] == "QA"
+    clauses = seen["filter"]["and"][1]["or"]
+    assert {"property": "Message Code", "title": {"starts_with": "Quick answer"}} in clauses
+    assert build._filter_depth(seen["filter"]) <= 2
+    # And the verdict: a Sent QA row inside the lookback, same studio → verified.
+    qa = row("Sent", studio="693", rid="qa-eri", sent_at="2026-09-17T14:46:00.000Z",
+             created="2026-09-17T14:46:00.000Z")
+    qa["shape"] = "QA"
+    v = build.hta_verdicts([booking(studio="693", date="2026-09-19", start="16:00")],
+                           [qa], NOW)[0]
+    assert v["state"] == "verified" and v["row"]["id"] == "qa-eri"
 
 
 def test_carries_access_reads_the_label_not_the_digits():
