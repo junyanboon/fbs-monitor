@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 7:47 AM ET",
-  "generatedAtISO": "2026-09-19T07:47:39-04:00",
+  "generatedAt": "Sep 19, 7:49 AM ET",
+  "generatedAtISO": "2026-09-19T07:49:21-04:00",
   "studios": [
     {
       "id": "509A",
@@ -676,10 +676,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "07:49",
       "departed": null,
       "facilitator": "Sheldon Shannon",
-      "arrived_by": null,
+      "arrived_by": "Sheldon Shannon",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1039,24 +1039,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "88ea635f960e",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 9.75,
       "end": 10.25,
       "id": "62e148adfe22",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "88ea635f960e",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1135,24 +1135,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "f766adbf069a",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "8a8166d09774",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "f766adbf069a",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1766,7 +1766,17 @@ const DATA = /*__DATA__*/{
       "text": "HTA not queued · *moved from June 13th* FBS *manually charge 16.95* · 527 · 08:00"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "527",
+      "name": "Sheldon Shannon",
+      "time": "07:49",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789818540000,
+      "source": "panel"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1787,15 +1797,6 @@ const DATA = /*__DATA__*/{
       "time": "23:45",
       "ts": 1789789505706,
       "when": "Fri 23:45"
-    },
-    "527": {
-      "studio": "527",
-      "name": "Vicky Yeung",
-      "time": "22:49",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789786173000,
-      "when": "Fri 22:49"
     },
     "693": {
       "kind": "departure",
@@ -1819,13 +1820,13 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-19T03:36:00+00:00",
-    "polledAt": "2026-09-19T11:48:00+00:00",
+    "updatedAt": "2026-09-19T11:49:00+00:00",
+    "polledAt": "2026-09-19T11:49:00+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1848,7 +1849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T07:43:00-04:00"
+      "lastISO": "2026-09-19T07:49:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1878,7 +1879,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T07:47:00-04:00"
+      "lastISO": "2026-09-19T07:49:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2483,7 +2484,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 282,
+            "ageMin": 284,
             "stale": true
           },
           {
@@ -2495,7 +2496,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 282,
+            "ageMin": 284,
             "stale": true
           }
         ],
@@ -2578,7 +2579,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "07:47"
+    "stamp": "07:49"
   }
 }/*__END_DATA__*/;
 
