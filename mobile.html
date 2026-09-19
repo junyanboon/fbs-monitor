@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 11:02 AM ET",
-  "generatedAtISO": "2026-09-19T11:02:13-04:00",
+  "generatedAt": "Sep 19, 11:03 AM ET",
+  "generatedAtISO": "2026-09-19T11:03:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -323,7 +323,7 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
-      "who": "Isabel Campo Jurado",
+      "who": "Isabel Campo Jurado — Additional Time",
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
@@ -340,16 +340,13 @@ const DATA = /*__DATA__*/{
           "time": null
         }
       ],
-      "booking_studios": [
-        "509A",
-        "509B"
-      ],
+      "booking_studios": [],
       "heard": true,
-      "arrived": "09:25",
-      "departed": null,
+      "arrived": "08:48",
+      "departed": "08:55",
       "facilitator": null,
       "arrived_by": "",
-      "departed_by": null,
+      "departed_by": "",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -357,7 +354,7 @@ const DATA = /*__DATA__*/{
       "dup_studios": [
         "509B"
       ],
-      "start": 10.0,
+      "start": 9.5,
       "end": 23.0,
       "access_gap": false
     },
@@ -404,10 +401,7 @@ const DATA = /*__DATA__*/{
           "time": null
         }
       ],
-      "booking_studios": [
-        "509A",
-        "509B"
-      ],
+      "booking_studios": [],
       "heard": true,
       "arrived": "10:00",
       "departed": "10:12",
@@ -579,10 +573,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:02",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Janet Zamora",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -811,24 +805,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "f766adbf069a",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "8a8166d09774",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "f766adbf069a",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -1016,11 +1010,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1028,11 +1022,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1323,17 +1317,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Sol R. Peerspace in Studio 901"
     },
     {
-      "code": "Post-HTA go-ahead confirmation — JOHN GALLIGAN — 693 [gtg:d858c95d-158c-45b3-b757-efda7da68c13]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 19 · 10:13",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "T1 consent — Simona Horova — move Sun Sep 20 8:45–9:45 AM from 509A to 509B or 901 [attended:claude:•••]",
       "kind": null,
       "channel": "SMS",
@@ -1472,6 +1455,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789830122017,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Janet Zamora",
+      "time": "11:02",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789830152747,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1482,7 +1474,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T14:12:01+00:00",
-    "polledAt": "2026-09-19T15:02:01+00:00",
+    "polledAt": "2026-09-19T15:03:01+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1636,7 +1628,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T10:57:00-04:00"
+      "lastISO": "2026-09-19T11:03:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2187,7 +2179,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-19T10:05:00-04:00",
-            "ageMin": 57,
+            "ageMin": 58,
             "stale": false
           },
           {
@@ -2199,7 +2191,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-19T10:05:00-04:00",
-            "ageMin": 57,
+            "ageMin": 58,
             "stale": false
           }
         ],
@@ -2282,7 +2274,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "11:02"
+    "stamp": "11:03"
   }
 }/*__END_DATA__*/;
 
