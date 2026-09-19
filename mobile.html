@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 9:02 PM ET",
-  "generatedAtISO": "2026-09-18T21:02:08-04:00",
+  "generatedAt": "Sep 18, 9:07 PM ET",
+  "generatedAtISO": "2026-09-18T21:07:48-04:00",
   "studios": [
     {
       "id": "509A",
@@ -730,24 +730,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "8a8166d09774",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T22:45:00-04:00",
-      "endISO": "2026-09-19T23:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 1,
       "start": 22.75,
       "end": 23.25,
       "id": "f766adbf069a",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T22:45:00-04:00",
+      "endISO": "2026-09-19T23:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "8a8166d09774",
       "date": "2026-09-19",
       "startISO": "2026-09-19T22:45:00-04:00",
       "endISO": "2026-09-19T23:15:00-04:00",
@@ -935,11 +935,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -947,11 +947,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1257,7 +1257,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T00:52:01+00:00",
-    "polledAt": "2026-09-19T01:02:00+00:00",
+    "polledAt": "2026-09-19T01:08:01+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -1964,6 +1964,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-19T00:57:59.287695Z",
         "until": "2026-09-19T00:58:38.541128Z"
+      },
+      {
+        "since": "2026-09-19T01:03:59.330958Z",
+        "until": "2026-09-19T01:03:59.662187Z"
       }
     ],
     "down": false
@@ -2010,6 +2014,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-18T19:34:00-04:00"
     },
     {
+      "run": "handback-sweep (Hostinger)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-18T20:45:00-04:00"
+    },
+    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -2027,7 +2041,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:02:00-04:00"
+      "lastISO": "2026-09-18T21:08:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2060,16 +2074,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-18T21:01:00-04:00"
     },
     {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-18T20:45:00-04:00"
-    },
-    {
       "run": "mail-rules (event-gate)",
       "cadence": "5-min",
       "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
@@ -2087,7 +2091,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:02:00-04:00"
+      "lastISO": "2026-09-18T21:07:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2097,7 +2101,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T20:53:00-04:00"
+      "lastISO": "2026-09-18T21:01:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2620,13 +2624,13 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 23.8,
+            "inside": 24.0,
             "setpoint": "COOL 24",
             "mode": "COOL",
             "hvac": "OFF",
             "humidity": 41,
-            "whenISO": "2026-09-18T20:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-18T21:05:00-04:00",
+            "ageMin": 2,
             "stale": false
           },
           {
@@ -2637,8 +2641,8 @@ const DATA = /*__DATA__*/{
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 50,
-            "whenISO": "2026-09-18T20:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-18T21:05:00-04:00",
+            "ageMin": 2,
             "stale": false
           }
         ],
@@ -2721,7 +2725,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "21:02"
+    "stamp": "21:07"
   }
 }/*__END_DATA__*/;
 
