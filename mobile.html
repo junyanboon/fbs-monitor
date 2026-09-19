@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 11:18 AM ET",
-  "generatedAtISO": "2026-09-19T11:18:15-04:00",
+  "generatedAt": "Sep 19, 11:19 AM ET",
+  "generatedAtISO": "2026-09-19T11:19:35-04:00",
   "studios": [
     {
       "id": "509A",
@@ -988,11 +988,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1000,11 +1000,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1215,17 +1215,6 @@ const DATA = /*__DATA__*/{
       "send_after": "13:45",
       "send_after_iso": "2026-09-19T13:45:00-04:00",
       "label": "EOB for Sol R. Peerspace in Studio 901"
-    },
-    {
-      "code": "ANALYST-TTT-•••-T•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "901",
-      "raised_by": "The Analyst",
-      "created": "Sep 19 · 04:19",
-      "send_after": null,
-      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1374,7 +1363,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T14:12:01+00:00",
-    "polledAt": "2026-09-19T15:18:00+00:00",
+    "polledAt": "2026-09-19T15:20:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1483,16 +1472,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-19T11:05:00-04:00"
     },
     {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-19T10:50:00-04:00"
-    },
-    {
       "run": "sentinel-sweep (Cloud Run)",
       "cadence": "Hourly",
       "expected": "hourly at :07 UTC, 24/7 — Cloud Scheduler → event-gate /sentinel-sweep. LIVE 2026-08-26: files one 🤖 Sentinel sweep report/day (heartbeat + ALARMS ledger); SMS on alarm-set change.",
@@ -1510,7 +1489,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T11:14:00-04:00"
+      "lastISO": "2026-09-19T11:19:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1560,7 +1539,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T11:15:00-04:00"
+      "lastISO": "2026-09-19T11:19:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-19T11:00:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1650,7 +1639,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T10:35:00-04:00"
+      "lastISO": "2026-09-19T11:13:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2099,7 +2088,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-19T11:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 14,
             "stale": false
           },
           {
@@ -2111,7 +2100,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-19T11:05:00-04:00",
-            "ageMin": 13,
+            "ageMin": 14,
             "stale": false
           }
         ],
@@ -2194,7 +2183,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000); The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "11:18"
+    "stamp": "11:19"
   }
 }/*__END_DATA__*/;
 
