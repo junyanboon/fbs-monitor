@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 10:10 AM ET",
-  "generatedAtISO": "2026-09-19T10:10:43-04:00",
+  "generatedAt": "Sep 19, 10:11 AM ET",
+  "generatedAtISO": "2026-09-19T10:11:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -410,10 +410,10 @@ const DATA = /*__DATA__*/{
       ],
       "heard": true,
       "arrived": "10:00",
-      "departed": null,
+      "departed": "10:12",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": "open",
@@ -567,10 +567,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:12",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1493,28 +1493,35 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789824301000,
       "source": "panel"
+    },
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "10:12",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789827121000,
+      "source": "panel"
+    },
+    {
+      "studio": "693",
+      "name": "",
+      "time": "10:12",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789827121000,
+      "source": "panel"
     }
   ],
-  "panelPrior": {
-    "693": {
-      "kind": "departure",
-      "name": "Tanisha Chakma",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "18:46",
-      "ts": 1789771608808,
-      "when": "Fri 18:46"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-19T13:25:01+00:00",
-    "polledAt": "2026-09-19T14:11:00+00:00",
+    "updatedAt": "2026-09-19T14:12:01+00:00",
+    "polledAt": "2026-09-19T14:12:01+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1557,7 +1564,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T10:07:00-04:00"
+      "lastISO": "2026-09-19T10:12:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1617,7 +1624,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T10:10:00-04:00"
+      "lastISO": "2026-09-19T10:11:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2168,7 +2175,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-19T10:05:00-04:00",
-            "ageMin": 5,
+            "ageMin": 6,
             "stale": false
           },
           {
@@ -2180,7 +2187,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-19T10:05:00-04:00",
-            "ageMin": 5,
+            "ageMin": 6,
             "stale": false
           }
         ],
@@ -2263,7 +2270,7 @@ const DATA = /*__DATA__*/{
       "alarm": true,
       "alarmNote": "The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Concierge single fire 11,575,357 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "10:10"
+    "stamp": "10:11"
   }
 }/*__END_DATA__*/;
 
