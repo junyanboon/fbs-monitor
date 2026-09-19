@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 6:49 AM ET",
-  "generatedAtISO": "2026-09-19T06:49:44-04:00",
+  "generatedAt": "Sep 19, 7:45 AM ET",
+  "generatedAtISO": "2026-09-19T07:45:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1571,24 +1571,13 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Overtime heads-up — Teo Rivas ••• [ot:•••]",
+      "code": "Overtime heads-up — Teo Rivas ••• [ot:•••] | Review ask — Teo Rivas 901 [responder:gmail-1a0b812473f2d420]",
       "kind": null,
       "channel": "SMS",
       "status": "Pending Review",
       "studio": "901",
       "raised_by": "The Timekeeper",
       "created": "Sep 19 · 04:06",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "PBF — Isabel Campo Jurado ••• [pbf:3de7503281c481e49c44f4ef0fd4f59f]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 19 · 04:12",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1611,6 +1600,28 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Analyst",
       "created": "Sep 19 · 04:19",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "BC-sweep-•••A",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 19 · 07:13",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "PBF — Isabel Campo Jurado ••• [pbf:3df7503281c48140bb8df86708ffedc1]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 19 · 07:31",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1831,7 +1842,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T03:36:00+00:00",
-    "polledAt": "2026-09-19T10:50:01+00:00",
+    "polledAt": "2026-09-19T11:46:00+00:00",
     "doorGaps": [],
     "down": false
   },
@@ -1854,7 +1865,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T06:48:00-04:00"
+      "lastISO": "2026-09-19T07:43:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1867,6 +1878,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-19T06:47:00-04:00"
     },
     {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-19T07:45:00-04:00"
+    },
+    {
       "run": "main queue sender (Apps Script send engine)",
       "cadence": "5-min",
       "expected": "every 5 minutes, 24/7 — Apps Script time-driven trigger main() in project \"Message Queue Send Engine\". Sends the Ready to Send + due rows of the 📤 Message Queue (SMS via Phone.com, email via Gmail).",
@@ -1874,7 +1895,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T06:49:00-04:00"
+      "lastISO": "2026-09-19T07:44:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1884,7 +1905,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T06:07:00-04:00"
+      "lastISO": "2026-09-19T07:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1934,7 +1955,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T06:05:00-04:00"
+      "lastISO": "2026-09-19T07:12:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1954,7 +1975,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T06:35:00-04:00"
+      "lastISO": "2026-09-19T07:35:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-19T07:28:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2004,7 +2035,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-19T06:45:00-04:00"
+      "lastISO": "2026-09-19T07:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2014,7 +2045,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-19T06:50:00-04:00"
+      "lastISO": "2026-09-19T07:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2024,17 +2055,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-19T06:45:00-04:00"
-    },
-    {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-19T06:50:00-04:00"
+      "lastISO": "2026-09-19T07:35:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2064,7 +2085,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-19T06:30:00-04:00"
+      "lastISO": "2026-09-19T07:42:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2157,16 +2178,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-19T00:53:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "retired 2026-09-02 - see Runtime",
@@ -2233,11 +2244,11 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-19",
-        "fires": 14,
-        "promptTokens": 46303672,
-        "cachedTokens": 43150243,
+        "fires": 16,
+        "promptTokens": 54882799,
+        "cachedTokens": 51073452,
         "cachedPct": 93,
-        "completionTokens": 262315,
+        "completionTokens": 302942,
         "errors": 0,
         "maxFireTokens": 10340341,
         "maxFireJob": "The Custodian"
@@ -2253,7 +2264,7 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-19T06:45:29-04:00",
+      "asOfISO": "2026-09-19T07:45:30-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
@@ -2405,12 +2416,12 @@ const DATA = /*__DATA__*/{
         "down": "People wait. Nobody replies.",
         "status": "ok",
         "robots": [
+          "The Responder",
           "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge",
           "The Concierge — 2026-09-05 20:10 interrupted",
-          "The Receptionist",
-          "The Responder"
+          "The Receptionist"
         ],
         "worst": null
       },
@@ -2489,7 +2500,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 224,
+            "ageMin": 280,
             "stale": true
           },
           {
@@ -2501,7 +2512,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-19T03:05:00-04:00",
-            "ageMin": 224,
+            "ageMin": 280,
             "stale": true
           }
         ],
@@ -2559,11 +2570,11 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-19",
-        "fires": 14,
-        "promptTokens": 46303672,
-        "cachedTokens": 43150243,
+        "fires": 16,
+        "promptTokens": 54882799,
+        "cachedTokens": 51073452,
         "cachedPct": 93,
-        "completionTokens": 262315,
+        "completionTokens": 302942,
         "errors": 0,
         "maxFireTokens": 10340341,
         "maxFireJob": "The Custodian"
@@ -2579,12 +2590,12 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-19T06:45:29-04:00",
+      "asOfISO": "2026-09-19T07:45:30-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Custodian single fire 10,340,341 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "06:49"
+    "stamp": "07:45"
   }
 }/*__END_DATA__*/;
 
