@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 18, 2026",
   "shiftBaseDay": "2026-09-18",
-  "generatedAt": "Sep 18, 9:51 PM ET",
-  "generatedAtISO": "2026-09-18T21:51:14-04:00",
+  "generatedAt": "Sep 18, 10:02 PM ET",
+  "generatedAtISO": "2026-09-18T22:02:15-04:00",
   "studios": [
     {
       "id": "509A",
@@ -864,24 +864,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "88ea635f960e",
-      "date": "2026-09-19",
-      "startISO": "2026-09-19T09:45:00-04:00",
-      "endISO": "2026-09-19T10:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 1,
       "start": 9.75,
       "end": 10.25,
       "id": "62e148adfe22",
+      "date": "2026-09-19",
+      "startISO": "2026-09-19T09:45:00-04:00",
+      "endISO": "2026-09-19T10:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "88ea635f960e",
       "date": "2026-09-19",
       "startISO": "2026-09-19T09:45:00-04:00",
       "endISO": "2026-09-19T10:15:00-04:00",
@@ -1165,11 +1165,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1177,11 +1177,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 2,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1277,7 +1277,11 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
+    },
+    {
+      "level": "crit",
+      "text": "HTA not queued · Eri Tagawa · 693 · 16:00"
     },
     {
       "level": "crit",
@@ -1465,7 +1469,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T00:52:01+00:00",
-    "polledAt": "2026-09-19T01:51:00+00:00",
+    "polledAt": "2026-09-19T02:02:00+00:00",
     "mailCheck": {
       "matched": 4,
       "inGap": 0,
@@ -2208,21 +2212,19 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-19T01:49:29.327232Z",
         "until": "2026-09-19T01:49:29.919539Z"
+      },
+      {
+        "since": "2026-09-19T01:55:19.705537Z",
+        "until": "2026-09-19T01:55:32.836887Z"
+      },
+      {
+        "since": "2026-09-19T02:00:59.669967Z",
+        "until": "2026-09-19T02:01:00.016539Z"
       }
     ],
     "down": false
   },
   "robots": [
-    {
-      "run": "Desk Sort",
-      "cadence": "Hourly",
-      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
-      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-16T19:13:00-04:00"
-    },
     {
       "run": "Ops Executor",
       "cadence": "15-min",
@@ -2232,16 +2234,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-15T19:44:00-04:00"
-    },
-    {
-      "run": "The Registrar (booking-sweep, Hostinger)",
-      "cadence": "Hourly",
-      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
-      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-18T19:34:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2261,7 +2253,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:51:00-04:00"
+      "lastISO": "2026-09-18T21:57:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2281,7 +2273,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:45:00-04:00"
+      "lastISO": "2026-09-18T22:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2291,7 +2283,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:50:00-04:00"
+      "lastISO": "2026-09-18T22:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2301,7 +2293,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:35:00-04:00"
+      "lastISO": "2026-09-18T21:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2311,7 +2303,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:50:00-04:00"
+      "lastISO": "2026-09-18T22:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2321,7 +2313,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:51:00-04:00"
+      "lastISO": "2026-09-18T22:02:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2331,7 +2323,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:30:00-04:00"
+      "lastISO": "2026-09-18T21:43:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2401,7 +2393,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:06:00-04:00"
+      "lastISO": "2026-09-18T22:05:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2414,6 +2406,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-18T21:55:00-04:00"
     },
     {
+      "run": "The Registrar (booking-sweep, Hostinger)",
+      "cadence": "Hourly",
+      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
+      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-18T21:35:00-04:00"
+    },
+    {
       "run": "The Responder",
       "cadence": "Hourly",
       "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
@@ -2421,7 +2423,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:31:00-04:00"
+      "lastISO": "2026-09-18T21:58:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2461,7 +2463,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-18T21:45:00-04:00"
+      "lastISO": "2026-09-18T22:01:00-04:00"
+    },
+    {
+      "run": "Desk Sort",
+      "cadence": "Hourly",
+      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
+      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-16T19:13:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2610,11 +2622,11 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-18",
-        "fires": 77,
-        "promptTokens": 180404801,
-        "cachedTokens": 170102022,
+        "fires": 80,
+        "promptTokens": 196349722,
+        "cachedTokens": 185190436,
         "cachedPct": 94,
-        "completionTokens": 779505,
+        "completionTokens": 851171,
         "errors": 37,
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
@@ -2630,7 +2642,7 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 17916716,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-18T21:45:15-04:00",
+      "asOfISO": "2026-09-18T22:00:19-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
@@ -2796,24 +2808,20 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Registrar (booking-sweep, Hostinger)",
           "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
+          "The Registrar (booking-sweep, Hostinger)",
           "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Closer",
           "The Loop",
           "The Opener"
         ],
-        "worst": {
-          "run": "The Registrar (booking-sweep, Hostinger)",
-          "label": "Overdue",
-          "lastISO": "2026-09-18T19:34:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
@@ -2870,7 +2878,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 41,
             "whenISO": "2026-09-18T21:05:00-04:00",
-            "ageMin": 46,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2882,7 +2890,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-18T21:05:00-04:00",
-            "ageMin": 46,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2940,11 +2948,11 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-18",
-        "fires": 77,
-        "promptTokens": 180404801,
-        "cachedTokens": 170102022,
+        "fires": 80,
+        "promptTokens": 196349722,
+        "cachedTokens": 185190436,
         "cachedPct": 94,
-        "completionTokens": 779505,
+        "completionTokens": 851171,
         "errors": 37,
         "maxFireTokens": 22976914,
         "maxFireJob": "The Concierge"
@@ -2960,12 +2968,12 @@ const DATA = /*__DATA__*/{
         "maxFireTokens": 17916716,
         "maxFireJob": "The Concierge"
       },
-      "asOfISO": "2026-09-18T21:45:15-04:00",
+      "asOfISO": "2026-09-18T22:00:19-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Concierge single fire 22,976,914 prompt tokens (limit 10,000,000)"
     },
-    "stamp": "21:51"
+    "stamp": "22:02"
   }
 }/*__END_DATA__*/;
 
