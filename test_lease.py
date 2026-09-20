@@ -239,6 +239,57 @@ def test_usage_runs_are_capped_to_the_newest():
     assert len(R) == build.USAGE_RUNS_MAX and R[-1]["job"] == "J249" and R[0]["job"] == "J50"
 
 
+REPORT = """FLEET USAGE V1 · 2026-09-06 · generated 2026-09-06T22:50:58Z
+
+RUNAWAY ALARM:
+  !! The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000)
+  !! The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000)
+  !! fleet day total 327,844,394 prompt tokens (limit 250,000,000)
+
+FLEET TOTAL  fires 77  calls 2754  prompt 327,844,394  completion 1,599,941  cached 309,794,532  uncached 18,049,862  errors 0
+
+  The Responder            fires  32 calls  1043 prompt   112,900,502 cached   104,920,275 (92.9%) err 0
+  The Concierge            fires   7 calls   491 prompt    75,751,131 cached    73,591,864 (97.1%) err 2
+  The Concierge — Closeout fires   7 calls   379 prompt    44,773,513 cached    42,920,202 (95.9%) err 0
+  The Bookkeeper           fires   1 calls     3 prompt       100,685 cached       178,057 (77.5%) err 0
+"""
+
+
+def test_usage_report_block_is_parsed_by_agent():
+    R = build.parse_usage_report(REPORT)
+    assert R["date"] == "2026-09-06" and R["generatedISO"].startswith("2026-09-06T")
+    assert R["limits"] == {"firePromptTokens": 10_000_000, "dayPromptTokens": 250_000_000}
+    J = {j["job"]: j for j in R["jobs"]}
+    assert list(J) == ["The Responder", "The Concierge", "The Concierge — Closeout", "The Bookkeeper"]
+    assert J["The Responder"]["fires"] == 32 and J["The Responder"]["promptTokens"] == 112_900_502
+    assert J["The Responder"]["cachedPct"] == 93 and J["The Responder"]["maxFireTokens"] is None
+    assert J["The Concierge"]["errors"] == 2 and J["The Concierge"]["maxFireTokens"] == 18_484_442
+    assert J["The Concierge — Closeout"]["maxFireTokens"] == 12_514_267
+    assert J["The Bookkeeper"]["cachedTokens"] == 100_685 and J["The Bookkeeper"]["cachedPct"] == 100   # capped
+    assert all(j["completionTokens"] is None and j["lastISO"] is None for j in R["jobs"])
+    assert build.parse_usage_report("## Why this row exists") is None
+    assert build.parse_usage_report("") is None and build.parse_usage_report(None) is None
+
+
+def test_usage_report_fills_jobs_only_when_the_lease_has_none_for_that_day():
+    R = build.parse_usage_report(REPORT)
+    d = json.loads(LIVE); d["usage"] = USAGE                      # today = 2026-09-06, no jobs
+    L = build.parse_lease(json.dumps(d), NOW)
+    assert build.merge_usage_report(L, R) == "run-monitor"
+    assert [j["job"] for j in L["usage"]["today"]["jobs"]][0] == "The Responder"
+    assert L["usage"]["limits"]["firePromptTokens"] == 10_000_000
+    assert L["usage"]["jobsSource"] == "run-monitor" and L["usage"]["jobsAsOfISO"].startswith("2026-09-06T")
+    # another day's report is not today's split
+    L = build.parse_lease(json.dumps(d), NOW)
+    assert build.merge_usage_report(L, dict(R, date="2026-09-05")) is None and L["usage"]["today"]["jobs"] == []
+    # the lease's own jobs win
+    d["usage"] = dict(USAGE, today=dict(USAGE["today"], jobs=[{"job": "Lease Job", "fires": 1, "prompt_tokens": 5}]))
+    L = build.parse_lease(json.dumps(d), NOW)
+    assert build.merge_usage_report(L, R) == "lease" and L["usage"]["today"]["jobs"][0]["job"] == "Lease Job"
+    # no usage at all: nothing to fill
+    assert build.merge_usage_report(build.parse_lease(LIVE, NOW), R) is None
+
+
 def test_provider_account_label_is_projected():
     d = json.loads(LIVE)
     d["provider"] = {"primary": "anthropic", "model": "claude-opus-5", "account": "claude-danceannex"}

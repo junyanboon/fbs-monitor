@@ -3855,6 +3855,107 @@ def parse_usage(u, now):
     }
 
 
+# ── The usage report block ──────────────────────────────────────────────────
+# Until Hermes writes `jobs` into the lease block, the per-agent split already
+# exists elsewhere: the same usage cron rewrites a plain-text code block on
+# The Mechanic's Run Monitor row every 15 minutes ("FLEET USAGE V1 · <date>").
+# Junyan, 2026-09-19: "This is missing today's runs" — so the build reads that
+# block and fills `today.jobs` from it when the lease has none. It carries
+# fires / calls / prompt / cached / errors per job and the runaway lines
+# (which give the biggest fire for the jobs that went over the limit), but no
+# completion tokens per job and no per-fire list; those stay None/empty until
+# the lease carries them. The lease's own `jobs` always wins.
+USAGE_REPORT_PAGE = "3c275032-81c4-81cb-b5a3-d61a94ba83a4"   # 🚥 Run Monitor · The Mechanic
+_USAGE_JOB_LINE = re.compile(
+    r"^\s*(?P<job>\S.*?)\s+fires\s+(?P<fires>[\d,]+)\s+calls\s+(?P<calls>[\d,]+)\s+prompt\s+(?P<prompt>[\d,]+)"
+    r"\s+cached\s+(?P<cached>[\d,]+)\s*(?:\([\d.]+%\))?\s+err\s+(?P<err>[\d,]+)\s*$")
+_USAGE_FIRE_LINE = re.compile(r"^\s*!!\s+(?P<job>.+?)\s+single fire\s+(?P<n>[\d,]+)\s+prompt tokens\s+\(limit\s+(?P<limit>[\d,]+)\)")
+_USAGE_DAY_LINE = re.compile(r"^\s*!!\s+fleet day total\s+[\d,]+\s+prompt tokens\s+\(limit\s+(?P<limit>[\d,]+)\)")
+_USAGE_HEAD = re.compile(r"^FLEET USAGE V1\s*·\s*(?P<date>\d{4}-\d{2}-\d{2})\s*·\s*generated\s+(?P<gen>\S+)")
+
+
+def parse_usage_report(text):
+    """The Mechanic's FLEET USAGE block → {date, generatedISO, limits, jobs}.
+    None when the text is not that block. Numbers are read, never derived,
+    except cachedPct (cached / prompt, capped) which the tab needs per row."""
+    if not isinstance(text, str):
+        return None
+    lines = text.strip().splitlines()
+    head = _USAGE_HEAD.match(lines[0].strip()) if lines else None
+    if not head:
+        return None
+    gen = _parse_notion_ts(head.group("gen"))
+    n = lambda v: int(str(v).replace(",", ""))
+    limits = {"firePromptTokens": 0, "dayPromptTokens": 0}
+    max_fire = {}
+    jobs = []
+    for ln in lines[1:]:
+        m = _USAGE_FIRE_LINE.match(ln)
+        if m:
+            limits["firePromptTokens"] = n(m.group("limit"))
+            max_fire[m.group("job").strip()] = max(max_fire.get(m.group("job").strip(), 0), n(m.group("n")))
+            continue
+        m = _USAGE_DAY_LINE.match(ln)
+        if m:
+            limits["dayPromptTokens"] = n(m.group("limit"))
+            continue
+        m = _USAGE_JOB_LINE.match(ln)
+        if m and not m.group("job").strip().startswith("FLEET TOTAL"):
+            prompt = n(m.group("prompt"))
+            cached = min(n(m.group("cached")), prompt)
+            job = m.group("job").strip()
+            jobs.append({
+                "job": job,
+                "fires": n(m.group("fires")),
+                "calls": n(m.group("calls")),
+                "promptTokens": prompt,
+                "cachedTokens": cached,
+                "cachedPct": round(100 * cached / prompt) if prompt else 0,
+                "completionTokens": None,          # the block does not carry it
+                "errors": n(m.group("err")),
+                "maxFireTokens": max_fire.get(job),  # known only for over-limit jobs
+                "lastISO": None,
+            })
+    return {
+        "date": head.group("date"),
+        "generatedISO": gen.replace(microsecond=0).isoformat() if gen else None,
+        "limits": limits,
+        "jobs": jobs,
+    }
+
+
+def fetch_usage_report(token):
+    """The FLEET USAGE code block on The Mechanic's Run Monitor row, or None."""
+    for b in _notion_blocks(token, USAGE_REPORT_PAGE):
+        if b.get("type") != "code":
+            continue
+        txt = "".join(t.get("plain_text", "") for t in (b.get("code") or {}).get("rich_text", []))
+        rep = parse_usage_report(txt)
+        if rep:
+            return rep
+    return None
+
+
+def merge_usage_report(lease, report):
+    """Fill lease usage `today.jobs` / `limits` from the report when the lease
+    lacks them and the report is for the same Toronto day. In place; returns
+    the source used for the jobs list ("lease", "run-monitor" or None)."""
+    u = (lease or {}).get("usage")
+    if not u or not u.get("today"):
+        return None
+    if u["today"].get("jobs"):
+        return "lease"
+    if not report or report.get("date") != u["today"].get("date"):
+        return None
+    u["today"]["jobs"] = report["jobs"]
+    u["jobsSource"] = "run-monitor"
+    u["jobsAsOfISO"] = report.get("generatedISO")
+    for k, v in report["limits"].items():
+        if v and not u["limits"].get(k):
+            u["limits"][k] = v
+    return "run-monitor"
+
+
 # ── The five lines ──────────────────────────────────────────────────────────
 # The Robots tab used to be a 30-row roster. Junyan (2026-09-08): "the list is
 # just too huge … what needs to be clear to me is who is doing what and what
@@ -4440,6 +4541,13 @@ def build_data(now):
     except Exception as e:  # noqa: BLE001
         lease_note = "Lease unreadable — share the ⚖️ Active Runtime page with the integration."
         emit_fallback_note(f"Lease fetch failed ({e}); Robots tab shows no ownership panel.")
+    # Per-agent usage from The Mechanic's FLEET USAGE block — softest of all:
+    # a miss only leaves the Usage tab's by-agent lane saying so.
+    if lease and (lease.get("usage") or {}).get("today") and not lease["usage"]["today"].get("jobs"):
+        try:
+            merge_usage_report(lease, fetch_usage_report(token))
+        except Exception as e:  # noqa: BLE001
+            emit_fallback_note(f"Usage report fetch failed ({e}); Usage tab shows day totals only.")
 
     # Studio climate for the Weatherman line — same soft posture.
     climate = None
