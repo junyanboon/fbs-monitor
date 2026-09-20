@@ -520,9 +520,9 @@
    Times are decimal hours America/Toronto; arrived/departed are "HH:MM" or null. */
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 20, 2026",
-  "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 20, 3:05 AM ET",
-  "generatedAtISO": "2026-09-20T03:05:08-04:00",
+  "shiftBaseDay": "2026-09-20",
+  "generatedAt": "Sep 20, 7:59 AM ET",
+  "generatedAtISO": "2026-09-20T07:59:18-04:00",
   "studios": [
     {
       "id": "509A",
@@ -553,19 +553,33 @@ const DATA = /*__DATA__*/{
   "events": [
     {
       "studio": "509A",
-      "who": "Isabel Campo Jurado — Additional Time",
+      "who": "Isabel Campo Jurado",
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
       "hta": "Will Not Send",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": true,
-      "arrived": "08:48",
-      "departed": "19:24",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "08:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "22:45"
+        }
+      ],
+      "booking_studios": [
+        "509A",
+        "509B"
+      ],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
       "facilitator": null,
-      "arrived_by": "",
-      "departed_by": "",
+      "arrived_by": null,
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -573,32 +587,8 @@ const DATA = /*__DATA__*/{
       "dup_studios": [
         "509B"
       ],
-      "start": 9.5,
+      "start": 10.0,
       "end": 23.0,
-      "access_gap": false
-    },
-    {
-      "studio": "509B",
-      "who": "Kateryna Zozulia (Private Classes) — Private dance class",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "08:55",
-      "departed": null,
-      "facilitator": null,
-      "arrived_by": "",
-      "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 8.75,
-      "end": 10.0,
       "access_gap": false
     },
     {
@@ -608,17 +598,31 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": true,
-      "arrived": "10:00",
-      "departed": "10:12",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "08:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "22:45"
+        }
+      ],
+      "booking_studios": [
+        "509A",
+        "509B"
+      ],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": "",
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
-      "assumed": "open",
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": [
         "509A"
@@ -629,31 +633,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
-      "who": "Kelsey Stankovich — FBS [Facilitator: Sheldon Shannon] *extra $16.95 already charged*",
-      "kind": "booking",
-      "tier": "FBS",
-      "gtg": true,
-      "hta": "Sent",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "07:49",
-      "departed": "10:40",
-      "facilitator": "Sheldon Shannon",
-      "arrived_by": "Sheldon Shannon",
-      "departed_by": "Sheldon Shannon",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 8.0,
-      "end": 10.5,
-      "access_gap": false
-    },
-    {
-      "studio": "527",
-      "who": "Kateryna Zozulia",
+      "who": "Scott Vandenberg (Fixed) (Heartfulness Insitute) — Heartfulness meditation",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -661,11 +641,46 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": "10:40",
-      "departed": "12:27",
+      "arrived": null,
+      "departed": null,
       "facilitator": null,
-      "arrived_by": "Kateryna Zozulia",
-      "departed_by": "Kateryna Zozulia",
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 9.25,
+      "end": 10.25,
+      "access_gap": false
+    },
+    {
+      "studio": "527",
+      "who": "Jia Chian Lee — Dance Practice",
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "08:45"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "12:00"
+        }
+      ],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -673,30 +688,6 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 10.75,
       "end": 12.25,
-      "access_gap": false
-    },
-    {
-      "studio": "527",
-      "who": "Enrico Casertano (Toronto Baila",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "12:27",
-      "departed": "15:41",
-      "facilitator": null,
-      "arrived_by": "Enrico Casertano",
-      "departed_by": "Enrico Casertano",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 12.5,
-      "end": 15.5,
       "access_gap": false
     },
     {
@@ -709,107 +700,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": "16:19",
-      "departed": "19:11",
-      "facilitator": null,
-      "arrived_by": "AlisonCarlos Murray",
-      "departed_by": "AlisonCarlos Murray",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 16.5,
-      "end": 19.0,
-      "access_gap": false
-    },
-    {
-      "studio": "527",
-      "who": "Anastasia Markevitch",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "19:51",
+      "arrived": null,
       "departed": null,
       "facilitator": null,
-      "arrived_by": "Anastasia Markevitch",
+      "arrived_by": null,
       "departed_by": null,
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 20.0,
-      "end": 26.25,
-      "access_gap": false
-    },
-    {
-      "studio": "693",
-      "who": "Simona Horova",
-      "kind": "booking",
-      "tier": "Monitor",
-      "gtg": true,
-      "hta": "Will Not Send",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": true,
-      "arrived": "10:12",
-      "departed": "11:02",
-      "facilitator": null,
-      "arrived_by": "",
-      "departed_by": "Simona Horova",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 9.75,
-      "end": 10.75,
-      "access_gap": false
-    },
-    {
-      "studio": "693",
-      "who": "Janet Zamora — *billed 19.21 manually*",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "11:02",
-      "departed": "14:54",
-      "facilitator": null,
-      "arrived_by": "Janet Zamora",
-      "departed_by": "",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 11.0,
-      "end": 14.75,
-      "access_gap": false
-    },
-    {
-      "studio": "693",
-      "who": "Eri Tagawa — Eri and Jared first dance",
-      "kind": "booking",
-      "tier": "FBS",
-      "gtg": false,
-      "hta": "Sent",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": true,
-      "arrived": "16:06",
-      "departed": "17:11",
-      "facilitator": null,
-      "arrived_by": "",
-      "departed_by": "",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -820,80 +715,48 @@ const DATA = /*__DATA__*/{
       "access_gap": false
     },
     {
-      "studio": "901",
-      "who": "Tufan Bhattarai",
-      "kind": "booking",
-      "tier": null,
-      "gtg": true,
-      "hta": null,
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": false,
-      "arrived": "09:06",
-      "departed": "11:00",
-      "facilitator": null,
-      "arrived_by": "",
-      "departed_by": "Tufan Bhattarai",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 9.0,
-      "end": 11.0,
-      "access_gap": false
-    },
-    {
-      "studio": "901",
-      "who": "Sol R. Peerspace",
+      "studio": "527",
+      "who": "Zoey Gould (Bees' Knees Dance) — [Facilitator: Jana Jedlovska] FBS",
       "kind": "booking",
       "tier": "FBS",
-      "gtg": false,
-      "hta": "Sent",
-      "dispatch": [],
-      "booking_studios": [],
-      "heard": true,
-      "arrived": "11:01",
-      "departed": "13:47",
-      "facilitator": null,
-      "arrived_by": "Sol R",
-      "departed_by": "",
-      "arrived_foreign": false,
-      "departed_foreign": false,
-      "assumed": null,
-      "wrong_studio": null,
-      "dup_studios": null,
-      "start": 11.0,
-      "end": 14.0,
-      "access_gap": false
-    },
-    {
-      "studio": "901",
-      "who": "Nicholas Walsh — Youth Theatre Canada — Auditions [Facilitator: Elzbieta Chernyak]",
-      "kind": "booking",
-      "tier": null,
       "gtg": true,
       "hta": null,
-      "dispatch": [],
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "missing",
+          "time": null
+        },
+        {
+          "kind": "EOB",
+          "state": "missing",
+          "time": null
+        },
+        {
+          "kind": "HTA",
+          "state": "missing",
+          "time": null
+        }
+      ],
       "booking_studios": [],
       "heard": false,
-      "arrived": "14:22",
+      "arrived": null,
       "departed": null,
-      "facilitator": "Elzbieta Chernyak",
-      "arrived_by": "",
+      "facilitator": "Jana Jedlovska",
+      "arrived_by": null,
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 14.25,
-      "end": 15.25,
+      "start": 17.5,
+      "end": 19.75,
       "access_gap": false
     },
     {
-      "studio": "901",
-      "who": "Himanshi Mehta",
+      "studio": "693",
+      "who": "Simona Horova — Simona Horova — 8:45–9:45",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -901,23 +764,23 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": "15:34",
+      "arrived": null,
       "departed": null,
       "facilitator": null,
-      "arrived_by": "",
+      "arrived_by": null,
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 15.5,
-      "end": 17.0,
+      "start": 8.5,
+      "end": 9.5,
       "access_gap": false
     },
     {
-      "studio": "901",
-      "who": "Nicholas Walsh — Youth Theatre Canada — Auditions [Facilitator: Elzbieta Chernyak]",
+      "studio": "693",
+      "who": "Risa Waldman (Making Music Together Inc) — [Facilitator: Jennifer Gauthier] FBS",
       "kind": "booking",
       "tier": null,
       "gtg": true,
@@ -925,18 +788,254 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": "17:30",
-      "departed": "18:34",
-      "facilitator": "Elzbieta Chernyak",
+      "arrived": null,
+      "departed": null,
+      "facilitator": "Jennifer Gauthier",
       "arrived_by": null,
-      "departed_by": "",
+      "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
-      "assumed": "open",
+      "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 17.5,
-      "end": 18.5,
+      "start": 9.75,
+      "end": 11.0,
+      "access_gap": false
+    },
+    {
+      "studio": "693",
+      "who": "Dana Brookman",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 11.25,
+      "end": 18.25,
+      "access_gap": false
+    },
+    {
+      "studio": "693",
+      "who": "JOHN GALLIGAN — Dance Wedding",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": true,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "16:30"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "19:15"
+        }
+      ],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 18.5,
+      "end": 19.5,
+      "access_gap": false
+    },
+    {
+      "studio": "693",
+      "who": "Amandeep Kaur",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": "Will Not Send",
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 20.0,
+      "end": 21.0,
+      "access_gap": false
+    },
+    {
+      "studio": "901",
+      "who": "Ishfaaq Jookhun (C19 salsa",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 9.5,
+      "end": 10.25,
+      "access_gap": false
+    },
+    {
+      "studio": "901",
+      "who": "Matthew Jadd Tagvenue",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": true,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "08:30"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "11:15"
+        }
+      ],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 10.5,
+      "end": 11.5,
+      "access_gap": false
+    },
+    {
+      "studio": "901",
+      "who": "Laura Flores",
+      "kind": "booking",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 12.0,
+      "end": 13.5,
+      "access_gap": false
+    },
+    {
+      "studio": "901",
+      "who": "Aakanksha Patel — Kathak / Semi-Classical Class [Aakanksha Patel]",
+      "kind": "booking",
+      "tier": "Monitor",
+      "gtg": true,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "11:30"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "14:45"
+        }
+      ],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 13.5,
+      "end": 15.0,
+      "access_gap": false
+    },
+    {
+      "studio": "901",
+      "who": "Shaka Lee (Dance with Shaka Lee) — Shaka Heels Class",
+      "kind": "booking",
+      "tier": "FBS",
+      "gtg": false,
+      "hta": "Sent",
+      "dispatch": [
+        {
+          "kind": "AVA",
+          "state": "scheduled",
+          "time": "17:00"
+        },
+        {
+          "kind": "EOB",
+          "state": "scheduled",
+          "time": "20:45"
+        }
+      ],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": null,
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": null,
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 19.0,
+      "end": 21.0,
       "access_gap": false
     }
   ],
@@ -945,386 +1044,410 @@ const DATA = /*__DATA__*/{
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 9.5,
       "end": 10.0,
       "id": "81abceb61743",
       "date": "2026-09-20",
       "startISO": "2026-09-20T09:30:00-04:00",
       "endISO": "2026-09-20T10:00:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "693",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 9.5,
       "end": 10.0,
       "id": "c592fcf30b6e",
       "date": "2026-09-20",
       "startISO": "2026-09-20T09:30:00-04:00",
       "endISO": "2026-09-20T10:00:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 9.75,
       "end": 10.25,
       "id": "31d1124bec1d",
       "date": "2026-09-20",
       "startISO": "2026-09-20T09:45:00-04:00",
       "endISO": "2026-09-20T10:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 9.75,
-      "end": 10.25,
-      "id": "31d1124bec1d",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T09:45:00-04:00",
-      "endISO": "2026-09-20T10:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "Monitoring",
       "studio": "509A",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 9.75,
       "end": 10.25,
       "id": "86bb9cf7b216",
       "date": "2026-09-20",
       "startISO": "2026-09-20T09:45:00-04:00",
       "endISO": "2026-09-20T10:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 9.75,
+      "end": 10.25,
+      "id": "31d1124bec1d",
+      "date": "2026-09-20",
+      "startISO": "2026-09-20T09:45:00-04:00",
+      "endISO": "2026-09-20T10:15:00-04:00",
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "901",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 10.25,
       "end": 10.75,
       "id": "7f891ae967c5",
       "date": "2026-09-20",
       "startISO": "2026-09-20T10:15:00-04:00",
       "endISO": "2026-09-20T10:45:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "Monitoring",
       "studio": "527",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 10.5,
       "end": 11.0,
       "id": "1484b5b2c549",
       "date": "2026-09-20",
       "startISO": "2026-09-20T10:30:00-04:00",
       "endISO": "2026-09-20T11:00:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "693",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 10.75,
       "end": 11.25,
       "id": "5119f99dff19",
       "date": "2026-09-20",
       "startISO": "2026-09-20T10:45:00-04:00",
       "endISO": "2026-09-20T11:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "901",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 11.25,
       "end": 11.75,
       "id": "23dc212959cf",
       "date": "2026-09-20",
       "startISO": "2026-09-20T11:15:00-04:00",
       "endISO": "2026-09-20T11:45:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "Monitoring",
       "studio": "527",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 12.0,
       "end": 12.5,
       "id": "b71fb2e189ec",
       "date": "2026-09-20",
       "startISO": "2026-09-20T12:00:00-04:00",
       "endISO": "2026-09-20T12:30:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "Monitoring",
       "studio": "901",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 13.25,
       "end": 13.75,
       "id": "65a7e2d7a746",
       "date": "2026-09-20",
       "startISO": "2026-09-20T13:15:00-04:00",
       "endISO": "2026-09-20T13:45:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "Monitoring",
       "studio": "901",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 14.75,
       "end": 15.25,
       "id": "a768af62ade8",
       "date": "2026-09-20",
       "startISO": "2026-09-20T14:45:00-04:00",
       "endISO": "2026-09-20T15:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "527",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 17.25,
       "end": 17.75,
       "id": "2a8f0f4166c5",
       "date": "2026-09-20",
       "startISO": "2026-09-20T17:15:00-04:00",
       "endISO": "2026-09-20T17:45:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "693",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 18.25,
       "end": 18.75,
       "id": "eecbf285145d",
       "date": "2026-09-20",
       "startISO": "2026-09-20T18:15:00-04:00",
       "endISO": "2026-09-20T18:45:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "901",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 18.75,
       "end": 19.25,
       "id": "29b2c1d4397e",
       "date": "2026-09-20",
       "startISO": "2026-09-20T18:45:00-04:00",
       "endISO": "2026-09-20T19:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
-      "studio": "527",
-      "day_offset": 1,
-      "start": 19.25,
-      "end": 19.75,
-      "id": "46ff9d3a9233",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T19:15:00-04:00",
-      "endISO": "2026-09-20T19:45:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "693",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 19.25,
       "end": 19.75,
       "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "527",
-      "day_offset": 1,
+      "day_offset": 0,
+      "start": 19.25,
+      "end": 19.75,
+      "id": "46ff9d3a9233",
+      "date": "2026-09-20",
+      "startISO": "2026-09-20T19:15:00-04:00",
+      "endISO": "2026-09-20T19:45:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "527",
+      "day_offset": 0,
       "start": 19.5,
       "end": 20.0,
       "id": "4a8f2dbb3c64",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:30:00-04:00",
       "endISO": "2026-09-20T20:00:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "901",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 20.75,
       "end": 21.25,
       "id": "f0a30293e9c5",
       "date": "2026-09-20",
       "startISO": "2026-09-20T20:45:00-04:00",
       "endISO": "2026-09-20T21:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "ade197d37110",
       "date": "2026-09-20",
       "startISO": "2026-09-20T22:45:00-04:00",
       "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "Monitoring",
       "studio": "509A",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "a654f30736cc",
       "date": "2026-09-20",
       "startISO": "2026-09-20T22:45:00-04:00",
       "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 1,
+      "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "ade197d37110",
       "date": "2026-09-20",
       "startISO": "2026-09-20T22:45:00-04:00",
       "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Tomorrow"
+      "day": "Today"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 9.75,
       "end": 10.25,
       "id": "fa49c7f80958",
       "date": "2026-09-21",
       "startISO": "2026-09-21T09:45:00-04:00",
       "endISO": "2026-09-21T10:15:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "Monitoring",
       "studio": "509B",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 10.75,
       "end": 11.25,
       "id": "a286dd42b700",
       "date": "2026-09-21",
       "startISO": "2026-09-21T10:45:00-04:00",
       "endISO": "2026-09-21T11:15:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 11.25,
       "end": 11.75,
       "id": "8174de8284ab",
       "date": "2026-09-21",
       "startISO": "2026-09-21T11:15:00-04:00",
       "endISO": "2026-09-21T11:45:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 12.25,
       "end": 12.75,
       "id": "4bc3739729d0",
       "date": "2026-09-21",
       "startISO": "2026-09-21T12:15:00-04:00",
       "endISO": "2026-09-21T12:45:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "Monitoring",
       "studio": "509B",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 12.75,
       "end": 13.25,
       "id": "44776f898f93",
       "date": "2026-09-21",
       "startISO": "2026-09-21T12:45:00-04:00",
       "endISO": "2026-09-21T13:15:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 13.75,
       "end": 14.25,
       "id": "c49ad86bb6b9",
       "date": "2026-09-21",
       "startISO": "2026-09-21T13:45:00-04:00",
       "endISO": "2026-09-21T14:15:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
       "id": "a80f88dd4c86",
       "date": "2026-09-21",
       "startISO": "2026-09-21T16:45:00-04:00",
       "endISO": "2026-09-21T17:15:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "FBS",
       "studio": "509A",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 17.75,
       "end": 18.25,
       "id": "720ff5b60f5a",
       "date": "2026-09-21",
       "startISO": "2026-09-21T17:45:00-04:00",
       "endISO": "2026-09-21T18:15:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "Monitoring",
       "studio": "901",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 18.25,
       "end": 18.75,
       "id": "0650ab473b57",
       "date": "2026-09-21",
       "startISO": "2026-09-21T18:15:00-04:00",
       "endISO": "2026-09-21T18:45:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
     },
     {
       "role": "Monitoring",
       "studio": "901",
-      "day_offset": 2,
+      "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
       "id": "14f0cf7bd790",
       "date": "2026-09-21",
       "startISO": "2026-09-21T19:15:00-04:00",
       "endISO": "2026-09-21T19:45:00-04:00",
-      "day": "Mon Sep 21"
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 2,
+      "start": 16.5,
+      "end": 17.0,
+      "id": "e9ab9e48d25a",
+      "date": "2026-09-22",
+      "startISO": "2026-09-22T16:30:00-04:00",
+      "endISO": "2026-09-22T17:00:00-04:00",
+      "day": "Tue Sep 22"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 2,
+      "start": 17.5,
+      "end": 18.0,
+      "id": "3c9f84183cbc",
+      "date": "2026-09-22",
+      "startISO": "2026-09-22T17:30:00-04:00",
+      "endISO": "2026-09-22T18:00:00-04:00",
+      "day": "Tue Sep 22"
     }
   ],
   "staffAhead": [],
@@ -1374,6 +1497,39 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "ANALYST-SOUND-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 20 · 04:08",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 20 · 04:09",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "ANALYST-TTT-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 20 · 04:09",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "HTA-sweep-•••A",
       "kind": "HTA",
       "channel": "SMS",
@@ -1395,7 +1551,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:03",
       "send_after": "19:15",
       "send_after_iso": "2026-09-20T19:15:00-04:00",
-      "label": "EOB · Studio 693"
+      "label": "EOB for JOHN GALLIGAN in Studio 693"
     },
     {
       "code": "Returning Access 509B RA-sweep-•••B",
@@ -1453,7 +1609,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "11:15",
       "send_after_iso": "2026-09-20T11:15:00-04:00",
-      "label": "EOB · Studio 901"
+      "label": "EOB for Matthew Jadd Tagvenue in Studio 901"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1465,7 +1621,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "08:45",
       "send_after_iso": "2026-09-20T08:45:00-04:00",
-      "label": "AVA · Studio 527"
+      "label": "AVA for Jia Chian Lee in Studio 527"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1477,7 +1633,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "12:00",
       "send_after_iso": "2026-09-20T12:00:00-04:00",
-      "label": "EOB · Studio 527"
+      "label": "EOB for Jia Chian Lee in Studio 527"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1489,7 +1645,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "11:30",
       "send_after_iso": "2026-09-20T11:30:00-04:00",
-      "label": "AVA · Studio 901"
+      "label": "AVA for Aakanksha Patel in Studio 901"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1501,7 +1657,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "14:45",
       "send_after_iso": "2026-09-20T14:45:00-04:00",
-      "label": "EOB · Studio 901"
+      "label": "EOB for Aakanksha Patel in Studio 901"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1513,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "17:00",
       "send_after_iso": "2026-09-20T17:00:00-04:00",
-      "label": "AVA · Studio 901"
+      "label": "AVA for Shaka Lee in Studio 901"
     },
     {
       "code": "EOB-sweep-•••",
@@ -1525,7 +1681,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "20:45",
       "send_after_iso": "2026-09-20T20:45:00-04:00",
-      "label": "EOB · Studio 901"
+      "label": "EOB for Shaka Lee in Studio 901"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1537,7 +1693,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:04",
       "send_after": "16:30",
       "send_after_iso": "2026-09-20T16:30:00-04:00",
-      "label": "AVA · Studio 693"
+      "label": "AVA for JOHN GALLIGAN in Studio 693"
     },
     {
       "code": "AVA-sweep-•••",
@@ -1549,7 +1705,7 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 00:05",
       "send_after": "08:30",
       "send_after_iso": "2026-09-20T08:30:00-04:00",
-      "label": "AVA · Studio 901"
+      "label": "AVA for Matthew Jadd Tagvenue in Studio 901"
     }
   ],
   "attention": [
@@ -1562,486 +1718,68 @@ const DATA = /*__DATA__*/{
       "text": "HTA not queued · Zoey Gould · 527 · 17:30"
     }
   ],
-  "armEvents": [
-    {
-      "studio": "527",
-      "name": "Sheldon Shannon",
-      "time": "07:49",
-      "kind": "arrival",
+  "armEvents": [],
+  "panelPrior": {
+    "509A": {
+      "kind": "departure",
+      "name": "",
       "remote": false,
-      "ts": 1789818540000,
-      "source": "panel"
-    },
-    {
+      "source": "panel",
       "studio": "509A",
-      "name": "",
-      "time": "08:48",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789822080000,
-      "source": "panel"
-    },
-    {
-      "studio": "509B",
-      "name": "",
-      "time": "08:55",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789822501000,
-      "source": "panel"
-    },
-    {
-      "studio": "509A",
-      "name": "",
-      "time": "08:55",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789822501000,
-      "source": "panel"
-    },
-    {
-      "studio": "901",
-      "name": "",
-      "time": "09:06",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789823161000,
-      "source": "panel"
-    },
-    {
-      "studio": "509A",
-      "name": "",
-      "time": "09:25",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789824301000,
-      "source": "panel"
-    },
-    {
-      "studio": "509B",
-      "name": "",
-      "time": "10:12",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789827121000,
-      "source": "panel"
-    },
-    {
-      "studio": "693",
-      "name": "",
-      "time": "10:12",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789827121000,
-      "source": "panel"
-    },
-    {
-      "studio": "527",
-      "name": "Sheldon Shannon",
-      "time": "10:40",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789828837956,
-      "source": "doors"
-    },
-    {
-      "studio": "527",
-      "name": "Kateryna Zozulia",
-      "time": "10:40",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789828848364,
-      "source": "doors"
-    },
-    {
-      "studio": "901",
-      "name": "Tufan Bhattarai",
-      "time": "11:00",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789830041986,
-      "source": "doors"
-    },
-    {
-      "studio": "901",
-      "name": "Sol R",
-      "time": "11:01",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789830080657,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Simona Horova",
-      "time": "11:02",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789830122017,
-      "source": "doors"
-    },
-    {
-      "studio": "693",
-      "name": "Janet Zamora",
-      "time": "11:02",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789830152747,
-      "source": "doors"
-    },
-    {
-      "studio": "527",
-      "name": "Kateryna Zozulia",
-      "time": "12:27",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789835258944,
-      "source": "doors"
-    },
-    {
-      "studio": "527",
-      "name": "Enrico Casertano",
-      "time": "12:27",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789835265071,
-      "source": "doors"
-    },
-    {
-      "studio": "901",
-      "name": "",
-      "time": "13:47",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789840021000,
-      "source": "panel"
-    },
-    {
-      "studio": "901",
-      "name": "",
-      "time": "14:22",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789842121000,
-      "source": "panel"
-    },
-    {
-      "studio": "693",
-      "name": "",
-      "time": "14:54",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789844041000,
-      "source": "panel"
-    },
-    {
-      "studio": "901",
-      "name": "",
-      "time": "15:29",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789846141000,
-      "source": "panel"
-    },
-    {
-      "studio": "901",
-      "name": "",
-      "time": "15:34",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789846441000,
-      "source": "panel"
-    },
-    {
-      "studio": "527",
-      "name": "Enrico Casertano",
-      "time": "15:41",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789846900000
-    },
-    {
-      "studio": "527",
-      "name": "",
-      "time": "15:47",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789847221000,
-      "source": "panel"
-    },
-    {
-      "studio": "693",
-      "name": "",
-      "time": "16:06",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789848360000,
-      "source": "panel"
-    },
-    {
-      "studio": "527",
-      "name": "AlisonCarlos Murray",
-      "time": "16:19",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789849184000
-    },
-    {
-      "studio": "527",
-      "name": "",
-      "time": "16:23",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789849380000,
-      "source": "panel"
-    },
-    {
-      "studio": "693",
-      "name": "",
-      "time": "17:11",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789852260000,
-      "source": "panel"
-    },
-    {
-      "studio": "901",
-      "name": "",
-      "time": "18:34",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789857241000,
-      "source": "panel"
-    },
-    {
-      "studio": "527",
-      "name": "AlisonCarlos Murray",
-      "time": "19:11",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789859510000
-    },
-    {
-      "studio": "527",
-      "name": "",
-      "time": "19:18",
-      "kind": "departure",
-      "remote": false,
-      "ts": 1789859880000,
-      "source": "panel"
-    },
-    {
-      "studio": "509A",
-      "name": "",
       "time": "19:24",
-      "kind": "departure",
-      "remote": false,
       "ts": 1789860240000,
-      "source": "panel"
+      "when": "Sat 19:24"
     },
-    {
-      "studio": "527",
-      "name": "Anastasia Markevitch",
-      "time": "19:51",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789861861000
-    },
-    {
-      "studio": "527",
-      "name": "",
-      "time": "19:54",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789862041000,
-      "source": "panel"
-    },
-    {
-      "studio": "527",
-      "name": "Anastasia Markevitch",
-      "time": "02:09",
+    "509B": {
       "kind": "departure",
-      "remote": false,
-      "ts": 1789884591000
-    },
-    {
-      "studio": "527",
       "name": "",
+      "remote": false,
+      "source": "panel",
+      "studio": "509B",
+      "time": "10:12",
+      "ts": 1789827121000,
+      "when": "Sat 10:12"
+    },
+    "527": {
+      "kind": "departure",
+      "name": "",
+      "remote": false,
+      "source": "panel",
+      "studio": "527",
       "time": "02:12",
-      "kind": "departure",
-      "remote": false,
       "ts": 1789884721000,
-      "source": "panel"
+      "when": "Sun 02:12"
+    },
+    "693": {
+      "kind": "departure",
+      "name": "",
+      "remote": false,
+      "source": "panel",
+      "studio": "693",
+      "time": "17:11",
+      "ts": 1789852260000,
+      "when": "Sat 17:11"
+    },
+    "901": {
+      "kind": "departure",
+      "name": "",
+      "remote": false,
+      "source": "panel",
+      "studio": "901",
+      "time": "18:34",
+      "ts": 1789857241000,
+      "when": "Sat 18:34"
     }
-  ],
-  "panelPrior": {},
+  },
   "alarmAlerts": [],
-  "armFallback": false,
+  "armFallback": true,
   "armFeed": {
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-20T06:12:01+00:00",
-    "polledAt": "2026-09-20T07:05:01+00:00",
-    "mailCheck": {
-      "matched": 2,
-      "inGap": 0,
-      "missed": [
-        "527 departure 02:09 (Anastasia Markevitch)",
-        "527 arrival 19:51 (Anastasia Markevitch)",
-        "527 departure 19:11 (AlisonCarlos Murray)",
-        "527 arrival 16:19 (AlisonCarlos Murray)",
-        "527 departure 15:41 (Enrico Casertano)",
-        "527 arrival 07:48 (Sheldon Shannon)"
-      ],
-      "missedCount": 6
-    },
-    "doorGaps": [
-      {
-        "since": "2026-09-19T14:26:13.704136Z",
-        "until": "2026-09-19T14:26:15.953945Z"
-      },
-      {
-        "since": "2026-09-19T14:27:02.351851Z",
-        "until": "2026-09-19T14:27:46.603486Z"
-      },
-      {
-        "since": "2026-09-19T14:33:04.238210Z",
-        "until": "2026-09-19T14:33:04.590224Z"
-      },
-      {
-        "since": "2026-09-19T14:39:02.248477Z",
-        "until": "2026-09-19T14:39:15.415636Z"
-      },
-      {
-        "since": "2026-09-19T14:45:04.318081Z",
-        "until": "2026-09-19T14:45:04.675475Z"
-      },
-      {
-        "since": "2026-09-19T14:50:48.269647Z",
-        "until": "2026-09-19T14:50:48.599456Z"
-      },
-      {
-        "since": "2026-09-19T14:56:24.061233Z",
-        "until": "2026-09-19T14:56:24.371317Z"
-      },
-      {
-        "since": "2026-09-19T15:01:24.095795Z",
-        "until": "2026-09-19T15:01:24.387360Z"
-      },
-      {
-        "since": "2026-09-19T15:07:16.086827Z",
-        "until": "2026-09-19T15:07:16.422890Z"
-      },
-      {
-        "since": "2026-09-19T15:12:48.186750Z",
-        "until": "2026-09-19T15:12:48.505563Z"
-      },
-      {
-        "since": "2026-09-19T15:18:16.210670Z",
-        "until": "2026-09-19T15:18:16.892538Z"
-      },
-      {
-        "since": "2026-09-19T15:24:04.596333Z",
-        "until": "2026-09-19T15:24:04.948962Z"
-      },
-      {
-        "since": "2026-09-19T15:29:50.349763Z",
-        "until": "2026-09-19T15:29:50.682553Z"
-      },
-      {
-        "since": "2026-09-19T15:35:48.183742Z",
-        "until": "2026-09-19T15:35:48.504350Z"
-      },
-      {
-        "since": "2026-09-19T15:40:48.147593Z",
-        "until": "2026-09-19T15:40:48.466556Z"
-      },
-      {
-        "since": "2026-09-19T15:46:16.323387Z",
-        "until": "2026-09-19T15:46:29.502417Z"
-      },
-      {
-        "since": "2026-09-19T15:52:26.000358Z",
-        "until": "2026-09-19T15:52:52.189797Z"
-      },
-      {
-        "since": "2026-09-19T15:58:26.051365Z",
-        "until": "2026-09-19T15:58:26.456245Z"
-      },
-      {
-        "since": "2026-09-19T16:04:24.509836Z",
-        "until": "2026-09-19T16:04:50.689368Z"
-      },
-      {
-        "since": "2026-09-19T16:09:59.068089Z",
-        "until": "2026-09-19T16:09:59.403869Z"
-      },
-      {
-        "since": "2026-09-19T16:15:01.731358Z",
-        "until": "2026-09-19T16:15:02.092581Z"
-      },
-      {
-        "since": "2026-09-19T16:20:16.589714Z",
-        "until": "2026-09-19T16:20:16.913859Z"
-      },
-      {
-        "since": "2026-09-19T16:25:17.076762Z",
-        "until": "2026-09-19T16:25:17.416056Z"
-      },
-      {
-        "since": "2026-09-19T16:30:48.054402Z",
-        "until": "2026-09-19T16:30:48.198128Z"
-      },
-      {
-        "since": "2026-09-19T16:35:59.226793Z",
-        "until": "2026-09-19T16:35:59.567242Z"
-      },
-      {
-        "since": "2026-09-19T16:41:16.803378Z",
-        "until": "2026-09-19T16:41:17.339326Z"
-      },
-      {
-        "since": "2026-09-19T16:46:48.028695Z",
-        "until": "2026-09-19T16:46:48.378760Z"
-      },
-      {
-        "since": "2026-09-19T16:52:25.256882Z",
-        "until": "2026-09-19T16:52:25.551873Z"
-      },
-      {
-        "since": "2026-09-19T16:57:48.072055Z",
-        "until": "2026-09-19T16:57:48.409852Z"
-      },
-      {
-        "since": "2026-09-19T17:02:48.083999Z",
-        "until": "2026-09-19T17:02:48.418542Z"
-      },
-      {
-        "since": "2026-09-19T17:07:48.078353Z",
-        "until": "2026-09-19T17:07:48.410434Z"
-      },
-      {
-        "since": "2026-09-19T17:12:48.079005Z",
-        "until": "2026-09-19T17:12:48.393048Z"
-      },
-      {
-        "since": "2026-09-19T17:18:16.942743Z",
-        "until": "2026-09-19T17:18:17.098801Z"
-      },
-      {
-        "since": "2026-09-19T17:23:26.544395Z",
-        "until": "2026-09-19T17:23:26.874587Z"
-      },
-      {
-        "since": "2026-09-19T17:28:47.970355Z",
-        "until": "2026-09-19T17:28:48.130793Z"
-      },
-      {
-        "since": "2026-09-19T17:34:26.614939Z",
-        "until": "2026-09-19T17:34:26.949863Z"
-      }
-    ],
+    "polledAt": "2026-09-20T11:59:01+00:00",
+    "doorGaps": [],
     "down": false
   },
   "robots": [
@@ -2056,16 +1794,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "The Doorman",
-      "cadence": "Daily",
-      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-19T06:12:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -2073,7 +1801,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T03:02:00-04:00"
+      "lastISO": "2026-09-20T07:55:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2083,7 +1811,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T02:47:00-04:00"
+      "lastISO": "2026-09-20T07:47:00-04:00"
+    },
+    {
+      "run": "mail-rules (event-gate)",
+      "cadence": "5-min",
+      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
+      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-20T07:55:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -2093,7 +1831,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T03:05:00-04:00"
+      "lastISO": "2026-09-20T07:59:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2103,7 +1841,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T02:07:00-04:00"
+      "lastISO": "2026-09-20T07:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2113,7 +1851,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T04:19:00-04:00"
+      "lastISO": "2026-09-20T04:09:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -2123,7 +1861,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T06:00:00-04:00"
+      "lastISO": "2026-09-20T06:00:00-04:00"
+    },
+    {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-20T06:12:00-04:00"
     },
     {
       "run": "The Host",
@@ -2133,7 +1881,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T04:16:00-04:00"
+      "lastISO": "2026-09-20T04:08:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -2143,7 +1891,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T01:58:00-04:00"
+      "lastISO": "2026-09-20T06:05:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2163,7 +1911,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T03:00:00-04:00"
+      "lastISO": "2026-09-20T07:30:00-04:00"
+    },
+    {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-20T07:54:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2173,7 +1931,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T04:08:00-04:00"
+      "lastISO": "2026-09-20T04:07:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2183,7 +1941,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T23:10:00-04:00"
+      "lastISO": "2026-09-20T03:10:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -2233,7 +1991,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-20T03:00:00-04:00"
+      "lastISO": "2026-09-20T07:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2243,7 +2001,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-20T03:05:00-04:00"
+      "lastISO": "2026-09-20T07:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2253,17 +2011,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-20T02:55:00-04:00"
-    },
-    {
-      "run": "mail-rules (event-gate)",
-      "cadence": "5-min",
-      "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
-      "produces": "A per-pass Workflow Report row (headline: shadow|LIVE · scanned N · acted N · conversation N · no-rule N, plus per-rule hit counts and any errors). In SHADOW it also writes hidden rules/<rule id> Gmail labels and nothing else; in LIVE a Full-maturity rule additionally applies the real desk label and archives.",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-20T03:05:00-04:00"
+      "lastISO": "2026-09-20T07:55:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2293,7 +2041,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-20T02:20:00-04:00"
+      "lastISO": "2026-09-20T07:20:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2303,7 +2051,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-20T03:00:00-04:00"
+      "lastISO": "2026-09-20T07:50:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2396,16 +2144,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-01T10:01:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 07:20–00:20 America/Toronto (widened 2026-09-05 from 08:20–22:50) · the 00:20/00:50 passes fall outside the sweep window by design (no midnight wrap) · Codex production fallback",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "plain",
-      "statusLabel": "Off-hours",
-      "lastISO": "2026-09-20T00:57:00-04:00"
-    },
-    {
       "run": "The Sentinel",
       "cadence": "Hourly",
       "expected": "retired 2026-09-02 - see Runtime",
@@ -2472,22 +2210,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-20",
-        "fires": 6,
-        "promptTokens": 15221763,
-        "cachedTokens": 13464916,
-        "cachedPct": 88,
-        "completionTokens": 135548,
+        "fires": 12,
+        "promptTokens": 26155335,
+        "cachedTokens": 22855106,
+        "cachedPct": 87,
+        "completionTokens": 230977,
         "errors": 0,
         "maxFireTokens": 4846049,
         "maxFireJob": "The Mechanic",
         "jobs": [
           {
             "job": "The Mechanic",
-            "fires": 3,
-            "calls": 70,
-            "promptTokens": 7004147,
-            "cachedTokens": 5120689,
-            "cachedPct": 73,
+            "fires": 4,
+            "calls": 83,
+            "promptTokens": 7637157,
+            "cachedTokens": 5660256,
+            "cachedPct": 74,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2495,11 +2233,23 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Responder",
-            "fires": 2,
-            "calls": 57,
-            "promptTokens": 4223604,
-            "cachedTokens": 3581820,
+            "fires": 3,
+            "calls": 76,
+            "promptTokens": 5690377,
+            "cachedTokens": 4839894,
             "cachedPct": 85,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Doorman",
+            "fires": 2,
+            "calls": 72,
+            "promptTokens": 5249900,
+            "cachedTokens": 4563604,
+            "cachedPct": 87,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2512,6 +2262,30 @@ const DATA = /*__DATA__*/{
             "promptTokens": 3994012,
             "cachedTokens": 3655668,
             "cachedPct": 92,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Timekeeper",
+            "fires": 1,
+            "calls": 40,
+            "promptTokens": 3482813,
+            "cachedTokens": 2964081,
+            "cachedPct": 85,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Bookkeeper",
+            "fires": 1,
+            "calls": 3,
+            "promptTokens": 101076,
+            "cachedTokens": 78328,
+            "cachedPct": 77,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2533,7 +2307,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T03:00:49-04:00",
+      "asOfISO": "2026-09-20T07:45:38-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2542,7 +2316,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T03:00:47-04:00"
+      "jobsAsOfISO": "2026-09-20T07:45:36-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2675,18 +2449,14 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Doorman",
           "alarm-watchdog (Cloud Run)",
+          "The Doorman",
           "migration-sweep (Cloud Run — alarm-mcp)",
           "🔑 Code Mirror"
         ],
-        "worst": {
-          "run": "The Doorman",
-          "label": "Due",
-          "lastISO": "2026-09-19T06:12:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "mail",
@@ -2695,12 +2465,12 @@ const DATA = /*__DATA__*/{
         "down": "People wait. Nobody replies.",
         "status": "ok",
         "robots": [
+          "The Responder",
           "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge",
           "The Concierge — 2026-09-05 20:10 interrupted",
-          "The Receptionist",
-          "The Responder"
+          "The Receptionist"
         ],
         "worst": null
       },
@@ -2761,11 +2531,15 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
           "The Weatherman"
         ],
-        "worst": null,
+        "worst": {
+          "run": "Thermal Log",
+          "label": "No fresh reading",
+          "lastISO": "2026-09-20T03:05:00-04:00"
+        },
         "studios": [
           {
             "studio": "509",
@@ -2776,8 +2550,8 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-20T03:05:00-04:00",
-            "ageMin": 0,
-            "stale": false
+            "ageMin": 294,
+            "stale": true
           },
           {
             "studio": "901",
@@ -2788,11 +2562,11 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-20T03:05:00-04:00",
-            "ageMin": 0,
-            "stale": false
+            "ageMin": 294,
+            "stale": true
           }
         ],
-        "climateNote": null,
+        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -2846,22 +2620,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-20",
-        "fires": 6,
-        "promptTokens": 15221763,
-        "cachedTokens": 13464916,
-        "cachedPct": 88,
-        "completionTokens": 135548,
+        "fires": 12,
+        "promptTokens": 26155335,
+        "cachedTokens": 22855106,
+        "cachedPct": 87,
+        "completionTokens": 230977,
         "errors": 0,
         "maxFireTokens": 4846049,
         "maxFireJob": "The Mechanic",
         "jobs": [
           {
             "job": "The Mechanic",
-            "fires": 3,
-            "calls": 70,
-            "promptTokens": 7004147,
-            "cachedTokens": 5120689,
-            "cachedPct": 73,
+            "fires": 4,
+            "calls": 83,
+            "promptTokens": 7637157,
+            "cachedTokens": 5660256,
+            "cachedPct": 74,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2869,11 +2643,23 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Responder",
-            "fires": 2,
-            "calls": 57,
-            "promptTokens": 4223604,
-            "cachedTokens": 3581820,
+            "fires": 3,
+            "calls": 76,
+            "promptTokens": 5690377,
+            "cachedTokens": 4839894,
             "cachedPct": 85,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Doorman",
+            "fires": 2,
+            "calls": 72,
+            "promptTokens": 5249900,
+            "cachedTokens": 4563604,
+            "cachedPct": 87,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2886,6 +2672,30 @@ const DATA = /*__DATA__*/{
             "promptTokens": 3994012,
             "cachedTokens": 3655668,
             "cachedPct": 92,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Timekeeper",
+            "fires": 1,
+            "calls": 40,
+            "promptTokens": 3482813,
+            "cachedTokens": 2964081,
+            "cachedPct": 85,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Bookkeeper",
+            "fires": 1,
+            "calls": 3,
+            "promptTokens": 101076,
+            "cachedTokens": 78328,
+            "cachedPct": 77,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2907,7 +2717,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T03:00:49-04:00",
+      "asOfISO": "2026-09-20T07:45:38-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2916,9 +2726,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T03:00:47-04:00"
+      "jobsAsOfISO": "2026-09-20T07:45:36-04:00"
     },
-    "stamp": "03:05"
+    "stamp": "07:59"
   }
 }/*__END_DATA__*/;
 
