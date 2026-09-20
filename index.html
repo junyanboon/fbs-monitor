@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 20, 2026",
   "shiftBaseDay": "2026-09-20",
-  "generatedAt": "Sep 20, 11:04 AM ET",
-  "generatedAtISO": "2026-09-20T11:04:44-04:00",
+  "generatedAt": "Sep 20, 11:15 AM ET",
+  "generatedAtISO": "2026-09-20T11:15:19-04:00",
   "studios": [
     {
       "id": "509A",
@@ -744,13 +744,13 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "missing",
-          "time": null
+          "state": "scheduled",
+          "time": "15:30"
         },
         {
           "kind": "EOB",
-          "state": "missing",
-          "time": null
+          "state": "scheduled",
+          "time": "19:15"
         }
       ],
       "booking_studios": [],
@@ -780,10 +780,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "09:36",
-      "departed": null,
+      "departed": "11:12",
       "facilitator": "Jennifer Gauthier",
       "arrived_by": "",
-      "departed_by": null,
+      "departed_by": "Jennifer Gauthier",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1029,18 +1029,6 @@ const DATA = /*__DATA__*/{
   "openShifts": [
     {
       "role": "FBS",
-      "studio": "693",
-      "day_offset": 0,
-      "start": 10.75,
-      "end": 11.25,
-      "id": "5119f99dff19",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T10:45:00-04:00",
-      "endISO": "2026-09-20T11:15:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
       "studio": "901",
       "day_offset": 0,
       "start": 11.25,
@@ -1125,11 +1113,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 0,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1137,11 +1125,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 0,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1172,24 +1160,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "ade197d37110",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T22:45:00-04:00",
-      "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "a654f30736cc",
+      "date": "2026-09-20",
+      "startISO": "2026-09-20T22:45:00-04:00",
+      "endISO": "2026-09-20T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "ade197d37110",
       "date": "2026-09-20",
       "startISO": "2026-09-20T22:45:00-04:00",
       "endISO": "2026-09-20T23:15:00-04:00",
@@ -1366,17 +1354,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "PBF — Isabel Campo Jurado ••• [pbf:3dd7503281c481c2b6d0dcda1f027e34]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 20 · 09:40",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "PBF — Simona Horova ••• [pbf:3e07503281c48177920deed93c1baae1]",
       "kind": null,
       "channel": "SMS",
@@ -1518,6 +1495,30 @@ const DATA = /*__DATA__*/{
       "send_after": "14:45",
       "send_after_iso": "2026-09-20T14:45:00-04:00",
       "label": "EOB for Simona Horova in Studio 527"
+    },
+    {
+      "code": "AVA-sweep-•••",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 20 · 11:06",
+      "send_after": "15:30",
+      "send_after_iso": "2026-09-20T15:30:00-04:00",
+      "label": "AVA for Zoey Gould in Studio 527"
+    },
+    {
+      "code": "EOB-sweep-•••",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 20 · 11:06",
+      "send_after": "19:15",
+      "send_after_iso": "2026-09-20T19:15:00-04:00",
+      "label": "EOB for Zoey Gould in Studio 527"
     }
   ],
   "attention": [
@@ -1605,6 +1606,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789915720266,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Jennifer Gauthier",
+      "time": "11:12",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789917169538,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1614,8 +1624,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-20T14:50:01+00:00",
-    "polledAt": "2026-09-20T15:05:01+00:00",
+    "updatedAt": "2026-09-20T15:15:02+00:00",
+    "polledAt": "2026-09-20T15:15:12+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1682,7 +1692,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:04:00-04:00"
+      "lastISO": "2026-09-20T11:15:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1712,7 +1722,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:00:00-04:00"
+      "lastISO": "2026-09-20T11:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1722,7 +1732,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:00:00-04:00"
+      "lastISO": "2026-09-20T11:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1732,7 +1742,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T10:55:00-04:00"
+      "lastISO": "2026-09-20T11:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1742,7 +1752,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:05:00-04:00"
+      "lastISO": "2026-09-20T11:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1752,7 +1762,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:04:00-04:00"
+      "lastISO": "2026-09-20T11:15:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1772,7 +1782,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:00:00-04:00"
+      "lastISO": "2026-09-20T11:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1782,7 +1792,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T10:07:00-04:00"
+      "lastISO": "2026-09-20T11:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1912,7 +1922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T10:10:00-04:00"
+      "lastISO": "2026-09-20T11:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1922,7 +1932,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:01:00-04:00"
+      "lastISO": "2026-09-20T11:07:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2063,7 +2073,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-20",
         "fires": 24,
         "promptTokens": 54029628,
-        "cachedTokens": 47007783,
+        "cachedTokens": 47226054,
         "cachedPct": 87,
         "completionTokens": 428680,
         "errors": 0,
@@ -2133,10 +2143,10 @@ const DATA = /*__DATA__*/{
           {
             "job": "The Concierge — Closeout",
             "fires": 1,
-            "calls": 37,
+            "calls": 73,
             "promptTokens": 2942662,
-            "cachedTokens": 2529979,
-            "cachedPct": 86,
+            "cachedTokens": 2942662,
+            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2182,7 +2192,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T11:00:52-04:00",
+      "asOfISO": "2026-09-20T11:15:52-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2191,7 +2201,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T11:00:50-04:00"
+      "jobsAsOfISO": "2026-09-20T11:15:50-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2421,7 +2431,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-20T11:05:00-04:00",
-            "ageMin": -1,
+            "ageMin": 10,
             "stale": false
           },
           {
@@ -2433,7 +2443,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-20T11:05:00-04:00",
-            "ageMin": -1,
+            "ageMin": 10,
             "stale": false
           }
         ],
@@ -2493,7 +2503,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-20",
         "fires": 24,
         "promptTokens": 54029628,
-        "cachedTokens": 47007783,
+        "cachedTokens": 47226054,
         "cachedPct": 87,
         "completionTokens": 428680,
         "errors": 0,
@@ -2563,10 +2573,10 @@ const DATA = /*__DATA__*/{
           {
             "job": "The Concierge — Closeout",
             "fires": 1,
-            "calls": 37,
+            "calls": 73,
             "promptTokens": 2942662,
-            "cachedTokens": 2529979,
-            "cachedPct": 86,
+            "cachedTokens": 2942662,
+            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2612,7 +2622,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T11:00:52-04:00",
+      "asOfISO": "2026-09-20T11:15:52-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2621,9 +2631,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T11:00:50-04:00"
+      "jobsAsOfISO": "2026-09-20T11:15:50-04:00"
     },
-    "stamp": "11:04"
+    "stamp": "11:15"
   }
 }/*__END_DATA__*/;
 
