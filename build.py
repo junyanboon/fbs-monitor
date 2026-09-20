@@ -3762,11 +3762,57 @@ def parse_provider(p):
 # `provider`. This build projects it for the rail under the CLAUDE pill. No
 # key → None, shown as "Usage not recorded"; never estimated from anything.
 #   usage = {"as_of": ISO, "alarm": bool, "alarm_note": str,
+#            "limits": {"fire_prompt_tokens": N, "day_prompt_tokens": N},
 #            "today": {"date", "fires", "prompt_tokens", "cached_tokens",
 #                      "completion_tokens", "errors",
-#                      "max_fire_prompt_tokens", "max_fire_job"},
+#                      "max_fire_prompt_tokens", "max_fire_job",
+#                      "jobs": [{"job", "fires", "prompt_tokens", "cached_tokens",
+#                                "completion_tokens", "errors",
+#                                "max_fire_prompt_tokens", "last_fire_at"}],
+#                      "runs": [{"at", "job", "prompt_tokens", "cached_tokens",
+#                                "completion_tokens", "error"}]},
 #            "yesterday": {same}}
+# `jobs`/`runs`/`limits` arrived 2026-09-19 (Junyan: "token usage tracked by
+# agent run for the day") and feed the Deck's Usage tab; a lease written by the
+# older cron simply lacks them and the tab says so.
 USAGE_STALE_MIN = 45   # three missed 15-minute writes = the cron is down
+USAGE_RUNS_MAX = 200   # per day; the cron caps too, this is the belt
+
+
+def _usage_job(j):
+    if not isinstance(j, dict) or not j.get("job"):
+        return None
+    n = lambda k: int(j.get(k) or 0)
+    prompt = n("prompt_tokens")
+    cached = min(n("cached_tokens"), prompt)
+    last = _parse_notion_ts(j.get("last_fire_at"))
+    return {
+        "job": str(j.get("job")),
+        "fires": n("fires"),
+        "promptTokens": prompt,
+        "cachedTokens": cached,
+        "cachedPct": round(100 * cached / prompt) if prompt else 0,
+        "completionTokens": n("completion_tokens"),
+        "errors": n("errors"),
+        "maxFireTokens": n("max_fire_prompt_tokens"),
+        "lastISO": last.replace(microsecond=0).isoformat() if last else None,
+    }
+
+
+def _usage_run(r):
+    if not isinstance(r, dict) or not r.get("job"):
+        return None
+    n = lambda k: int(r.get(k) or 0)
+    prompt = n("prompt_tokens")
+    at = _parse_notion_ts(r.get("at"))
+    return {
+        "atISO": at.replace(microsecond=0).isoformat() if at else None,
+        "job": str(r.get("job")),
+        "promptTokens": prompt,
+        "cachedTokens": min(n("cached_tokens"), prompt),
+        "completionTokens": n("completion_tokens"),
+        "error": bool(r.get("error")),
+    }
 
 
 def _usage_day(d):
@@ -3785,6 +3831,8 @@ def _usage_day(d):
         "errors": n("errors"),
         "maxFireTokens": n("max_fire_prompt_tokens"),
         "maxFireJob": d.get("max_fire_job") or "",
+        "jobs": [x for x in map(_usage_job, d.get("jobs") or []) if x],
+        "runs": [x for x in map(_usage_run, (d.get("runs") or [])[-USAGE_RUNS_MAX:]) if x],
     }
 
 
@@ -3800,6 +3848,10 @@ def parse_usage(u, now):
         "stale": stale,
         "alarm": bool(u.get("alarm")),
         "alarmNote": str(u.get("alarm_note") or ""),
+        "limits": {
+            "firePromptTokens": int((u.get("limits") or {}).get("fire_prompt_tokens") or 0),
+            "dayPromptTokens": int((u.get("limits") or {}).get("day_prompt_tokens") or 0),
+        },
     }
 
 

@@ -195,6 +195,50 @@ def test_usage_alarm_and_cache_cap_survive():
     assert U["today"]["cachedTokens"] == 41_200_000 and U["today"]["cachedPct"] == 100
 
 
+def test_usage_per_job_and_per_run_are_projected():
+    """2026-09-19: the Usage tab lists the day by agent and by fire."""
+    d = json.loads(LIVE)
+    d["usage"] = dict(USAGE, limits={"fire_prompt_tokens": 10_000_000, "day_prompt_tokens": 250_000_000})
+    d["usage"]["today"] = dict(USAGE["today"],
+        jobs=[{"job": "Concierge", "fires": 9, "prompt_tokens": 18_000_000, "cached_tokens": 30_000_000,
+               "completion_tokens": 90_000, "errors": 1, "max_fire_prompt_tokens": 2_900_000,
+               "last_fire_at": "2026-09-06T22:10:00Z"},
+              {"fires": 3, "prompt_tokens": 5},                       # no job name → dropped
+              {"job": "Doorman", "fires": 2, "prompt_tokens": 0}],
+        runs=[{"at": "2026-09-06T21:30:00Z", "job": "Concierge", "prompt_tokens": 2_900_000,
+               "cached_tokens": 2_700_000, "completion_tokens": 12_000, "error": 1},
+              {"at": "bad time", "job": "Doorman"},
+              {"job": ""}])
+    U = build.parse_lease(json.dumps(d), NOW)["usage"]
+    assert U["limits"] == {"firePromptTokens": 10_000_000, "dayPromptTokens": 250_000_000}
+    J = U["today"]["jobs"]
+    assert [j["job"] for j in J] == ["Concierge", "Doorman"]
+    assert J[0]["cachedTokens"] == 18_000_000 and J[0]["cachedPct"] == 100   # capped at prompt
+    assert J[0]["errors"] == 1 and J[0]["maxFireTokens"] == 2_900_000
+    assert J[0]["lastISO"].startswith("2026-09-06T")
+    assert J[1] == {"job": "Doorman", "fires": 2, "promptTokens": 0, "cachedTokens": 0, "cachedPct": 0,
+                    "completionTokens": 0, "errors": 0, "maxFireTokens": 0, "lastISO": None}
+    R = U["today"]["runs"]
+    assert [r["job"] for r in R] == ["Concierge", "Doorman"]
+    assert R[0]["error"] is True and R[0]["promptTokens"] == 2_900_000 and R[0]["atISO"].startswith("2026-09-06T")
+    assert R[1]["atISO"] is None and R[1]["error"] is False
+    assert U["yesterday"]["jobs"] == [] and U["yesterday"]["runs"] == []
+
+
+def test_usage_from_the_older_cron_has_empty_lists_not_missing_keys():
+    d = json.loads(LIVE); d["usage"] = USAGE
+    U = build.parse_lease(json.dumps(d), NOW)["usage"]
+    assert U["today"]["jobs"] == [] and U["today"]["runs"] == []
+    assert U["limits"] == {"firePromptTokens": 0, "dayPromptTokens": 0}
+
+
+def test_usage_runs_are_capped_to_the_newest():
+    d = json.loads(LIVE); d["usage"] = USAGE
+    d["usage"]["today"] = dict(USAGE["today"], runs=[{"job": "J%d" % i, "prompt_tokens": i} for i in range(250)])
+    R = build.parse_lease(json.dumps(d), NOW)["usage"]["today"]["runs"]
+    assert len(R) == build.USAGE_RUNS_MAX and R[-1]["job"] == "J249" and R[0]["job"] == "J50"
+
+
 def test_provider_account_label_is_projected():
     d = json.loads(LIVE)
     d["provider"] = {"primary": "anthropic", "model": "claude-opus-5", "account": "claude-danceannex"}

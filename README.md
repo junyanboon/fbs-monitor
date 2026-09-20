@@ -617,3 +617,15 @@ it.
 - `stale` = no write for 45 min (three missed ticks): the cron is down, amber.
 - `alarm` = Hermes' runaway rule fired (one fire > 3M prompt tokens or the day
   > 250M): the number and the note turn red. That is the only red on the rail.
+- 2026-09-19 (Junyan: "token usage tracked by agent run for the day"): the rail
+  block moved into a **Usage tab** in deck-app (`renderUsage()`), and the lease
+  block grew three optional keys that `parse_usage()` projects and the older
+  cron simply omits: `limits` (`fire_prompt_tokens`, `day_prompt_tokens` →
+  `limits.firePromptTokens/dayPromptTokens`), `today.jobs` (one entry per job:
+  `job`, `fires`, `prompt_tokens`, `cached_tokens`, `completion_tokens`,
+  `errors`, `max_fire_prompt_tokens`, `last_fire_at` → camelCase, `lastISO`,
+  `cachedPct` per job) and `today.runs` (one entry per fire: `at`, `job`,
+  `prompt_tokens`, `cached_tokens`, `completion_tokens`, `error` → `atISO`,
+  `error` as bool; newest 200 kept). `yesterday.jobs` too; no `yesterday.runs`.
+  Entries without a `job` are dropped. The lease code block may now span
+  several rich_text items; `fetch_lease()` already joins them.
