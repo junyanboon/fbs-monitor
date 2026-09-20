@@ -42,6 +42,9 @@ jobs:
       GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
       ALARM_HISTORY_URL: ${{ secrets.ALARM_HISTORY_URL }}
       ALARM_HISTORY_TOKEN: ${{ secrets.ALARM_HISTORY_TOKEN }}
+      GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+      STAFF_CALENDAR_ID: ${{ secrets.STAFF_CALENDAR_ID }}
+      STAFF_SOURCE: ${{ vars.STAFF_SOURCE }}
       FORCE_BUILD: "1"
       DEBUG_ARM: "0"
     steps:
@@ -75,9 +78,13 @@ jobs:
           grep -E '^NOTE:' /tmp/ref.log > /tmp/out/ref/notes.txt || true
           cp /tmp/ref.env /tmp/out/ref/github.env
 
+      # The replays read the Staff calendar through the export, whatever the
+      # repo variable says: the recording is of main's traffic, and the diff
+      # is about the code, not the door. Step 4 runs live with the real mode.
       - name: "2a. branch build.py — replay, serial"
         env:
           BUILD_PARALLEL: "0"
+          STAFF_SOURCE: ics
         run: |
           set -o pipefail
           cp /tmp/panel-state.orig panel-state.json
@@ -89,6 +96,8 @@ jobs:
           cp /tmp/serial.env /tmp/out/serial/github.env
 
       - name: "2b. branch build.py — replay, parallel"
+        env:
+          STAFF_SOURCE: ics
         run: |
           set -o pipefail
           cp /tmp/panel-state.orig panel-state.json

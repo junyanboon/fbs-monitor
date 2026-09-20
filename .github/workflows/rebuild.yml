@@ -136,6 +136,14 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         run: python test_lease.py
 
+      # Guards the Staff calendar's second door. The Calendar API must yield
+      # the rows the ICS export did — same fields, same all-day skip, same
+      # window edges — and the shadow report must never carry event text.
+      # Pure logic — no network, no secrets.
+      - name: Staff calendar API tests
+        if: steps.gate.outputs.ready == 'true'
+        run: python test_staff_calendar.py
+
       # Guards the five lines on the Robots tab. A line is as bad as its worst
       # LIVE robot; paused/retired/off-hours never colour it; an unmapped
       # robot never colours anything. Pure logic — no network, no secrets.
@@ -191,6 +199,14 @@ jobs:
           ICS_URL_693: ${{ secrets.ICS_URL_693 }}
           ICS_URL_901: ${{ secrets.ICS_URL_901 }}
           ICS_URL_STAFF: ${{ secrets.ICS_URL_STAFF }}
+          # Staff calendar via the Calendar API (build.py "1b"). The same
+          # service account + calendar id the claim server writes with. Unset
+          # = the ICS export exactly as before. STAFF_SOURCE (a repo variable):
+          # empty/shadow = export is truth, API compared and logged;
+          # api = API is truth, export only as the fallback.
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          STAFF_CALENDAR_ID: ${{ secrets.STAFF_CALENDAR_ID }}
+          STAFF_SOURCE: ${{ vars.STAFF_SOURCE }}
           GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
           GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
           GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}

@@ -38,7 +38,6 @@ from datetime import datetime
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 
 import requests
-import requests.api
 from requests.structures import CaseInsensitiveDict
 
 
@@ -56,21 +55,29 @@ def _key(method, url, kwargs):
     data = kwargs.get("data")
     if isinstance(data, dict):
         data = sorted(data.items())
+    if "oauth2.googleapis.com/token" in url:
+        # A service-account assertion carries iat/exp, so the body is never
+        # the same twice; the exchange is one per build, key it on the URL.
+        data = None
     raw = json.dumps([method.upper(), _canon_url(url), params, body, data],
                      sort_keys=True, default=str)
     return hashlib.sha256(raw.encode()).hexdigest()
 
 
 class Recorder:
+    """Patched in as requests.Session.request — the one call every
+    requests.get/post/patch ends in, and the one google-auth's transport
+    would use, so nothing `requests`-shaped slips past the recording."""
+
     def __init__(self, path):
         self.path, self.calls, self.misses = path, {}, []
         self.mode = None
         self.now = None
-        self._real = requests.api.request
+        self._real = requests.Session.request
 
     # -- record --------------------------------------------------------------
-    def record(self, method, url, **kwargs):
-        r = self._real(method, url, **kwargs)
+    def record(self, session, method, url, **kwargs):
+        r = self._real(session, method, url, **kwargs)
         k = _key(method, url, kwargs)
         self.calls.setdefault(k, []).append({
             "status": r.status_code,
@@ -83,7 +90,7 @@ class Recorder:
         return r
 
     # -- replay --------------------------------------------------------------
-    def replay(self, method, url, **kwargs):
+    def replay(self, session, method, url, **kwargs):
         k = _key(method, url, kwargs)
         answers = self.calls.get(k)
         if not answers:
@@ -160,12 +167,14 @@ def main(argv):
         os.environ["GITHUB_ENV"] = env_out
 
     rec = Recorder(fixtures)
+    # Plain functions on the class, so the session arrives as `self`; a bound
+    # method assigned there would not be re-bound per session.
     if mode == "record":
         now = datetime.now().astimezone()
-        requests.api.request = rec.record
+        requests.Session.request = lambda session, method, url, **kw: rec.record(session, method, url, **kw)
     else:
         now = rec.load()
-        requests.api.request = rec.replay
+        requests.Session.request = lambda session, method, url, **kw: rec.replay(session, method, url, **kw)
         # No network in replay: anything not in the fixtures is a fault.
         import urllib.request
         def _no_net(*a, **k):

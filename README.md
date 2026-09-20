@@ -605,6 +605,32 @@ exactly; `FETCH_WORKERS`, `INNER_WORKERS`, `NOTION_CONCURRENCY` (default 4 —
 Notion allows ~3 req/s with some burst; the summary counts 429s so this can
 be tuned from the log), `PARSE_PROCESSES` (0 = parse inline).
 
+**The Staff calendar has two doors (2026-09-20).** Google's ICS export has no
+date range — every build downloaded the whole Staff history (~3 s) and
+expanded every series to keep one day (~3.5 s, twice). The Calendar API's
+`events.list` with `timeMin/timeMax&singleEvents=true` returns just the window,
+already expanded, in ~0.3 s. `build.py` section "1b" reads it with the same
+service account the claim server writes with — the Staff calendar is already
+shared to it. Setup, in order:
+
+1. Add two Actions secrets with the values Vercel already holds:
+   `GOOGLE_SERVICE_ACCOUNT_JSON` (the key JSON) and `STAFF_CALENDAR_ID`.
+2. That alone puts the build in **shadow** mode: the export stays the truth,
+   the API is read alongside, and every run logs one line per window —
+   `SHADOW-STAFF today: ics=N api=N match=N` — counts and times only, never
+   event text. Mismatches read `differs Sun 14:00-14:30 in description`,
+   `only-ics …`, `only-api …`. Watch it for a few days of real edits.
+3. When the shadow is clean, set the repo **variable** `STAFF_SOURCE=api`. The
+   API is then the truth and the export is fetched only if the API fails
+   (the fallback note says so in the commit message). `STAFF_SOURCE=ics` puts
+   everything back.
+
+Rows are mapped to the export's shape exactly: all-day events skipped, the
+export's window rule applied client-side, `recurring` always False (the
+export strips RRULE on expanded copies), HTML descriptions flattened to the
+plain text the export carries. Same-slot rows are ordered by time then text —
+the export never kept a stable order there (see above).
+
 **Proving a build.py change is byte-safe.** Run the "Verify build
 equivalence" workflow (manual) on the branch: it records main's live HTTP
 exchanges through `tools/http_replay.py`, replays them through the branch in

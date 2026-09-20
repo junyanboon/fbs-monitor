@@ -29,6 +29,7 @@ import hashlib
 import json
 import base64
 import time
+import html
 import threading
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
@@ -228,14 +229,16 @@ class _LazyFuture:
     def __init__(self, fn, args, kwargs):
         self._fn, self._args, self._kwargs = fn, args, kwargs
         self._done, self._value, self._exc = False, None, None
+        self._lock = threading.Lock()       # two callers, one run
 
     def result(self):
-        if not self._done:
-            self._done = True
-            try:
-                self._value = self._fn(*self._args, **self._kwargs)
-            except BaseException as e:      # noqa: BLE001 — re-raised below, like a real future
-                self._exc = e
+        with self._lock:
+            if not self._done:
+                self._done = True
+                try:
+                    self._value = self._fn(*self._args, **self._kwargs)
+                except BaseException as e:      # noqa: BLE001 — re-raised below, like a real future
+                    self._exc = e
         if self._exc is not None:
             raise self._exc
         return self._value
@@ -654,6 +657,189 @@ def fetch_ics(url, win_start, win_end):
         return parse_ics(text, win_start, win_end)
     except Exception as e:  # noqa: BLE001
         die(f"ICS fetch/parse failed for {url[:60]}…: {e}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1b. Staff — Google Calendar API instead of the ICS export
+#
+# Google's ICS export has no date range: every build downloaded the Staff
+# calendar's whole history (~3 s for Google to serve it, 2026-09-20) and then
+# expanded every series to keep one day (~3.5 s, twice). events.list with
+# timeMin/timeMax and singleEvents=true returns just the window, already
+# expanded, in ~0.3 s. Same calendar, same events — a different door.
+#
+# The credential is the service account the claim server already writes with
+# (server/gcal.py): the Staff calendar is shared to it, so the same two values
+# — GOOGLE_SERVICE_ACCOUNT_JSON and STAFF_CALENDAR_ID — read it here. The
+# builder asks for the read-only scope; the sharing level is what grants.
+#
+# STAFF_SOURCE picks the mode:
+#   ics     the export, exactly as before (the default when unconfigured)
+#   shadow  the export is still the truth; the API is read alongside and the
+#           two are compared, differences logged as counts and times only
+#           (the default once configured — run it for a while first)
+#   api     the API is the truth; the export is fetched only if the API fails,
+#           and the board says so in its fallback note
+# ─────────────────────────────────────────────────────────────────────────────
+CALENDAR_API = "https://www.googleapis.com/calendar/v3/calendars"
+CALENDAR_SCOPE = "https://www.googleapis.com/auth/calendar.events.readonly"
+
+
+def staff_source():
+    """'ics' | 'shadow' | 'api' — see the section comment above."""
+    configured = bool(os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
+                      and os.environ.get("STAFF_CALENDAR_ID"))
+    mode = (os.environ.get("STAFF_SOURCE") or "").strip().lower()
+    if mode not in ("ics", "shadow", "api"):
+        mode = "shadow" if configured else "ics"
+    if mode != "ics" and not configured:
+        print(f"NOTE: STAFF_SOURCE={mode} but GOOGLE_SERVICE_ACCOUNT_JSON / "
+              "STAFF_CALENDAR_ID unset; using the ICS export.")
+        mode = "ics"
+    return mode
+
+
+def service_account_token(scope):
+    """An access token for the service account in GOOGLE_SERVICE_ACCOUNT_JSON.
+
+    The JWT-bearer grant by hand: google-auth signs the assertion, `requests`
+    posts it. Not google-auth's own transport, so the exchange goes through
+    the same door every other read does — the record/replay harness sees it,
+    and the tests can stub it."""
+    from google.auth import crypt, jwt          # ships with the server/ extras
+    info = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"])
+    now = int(time.time())
+    assertion = jwt.encode(crypt.RSASigner.from_service_account_info(info), {
+        "iss": info["client_email"], "scope": scope, "aud": TOKEN_URL,
+        "iat": now, "exp": now + 3600})
+    if isinstance(assertion, bytes):
+        assertion = assertion.decode("ascii")
+    r = requests.post(TOKEN_URL, data={
+        "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+        "assertion": assertion}, timeout=30)
+    _count_status("google-oauth", r.status_code)
+    if r.status_code != 200:
+        raise RuntimeError(f"service account token: {r.status_code} {r.text[:200]}")
+    return r.json()["access_token"]
+
+
+def _rfc3339(dt):
+    return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _in_window(start, end, win_start, win_end):
+    """recurring_ical_events' rule, so the API path keeps the export's edge
+    cases: starts inclusive, stops exclusive, a zero-length event by its start."""
+    if start == end:
+        return win_start <= start < win_end
+    return start < win_end and win_start < end
+
+
+_TAG = re.compile(r"<[^>]+>")
+_BR = re.compile(r"<br\s*/?>", re.I)
+
+
+def _plain_description(text):
+    """The export carries the plain text of a description (HTML goes to
+    X-ALT-DESC); the API returns the markup. Only the studio number is ever
+    read from a description, so this just has to not glue words together."""
+    if "<" not in text:
+        return text
+    return html.unescape(_TAG.sub("", _BR.sub("\n", text)))
+
+
+def api_rows(items, win_start, win_end):
+    """events.list items → the rows parse_ics() produces, same fields, same
+    skips (all-day events), same window rule, same deterministic order."""
+    keyed = []
+    for ev in items:
+        start = (ev.get("start") or {}).get("dateTime")
+        end = (ev.get("end") or {}).get("dateTime")
+        if not start:                    # all-day → skip, as the export path does
+            continue
+        try:
+            dts = datetime.fromisoformat(start.replace("Z", "+00:00")).astimezone(TZ)
+            dte = (datetime.fromisoformat(end.replace("Z", "+00:00")).astimezone(TZ)
+                   if end else dts)
+        except ValueError:
+            continue
+        if not _in_window(dts, dte, win_start, win_end):
+            continue
+        row = {
+            "summary": ev.get("summary") or "",
+            "description": _plain_description(ev.get("description") or ""),
+            "cancelled": (ev.get("status") or "").lower() == "cancelled",
+            # The export path copies expanded instances without their RRULE,
+            # so it reports False for every row; match it rather than be
+            # righter than the source of truth during the shadow.
+            "recurring": False,
+            "dtstart": dts,
+            "dtend": dte,
+        }
+        keyed.append(((row["dtstart"], row["dtend"], row["summary"], row["description"],
+                       row["cancelled"]), row))
+    keyed.sort(key=lambda kr: kr[0])
+    return [row for _, row in keyed]
+
+
+def fetch_staff_calendar_api(win_start, win_end, token=None):
+    """The Staff calendar's window from the Calendar API. Raises on any
+    failure — the caller decides whether that means the export or a note."""
+    token = token or service_account_token(CALENDAR_SCOPE)
+    cal_id = os.environ["STAFF_CALENDAR_ID"]
+    url = f"{CALENDAR_API}/{cal_id}/events"
+    h = {"Authorization": f"Bearer {token}"}
+    params = {
+        # A minute wider than the window on the low side: the API excludes an
+        # event whose end equals timeMin, the export includes a zero-length
+        # one starting there. _in_window() applies the export's rule after.
+        "timeMin": _rfc3339(win_start - timedelta(minutes=1)),
+        "timeMax": _rfc3339(win_end),
+        "singleEvents": "true",
+        "orderBy": "startTime",
+        "maxResults": 2500,
+    }
+    items, page = [], None
+    for _ in range(20):
+        if page:
+            params["pageToken"] = page
+        r = requests.get(url, headers=h, params=params, timeout=30)
+        _count_status("gcal", r.status_code)
+        if r.status_code != 200:
+            raise RuntimeError(f"events.list: {r.status_code} {r.text[:200]}")
+        data = r.json()
+        items.extend(data.get("items") or [])
+        page = data.get("nextPageToken")
+        if not page:
+            break
+    return api_rows(items, win_start, win_end)
+
+
+def compare_staff_rows(ics, api):
+    """What the shadow prints: how many rows agree, and for the rest, WHEN
+    they are and WHICH field differs — never the text. Cancelled rows are
+    dropped on both sides first; the builder drops them anyway and the API
+    does not return them."""
+    def key(r):
+        return (r["dtstart"].isoformat(), r["dtend"].isoformat(), r["summary"], r["description"])
+    def when(r):
+        return f"{r['dtstart']:%a %H:%M}-{r['dtend']:%H:%M}"
+    a = {key(r): r for r in ics if not r["cancelled"]}
+    b = {key(r): r for r in api if not r["cancelled"]}
+    match = len(a.keys() & b.keys())
+    only_a = [a[k] for k in a.keys() - b.keys()]
+    only_b = [b[k] for k in b.keys() - a.keys()]
+    notes = []
+    for side, rows, other in (("only-ics", only_a, only_b), ("only-api", only_b, only_a)):
+        for r in sorted(rows, key=lambda r: r["dtstart"]):
+            twin = next((o for o in other if o["dtstart"] == r["dtstart"] and o["dtend"] == r["dtend"]), None)
+            if twin is None:
+                notes.append(f"{side} {when(r)}")
+            else:
+                fields = [f for f in ("summary", "description") if r[f] != twin[f]]
+                if side == "only-ics":     # report each mismatched pair once
+                    notes.append(f"differs {when(r)} in {','.join(fields)}")
+    return {"ics": len(a), "api": len(b), "match": match, "notes": notes}
 
 
 CLEANERS = ("stefan", "donny", "ela")
@@ -4708,7 +4894,30 @@ def _build_data(now, pool):
     # in main(). The APPLY steps that follow consume these in the order they
     # always ran, so a failure lands in the same try/except with the same note.
     ahead_end = win_start + timedelta(days=OPEN_SHIFT_LOOKAHEAD_DAYS + 1)   # fetch_open_shifts' window
+    staff_mode = staff_source()
+    staff_windows = ((win_start, win_end, "today"), (win_start, ahead_end, "lookahead"))
+    staff_api = {}                        # (start, end) → future of API rows (shadow / api)
+    staff_fallback = {}                   # window label → why the API answer was not used
+    if staff_mode != "ics":
+        token_fut = pool.submit("gcal:token", service_account_token, CALENDAR_SCOPE)
+        for ws, we, label in staff_windows:
+            staff_api[(ws, we)] = pool.then(f"gcal:staff-{label}", token_fut,
+                                            lambda tok, ws=ws, we=we: fetch_staff_calendar_api(ws, we, token=tok))
     for key, url in ics_map.items():
+        if key == "Staff" and staff_mode == "api":
+            # The export is the fallback only: fetched once, lazily, and only
+            # if the API fails for a window. Its parse then runs inline.
+            export_text = AskOnce()           # lazy: runs in whichever worker asks first
+            for ws, we, label in staff_windows:
+                def staff_rows(ws=ws, we=we, label=label):
+                    try:
+                        return staff_api[(ws, we)].result()
+                    except Exception as e:  # noqa: BLE001 — soft: the export still answers
+                        staff_fallback[label] = f"{type(e).__name__}: {e}"
+                        text = export_text.ask("ics:Staff (fallback)", url, fetch_ics_text, url).result()
+                        return parse_ics(text, ws, we)
+                _ICS_PARSED[(url, ws, we)] = pool.submit(f"staff:{label}", staff_rows)
+            continue
         text_fut = _ICS_PREFETCH[url] = pool.submit(f"ics:{key}", fetch_ics_text, url)
         _ICS_PARSED[(url, win_start, win_end)] = pool.parse(
             f"parse:{key}", text_fut, parse_ics, win_start, win_end)
@@ -4758,6 +4967,24 @@ def _build_data(now, pool):
     except (Exception, SystemExit) as e:  # noqa: BLE001
         open_shifts = []
         emit_fallback_note(f"Staff ICS lookahead failed ({e}); open shifts absent this edition.")
+    # Staff source bookkeeping, on the main thread so the notes land in their
+    # usual place. api: say when the export had to stand in. shadow: report
+    # how the two doors compared — counts and times, never text, never a
+    # fallback note (the shadow must not reach the commit message).
+    if staff_mode == "api" and staff_fallback:
+        emit_fallback_note("Staff calendar API failed ("
+                           + "; ".join(f"{k}: {v}" for k, v in sorted(staff_fallback.items()))
+                           + "); used the ICS export for staff this edition.")
+    elif staff_mode == "shadow" and "Staff" in ics_map:
+        for ws, we, label in staff_windows:
+            try:
+                ics_rows = _ICS_PARSED[(ics_map["Staff"], ws, we)].result()
+                rep = compare_staff_rows(ics_rows, staff_api[(ws, we)].result())
+                print(f"SHADOW-STAFF {label}: ics={rep['ics']} api={rep['api']} "
+                      f"match={rep['match']}" + ("" if not rep["notes"] else
+                                                  "; " + "; ".join(rep["notes"])), flush=True)
+            except Exception as e:  # noqa: BLE001 — the shadow never costs the board
+                print(f"SHADOW-STAFF {label}: api failed ({type(e).__name__}: {e})", flush=True)
     with timed("apply:skedda (waits on skedda:bookings)"):
         events, skedda_note = enrich_names_from_skedda(events, win_start, win_end, skedda_fut)
     if skedda_note:
