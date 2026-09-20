@@ -29,6 +29,11 @@ import hashlib
 import json
 import base64
 import time
+import threading
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+from concurrent.futures.process import BrokenProcessPool
+import multiprocessing
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -111,6 +116,11 @@ BOOKING_STATE = os.path.join(HERE, "booking-state.json")
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GMAIL_API = "https://gmail.googleapis.com/gmail/v1/users/me"
 ARM_LABEL = "Artist Care - ADT"
+# fetch_prior_state walks back up to five days of ADT mail, newest first, and
+# stops once every silent studio has been seen. Reads go out this many at a
+# time: enough to cover the usual handful in one round, small enough that a
+# resolved walk does not keep reading days it never needed.
+GMAIL_PRIOR_CHUNK = 16
 # alarm-mcp's /arm-history — the PRIMARY arrival/departure source since
 # 2026-08-18. See fetch_arm_history() for why it displaced the Gmail feed and
 # what the Gmail feed is still for.
@@ -141,6 +151,225 @@ def emit_fallback_note(note):
     if gh_env:
         with open(gh_env, "a") as fh:
             fh.write(f"FALLBACK_NOTE={note}\n")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# fetch scheduling + timing
+#
+# build_data() used to call ~20 network sources one after another, and the
+# workflow's "Build index.html" step took ~42 s of which almost all was waiting
+# on one socket at a time (run 35517894285, 2026-09-20). The sources do not
+# depend on each other — only the APPLY steps do — so the fetches are submitted
+# to a thread pool up front and consumed in the exact order they always were.
+# That order is what keeps the output byte-identical and the fallback notes
+# (and so the commit message) in the same sequence; the threads only change
+# WHEN a socket is read, never what is done with the answer.
+#
+# BUILD_PARALLEL=0 turns the pool into lazy futures that run on first .result()
+# — every fetch then happens at the same point it did before, which is the
+# reference the verify workflow diffs the parallel build against.
+#
+# Every source is timed. TIMING: lines are flushed as they happen so the Actions
+# log timestamps them, and a summary at the end shows the per-source cost and
+# how long the main thread actually waited on each one (the critical path).
+# Durations and status counts only — this repo is public.
+# ─────────────────────────────────────────────────────────────────────────────
+BUILD_PARALLEL = (os.environ.get("BUILD_PARALLEL") or "1").strip() != "0"
+FETCH_WORKERS = int(os.environ.get("FETCH_WORKERS") or 12)
+INNER_WORKERS = int(os.environ.get("INNER_WORKERS") or 8)
+# Calendar parsing is CPU work the GIL serializes across threads, and the
+# Staff feed alone costs ~3 s per window. Worker PROCESSES parse the feeds
+# side by side; 0 parses on the calling thread instead.
+PARSE_PROCESSES = int(os.environ.get("PARSE_PROCESSES") or min(4, os.cpu_count() or 1))
+# Notion allows ~3 requests/s per integration on average with some burst. The
+# pool would otherwise open every Notion query at once; this caps the in-flight
+# count so bursts stay modest, and 429s are counted in the summary so the cap
+# can be tuned from the log instead of guessed at.
+NOTION_CONCURRENCY = int(os.environ.get("NOTION_CONCURRENCY") or 4)
+_NOTION_SEM = threading.BoundedSemaphore(NOTION_CONCURRENCY)
+
+_TIMINGS = []                   # (label, seconds, outcome) in completion order
+_WAITS = []                     # (label, seconds) main-thread blocking per source
+_HTTP_STATUS = Counter()        # ("notion", 429) → count
+_STATS_LOCK = threading.Lock()
+_BUILD_T0 = time.monotonic()
+
+
+def _count_status(host, status):
+    with _STATS_LOCK:
+        _HTTP_STATUS[(host, status)] += 1
+
+
+class timed:
+    """`with timed("label"):` — record and print the wall time of one source."""
+
+    def __init__(self, label):
+        self.label = label
+
+    def __enter__(self):
+        self.t0 = time.monotonic()
+        return self
+
+    def __exit__(self, et, ev, tb):
+        dt = time.monotonic() - self.t0
+        # GeneratorExit: a map() consumer stopped early, which is by design.
+        outcome = "ok" if et is None or et is GeneratorExit else "failed"
+        with _STATS_LOCK:
+            _TIMINGS.append((self.label, dt, outcome))
+        print(f"TIMING: {self.label} {dt:.2f}s ({outcome}) "
+              f"t+{time.monotonic() - _BUILD_T0:.1f}s", flush=True)
+        return False
+
+
+class _LazyFuture:
+    """Serial stand-in for a pool future: runs the call on first .result(),
+    i.e. at the point the value is consumed — the pre-pool order exactly."""
+
+    def __init__(self, fn, args, kwargs):
+        self._fn, self._args, self._kwargs = fn, args, kwargs
+        self._done, self._value, self._exc = False, None, None
+
+    def result(self):
+        if not self._done:
+            self._done = True
+            try:
+                self._value = self._fn(*self._args, **self._kwargs)
+            except BaseException as e:      # noqa: BLE001 — re-raised below, like a real future
+                self._exc = e
+        if self._exc is not None:
+            raise self._exc
+        return self._value
+
+
+class FetchPool:
+    """The build's pools. submit() names each source; result() records how long
+    the main thread waited on it. In serial mode nothing runs early.
+
+    Two executors, not one: sources run on the outer pool, and the per-item
+    fan-outs inside a source (Gmail message reads, history queries, artist
+    pages) run on the inner pool. A source blocked on its own fan-out can then
+    never hold the only workers that fan-out needs."""
+
+    def __init__(self, workers=FETCH_WORKERS, parallel=BUILD_PARALLEL):
+        self.parallel = parallel
+        self._pool = self._inner = self._procs = None
+        if parallel:
+            self._pool = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="fetch")
+            self._inner = ThreadPoolExecutor(max_workers=INNER_WORKERS, thread_name_prefix="fanout")
+            if PARSE_PROCESSES > 0:
+                # spawn, not fork: this process has threads by the time the
+                # first parse is due, and forking a threaded process is how
+                # a child deadlocks on a lock it never held.
+                self._procs = ProcessPoolExecutor(
+                    max_workers=PARSE_PROCESSES,
+                    mp_context=multiprocessing.get_context("spawn"))
+
+    def submit(self, label, fn, *args, **kwargs):
+        def run():
+            with timed(label):
+                return fn(*args, **kwargs)
+        if self._pool is None:
+            return _LazyFuture(run, (), {})
+        return self._pool.submit(run)
+
+    def then(self, label, fut, fn, *args, **kwargs):
+        """A source that needs another's answer first (authorized names need
+        the board rows). Submitted after its dependency, so the FIFO pool has
+        the dependency running before this can block on it; the wait is not
+        counted against `label`. In serial mode it runs when consumed."""
+        def run():
+            dep = fut.result()
+            with timed(label):
+                return fn(dep, *args, **kwargs)
+        if self._pool is None:
+            return _LazyFuture(run, (), {})
+        return self._pool.submit(run)
+
+    def parse(self, label, text_fut, fn, *args):
+        """CPU work on a fetched text: fn(text, *args) in a worker process when
+        there is a process pool, on this thread otherwise. Chained like then()."""
+        def run():
+            text = text_fut.result()
+            with timed(label):
+                if self._procs is not None:
+                    try:
+                        return self._procs.submit(fn, text, *args).result()
+                    except BrokenProcessPool as e:
+                        print(f"NOTE: parse pool broken ({e}); parsing inline.", flush=True)
+                        self._procs = None
+                return fn(text, *args)
+        if self._pool is None:
+            return _LazyFuture(run, (), {})
+        return self._pool.submit(run)
+
+    @staticmethod
+    def result(label, fut):
+        t0 = time.monotonic()
+        try:
+            return fut.result()
+        finally:
+            with _STATS_LOCK:
+                _WAITS.append((label, time.monotonic() - t0))
+
+    def map(self, label, fn, items, chunk=None):
+        """fn over items, answers in item order. `chunk` bounds how far ahead
+        of the consumer the reads run — used where the caller stops early."""
+        items = list(items)
+        if self._inner is None or not items:
+            for it in items:
+                yield fn(it)
+            return
+        step = chunk or len(items)
+        with timed(f"{label} ×{len(items)}"):
+            for i in range(0, len(items), step):
+                futs = [self._inner.submit(fn, it) for it in items[i:i + step]]
+                for f in futs:
+                    yield f.result()
+
+    def shutdown(self):
+        for ex in (self._pool, self._inner, self._procs):
+            if ex is not None:
+                ex.shutdown(wait=False, cancel_futures=True)
+
+
+class AskOnce:
+    """One question per key per build, whoever asks first. Thread-safe memo of
+    futures over a FetchPool (or lazy futures when there is no pool)."""
+
+    def __init__(self, pool=None):
+        self.pool, self._lock, self._futs = pool, threading.Lock(), {}
+
+    def ask(self, label, key, fn, *args, **kwargs):
+        with self._lock:
+            fut = self._futs.get(key)
+            if fut is None:
+                fut = (self.pool.submit(label, fn, *args, **kwargs) if self.pool is not None
+                       else _LazyFuture(fn, args, kwargs))
+                self._futs[key] = fut
+        return fut
+
+
+def print_timing_summary():
+    """One block at the end of the log: what each source cost, what the main
+    thread waited on, and any HTTP status worth knowing about (429s)."""
+    total = time.monotonic() - _BUILD_T0
+    with _STATS_LOCK:
+        timings, waits, statuses = list(_TIMINGS), list(_WAITS), dict(_HTTP_STATUS)
+    print(f"TIMING-SUMMARY: build.py wall {total:.2f}s, "
+          f"mode={'parallel' if BUILD_PARALLEL else 'serial'}, "
+          f"workers={FETCH_WORKERS}, notion_concurrency={NOTION_CONCURRENCY}", flush=True)
+    for label, dt, outcome in sorted(timings, key=lambda t: -t[1]):
+        print(f"  source {dt:6.2f}s  {label}{'' if outcome == 'ok' else '  [' + outcome + ']'}")
+    blocking = [(l, w) for l, w in waits if w >= 0.05]
+    if blocking:
+        print(f"  main thread blocked {sum(w for _, w in waits):.2f}s in total, on:")
+        for label, w in sorted(blocking, key=lambda t: -t[1]):
+            print(f"    wait {w:6.2f}s  {label}")
+    noteworthy = {k: v for k, v in statuses.items() if k[1] >= 400}
+    if noteworthy:
+        print("  http errors: " + ", ".join(
+            f"{host} {status}×{n}" for (host, status), n in sorted(noteworthy.items())))
+    sys.stdout.flush()
 
 
 def decimal_hours(dt, base_day):
@@ -237,7 +466,7 @@ def facilitator_of(title):
     return m.group(1).strip() if m else None
 
 
-def fetch_authorized_names(token, events):
+def fetch_authorized_names(token, events, lookup=None, pool=None):
     """Attach `_allowed_names` to each booking: the account holder's Artist
     Database Name / Company / Alarm Display Name, plus the same fields of every
     page in its `Authorized Users` relation.
@@ -248,37 +477,74 @@ def fetch_authorized_names(token, events):
     the company title. Names only: the `Alarm Code` field is never read (this
     board is public). Names never leave the build — only the foreign booleans.
     Soft: a failed read keeps the old title-only match for that booking."""
+    if lookup is None:
+        lookup = fetch_allowed_names(
+            token, [e["_artist_id"] for e in events
+                    if e.get("kind") == "booking" and e.get("_artist_id")], pool)
+    for e in events:
+        aid = e.get("_artist_id")
+        if e.get("kind") != "booking" or not aid:
+            continue
+        if aid not in lookup:            # an id the prefetch did not cover
+            lookup.update(fetch_allowed_names(token, [aid], pool))
+        allowed = lookup.get(aid)
+        if allowed is None:
+            continue
+        e["_allowed_names"] = list(allowed)
+    return events
+
+
+def fetch_allowed_names(token, artist_ids, pool=None):
+    """{artist_id: [names]} for each artist page — the holder's own names
+    followed by every Authorized Users page's, in relation order. An unreadable
+    artist page maps to None (the caller keeps the title-only match); an
+    unreadable authorized page just contributes no names, as before.
+
+    Two rounds of reads — the artist pages, then the pages they relate to —
+    each fanned out over the pool. Same reads, same cache, same answer as the
+    one-at-a-time loop this replaced; only the sockets overlap now."""
     h = {"Authorization": f"Bearer {token}", "Notion-Version": "2022-06-28"}
     cache = {}
 
-    def page(pid):
-        if pid not in cache:
-            try:
-                r = requests.get(f"https://api.notion.com/v1/pages/{pid}",
-                                 headers=h, timeout=20)
-                cache[pid] = r.json().get("properties", {}) if r.status_code == 200 else None
-            except Exception:  # noqa: BLE001
-                cache[pid] = None
-        return cache[pid]
+    def read(pid):
+        try:
+            r = _notion_get(f"https://api.notion.com/v1/pages/{pid}", h, timeout=20)
+            return r.json().get("properties", {}) if r.status_code == 200 else None
+        except Exception:  # noqa: BLE001
+            return None
+
+    def fill(pids):
+        pids = [p for p in dict.fromkeys(pids) if p not in cache]
+        if pool is not None:
+            for pid, props in zip(pids, pool.map("notion:pages", read, pids)):
+                cache[pid] = props
+        else:
+            for pid in pids:
+                cache[pid] = read(pid)
 
     def names(props):
         return [t for k in ("Name", "Company", "Alarm Display Name")
                 if (t := _prop_text((props or {}).get(k)))]
 
-    for e in events:
-        aid = e.get("_artist_id")
-        if e.get("kind") != "booking" or not aid:
-            continue
-        props = page(aid)
+    def related(props):
+        return [rid for rel in (props.get("Authorized Users") or {}).get("relation") or []
+                if (rid := (rel.get("id") or "").replace("-", ""))]
+
+    artist_ids = list(dict.fromkeys(a for a in artist_ids if a))
+    fill(artist_ids)
+    fill(rid for aid in artist_ids if cache.get(aid) is not None
+         for rid in related(cache[aid]))
+    out = {}
+    for aid in artist_ids:
+        props = cache.get(aid)
         if props is None:
+            out[aid] = None
             continue
         allowed = names(props)
-        for rel in (props.get("Authorized Users") or {}).get("relation") or []:
-            rid = (rel.get("id") or "").replace("-", "")
-            if rid:
-                allowed += names(page(rid))
-        e["_allowed_names"] = allowed
-    return events
+        for rid in related(props):
+            allowed += names(cache.get(rid))
+        out[aid] = allowed
+    return out
 
 
 def expected_name(e):
@@ -314,16 +580,43 @@ def _bust_cache(url):
     return f"{url}{'&' if '?' in url else '?'}_cb={stamp}"
 
 
-def fetch_ics(url, win_start, win_end):
-    try:
-        r = requests.get(_bust_cache(url), timeout=30,
-                         headers={"Cache-Control": "no-cache", "Pragma": "no-cache"})
-        r.raise_for_status()
-        cal = icalendar.Calendar.from_ical(r.text)
-        occ = recurring_ical_events.of(cal).between(win_start, win_end)
-    except Exception as e:  # noqa: BLE001
-        die(f"ICS fetch/parse failed for {url[:60]}…: {e}")
-    out = []
+# url → future of the feed text, and (url, win_start, win_end) → future of the
+# parsed window, both filled by build_data() so the six calendar GETs and the
+# parses overlap each other and everything else. fetch_ics() reads from here
+# when the url is registered and fetches/parses itself otherwise (tests,
+# one-offs). The Staff feed is read twice per build (today's window, then the
+# posting lookahead); one GET now serves both.
+_ICS_PREFETCH = {}
+_ICS_PARSED = {}
+
+
+def fetch_ics_text(url):
+    r = requests.get(_bust_cache(url), timeout=30,
+                     headers={"Cache-Control": "no-cache", "Pragma": "no-cache"})
+    _count_status("ics", r.status_code)
+    r.raise_for_status()
+    return r.text
+
+
+def parse_ics(text, win_start, win_end):
+    """The window's occurrences from one feed's text. Pure and picklable — the
+    parse is CPU-bound (the Staff feed takes ~3 s on an Actions runner, 2026-
+    09-20) and runs on a process pool when build_data() can spare one.
+
+    Order is deterministic here. recurring_ical_events yields a series'
+    occurrences chronologically but its EDITED instances from a set, whose
+    iteration order differs per process — two edited placeholders of the same
+    series moved onto the same slot came out either way round, and the built
+    page flipped between runs (caught 2026-09-20). The key keeps the order
+    that was already stable — series in feed order, then time — and pins down
+    the tie that was not. Nothing downstream can tell the difference except
+    that the same feed now gives the same bytes."""
+    cal = icalendar.Calendar.from_ical(text)
+    series = {}                          # UID → first-appearance index
+    for comp in cal.walk("VEVENT"):
+        series.setdefault(str(comp.get("UID") or ""), len(series))
+    occ = recurring_ical_events.of(cal).between(win_start, win_end)
+    keyed = []
     for ev in occ:
         summary = str(ev.get("SUMMARY") or "")
         try:
@@ -334,7 +627,7 @@ def fetch_ics(url, win_start, win_end):
         if not isinstance(dts, datetime):     # all-day → skip (unavailable-style block)
             continue
         status = str(ev.get("STATUS") or "").upper()
-        out.append({
+        row = {
             "summary": summary,
             # Read for provenance only — which sync lane wrote this event (see
             # lane_of). Never rendered; descriptions carry prices and notes.
@@ -343,8 +636,24 @@ def fetch_ics(url, win_start, win_end):
             "recurring": bool(ev.get("RRULE")),
             "dtstart": dts.astimezone(TZ),
             "dtend": dte.astimezone(TZ),
-        })
-    return out
+        }
+        keyed.append(((series.get(str(ev.get("UID") or ""), len(series)),
+                       row["dtstart"], row["dtend"], summary, row["description"],
+                       row["cancelled"], row["recurring"]), row))
+    keyed.sort(key=lambda kr: kr[0])
+    return [row for _, row in keyed]
+
+
+def fetch_ics(url, win_start, win_end):
+    try:
+        parsed = _ICS_PARSED.get((url, win_start, win_end))
+        if parsed is not None:
+            return parsed.result()
+        fut = _ICS_PREFETCH.get(url)
+        text = fut.result() if fut is not None else fetch_ics_text(url)
+        return parse_ics(text, win_start, win_end)
+    except Exception as e:  # noqa: BLE001
+        die(f"ICS fetch/parse failed for {url[:60]}…: {e}")
 
 
 CLEANERS = ("stefan", "donny", "ela")
@@ -794,7 +1103,7 @@ def mark_skedda_holds(events, rows, base_day):
     return marked
 
 
-def enrich_names_from_skedda(events, win_start, win_end):
+def enrich_names_from_skedda(events, win_start, win_end, rows_fut=None):
     """One Skedda read, two jobs: name the nameless, and mark the staff blocks.
 
     NAMES — fill in renter names the ICS feeds omit. Touches ONLY nameless
@@ -812,7 +1121,8 @@ def enrich_names_from_skedda(events, win_start, win_end):
     targets = [e for e in events
                if e["kind"] == "booking" and _is_nameless_title(e.get("who"))]
     try:
-        rows = skedda_names.fetch_named_bookings(win_start, win_end)
+        rows = (rows_fut.result() if rows_fut is not None
+                else skedda_names.fetch_named_bookings(win_start, win_end))
     except skedda_names.SkeddaUnavailable as e:
         return events, (f"Skedda lookup skipped ({e}); platform titles left as-is "
                         f"and staff blocks fall back to title detection.")
@@ -1164,12 +1474,14 @@ def _notion_query_page(url, headers, body):
     """
     for attempt in range(3):
         try:
-            response = requests.post(url, headers=headers, json=body, timeout=30)
+            with _NOTION_SEM:
+                response = requests.post(url, headers=headers, json=body, timeout=30)
         except (requests.ConnectionError, requests.Timeout):
             if attempt == 2:
                 raise
             delay = 2 ** attempt
         else:
+            _count_status("notion", response.status_code)
             if response.status_code not in (429, 500, 502, 503, 504) or attempt == 2:
                 return response
             delay = 2 ** attempt
@@ -1185,6 +1497,38 @@ def _notion_query_page(url, headers, body):
                     return response
                 delay = max(delay, seconds)
         print(f"Notion query: transient read failure; retry {attempt + 2}/3 in {delay}s")
+        time.sleep(delay)
+
+
+def _notion_get(url, headers, params=None, timeout=30):
+    """GET twin of _notion_query_page: three attempts on transient statuses,
+    Retry-After honoured within the same bounds. Page and block reads never
+    met a 429 while the build was serial; with other sources in flight they
+    can, and an unretried 429 on an authorized-user page would silently drop
+    that name from the keypad match."""
+    for attempt in range(3):
+        try:
+            with _NOTION_SEM:
+                response = requests.get(url, headers=headers, params=params, timeout=timeout)
+        except (requests.ConnectionError, requests.Timeout):
+            if attempt == 2:
+                raise
+            delay = 2 ** attempt
+        else:
+            _count_status("notion", response.status_code)
+            if response.status_code not in (429, 500, 502, 503, 504) or attempt == 2:
+                return response
+            delay = 2 ** attempt
+            retry_after = response.headers.get("Retry-After")
+            if retry_after is not None:
+                try:
+                    seconds = int(retry_after)
+                except (ValueError, TypeError):
+                    return response
+                if seconds < 0 or seconds > 30:
+                    return response
+                delay = max(delay, seconds)
+        print(f"Notion read: transient failure; retry {attempt + 2}/3 in {delay}s")
         time.sleep(delay)
 
 
@@ -1226,61 +1570,85 @@ def _notion_query(token, ds_id, body):
     raise RuntimeError(f"Notion query failed for {ds_id}: " + " | ".join(errs))
 
 
-def with_walkthrough_history(token, rows):
+def _walkthrough_key(row):
+    """(artist, studio, day) for an FBS row, or None when it cannot be asked."""
+    p = row.get("properties", {})
+    if (_prop_text(p.get("Type of Booking")) or "").lower() != "fbs":
+        return None
+    artist = _relation_id(p.get("🎨 Artist Database"))
+    studio = (_prop_text(p.get("Studio")) or "").strip()
+    day = (_prop_text(p.get("Booking Date")) or "")[:10]
+    if not artist or not studio or not day:
+        return None
+    return (artist, studio, day)
+
+
+def _prior_walkthrough(token, key, row_id):
+    """One history query: has this artist an earlier, non-cancelled HTA-Sent +
+    GTG-Yes row in this room? Private — only the boolean travels."""
+    artist, studio, day = key
+    prior = _notion_query(token, NOTION_DATA_SOURCE, {
+        "filter": {"and": [
+            {"property": "🎨 Artist Database", "relation": {"contains": artist}},
+            {"property": "Studio", "select": {"equals": studio}},
+            {"property": "Booking Date", "date": {"before": day}},
+            {"property": "GTG", "status": {"equals": "Yes"}},
+            {"property": "HTA", "status": {"equals": "Sent"}},
+        ]}, "page_size": 100})
+    for old in prior:
+        q = old.get("properties", {})
+        old_day = (_prop_text(q.get("Booking Date")) or "")[:10]
+        status = (_prop_text(q.get("Booking Status")) or "").lower()
+        if (old.get("id") != row_id
+                and _relation_id(q.get("🎨 Artist Database")) == artist
+                and (_prop_text(q.get("Studio")) or "").strip() == studio
+                and old_day and old_day < day
+                and (_prop_text(q.get("GTG")) or "").lower() == "yes"
+                and (_prop_text(q.get("HTA")) or "").lower() == "sent"
+                and not any(x in status for x in ("cancel", "missed"))):
+            return True
+    return False
+
+
+def with_walkthrough_history(token, rows, pool=None, memo=None):
     """Attach prior same-artist, same-room onboarding proof to FBS rows.
 
     Support tier is independent of walkthrough completion. Never infer it
     from a platform label, a permanent PIN, or a visit without HTA + GTG.
     History stays private; only the resulting GTG boolean reaches the page.
+
+    One query per distinct (artist, studio, day), fanned out over `pool` when
+    given. `memo` (an AskOnce) shares answers between callers in one build:
+    the board rows and the HTA watch both ask about today's FBS rows, and
+    asked Notion the identical question twice per build until 2026-09-20.
     """
-    history = {}
+    memo = memo if memo is not None else AskOnce(pool)
+    keyed = [(row, _walkthrough_key(row)) for row in rows]
+    asks = {}
+    for row, key in keyed:
+        if key is not None and key not in asks:
+            # First row per key supplies the `old.get("id") != row_id` guard,
+            # as the one-at-a-time loop did. (Moot in practice: `prior` is
+            # filtered to dates strictly before the row's own day.)
+            asks[key] = memo.ask("notion:walkthrough-history", key,
+                                 _prior_walkthrough, token, key, row.get("id"))
     out = []
-    for row in rows:
-        p = row.get("properties", {})
+    for row, key in keyed:
         enriched = dict(row, _prior_walkthrough=False)
         out.append(enriched)
-        if (_prop_text(p.get("Type of Booking")) or "").lower() != "fbs":
-            continue
-        artist = _relation_id(p.get("🎨 Artist Database"))
-        studio = (_prop_text(p.get("Studio")) or "").strip()
-        day = (_prop_text(p.get("Booking Date")) or "")[:10]
-        if not artist or not studio or not day:
-            continue
-        key = (artist, studio, day)
-        if key not in history:
-            prior = _notion_query(token, NOTION_DATA_SOURCE, {
-                "filter": {"and": [
-                    {"property": "🎨 Artist Database", "relation": {"contains": artist}},
-                    {"property": "Studio", "select": {"equals": studio}},
-                    {"property": "Booking Date", "date": {"before": day}},
-                    {"property": "GTG", "status": {"equals": "Yes"}},
-                    {"property": "HTA", "status": {"equals": "Sent"}},
-                ]}, "page_size": 100})
-            history[key] = False
-            for old in prior:
-                q = old.get("properties", {})
-                old_day = (_prop_text(q.get("Booking Date")) or "")[:10]
-                status = (_prop_text(q.get("Booking Status")) or "").lower()
-                if (old.get("id") != row.get("id")
-                        and _relation_id(q.get("🎨 Artist Database")) == artist
-                        and (_prop_text(q.get("Studio")) or "").strip() == studio
-                        and old_day and old_day < day
-                        and (_prop_text(q.get("GTG")) or "").lower() == "yes"
-                        and (_prop_text(q.get("HTA")) or "").lower() == "sent"
-                        and not any(x in status for x in ("cancel", "missed"))):
-                    history[key] = True
-                    break
-        enriched["_prior_walkthrough"] = history[key]
+        if key is not None:
+            enriched["_prior_walkthrough"] = asks[key].result()
     return out
 
 
-def fetch_notion_rows(token, today_iso):
+def fetch_notion_rows(token, today_iso, pool=None, memo=None):
     body = {
         "filter": {"property": "Booking Date", "date": {"equals": today_iso}},
         "page_size": 100,
     }
     try:
-        return with_walkthrough_history(token, _notion_query(token, NOTION_DATA_SOURCE, body))
+        return with_walkthrough_history(token, _notion_query(token, NOTION_DATA_SOURCE, body),
+                                        pool=pool, memo=memo)
     except RuntimeError as e:
         die(str(e))
 
@@ -1529,6 +1897,7 @@ def _resolve_label_id(h, name):
     ('label:"Artist Care - ADT"' returns 0), so we resolve to the exact label ID
     and filter with the labelIds param instead."""
     r = requests.get(f"{GMAIL_API}/labels", headers=h, timeout=30)
+    _count_status("gmail", r.status_code)
     if r.status_code in (401, 403):
         die(f"Gmail API {r.status_code} listing labels — check scope/consent.")
     r.raise_for_status()
@@ -1542,6 +1911,7 @@ def _msg_subject_and_ts(h, mid):
     r = requests.get(f"{GMAIL_API}/messages/{mid}", headers=h,
                      params={"format": "metadata", "metadataHeaders": "Subject"},
                      timeout=30)
+    _count_status("gmail", r.status_code)
     r.raise_for_status()
     msg = r.json()
     subject = ""
@@ -1559,6 +1929,7 @@ def _gmail_ids(h, label_id, q):
         if page:
             params["pageToken"] = page
         r = requests.get(f"{GMAIL_API}/messages", headers=h, params=params, timeout=30)
+        _count_status("gmail", r.status_code)
         if r.status_code in (401, 403):
             die(f"Gmail API {r.status_code} listing messages — check scope/consent.")
         r.raise_for_status()
@@ -1602,7 +1973,7 @@ def merge_panel_state(prev, arm_events, prior):
     return state
 
 
-def fetch_prior_state(h, label_id, missing, win_start, days=5):
+def fetch_prior_state(h, label_id, missing, win_start, days=5, pool=None):
     """Last known arm/disarm for studios with NO event in today's window.
 
     A panel does not reset at 05:00 — a studio armed last night is still armed
@@ -1615,13 +1986,25 @@ def fetch_prior_state(h, label_id, missing, win_start, days=5):
     q = (f"after:{int((win_start - timedelta(days=days)).timestamp())} "
          f"before:{int(win_start.timestamp())}")
     out = {}
-    for mid in _gmail_ids(h, label_id, q):
+
+    def read(mid):
+        try:
+            return _msg_subject_and_ts(h, mid)
+        except Exception:  # noqa: BLE001 — a single unreadable message must not kill the build
+            return None
+
+    ids = _gmail_ids(h, label_id, q)
+    # Newest-first walk with an early stop, so reads go out a chunk at a time:
+    # the chunk after the one that resolves the last studio is never opened,
+    # and the answers are still consumed in list order.
+    reads = (pool.map("gmail:prior-messages", read, ids, chunk=GMAIL_PRIOR_CHUNK)
+             if pool is not None else map(read, ids))
+    for got in reads:
         if not missing:
             break
-        try:
-            subject, ts = _msg_subject_and_ts(h, mid)
-        except Exception:  # noqa: BLE001 — a single unreadable message must not kill the build
+        if got is None:
             continue
+        subject, ts = got
         parsed = parse_arm_subject(subject)
         if not parsed or parsed["studio"] not in missing:
             continue
@@ -1632,7 +2015,7 @@ def fetch_prior_state(h, label_id, missing, win_start, days=5):
     return out
 
 
-def fetch_arm_events(win_start):
+def fetch_arm_events(win_start, pool=None):
     """Return (arm_events, alarm_alerts, panel_prior).
     arm_events: [{studio, name, time 'HH:MM', kind arrival|departure}]
     alarm_alerts: [{studio, time 'HH:MM', stage 'PENDING'|'ALARM'}] — alarm-trigger
@@ -1645,12 +2028,21 @@ def fetch_arm_events(win_start):
     ids = _gmail_ids(h, label_id, f"after:{int(win_start.timestamp())}")
     floor_ms = int(win_start.timestamp()) * 1000
     out, alerts = [], []
-    for mid in ids:
+
+    def read(mid):
         r = requests.get(f"{GMAIL_API}/messages/{mid}", headers=h,
                          params={"format": "metadata", "metadataHeaders": "Subject"},
                          timeout=30)
+        _count_status("gmail", r.status_code)
         r.raise_for_status()
-        msg = r.json()
+        return r.json()
+
+    # One metadata GET per message, ~0.2 s each and serial until 2026-09-20.
+    # The pool reads them together; the loop below still sees them in Gmail's
+    # newest-first order, so nothing downstream can tell the difference.
+    msgs = (pool.map("gmail:messages", read, ids) if pool is not None
+            else map(read, ids))
+    for msg in msgs:
         internal_ms = int(msg.get("internalDate", "0"))
         if internal_ms < floor_ms:
             continue
@@ -1675,7 +2067,8 @@ def fetch_arm_events(win_start):
         if parsed:
             out.append(parsed)
     prior = fetch_prior_state(h, label_id,
-                              STUDIO_IDS - {e["studio"] for e in out}, win_start)
+                              STUDIO_IDS - {e["studio"] for e in out}, win_start,
+                              pool=pool)
     return out, alerts, prior
 
 
@@ -2941,7 +3334,7 @@ HTA_ACTION_PREFIX = "🔔 HTA not sent — "
 ACTIONS_DB = "760a2e65-5c69-4b6f-bd4a-2b185ece0973"
 
 
-def fetch_hta_watch_bookings(token, base_day):
+def fetch_hta_watch_bookings(token, base_day, pool=None, memo=None):
     """Today's and tomorrow's FBS / Monitor / Viewing rows, for hta_verdicts().
 
     Reduced projection: row id, artist id, studio, date, start clock, tier, the
@@ -2956,7 +3349,7 @@ def fetch_hta_watch_bookings(token, base_day):
         "page_size": 100,
     })
     out = []
-    for row in with_walkthrough_history(token, rows):
+    for row in with_walkthrough_history(token, rows, pool=pool, memo=memo):
         p = row.get("properties", {})
         status = (_prop_text(p.get("Booking Status")) or "").lower()
         if "cancel" in status or "missed" in status or "complete" in status:
@@ -3670,7 +4063,7 @@ def _notion_blocks(token, page_id):
         params = {"page_size": 100}
         if cursor:
             params["start_cursor"] = cursor
-        r = requests.get(url, headers=h, params=params, timeout=30)
+        r = _notion_get(url, h, params=params)
         if r.status_code != 200:
             raise RuntimeError(f"{r.status_code} {r.text[:200]}")
         data = r.json()
@@ -3934,6 +4327,14 @@ def fetch_usage_report(token):
         if rep:
             return rep
     return None
+
+
+def _lease_wants_usage(lease):
+    """True when the lease carries day totals but no per-job lines — the case
+    the FLEET USAGE block fills in. One predicate for the fetch and the merge,
+    so the read goes out exactly when it used to."""
+    return bool(lease and (lease.get("usage") or {}).get("today")
+                and not lease["usage"]["today"].get("jobs"))
 
 
 def merge_usage_report(lease, report):
@@ -4283,6 +4684,14 @@ def prepare_board_events(events):
 # assemble + splice
 # ─────────────────────────────────────────────────────────────────────────────
 def build_data(now):
+    pool = FetchPool()
+    try:
+        return _build_data(now, pool)
+    finally:
+        pool.shutdown()
+
+
+def _build_data(now, pool):
     base_day = now.date() if now.hour >= 5 else (now - timedelta(days=1)).date()
     win_start = datetime.combine(base_day, datetime.min.time(), TZ).replace(hour=5)
     win_end = win_start + timedelta(days=1) - timedelta(minutes=1)
@@ -4290,7 +4699,55 @@ def build_data(now):
     ics_map = ics_map_from_env()
     if not any(k in STUDIO_IDS for k in ics_map):
         die("No ICS_URL_<studio> secrets set — cannot build bookings.")
-    events, staff = build_calendar_events(ics_map, win_start, win_end, base_day)
+    token = os.environ.get("NOTION_TOKEN")
+    if not token:
+        die("NOTION_TOKEN missing.")
+
+    # ---- Every source goes out now. ----------------------------------------
+    # Nothing below this block opens a socket of its own except the write-backs
+    # in main(). The APPLY steps that follow consume these in the order they
+    # always ran, so a failure lands in the same try/except with the same note.
+    ahead_end = win_start + timedelta(days=OPEN_SHIFT_LOOKAHEAD_DAYS + 1)   # fetch_open_shifts' window
+    for key, url in ics_map.items():
+        text_fut = _ICS_PREFETCH[url] = pool.submit(f"ics:{key}", fetch_ics_text, url)
+        _ICS_PARSED[(url, win_start, win_end)] = pool.parse(
+            f"parse:{key}", text_fut, parse_ics, win_start, win_end)
+        if key == "Staff":
+            _ICS_PARSED[(url, win_start, ahead_end)] = pool.parse(
+                "parse:Staff-lookahead", text_fut, parse_ics, win_start, ahead_end)
+    skedda_fut = pool.submit("skedda:bookings", skedda_names.fetch_named_bookings,
+                             win_start, win_end)
+    walkthrough = AskOnce(pool)
+    holds_fut = pool.submit("notion:studio-holds", fetch_studio_holds, token, base_day)
+    rows_fut = pool.submit("notion:board-rows", fetch_notion_rows, token,
+                           base_day.isoformat(), pool=pool, memo=walkthrough)
+    texts_fut = pool.submit("notion:inbound-texts", fetch_inbound_texts, token, win_start)
+    messages_fut = pool.submit("notion:message-queue", fetch_pending_messages, token)
+    dispatch_fut = pool.submit("notion:message-dispatch", fetch_message_dispatch,
+                               token, win_start, win_end)
+    hta_bookings_fut = pool.submit("notion:hta-bookings", fetch_hta_watch_bookings,
+                                   token, base_day, pool=pool, memo=walkthrough)
+    hta_rows_fut = pool.submit("notion:hta-rows", fetch_hta_rows, token,
+                               now - timedelta(days=HTA_LOOKBACK_DAYS + 2))
+    access_fut = pool.submit("notion:open-access-rows", fetch_open_access_rows, token)
+    door_fut = panel_fut = mail_fut = None
+    if DOOR_HISTORY_URL and ARM_HISTORY_TOKEN:
+        door_fut = pool.submit("alarm:door-history", fetch_door_events, win_start)
+    if ARM_HISTORY_URL and ARM_HISTORY_TOKEN:
+        panel_fut = pool.submit("alarm:arm-history", fetch_arm_history, win_start)
+    if os.environ.get("GMAIL_REFRESH_TOKEN"):
+        mail_fut = pool.submit("gmail:adt-feed", fetch_arm_events, win_start, pool=pool)
+    robots_fut = pool.submit("notion:run-monitor", fetch_robots, token, now)
+    lease_fut = pool.submit("notion:lease", fetch_lease, token, now)
+    usage_fut = pool.then("notion:usage-report", lease_fut,
+                          lambda lease: fetch_usage_report(token) if _lease_wants_usage(lease) else None)
+    climate_fut = pool.submit("notion:thermal-log", fetch_climate, token, now)
+    weather_fut = pool.submit("notion:thermal-model", fetch_weatherman_rules, token)
+    reports_fut = pool.submit("notion:workflow-reports", fetch_reports, token, now)
+
+    # ---- Apply, in the order the board has always been assembled. -----------
+    with timed("apply:calendar (waits on ics:*)"):
+        events, staff = build_calendar_events(ics_map, win_start, win_end, base_day)
     # Shifts tab: open placeholders, today + lookahead. Soft source — a failed
     # fetch costs the Open list this edition, never the board. fetch_ics exits
     # via die() on failure, so SystemExit must be absorbed here too.
@@ -4301,40 +4758,41 @@ def build_data(now):
     except (Exception, SystemExit) as e:  # noqa: BLE001
         open_shifts = []
         emit_fallback_note(f"Staff ICS lookahead failed ({e}); open shifts absent this edition.")
-    events, skedda_note = enrich_names_from_skedda(events, win_start, win_end)
+    with timed("apply:skedda (waits on skedda:bookings)"):
+        events, skedda_note = enrich_names_from_skedda(events, win_start, win_end, skedda_fut)
     if skedda_note:
         print(f"NOTE: {skedda_note}")
 
-    token = os.environ.get("NOTION_TOKEN")
-    if not token:
-        die("NOTION_TOKEN missing.")
     # Staff blocks. Notion is the PRIMARY source (see HOLDS_DS): this runner has
     # no Skedda credential, so a direct read answers only on a developer's
     # machine. Marking runs before join_notion so a hold can never take a
     # renter's tier row. Soft: a failed read costs the Staff pills and falls
     # back to the title-only is_cleaning() detector, never the board.
     try:
-        marked = mark_skedda_holds(events, fetch_studio_holds(token, base_day),
+        marked = mark_skedda_holds(events, pool.result("notion:studio-holds", holds_fut),
                                    base_day)
         if marked:
             print(f"NOTE: 🚧 Studio Holds marked {marked} card(s) as staff.")
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Studio Holds fetch failed ({e}); staff blocks fall "
                            f"back to title detection this edition.")
-    events = join_notion(events, parse_notion(fetch_notion_rows(token, base_day.isoformat())))
+    events = join_notion(events, parse_notion(pool.result("notion:board-rows", rows_fut)))
     # Authorized users count as expected at the keypad. Soft, per booking.
-    events = fetch_authorized_names(token, events)
+    # Reads only the artists that joined a card — the same pages as before —
+    # so it waits for the join; the pages themselves are read side by side.
+    with timed("notion:authorized-names"):
+        events = fetch_authorized_names(token, events, pool=pool)
     # Heard-from-them — soft: if the ledger is unreadable, the No GTG chip simply
     # behaves as it did before this existed (shown), never the reverse. Failing
     # this read must not HIDE a warning.
     try:
-        events = apply_heard(events, fetch_inbound_texts(token, win_start))
+        events = apply_heard(events, pool.result("notion:inbound-texts", texts_fut))
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Correspondence fetch failed ({e}); No GTG chips not text-cleared.")
     # Messages tab — same soft posture: an unreadable queue costs the tab's
     # list this edition, never the board.
     try:
-        messages = fetch_pending_messages(token)
+        messages = pool.result("notion:message-queue", messages_fut)
     except Exception as e:  # noqa: BLE001
         messages = []
         emit_fallback_note(f"Message Queue fetch failed ({e}); Messages tab empty this edition.")
@@ -4346,7 +4804,7 @@ def build_data(now):
     # connector outage into dozens of false MISSING warnings.
     try:
         events = apply_message_dispatch(
-            events, fetch_message_dispatch(token, win_start, win_end), base_day)
+            events, pool.result("notion:message-dispatch", dispatch_fut), base_day)
     except Exception as e:  # noqa: BLE001
         for event in events:
             event["dispatch"] = []
@@ -4356,8 +4814,8 @@ def build_data(now):
     # soft posture: an unreadable read costs the HTA pills and the Actions
     # write-back this edition, never the board, and never a false MISSING.
     try:
-        hta_bookings = fetch_hta_watch_bookings(token, base_day)
-        hta_rows = fetch_hta_rows(token, now - timedelta(days=HTA_LOOKBACK_DAYS + 2))
+        hta_bookings = pool.result("notion:hta-bookings", hta_bookings_fut)
+        hta_rows = pool.result("notion:hta-rows", hta_rows_fut)
         verdicts = hta_verdicts(hta_bookings, hta_rows, now)
         events = apply_hta_watch(events, verdicts)
     except Exception as e:  # noqa: BLE001
@@ -4367,7 +4825,8 @@ def build_data(now):
     # Access pills — soft source, same posture as Robots/Reports: an unreadable
     # Actions DB costs the pills, never the board.
     try:
-        events = flag_access_gaps(events, fetch_open_access_rows(token), base_day, verdicts)
+        events = flag_access_gaps(events, pool.result("notion:open-access-rows", access_fut),
+                                  base_day, verdicts)
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Actions fetch failed ({e}); access pills absent this edition.")
 
@@ -4396,9 +4855,9 @@ def build_data(now):
     # doors — the websocket event ledger (/door-history). The NAME source, and
     # better-timed than the panel tick. It can have recorded outage gaps, which
     # is why the panel ledger below stays on as the timeline backstop.
-    if DOOR_HISTORY_URL and ARM_HISTORY_TOKEN:
+    if door_fut is not None:
         try:
-            door_events, door_gaps, door_covers_since = fetch_door_events(win_start)
+            door_events, door_gaps, door_covers_since = pool.result("alarm:door-history", door_fut)
             arm_feed["doors"] = "ok"
         except Exception as e:          # noqa: BLE001 — soft: panel ledger still answers
             arm_feed["doors"] = "failed"
@@ -4406,9 +4865,10 @@ def build_data(now):
     else:
         arm_feed["doors"] = "unconfigured"
 
-    if ARM_HISTORY_URL and ARM_HISTORY_TOKEN:
+    if panel_fut is not None:
         try:
-            panel_events, arm_feed["updatedAt"], arm_feed["polledAt"] = fetch_arm_history(win_start)
+            panel_events, arm_feed["updatedAt"], arm_feed["polledAt"] = pool.result(
+                "alarm:arm-history", panel_fut)
             arm_feed["panel"] = panel_status(arm_feed["polledAt"], datetime.now(TZ))
             if arm_feed["panel"] == "stale":
                 print(f"NOTE: panel arm-history poller stale (polled_at {arm_feed['polledAt']}).")
@@ -4418,9 +4878,9 @@ def build_data(now):
     else:
         arm_feed["panel"] = "unconfigured"
 
-    if os.environ.get("GMAIL_REFRESH_TOKEN"):
+    if mail_fut is not None:
         try:
-            mail_events, alarm_alerts, panel_prior = fetch_arm_events(win_start)
+            mail_events, alarm_alerts, panel_prior = pool.result("gmail:adt-feed", mail_fut)
             arm_feed["mail"] = "ok"
         except SystemExit:
             raise                       # auth failure already died RED
@@ -4527,7 +4987,7 @@ def build_data(now):
     # Robots tab (soft source: page must never die because the roster is unreadable)
     robots, robots_note = None, None
     try:
-        robots = fetch_robots(token, now)
+        robots = pool.result("notion:run-monitor", robots_fut)
     except Exception as e:  # noqa: BLE001
         robots_note = "Run Monitor unreadable — share the 🚥 Run Monitor DB with the integration."
         emit_fallback_note(f"Run Monitor fetch failed ({e}); Robots tab shows a notice.")
@@ -4537,27 +4997,27 @@ def build_data(now):
     # down, and it must never be guessed at from the roster.
     lease, lease_note = None, None
     try:
-        lease = fetch_lease(token, now)
+        lease = pool.result("notion:lease", lease_fut)
     except Exception as e:  # noqa: BLE001
         lease_note = "Lease unreadable — share the ⚖️ Active Runtime page with the integration."
         emit_fallback_note(f"Lease fetch failed ({e}); Robots tab shows no ownership panel.")
     # Per-agent usage from The Mechanic's FLEET USAGE block — softest of all:
     # a miss only leaves the Usage tab's by-agent lane saying so.
-    if lease and (lease.get("usage") or {}).get("today") and not lease["usage"]["today"].get("jobs"):
+    if _lease_wants_usage(lease):
         try:
-            merge_usage_report(lease, fetch_usage_report(token))
+            merge_usage_report(lease, pool.result("notion:usage-report", usage_fut))
         except Exception as e:  # noqa: BLE001
             emit_fallback_note(f"Usage report fetch failed ({e}); Usage tab shows day totals only.")
 
     # Studio climate for the Weatherman line — same soft posture.
     climate = None
     try:
-        climate = fetch_climate(token, now)
+        climate = pool.result("notion:thermal-log", climate_fut)
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Thermal Log fetch failed ({e}); Weatherman line shows no readings.")
     weather_rules = None
     try:
-        weather_rules = fetch_weatherman_rules(token)
+        weather_rules = pool.result("notion:thermal-model", weather_fut)
     except Exception as e:  # noqa: BLE001
         emit_fallback_note(f"Thermal Model fetch failed ({e}); Weatherman rules show code rules only.")
 
@@ -4565,7 +5025,7 @@ def build_data(now):
     # notice, it never takes the board down.
     reports, reports_note = None, None
     try:
-        reports = fetch_reports(token, now)
+        reports = pool.result("notion:workflow-reports", reports_fut)
     except Exception as e:  # noqa: BLE001
         reports_note = "Workflow Reports unreadable — share the 📊 Workflow Reports DB with the integration."
         emit_fallback_note(f"Workflow Reports fetch failed ({e}); Reports tab shows a notice.")
@@ -4770,6 +5230,12 @@ def write_open_shifts(data):
 
 
 def main():
+    # Line-buffered: the Actions log stamps each line as it arrives, so the
+    # TIMING: lines read as a timeline instead of one flush at exit.
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+    except (AttributeError, ValueError):   # not a real text stream (tests)
+        pass
     now = datetime.now(TZ)
     # No time gate since 2026-09-05. Bookings regularly cross midnight (socials
     # ending 02:15), so the board updates through the night; 03:00–06:59 the
@@ -4782,12 +5248,16 @@ def main():
     # Internal — booking ids, artist ids and Skedda titles. Popped BEFORE the
     # pages are spliced so it can never reach the public payload.
     hta = data.pop("_hta_verdicts", [])
-    open(OUTPUT, "w", encoding="utf-8").write(splice(data))
-    open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
-    write_booking_state(data, fallback)
-    write_open_shifts(data)
-    sync_booking_status(data, fallback, now)
-    sync_hta_watch(hta, now)
+    with timed("write:pages"):
+        open(OUTPUT, "w", encoding="utf-8").write(splice(data))
+        open(OUTPUT_MOBILE, "w", encoding="utf-8").write(splice(data, TEMPLATE_MOBILE))
+        write_booking_state(data, fallback)
+        write_open_shifts(data)
+    with timed("sync:booking-status"):
+        sync_booking_status(data, fallback, now)
+    with timed("sync:hta-watch"):
+        sync_hta_watch(hta, now)
+    print_timing_summary()
     # Written last, so it can never advertise an edition the pages don't carry yet.
     with open(VERSION, "w", encoding="utf-8") as fh:
         json.dump({"generatedAtISO": data["generatedAtISO"],
@@ -4800,4 +5270,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit as e:
+        # A fatal source (die) while other reads are still in flight: leave now
+        # rather than after each of them has timed out — the interpreter would
+        # otherwise join the pool's threads on the way out. Same exit code.
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(e.code if isinstance(e.code, int) else 1)
