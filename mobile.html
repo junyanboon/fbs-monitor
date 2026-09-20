@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 20, 2026",
   "shiftBaseDay": "2026-09-20",
-  "generatedAt": "Sep 20, 5:26 PM ET",
-  "generatedAtISO": "2026-09-20T17:26:36-04:00",
+  "generatedAt": "Sep 20, 5:32 PM ET",
+  "generatedAtISO": "2026-09-20T17:32:05-04:00",
   "studios": [
     {
       "id": "509A",
@@ -340,10 +340,10 @@ const DATA = /*__DATA__*/{
         "509B"
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "10:00",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -375,10 +375,10 @@ const DATA = /*__DATA__*/{
         "509B"
       ],
       "heard": true,
-      "arrived": null,
+      "arrived": "10:00",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -527,11 +527,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:36",
+      "departed": "11:12",
       "facilitator": "Jennifer Gauthier",
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "",
+      "departed_by": "Jennifer Gauthier",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -551,12 +551,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:16",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Risa Waldman",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -629,10 +629,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "09:30",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -653,14 +653,14 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:30",
+      "departed": "11:46",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Matthew Jadd",
       "arrived_foreign": false,
       "departed_foreign": false,
-      "assumed": null,
+      "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 10.5,
@@ -677,12 +677,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "11:46",
+      "departed": "13:28",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_by": "Junyan Boon",
+      "departed_by": "Laura Flores",
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -701,11 +701,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "13:29",
+      "departed": "15:04",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Aakanksha Patel",
+      "departed_by": "Aakanksha Patel",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1049,6 +1049,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "CX-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "AI (automation)",
+      "created": "Sep 20 · 17:26",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1118,6 +1129,51 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
+      "name": "",
+      "time": "09:07",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789909620000,
+      "source": "panel"
+    },
+    {
+      "studio": "901",
+      "name": "",
+      "time": "09:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789911002000,
+      "source": "panel"
+    },
+    {
+      "studio": "693",
+      "name": "",
+      "time": "09:36",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789911360000,
+      "source": "panel"
+    },
+    {
+      "studio": "509B",
+      "name": "",
+      "time": "10:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789912801000,
+      "source": "panel"
+    },
+    {
+      "studio": "509A",
+      "name": "",
+      "time": "10:00",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789912801000,
+      "source": "panel"
+    },
+    {
+      "studio": "527",
       "name": "Scott Vandenberg",
       "time": "10:19",
       "kind": "departure",
@@ -1126,11 +1182,57 @@ const DATA = /*__DATA__*/{
     },
     {
       "studio": "527",
+      "name": "",
+      "time": "10:24",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789914240000,
+      "source": "panel"
+    },
+    {
+      "studio": "527",
       "name": "Jia Chian Lee",
       "time": "10:48",
       "kind": "arrival",
       "remote": false,
-      "ts": 1789915720000
+      "ts": 1789915720266,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Jennifer Gauthier",
+      "time": "11:12",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789917169538,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Risa Waldman",
+      "time": "11:16",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789917373302,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Matthew Jadd",
+      "time": "11:46",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789919165970,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Junyan Boon",
+      "time": "11:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789919169674,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1138,7 +1240,26 @@ const DATA = /*__DATA__*/{
       "time": "12:14",
       "kind": "departure",
       "remote": false,
-      "ts": 1789920883000
+      "ts": 1789920883198,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Laura Flores",
+      "time": "13:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789925335570,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Aakanksha Patel",
+      "time": "13:29",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789925365691,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1146,7 +1267,17 @@ const DATA = /*__DATA__*/{
       "time": "13:58",
       "kind": "arrival",
       "remote": false,
-      "ts": 1789927110000
+      "ts": 1789927109770,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Aakanksha Patel",
+      "time": "15:04",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789931055244,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1154,7 +1285,26 @@ const DATA = /*__DATA__*/{
       "time": "15:09",
       "kind": "departure",
       "remote": false,
-      "ts": 1789931370000
+      "ts": 1789931370351,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "15:15",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1789931703327,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "15:15",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1789931705124,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1162,7 +1312,8 @@ const DATA = /*__DATA__*/{
       "time": "15:46",
       "kind": "arrival",
       "remote": false,
-      "ts": 1789933574000
+      "ts": 1789933574467,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1170,7 +1321,8 @@ const DATA = /*__DATA__*/{
       "time": "17:13",
       "kind": "departure",
       "remote": false,
-      "ts": 1789938831000
+      "ts": 1789938830492,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1178,51 +1330,11 @@ const DATA = /*__DATA__*/{
       "time": "17:18",
       "kind": "arrival",
       "remote": false,
-      "ts": 1789939125000
+      "ts": 1789939125500,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "arrival",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "509A",
-      "time": "10:00",
-      "ts": 1789912801000,
-      "when": "Sun 10:00"
-    },
-    "509B": {
-      "kind": "arrival",
-      "name": "",
-      "remote": false,
-      "source": "panel",
-      "studio": "509B",
-      "time": "10:00",
-      "ts": 1789912801000,
-      "when": "Sun 10:00"
-    },
-    "693": {
-      "kind": "arrival",
-      "name": "Risa Waldman",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "11:16",
-      "ts": 1789917373302,
-      "when": "Sun 11:16"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "901",
-      "time": "15:15",
-      "ts": 1789931705124,
-      "when": "Sun 15:15"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [
     {
       "studio": "527",
@@ -1233,13 +1345,63 @@ const DATA = /*__DATA__*/{
   ],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
-    "doors": "failed",
-    "updatedAt": null,
-    "polledAt": null,
-    "doorGaps": [],
-    "down": true
+    "doors": "ok",
+    "updatedAt": "2026-09-20T21:23:00+00:00",
+    "polledAt": "2026-09-20T21:32:00+00:00",
+    "mailCheck": {
+      "matched": 7,
+      "inGap": 0,
+      "missed": [
+        "527 departure 10:19 (Scott Vandenberg)",
+        "527 arrival 09:00 (Scott Vandenberg)"
+      ],
+      "missedCount": 2
+    },
+    "doorGaps": [
+      {
+        "since": "2026-09-20T14:24:11.445301Z",
+        "until": "2026-09-20T14:24:13.757515Z"
+      },
+      {
+        "since": "2026-09-20T16:40:19.265494Z",
+        "until": "2026-09-20T16:40:24.292068Z"
+      },
+      {
+        "since": "2026-09-20T16:40:24.335516Z",
+        "until": "2026-09-20T16:40:37.405434Z"
+      },
+      {
+        "since": "2026-09-20T17:05:08.196938Z",
+        "until": "2026-09-20T17:05:21.371699Z"
+      },
+      {
+        "since": "2026-09-20T17:48:35.143162Z",
+        "until": "2026-09-20T17:48:35.624738Z"
+      },
+      {
+        "since": "2026-09-20T17:54:08.499205Z",
+        "until": "2026-09-20T17:54:08.828344Z"
+      },
+      {
+        "since": "2026-09-20T18:25:33.233655Z",
+        "until": "2026-09-20T18:25:33.550657Z"
+      },
+      {
+        "since": "2026-09-20T18:25:33.650092Z",
+        "until": "2026-09-20T18:26:25.511371Z"
+      },
+      {
+        "since": "2026-09-20T20:31:09.444977Z",
+        "until": "2026-09-20T20:31:09.599023Z"
+      },
+      {
+        "since": "2026-09-20T20:31:14.236686Z",
+        "until": "2026-09-20T20:31:22.623984Z"
+      }
+    ],
+    "down": false
   },
   "robots": [
     {
@@ -1290,7 +1452,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:23:00-04:00"
+      "lastISO": "2026-09-20T17:29:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1300,7 +1462,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T16:25:00-04:00"
+      "lastISO": "2026-09-20T17:25:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1320,7 +1482,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:15:00-04:00"
+      "lastISO": "2026-09-20T17:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1330,7 +1492,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:25:00-04:00"
+      "lastISO": "2026-09-20T17:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1340,7 +1502,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:15:00-04:00"
+      "lastISO": "2026-09-20T17:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1350,7 +1512,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:25:00-04:00"
+      "lastISO": "2026-09-20T17:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1360,7 +1522,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:26:00-04:00"
+      "lastISO": "2026-09-20T17:31:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1370,7 +1532,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T16:20:00-04:00"
+      "lastISO": "2026-09-20T17:20:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1380,7 +1542,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:20:00-04:00"
+      "lastISO": "2026-09-20T17:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1520,7 +1682,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T17:22:00-04:00"
+      "lastISO": "2026-09-20T17:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1669,21 +1831,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-20",
-        "fires": 42,
-        "promptTokens": 114587568,
-        "cachedTokens": 102879822,
+        "fires": 44,
+        "promptTokens": 121088980,
+        "cachedTokens": 108939168,
         "cachedPct": 90,
-        "completionTokens": 772551,
+        "completionTokens": 811616,
         "errors": 1,
         "maxFireTokens": 10521973,
         "maxFireJob": "The Concierge",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 21,
-            "calls": 650,
-            "promptTokens": 50717568,
-            "cachedTokens": 44646956,
+            "fires": 22,
+            "calls": 699,
+            "promptTokens": 54368133,
+            "cachedTokens": 48074785,
             "cachedPct": 88,
             "completionTokens": null,
             "errors": 0,
@@ -1704,11 +1866,11 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Concierge — Closeout",
-            "fires": 4,
-            "calls": 188,
-            "promptTokens": 13961604,
-            "cachedTokens": 13961604,
-            "cachedPct": 100,
+            "fires": 5,
+            "calls": 204,
+            "promptTokens": 16812451,
+            "cachedTokens": 15382409,
+            "cachedPct": 91,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -1790,7 +1952,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T17:15:31-04:00",
+      "asOfISO": "2026-09-20T17:30:35-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Concierge single fire 10,521,973 prompt tokens (limit 10,000,000)",
@@ -1799,7 +1961,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T17:15:28-04:00"
+      "jobsAsOfISO": "2026-09-20T17:30:33-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2033,7 +2195,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 45,
             "whenISO": "2026-09-20T17:05:00-04:00",
-            "ageMin": 21,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2045,7 +2207,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-20T17:05:00-04:00",
-            "ageMin": 21,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2103,21 +2265,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-20",
-        "fires": 42,
-        "promptTokens": 114587568,
-        "cachedTokens": 102879822,
+        "fires": 44,
+        "promptTokens": 121088980,
+        "cachedTokens": 108939168,
         "cachedPct": 90,
-        "completionTokens": 772551,
+        "completionTokens": 811616,
         "errors": 1,
         "maxFireTokens": 10521973,
         "maxFireJob": "The Concierge",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 21,
-            "calls": 650,
-            "promptTokens": 50717568,
-            "cachedTokens": 44646956,
+            "fires": 22,
+            "calls": 699,
+            "promptTokens": 54368133,
+            "cachedTokens": 48074785,
             "cachedPct": 88,
             "completionTokens": null,
             "errors": 0,
@@ -2138,11 +2300,11 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Concierge — Closeout",
-            "fires": 4,
-            "calls": 188,
-            "promptTokens": 13961604,
-            "cachedTokens": 13961604,
-            "cachedPct": 100,
+            "fires": 5,
+            "calls": 204,
+            "promptTokens": 16812451,
+            "cachedTokens": 15382409,
+            "cachedPct": 91,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2224,7 +2386,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T17:15:31-04:00",
+      "asOfISO": "2026-09-20T17:30:35-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Concierge single fire 10,521,973 prompt tokens (limit 10,000,000)",
@@ -2233,9 +2395,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T17:15:28-04:00"
+      "jobsAsOfISO": "2026-09-20T17:30:33-04:00"
     },
-    "stamp": "17:26"
+    "stamp": "17:32"
   }
 }/*__END_DATA__*/;
 
