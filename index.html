@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 20, 2026",
   "shiftBaseDay": "2026-09-20",
-  "generatedAt": "Sep 20, 3:06 PM ET",
-  "generatedAtISO": "2026-09-20T15:06:19-04:00",
+  "generatedAt": "Sep 20, 3:11 PM ET",
+  "generatedAtISO": "2026-09-20T15:11:18-04:00",
   "studios": [
     {
       "id": "509A",
@@ -680,10 +680,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": "13:58",
-      "departed": null,
+      "departed": "15:09",
       "facilitator": null,
       "arrived_by": "Simona Horova",
-      "departed_by": null,
+      "departed_by": "Simona Horova",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -727,13 +727,13 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "blocked",
-          "time": null
+          "state": "awaiting",
+          "time": "15:30"
         },
         {
           "kind": "EOB",
-          "state": "blocked",
-          "time": null
+          "state": "awaiting",
+          "time": "19:30"
         }
       ],
       "booking_studios": [],
@@ -1090,36 +1090,36 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "ade197d37110",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T22:45:00-04:00",
-      "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "ade197d37110",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T22:45:00-04:00",
-      "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "a654f30736cc",
+      "date": "2026-09-20",
+      "startISO": "2026-09-20T22:45:00-04:00",
+      "endISO": "2026-09-20T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "ade197d37110",
+      "date": "2026-09-20",
+      "startISO": "2026-09-20T22:45:00-04:00",
+      "endISO": "2026-09-20T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "ade197d37110",
       "date": "2026-09-20",
       "startISO": "2026-09-20T22:45:00-04:00",
       "endISO": "2026-09-20T23:15:00-04:00",
@@ -1293,6 +1293,30 @@ const DATA = /*__DATA__*/{
       "created": "Sep 20 · 10:05",
       "send_after": null,
       "send_after_iso": null
+    },
+    {
+      "code": "AVA-sweep-•••",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 20 · 11:06",
+      "send_after": "15:30",
+      "send_after_iso": "2026-09-20T15:30:00-04:00",
+      "label": "AVA for Zoey Gould in Studio 527"
+    },
+    {
+      "code": "EOB-sweep-•••",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 20 · 11:06",
+      "send_after": "19:30",
+      "send_after_iso": "2026-09-20T19:30:00-04:00",
+      "label": "EOB for Zoey Gould in Studio 527"
     },
     {
       "code": "PBF — Matthew Jadd ••• [pbf:3de7503281c481c2bb5fcaa6ed295de9]",
@@ -1554,6 +1578,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789931055244,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Simona Horova",
+      "time": "15:09",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789931370351,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1563,10 +1596,10 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-20T19:06:00+00:00",
-    "polledAt": "2026-09-20T19:06:00+00:00",
+    "updatedAt": "2026-09-20T19:11:00+00:00",
+    "polledAt": "2026-09-20T19:11:00+00:00",
     "mailCheck": {
-      "matched": 3,
+      "matched": 4,
       "inGap": 0,
       "missed": [
         "527 departure 10:19 (Scott Vandenberg)",
@@ -1659,7 +1692,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T15:03:00-04:00"
+      "lastISO": "2026-09-20T15:09:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1699,7 +1732,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T15:05:00-04:00"
+      "lastISO": "2026-09-20T15:10:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1709,7 +1742,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T14:55:00-04:00"
+      "lastISO": "2026-09-20T15:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1719,7 +1752,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T15:05:00-04:00"
+      "lastISO": "2026-09-20T15:10:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1729,7 +1762,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T15:05:00-04:00"
+      "lastISO": "2026-09-20T15:10:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1759,7 +1792,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T14:07:00-04:00"
+      "lastISO": "2026-09-20T15:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1879,7 +1912,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T14:10:00-04:00"
+      "lastISO": "2026-09-20T15:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1889,7 +1922,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T15:01:00-04:00"
+      "lastISO": "2026-09-20T15:07:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2402,7 +2435,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-20T15:05:00-04:00",
-            "ageMin": 1,
+            "ageMin": 6,
             "stale": false
           },
           {
@@ -2414,7 +2447,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 53,
             "whenISO": "2026-09-20T15:05:00-04:00",
-            "ageMin": 1,
+            "ageMin": 6,
             "stale": false
           }
         ],
@@ -2604,7 +2637,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-20T15:00:17-04:00"
     },
-    "stamp": "15:06"
+    "stamp": "15:11"
   }
 }/*__END_DATA__*/;
 
