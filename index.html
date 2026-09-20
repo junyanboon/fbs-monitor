@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 20, 2026",
   "shiftBaseDay": "2026-09-20",
-  "generatedAt": "Sep 20, 11:32 AM ET",
-  "generatedAtISO": "2026-09-20T11:32:53-04:00",
+  "generatedAt": "Sep 20, 11:47 AM ET",
+  "generatedAtISO": "2026-09-20T11:47:06-04:00",
   "studios": [
     {
       "id": "509A",
@@ -744,13 +744,13 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "scheduled",
-          "time": "15:30"
+          "state": "blocked",
+          "time": null
         },
         {
           "kind": "EOB",
-          "state": "scheduled",
-          "time": "19:15"
+          "state": "blocked",
+          "time": null
         }
       ],
       "booking_studios": [],
@@ -911,10 +911,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": "10:30",
-      "departed": null,
+      "departed": "11:46",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Matthew Jadd",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": "open",
@@ -934,12 +934,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:46",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Junyan Boon",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -1017,18 +1017,6 @@ const DATA = /*__DATA__*/{
   "staff": [],
   "openShifts": [
     {
-      "role": "FBS",
-      "studio": "901",
-      "day_offset": 0,
-      "start": 11.25,
-      "end": 11.75,
-      "id": "23dc212959cf",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T11:15:00-04:00",
-      "endISO": "2026-09-20T11:45:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "527",
       "day_offset": 0,
@@ -1102,11 +1090,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 0,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1114,11 +1102,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 0,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1471,30 +1459,6 @@ const DATA = /*__DATA__*/{
       "send_after": "14:45",
       "send_after_iso": "2026-09-20T14:45:00-04:00",
       "label": "EOB for Simona Horova in Studio 527"
-    },
-    {
-      "code": "AVA-sweep-•••",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 20 · 11:06",
-      "send_after": "15:30",
-      "send_after_iso": "2026-09-20T15:30:00-04:00",
-      "label": "AVA for Zoey Gould in Studio 527"
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 20 · 11:06",
-      "send_after": "19:15",
-      "send_after_iso": "2026-09-20T19:15:00-04:00",
-      "label": "EOB for Zoey Gould in Studio 527"
     }
   ],
   "attention": [
@@ -1600,6 +1564,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789917373302,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Matthew Jadd",
+      "time": "11:46",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789919165970,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Junyan Boon",
+      "time": "11:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789919169674,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1610,7 +1592,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-20T15:22:00+00:00",
-    "polledAt": "2026-09-20T15:33:00+00:00",
+    "polledAt": "2026-09-20T15:47:00+00:00",
     "mailCheck": {
       "matched": 1,
       "inGap": 0,
@@ -1687,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:33:00-04:00"
+      "lastISO": "2026-09-20T11:44:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1697,7 +1679,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T10:47:00-04:00"
+      "lastISO": "2026-09-20T11:47:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1707,7 +1689,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:30:00-04:00"
+      "lastISO": "2026-09-20T11:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1717,7 +1699,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:30:00-04:00"
+      "lastISO": "2026-09-20T11:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1727,7 +1709,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:25:00-04:00"
+      "lastISO": "2026-09-20T11:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1737,7 +1719,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:30:00-04:00"
+      "lastISO": "2026-09-20T11:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1747,7 +1729,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:32:00-04:00"
+      "lastISO": "2026-09-20T11:47:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1767,7 +1749,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:30:00-04:00"
+      "lastISO": "2026-09-20T11:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1867,7 +1849,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:00:00-04:00"
+      "lastISO": "2026-09-20T11:30:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1917,7 +1899,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T11:31:00-04:00"
+      "lastISO": "2026-09-20T11:46:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2177,7 +2159,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T11:30:54-04:00",
+      "asOfISO": "2026-09-20T11:45:52-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2186,7 +2168,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T11:30:50-04:00"
+      "jobsAsOfISO": "2026-09-20T11:45:50-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2416,7 +2398,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-20T11:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 42,
             "stale": false
           },
           {
@@ -2428,7 +2410,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-20T11:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 42,
             "stale": false
           }
         ],
@@ -2607,7 +2589,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T11:30:54-04:00",
+      "asOfISO": "2026-09-20T11:45:52-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2616,9 +2598,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T11:30:50-04:00"
+      "jobsAsOfISO": "2026-09-20T11:45:50-04:00"
     },
-    "stamp": "11:32"
+    "stamp": "11:47"
   }
 }/*__END_DATA__*/;
 
