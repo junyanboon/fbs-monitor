@@ -1,0 +1,142 @@
+name: Verify build equivalence
+
+# Manual only. Proves a build.py change keeps the output byte-identical:
+#   1. main's build.py runs LIVE through tools/http_replay.py, which records
+#      every HTTP exchange and the clock, and writes main's pages.
+#   2. This branch's build.py replays those exchanges (no network, same clock)
+#      twice — serial (BUILD_PARALLEL=0) and parallel — and writes its pages.
+#   3. The pages, the state files, the fallback notes and the NOTE: lines are
+#      diffed. Any byte of difference fails the job.
+#   4. This branch's build.py then runs LIVE once more for a real timing.
+# The recorded fixtures hold live Notion/Gmail/calendar data and stay on the
+# runner. Nothing is uploaded and nothing is committed.
+#
+# Both live runs do what any rebuild does — including the HTA watch write-back
+# in sync_hta_watch(). Serialized with the real rebuilds for that reason.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: rebuild
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      BOOKING_STATUS_SYNC_DISABLED: ${{ vars.BOOKING_STATUS_SYNC_DISABLED }}
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      ICS_URL_509A: ${{ secrets.ICS_URL_509A }}
+      ICS_URL_509B: ${{ secrets.ICS_URL_509B }}
+      ICS_URL_527: ${{ secrets.ICS_URL_527 }}
+      ICS_URL_693: ${{ secrets.ICS_URL_693 }}
+      ICS_URL_901: ${{ secrets.ICS_URL_901 }}
+      ICS_URL_STAFF: ${{ secrets.ICS_URL_STAFF }}
+      GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+      GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+      GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+      ALARM_HISTORY_URL: ${{ secrets.ALARM_HISTORY_URL }}
+      ALARM_HISTORY_TOKEN: ${{ secrets.ALARM_HISTORY_TOKEN }}
+      FORCE_BUILD: "1"
+      DEBUG_ARM: "0"
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Materialize main's tree
+        run: |
+          mkdir -p /tmp/ref && git archive origin/main | tar -x -C /tmp/ref
+          # Same starting state for every run: the builder reads panel-state.json
+          # before it writes it.
+          cp /tmp/ref/panel-state.json /tmp/panel-state.orig
+          cp /tmp/panel-state.orig panel-state.json
+
+      - name: "1. main build.py — live, recording"
+        run: |
+          set -o pipefail
+          python tools/http_replay.py record /tmp/fixtures.json /tmp/ref --env-out /tmp/ref.env \
+            | tee /tmp/ref.log
+          mkdir -p /tmp/out/ref
+          cp /tmp/ref/index.html /tmp/ref/mobile.html /tmp/ref/panel-state.json \
+             /tmp/ref/booking-state.json /tmp/ref/open-shifts.json /tmp/ref/version.json /tmp/out/ref/
+          grep -E '^NOTE:' /tmp/ref.log > /tmp/out/ref/notes.txt || true
+          cp /tmp/ref.env /tmp/out/ref/github.env
+
+      - name: "2a. branch build.py — replay, serial"
+        env:
+          BUILD_PARALLEL: "0"
+        run: |
+          set -o pipefail
+          cp /tmp/panel-state.orig panel-state.json
+          python tools/http_replay.py replay /tmp/fixtures.json "$PWD" --env-out /tmp/serial.env \
+            | tee /tmp/serial.log
+          mkdir -p /tmp/out/serial
+          cp index.html mobile.html panel-state.json booking-state.json open-shifts.json version.json /tmp/out/serial/
+          grep -E '^NOTE:' /tmp/serial.log > /tmp/out/serial/notes.txt || true
+          cp /tmp/serial.env /tmp/out/serial/github.env
+
+      - name: "2b. branch build.py — replay, parallel"
+        run: |
+          set -o pipefail
+          cp /tmp/panel-state.orig panel-state.json
+          python tools/http_replay.py replay /tmp/fixtures.json "$PWD" --env-out /tmp/parallel.env \
+            | tee /tmp/parallel.log
+          mkdir -p /tmp/out/parallel
+          cp index.html mobile.html panel-state.json booking-state.json open-shifts.json version.json /tmp/out/parallel/
+          grep -E '^NOTE:' /tmp/parallel.log > /tmp/out/parallel/notes.txt || true
+          cp /tmp/parallel.env /tmp/out/parallel/github.env
+
+      # main replayed against its own recording: shows on the record that the
+      # reference is not byte-stable where edited calendar instances share a
+      # slot. Informational — it is the reason step 3 allows that one order.
+      - name: "2c. main build.py — replay (self-consistency)"
+        run: |
+          set -o pipefail
+          cp /tmp/panel-state.orig /tmp/ref/panel-state.json
+          python tools/http_replay.py replay /tmp/fixtures.json /tmp/ref --env-out /tmp/refreplay.env \
+            | tee /tmp/refreplay.log
+          mkdir -p /tmp/out/refreplay
+          cp /tmp/ref/index.html /tmp/ref/mobile.html /tmp/ref/panel-state.json \
+             /tmp/ref/booking-state.json /tmp/ref/open-shifts.json /tmp/ref/version.json /tmp/out/refreplay/
+          grep -E '^NOTE:' /tmp/refreplay.log > /tmp/out/refreplay/notes.txt || true
+          cp /tmp/refreplay.env /tmp/out/refreplay/github.env
+          echo "main live vs main replayed (informational):"
+          python tools/compare_build_outputs.py /tmp/out/ref /tmp/out/refreplay --strict || true
+
+      - name: "3. Compare: serial == parallel (strict); branch == main (same-slot order allowed)"
+        run: |
+          set +e
+          fail=0
+          echo "branch serial vs branch parallel — must be byte-identical:"
+          python tools/compare_build_outputs.py /tmp/out/serial /tmp/out/parallel --strict || fail=1
+          echo "main vs branch (parallel) — identical up to same-slot open-shift/staff order:"
+          python tools/compare_build_outputs.py /tmp/out/ref /tmp/out/parallel || fail=1
+          if grep -q 'had no fixture' /tmp/serial.log /tmp/parallel.log; then
+            echo "::error::a replay issued a request main's build never made"
+            grep -A20 'had no fixture' /tmp/serial.log /tmp/parallel.log
+            fail=1
+          fi
+          exit $fail
+
+      - name: "4. branch build.py — live timing (parallel)"
+        if: ${{ !cancelled() }}
+        run: |
+          cp /tmp/panel-state.orig panel-state.json
+          python tools/http_replay.py record /tmp/fixtures2.json "$PWD" --env-out /tmp/live.env
+
+      - name: Scrub fixtures
+        if: always()
+        run: rm -f /tmp/fixtures.json /tmp/fixtures2.json
