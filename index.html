@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 19, 2026",
   "shiftBaseDay": "2026-09-19",
-  "generatedAt": "Sep 19, 9:41 PM ET",
-  "generatedAtISO": "2026-09-19T21:41:15-04:00",
+  "generatedAt": "Sep 19, 9:42 PM ET",
+  "generatedAtISO": "2026-09-19T21:42:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1160,11 +1160,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "527",
+      "studio": "693",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "46ff9d3a9233",
+      "id": "edc0b8e3e939",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1172,11 +1172,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "527",
       "day_offset": 1,
       "start": 19.25,
       "end": 19.75,
-      "id": "edc0b8e3e939",
+      "id": "46ff9d3a9233",
       "date": "2026-09-20",
       "startISO": "2026-09-20T19:15:00-04:00",
       "endISO": "2026-09-20T19:45:00-04:00",
@@ -1687,7 +1687,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-19T23:54:01+00:00",
-    "polledAt": "2026-09-20T01:41:01+00:00",
+    "polledAt": "2026-09-20T01:43:01+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1947,7 +1947,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-19T21:41:00-04:00"
+      "lastISO": "2026-09-19T21:43:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2273,7 +2273,9 @@ const DATA = /*__DATA__*/{
         "completionTokens": 1576213,
         "errors": 0,
         "maxFireTokens": 19001874,
-        "maxFireJob": "The Planner"
+        "maxFireJob": "The Planner",
+        "jobs": [],
+        "runs": []
       },
       "yesterday": {
         "date": "2026-09-18",
@@ -2284,12 +2286,18 @@ const DATA = /*__DATA__*/{
         "completionTokens": 992430,
         "errors": 37,
         "maxFireTokens": 22976914,
-        "maxFireJob": "The Concierge"
+        "maxFireJob": "The Concierge",
+        "jobs": [],
+        "runs": []
       },
       "asOfISO": "2026-09-19T21:31:00-04:00",
       "stale": false,
       "alarm": true,
-      "alarmNote": "The Responder single fire 11,688,034 prompt tokens (limit 10,000,000); The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Planner single fire 19,001,874 prompt tokens (limit 10,000,000); The Cus"
+      "alarmNote": "The Responder single fire 11,688,034 prompt tokens (limit 10,000,000); The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Planner single fire 19,001,874 prompt tokens (limit 10,000,000); The Cus",
+      "limits": {
+        "firePromptTokens": 0,
+        "dayPromptTokens": 0
+      }
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2519,7 +2527,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-19T21:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 37,
             "stale": false
           },
           {
@@ -2531,7 +2539,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-19T21:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 37,
             "stale": false
           }
         ],
@@ -2596,7 +2604,9 @@ const DATA = /*__DATA__*/{
         "completionTokens": 1576213,
         "errors": 0,
         "maxFireTokens": 19001874,
-        "maxFireJob": "The Planner"
+        "maxFireJob": "The Planner",
+        "jobs": [],
+        "runs": []
       },
       "yesterday": {
         "date": "2026-09-18",
@@ -2607,14 +2617,20 @@ const DATA = /*__DATA__*/{
         "completionTokens": 992430,
         "errors": 37,
         "maxFireTokens": 22976914,
-        "maxFireJob": "The Concierge"
+        "maxFireJob": "The Concierge",
+        "jobs": [],
+        "runs": []
       },
       "asOfISO": "2026-09-19T21:31:00-04:00",
       "stale": false,
       "alarm": true,
-      "alarmNote": "The Responder single fire 11,688,034 prompt tokens (limit 10,000,000); The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Planner single fire 19,001,874 prompt tokens (limit 10,000,000); The Cus"
+      "alarmNote": "The Responder single fire 11,688,034 prompt tokens (limit 10,000,000); The Concierge single fire 18,484,442 prompt tokens (limit 10,000,000); The Concierge — Closeout single fire 12,514,267 prompt tokens (limit 10,000,000); The Planner single fire 19,001,874 prompt tokens (limit 10,000,000); The Cus",
+      "limits": {
+        "firePromptTokens": 0,
+        "dayPromptTokens": 0
+      }
     },
-    "stamp": "21:41"
+    "stamp": "21:42"
   }
 }/*__END_DATA__*/;
 
