@@ -589,6 +589,32 @@ fires once an hour (best-effort — GitHub throttles it) so the board rolls to t
 new day at 05:00 instead of freezing on yesterday until the first tick. The
 build skips green until `NOTION_TOKEN` is set.
 
+### How the build spends its time (2026-09-20)
+
+`build.py` fetches every source at once on a thread pool and consumes the
+answers in the order it always did — the apply steps, their try/excepts and
+the fallback notes are unchanged, so the bytes are too. Calendar parsing runs
+in worker processes (the Staff feed alone is ~3 s per window). The step went
+from ~42 s to ~7 s; what is left is the Staff feed: ~3 s for Google to serve
+the ICS, ~3.5 s to parse it.
+
+Every source prints a `TIMING:` line as it finishes and a `TIMING-SUMMARY:`
+block at the end (per-source cost, what the main thread waited on, any
+4xx/5xx counts). Knobs, all env: `BUILD_PARALLEL=0` runs the old serial order
+exactly; `FETCH_WORKERS`, `INNER_WORKERS`, `NOTION_CONCURRENCY` (default 4 —
+Notion allows ~3 req/s with some burst; the summary counts 429s so this can
+be tuned from the log), `PARSE_PROCESSES` (0 = parse inline).
+
+**Proving a build.py change is byte-safe.** Run the "Verify build
+equivalence" workflow (manual) on the branch: it records main's live HTTP
+exchanges through `tools/http_replay.py`, replays them through the branch in
+serial and parallel, and compares with `tools/compare_build_outputs.py`.
+Serial vs parallel must be byte-identical; branch vs main is allowed exactly
+one difference — the order of `openShifts`/`staff` rows sharing a slot, which
+main itself never kept stable (recurring_ical_events yields a series' edited
+instances from an identity-hashed set; the branch pins that order). The
+recorded fixtures hold live Notion/Gmail data and never leave the runner.
+
 ### Returning renters with FBS support
 
 Platform FBS is a support level, not proof that the renter is new to the room.

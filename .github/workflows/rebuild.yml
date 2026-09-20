@@ -62,6 +62,9 @@ jobs:
         if: steps.gate.outputs.ready == 'true'
         with:
           python-version: "3.12"
+          # Wheels cached across runs, keyed on both requirements files. The
+          # install step was ~10 s of every run, mostly the server/ extras.
+          cache: pip
 
       - name: Install deps
         if: steps.gate.outputs.ready == 'true'
