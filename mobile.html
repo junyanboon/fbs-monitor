@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 20, 2026",
   "shiftBaseDay": "2026-09-20",
-  "generatedAt": "Sep 20, 1:17 PM ET",
-  "generatedAtISO": "2026-09-20T13:17:01-04:00",
+  "generatedAt": "Sep 20, 1:32 PM ET",
+  "generatedAtISO": "2026-09-20T13:32:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -509,7 +509,7 @@ const DATA = /*__DATA__*/{
         {
           "kind": "EOB",
           "state": "awaiting",
-          "time": null
+          "time": "19:15"
         }
       ],
       "booking_studios": [],
@@ -694,10 +694,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "11:46",
-      "departed": null,
+      "departed": "13:28",
       "facilitator": null,
       "arrived_by": "Junyan Boon",
-      "departed_by": null,
+      "departed_by": "Laura Flores",
       "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
@@ -723,10 +723,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "13:29",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Aakanksha Patel",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -884,24 +884,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "a654f30736cc",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T22:45:00-04:00",
-      "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "ade197d37110",
+      "date": "2026-09-20",
+      "startISO": "2026-09-20T22:45:00-04:00",
+      "endISO": "2026-09-20T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "a654f30736cc",
       "date": "2026-09-20",
       "startISO": "2026-09-20T22:45:00-04:00",
       "endISO": "2026-09-20T23:15:00-04:00",
@@ -1108,8 +1108,8 @@ const DATA = /*__DATA__*/{
       "studio": "527",
       "raised_by": "Staff (manual)",
       "created": "Sep 20 · 11:06",
-      "send_after": null,
-      "send_after_iso": null,
+      "send_after": "19:15",
+      "send_after_iso": "2026-09-20T19:15:00-04:00",
       "label": "EOB for Zoey Gould in Studio 527"
     },
     {
@@ -1360,6 +1360,24 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789920883198,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Laura Flores",
+      "time": "13:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789925335570,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Aakanksha Patel",
+      "time": "13:29",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789925365691,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1370,7 +1388,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-20T16:17:00+00:00",
-    "polledAt": "2026-09-20T17:17:00+00:00",
+    "polledAt": "2026-09-20T17:32:00+00:00",
     "mailCheck": {
       "matched": 2,
       "inGap": 0,
@@ -1439,7 +1457,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:13:00-04:00"
+      "lastISO": "2026-09-20T13:30:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1449,7 +1467,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T12:25:00-04:00"
+      "lastISO": "2026-09-20T13:25:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1469,7 +1487,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:15:00-04:00"
+      "lastISO": "2026-09-20T13:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1479,7 +1497,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:15:00-04:00"
+      "lastISO": "2026-09-20T13:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1489,7 +1507,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:05:00-04:00"
+      "lastISO": "2026-09-20T13:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1499,7 +1517,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:15:00-04:00"
+      "lastISO": "2026-09-20T13:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1509,7 +1527,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:17:00-04:00"
+      "lastISO": "2026-09-20T13:32:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1519,7 +1537,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T12:20:00-04:00"
+      "lastISO": "2026-09-20T13:20:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1529,7 +1547,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:10:00-04:00"
+      "lastISO": "2026-09-20T13:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1569,7 +1587,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T12:24:00-04:00"
+      "lastISO": "2026-09-20T13:20:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1639,7 +1657,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T12:54:00-04:00"
+      "lastISO": "2026-09-20T13:21:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1679,7 +1697,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T13:16:00-04:00"
+      "lastISO": "2026-09-20T13:31:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1828,22 +1846,34 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-20",
-        "fires": 30,
-        "promptTokens": 79590043,
-        "cachedTokens": 70453716,
+        "fires": 32,
+        "promptTokens": 85743993,
+        "cachedTokens": 76030506,
         "cachedPct": 89,
-        "completionTokens": 589906,
+        "completionTokens": 625042,
         "errors": 0,
         "maxFireTokens": 8484202,
         "maxFireJob": "The Concierge",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 14,
-            "calls": 470,
-            "promptTokens": 37774815,
-            "cachedTokens": 32817108,
+            "fires": 15,
+            "calls": 482,
+            "promptTokens": 38568411,
+            "cachedTokens": 33489454,
             "cachedPct": 87,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Concierge — Closeout",
+            "fires": 3,
+            "calls": 149,
+            "promptTokens": 12433510,
+            "cachedTokens": 11432280,
+            "cachedPct": 92,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -1868,18 +1898,6 @@ const DATA = /*__DATA__*/{
             "promptTokens": 8680875,
             "cachedTokens": 6624034,
             "cachedPct": 76,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Concierge — Closeout",
-            "fires": 2,
-            "calls": 114,
-            "promptTokens": 7073156,
-            "cachedTokens": 7073156,
-            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -1949,7 +1967,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T13:15:12-04:00",
+      "asOfISO": "2026-09-20T13:30:17-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1958,7 +1976,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T13:15:09-04:00"
+      "jobsAsOfISO": "2026-09-20T13:30:13-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2188,7 +2206,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-20T13:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2200,7 +2218,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-20T13:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2258,22 +2276,34 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-20",
-        "fires": 30,
-        "promptTokens": 79590043,
-        "cachedTokens": 70453716,
+        "fires": 32,
+        "promptTokens": 85743993,
+        "cachedTokens": 76030506,
         "cachedPct": 89,
-        "completionTokens": 589906,
+        "completionTokens": 625042,
         "errors": 0,
         "maxFireTokens": 8484202,
         "maxFireJob": "The Concierge",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 14,
-            "calls": 470,
-            "promptTokens": 37774815,
-            "cachedTokens": 32817108,
+            "fires": 15,
+            "calls": 482,
+            "promptTokens": 38568411,
+            "cachedTokens": 33489454,
             "cachedPct": 87,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          },
+          {
+            "job": "The Concierge — Closeout",
+            "fires": 3,
+            "calls": 149,
+            "promptTokens": 12433510,
+            "cachedTokens": 11432280,
+            "cachedPct": 92,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2298,18 +2328,6 @@ const DATA = /*__DATA__*/{
             "promptTokens": 8680875,
             "cachedTokens": 6624034,
             "cachedPct": 76,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Concierge — Closeout",
-            "fires": 2,
-            "calls": 114,
-            "promptTokens": 7073156,
-            "cachedTokens": 7073156,
-            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2379,7 +2397,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-20T13:15:12-04:00",
+      "asOfISO": "2026-09-20T13:30:17-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2388,9 +2406,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-20T13:15:09-04:00"
+      "jobsAsOfISO": "2026-09-20T13:30:13-04:00"
     },
-    "stamp": "13:17"
+    "stamp": "13:32"
   }
 }/*__END_DATA__*/;
 
