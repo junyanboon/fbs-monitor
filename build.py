@@ -5173,7 +5173,13 @@ def _build_data(now, pool):
     # the phantom that killed the fixed window.
     # Mail events ride along for the rare account still emailing.
     if door_events:
-        backstop = panel_backstop(panel_events, door_events)
+        # The mail feed is a named witness too. When the socket is deaf and the
+        # mail still names the event (527, 2026-09-20: Scott Vandenberg 09:00
+        # and 10:19), the panel copy is a restatement of a row the board
+        # already has by name — dedup against both, or it prints twice, the
+        # second time nameless.
+        backstop = panel_backstop(panel_events, door_events + [
+            m for m in (mail_events or []) if m.get("ts")])
         arm_events = sorted(door_events + backstop, key=lambda e: e.get("ts") or 0)
         # The panel ledger is the second witness for EVERY studio. A survivor
         # in no recorded gap means the socket was deaf while claiming to
