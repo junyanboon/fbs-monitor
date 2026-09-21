@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 9:47 AM ET",
-  "generatedAtISO": "2026-09-21T09:47:11-04:00",
+  "generatedAt": "Sep 21, 9:55 AM ET",
+  "generatedAtISO": "2026-09-21T09:55:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1049,7 +1049,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T02:15:02+00:00",
-    "polledAt": "2026-09-21T13:47:00+00:00",
+    "polledAt": "2026-09-21T13:55:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-21T09:15:17.402489Z",
@@ -1122,16 +1122,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-21T06:01:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1139,7 +1129,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:45:00-04:00"
+      "lastISO": "2026-09-21T09:51:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1179,7 +1169,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:47:00-04:00"
+      "lastISO": "2026-09-21T09:48:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1199,7 +1189,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:45:00-04:00"
+      "lastISO": "2026-09-21T09:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1209,7 +1199,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:35:00-04:00"
+      "lastISO": "2026-09-21T09:45:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1219,7 +1209,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:45:00-04:00"
+      "lastISO": "2026-09-21T09:55:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1229,7 +1219,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:46:00-04:00"
+      "lastISO": "2026-09-21T09:55:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1312,6 +1302,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-21T04:08:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-21T10:00:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1379,7 +1379,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:38:00-04:00"
+      "lastISO": "2026-09-21T09:53:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1857,22 +1857,18 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
           "The Morning Text",
-          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
+          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Mechanic",
-          "label": "Due",
-          "lastISO": "2026-09-21T06:01:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "climate",
@@ -1894,7 +1890,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T09:17:00-04:00",
-            "ageMin": 30,
+            "ageMin": 38,
             "stale": false
           },
           {
@@ -1906,7 +1902,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-21T09:17:00-04:00",
-            "ageMin": 30,
+            "ageMin": 38,
             "stale": false
           }
         ],
@@ -2108,7 +2104,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T09:45:27-04:00"
     },
-    "stamp": "09:47"
+    "stamp": "09:55"
   }
 }/*__END_DATA__*/;
 
