@@ -341,6 +341,32 @@ def main():
                        [{"studio": "527", "kind": "arrival",
                          "ts": 1788648007997 + 4 * MIN}]), [])
 
+    # ---- panel_backstop against the mail witness, 2026-09-20 --------------
+    #
+    # The socket was deaf; the ADT email still named Scott Vandenberg's 527
+    # disarm at 09:00 and arm at 10:19. The panel poller wrote the same two
+    # transitions at 09:07 and 10:24, and the board printed them a second
+    # time, nameless. A mail row is a known state like a door row: dedup
+    # against both.
+    mail_527 = [
+        {"studio": "527", "kind": "arrival", "name": "Scott Vandenberg",
+         "ts": 1789909260000},                                          # 09:01
+        {"studio": "527", "kind": "departure", "name": "Scott Vandenberg",
+         "ts": 1789913971000},                                          # 10:19
+    ]
+    panel_527 = [
+        {"studio": "527", "kind": "arrival", "name": "", "ts": 1789909620000},   # 09:07
+        {"studio": "527", "kind": "departure", "name": "", "ts": 1789914240000}, # 10:24
+    ]
+    fails += check("panel restatements of mail-named events are dropped",
+                   build.panel_backstop(panel_527, [] + mail_527), [])
+    fails += check("a panel event the mail did not name survives",
+                   build.panel_backstop(
+                       [{"studio": "901", "kind": "arrival", "name": "",
+                         "ts": 1789911000000}], mail_527),
+                   [{"studio": "901", "kind": "arrival", "name": "",
+                     "ts": 1789911000000}])
+
     # ---- door_ledger_deaf: the morning of 2026-09-20 ------------------------
     #
     # The door listener recorded nothing 09:00-10:24 Toronto and no gap for
