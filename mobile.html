@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 7:11 PM ET",
-  "generatedAtISO": "2026-09-21T19:11:06-04:00",
+  "generatedAt": "Sep 21, 7:12 PM ET",
+  "generatedAtISO": "2026-09-21T19:12:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -895,7 +895,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T22:19:01+00:00",
-    "polledAt": "2026-09-21T23:11:00+00:00",
+    "polledAt": "2026-09-21T23:12:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1041,6 +1041,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-21T17:19:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1048,7 +1058,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T19:06:00-04:00"
+      "lastISO": "2026-09-21T19:12:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1128,7 +1138,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T19:10:00-04:00"
+      "lastISO": "2026-09-21T19:11:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1179,16 +1189,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-21T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T17:19:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1736,16 +1736,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-21T17:19:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -1819,7 +1823,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T19:05:00-04:00",
-            "ageMin": 6,
+            "ageMin": 7,
             "stale": false
           },
           {
@@ -1831,7 +1835,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-21T19:05:00-04:00",
-            "ageMin": 6,
+            "ageMin": 7,
             "stale": false
           }
         ],
@@ -2033,7 +2037,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T19:00:45-04:00"
     },
-    "stamp": "19:11"
+    "stamp": "19:12"
   }
 }/*__END_DATA__*/;
 
