@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 10:31 AM ET",
-  "generatedAtISO": "2026-09-21T10:31:32-04:00",
+  "generatedAt": "Sep 21, 10:32 AM ET",
+  "generatedAtISO": "2026-09-21T10:32:34-04:00",
   "studios": [
     {
       "id": "509A",
@@ -589,11 +589,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "10:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1188,18 +1183,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Zoe Young in Studio 509B"
     },
     {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 21 · 00:03",
-      "send_after": "10:30",
-      "send_after_iso": "2026-09-21T10:30:00-04:00",
-      "label": "AVA for Jia Chian Lee in Studio 509A"
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1276,11 +1259,53 @@ const DATA = /*__DATA__*/{
   "armFeed": {
     "panel": "failed",
     "mail": "ok",
-    "doors": "failed",
-    "updatedAt": null,
-    "polledAt": null,
-    "doorGaps": [],
-    "down": true
+    "doors": "ok",
+    "updatedAt": "2026-09-21T14:10:01+00:00",
+    "polledAt": "2026-09-21T14:32:00+00:00",
+    "panelCheck": {
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "doorGaps": [
+      {
+        "since": "2026-09-21T09:15:17.402489Z",
+        "until": "2026-09-21T09:15:22.543682Z"
+      },
+      {
+        "since": "2026-09-21T10:10:05.775629Z",
+        "until": "2026-09-21T10:10:06.128431Z"
+      },
+      {
+        "since": "2026-09-21T10:15:55.785052Z",
+        "until": "2026-09-21T10:15:56.117861Z"
+      },
+      {
+        "since": "2026-09-21T10:20:55.347169Z",
+        "until": "2026-09-21T10:20:55.661609Z"
+      },
+      {
+        "since": "2026-09-21T10:25:55.381231Z",
+        "until": "2026-09-21T10:25:55.701485Z"
+      },
+      {
+        "since": "2026-09-21T10:30:56.123795Z",
+        "until": "2026-09-21T10:30:56.451218Z"
+      },
+      {
+        "since": "2026-09-21T10:36:17.332263Z",
+        "until": "2026-09-21T10:36:32.160545Z"
+      },
+      {
+        "since": "2026-09-21T12:10:15.215569Z",
+        "until": "2026-09-21T12:10:54.484108Z"
+      },
+      {
+        "since": "2026-09-21T13:17:06.830016Z",
+        "until": "2026-09-21T13:17:07.290465Z"
+      }
+    ],
+    "down": false
   },
   "robots": [
     {
@@ -1314,6 +1339,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
+      "run": "Desk Invariants",
+      "cadence": "Hourly",
+      "expected": "hourly at :25 · 08:25–22:25 America/Toronto · Cloud Scheduler job desk-invariants → event-gate POST /invariants",
+      "produces": "Rewrites the 🩺 Desk Invariants page (checks A–O), files 🩺 Persistent defect rows after 3 runs, self-closes cleared ones",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-21T09:25:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1321,17 +1356,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:26:00-04:00"
-    },
-    {
-      "run": "Desk Invariants",
-      "cadence": "Hourly",
-      "expected": "hourly at :25 · 08:25–22:25 America/Toronto · Cloud Scheduler job desk-invariants → event-gate POST /invariants",
-      "produces": "Rewrites the 🩺 Desk Invariants page (checks A–O), files 🩺 Persistent defect rows after 3 runs, self-closes cleared ones",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:25:00-04:00"
+      "lastISO": "2026-09-21T10:32:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1411,7 +1436,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:29:00-04:00"
+      "lastISO": "2026-09-21T10:32:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2082,7 +2107,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 26,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2094,7 +2119,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 26,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2296,7 +2321,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T10:30:41-04:00"
     },
-    "stamp": "10:31"
+    "stamp": "10:32"
   }
 }/*__END_DATA__*/;
 
