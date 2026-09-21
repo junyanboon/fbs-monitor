@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-20",
-  "generatedAt": "Sep 21, 2:47 AM ET",
-  "generatedAtISO": "2026-09-21T02:47:03-04:00",
+  "generatedAt": "Sep 21, 4:11 AM ET",
+  "generatedAtISO": "2026-09-21T04:11:16-04:00",
   "studios": [
     {
       "id": "509A",
@@ -901,6 +901,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "ANALYST-SOUND-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 21 · 04:09",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -1412,7 +1423,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T02:15:02+00:00",
-    "polledAt": "2026-09-21T06:47:00+00:00",
+    "polledAt": "2026-09-21T08:11:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1516,6 +1527,18 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-21T05:46:17.794047Z",
         "until": "2026-09-21T05:46:18.117361Z"
+      },
+      {
+        "since": "2026-09-21T07:08:17.687353Z",
+        "until": "2026-09-21T07:08:25.288800Z"
+      },
+      {
+        "since": "2026-09-21T07:08:25.329993Z",
+        "until": "2026-09-21T07:08:30.855555Z"
+      },
+      {
+        "since": "2026-09-21T07:11:11.521544Z",
+        "until": "2026-09-21T07:11:37.238678Z"
       }
     ],
     "down": false
@@ -1532,14 +1555,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "The Doorman",
+      "run": "The Timekeeper",
       "cadence": "Daily",
-      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
-      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "expected": "04:00 America/Toronto · Codex production fallback",
+      "produces": "Overtime report (yesterday)",
       "monitoring": "Live",
       "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-20T06:12:00-04:00"
+      "statusLabel": "Awaiting completion",
+      "lastISO": "2026-09-20T04:07:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1549,7 +1572,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T02:45:00-04:00"
+      "lastISO": "2026-09-21T04:11:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1559,7 +1582,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T01:47:00-04:00"
+      "lastISO": "2026-09-21T03:47:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1569,7 +1592,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T02:46:00-04:00"
+      "lastISO": "2026-09-21T04:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1579,7 +1602,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T02:07:00-04:00"
+      "lastISO": "2026-09-21T04:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1589,7 +1612,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T04:09:00-04:00"
+      "lastISO": "2026-09-21T04:06:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -1602,6 +1625,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-20T06:00:00-04:00"
     },
     {
+      "run": "The Doorman",
+      "cadence": "Daily",
+      "expected": "04:00 + 06:00 America/Toronto · Codex production fallback",
+      "produces": "Alarm.com preflight: urgent errors + access windows; also vouches The Host (writes its daily heartbeat report after verifying tomorrow's FBS itinerary exists)",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-21T04:07:00-04:00"
+    },
+    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "04:05 America/Toronto · Cloud Scheduler",
@@ -1609,7 +1642,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T04:08:00-04:00"
+      "lastISO": "2026-09-21T04:08:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1639,17 +1672,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T02:30:00-04:00"
-    },
-    {
-      "run": "The Timekeeper",
-      "cadence": "Daily",
-      "expected": "04:00 America/Toronto · Codex production fallback",
-      "produces": "Overtime report (yesterday)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-20T04:07:00-04:00"
+      "lastISO": "2026-09-21T04:00:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -1659,7 +1682,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T23:10:00-04:00"
+      "lastISO": "2026-09-21T03:10:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1709,7 +1732,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T02:45:00-04:00"
+      "lastISO": "2026-09-21T04:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1719,7 +1742,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T02:45:00-04:00"
+      "lastISO": "2026-09-21T04:10:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1729,7 +1752,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T02:35:00-04:00"
+      "lastISO": "2026-09-21T04:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1739,7 +1762,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T02:45:00-04:00"
+      "lastISO": "2026-09-21T04:10:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1769,7 +1792,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T02:20:00-04:00"
+      "lastISO": "2026-09-21T03:20:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1779,7 +1802,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T02:40:00-04:00"
+      "lastISO": "2026-09-21T04:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1997,7 +2020,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T02:45:25-04:00",
+      "asOfISO": "2026-09-21T04:00:45-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2006,7 +2029,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T02:45:22-04:00"
+      "jobsAsOfISO": "2026-09-21T04:00:43-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2139,18 +2162,14 @@ const DATA = /*__DATA__*/{
         "name": "Doors open",
         "fine": "Codes work. Sirens get cleared.",
         "down": "Someone gets locked out.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Doorman",
           "alarm-watchdog (Cloud Run)",
+          "The Doorman",
           "migration-sweep (Cloud Run — alarm-mcp)",
           "🔑 Code Mirror"
         ],
-        "worst": {
-          "run": "The Doorman",
-          "label": "Due",
-          "lastISO": "2026-09-20T06:12:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "mail",
@@ -2194,13 +2213,17 @@ const DATA = /*__DATA__*/{
         "name": "Money adds up",
         "fine": "Hours logged. Books balanced.",
         "down": "Payroll and books go wrong.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "The Bookkeeper",
           "The Timekeeper",
+          "The Bookkeeper",
           "The Treasurer"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Timekeeper",
+          "label": "Awaiting completion",
+          "lastISO": "2026-09-20T04:07:00-04:00"
+        }
       },
       {
         "k": "watch",
@@ -2225,42 +2248,38 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "The Weatherman"
         ],
-        "worst": {
-          "run": "Thermal Log",
-          "label": "No fresh reading",
-          "lastISO": "2026-09-20T23:05:00-04:00"
-        },
+        "worst": null,
         "studios": [
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 22.8,
+            "inside": 23.4,
             "setpoint": "",
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 48,
-            "whenISO": "2026-09-20T23:05:00-04:00",
-            "ageMin": 222,
-            "stale": true
+            "whenISO": "2026-09-21T03:05:00-04:00",
+            "ageMin": 66,
+            "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 19.7,
+            "inside": 20.2,
             "setpoint": "COOL 20",
             "mode": "COOL",
             "hvac": "OFF",
             "humidity": 53,
-            "whenISO": "2026-09-20T23:05:00-04:00",
-            "ageMin": 222,
-            "stale": true
+            "whenISO": "2026-09-21T03:05:00-04:00",
+            "ageMin": 66,
+            "stale": false
           }
         ],
-        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
+        "climateNote": null,
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -2363,7 +2382,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T02:45:25-04:00",
+      "asOfISO": "2026-09-21T04:00:45-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2372,9 +2391,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T02:45:22-04:00"
+      "jobsAsOfISO": "2026-09-21T04:00:43-04:00"
     },
-    "stamp": "02:47"
+    "stamp": "04:11"
   }
 }/*__END_DATA__*/;
 
