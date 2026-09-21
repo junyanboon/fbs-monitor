@@ -522,7 +522,7 @@ const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
   "generatedAt": "Sep 21, 11:32 AM ET",
-  "generatedAtISO": "2026-09-21T11:32:18-04:00",
+  "generatedAtISO": "2026-09-21T11:32:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -615,7 +615,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "awaiting",
+          "state": "scheduled",
           "time": "15:00"
         },
         {
@@ -1072,18 +1072,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 21 · 00:03",
-      "send_after": "15:00",
-      "send_after_iso": "2026-09-21T15:00:00-04:00",
-      "label": "AVA for Taylor Yeung in Studio 509A"
-    },
-    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -1176,6 +1164,18 @@ const DATA = /*__DATA__*/{
       "send_after": "13:45",
       "send_after_iso": "2026-09-21T13:45:00-04:00",
       "label": "EOB for Jia Chian Lee in Studio 509A"
+    },
+    {
+      "code": "AVA-sweep-•••A",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 21 · 00:03",
+      "send_after": "15:00",
+      "send_after_iso": "2026-09-21T15:00:00-04:00",
+      "label": "AVA for Taylor Yeung in Studio 509A"
     }
   ],
   "attention": [
@@ -1443,7 +1443,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:31:00-04:00"
+      "lastISO": "2026-09-21T11:32:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1553,7 +1553,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:00:00-04:00"
+      "lastISO": "2026-09-21T11:30:00-04:00"
     },
     {
       "run": "The Responder",
