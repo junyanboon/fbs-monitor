@@ -1211,6 +1211,23 @@ function renderAlarms(){
         <span class="head">No panel activity yet</span><span class="items"><span class="statusitem">
         Both sources are healthy and report nothing — normal before the day&rsquo;s first disarm</span></span></div>`;
   }
+  /* Second witnesses. The panel ledger (every studio) and the ADT email (527
+     only) each catch arm/disarm events the door listener missed in windows it
+     claimed to cover. 2026-09-20 09:00-10:24: five nameless disarms, all real
+     arrivals — read as "studios randomly disarmed" because the page said
+     nothing. A deaf listener is a feed fault; the studios did what the
+     bookings said. */
+  const deaf = (DATA.armFeed||{}).panelCheck || {};
+  const holes = (DATA.armFeed||{}).mailCheck || {};
+  if((deaf.missedCount||0) + (holes.missedCount||0) > 0){
+    const lines = [];
+    if(deaf.missedCount) lines.push(`Panel ledger caught ${deaf.missedCount} state change${deaf.missedCount>1?"s":""} the listener missed: ${esc(deaf.missed.join("; "))}`);
+    if(holes.missedCount) lines.push(`ADT email named ${holes.missedCount} event${holes.missedCount>1?"s":""} the listener missed: ${esc(holes.missed.join("; "))}`);
+    html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">Door listener missed events</span><span class="items">
+      ${lines.map(l=>`<span class="statusitem">${l}</span>`).join("")}
+      <span class="statusitem">The studios changed state as the bookings say; only the names are lost. Those windows are uncovered for billing.</span></span></div>`;
+  }
   const tk=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
   const ordA=(a,b)=>(tk(a.time)-tk(b.time))||((a.ts||0)-(b.ts||0));
   html += `<div class="armgrid">` + DATA.studios.map(s=>{
@@ -1250,6 +1267,8 @@ function renderAlarms(){
     ...evs.map(e=>({...e,html:`<div class="shift">
         <span class="tm">${esc(e.time)}</span>
         ${e.name ? `<span class="nm">${esc(e.name)}</span>`
+                 : e.source==="panel"
+                 ? `<span class="nm none" title="The panel ledger saw this state change; the door listener did not record it, so the name is lost. A real keypad or remote event, not a phantom — see the listener notice above.">name not recorded — listener missed it</span>`
                  : `<span class="nm none" title="No actor on this event — it reached the board through the panel ledger backstop (which records the event, not the actor) or was a remote arm. Keypad events on the live event stream carry names.">no name on this source</span>`}
         <span class="chip plain">${esc(e.studio)}</span>
         <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
