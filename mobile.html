@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 11:11 AM ET",
-  "generatedAtISO": "2026-09-21T11:11:33-04:00",
+  "generatedAt": "Sep 21, 11:17 AM ET",
+  "generatedAtISO": "2026-09-21T11:17:04-04:00",
   "studios": [
     {
       "id": "509A",
@@ -601,10 +601,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "10:56",
-      "departed": null,
+      "departed": "11:16",
       "facilitator": null,
       "arrived_by": "Stefan Lovecchio",
-      "departed_by": null,
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -700,18 +700,6 @@ const DATA = /*__DATA__*/{
   ],
   "staff": [],
   "openShifts": [
-    {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 10.75,
-      "end": 11.25,
-      "id": "a286dd42b700",
-      "date": "2026-09-21",
-      "startISO": "2026-09-21T10:45:00-04:00",
-      "endISO": "2026-09-21T11:15:00-04:00",
-      "day": "Today"
-    },
     {
       "role": "FBS",
       "studio": "509A",
@@ -1002,6 +990,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790002605579,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "11:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790003776115,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1042,8 +1039,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-21T14:58:01+00:00",
-    "polledAt": "2026-09-21T15:11:00+00:00",
+    "updatedAt": "2026-09-21T15:17:01+00:00",
+    "polledAt": "2026-09-21T15:17:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1089,6 +1086,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-21T15:00:53.277108Z",
         "until": "2026-09-21T15:00:53.710866Z"
+      },
+      {
+        "since": "2026-09-21T15:11:44.891162Z",
+        "until": "2026-09-21T15:12:03.030334Z"
+      },
+      {
+        "since": "2026-09-21T15:12:04.920475Z",
+        "until": "2026-09-21T15:12:11.128711Z"
       }
     ],
     "down": false
@@ -1142,7 +1147,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:10:00-04:00"
+      "lastISO": "2026-09-21T11:15:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1182,7 +1187,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:00:00-04:00"
+      "lastISO": "2026-09-21T11:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1192,7 +1197,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:10:00-04:00"
+      "lastISO": "2026-09-21T11:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1212,7 +1217,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:10:00-04:00"
+      "lastISO": "2026-09-21T11:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1222,7 +1227,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:11:00-04:00"
+      "lastISO": "2026-09-21T11:14:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1523,7 +1528,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-21",
         "fires": 19,
         "promptTokens": 55628317,
-        "cachedTokens": 50548116,
+        "cachedTokens": 50590249,
         "cachedPct": 91,
         "completionTokens": 341690,
         "errors": 0,
@@ -1593,10 +1598,10 @@ const DATA = /*__DATA__*/{
           {
             "job": "The Concierge — Closeout",
             "fires": 1,
-            "calls": 38,
+            "calls": 65,
             "promptTokens": 2844887,
-            "cachedTokens": 2626219,
-            "cachedPct": 92,
+            "cachedTokens": 2844887,
+            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -1654,7 +1659,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T11:00:48-04:00",
+      "asOfISO": "2026-09-21T11:15:47-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -1663,7 +1668,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T11:00:45-04:00"
+      "jobsAsOfISO": "2026-09-21T11:15:45-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -1893,7 +1898,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T11:05:00-04:00",
-            "ageMin": 6,
+            "ageMin": 12,
             "stale": false
           },
           {
@@ -1905,7 +1910,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-21T11:05:00-04:00",
-            "ageMin": 6,
+            "ageMin": 12,
             "stale": false
           }
         ],
@@ -1965,7 +1970,7 @@ const DATA = /*__DATA__*/{
         "date": "2026-09-21",
         "fires": 19,
         "promptTokens": 55628317,
-        "cachedTokens": 50548116,
+        "cachedTokens": 50590249,
         "cachedPct": 91,
         "completionTokens": 341690,
         "errors": 0,
@@ -2035,10 +2040,10 @@ const DATA = /*__DATA__*/{
           {
             "job": "The Concierge — Closeout",
             "fires": 1,
-            "calls": 38,
+            "calls": 65,
             "promptTokens": 2844887,
-            "cachedTokens": 2626219,
-            "cachedPct": 92,
+            "cachedTokens": 2844887,
+            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2096,7 +2101,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T11:00:48-04:00",
+      "asOfISO": "2026-09-21T11:15:47-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -2105,9 +2110,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T11:00:45-04:00"
+      "jobsAsOfISO": "2026-09-21T11:15:45-04:00"
     },
-    "stamp": "11:11"
+    "stamp": "11:17"
   }
 }/*__END_DATA__*/;
 
