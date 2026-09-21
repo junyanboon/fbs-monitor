@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 8:34 AM ET",
-  "generatedAtISO": "2026-09-21T08:34:01-04:00",
+  "generatedAt": "Sep 21, 8:47 AM ET",
+  "generatedAtISO": "2026-09-21T08:47:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1283,7 +1283,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1346,7 +1346,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T02:15:02+00:00",
-    "polledAt": "2026-09-21T12:34:01+00:00",
+    "polledAt": "2026-09-21T12:47:00+00:00",
     "doorGaps": [
       {
         "since": "2026-09-21T09:15:17.402489Z",
@@ -1395,13 +1395,23 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-21T08:20:00-04:00"
+    },
+    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
       "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
       "monitoring": "Retired",
-      "status": "crit",
-      "statusLabel": "Overdue",
+      "status": "watch",
+      "statusLabel": "Awaiting completion",
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
@@ -1412,7 +1422,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:31:00-04:00"
+      "lastISO": "2026-09-21T08:42:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1462,7 +1472,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:30:00-04:00"
+      "lastISO": "2026-09-21T08:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1472,7 +1482,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:30:00-04:00"
+      "lastISO": "2026-09-21T08:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1482,7 +1492,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:25:00-04:00"
+      "lastISO": "2026-09-21T08:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1492,7 +1502,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:30:00-04:00"
+      "lastISO": "2026-09-21T08:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1502,23 +1512,13 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:33:00-04:00"
+      "lastISO": "2026-09-21T08:46:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
       "cadence": "Hourly",
       "expected": "hourly at :20 America/Toronto, 24/7 — Hostinger systemd timer danceannex-reconcile-review.timer → event-gate POST /reconcile-review. Runs the JOB33 end-of-day review, attendance (board_status) and follow-up coverage; split off the 10-min reconcile tick on 2026-09-19. Stale after 150 = two missed hourly passes plus a 15-min run.",
       "produces": null,
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:20:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
@@ -1672,7 +1672,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T08:31:00-04:00"
+      "lastISO": "2026-09-21T08:37:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1920,7 +1920,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T08:30:19-04:00",
+      "asOfISO": "2026-09-21T08:45:19-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -1929,7 +1929,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T08:30:16-04:00"
+      "jobsAsOfISO": "2026-09-21T08:45:16-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2163,7 +2163,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 48,
             "whenISO": "2026-09-21T03:05:00-04:00",
-            "ageMin": 329,
+            "ageMin": 342,
             "stale": true
           },
           {
@@ -2175,7 +2175,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-21T03:05:00-04:00",
-            "ageMin": 329,
+            "ageMin": 342,
             "stale": true
           }
         ],
@@ -2342,7 +2342,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T08:30:19-04:00",
+      "asOfISO": "2026-09-21T08:45:19-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -2351,9 +2351,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T08:30:16-04:00"
+      "jobsAsOfISO": "2026-09-21T08:45:16-04:00"
     },
-    "stamp": "08:34"
+    "stamp": "08:47"
   }
 }/*__END_DATA__*/;
 
