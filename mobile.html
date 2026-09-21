@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 10:54 AM ET",
-  "generatedAtISO": "2026-09-21T10:54:38-04:00",
+  "generatedAt": "Sep 21, 10:58 AM ET",
+  "generatedAtISO": "2026-09-21T10:58:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -588,6 +588,30 @@ const DATA = /*__DATA__*/{
       "dup_studios": null,
       "start": 20.25,
       "end": 22.25,
+      "access_gap": false
+    },
+    {
+      "studio": "693",
+      "who": "Stefan",
+      "kind": "staff",
+      "tier": null,
+      "gtg": true,
+      "hta": null,
+      "dispatch": [],
+      "booking_studios": [],
+      "heard": false,
+      "arrived": "10:56",
+      "departed": null,
+      "facilitator": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": null,
+      "arrived_foreign": false,
+      "departed_foreign": false,
+      "assumed": null,
+      "wrong_studio": null,
+      "dup_studios": null,
+      "start": 11.0,
+      "end": 11.25,
       "access_gap": false
     },
     {
@@ -957,7 +981,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -968,6 +992,15 @@ const DATA = /*__DATA__*/{
       "kind": "arrival",
       "remote": false,
       "ts": 1789999770706,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790002605579,
       "source": "doors"
     }
   ],
@@ -992,16 +1025,6 @@ const DATA = /*__DATA__*/{
       "ts": 1789948809046,
       "when": "Sun 20:00"
     },
-    "693": {
-      "kind": "departure",
-      "name": "Amandeep Kaur",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "21:41",
-      "ts": 1789954885080,
-      "when": "Sun 21:41"
-    },
     "901": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -1019,8 +1042,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-21T14:10:01+00:00",
-    "polledAt": "2026-09-21T14:54:01+00:00",
+    "updatedAt": "2026-09-21T14:58:01+00:00",
+    "polledAt": "2026-09-21T14:58:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1068,6 +1091,16 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
+      "run": "Desk Invariants",
+      "cadence": "Hourly",
+      "expected": "hourly at :25 · 08:25–22:25 America/Toronto · Cloud Scheduler job desk-invariants → event-gate POST /invariants",
+      "produces": "Rewrites the 🩺 Desk Invariants page (checks A–O), files 🩺 Persistent defect rows after 3 runs, self-closes cleared ones",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-21T09:25:00-04:00"
+    },
+    {
       "run": "Ops Executor",
       "cadence": "15-min",
       "expected": null,
@@ -1098,16 +1131,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
-      "run": "Desk Invariants",
-      "cadence": "Hourly",
-      "expected": "hourly at :25 · 08:25–22:25 America/Toronto · Cloud Scheduler job desk-invariants → event-gate POST /invariants",
-      "produces": "Rewrites the 🩺 Desk Invariants page (checks A–O), files 🩺 Persistent defect rows after 3 runs, self-closes cleared ones",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-21T09:25:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1115,7 +1138,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:53:00-04:00"
+      "lastISO": "2026-09-21T10:58:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1165,7 +1188,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:50:00-04:00"
+      "lastISO": "2026-09-21T10:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1175,7 +1198,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:45:00-04:00"
+      "lastISO": "2026-09-21T10:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1185,7 +1208,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:50:00-04:00"
+      "lastISO": "2026-09-21T10:55:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1195,7 +1218,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:54:00-04:00"
+      "lastISO": "2026-09-21T10:57:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1315,7 +1338,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:23:00-04:00"
+      "lastISO": "2026-09-21T10:57:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1866,7 +1889,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 49,
+            "ageMin": 53,
             "stale": false
           },
           {
@@ -1878,7 +1901,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 49,
+            "ageMin": 53,
             "stale": false
           }
         ],
@@ -2080,7 +2103,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T10:45:45-04:00"
     },
-    "stamp": "10:54"
+    "stamp": "10:58"
   }
 }/*__END_DATA__*/;
 
