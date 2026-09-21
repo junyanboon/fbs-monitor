@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Sunday, September 20, 2026",
   "shiftBaseDay": "2026-09-20",
-  "generatedAt": "Sep 20, 10:02 PM ET",
-  "generatedAtISO": "2026-09-20T22:02:21-04:00",
+  "generatedAt": "Sep 20, 10:15 PM ET",
+  "generatedAtISO": "2026-09-20T22:15:28-04:00",
   "studios": [
     {
       "id": "509A",
@@ -571,10 +571,10 @@ const DATA = /*__DATA__*/{
       ],
       "heard": true,
       "arrived": "10:00",
-      "departed": null,
+      "departed": "22:09",
       "facilitator": null,
       "arrived_by": "",
-      "departed_by": null,
+      "departed_by": "Isabel Jurado",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -985,24 +985,24 @@ const DATA = /*__DATA__*/{
   "staff": [],
   "openShifts": [
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 22.75,
-      "end": 23.25,
-      "id": "ade197d37110",
-      "date": "2026-09-20",
-      "startISO": "2026-09-20T22:45:00-04:00",
-      "endISO": "2026-09-20T23:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509A",
       "day_offset": 0,
       "start": 22.75,
       "end": 23.25,
       "id": "a654f30736cc",
+      "date": "2026-09-20",
+      "startISO": "2026-09-20T22:45:00-04:00",
+      "endISO": "2026-09-20T23:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 22.75,
+      "end": 23.25,
+      "id": "ade197d37110",
       "date": "2026-09-20",
       "startISO": "2026-09-20T22:45:00-04:00",
       "endISO": "2026-09-20T23:15:00-04:00",
@@ -1539,6 +1539,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1789954885080,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Isabel Jurado",
+      "time": "22:09",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1789956599963,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1555,8 +1564,20 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-21T01:47:01+00:00",
-    "polledAt": "2026-09-21T02:02:00+00:00",
+    "updatedAt": "2026-09-21T02:15:02+00:00",
+    "polledAt": "2026-09-21T02:15:12+00:00",
+    "panelCheck": {
+      "inGap": 0,
+      "missed": [
+        "527 arrival 09:07",
+        "901 arrival 09:30",
+        "693 arrival 09:36",
+        "509B arrival 10:00",
+        "509A arrival 10:00",
+        "527 departure 10:24"
+      ],
+      "missedCount": 6
+    },
     "mailCheck": {
       "matched": 8,
       "inGap": 0,
@@ -1618,6 +1639,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-20T23:28:18.897736Z",
         "until": "2026-09-20T23:28:19.215610Z"
+      },
+      {
+        "since": "2026-09-21T02:05:58.932759Z",
+        "until": "2026-09-21T02:06:01.585395Z"
       }
     ],
     "down": false
@@ -1644,6 +1669,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
+      "run": "reconcile-review (Hostinger)",
+      "cadence": "Hourly",
+      "expected": "hourly at :20 America/Toronto, 24/7 — Hostinger systemd timer danceannex-reconcile-review.timer → event-gate POST /reconcile-review. Runs the JOB33 end-of-day review, attendance (board_status) and follow-up coverage; split off the 10-min reconcile tick on 2026-09-19. Stale after 150 = two missed hourly passes plus a 15-min run.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-20T20:20:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1651,7 +1686,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T22:02:00-04:00"
+      "lastISO": "2026-09-20T22:13:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1691,7 +1726,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T22:00:00-04:00"
+      "lastISO": "2026-09-20T22:10:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1701,7 +1736,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T21:55:00-04:00"
+      "lastISO": "2026-09-20T22:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1711,7 +1746,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T22:00:00-04:00"
+      "lastISO": "2026-09-20T22:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1721,17 +1756,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T22:01:00-04:00"
-    },
-    {
-      "run": "reconcile-review (Hostinger)",
-      "cadence": "Hourly",
-      "expected": "hourly at :20 America/Toronto, 24/7 — Hostinger systemd timer danceannex-reconcile-review.timer → event-gate POST /reconcile-review. Runs the JOB33 end-of-day review, attendance (board_status) and follow-up coverage; split off the 10-min reconcile tick on 2026-09-19. Stale after 150 = two missed hourly passes plus a 15-min run.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-20T20:20:00-04:00"
+      "lastISO": "2026-09-20T22:14:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1741,7 +1766,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T22:00:00-04:00"
+      "lastISO": "2026-09-20T22:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1751,7 +1776,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T21:07:00-04:00"
+      "lastISO": "2026-09-20T22:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1841,7 +1866,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T21:30:00-04:00"
+      "lastISO": "2026-09-20T22:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1881,7 +1906,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T21:10:00-04:00"
+      "lastISO": "2026-09-20T22:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1891,7 +1916,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-20T22:01:00-04:00"
+      "lastISO": "2026-09-20T22:08:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -2355,10 +2380,10 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "handback-sweep (Hostinger)",
           "reconcile-review (Hostinger)",
+          "handback-sweep (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
@@ -2369,7 +2394,11 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "reconcile-review (Hostinger)",
+          "label": "Due",
+          "lastISO": "2026-09-20T20:20:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2416,25 +2445,25 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 23.7,
+            "inside": 22.8,
             "setpoint": "COOL 22.95",
             "mode": "COOL",
-            "hvac": "COOLING",
-            "humidity": 48,
-            "whenISO": "2026-09-20T21:05:00-04:00",
-            "ageMin": 57,
+            "hvac": "OFF",
+            "humidity": 45,
+            "whenISO": "2026-09-20T22:05:00-04:00",
+            "ageMin": 10,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 20.4,
+            "inside": 20.2,
             "setpoint": "COOL 20",
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 53,
-            "whenISO": "2026-09-20T21:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-20T22:05:00-04:00",
+            "ageMin": 10,
             "stale": false
           }
         ],
@@ -2636,7 +2665,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-20T22:00:40-04:00"
     },
-    "stamp": "22:02"
+    "stamp": "22:15"
   }
 }/*__END_DATA__*/;
 
@@ -3335,6 +3364,23 @@ function renderAlarms(){
         <span class="head">No panel activity yet</span><span class="items"><span class="statusitem">
         Both sources are healthy and report nothing — normal before the day&rsquo;s first disarm</span></span></div>`;
   }
+  /* Second witnesses. The panel ledger (every studio) and the ADT email (527
+     only) each catch arm/disarm events the door listener missed in windows it
+     claimed to cover. 2026-09-20 09:00-10:24: five nameless disarms, all real
+     arrivals — read as "studios randomly disarmed" because the page said
+     nothing. A deaf listener is a feed fault; the studios did what the
+     bookings said. */
+  const deaf = (DATA.armFeed||{}).panelCheck || {};
+  const holes = (DATA.armFeed||{}).mailCheck || {};
+  if((deaf.missedCount||0) + (holes.missedCount||0) > 0){
+    const lines = [];
+    if(deaf.missedCount) lines.push(`Panel ledger caught ${deaf.missedCount} state change${deaf.missedCount>1?"s":""} the listener missed: ${esc(deaf.missed.join("; "))}`);
+    if(holes.missedCount) lines.push(`ADT email named ${holes.missedCount} event${holes.missedCount>1?"s":""} the listener missed: ${esc(holes.missed.join("; "))}`);
+    html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
+      <span class="head">Door listener missed events</span><span class="items">
+      ${lines.map(l=>`<span class="statusitem">${l}</span>`).join("")}
+      <span class="statusitem">The studios changed state as the bookings say; only the names are lost. Those windows are uncovered for billing.</span></span></div>`;
+  }
   const tk=t=>{if(!t)return 99;const[h,m]=t.split(":").map(Number);const v=h+m/60;return v<5?v+24:v;};
   const ordA=(a,b)=>(tk(a.time)-tk(b.time))||((a.ts||0)-(b.ts||0));
   html += `<div class="armgrid">` + DATA.studios.map(s=>{
@@ -3374,6 +3420,8 @@ function renderAlarms(){
     ...evs.map(e=>({...e,html:`<div class="shift">
         <span class="tm">${esc(e.time)}</span>
         ${e.name ? `<span class="nm">${esc(e.name)}</span>`
+                 : e.source==="panel"
+                 ? `<span class="nm none" title="The panel ledger saw this state change; the door listener did not record it, so the name is lost. A real keypad or remote event, not a phantom — see the listener notice above.">name not recorded — listener missed it</span>`
                  : `<span class="nm none" title="No actor on this event — it reached the board through the panel ledger backstop (which records the event, not the actor) or was a remote arm. Keypad events on the live event stream carry names.">no name on this source</span>`}
         <span class="chip plain">${esc(e.studio)}</span>
         <span class="chip ${e.kind==="arrival"?"ok":"plain"}">${e.kind==="arrival"?"↓ Disarmed":"↑ Armed"}</span>
