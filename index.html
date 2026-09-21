@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 7:50 PM ET",
-  "generatedAtISO": "2026-09-21T19:50:29-04:00",
+  "generatedAt": "Sep 21, 7:52 PM ET",
+  "generatedAtISO": "2026-09-21T19:52:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -561,11 +561,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:09",
+      "departed": "11:38",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Harper Drzymala-Bokitch",
+      "departed_by": "Harper Drzymala-Bokitch",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -585,11 +585,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "12:34",
+      "departed": "14:00",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Jia Chian Lee",
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -609,11 +609,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "16:41",
+      "departed": "18:08",
       "facilitator": "Gemma Giles",
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Gemma Giles",
+      "departed_by": "Gemma Giles",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -706,10 +706,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": null,
-      "departed": null,
+      "departed": "13:04",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Zoe Young",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -729,10 +729,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "13:27",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Maggie Morrison",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -801,11 +801,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:56",
+      "departed": "11:16",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -849,11 +849,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "18:14",
+      "departed": "19:34",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Greg Samba",
+      "departed_by": "Greg Samba",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -873,10 +873,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "19:34",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Janet Zamora",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1018,64 +1018,159 @@ const DATA = /*__DATA__*/{
   ],
   "armEvents": [
     {
+      "studio": "509A",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "10:09",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789999770706,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790002605579,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "11:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790003776115,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "11:38",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790005080637,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1790005504489,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1790005507368,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "12:34",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790008472434,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Zoe Young",
+      "time": "13:04",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790010279079,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "13:27",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790011662215,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "14:00",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790013605145,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Gemma Giles",
+      "time": "16:41",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790023299036,
+      "source": "doors"
+    },
+    {
       "studio": "527",
       "name": "Enrico Casertano",
       "time": "16:46",
       "kind": "arrival",
       "remote": false,
-      "ts": 1790023584000
+      "ts": 1790023584496,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Gemma Giles",
+      "time": "18:08",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790028525531,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Greg Samba",
+      "time": "18:14",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790028852712,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Greg Samba",
+      "time": "19:34",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790033653595,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Janet Zamora",
+      "time": "19:34",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790033661911,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Gemma Giles",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "18:08",
-      "ts": 1790028525531,
-      "when": "Mon 18:08"
-    },
-    "509B": {
-      "kind": "arrival",
-      "name": "Maggie Morrison",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "13:27",
-      "ts": 1790011662215,
-      "when": "Mon 13:27"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "11:16",
-      "ts": 1790003776115,
-      "when": "Mon 11:16"
-    },
-    "901": {
-      "kind": "arrival",
-      "name": "Janet Zamora",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "19:34",
-      "ts": 1790033661911,
-      "when": "Mon 19:34"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T22:19:01+00:00",
-    "polledAt": "2026-09-21T23:50:01+00:00",
+    "polledAt": "2026-09-21T23:52:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1318,7 +1413,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T19:49:00-04:00"
+      "lastISO": "2026-09-21T19:51:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1338,7 +1433,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T19:40:00-04:00"
+      "lastISO": "2026-09-21T19:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2015,7 +2110,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T19:05:00-04:00",
-            "ageMin": 45,
+            "ageMin": 47,
             "stale": false
           },
           {
@@ -2027,7 +2122,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-21T19:05:00-04:00",
-            "ageMin": 45,
+            "ageMin": 47,
             "stale": false
           }
         ],
@@ -2241,7 +2336,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T19:45:46-04:00"
     },
-    "stamp": "19:50"
+    "stamp": "19:52"
   }
 }/*__END_DATA__*/;
 
