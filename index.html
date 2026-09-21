@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 10:10 AM ET",
-  "generatedAtISO": "2026-09-21T10:10:21-04:00",
+  "generatedAt": "Sep 21, 10:13 AM ET",
+  "generatedAtISO": "2026-09-21T10:13:24-04:00",
   "studios": [
     {
       "id": "509A",
@@ -626,12 +626,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "scheduled",
+          "state": "awaiting",
           "time": "15:00"
         },
         {
           "kind": "EOB",
-          "state": "scheduled",
+          "state": "awaiting",
           "time": "17:45"
         }
       ],
@@ -1083,6 +1083,30 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
+      "code": "AVA-sweep-•••A",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 21 · 00:03",
+      "send_after": "15:00",
+      "send_after_iso": "2026-09-21T15:00:00-04:00",
+      "label": "AVA for Taylor Yeung in Studio 509A"
+    },
+    {
+      "code": "EOB-sweep-•••A",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 21 · 00:03",
+      "send_after": "17:45",
+      "send_after_iso": "2026-09-21T17:45:00-04:00",
+      "label": "EOB for Taylor Yeung in Studio 509A"
+    },
+    {
       "code": "ANALYST-SOUND-•••-T•••",
       "kind": null,
       "channel": "SMS",
@@ -1187,30 +1211,6 @@ const DATA = /*__DATA__*/{
       "send_after": "13:45",
       "send_after_iso": "2026-09-21T13:45:00-04:00",
       "label": "EOB for Jia Chian Lee in Studio 509A"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 21 · 00:03",
-      "send_after": "15:00",
-      "send_after_iso": "2026-09-21T15:00:00-04:00",
-      "label": "AVA for Taylor Yeung in Studio 509A"
-    },
-    {
-      "code": "EOB-sweep-•••A",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 21 · 00:03",
-      "send_after": "17:45",
-      "send_after_iso": "2026-09-21T17:45:00-04:00",
-      "label": "EOB for Taylor Yeung in Studio 509A"
     }
   ],
   "attention": [
@@ -1279,7 +1279,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T14:10:01+00:00",
-    "polledAt": "2026-09-21T14:10:01+00:00",
+    "polledAt": "2026-09-21T14:13:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1454,7 +1454,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:09:00-04:00"
+      "lastISO": "2026-09-21T10:12:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1604,7 +1604,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:10:00-04:00"
+      "lastISO": "2026-09-21T10:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -2125,7 +2125,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 5,
+            "ageMin": 8,
             "stale": false
           },
           {
@@ -2137,7 +2137,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 5,
+            "ageMin": 8,
             "stale": false
           }
         ],
@@ -2339,7 +2339,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T10:00:31-04:00"
     },
-    "stamp": "10:10"
+    "stamp": "10:13"
   }
 }/*__END_DATA__*/;
 
