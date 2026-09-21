@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 11:21 AM ET",
-  "generatedAtISO": "2026-09-21T11:21:40-04:00",
+  "generatedAt": "Sep 21, 11:27 AM ET",
+  "generatedAtISO": "2026-09-21T11:27:34-04:00",
   "studios": [
     {
       "id": "509A",
@@ -385,7 +385,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "AVA",
-          "state": "scheduled",
+          "state": "awaiting",
           "time": "15:00"
         },
         {
@@ -842,6 +842,18 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
+      "code": "AVA-sweep-•••A",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 21 · 00:03",
+      "send_after": "15:00",
+      "send_after_iso": "2026-09-21T15:00:00-04:00",
+      "label": "AVA for Taylor Yeung in Studio 509A"
+    },
+    {
       "code": "EOB-sweep-•••A",
       "kind": "EOB",
       "channel": "SMS",
@@ -934,18 +946,6 @@ const DATA = /*__DATA__*/{
       "send_after": "13:45",
       "send_after_iso": "2026-09-21T13:45:00-04:00",
       "label": "EOB for Jia Chian Lee in Studio 509A"
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 21 · 00:03",
-      "send_after": "15:00",
-      "send_after_iso": "2026-09-21T15:00:00-04:00",
-      "label": "AVA for Taylor Yeung in Studio 509A"
     }
   ],
   "attention": [
@@ -1022,7 +1022,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T15:17:01+00:00",
-    "polledAt": "2026-09-21T15:21:01+00:00",
+    "polledAt": "2026-09-21T15:27:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1133,7 +1133,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:21:00-04:00"
+      "lastISO": "2026-09-21T11:27:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1183,7 +1183,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:20:00-04:00"
+      "lastISO": "2026-09-21T11:26:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1203,7 +1203,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:20:00-04:00"
+      "lastISO": "2026-09-21T11:26:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1213,7 +1213,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:21:00-04:00"
+      "lastISO": "2026-09-21T11:26:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1223,7 +1223,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:20:00-04:00"
+      "lastISO": "2026-09-21T11:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1333,7 +1333,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T10:57:00-04:00"
+      "lastISO": "2026-09-21T11:24:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1373,7 +1373,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T11:08:00-04:00"
+      "lastISO": "2026-09-21T11:23:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1884,7 +1884,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T11:05:00-04:00",
-            "ageMin": 16,
+            "ageMin": 22,
             "stale": false
           },
           {
@@ -1896,7 +1896,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-21T11:05:00-04:00",
-            "ageMin": 16,
+            "ageMin": 22,
             "stale": false
           }
         ],
@@ -2098,7 +2098,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T11:15:45-04:00"
     },
-    "stamp": "11:21"
+    "stamp": "11:27"
   }
 }/*__END_DATA__*/;
 
