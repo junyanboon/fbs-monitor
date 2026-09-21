@@ -2536,6 +2536,51 @@ def panel_backstop(panel_events, door_events, window_ms=8 * 60 * 1000):
     return kept
 
 
+def door_ledger_deaf(backstop, door_gaps, covers_since):
+    """Panel-ledger survivors that fall in NO recorded door gap — the socket
+    was deaf while it claimed to be listening.
+
+    WHY THIS EXISTS. 2026-09-20, 09:00-10:24 Toronto: the door listener
+    recorded nothing across all five studios while four renters keyed in for
+    their bookings (527 09:00, 901 09:30, 693 09:45, 509A+B 10:00) and one
+    keyed out (527 10:19). Its ledger recorded no gap for that stretch, so
+    `covered` read true. The panel ledger caught every state change, so the
+    backstop kept them — nameless — and the board printed five "no name on
+    this source" disarms. Junyan read that as "all the studios got randomly
+    disarmed this morning". They were not: every one lined up with a booking
+    start, and the names resumed at 10:48 the moment the listener was
+    replaced. What was missing was the board SAYING the listener was deaf.
+
+    reconcile_mail_against_doors() already draws this line, but only for the
+    one account that still emails (527). The panel ledger is a witness for
+    every studio, and a backstop survivor outside every recorded gap is the
+    same finding: a hole in a window reported as clean. Loud, like the mail
+    check — and the same billing ruling, because a departure the socket did
+    not see is exactly what an uncovered window means.
+
+    Survivors inside a recorded gap, or before `covers_since`, are the gap
+    machinery working and are not reported. Pure; returns the mailCheck shape
+    so the page and the note read the same way for both witnesses.
+    """
+    floor = _parse_iso_utc(covers_since)
+    gaps = [(_parse_iso_utc(g.get("since")), _parse_iso_utc(g.get("until")))
+            for g in door_gaps or []]
+    gaps = [(a, b) for a, b in gaps if a and b]
+    in_gap, missed = 0, []
+    for p in sorted(backstop or [], key=lambda e: e.get("ts") or 0):
+        ts = p.get("ts")
+        if not ts:
+            continue
+        when = datetime.fromtimestamp(ts / 1000, timezone.utc)
+        if floor and when < floor:
+            continue                     # older than the ledger's memory
+        if any(a <= when <= b for a, b in gaps):
+            in_gap += 1
+        else:
+            missed.append(f"{p.get('studio')} {p.get('kind')} {p.get('time')}")
+    return {"inGap": in_gap, "missed": missed[:12], "missedCount": len(missed)}
+
+
 def feed_is_down(arm_events, arm_feed, now, win_start, quiet_hours=5):
     """Is the silence an outage rather than a quiet morning?
 
@@ -5130,6 +5175,20 @@ def _build_data(now, pool):
     if door_events:
         backstop = panel_backstop(panel_events, door_events)
         arm_events = sorted(door_events + backstop, key=lambda e: e.get("ts") or 0)
+        # The panel ledger is the second witness for EVERY studio. A survivor
+        # in no recorded gap means the socket was deaf while claiming to
+        # listen (2026-09-20, 09:00-10:24: five nameless disarms, all real
+        # arrivals). Say so, or the board reads as "studios randomly disarmed".
+        check = door_ledger_deaf(backstop, door_gaps, door_covers_since)
+        arm_feed["panelCheck"] = check
+        if check["missedCount"]:
+            emit_fallback_note(
+                f"DOOR LISTENER DEAF — the panel ledger reports "
+                f"{check['missedCount']} arm/disarm event(s) the websocket did "
+                f"not record, in windows it claimed to cover: "
+                + "; ".join(check["missed"]) + ". The studios changed state; "
+                "the listener missed the names. Treat those windows as "
+                "uncovered for billing.")
         if mail_events:
             arm_events = enrich_arm_names(arm_events, mail_events)
         events = apply_arm_events(events, arm_events, alerts=alarm_alerts)

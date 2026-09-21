@@ -341,6 +341,48 @@ def main():
                        [{"studio": "527", "kind": "arrival",
                          "ts": 1788648007997 + 4 * MIN}]), [])
 
+    # ---- door_ledger_deaf: the morning of 2026-09-20 ------------------------
+    #
+    # The door listener recorded nothing 09:00-10:24 Toronto and no gap for
+    # it. The panel ledger caught every state change, so five nameless rows
+    # reached the board and read as "the studios got randomly disarmed".
+    # Real timestamps: 527 arrival 09:07 (Scott Vandenberg keyed in 09:00),
+    # 901 09:30, 693 09:36, 509A/509B 10:00, 527 departure 10:24. Names
+    # resumed at 10:48 once the listener was replaced at 14:24Z.
+    covers = "2026-09-18T00:00:00Z"
+    gaps_0920 = [{"since": "2026-09-20T14:24:11.445301Z",
+                  "until": "2026-09-20T14:24:13.757515Z"}]
+    morning = [
+        {"studio": "527", "kind": "arrival", "time": "09:07", "ts": 1789909620000},
+        {"studio": "901", "kind": "arrival", "time": "09:30", "ts": 1789911000000},
+        {"studio": "693", "kind": "arrival", "time": "09:36", "ts": 1789911360000},
+        {"studio": "509B", "kind": "arrival", "time": "10:00", "ts": 1789912800000},
+        {"studio": "509A", "kind": "arrival", "time": "10:00", "ts": 1789912800000},
+        {"studio": "527", "kind": "departure", "time": "10:24", "ts": 1789914240000},
+    ]
+    out = build.door_ledger_deaf(morning, gaps_0920, covers)
+    fails += check("deaf listener: every survivor outside a gap is reported",
+                   out["missedCount"], 6)
+    fails += check("deaf listener: rows read studio kind time",
+                   out["missed"][0], "527 arrival 09:07")
+    fails += check("deaf listener: nothing was inside a gap", out["inGap"], 0)
+
+    # A survivor INSIDE a recorded gap is the gap machinery working — silent.
+    in_gap = [{"studio": "527", "kind": "arrival", "time": "10:24",
+               "ts": 1789914252000}]                                  # 14:24:12Z
+    out = build.door_ledger_deaf(in_gap, gaps_0920, covers)
+    fails += check("survivor inside a recorded gap is not a finding",
+                   (out["missedCount"], out["inGap"]), (0, 1))
+
+    # Before the ledger's memory: unanswerable, not a hole.
+    fails += check("survivor before covers_since is skipped",
+                   build.door_ledger_deaf(morning[:1], gaps_0920,
+                                          "2026-09-20T15:00:00Z")["missedCount"], 0)
+
+    # No survivors at all — the ordinary day — reports nothing.
+    fails += check("no survivors, no finding",
+                   build.door_ledger_deaf([], gaps_0920, covers)["missedCount"], 0)
+
     print("FAILED" if fails else f"ok — {CHECKS} checks passed")
     return 1 if fails else 0
 
