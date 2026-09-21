@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 5:45 PM ET",
-  "generatedAtISO": "2026-09-21T17:45:53-04:00",
+  "generatedAt": "Sep 21, 5:46 PM ET",
+  "generatedAtISO": "2026-09-21T17:46:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -561,11 +561,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:09",
+      "departed": "11:38",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Harper Drzymala-Bokitch",
+      "departed_by": "Harper Drzymala-Bokitch",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -585,11 +585,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "12:34",
+      "departed": "14:00",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Jia Chian Lee",
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -609,10 +609,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "16:41",
       "departed": null,
       "facilitator": "Gemma Giles",
-      "arrived_by": null,
+      "arrived_by": "Gemma Giles",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -706,10 +706,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": null,
-      "departed": null,
+      "departed": "13:04",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Zoe Young",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -729,10 +729,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "13:27",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Maggie Morrison",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -801,11 +801,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:56",
+      "departed": "11:16",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1015,45 +1015,115 @@ const DATA = /*__DATA__*/{
   ],
   "armEvents": [
     {
+      "studio": "509A",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "10:09",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789999770706,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790002605579,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "11:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790003776115,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "11:38",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790005080637,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1790005504489,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1790005507368,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "12:34",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790008472434,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Zoe Young",
+      "time": "13:04",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790010279079,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "13:27",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790011662215,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "14:00",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790013605145,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Gemma Giles",
+      "time": "16:41",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790023299036,
+      "source": "doors"
+    },
+    {
       "studio": "527",
       "name": "Enrico Casertano",
       "time": "16:46",
       "kind": "arrival",
       "remote": false,
-      "ts": 1790023584000
+      "ts": 1790023584496,
+      "source": "doors"
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "arrival",
-      "name": "Gemma Giles",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "16:41",
-      "ts": 1790023299036,
-      "when": "Mon 16:41"
-    },
-    "509B": {
-      "kind": "arrival",
-      "name": "Maggie Morrison",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "13:27",
-      "ts": 1790011662215,
-      "when": "Mon 13:27"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "11:16",
-      "ts": 1790003776115,
-      "when": "Mon 11:16"
-    },
     "901": {
       "kind": "departure",
       "name": "Studio (remote)",
@@ -1068,13 +1138,133 @@ const DATA = /*__DATA__*/{
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
-    "doors": "failed",
-    "updatedAt": null,
-    "polledAt": null,
-    "doorGaps": [],
-    "down": true
+    "doors": "ok",
+    "updatedAt": "2026-09-21T20:50:01+00:00",
+    "polledAt": "2026-09-21T21:46:01+00:00",
+    "panelCheck": {
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "mailCheck": {
+      "matched": 1,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "doorGaps": [
+      {
+        "since": "2026-09-21T09:15:17.402489Z",
+        "until": "2026-09-21T09:15:22.543682Z"
+      },
+      {
+        "since": "2026-09-21T10:10:05.775629Z",
+        "until": "2026-09-21T10:10:06.128431Z"
+      },
+      {
+        "since": "2026-09-21T10:15:55.785052Z",
+        "until": "2026-09-21T10:15:56.117861Z"
+      },
+      {
+        "since": "2026-09-21T10:20:55.347169Z",
+        "until": "2026-09-21T10:20:55.661609Z"
+      },
+      {
+        "since": "2026-09-21T10:25:55.381231Z",
+        "until": "2026-09-21T10:25:55.701485Z"
+      },
+      {
+        "since": "2026-09-21T10:30:56.123795Z",
+        "until": "2026-09-21T10:30:56.451218Z"
+      },
+      {
+        "since": "2026-09-21T10:36:17.332263Z",
+        "until": "2026-09-21T10:36:32.160545Z"
+      },
+      {
+        "since": "2026-09-21T12:10:15.215569Z",
+        "until": "2026-09-21T12:10:54.484108Z"
+      },
+      {
+        "since": "2026-09-21T13:17:06.830016Z",
+        "until": "2026-09-21T13:17:07.290465Z"
+      },
+      {
+        "since": "2026-09-21T15:00:53.277108Z",
+        "until": "2026-09-21T15:00:53.710866Z"
+      },
+      {
+        "since": "2026-09-21T15:11:44.891162Z",
+        "until": "2026-09-21T15:12:03.030334Z"
+      },
+      {
+        "since": "2026-09-21T15:12:04.920475Z",
+        "until": "2026-09-21T15:12:11.128711Z"
+      },
+      {
+        "since": "2026-09-21T15:17:42.755091Z",
+        "until": "2026-09-21T15:17:43.083965Z"
+      },
+      {
+        "since": "2026-09-21T15:33:57.432408Z",
+        "until": "2026-09-21T15:33:57.788621Z"
+      },
+      {
+        "since": "2026-09-21T18:20:45.892164Z",
+        "until": "2026-09-21T18:20:46.214057Z"
+      },
+      {
+        "since": "2026-09-21T18:36:44.134076Z",
+        "until": "2026-09-21T18:36:44.449185Z"
+      },
+      {
+        "since": "2026-09-21T18:41:58.536500Z",
+        "until": "2026-09-21T18:42:03.639463Z"
+      },
+      {
+        "since": "2026-09-21T18:47:44.011135Z",
+        "until": "2026-09-21T18:47:44.341004Z"
+      },
+      {
+        "since": "2026-09-21T18:52:58.649818Z",
+        "until": "2026-09-21T18:53:12.832001Z"
+      },
+      {
+        "since": "2026-09-21T18:56:07.598034Z",
+        "until": "2026-09-21T18:56:21.662660Z"
+      },
+      {
+        "since": "2026-09-21T18:56:22.014233Z",
+        "until": "2026-09-21T18:57:37.112821Z"
+      },
+      {
+        "since": "2026-09-21T19:24:59.307104Z",
+        "until": "2026-09-21T19:24:59.621020Z"
+      },
+      {
+        "since": "2026-09-21T19:35:46.337959Z",
+        "until": "2026-09-21T19:35:46.480169Z"
+      },
+      {
+        "since": "2026-09-21T19:41:17.961862Z",
+        "until": "2026-09-21T19:41:18.394839Z"
+      },
+      {
+        "since": "2026-09-21T20:36:46.670217Z",
+        "until": "2026-09-21T20:36:47.003924Z"
+      },
+      {
+        "since": "2026-09-21T20:46:59.349417Z",
+        "until": "2026-09-21T20:46:59.669972Z"
+      },
+      {
+        "since": "2026-09-21T21:45:44.991540Z",
+        "until": "2026-09-21T21:45:45.998367Z"
+      }
+    ],
+    "down": false
   },
   "robots": [
     {
@@ -1195,7 +1385,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T17:45:00-04:00"
+      "lastISO": "2026-09-21T17:46:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1880,7 +2070,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-21T17:05:00-04:00",
-            "ageMin": 40,
+            "ageMin": 41,
             "stale": false
           },
           {
@@ -1892,7 +2082,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-21T17:05:00-04:00",
-            "ageMin": 40,
+            "ageMin": 41,
             "stale": false
           }
         ],
@@ -2094,7 +2284,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T17:45:41-04:00"
     },
-    "stamp": "17:45"
+    "stamp": "17:46"
   }
 }/*__END_DATA__*/;
 
