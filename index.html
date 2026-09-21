@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 10:32 AM ET",
-  "generatedAtISO": "2026-09-21T10:32:34-04:00",
+  "generatedAt": "Sep 21, 10:33 AM ET",
+  "generatedAtISO": "2026-09-21T10:33:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -567,10 +567,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "10:09",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Harper Drzymala-Bokitch",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1201,18 +1201,18 @@ const DATA = /*__DATA__*/{
       "text": "3 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "arrival",
-      "name": "Harper Drzymala-Bokitch",
-      "remote": false,
-      "source": "doors",
+  "armEvents": [
+    {
       "studio": "509A",
+      "name": "Harper Drzymala-Bokitch",
       "time": "10:09",
+      "kind": "arrival",
+      "remote": false,
       "ts": 1789999770706,
-      "when": "Mon 10:09"
-    },
+      "source": "doors"
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "kind": "arrival",
       "name": "",
@@ -1255,13 +1255,13 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T14:10:01+00:00",
-    "polledAt": "2026-09-21T14:32:00+00:00",
+    "polledAt": "2026-09-21T14:33:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -2107,7 +2107,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 28,
             "stale": false
           },
           {
@@ -2119,7 +2119,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 28,
             "stale": false
           }
         ],
@@ -2321,7 +2321,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T10:30:41-04:00"
     },
-    "stamp": "10:32"
+    "stamp": "10:33"
   }
 }/*__END_DATA__*/;
 
