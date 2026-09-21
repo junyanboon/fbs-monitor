@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 10:17 AM ET",
-  "generatedAtISO": "2026-09-21T10:17:56-04:00",
+  "generatedAt": "Sep 21, 10:18 AM ET",
+  "generatedAtISO": "2026-09-21T10:18:28-04:00",
   "studios": [
     {
       "id": "509A",
@@ -337,10 +337,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": "10:09",
+      "arrived": null,
       "departed": null,
       "facilitator": null,
-      "arrived_by": "Harper Drzymala-Bokitch",
+      "arrived_by": null,
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -888,6 +888,17 @@ const DATA = /*__DATA__*/{
       "label": "HTA for Taylor Yeung in Studio 509A"
     },
     {
+      "code": "CX-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "AI (automation)",
+      "created": "Sep 21 · 10:18",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "AVA-sweep-•••",
       "kind": "AVA",
       "channel": "SMS",
@@ -966,18 +977,18 @@ const DATA = /*__DATA__*/{
       "text": "3 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [
-    {
-      "studio": "509A",
-      "name": "Harper Drzymala-Bokitch",
-      "time": "10:09",
-      "kind": "arrival",
-      "remote": false,
-      "ts": 1789999770706,
-      "source": "doors"
-    }
-  ],
+  "armEvents": [],
   "panelPrior": {
+    "509A": {
+      "kind": "arrival",
+      "name": "Harper Drzymala-Bokitch",
+      "remote": false,
+      "source": "doors",
+      "studio": "509A",
+      "time": "10:09",
+      "ts": 1789999770706,
+      "when": "Mon 10:09"
+    },
     "509B": {
       "kind": "arrival",
       "name": "",
@@ -1020,57 +1031,15 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": false,
+  "armFallback": true,
   "armFeed": {
-    "panel": "ok",
+    "panel": "failed",
     "mail": "ok",
-    "doors": "ok",
-    "updatedAt": "2026-09-21T14:10:01+00:00",
-    "polledAt": "2026-09-21T14:17:00+00:00",
-    "panelCheck": {
-      "inGap": 0,
-      "missed": [],
-      "missedCount": 0
-    },
-    "doorGaps": [
-      {
-        "since": "2026-09-21T09:15:17.402489Z",
-        "until": "2026-09-21T09:15:22.543682Z"
-      },
-      {
-        "since": "2026-09-21T10:10:05.775629Z",
-        "until": "2026-09-21T10:10:06.128431Z"
-      },
-      {
-        "since": "2026-09-21T10:15:55.785052Z",
-        "until": "2026-09-21T10:15:56.117861Z"
-      },
-      {
-        "since": "2026-09-21T10:20:55.347169Z",
-        "until": "2026-09-21T10:20:55.661609Z"
-      },
-      {
-        "since": "2026-09-21T10:25:55.381231Z",
-        "until": "2026-09-21T10:25:55.701485Z"
-      },
-      {
-        "since": "2026-09-21T10:30:56.123795Z",
-        "until": "2026-09-21T10:30:56.451218Z"
-      },
-      {
-        "since": "2026-09-21T10:36:17.332263Z",
-        "until": "2026-09-21T10:36:32.160545Z"
-      },
-      {
-        "since": "2026-09-21T12:10:15.215569Z",
-        "until": "2026-09-21T12:10:54.484108Z"
-      },
-      {
-        "since": "2026-09-21T13:17:06.830016Z",
-        "until": "2026-09-21T13:17:07.290465Z"
-      }
-    ],
-    "down": false
+    "doors": "failed",
+    "updatedAt": null,
+    "polledAt": null,
+    "doorGaps": [],
+    "down": true
   },
   "robots": [
     {
@@ -1872,7 +1841,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 45,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 13,
             "stale": false
           },
           {
@@ -1884,7 +1853,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 50,
             "whenISO": "2026-09-21T10:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 13,
             "stale": false
           }
         ],
@@ -2086,7 +2055,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T10:15:36-04:00"
     },
-    "stamp": "10:17"
+    "stamp": "10:18"
   }
 }/*__END_DATA__*/;
 
