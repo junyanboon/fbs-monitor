@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 9:04 AM ET",
-  "generatedAtISO": "2026-09-21T09:04:42-04:00",
+  "generatedAt": "Sep 21, 9:05 AM ET",
+  "generatedAtISO": "2026-09-21T09:05:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1290,7 +1290,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-21T02:15:02+00:00",
-    "polledAt": "2026-09-21T13:04:01+00:00",
+    "polledAt": "2026-09-21T13:05:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-21T09:15:17.402489Z",
@@ -1426,7 +1426,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:00:00-04:00"
+      "lastISO": "2026-09-21T09:05:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1446,7 +1446,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:00:00-04:00"
+      "lastISO": "2026-09-21T09:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1456,7 +1456,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:04:00-04:00"
+      "lastISO": "2026-09-21T09:05:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2088,15 +2088,11 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "The Weatherman"
         ],
-        "worst": {
-          "run": "Thermal Log",
-          "label": "No fresh reading",
-          "lastISO": "2026-09-21T03:05:00-04:00"
-        },
+        "worst": null,
         "studios": [
           {
             "studio": "509",
@@ -2105,10 +2101,10 @@ const DATA = /*__DATA__*/{
             "setpoint": "",
             "mode": "OFF",
             "hvac": "OFF",
-            "humidity": 48,
-            "whenISO": "2026-09-21T03:05:00-04:00",
-            "ageMin": 359,
-            "stale": true
+            "humidity": 45,
+            "whenISO": "2026-09-21T09:05:00-04:00",
+            "ageMin": 0,
+            "stale": false
           },
           {
             "studio": "901",
@@ -2116,14 +2112,14 @@ const DATA = /*__DATA__*/{
             "inside": 20.2,
             "setpoint": "COOL 20",
             "mode": "COOL",
-            "hvac": "OFF",
-            "humidity": 53,
-            "whenISO": "2026-09-21T03:05:00-04:00",
-            "ageMin": 359,
-            "stale": true
+            "hvac": "COOLING",
+            "humidity": 50,
+            "whenISO": "2026-09-21T09:05:00-04:00",
+            "ageMin": 0,
+            "stale": false
           }
         ],
-        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
+        "climateNote": null,
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -2297,7 +2293,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-21T09:00:17-04:00"
     },
-    "stamp": "09:04"
+    "stamp": "09:05"
   }
 }/*__END_DATA__*/;
 
