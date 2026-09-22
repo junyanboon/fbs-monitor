@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 5:46 PM ET",
-  "generatedAtISO": "2026-09-22T17:46:46-04:00",
+  "generatedAt": "Sep 22, 5:47 PM ET",
+  "generatedAtISO": "2026-09-22T17:47:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1000,18 +1000,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 16.75,
-      "end": 17.25,
-      "id": "9602452d2ee9",
-      "date": "2026-09-23",
-      "startISO": "2026-09-23T16:45:00-04:00",
-      "endISO": "2026-09-23T17:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
       "studio": null,
       "day_offset": 1,
       "start": 16.75,
@@ -1026,12 +1014,12 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
-      "start": 17.5,
-      "end": 18.0,
-      "id": "b206769b3f47",
+      "start": 16.75,
+      "end": 17.25,
+      "id": "9602452d2ee9",
       "date": "2026-09-23",
-      "startISO": "2026-09-23T17:30:00-04:00",
-      "endISO": "2026-09-23T18:00:00-04:00",
+      "startISO": "2026-09-23T16:45:00-04:00",
+      "endISO": "2026-09-23T17:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -1041,6 +1029,18 @@ const DATA = /*__DATA__*/{
       "start": 17.5,
       "end": 18.0,
       "id": "5ce1927b0341",
+      "date": "2026-09-23",
+      "startISO": "2026-09-23T17:30:00-04:00",
+      "endISO": "2026-09-23T18:00:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 17.5,
+      "end": 18.0,
+      "id": "b206769b3f47",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1352,7 +1352,8 @@ const DATA = /*__DATA__*/{
       "time": "17:46",
       "kind": "arrival",
       "remote": false,
-      "ts": 1790113597000
+      "ts": 1790113597178,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1373,20 +1374,18 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-22T21:22:00+00:00",
-    "polledAt": "2026-09-22T21:46:00+00:00",
+    "updatedAt": "2026-09-22T21:47:01+00:00",
+    "polledAt": "2026-09-22T21:47:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
       "missedCount": 0
     },
     "mailCheck": {
-      "matched": 8,
+      "matched": 9,
       "inGap": 0,
-      "missed": [
-        "527 arrival 17:46 (Khalid Roach-McLeod)"
-      ],
-      "missedCount": 1
+      "missed": [],
+      "missedCount": 0
     },
     "doorGaps": [
       {
@@ -2232,7 +2231,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 43,
             "whenISO": "2026-09-22T17:38:00-04:00",
-            "ageMin": 8,
+            "ageMin": 9,
             "stale": false
           },
           {
@@ -2244,7 +2243,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-22T17:38:00-04:00",
-            "ageMin": 8,
+            "ageMin": 9,
             "stale": false
           }
         ],
@@ -2410,7 +2409,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-22T17:45:22-04:00"
     },
-    "stamp": "17:46"
+    "stamp": "17:47"
   }
 }/*__END_DATA__*/;
 
