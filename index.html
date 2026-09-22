@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 11:26 AM ET",
-  "generatedAtISO": "2026-09-22T11:26:09-04:00",
+  "generatedAt": "Sep 22, 11:28 AM ET",
+  "generatedAtISO": "2026-09-22T11:28:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -764,7 +764,7 @@ const DATA = /*__DATA__*/{
       "dispatch": [
         {
           "kind": "EOB",
-          "state": "awaiting",
+          "state": "scheduled",
           "time": "14:15"
         }
       ],
@@ -1029,11 +1029,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509A",
       "day_offset": 1,
       "start": 17.5,
       "end": 18.0,
-      "id": "5ce1927b0341",
+      "id": "b206769b3f47",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1041,11 +1041,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": null,
       "day_offset": 1,
       "start": 17.5,
       "end": 18.0,
-      "id": "b206769b3f47",
+      "id": "5ce1927b0341",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1078,18 +1078,6 @@ const DATA = /*__DATA__*/{
   ],
   "staffAhead": [],
   "messages": [
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 22 · 04:32",
-      "send_after": "14:15",
-      "send_after_iso": "2026-09-22T14:15:00-04:00",
-      "label": "EOB for Chikako Iversen in Studio 527"
-    },
     {
       "code": "COURTESY — Marilyn Hintsa ••• — agreement signed, confirmed received",
       "kind": null,
@@ -1135,16 +1123,16 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "How to Access 693",
-      "kind": "HTA",
+      "code": "EOB-sweep-•••",
+      "kind": "EOB",
       "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 22 · 11:22",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-22T09:00:00-04:00",
-      "label": "HTA · Studio 693"
+      "status": "Ready to Send",
+      "studio": "527",
+      "raised_by": "The Registrar",
+      "created": "Sep 22 · 04:32",
+      "send_after": "14:15",
+      "send_after_iso": "2026-09-22T14:15:00-04:00",
+      "label": "EOB for Chikako Iversen in Studio 527"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -1288,7 +1276,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T14:38:01+00:00",
-    "polledAt": "2026-09-22T15:26:00+00:00",
+    "polledAt": "2026-09-22T15:28:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1453,7 +1441,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T11:15:00-04:00"
+      "lastISO": "2026-09-22T11:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1473,7 +1461,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T11:25:00-04:00"
+      "lastISO": "2026-09-22T11:26:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1483,7 +1471,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:20:00-04:00"
+      "lastISO": "2026-09-22T11:20:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -2112,7 +2100,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 43,
             "whenISO": "2026-09-22T11:05:00-04:00",
-            "ageMin": 21,
+            "ageMin": 23,
             "stale": false
           },
           {
@@ -2124,7 +2112,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 44,
             "whenISO": "2026-09-22T11:05:00-04:00",
-            "ageMin": 21,
+            "ageMin": 23,
             "stale": false
           }
         ],
@@ -2290,7 +2278,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-22T11:15:22-04:00"
     },
-    "stamp": "11:26"
+    "stamp": "11:28"
   }
 }/*__END_DATA__*/;
 
