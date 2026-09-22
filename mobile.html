@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 2:41 PM ET",
-  "generatedAtISO": "2026-09-22T14:41:23-04:00",
+  "generatedAt": "Sep 22, 2:46 PM ET",
+  "generatedAtISO": "2026-09-22T14:46:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -353,11 +353,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": "Sent",
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "14:45"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -793,11 +788,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509A",
       "day_offset": 1,
       "start": 17.5,
       "end": 18.0,
-      "id": "5ce1927b0341",
+      "id": "b206769b3f47",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -805,11 +800,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": null,
       "day_offset": 1,
       "start": 17.5,
       "end": 18.0,
-      "id": "b206769b3f47",
+      "id": "5ce1927b0341",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -863,18 +858,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 22 · 14:16",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "AVA-sweep-•••A",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 22 · 10:32",
-      "send_after": "14:45",
-      "send_after_iso": "2026-09-22T14:45:00-04:00",
-      "label": "AVA for Taylor Yeung in Studio 509A"
     },
     {
       "code": "EOB-sweep-•••A",
@@ -1087,7 +1070,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T18:41:00+00:00",
-    "polledAt": "2026-09-22T18:41:00+00:00",
+    "polledAt": "2026-09-22T18:46:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1186,7 +1169,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T14:38:00-04:00"
+      "lastISO": "2026-09-22T14:43:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1226,7 +1209,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T14:30:00-04:00"
+      "lastISO": "2026-09-22T14:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1236,7 +1219,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T14:40:00-04:00"
+      "lastISO": "2026-09-22T14:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1256,7 +1239,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T14:40:00-04:00"
+      "lastISO": "2026-09-22T14:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1266,7 +1249,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T14:40:00-04:00"
+      "lastISO": "2026-09-22T14:46:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1575,22 +1558,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 22,
-        "promptTokens": 50495791,
-        "cachedTokens": 46452578,
+        "fires": 23,
+        "promptTokens": 53779842,
+        "cachedTokens": 49500980,
         "cachedPct": 92,
-        "completionTokens": 299728,
+        "completionTokens": 309563,
         "errors": 0,
         "maxFireTokens": 5820492,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 12,
-            "calls": 509,
-            "promptTokens": 31237396,
-            "cachedTokens": 31237396,
-            "cachedPct": 100,
+            "fires": 13,
+            "calls": 515,
+            "promptTokens": 34521447,
+            "cachedTokens": 32394789,
+            "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -1672,7 +1655,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T14:30:25-04:00",
+      "asOfISO": "2026-09-22T14:45:29-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1681,7 +1664,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T14:30:22-04:00"
+      "jobsAsOfISO": "2026-09-22T14:45:26-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -1915,7 +1898,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-22T14:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 41,
             "stale": false
           },
           {
@@ -1927,7 +1910,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-22T14:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 41,
             "stale": false
           }
         ],
@@ -1985,22 +1968,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 22,
-        "promptTokens": 50495791,
-        "cachedTokens": 46452578,
+        "fires": 23,
+        "promptTokens": 53779842,
+        "cachedTokens": 49500980,
         "cachedPct": 92,
-        "completionTokens": 299728,
+        "completionTokens": 309563,
         "errors": 0,
         "maxFireTokens": 5820492,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 12,
-            "calls": 509,
-            "promptTokens": 31237396,
-            "cachedTokens": 31237396,
-            "cachedPct": 100,
+            "fires": 13,
+            "calls": 515,
+            "promptTokens": 34521447,
+            "cachedTokens": 32394789,
+            "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2082,7 +2065,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T14:30:25-04:00",
+      "asOfISO": "2026-09-22T14:45:29-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2091,9 +2074,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T14:30:22-04:00"
+      "jobsAsOfISO": "2026-09-22T14:45:26-04:00"
     },
-    "stamp": "14:41"
+    "stamp": "14:46"
   }
 }/*__END_DATA__*/;
 
