@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 10:17 AM ET",
-  "generatedAtISO": "2026-09-22T10:17:50-04:00",
+  "generatedAt": "Sep 22, 10:32 AM ET",
+  "generatedAtISO": "2026-09-22T10:32:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -900,7 +900,7 @@ const DATA = /*__DATA__*/{
       "assumed": null,
       "wrong_studio": null,
       "dup_studios": null,
-      "start": 22.25,
+      "start": 22.0,
       "end": 23.5,
       "access_gap": false
     },
@@ -1005,11 +1005,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
-      "id": "fd8efbc7fa82",
+      "id": "9602452d2ee9",
       "date": "2026-09-23",
       "startISO": "2026-09-23T16:45:00-04:00",
       "endISO": "2026-09-23T17:15:00-04:00",
@@ -1017,11 +1017,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": null,
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
-      "id": "9602452d2ee9",
+      "id": "fd8efbc7fa82",
       "date": "2026-09-23",
       "startISO": "2026-09-23T16:45:00-04:00",
       "endISO": "2026-09-23T17:15:00-04:00",
@@ -1099,18 +1099,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 21 · 22:54",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "HTA-sweep-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 22 · 00:01",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "HTA · Studio 693"
     },
     {
       "code": "OVERTIME — Taylor Yeung •••A early arrival 18 min",
@@ -1237,7 +1225,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "3 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1342,7 +1330,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T14:05:01+00:00",
-    "polledAt": "2026-09-22T14:17:01+00:00",
+    "polledAt": "2026-09-22T14:32:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1420,6 +1408,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-21T17:19:00-04:00"
+    },
+    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
@@ -1430,16 +1428,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-21T17:19:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1447,7 +1435,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:13:00-04:00"
+      "lastISO": "2026-09-22T10:30:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1457,7 +1445,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T09:10:00-04:00"
+      "lastISO": "2026-09-22T10:35:00-04:00"
     },
     {
       "run": "desk-watch (Mac)",
@@ -1487,7 +1475,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:15:00-04:00"
+      "lastISO": "2026-09-22T10:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1497,7 +1485,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:15:00-04:00"
+      "lastISO": "2026-09-22T10:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1507,7 +1495,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:05:00-04:00"
+      "lastISO": "2026-09-22T10:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1517,7 +1505,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:15:00-04:00"
+      "lastISO": "2026-09-22T10:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1527,7 +1515,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:17:00-04:00"
+      "lastISO": "2026-09-22T10:31:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1537,7 +1525,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T09:20:00-04:00"
+      "lastISO": "2026-09-22T10:20:00-04:00"
     },
     {
       "run": "reconcile-sweep (Cloud Run)",
@@ -1547,7 +1535,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:10:00-04:00"
+      "lastISO": "2026-09-22T10:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1687,7 +1675,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T10:03:00-04:00"
+      "lastISO": "2026-09-22T10:18:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1821,14 +1809,14 @@ const DATA = /*__DATA__*/{
       "fallbackModel": "claude-opus-5",
       "setAtISO": "2026-09-22T10:16:39-04:00",
       "setBy": "codex:jboon",
-      "account": ""
+      "account": "claude-danceannex"
     },
     "usage": {
       "today": {
         "date": "2026-09-22",
         "fires": 13,
         "promptTokens": 29202573,
-        "cachedTokens": 26485428,
+        "cachedTokens": 26476694,
         "cachedPct": 91,
         "completionTokens": 232533,
         "errors": 0,
@@ -1838,10 +1826,10 @@ const DATA = /*__DATA__*/{
           {
             "job": "The Responder",
             "fires": 4,
-            "calls": 147,
+            "calls": 185,
             "promptTokens": 10488702,
-            "cachedTokens": 9838373,
-            "cachedPct": 94,
+            "cachedTokens": 10488702,
+            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -1923,7 +1911,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T10:15:26-04:00",
+      "asOfISO": "2026-09-22T10:30:26-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1932,7 +1920,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T10:15:23-04:00"
+      "jobsAsOfISO": "2026-09-22T10:30:23-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2079,7 +2067,7 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "watch",
+        "status": "crit",
         "robots": [
           "The Concierge",
           "greeter-sweep (Cloud Run)",
@@ -2090,7 +2078,7 @@ const DATA = /*__DATA__*/{
         ],
         "worst": {
           "run": "The Concierge",
-          "label": "Due",
+          "label": "Overdue",
           "lastISO": "2026-09-21T17:19:00-04:00"
         }
       },
@@ -2166,7 +2154,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 46,
             "whenISO": "2026-09-22T10:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2178,7 +2166,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-22T10:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2231,14 +2219,14 @@ const DATA = /*__DATA__*/{
       "fallbackModel": "claude-opus-5",
       "setAtISO": "2026-09-22T10:16:39-04:00",
       "setBy": "codex:jboon",
-      "account": ""
+      "account": "claude-danceannex"
     },
     "usage": {
       "today": {
         "date": "2026-09-22",
         "fires": 13,
         "promptTokens": 29202573,
-        "cachedTokens": 26485428,
+        "cachedTokens": 26476694,
         "cachedPct": 91,
         "completionTokens": 232533,
         "errors": 0,
@@ -2248,10 +2236,10 @@ const DATA = /*__DATA__*/{
           {
             "job": "The Responder",
             "fires": 4,
-            "calls": 147,
+            "calls": 185,
             "promptTokens": 10488702,
-            "cachedTokens": 9838373,
-            "cachedPct": 94,
+            "cachedTokens": 10488702,
+            "cachedPct": 100,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2333,7 +2321,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T10:15:26-04:00",
+      "asOfISO": "2026-09-22T10:30:26-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2342,9 +2330,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T10:15:23-04:00"
+      "jobsAsOfISO": "2026-09-22T10:30:23-04:00"
     },
-    "stamp": "10:17"
+    "stamp": "10:32"
   }
 }/*__END_DATA__*/;
 
