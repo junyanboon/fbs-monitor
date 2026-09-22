@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 4:32 PM ET",
-  "generatedAtISO": "2026-09-22T16:32:10-04:00",
+  "generatedAt": "Sep 22, 4:38 PM ET",
+  "generatedAtISO": "2026-09-22T16:38:52-04:00",
   "studios": [
     {
       "id": "509A",
@@ -361,10 +361,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "16:36",
       "departed": null,
       "facilitator": "Lily Whiting",
-      "arrived_by": null,
+      "arrived_by": "Lily Whiting",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -838,17 +838,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "BC-sweep-•••",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 22 · 13:32",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Review ask — Chikako Iversen — ••• | CX-•••",
       "kind": null,
       "channel": "SMS",
@@ -892,6 +881,17 @@ const DATA = /*__DATA__*/{
       "send_after": "17:30",
       "send_after_iso": "2026-09-22T17:30:00-04:00",
       "label": "EOB for Taylor Yeung in Studio 509A"
+    },
+    {
+      "code": "BC-sweep-•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 22 · 13:32",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1107,6 +1107,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790105276185,
       "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Lily Whiting",
+      "time": "16:36",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790109396306,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1128,7 +1137,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T19:30:11+00:00",
-    "polledAt": "2026-09-22T20:32:01+00:00",
+    "polledAt": "2026-09-22T20:38:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1235,7 +1244,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T16:32:00-04:00"
+      "lastISO": "2026-09-22T16:38:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1285,7 +1294,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T16:30:00-04:00"
+      "lastISO": "2026-09-22T16:35:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1295,7 +1304,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T16:25:00-04:00"
+      "lastISO": "2026-09-22T16:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1305,7 +1314,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T16:30:00-04:00"
+      "lastISO": "2026-09-22T16:35:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1315,7 +1324,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T16:31:00-04:00"
+      "lastISO": "2026-09-22T16:37:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1425,7 +1434,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T16:00:00-04:00"
+      "lastISO": "2026-09-22T16:30:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1475,7 +1484,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T16:18:00-04:00"
+      "lastISO": "2026-09-22T16:32:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1964,7 +1973,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 46,
             "whenISO": "2026-09-22T16:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 33,
             "stale": false
           },
           {
@@ -1976,7 +1985,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 47,
             "whenISO": "2026-09-22T16:05:00-04:00",
-            "ageMin": 27,
+            "ageMin": 33,
             "stale": false
           }
         ],
@@ -2142,7 +2151,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-22T16:30:57-04:00"
     },
-    "stamp": "16:32"
+    "stamp": "16:38"
   }
 }/*__END_DATA__*/;
 
