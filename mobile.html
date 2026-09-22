@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 22, 1:02 AM ET",
-  "generatedAtISO": "2026-09-22T01:02:15-04:00",
+  "generatedAt": "Sep 22, 1:16 AM ET",
+  "generatedAtISO": "2026-09-22T01:16:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1029,7 +1029,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T03:15:03+00:00",
-    "polledAt": "2026-09-22T05:02:01+00:00",
+    "polledAt": "2026-09-22T05:16:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1201,6 +1201,14 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-22T03:57:00.021796Z",
         "until": "2026-09-22T03:57:05.264665Z"
+      },
+      {
+        "since": "2026-09-22T05:11:47.237741Z",
+        "until": "2026-09-22T05:12:00.413162Z"
+      },
+      {
+        "since": "2026-09-22T05:12:05.814979Z",
+        "until": "2026-09-22T05:12:13.455352Z"
       }
     ],
     "down": false
@@ -1234,7 +1242,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T01:00:00-04:00"
+      "lastISO": "2026-09-22T01:11:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1254,7 +1262,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T01:01:00-04:00"
+      "lastISO": "2026-09-22T01:16:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1264,7 +1272,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T00:07:00-04:00"
+      "lastISO": "2026-09-22T01:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1324,7 +1332,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T00:30:00-04:00"
+      "lastISO": "2026-09-22T01:00:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1394,7 +1402,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:00:00-04:00"
+      "lastISO": "2026-09-22T01:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1404,7 +1412,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:00:00-04:00"
+      "lastISO": "2026-09-22T01:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1414,7 +1422,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T00:55:00-04:00"
+      "lastISO": "2026-09-22T01:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1424,7 +1432,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:00:00-04:00"
+      "lastISO": "2026-09-22T01:15:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1464,7 +1472,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:00:00-04:00"
+      "lastISO": "2026-09-22T01:10:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1657,7 +1665,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T01:00:39-04:00",
+      "asOfISO": "2026-09-22T01:15:43-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1666,7 +1674,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T01:00:37-04:00"
+      "jobsAsOfISO": "2026-09-22T01:15:41-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -1885,11 +1893,15 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
           "The Weatherman"
         ],
-        "worst": null,
+        "worst": {
+          "run": "Thermal Log",
+          "label": "No fresh reading",
+          "lastISO": "2026-09-21T23:05:00-04:00"
+        },
         "studios": [
           {
             "studio": "509",
@@ -1900,8 +1912,8 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 131,
+            "stale": true
           },
           {
             "studio": "901",
@@ -1912,11 +1924,11 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-21T23:05:00-04:00",
-            "ageMin": 117,
-            "stale": false
+            "ageMin": 131,
+            "stale": true
           }
         ],
-        "climateNote": null,
+        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -1994,7 +2006,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T01:00:39-04:00",
+      "asOfISO": "2026-09-22T01:15:43-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2003,9 +2015,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T01:00:37-04:00"
+      "jobsAsOfISO": "2026-09-22T01:15:41-04:00"
     },
-    "stamp": "01:02"
+    "stamp": "01:16"
   }
 }/*__END_DATA__*/;
 
