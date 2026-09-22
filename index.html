@@ -522,7 +522,7 @@ const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
   "generatedAt": "Sep 22, 2:17 PM ET",
-  "generatedAtISO": "2026-09-22T14:17:06-04:00",
+  "generatedAtISO": "2026-09-22T14:17:43-04:00",
   "studios": [
     {
       "id": "509A",
@@ -761,13 +761,7 @@ const DATA = /*__DATA__*/{
       "tier": "FBS",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "14:15"
-        }
-      ],
+      "dispatch": [],
       "booking_studios": [],
       "heard": true,
       "arrived": "09:22",
@@ -1005,11 +999,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": null,
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
-      "id": "9602452d2ee9",
+      "id": "fd8efbc7fa82",
       "date": "2026-09-23",
       "startISO": "2026-09-23T16:45:00-04:00",
       "endISO": "2026-09-23T17:15:00-04:00",
@@ -1017,11 +1011,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
-      "id": "fd8efbc7fa82",
+      "id": "9602452d2ee9",
       "date": "2026-09-23",
       "startISO": "2026-09-23T16:45:00-04:00",
       "endISO": "2026-09-23T17:15:00-04:00",
@@ -1099,18 +1093,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 22 · 14:16",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "EOB-sweep-•••",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "527",
-      "raised_by": "The Registrar",
-      "created": "Sep 22 · 04:32",
-      "send_after": "14:15",
-      "send_after_iso": "2026-09-22T14:15:00-04:00",
-      "label": "EOB for Chikako Iversen in Studio 527"
     },
     {
       "code": "AVA-sweep-•••A",
@@ -1505,7 +1487,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T14:16:00-04:00"
+      "lastISO": "2026-09-22T14:17:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
