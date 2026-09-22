@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 5:42 PM ET",
-  "generatedAtISO": "2026-09-22T17:42:29-04:00",
+  "generatedAt": "Sep 22, 5:46 PM ET",
+  "generatedAtISO": "2026-09-22T17:46:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -801,10 +801,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:46",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Khalid Roach-McLeod",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -1000,18 +1000,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
-      "day_offset": 1,
-      "start": 16.75,
-      "end": 17.25,
-      "id": "fd8efbc7fa82",
-      "date": "2026-09-23",
-      "startISO": "2026-09-23T16:45:00-04:00",
-      "endISO": "2026-09-23T17:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
@@ -1026,12 +1014,12 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": null,
       "day_offset": 1,
-      "start": 17.5,
-      "end": 18.0,
-      "id": "5ce1927b0341",
+      "start": 16.75,
+      "end": 17.25,
+      "id": "fd8efbc7fa82",
       "date": "2026-09-23",
-      "startISO": "2026-09-23T17:30:00-04:00",
-      "endISO": "2026-09-23T18:00:00-04:00",
+      "startISO": "2026-09-23T16:45:00-04:00",
+      "endISO": "2026-09-23T17:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -1041,6 +1029,18 @@ const DATA = /*__DATA__*/{
       "start": 17.5,
       "end": 18.0,
       "id": "b206769b3f47",
+      "date": "2026-09-23",
+      "startISO": "2026-09-23T17:30:00-04:00",
+      "endISO": "2026-09-23T18:00:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": null,
+      "day_offset": 1,
+      "start": 17.5,
+      "end": 18.0,
+      "id": "5ce1927b0341",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1072,7 +1072,30 @@ const DATA = /*__DATA__*/{
     }
   ],
   "staffAhead": [],
-  "messages": [],
+  "messages": [
+    {
+      "code": "Authorized user — Marilyn Hintsa — keep Ron Edding on the new Dec–Apr term? (re-queued)",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 22 · 17:30",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "PBF — Lily Whiting ••• [pbf:3e07503281c•••cbfe39feaab2]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 22 · 17:46",
+      "send_after": null,
+      "send_after_iso": null
+    }
+  ],
   "attention": [
     {
       "level": "warn",
@@ -1322,6 +1345,14 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790111773623,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Khalid Roach-McLeod",
+      "time": "17:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790113597000
     }
   ],
   "panelPrior": {
@@ -1343,7 +1374,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T21:22:00+00:00",
-    "polledAt": "2026-09-22T21:42:01+00:00",
+    "polledAt": "2026-09-22T21:46:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1352,8 +1383,10 @@ const DATA = /*__DATA__*/{
     "mailCheck": {
       "matched": 8,
       "inGap": 0,
-      "missed": [],
-      "missedCount": 0
+      "missed": [
+        "527 arrival 17:46 (Khalid Roach-McLeod)"
+      ],
+      "missedCount": 1
     },
     "doorGaps": [
       {
@@ -1419,6 +1452,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-22T21:38:59.561700Z",
         "until": "2026-09-22T21:39:04.657259Z"
+      },
+      {
+        "since": "2026-09-22T21:44:53.315265Z",
+        "until": "2026-09-22T21:44:53.625326Z"
       }
     ],
     "down": false
@@ -1462,7 +1499,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T17:38:00-04:00"
+      "lastISO": "2026-09-22T17:44:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1512,7 +1549,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T17:30:00-04:00"
+      "lastISO": "2026-09-22T17:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1522,7 +1559,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T17:40:00-04:00"
+      "lastISO": "2026-09-22T17:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1542,7 +1579,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T17:40:00-04:00"
+      "lastISO": "2026-09-22T17:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1552,7 +1589,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T17:41:00-04:00"
+      "lastISO": "2026-09-22T17:46:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1948,7 +1985,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T17:30:20-04:00",
+      "asOfISO": "2026-09-22T17:45:24-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1957,7 +1994,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T17:30:17-04:00"
+      "jobsAsOfISO": "2026-09-22T17:45:22-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2195,7 +2232,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 43,
             "whenISO": "2026-09-22T17:38:00-04:00",
-            "ageMin": 4,
+            "ageMin": 8,
             "stale": false
           },
           {
@@ -2207,7 +2244,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-22T17:38:00-04:00",
-            "ageMin": 4,
+            "ageMin": 8,
             "stale": false
           }
         ],
@@ -2362,7 +2399,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T17:30:20-04:00",
+      "asOfISO": "2026-09-22T17:45:24-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2371,9 +2408,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T17:30:17-04:00"
+      "jobsAsOfISO": "2026-09-22T17:45:22-04:00"
     },
-    "stamp": "17:42"
+    "stamp": "17:46"
   }
 }/*__END_DATA__*/;
 
