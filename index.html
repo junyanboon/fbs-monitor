@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 11:57 AM ET",
-  "generatedAtISO": "2026-09-22T11:57:59-04:00",
+  "generatedAt": "Sep 22, 12:02 PM ET",
+  "generatedAtISO": "2026-09-22T12:02:29-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1029,11 +1029,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": null,
       "day_offset": 1,
       "start": 17.5,
       "end": 18.0,
-      "id": "b206769b3f47",
+      "id": "5ce1927b0341",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1041,11 +1041,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509A",
       "day_offset": 1,
       "start": 17.5,
       "end": 18.0,
-      "id": "5ce1927b0341",
+      "id": "b206769b3f47",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1078,17 +1078,6 @@ const DATA = /*__DATA__*/{
   ],
   "staffAhead": [],
   "messages": [
-    {
-      "code": "Payment info — Natascha Malta — agreement signed, add card to Skedda",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 22 · 11:47",
-      "send_after": null,
-      "send_after_iso": null
-    },
     {
       "code": "COURTESY — Ivanka Moskaliuk — agreement signed acknowledgement •••",
       "kind": null,
@@ -1135,12 +1124,23 @@ const DATA = /*__DATA__*/{
       "send_after": "17:30",
       "send_after_iso": "2026-09-22T17:30:00-04:00",
       "label": "EOB for Taylor Yeung in Studio 509A"
+    },
+    {
+      "code": "Payment info — Natascha Malta — agreement signed, add card to Skedda",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 22 · 11:47",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1281,7 +1281,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T15:30:02+00:00",
-    "polledAt": "2026-09-22T15:57:00+00:00",
+    "polledAt": "2026-09-22T16:02:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1369,16 +1369,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-21T17:19:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
-      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
-      "monitoring": "Retired",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-06T17:25:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1426,7 +1416,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T11:45:00-04:00"
+      "lastISO": "2026-09-22T12:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1436,7 +1426,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T11:55:00-04:00"
+      "lastISO": "2026-09-22T12:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1456,7 +1446,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T11:55:00-04:00"
+      "lastISO": "2026-09-22T12:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1466,7 +1456,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T11:57:00-04:00"
+      "lastISO": "2026-09-22T12:01:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1486,7 +1476,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T11:50:00-04:00"
+      "lastISO": "2026-09-22T12:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1699,6 +1689,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-08T20:36:00-04:00"
     },
     {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
+      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
+      "monitoring": "Retired",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-06T17:25:00-04:00"
+    },
+    {
       "run": "The Opener",
       "cadence": "Daily",
       "expected": "RETIRED 2026-07-23 (ticket 007) — trigger disabled, persona dissolved. Do NOT set back to Live. Surfacing → Day Sheet/night-watch renderers; Ops lead processes Waiting-on-You; orphaned checks → ticket 035 (invariants).",
@@ -1765,21 +1765,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 16,
-        "promptTokens": 38560690,
-        "cachedTokens": 35259188,
-        "cachedPct": 91,
-        "completionTokens": 261948,
+        "fires": 17,
+        "promptTokens": 40978057,
+        "cachedTokens": 37562164,
+        "cachedPct": 92,
+        "completionTokens": 269332,
         "errors": 0,
         "maxFireTokens": 5820492,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 7,
-            "calls": 289,
-            "promptTokens": 19846819,
-            "cachedTokens": 18612133,
+            "fires": 8,
+            "calls": 326,
+            "promptTokens": 22264186,
+            "cachedTokens": 20915109,
             "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
@@ -1862,7 +1862,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T11:45:33-04:00",
+      "asOfISO": "2026-09-22T12:00:38-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1871,7 +1871,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T11:45:31-04:00"
+      "jobsAsOfISO": "2026-09-22T12:00:35-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2074,12 +2074,12 @@ const DATA = /*__DATA__*/{
         "down": "Things break and nobody knows. Trust nothing green above.",
         "status": "ok",
         "robots": [
-          "The Morning Text",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
           "The Mechanic",
           "scribe (GitHub Actions)",
+          "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
@@ -2105,7 +2105,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 43,
             "whenISO": "2026-09-22T11:05:00-04:00",
-            "ageMin": 52,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2117,7 +2117,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 44,
             "whenISO": "2026-09-22T11:05:00-04:00",
-            "ageMin": 52,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2175,21 +2175,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 16,
-        "promptTokens": 38560690,
-        "cachedTokens": 35259188,
-        "cachedPct": 91,
-        "completionTokens": 261948,
+        "fires": 17,
+        "promptTokens": 40978057,
+        "cachedTokens": 37562164,
+        "cachedPct": 92,
+        "completionTokens": 269332,
         "errors": 0,
         "maxFireTokens": 5820492,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 7,
-            "calls": 289,
-            "promptTokens": 19846819,
-            "cachedTokens": 18612133,
+            "fires": 8,
+            "calls": 326,
+            "promptTokens": 22264186,
+            "cachedTokens": 20915109,
             "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
@@ -2272,7 +2272,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T11:45:33-04:00",
+      "asOfISO": "2026-09-22T12:00:38-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2281,9 +2281,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T11:45:31-04:00"
+      "jobsAsOfISO": "2026-09-22T12:00:35-04:00"
     },
-    "stamp": "11:57"
+    "stamp": "12:02"
   }
 }/*__END_DATA__*/;
 
