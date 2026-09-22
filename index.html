@@ -522,7 +522,7 @@ const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
   "generatedAt": "Sep 22, 11:29 AM ET",
-  "generatedAtISO": "2026-09-22T11:29:19-04:00",
+  "generatedAtISO": "2026-09-22T11:29:51-04:00",
   "studios": [
     {
       "id": "509A",
@@ -693,10 +693,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "10:00",
-      "departed": null,
+      "departed": "11:29",
       "facilitator": null,
       "arrived_by": "Jia Chian Lee",
-      "departed_by": null,
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1005,18 +1005,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 16.75,
-      "end": 17.25,
-      "id": "9602452d2ee9",
-      "date": "2026-09-23",
-      "startISO": "2026-09-23T16:45:00-04:00",
-      "endISO": "2026-09-23T17:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
       "studio": null,
       "day_offset": 1,
       "start": 16.75,
@@ -1031,12 +1019,12 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
-      "start": 17.5,
-      "end": 18.0,
-      "id": "b206769b3f47",
+      "start": 16.75,
+      "end": 17.25,
+      "id": "9602452d2ee9",
       "date": "2026-09-23",
-      "startISO": "2026-09-23T17:30:00-04:00",
-      "endISO": "2026-09-23T18:00:00-04:00",
+      "startISO": "2026-09-23T16:45:00-04:00",
+      "endISO": "2026-09-23T17:15:00-04:00",
       "day": "Tomorrow"
     },
     {
@@ -1046,6 +1034,18 @@ const DATA = /*__DATA__*/{
       "start": 17.5,
       "end": 18.0,
       "id": "5ce1927b0341",
+      "date": "2026-09-23",
+      "startISO": "2026-09-23T17:30:00-04:00",
+      "endISO": "2026-09-23T18:00:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 17.5,
+      "end": 18.0,
+      "id": "b206769b3f47",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1254,6 +1254,15 @@ const DATA = /*__DATA__*/{
       "kind": "departure",
       "remote": false,
       "ts": 1790087794691,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "11:29",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790090948217,
       "source": "doors"
     }
   ],
@@ -1755,26 +1764,26 @@ const DATA = /*__DATA__*/{
       "fallbackModel": "claude-opus-5",
       "setAtISO": "2026-09-22T10:16:39-04:00",
       "setBy": "codex:jboon",
-      "account": "claude-danceannex"
+      "account": "codex-pro-jboon-2026-09-22"
     },
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 15,
-        "promptTokens": 37448773,
-        "cachedTokens": 34241204,
+        "fires": 16,
+        "promptTokens": 38560690,
+        "cachedTokens": 35259188,
         "cachedPct": 91,
-        "completionTokens": 257201,
+        "completionTokens": 261948,
         "errors": 0,
         "maxFireTokens": 5820492,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 6,
-            "calls": 267,
-            "promptTokens": 18734902,
-            "cachedTokens": 17594149,
+            "fires": 7,
+            "calls": 289,
+            "promptTokens": 19846819,
+            "cachedTokens": 18612133,
             "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
@@ -1857,7 +1866,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T11:15:25-04:00",
+      "asOfISO": "2026-09-22T11:29:49-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1866,7 +1875,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T11:15:22-04:00"
+      "jobsAsOfISO": "2026-09-22T11:29:47-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2165,26 +2174,26 @@ const DATA = /*__DATA__*/{
       "fallbackModel": "claude-opus-5",
       "setAtISO": "2026-09-22T10:16:39-04:00",
       "setBy": "codex:jboon",
-      "account": "claude-danceannex"
+      "account": "codex-pro-jboon-2026-09-22"
     },
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 15,
-        "promptTokens": 37448773,
-        "cachedTokens": 34241204,
+        "fires": 16,
+        "promptTokens": 38560690,
+        "cachedTokens": 35259188,
         "cachedPct": 91,
-        "completionTokens": 257201,
+        "completionTokens": 261948,
         "errors": 0,
         "maxFireTokens": 5820492,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 6,
-            "calls": 267,
-            "promptTokens": 18734902,
-            "cachedTokens": 17594149,
+            "fires": 7,
+            "calls": 289,
+            "promptTokens": 19846819,
+            "cachedTokens": 18612133,
             "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
@@ -2267,7 +2276,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T11:15:25-04:00",
+      "asOfISO": "2026-09-22T11:29:49-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2276,7 +2285,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T11:15:22-04:00"
+      "jobsAsOfISO": "2026-09-22T11:29:47-04:00"
     },
     "stamp": "11:29"
   }
