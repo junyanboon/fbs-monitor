@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 22, 1:46 AM ET",
-  "generatedAtISO": "2026-09-22T01:46:56-04:00",
+  "generatedAt": "Sep 22, 2:02 AM ET",
+  "generatedAtISO": "2026-09-22T02:02:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1259,7 +1259,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T03:15:03+00:00",
-    "polledAt": "2026-09-22T05:46:00+00:00",
+    "polledAt": "2026-09-22T06:02:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1480,7 +1480,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T01:44:00-04:00"
+      "lastISO": "2026-09-22T02:02:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1490,7 +1490,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T00:48:00-04:00"
+      "lastISO": "2026-09-22T01:47:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1500,7 +1500,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T01:46:00-04:00"
+      "lastISO": "2026-09-22T02:01:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1550,7 +1550,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:20:00-04:00"
+      "lastISO": "2026-09-22T02:02:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1640,7 +1640,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:45:00-04:00"
+      "lastISO": "2026-09-22T02:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1650,7 +1650,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:45:00-04:00"
+      "lastISO": "2026-09-22T02:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1660,7 +1660,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:35:00-04:00"
+      "lastISO": "2026-09-22T01:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1670,7 +1670,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:45:00-04:00"
+      "lastISO": "2026-09-22T02:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1710,7 +1710,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-22T01:40:00-04:00"
+      "lastISO": "2026-09-22T02:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1879,15 +1879,28 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 0,
-        "promptTokens": 0,
-        "cachedTokens": 0,
-        "cachedPct": 0,
-        "completionTokens": 0,
+        "fires": 1,
+        "promptTokens": 655540,
+        "cachedTokens": 557131,
+        "cachedPct": 85,
+        "completionTokens": 6777,
         "errors": 0,
-        "maxFireTokens": 0,
-        "maxFireJob": "",
-        "jobs": [],
+        "maxFireTokens": 655540,
+        "maxFireJob": "The Mechanic",
+        "jobs": [
+          {
+            "job": "The Mechanic",
+            "fires": 1,
+            "calls": 12,
+            "promptTokens": 655540,
+            "cachedTokens": 557131,
+            "cachedPct": 85,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          }
+        ],
         "runs": []
       },
       "yesterday": {
@@ -1903,7 +1916,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T01:45:54-04:00",
+      "asOfISO": "2026-09-22T02:00:56-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1912,7 +1925,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T01:45:50-04:00"
+      "jobsAsOfISO": "2026-09-22T02:00:54-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2150,7 +2163,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T23:05:00-04:00",
-            "ageMin": 161,
+            "ageMin": 177,
             "stale": true
           },
           {
@@ -2162,7 +2175,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-21T23:05:00-04:00",
-            "ageMin": 161,
+            "ageMin": 177,
             "stale": true
           }
         ],
@@ -2220,15 +2233,28 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-22",
-        "fires": 0,
-        "promptTokens": 0,
-        "cachedTokens": 0,
-        "cachedPct": 0,
-        "completionTokens": 0,
+        "fires": 1,
+        "promptTokens": 655540,
+        "cachedTokens": 557131,
+        "cachedPct": 85,
+        "completionTokens": 6777,
         "errors": 0,
-        "maxFireTokens": 0,
-        "maxFireJob": "",
-        "jobs": [],
+        "maxFireTokens": 655540,
+        "maxFireJob": "The Mechanic",
+        "jobs": [
+          {
+            "job": "The Mechanic",
+            "fires": 1,
+            "calls": 12,
+            "promptTokens": 655540,
+            "cachedTokens": 557131,
+            "cachedPct": 85,
+            "completionTokens": null,
+            "errors": 0,
+            "maxFireTokens": null,
+            "lastISO": null
+          }
+        ],
         "runs": []
       },
       "yesterday": {
@@ -2244,7 +2270,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-22T01:45:54-04:00",
+      "asOfISO": "2026-09-22T02:00:56-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2253,9 +2279,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-22T01:45:50-04:00"
+      "jobsAsOfISO": "2026-09-22T02:00:54-04:00"
     },
-    "stamp": "01:46"
+    "stamp": "02:02"
   }
 }/*__END_DATA__*/;
 
