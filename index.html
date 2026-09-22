@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 5:56 PM ET",
-  "generatedAtISO": "2026-09-22T17:56:39-04:00",
+  "generatedAt": "Sep 22, 5:57 PM ET",
+  "generatedAtISO": "2026-09-22T17:57:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1000,18 +1000,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
-      "day_offset": 1,
-      "start": 16.75,
-      "end": 17.25,
-      "id": "fd8efbc7fa82",
-      "date": "2026-09-23",
-      "startISO": "2026-09-23T16:45:00-04:00",
-      "endISO": "2026-09-23T17:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
-      "role": "FBS",
       "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
@@ -1026,9 +1014,21 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": null,
       "day_offset": 1,
+      "start": 16.75,
+      "end": 17.25,
+      "id": "fd8efbc7fa82",
+      "date": "2026-09-23",
+      "startISO": "2026-09-23T16:45:00-04:00",
+      "endISO": "2026-09-23T17:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
       "start": 17.5,
       "end": 18.0,
-      "id": "5ce1927b0341",
+      "id": "b206769b3f47",
       "date": "2026-09-23",
       "startISO": "2026-09-23T17:30:00-04:00",
       "endISO": "2026-09-23T18:00:00-04:00",
@@ -1364,7 +1364,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T21:47:01+00:00",
-    "polledAt": "2026-09-22T21:56:00+00:00",
+    "polledAt": "2026-09-22T21:57:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1468,16 +1468,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-21T17:19:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-22T13:57:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1658,6 +1648,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-22T04:09:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-22T17:56:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2183,22 +2183,18 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
+          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Mechanic",
-          "label": "Due",
-          "lastISO": "2026-09-22T13:57:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "climate",
@@ -2220,7 +2216,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 43,
             "whenISO": "2026-09-22T17:38:00-04:00",
-            "ageMin": 18,
+            "ageMin": 19,
             "stale": false
           },
           {
@@ -2232,7 +2228,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-22T17:38:00-04:00",
-            "ageMin": 18,
+            "ageMin": 19,
             "stale": false
           }
         ],
@@ -2398,7 +2394,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-22T17:45:22-04:00"
     },
-    "stamp": "17:56"
+    "stamp": "17:57"
   }
 }/*__END_DATA__*/;
 
