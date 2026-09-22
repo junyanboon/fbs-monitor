@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 10:55 PM ET",
-  "generatedAtISO": "2026-09-21T22:55:46-04:00",
+  "generatedAt": "Sep 21, 11:02 PM ET",
+  "generatedAtISO": "2026-09-21T23:02:20-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1025,7 +1025,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1244,6 +1244,24 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1790045106722,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "23:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1790046004309,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "23:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1790046006106,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1254,7 +1272,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T02:47:00+00:00",
-    "polledAt": "2026-09-22T02:55:01+00:00",
+    "polledAt": "2026-09-22T03:02:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1398,6 +1416,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-22T02:49:34.509372Z",
         "until": "2026-09-22T02:49:34.834690Z"
+      },
+      {
+        "since": "2026-09-22T03:00:11.509884Z",
+        "until": "2026-09-22T03:00:11.829319Z"
       }
     ],
     "down": false
@@ -1414,16 +1436,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-21T17:19:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1431,27 +1443,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:52:00-04:00"
-    },
-    {
-      "run": "Desk Invariants",
-      "cadence": "Hourly",
-      "expected": "hourly at :25 · 08:25–22:25 America/Toronto · Cloud Scheduler job desk-invariants → event-gate POST /invariants",
-      "produces": "Rewrites the 🩺 Desk Invariants page (checks A–O), files 🩺 Persistent defect rows after 3 runs, self-closes cleared ones",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:25:00-04:00"
-    },
-    {
-      "run": "desk-watch (Mac)",
-      "cadence": "Daily",
-      "expected": "Once a day around 09:30-10:15 Toronto. Stale after 1500 min = 25 h, so a missed morning shows red by about 11:00 the same morning. Fails silently when the Mac is asleep or the Claude account is out of usage; the heartbeat is how that silence is seen.",
-      "produces": "One dated block per morning in archive/desk-watch-tally.md on Junyan's Mac (the daily human-grade read of unproven lanes: ensure_artist, HTA Verified, heartbeats, PBF, attendance, registry, JOB 3/4). At most one Decision row.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:42:00-04:00"
+      "lastISO": "2026-09-21T22:58:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1464,36 +1456,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-21T22:47:00-04:00"
     },
     {
-      "run": "drop-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
-      "produces": "Buzz #desk-drops → 📸 Desk Drops rows (media re-uploaded to Media property + page body, 📥 receipt), and carries the Concierge's ✅/❓ verdict back to the channel",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:45:00-04:00"
-    },
-    {
-      "run": "greeter-sweep (Cloud Run)",
-      "cadence": "5-min",
-      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c). Stale after (min) = 20 (four missed ticks): raised from 15 on 2026-09-19 after a deploy restart delayed one stamp and paged - the stamp lands at the END of a 30-54 s pass and Notion stores it at minute precision, so 15 was effectively ~14 and a single late tick tripped it.",
-      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:55:00-04:00"
-    },
-    {
-      "run": "handback-sweep (Hostinger)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
-      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:45:00-04:00"
-    },
-    {
       "run": "mail-rules (event-gate)",
       "cadence": "5-min",
       "expected": "Every 5 minutes, systemd timer danceannex-mail-rules on srv1948070 (America/Toronto), calling event-gate POST /mail-rules. NOT a RemoteTrigger and NOT Cloud Scheduler — the trigger API cannot see it. Kill switch MAIL_RULES_DISABLED=1.",
@@ -1501,7 +1463,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:55:00-04:00"
+      "lastISO": "2026-09-21T23:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1511,27 +1473,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:55:00-04:00"
-    },
-    {
-      "run": "reconcile-review (Hostinger)",
-      "cadence": "Hourly",
-      "expected": "hourly at :20 America/Toronto, 24/7 — Hostinger systemd timer danceannex-reconcile-review.timer → event-gate POST /reconcile-review. Runs the JOB33 end-of-day review, attendance (board_status) and follow-up coverage; split off the 10-min reconcile tick on 2026-09-19. Stale after 150 = two missed hourly passes plus a 15-min run.",
-      "produces": null,
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:20:00-04:00"
-    },
-    {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:50:00-04:00"
+      "lastISO": "2026-09-21T23:01:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1562,16 +1504,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-21T06:00:00-04:00"
-    },
-    {
-      "run": "The Custodian",
-      "cadence": "2×/day",
-      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
-      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T09:50:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1631,7 +1563,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:21:00-04:00"
+      "lastISO": "2026-09-21T22:57:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1664,14 +1596,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-21T22:10:00-04:00"
     },
     {
-      "run": "Watchlist sync",
-      "cadence": "15-min",
-      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
-      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "run": "Desk Invariants",
+      "cadence": "Hourly",
+      "expected": "hourly at :25 · 08:25–22:25 America/Toronto · Cloud Scheduler job desk-invariants → event-gate POST /invariants",
+      "produces": "Rewrites the 🩺 Desk Invariants page (checks A–O), files 🩺 Persistent defect rows after 3 runs, self-closes cleared ones",
       "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:53:00-04:00"
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T22:25:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1694,6 +1626,46 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-11T22:50:00-04:00"
     },
     {
+      "run": "desk-watch (Mac)",
+      "cadence": "Daily",
+      "expected": "Once a day around 09:30-10:15 Toronto. Stale after 1500 min = 25 h, so a missed morning shows red by about 11:00 the same morning. Fails silently when the Mac is asleep or the Claude account is out of usage; the heartbeat is how that silence is seen.",
+      "produces": "One dated block per morning in archive/desk-watch-tally.md on Junyan's Mac (the daily human-grade read of unproven lanes: ensure_artist, HTA Verified, heartbeats, PBF, attendance, registry, JOB 3/4). At most one Decision row.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T09:42:00-04:00"
+    },
+    {
+      "run": "drop-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
+      "produces": "Buzz #desk-drops → 📸 Desk Drops rows (media re-uploaded to Media property + page body, 📥 receipt), and carries the Concierge's ✅/❓ verdict back to the channel",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T23:00:00-04:00"
+    },
+    {
+      "run": "greeter-sweep (Cloud Run)",
+      "cadence": "5-min",
+      "expected": "every 5 min, 24/7 (Cloud Scheduler job greeter-sweep, America/Toronto). Alert window 08:00-22:59 only - an overnight gap is not worth a page, and the stateless 48h window means a missed night costs nothing. Deployed and Live 2026-09-03 (event-gate-00192-knk, git_sha 788e277c). Stale after (min) = 20 (four missed ticks): raised from 15 on 2026-09-19 after a deploy restart delayed one stamp and paged - the stamp lands at the END of a 30-54 s pass and Notion stores it at minute precision, so 15 was effectively ~14 and a single late tick tripped it.",
+      "produces": "Tagvenue / Peerspace / Giggster mail -> on-call SMS within 5 min, held first reply in the Message Queue (Pending Review), Decision row + nag ladder for booking requests, Skedda hold and release",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T23:00:00-04:00"
+    },
+    {
+      "run": "handback-sweep (Hostinger)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7, Hostinger timer beside reconcile-sweep. Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 is three missed passes. Alert window 08:00–22:59.",
+      "produces": "Read-only JOB 4 hand-back worklist: Processed Action rows on gate-parked tickets, unread screenshots on parked tickets, Desk Drops at New. Writes to no board.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T22:55:00-04:00"
+    },
+    {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
       "cadence": "Daily",
       "expected": "Nothing. This lane is not scheduled and must not be judged stale. Before any revival, fix what the two passes proved: the immediate post-grant read is not a verification on this account — it reads no window and the panels restore the original schedule within hours, so both passes reported 'migrated' for people still temporary that evening. Commit 60c0497 verifies on a later pass and has never run.",
@@ -1712,6 +1684,26 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-09-12T09:00:00-04:00"
+    },
+    {
+      "run": "reconcile-review (Hostinger)",
+      "cadence": "Hourly",
+      "expected": "hourly at :20 America/Toronto, 24/7 — Hostinger systemd timer danceannex-reconcile-review.timer → event-gate POST /reconcile-review. Runs the JOB33 end-of-day review, attendance (board_status) and follow-up coverage; split off the 10-min reconcile tick on 2026-09-19. Stale after 150 = two missed hourly passes plus a 15-min run.",
+      "produces": null,
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T22:20:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T23:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1734,6 +1726,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-07-20T02:58:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T17:19:00-04:00"
+    },
+    {
       "run": "The Concierge — 2026-09-05 20:10 interrupted",
       "cadence": null,
       "expected": "2026-09-05 20:10 America/Toronto",
@@ -1742,6 +1744,16 @@ const DATA = /*__DATA__*/{
       "status": "plain",
       "statusLabel": "Paused",
       "lastISO": "2026-09-05T22:52:00-04:00"
+    },
+    {
+      "run": "The Custodian",
+      "cadence": "2×/day",
+      "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
+      "produces": "Independent verifier: JOB 8 Review adjudication · JOB 9 QA · JOB 10 invariants · 02:35 day-in-review",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T09:50:00-04:00"
     },
     {
       "run": "The Loop",
@@ -1804,6 +1816,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-08-26T10:33:00-04:00"
     },
     {
+      "run": "Watchlist sync",
+      "cadence": "15-min",
+      "expected": "every 15 min, 08:00–22:59 Toronto (cron-job.org workflow_dispatch)",
+      "produces": "Fast-Track Watchlist DB sync (emergency Zap reads it) + Gmail/SMS correspondence ledger pull, contact sync, agreements filing",
+      "monitoring": "Live",
+      "status": "plain",
+      "statusLabel": "Off-hours",
+      "lastISO": "2026-09-21T22:53:00-04:00"
+    },
+    {
       "run": "🔑 Code Mirror",
       "cadence": "Daily",
       "expected": "at least once a day · usually ~06:00 Toronto on the Doorman's Job D pass, plus ad-hoc dry runs",
@@ -1830,21 +1852,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-21",
-        "fires": 54,
-        "promptTokens": 146846400,
-        "cachedTokens": 135228068,
+        "fires": 55,
+        "promptTokens": 149960348,
+        "cachedTokens": 138114441,
         "cachedPct": 92,
-        "completionTokens": 910529,
+        "completionTokens": 929998,
         "errors": 1,
         "maxFireTokens": 10419819,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 29,
-            "calls": 832,
-            "promptTokens": 58565443,
-            "cachedTokens": 54239500,
+            "fires": 30,
+            "calls": 873,
+            "promptTokens": 61679391,
+            "cachedTokens": 57125888,
             "cachedPct": 93,
             "completionTokens": null,
             "errors": 1,
@@ -1975,7 +1997,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T22:45:59-04:00",
+      "asOfISO": "2026-09-21T23:00:08-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -1984,7 +2006,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T22:45:57-04:00"
+      "jobsAsOfISO": "2026-09-21T23:00:02-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2131,20 +2153,16 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
-          "The Concierge",
-          "greeter-sweep (Cloud Run)",
           "The Responder",
+          "greeter-sweep (Cloud Run)",
           "QA release check",
+          "The Concierge",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": {
-          "run": "The Concierge",
-          "label": "Overdue",
-          "lastISO": "2026-09-21T17:19:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "plan",
@@ -2153,17 +2171,17 @@ const DATA = /*__DATA__*/{
         "down": "Staff show up with no plan.",
         "status": "ok",
         "robots": [
-          "handback-sweep (Hostinger)",
-          "reconcile-review (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
-          "Watchlist sync",
           "desk-loop (Cloud Run)",
+          "handback-sweep (Hostinger)",
+          "reconcile-review (Hostinger)",
           "The Closer",
           "The Loop",
-          "The Opener"
+          "The Opener",
+          "Watchlist sync"
         ],
         "worst": null
       },
@@ -2187,11 +2205,11 @@ const DATA = /*__DATA__*/{
         "down": "Things break and nobody knows. Trust nothing green above.",
         "status": "ok",
         "robots": [
-          "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
-          "The Custodian",
           "The Mechanic",
+          "drop-sweep (Cloud Run)",
           "scribe (GitHub Actions)",
+          "The Custodian",
           "The Morning Text",
           "The Sentinel",
           "The Watchman"
@@ -2218,7 +2236,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T22:05:00-04:00",
-            "ageMin": 50,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2230,7 +2248,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-21T22:05:00-04:00",
-            "ageMin": 50,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2288,21 +2306,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-21",
-        "fires": 54,
-        "promptTokens": 146846400,
-        "cachedTokens": 135228068,
+        "fires": 55,
+        "promptTokens": 149960348,
+        "cachedTokens": 138114441,
         "cachedPct": 92,
-        "completionTokens": 910529,
+        "completionTokens": 929998,
         "errors": 1,
         "maxFireTokens": 10419819,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 29,
-            "calls": 832,
-            "promptTokens": 58565443,
-            "cachedTokens": 54239500,
+            "fires": 30,
+            "calls": 873,
+            "promptTokens": 61679391,
+            "cachedTokens": 57125888,
             "cachedPct": 93,
             "completionTokens": null,
             "errors": 1,
@@ -2433,7 +2451,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T22:45:59-04:00",
+      "asOfISO": "2026-09-21T23:00:08-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -2442,9 +2460,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T22:45:57-04:00"
+      "jobsAsOfISO": "2026-09-21T23:00:02-04:00"
     },
-    "stamp": "22:55"
+    "stamp": "23:02"
   }
 }/*__END_DATA__*/;
 
