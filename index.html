@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 10:41 PM ET",
-  "generatedAtISO": "2026-09-21T22:41:54-04:00",
+  "generatedAt": "Sep 21, 10:47 PM ET",
+  "generatedAtISO": "2026-09-21T22:47:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -874,10 +874,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "19:34",
-      "departed": null,
+      "departed": "22:44",
       "facilitator": null,
       "arrived_by": "Janet Zamora",
-      "departed_by": null,
+      "departed_by": "Janet Zamora",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -966,18 +966,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "How to Access 509A",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Error",
-      "studio": "509A",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 21 · 22:15",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "HTA · Studio 509A"
-    },
-    {
       "code": "Renewal booked — Ivanka Moskaliuk — 13 Mondays Nov 2 – Jan 25, agreement to follow •••",
       "kind": null,
       "channel": "SMS",
@@ -987,6 +975,29 @@ const DATA = /*__DATA__*/{
       "created": "Sep 21 · 19:06",
       "send_after": null,
       "send_after_iso": null
+    },
+    {
+      "code": "T4 authorized-user confirmation — Lily Whiting — OHDC (Taylor Yeung)",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": null,
+      "raised_by": "AI (automation)",
+      "created": "Sep 21 · 19:48",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "How to Access 509A",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 21 · 22:15",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "HTA · Studio 509A"
     }
   ],
   "attention": [
@@ -1184,6 +1195,33 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790044068872,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Janet Zamora",
+      "time": "22:44",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790045048081,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "22:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1790045104236,
+      "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Studio (remote)",
+      "time": "22:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1790045106722,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1193,8 +1231,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-22T02:30:02+00:00",
-    "polledAt": "2026-09-22T02:41:00+00:00",
+    "updatedAt": "2026-09-22T02:47:00+00:00",
+    "polledAt": "2026-09-22T02:47:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1330,6 +1368,10 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-22T02:22:01.326276Z",
         "until": "2026-09-22T02:22:01.650294Z"
+      },
+      {
+        "since": "2026-09-22T02:44:01.832241Z",
+        "until": "2026-09-22T02:44:07.124106Z"
       }
     ],
     "down": false
@@ -1363,7 +1405,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:41:00-04:00"
+      "lastISO": "2026-09-21T22:46:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1403,7 +1445,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:30:00-04:00"
+      "lastISO": "2026-09-21T22:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1413,7 +1455,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:40:00-04:00"
+      "lastISO": "2026-09-21T22:45:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1433,7 +1475,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:40:00-04:00"
+      "lastISO": "2026-09-21T22:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1443,7 +1485,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T22:41:00-04:00"
+      "lastISO": "2026-09-21T22:46:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1907,7 +1949,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T22:30:55-04:00",
+      "asOfISO": "2026-09-21T22:45:59-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -1916,7 +1958,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T22:30:52-04:00"
+      "jobsAsOfISO": "2026-09-21T22:45:57-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2150,7 +2192,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T22:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 42,
             "stale": false
           },
           {
@@ -2162,7 +2204,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-21T22:05:00-04:00",
-            "ageMin": 36,
+            "ageMin": 42,
             "stale": false
           }
         ],
@@ -2365,7 +2407,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T22:30:55-04:00",
+      "asOfISO": "2026-09-21T22:45:59-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -2374,9 +2416,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T22:30:52-04:00"
+      "jobsAsOfISO": "2026-09-21T22:45:57-04:00"
     },
-    "stamp": "22:41"
+    "stamp": "22:47"
   }
 }/*__END_DATA__*/;
 
