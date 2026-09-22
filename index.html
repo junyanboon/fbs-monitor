@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 7:46 PM ET",
-  "generatedAtISO": "2026-09-22T19:46:58-04:00",
+  "generatedAt": "Sep 22, 7:58 PM ET",
+  "generatedAtISO": "2026-09-22T19:58:55-04:00",
   "studios": [
     {
       "id": "509A",
@@ -922,10 +922,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "18:12",
-      "departed": null,
+      "departed": "19:56",
       "facilitator": null,
       "arrived_by": "Sangah Lee",
-      "departed_by": null,
+      "departed_by": "Sangah Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1425,6 +1425,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790116794885,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Sangah Lee",
+      "time": "19:56",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790121378703,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1434,8 +1443,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-22T22:13:01+00:00",
-    "polledAt": "2026-09-22T23:46:00+00:00",
+    "updatedAt": "2026-09-22T23:58:01+00:00",
+    "polledAt": "2026-09-22T23:58:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1553,6 +1562,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-21T17:19:00-04:00"
     },
     {
+      "run": "Desk Sort",
+      "cadence": "Hourly",
+      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
+      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-22T18:17:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1560,7 +1579,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:45:00-04:00"
+      "lastISO": "2026-09-22T19:57:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1571,16 +1590,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-22T19:25:00-04:00"
-    },
-    {
-      "run": "Desk Sort",
-      "cadence": "Hourly",
-      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
-      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-22T18:17:00-04:00"
     },
     {
       "run": "desk-watch (Mac)",
@@ -1600,7 +1609,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T18:47:00-04:00"
+      "lastISO": "2026-09-22T19:47:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1620,7 +1629,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:46:00-04:00"
+      "lastISO": "2026-09-22T19:55:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1630,7 +1639,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:35:00-04:00"
+      "lastISO": "2026-09-22T19:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1640,7 +1649,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:45:00-04:00"
+      "lastISO": "2026-09-22T19:55:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1650,7 +1659,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:46:00-04:00"
+      "lastISO": "2026-09-22T19:58:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1670,7 +1679,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:40:00-04:00"
+      "lastISO": "2026-09-22T19:50:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1750,7 +1759,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:34:00-04:00"
+      "lastISO": "2026-09-22T19:49:00-04:00"
     },
     {
       "run": "The Registrar (booking-sweep, Hostinger)",
@@ -1810,7 +1819,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T19:33:00-04:00"
+      "lastISO": "2026-09-22T19:47:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2334,7 +2343,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 43,
             "whenISO": "2026-09-22T19:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 53,
             "stale": false
           },
           {
@@ -2346,7 +2355,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-22T19:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 53,
             "stale": false
           }
         ],
@@ -2536,7 +2545,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-22T19:45:58-04:00"
     },
-    "stamp": "19:46"
+    "stamp": "19:58"
   }
 }/*__END_DATA__*/;
 
