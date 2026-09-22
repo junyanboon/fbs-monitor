@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 22, 12:00 AM ET",
-  "generatedAtISO": "2026-09-22T00:00:01-04:00",
+  "generatedAt": "Sep 22, 12:02 AM ET",
+  "generatedAtISO": "2026-09-22T00:02:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -561,11 +561,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:09",
+      "departed": "11:38",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Harper Drzymala-Bokitch",
+      "departed_by": "Harper Drzymala-Bokitch",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -585,11 +585,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "12:34",
+      "departed": "14:00",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Jia Chian Lee",
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -609,11 +609,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "16:41",
+      "departed": "18:08",
       "facilitator": "Gemma Giles",
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Gemma Giles",
+      "departed_by": "Gemma Giles",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -681,11 +681,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "20:59",
+      "departed": "23:13",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "David Garzon",
+      "departed_by": "David Garzon",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -706,10 +706,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": true,
       "arrived": null,
-      "departed": null,
+      "departed": "13:04",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Zoe Young",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -729,11 +729,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "13:27",
+      "departed": "20:39",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Maggie Morrison",
+      "departed_by": "Maggie Morrison",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -801,11 +801,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:56",
+      "departed": "11:16",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stefan Lovecchio",
+      "departed_by": "Stefan Lovecchio",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -849,11 +849,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "18:14",
+      "departed": "19:34",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Greg Samba",
+      "departed_by": "Greg Samba",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -873,11 +873,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "19:34",
+      "departed": "22:44",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Janet Zamora",
+      "departed_by": "Janet Zamora",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -986,17 +986,177 @@ const DATA = /*__DATA__*/{
       "created": "Sep 21 · 22:54",
       "send_after": null,
       "send_after_iso": null
+    },
+    {
+      "code": "HTA-sweep-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 22 · 00:01",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "HTA for Taylor Yeung in Studio 693"
+    },
+    {
+      "code": "HTA-sweep-•••A",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 22 · 00:02",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-22T09:00:00-04:00",
+      "label": "HTA · Studio 509A"
     }
   ],
   "attention": [],
   "armEvents": [
+    {
+      "studio": "509A",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "10:09",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1789999770706,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "10:56",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790002605579,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Stefan Lovecchio",
+      "time": "11:16",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790003776115,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Harper Drzymala-Bokitch",
+      "time": "11:38",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790005080637,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:45",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1790005504489,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Studio (remote)",
+      "time": "11:45",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1790005507368,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "12:34",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790008472434,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Zoe Young",
+      "time": "13:04",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790010279079,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "13:27",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790011662215,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Jia Chian Lee",
+      "time": "14:00",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790013605145,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Gemma Giles",
+      "time": "16:41",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790023299036,
+      "source": "doors"
+    },
     {
       "studio": "527",
       "name": "Enrico Casertano",
       "time": "16:46",
       "kind": "arrival",
       "remote": false,
-      "ts": 1790023584000
+      "ts": 1790023584496,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Gemma Giles",
+      "time": "18:08",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790028525531,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Greg Samba",
+      "time": "18:14",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790028852712,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Greg Samba",
+      "time": "19:34",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790033653595,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Janet Zamora",
+      "time": "19:34",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790033661911,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1004,7 +1164,8 @@ const DATA = /*__DATA__*/{
       "time": "20:11",
       "kind": "departure",
       "remote": false,
-      "ts": 1790035905000
+      "ts": 1790035904889,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1012,7 +1173,26 @@ const DATA = /*__DATA__*/{
       "time": "20:13",
       "kind": "arrival",
       "remote": false,
-      "ts": 1790036037000
+      "ts": 1790036037298,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "20:39",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790037547280,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "David Garzon",
+      "time": "20:59",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790038774181,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1020,7 +1200,17 @@ const DATA = /*__DATA__*/{
       "time": "22:27",
       "kind": "departure",
       "remote": false,
-      "ts": 1790044069000
+      "ts": 1790044068872,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Janet Zamora",
+      "time": "22:44",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790045048081,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1028,7 +1218,8 @@ const DATA = /*__DATA__*/{
       "time": "22:45",
       "kind": "arrival",
       "remote": true,
-      "ts": 1790045104000
+      "ts": 1790045104236,
+      "source": "doors"
     },
     {
       "studio": "527",
@@ -1036,61 +1227,220 @@ const DATA = /*__DATA__*/{
       "time": "22:45",
       "kind": "departure",
       "remote": true,
-      "ts": 1790045107000
+      "ts": 1790045106722,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "23:00",
+      "kind": "arrival",
+      "remote": true,
+      "ts": 1790046004309,
+      "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Studio (remote)",
+      "time": "23:00",
+      "kind": "departure",
+      "remote": true,
+      "ts": 1790046006106,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "David Garzon",
+      "time": "23:13",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790046817629,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "David Garzon",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "23:13",
-      "ts": 1790046817629,
-      "when": "Mon 23:13"
-    },
-    "509B": {
-      "kind": "departure",
-      "name": "Maggie Morrison",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "20:39",
-      "ts": 1790037547280,
-      "when": "Mon 20:39"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "11:16",
-      "ts": 1790003776115,
-      "when": "Mon 11:16"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Studio (remote)",
-      "remote": true,
-      "source": "doors",
-      "studio": "901",
-      "time": "23:00",
-      "ts": 1790046006106,
-      "when": "Mon 23:00"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
-    "doors": "failed",
-    "updatedAt": null,
-    "polledAt": null,
-    "doorGaps": [],
-    "down": true
+    "doors": "ok",
+    "updatedAt": "2026-09-22T03:15:03+00:00",
+    "polledAt": "2026-09-22T04:02:01+00:00",
+    "panelCheck": {
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "mailCheck": {
+      "matched": 4,
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "doorGaps": [
+      {
+        "since": "2026-09-21T09:15:17.402489Z",
+        "until": "2026-09-21T09:15:22.543682Z"
+      },
+      {
+        "since": "2026-09-21T10:10:05.775629Z",
+        "until": "2026-09-21T10:10:06.128431Z"
+      },
+      {
+        "since": "2026-09-21T10:15:55.785052Z",
+        "until": "2026-09-21T10:15:56.117861Z"
+      },
+      {
+        "since": "2026-09-21T10:20:55.347169Z",
+        "until": "2026-09-21T10:20:55.661609Z"
+      },
+      {
+        "since": "2026-09-21T10:25:55.381231Z",
+        "until": "2026-09-21T10:25:55.701485Z"
+      },
+      {
+        "since": "2026-09-21T10:30:56.123795Z",
+        "until": "2026-09-21T10:30:56.451218Z"
+      },
+      {
+        "since": "2026-09-21T10:36:17.332263Z",
+        "until": "2026-09-21T10:36:32.160545Z"
+      },
+      {
+        "since": "2026-09-21T12:10:15.215569Z",
+        "until": "2026-09-21T12:10:54.484108Z"
+      },
+      {
+        "since": "2026-09-21T13:17:06.830016Z",
+        "until": "2026-09-21T13:17:07.290465Z"
+      },
+      {
+        "since": "2026-09-21T15:00:53.277108Z",
+        "until": "2026-09-21T15:00:53.710866Z"
+      },
+      {
+        "since": "2026-09-21T15:11:44.891162Z",
+        "until": "2026-09-21T15:12:03.030334Z"
+      },
+      {
+        "since": "2026-09-21T15:12:04.920475Z",
+        "until": "2026-09-21T15:12:11.128711Z"
+      },
+      {
+        "since": "2026-09-21T15:17:42.755091Z",
+        "until": "2026-09-21T15:17:43.083965Z"
+      },
+      {
+        "since": "2026-09-21T15:33:57.432408Z",
+        "until": "2026-09-21T15:33:57.788621Z"
+      },
+      {
+        "since": "2026-09-21T18:20:45.892164Z",
+        "until": "2026-09-21T18:20:46.214057Z"
+      },
+      {
+        "since": "2026-09-21T18:36:44.134076Z",
+        "until": "2026-09-21T18:36:44.449185Z"
+      },
+      {
+        "since": "2026-09-21T18:41:58.536500Z",
+        "until": "2026-09-21T18:42:03.639463Z"
+      },
+      {
+        "since": "2026-09-21T18:47:44.011135Z",
+        "until": "2026-09-21T18:47:44.341004Z"
+      },
+      {
+        "since": "2026-09-21T18:52:58.649818Z",
+        "until": "2026-09-21T18:53:12.832001Z"
+      },
+      {
+        "since": "2026-09-21T18:56:07.598034Z",
+        "until": "2026-09-21T18:56:21.662660Z"
+      },
+      {
+        "since": "2026-09-21T18:56:22.014233Z",
+        "until": "2026-09-21T18:57:37.112821Z"
+      },
+      {
+        "since": "2026-09-21T19:24:59.307104Z",
+        "until": "2026-09-21T19:24:59.621020Z"
+      },
+      {
+        "since": "2026-09-21T19:35:46.337959Z",
+        "until": "2026-09-21T19:35:46.480169Z"
+      },
+      {
+        "since": "2026-09-21T19:41:17.961862Z",
+        "until": "2026-09-21T19:41:18.394839Z"
+      },
+      {
+        "since": "2026-09-21T20:36:46.670217Z",
+        "until": "2026-09-21T20:36:47.003924Z"
+      },
+      {
+        "since": "2026-09-21T20:46:59.349417Z",
+        "until": "2026-09-21T20:46:59.669972Z"
+      },
+      {
+        "since": "2026-09-21T21:45:44.991540Z",
+        "until": "2026-09-21T21:45:45.998367Z"
+      },
+      {
+        "since": "2026-09-22T00:16:11.086387Z",
+        "until": "2026-09-22T00:16:11.237881Z"
+      },
+      {
+        "since": "2026-09-22T02:01:01.128793Z",
+        "until": "2026-09-22T02:01:01.460192Z"
+      },
+      {
+        "since": "2026-09-22T02:11:48.549643Z",
+        "until": "2026-09-22T02:11:48.828754Z"
+      },
+      {
+        "since": "2026-09-22T02:22:01.326276Z",
+        "until": "2026-09-22T02:22:01.650294Z"
+      },
+      {
+        "since": "2026-09-22T02:44:01.832241Z",
+        "until": "2026-09-22T02:44:07.124106Z"
+      },
+      {
+        "since": "2026-09-22T02:49:34.509372Z",
+        "until": "2026-09-22T02:49:34.834690Z"
+      },
+      {
+        "since": "2026-09-22T03:00:11.509884Z",
+        "until": "2026-09-22T03:00:11.829319Z"
+      },
+      {
+        "since": "2026-09-22T03:06:02.526626Z",
+        "until": "2026-09-22T03:06:02.910950Z"
+      },
+      {
+        "since": "2026-09-22T03:11:48.988329Z",
+        "until": "2026-09-22T03:11:52.583266Z"
+      },
+      {
+        "since": "2026-09-22T03:11:54.075084Z",
+        "until": "2026-09-22T03:11:56.522767Z"
+      },
+      {
+        "since": "2026-09-22T03:53:12.071157Z",
+        "until": "2026-09-22T03:53:12.118382Z"
+      },
+      {
+        "since": "2026-09-22T03:55:01.440758Z",
+        "until": "2026-09-22T03:55:01.730359Z"
+      },
+      {
+        "since": "2026-09-22T03:57:00.021796Z",
+        "until": "2026-09-22T03:57:05.264665Z"
+      }
+    ],
+    "down": false
   },
   "robots": [
     {
@@ -1121,7 +1471,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T23:59:00-04:00"
+      "lastISO": "2026-09-22T00:00:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1281,7 +1631,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T23:45:00-04:00"
+      "lastISO": "2026-09-22T00:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1291,7 +1641,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T23:55:00-04:00"
+      "lastISO": "2026-09-22T00:00:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1311,7 +1661,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T23:55:00-04:00"
+      "lastISO": "2026-09-22T00:00:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1351,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-21T23:50:00-04:00"
+      "lastISO": "2026-09-22T00:00:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -1519,162 +1869,41 @@ const DATA = /*__DATA__*/{
     },
     "usage": {
       "today": {
-        "date": "2026-09-21",
-        "fires": 56,
-        "promptTokens": 150314580,
-        "cachedTokens": 138414395,
-        "cachedPct": 92,
-        "completionTokens": 932431,
-        "errors": 1,
-        "maxFireTokens": 10419819,
-        "maxFireJob": "The Timekeeper",
-        "jobs": [
-          {
-            "job": "The Responder",
-            "fires": 31,
-            "calls": 881,
-            "promptTokens": 62033623,
-            "cachedTokens": 57425821,
-            "cachedPct": 93,
-            "completionTokens": null,
-            "errors": 1,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Concierge",
-            "fires": 5,
-            "calls": 336,
-            "promptTokens": 29198878,
-            "cachedTokens": 27495696,
-            "cachedPct": 94,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Concierge — Closeout",
-            "fires": 5,
-            "calls": 275,
-            "promptTokens": 22641599,
-            "cachedTokens": 21085704,
-            "cachedPct": 93,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Timekeeper",
-            "fires": 1,
-            "calls": 82,
-            "promptTokens": 10419819,
-            "cachedTokens": 9263609,
-            "cachedPct": 89,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": 10419819,
-            "lastISO": null
-          },
-          {
-            "job": "The Custodian",
-            "fires": 2,
-            "calls": 101,
-            "promptTokens": 9212350,
-            "cachedTokens": 8546307,
-            "cachedPct": 93,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Planner",
-            "fires": 1,
-            "calls": 65,
-            "promptTokens": 6822715,
-            "cachedTokens": 5912289,
-            "cachedPct": 87,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Mechanic",
-            "fires": 7,
-            "calls": 106,
-            "promptTokens": 5742081,
-            "cachedTokens": 5138148,
-            "cachedPct": 89,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Doorman",
-            "fires": 2,
-            "calls": 53,
-            "promptTokens": 4137690,
-            "cachedTokens": 3589568,
-            "cachedPct": 87,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Bookkeeper",
-            "fires": 1,
-            "calls": 2,
-            "promptTokens": 61627,
-            "cachedTokens": 44702,
-            "cachedPct": 73,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "Platform & Listing Terms",
-            "fires": 1,
-            "calls": 2,
-            "promptTokens": 44198,
-            "cachedTokens": 22025,
-            "cachedPct": 50,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          }
-        ],
-        "runs": []
-      },
-      "yesterday": {
-        "date": "2026-09-20",
-        "fires": 65,
-        "promptTokens": 190166829,
-        "cachedTokens": 173319823,
-        "cachedPct": 91,
-        "completionTokens": 1218995,
-        "errors": 1,
-        "maxFireTokens": 10521973,
-        "maxFireJob": "The Concierge",
+        "date": "2026-09-22",
+        "fires": 0,
+        "promptTokens": 0,
+        "cachedTokens": 0,
+        "cachedPct": 0,
+        "completionTokens": 0,
+        "errors": 0,
+        "maxFireTokens": 0,
+        "maxFireJob": "",
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T23:45:19-04:00",
+      "yesterday": {
+        "date": "2026-09-21",
+        "fires": 57,
+        "promptTokens": 151643540,
+        "cachedTokens": 139615870,
+        "cachedPct": 92,
+        "completionTokens": 939705,
+        "errors": 1,
+        "maxFireTokens": 10419819,
+        "maxFireJob": "The Timekeeper",
+        "jobs": [],
+        "runs": []
+      },
+      "asOfISO": "2026-09-22T00:00:22-04:00",
       "stale": false,
-      "alarm": true,
-      "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
+      "alarm": false,
+      "alarmNote": "",
       "limits": {
-        "firePromptTokens": 10000000,
+        "firePromptTokens": 0,
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T23:45:15-04:00"
+      "jobsAsOfISO": "2026-09-22T00:00:19-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -1904,7 +2133,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T23:05:00-04:00",
-            "ageMin": 55,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -1916,7 +2145,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-21T23:05:00-04:00",
-            "ageMin": 55,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -1973,164 +2202,43 @@ const DATA = /*__DATA__*/{
     },
     "usage": {
       "today": {
-        "date": "2026-09-21",
-        "fires": 56,
-        "promptTokens": 150314580,
-        "cachedTokens": 138414395,
-        "cachedPct": 92,
-        "completionTokens": 932431,
-        "errors": 1,
-        "maxFireTokens": 10419819,
-        "maxFireJob": "The Timekeeper",
-        "jobs": [
-          {
-            "job": "The Responder",
-            "fires": 31,
-            "calls": 881,
-            "promptTokens": 62033623,
-            "cachedTokens": 57425821,
-            "cachedPct": 93,
-            "completionTokens": null,
-            "errors": 1,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Concierge",
-            "fires": 5,
-            "calls": 336,
-            "promptTokens": 29198878,
-            "cachedTokens": 27495696,
-            "cachedPct": 94,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Concierge — Closeout",
-            "fires": 5,
-            "calls": 275,
-            "promptTokens": 22641599,
-            "cachedTokens": 21085704,
-            "cachedPct": 93,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Timekeeper",
-            "fires": 1,
-            "calls": 82,
-            "promptTokens": 10419819,
-            "cachedTokens": 9263609,
-            "cachedPct": 89,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": 10419819,
-            "lastISO": null
-          },
-          {
-            "job": "The Custodian",
-            "fires": 2,
-            "calls": 101,
-            "promptTokens": 9212350,
-            "cachedTokens": 8546307,
-            "cachedPct": 93,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Planner",
-            "fires": 1,
-            "calls": 65,
-            "promptTokens": 6822715,
-            "cachedTokens": 5912289,
-            "cachedPct": 87,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Mechanic",
-            "fires": 7,
-            "calls": 106,
-            "promptTokens": 5742081,
-            "cachedTokens": 5138148,
-            "cachedPct": 89,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Doorman",
-            "fires": 2,
-            "calls": 53,
-            "promptTokens": 4137690,
-            "cachedTokens": 3589568,
-            "cachedPct": 87,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "The Bookkeeper",
-            "fires": 1,
-            "calls": 2,
-            "promptTokens": 61627,
-            "cachedTokens": 44702,
-            "cachedPct": 73,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          },
-          {
-            "job": "Platform & Listing Terms",
-            "fires": 1,
-            "calls": 2,
-            "promptTokens": 44198,
-            "cachedTokens": 22025,
-            "cachedPct": 50,
-            "completionTokens": null,
-            "errors": 0,
-            "maxFireTokens": null,
-            "lastISO": null
-          }
-        ],
-        "runs": []
-      },
-      "yesterday": {
-        "date": "2026-09-20",
-        "fires": 65,
-        "promptTokens": 190166829,
-        "cachedTokens": 173319823,
-        "cachedPct": 91,
-        "completionTokens": 1218995,
-        "errors": 1,
-        "maxFireTokens": 10521973,
-        "maxFireJob": "The Concierge",
+        "date": "2026-09-22",
+        "fires": 0,
+        "promptTokens": 0,
+        "cachedTokens": 0,
+        "cachedPct": 0,
+        "completionTokens": 0,
+        "errors": 0,
+        "maxFireTokens": 0,
+        "maxFireJob": "",
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T23:45:19-04:00",
+      "yesterday": {
+        "date": "2026-09-21",
+        "fires": 57,
+        "promptTokens": 151643540,
+        "cachedTokens": 139615870,
+        "cachedPct": 92,
+        "completionTokens": 939705,
+        "errors": 1,
+        "maxFireTokens": 10419819,
+        "maxFireJob": "The Timekeeper",
+        "jobs": [],
+        "runs": []
+      },
+      "asOfISO": "2026-09-22T00:00:22-04:00",
       "stale": false,
-      "alarm": true,
-      "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
+      "alarm": false,
+      "alarmNote": "",
       "limits": {
-        "firePromptTokens": 10000000,
+        "firePromptTokens": 0,
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T23:45:15-04:00"
+      "jobsAsOfISO": "2026-09-22T00:00:19-04:00"
     },
-    "stamp": "00:00"
+    "stamp": "00:02"
   }
 }/*__END_DATA__*/;
 
