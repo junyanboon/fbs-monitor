@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Monday, September 21, 2026",
   "shiftBaseDay": "2026-09-21",
-  "generatedAt": "Sep 21, 9:17 PM ET",
-  "generatedAtISO": "2026-09-21T21:17:01-04:00",
+  "generatedAt": "Sep 21, 9:32 PM ET",
+  "generatedAtISO": "2026-09-21T21:32:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1217,7 +1217,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T01:06:00+00:00",
-    "polledAt": "2026-09-22T01:17:00+00:00",
+    "polledAt": "2026-09-22T01:32:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1367,6 +1367,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-21T17:19:00-04:00"
     },
     {
+      "run": "The Responder",
+      "cadence": "Hourly",
+      "expected": ":20 + :50 · 08:20–23:50 America/Toronto (v3 quiet-gate prompt 2026-09-20; was 07:20–00:20) · Hermes cron 5575c9d71d65 · quiet passes write a heartbeat + one report line",
+      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-21T20:21:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1374,7 +1384,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:12:00-04:00"
+      "lastISO": "2026-09-21T21:29:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1384,7 +1394,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T20:25:00-04:00"
+      "lastISO": "2026-09-21T21:25:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1394,7 +1404,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T20:17:00-04:00"
+      "lastISO": "2026-09-21T21:27:00-04:00"
     },
     {
       "run": "desk-watch (Mac)",
@@ -1424,7 +1434,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:15:00-04:00"
+      "lastISO": "2026-09-21T21:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1434,7 +1444,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:15:00-04:00"
+      "lastISO": "2026-09-21T21:30:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1444,7 +1454,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:05:00-04:00"
+      "lastISO": "2026-09-21T21:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1454,7 +1464,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:15:00-04:00"
+      "lastISO": "2026-09-21T21:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1464,7 +1474,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:16:00-04:00"
+      "lastISO": "2026-09-21T21:31:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1484,7 +1494,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:10:00-04:00"
+      "lastISO": "2026-09-21T21:30:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1577,16 +1587,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-21T21:00:00-04:00"
     },
     {
-      "run": "The Responder",
-      "cadence": "Hourly",
-      "expected": ":20 + :50 · 08:20–23:50 America/Toronto (v3 quiet-gate prompt 2026-09-20; was 07:20–00:20) · Hermes cron 5575c9d71d65 · quiet passes write a heartbeat + one report line",
-      "produces": "Held draft replies for non-ticket correspondence (courtesy / quick answers / nudge holding replies), Pending Review only; every pass appends to its rolling daily report (Completed At = check-in)",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T20:21:00-04:00"
-    },
-    {
       "run": "The Timekeeper",
       "cadence": "Daily",
       "expected": "04:00 America/Toronto · Codex production fallback",
@@ -1624,7 +1624,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-21T21:08:00-04:00"
+      "lastISO": "2026-09-21T21:22:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1773,21 +1773,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-21",
-        "fires": 49,
-        "promptTokens": 137894352,
-        "cachedTokens": 126831031,
+        "fires": 50,
+        "promptTokens": 138258751,
+        "cachedTokens": 127151684,
         "cachedPct": 92,
-        "completionTokens": 854990,
+        "completionTokens": 855696,
         "errors": 1,
         "maxFireTokens": 10419819,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 26,
-            "calls": 736,
-            "promptTokens": 52324263,
-            "cachedTokens": 48350459,
+            "fires": 27,
+            "calls": 747,
+            "promptTokens": 52688662,
+            "cachedTokens": 48671099,
             "cachedPct": 92,
             "completionTokens": null,
             "errors": 1,
@@ -1918,7 +1918,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T21:15:49-04:00",
+      "asOfISO": "2026-09-21T21:30:50-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -1927,7 +1927,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T21:15:47-04:00"
+      "jobsAsOfISO": "2026-09-21T21:30:47-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2077,8 +2077,8 @@ const DATA = /*__DATA__*/{
         "status": "crit",
         "robots": [
           "The Concierge",
-          "greeter-sweep (Cloud Run)",
           "The Responder",
+          "greeter-sweep (Cloud Run)",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
@@ -2161,7 +2161,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-21T21:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2173,7 +2173,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-21T21:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2231,21 +2231,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-21",
-        "fires": 49,
-        "promptTokens": 137894352,
-        "cachedTokens": 126831031,
+        "fires": 50,
+        "promptTokens": 138258751,
+        "cachedTokens": 127151684,
         "cachedPct": 92,
-        "completionTokens": 854990,
+        "completionTokens": 855696,
         "errors": 1,
         "maxFireTokens": 10419819,
         "maxFireJob": "The Timekeeper",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 26,
-            "calls": 736,
-            "promptTokens": 52324263,
-            "cachedTokens": 48350459,
+            "fires": 27,
+            "calls": 747,
+            "promptTokens": 52688662,
+            "cachedTokens": 48671099,
             "cachedPct": 92,
             "completionTokens": null,
             "errors": 1,
@@ -2376,7 +2376,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-21T21:15:49-04:00",
+      "asOfISO": "2026-09-21T21:30:50-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Timekeeper single fire 10,419,819 prompt tokens (limit 10,000,000)",
@@ -2385,9 +2385,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-21T21:15:47-04:00"
+      "jobsAsOfISO": "2026-09-21T21:30:47-04:00"
     },
-    "stamp": "21:17"
+    "stamp": "21:32"
   }
 }/*__END_DATA__*/;
 
