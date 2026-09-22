@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Tuesday, September 22, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 22, 8:19 AM ET",
-  "generatedAtISO": "2026-09-22T08:19:06-04:00",
+  "generatedAt": "Sep 22, 8:21 AM ET",
+  "generatedAtISO": "2026-09-22T08:21:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -994,11 +994,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": null,
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
-      "id": "9602452d2ee9",
+      "id": "fd8efbc7fa82",
       "date": "2026-09-23",
       "startISO": "2026-09-23T16:45:00-04:00",
       "endISO": "2026-09-23T17:15:00-04:00",
@@ -1006,11 +1006,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509A",
       "day_offset": 1,
       "start": 16.75,
       "end": 17.25,
-      "id": "fd8efbc7fa82",
+      "id": "9602452d2ee9",
       "date": "2026-09-23",
       "startISO": "2026-09-23T16:45:00-04:00",
       "endISO": "2026-09-23T17:15:00-04:00",
@@ -1178,8 +1178,13 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-22T03:15:03+00:00",
-    "polledAt": "2026-09-22T12:19:01+00:00",
-    "doorGaps": [],
+    "polledAt": "2026-09-22T12:21:00+00:00",
+    "doorGaps": [
+      {
+        "since": "2026-09-22T12:19:32.092868Z",
+        "until": "2026-09-22T12:19:32.377262Z"
+      }
+    ],
     "down": false
   },
   "robots": [
@@ -1221,7 +1226,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T08:15:00-04:00"
+      "lastISO": "2026-09-22T08:21:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1271,7 +1276,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T08:15:00-04:00"
+      "lastISO": "2026-09-22T08:20:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1291,7 +1296,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T08:15:00-04:00"
+      "lastISO": "2026-09-22T08:20:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1301,7 +1306,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T08:18:00-04:00"
+      "lastISO": "2026-09-22T08:21:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1321,7 +1326,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-22T08:10:00-04:00"
+      "lastISO": "2026-09-22T08:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1938,7 +1943,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-22T03:05:00-04:00",
-            "ageMin": 314,
+            "ageMin": 316,
             "stale": true
           },
           {
@@ -1950,7 +1955,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 53,
             "whenISO": "2026-09-22T03:05:00-04:00",
-            "ageMin": 314,
+            "ageMin": 316,
             "stale": true
           }
         ],
@@ -2104,7 +2109,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-22T08:15:50-04:00"
     },
-    "stamp": "08:19"
+    "stamp": "08:21"
   }
 }/*__END_DATA__*/;
 
