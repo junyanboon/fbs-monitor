@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 23, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 23, 12:32 AM ET",
-  "generatedAtISO": "2026-09-23T00:32:06-04:00",
+  "generatedAt": "Sep 23, 12:46 AM ET",
+  "generatedAtISO": "2026-09-23T00:46:58-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1250,7 +1250,12 @@ const DATA = /*__DATA__*/{
       "label": "EOB · Studio 509A"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "527",
@@ -1648,7 +1653,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-23T03:38:01+00:00",
-    "polledAt": "2026-09-23T04:32:00+00:00",
+    "polledAt": "2026-09-23T04:46:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1766,6 +1771,16 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
+      "run": "Ops Executor",
+      "cadence": "15-min",
+      "expected": null,
+      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
+      "monitoring": "Retired",
+      "status": "crit",
+      "statusLabel": "Overdue",
+      "lastISO": "2026-09-15T19:44:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1773,7 +1788,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T00:28:00-04:00"
+      "lastISO": "2026-09-23T00:45:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1793,17 +1808,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T00:31:00-04:00"
-    },
-    {
-      "run": "Ops Executor",
-      "cadence": "15-min",
-      "expected": null,
-      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
-      "monitoring": "Retired",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-15T19:44:00-04:00"
+      "lastISO": "2026-09-23T00:46:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1883,7 +1888,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T00:00:00-04:00"
+      "lastISO": "2026-09-23T00:30:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1953,7 +1958,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T00:30:00-04:00"
+      "lastISO": "2026-09-23T00:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1963,7 +1968,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T00:31:00-04:00"
+      "lastISO": "2026-09-23T00:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1973,7 +1978,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T00:25:00-04:00"
+      "lastISO": "2026-09-23T00:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1983,7 +1988,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T00:30:00-04:00"
+      "lastISO": "2026-09-23T00:45:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2023,7 +2028,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T00:20:00-04:00"
+      "lastISO": "2026-09-23T00:40:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2239,7 +2244,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-23T00:30:50-04:00",
+      "asOfISO": "2026-09-23T00:45:49-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2248,7 +2253,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-23T00:30:46-04:00"
+      "jobsAsOfISO": "2026-09-23T00:45:46-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2487,7 +2492,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-22T23:05:00-04:00",
-            "ageMin": 87,
+            "ageMin": 101,
             "stale": false
           },
           {
@@ -2499,7 +2504,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-22T23:05:00-04:00",
-            "ageMin": 87,
+            "ageMin": 101,
             "stale": false
           }
         ],
@@ -2594,7 +2599,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-23T00:30:50-04:00",
+      "asOfISO": "2026-09-23T00:45:49-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2603,9 +2608,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-23T00:30:46-04:00"
+      "jobsAsOfISO": "2026-09-23T00:45:46-04:00"
     },
-    "stamp": "00:32"
+    "stamp": "00:46"
   }
 }/*__END_DATA__*/;
 
