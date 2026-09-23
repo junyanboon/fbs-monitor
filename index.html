@@ -522,7 +522,7 @@ const DATA = /*__DATA__*/{
   "date": "Wednesday, September 23, 2026",
   "shiftBaseDay": "2026-09-23",
   "generatedAt": "Sep 23, 8:39 AM ET",
-  "generatedAtISO": "2026-09-23T08:39:09-04:00",
+  "generatedAtISO": "2026-09-23T08:39:46-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1014,11 +1014,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 0,
       "start": 13.75,
       "end": 14.25,
-      "id": "26cb08beb22e",
+      "id": "699f21f7d7bc",
       "date": "2026-09-23",
       "startISO": "2026-09-23T13:45:00-04:00",
       "endISO": "2026-09-23T14:15:00-04:00",
@@ -1026,11 +1026,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 0,
       "start": 13.75,
       "end": 14.25,
-      "id": "699f21f7d7bc",
+      "id": "26cb08beb22e",
       "date": "2026-09-23",
       "startISO": "2026-09-23T13:45:00-04:00",
       "endISO": "2026-09-23T14:15:00-04:00",
@@ -1158,18 +1158,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
-      "day_offset": 2,
-      "start": 15.25,
-      "end": 15.75,
-      "id": "bbaae3345b8b",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T15:15:00-04:00",
-      "endISO": "2026-09-25T15:45:00-04:00",
-      "day": "Fri Sep 25"
-    },
-    {
-      "role": "FBS",
       "studio": "509B",
       "day_offset": 2,
       "start": 15.25,
@@ -1182,14 +1170,14 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": null,
       "day_offset": 2,
-      "start": 16.25,
-      "end": 16.75,
-      "id": "9c230211d07b",
+      "start": 15.25,
+      "end": 15.75,
+      "id": "bbaae3345b8b",
       "date": "2026-09-25",
-      "startISO": "2026-09-25T16:15:00-04:00",
-      "endISO": "2026-09-25T16:45:00-04:00",
+      "startISO": "2026-09-25T15:15:00-04:00",
+      "endISO": "2026-09-25T15:45:00-04:00",
       "day": "Fri Sep 25"
     },
     {
@@ -1199,6 +1187,18 @@ const DATA = /*__DATA__*/{
       "start": 16.25,
       "end": 16.75,
       "id": "7e547a357d31",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T16:15:00-04:00",
+      "endISO": "2026-09-25T16:45:00-04:00",
+      "day": "Fri Sep 25"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 2,
+      "start": 16.25,
+      "end": 16.75,
+      "id": "9c230211d07b",
       "date": "2026-09-25",
       "startISO": "2026-09-25T16:15:00-04:00",
       "endISO": "2026-09-25T16:45:00-04:00",
@@ -1311,17 +1311,6 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "AI (automation)",
       "created": "Sep 22 · 21:50",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
-      "code": "Post-HTA go-ahead confirmation — Megan Chapman — 693 [gtg:f503457b-••••-4b88-bbea-f956b1c409bc]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Registrar",
-      "created": "Sep 23 · 01:42",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1465,6 +1454,17 @@ const DATA = /*__DATA__*/{
       "send_after": "16:00",
       "send_after_iso": "2026-09-23T16:00:00-04:00",
       "label": "EOB for Marcy Tran in Studio 509A"
+    },
+    {
+      "code": "Post-HTA go-ahead confirmation — Megan Chapman — 693 [gtg:f503457b-••••-4b88-bbea-f956b1c409bc]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 23 · 01:42",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1529,50 +1529,13 @@ const DATA = /*__DATA__*/{
   "alarmAlerts": [],
   "armFallback": true,
   "armFeed": {
-    "panel": "ok",
+    "panel": "failed",
     "mail": "ok",
-    "doors": "ok",
-    "updatedAt": "2026-09-23T03:38:01+00:00",
-    "polledAt": "2026-09-23T12:39:01+00:00",
-    "doorGaps": [
-      {
-        "since": "2026-09-23T10:37:11.383272Z",
-        "until": "2026-09-23T10:37:11.723461Z"
-      },
-      {
-        "since": "2026-09-23T10:48:11.113727Z",
-        "until": "2026-09-23T10:48:16.254143Z"
-      },
-      {
-        "since": "2026-09-23T11:31:40.070523Z",
-        "until": "2026-09-23T11:31:40.202137Z"
-      },
-      {
-        "since": "2026-09-23T11:37:11.421543Z",
-        "until": "2026-09-23T11:37:14.127789Z"
-      },
-      {
-        "since": "2026-09-23T11:37:14.168414Z",
-        "until": "2026-09-23T11:37:22.732954Z"
-      },
-      {
-        "since": "2026-09-23T11:43:11.460389Z",
-        "until": "2026-09-23T11:43:11.548303Z"
-      },
-      {
-        "since": "2026-09-23T11:48:11.487847Z",
-        "until": "2026-09-23T11:48:15.182818Z"
-      },
-      {
-        "since": "2026-09-23T11:48:15.222851Z",
-        "until": "2026-09-23T11:48:16.613966Z"
-      },
-      {
-        "since": "2026-09-23T12:13:40.325362Z",
-        "until": "2026-09-23T12:13:40.647791Z"
-      }
-    ],
-    "down": false
+    "doors": "failed",
+    "updatedAt": null,
+    "polledAt": null,
+    "doorGaps": [],
+    "down": true
   },
   "robots": [
     {
