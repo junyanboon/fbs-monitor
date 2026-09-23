@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 23, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 23, 1:04 AM ET",
-  "generatedAtISO": "2026-09-23T01:04:26-04:00",
+  "generatedAt": "Sep 23, 1:05 AM ET",
+  "generatedAtISO": "2026-09-23T01:05:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1272,18 +1272,6 @@ const DATA = /*__DATA__*/{
       "send_after": "16:00",
       "send_after_iso": "2026-09-23T16:00:00-04:00",
       "label": "EOB · Studio 509A"
-    },
-    {
-      "code": "HTA-sweep-•••A",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 23 · 01:03",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "HTA · Studio 509A"
     }
   ],
   "attention": [
@@ -1689,7 +1677,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-23T03:38:01+00:00",
-    "polledAt": "2026-09-23T05:04:00+00:00",
+    "polledAt": "2026-09-23T05:05:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1854,7 +1842,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T01:03:00-04:00"
+      "lastISO": "2026-09-23T01:05:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2024,7 +2012,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T01:00:00-04:00"
+      "lastISO": "2026-09-23T01:05:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2517,11 +2505,15 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "ok",
+        "status": "crit",
         "robots": [
           "The Weatherman"
         ],
-        "worst": null,
+        "worst": {
+          "run": "Thermal Log",
+          "label": "No fresh reading",
+          "lastISO": "2026-09-22T23:05:00-04:00"
+        },
         "studios": [
           {
             "studio": "509",
@@ -2532,8 +2524,8 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-22T23:05:00-04:00",
-            "ageMin": 119,
-            "stale": false
+            "ageMin": 120,
+            "stale": true
           },
           {
             "studio": "901",
@@ -2544,11 +2536,11 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-22T23:05:00-04:00",
-            "ageMin": 119,
-            "stale": false
+            "ageMin": 120,
+            "stale": true
           }
         ],
-        "climateNote": null,
+        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -2650,7 +2642,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-23T01:00:46-04:00"
     },
-    "stamp": "01:04"
+    "stamp": "01:05"
   }
 }/*__END_DATA__*/;
 
