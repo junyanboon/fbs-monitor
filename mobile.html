@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 23, 2026",
   "shiftBaseDay": "2026-09-22",
-  "generatedAt": "Sep 23, 4:06 AM ET",
-  "generatedAtISO": "2026-09-23T04:06:29-04:00",
+  "generatedAt": "Sep 23, 4:07 AM ET",
+  "generatedAtISO": "2026-09-23T04:07:31-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1469,7 +1469,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-23T03:38:01+00:00",
-    "polledAt": "2026-09-23T08:06:01+00:00",
+    "polledAt": "2026-09-23T08:07:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1617,16 +1617,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "The Analyst",
-      "cadence": "Daily",
-      "expected": "04:06 America/Toronto · Cloud Scheduler",
-      "produces": "IPR — today + tomorrow",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Awaiting completion",
-      "lastISO": "2026-09-22T04:07:00-04:00"
-    },
-    {
       "run": "The Host",
       "cadence": "Daily",
       "expected": "04:05 America/Toronto · Cloud Scheduler",
@@ -1664,7 +1654,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T04:05:00-04:00"
+      "lastISO": "2026-09-23T04:06:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1675,6 +1665,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-23T03:07:00-04:00"
+    },
+    {
+      "run": "The Analyst",
+      "cadence": "Daily",
+      "expected": "04:06 America/Toronto · Cloud Scheduler",
+      "produces": "IPR — today + tomorrow",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-23T04:06:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -2286,8 +2286,8 @@ const DATA = /*__DATA__*/{
         "down": "Staff show up with no plan.",
         "status": "watch",
         "robots": [
-          "The Analyst",
           "The Host",
+          "The Analyst",
           "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
           "desk-loop (Cloud Run)",
@@ -2300,9 +2300,9 @@ const DATA = /*__DATA__*/{
           "Watchlist sync"
         ],
         "worst": {
-          "run": "The Analyst",
+          "run": "The Host",
           "label": "Awaiting completion",
-          "lastISO": "2026-09-22T04:07:00-04:00"
+          "lastISO": "2026-09-22T04:09:00-04:00"
         }
       },
       {
@@ -2356,7 +2356,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-23T03:05:00-04:00",
-            "ageMin": 61,
+            "ageMin": 62,
             "stale": false
           },
           {
@@ -2368,7 +2368,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 50,
             "whenISO": "2026-09-23T03:05:00-04:00",
-            "ageMin": 61,
+            "ageMin": 62,
             "stale": false
           }
         ],
@@ -2498,7 +2498,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-23T04:00:19-04:00"
     },
-    "stamp": "04:06"
+    "stamp": "04:07"
   }
 }/*__END_DATA__*/;
 
