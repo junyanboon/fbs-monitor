@@ -292,7 +292,7 @@ const DATA = /*__DATA__*/{
   "date": "Wednesday, September 23, 2026",
   "shiftBaseDay": "2026-09-23",
   "generatedAt": "Sep 23, 7:44 PM ET",
-  "generatedAtISO": "2026-09-23T19:44:02-04:00",
+  "generatedAtISO": "2026-09-23T19:44:33-04:00",
   "studios": [
     {
       "id": "509A",
@@ -922,12 +922,34 @@ const DATA = /*__DATA__*/{
       "created": "Sep 23 · 19:42",
       "send_after": null,
       "send_after_iso": null
+    },
+    {
+      "code": "Shamir Panchal — Nov-Jan dates open in 509A + Sep 27/Oct 4 509B moved to 11-12 [desk-sort:gmail-1a0d00c03509523a]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "Other",
+      "created": "Sep 23 · 19:44",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Staff Shift Brief — Ela — Sep 24",
+      "kind": null,
+      "channel": "Email",
+      "status": "Ready to Send",
+      "studio": null,
+      "raised_by": "The Planner",
+      "created": "Sep 23 · 19:44",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1248,16 +1270,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "Desk Sort",
-      "cadence": "Hourly",
-      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
-      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-23T11:27:00-04:00"
-    },
-    {
       "run": "Ops Executor",
       "cadence": "15-min",
       "expected": null,
@@ -1316,6 +1328,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-23T19:25:00-04:00"
+    },
+    {
+      "run": "Desk Sort",
+      "cadence": "Hourly",
+      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
+      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-23T20:00:00-04:00"
     },
     {
       "run": "desk-watch (Mac)",
