@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 23, 2026",
   "shiftBaseDay": "2026-09-23",
-  "generatedAt": "Sep 23, 11:03 AM ET",
-  "generatedAtISO": "2026-09-23T11:03:36-04:00",
+  "generatedAt": "Sep 23, 11:17 AM ET",
+  "generatedAtISO": "2026-09-23T11:17:14-04:00",
   "studios": [
     {
       "id": "509A",
@@ -955,11 +955,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 0,
       "start": 13.75,
       "end": 14.25,
-      "id": "699f21f7d7bc",
+      "id": "26cb08beb22e",
       "date": "2026-09-23",
       "startISO": "2026-09-23T13:45:00-04:00",
       "endISO": "2026-09-23T14:15:00-04:00",
@@ -967,11 +967,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 0,
       "start": 13.75,
       "end": 14.25,
-      "id": "26cb08beb22e",
+      "id": "699f21f7d7bc",
       "date": "2026-09-23",
       "startISO": "2026-09-23T13:45:00-04:00",
       "endISO": "2026-09-23T14:15:00-04:00",
@@ -991,11 +991,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": null,
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
-      "id": "21b9126ce39e",
+      "id": "b1de5bd1479c",
       "date": "2026-09-23",
       "startISO": "2026-09-23T15:45:00-04:00",
       "endISO": "2026-09-23T16:15:00-04:00",
@@ -1003,11 +1003,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "901",
       "day_offset": 0,
       "start": 15.75,
       "end": 16.25,
-      "id": "b1de5bd1479c",
+      "id": "21b9126ce39e",
       "date": "2026-09-23",
       "startISO": "2026-09-23T15:45:00-04:00",
       "endISO": "2026-09-23T16:15:00-04:00",
@@ -1123,11 +1123,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509B",
       "day_offset": 2,
       "start": 16.25,
       "end": 16.75,
-      "id": "7e547a357d31",
+      "id": "9c230211d07b",
       "date": "2026-09-25",
       "startISO": "2026-09-25T16:15:00-04:00",
       "endISO": "2026-09-25T16:45:00-04:00",
@@ -1135,11 +1135,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": null,
       "day_offset": 2,
       "start": 16.25,
       "end": 16.75,
-      "id": "9c230211d07b",
+      "id": "7e547a357d31",
       "date": "2026-09-25",
       "startISO": "2026-09-25T16:15:00-04:00",
       "endISO": "2026-09-25T16:45:00-04:00",
@@ -1252,6 +1252,28 @@ const DATA = /*__DATA__*/{
       "studio": null,
       "raised_by": "AI (automation)",
       "created": "Sep 22 · 21:50",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "COURTESY — Chikako Iversen — 527 thanks •••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "527",
+      "raised_by": "AI (automation)",
+      "created": "Sep 23 · 11:15",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "COURTESY — Maggie Morrison — Eco-mode fix thanks •••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "AI (automation)",
+      "created": "Sep 23 · 11:15",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1415,7 +1437,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-23T14:33:11+00:00",
-    "polledAt": "2026-09-23T15:03:00+00:00",
+    "polledAt": "2026-09-23T15:17:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1519,6 +1541,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
+      "run": "The Closer",
+      "cadence": "Hourly",
+      "expected": "Every 2 hours at :10, odd hours 09:10–21:10 America/Toronto; stale after 150 minutes inside 09:00–22:00; quiet outside window.",
+      "produces": "The Closer — Rolling Daily YYYY-MM-DD; JOB 3 reconcile, reply examples, JOB 4 handback.",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-23T09:14:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1526,7 +1558,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T11:02:00-04:00"
+      "lastISO": "2026-09-23T11:13:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1546,7 +1578,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T10:20:00-04:00"
+      "lastISO": "2026-09-23T11:27:00-04:00"
     },
     {
       "run": "desk-watch (Mac)",
@@ -1576,7 +1608,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T11:00:00-04:00"
+      "lastISO": "2026-09-23T11:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1586,7 +1618,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T11:01:00-04:00"
+      "lastISO": "2026-09-23T11:16:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1596,7 +1628,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T10:55:00-04:00"
+      "lastISO": "2026-09-23T11:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1606,7 +1638,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T11:00:00-04:00"
+      "lastISO": "2026-09-23T11:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1616,7 +1648,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T11:03:00-04:00"
+      "lastISO": "2026-09-23T11:16:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1636,7 +1668,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T11:00:00-04:00"
+      "lastISO": "2026-09-23T11:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1646,7 +1678,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T10:07:00-04:00"
+      "lastISO": "2026-09-23T11:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1667,16 +1699,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-23T06:00:00-04:00"
-    },
-    {
-      "run": "The Closer",
-      "cadence": "Hourly",
-      "expected": "Every 2 hours at :10, odd hours 09:10–21:10 America/Toronto; stale after 150 minutes inside 09:00–22:00; quiet outside window.",
-      "produces": "The Closer — Rolling Daily YYYY-MM-DD; JOB 3 reconcile, reply examples, JOB 4 handback.",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-23T09:14:00-04:00"
     },
     {
       "run": "The Doorman",
@@ -1726,7 +1748,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T10:30:00-04:00"
+      "lastISO": "2026-09-23T11:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1766,7 +1788,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T10:10:00-04:00"
+      "lastISO": "2026-09-23T11:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1915,22 +1937,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-23",
-        "fires": 16,
-        "promptTokens": 21266416,
-        "cachedTokens": 20026838,
+        "fires": 18,
+        "promptTokens": 29334721,
+        "cachedTokens": 27491118,
         "cachedPct": 94,
-        "completionTokens": 39999,
+        "completionTokens": 90550,
         "errors": 0,
-        "maxFireTokens": 3084585,
-        "maxFireJob": "The Doorman",
+        "maxFireTokens": 7954790,
+        "maxFireJob": "The Responder",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 6,
-            "calls": 208,
-            "promptTokens": 7669007,
-            "cachedTokens": 7669007,
-            "cachedPct": 100,
+            "fires": 7,
+            "calls": 245,
+            "promptTokens": 15623797,
+            "cachedTokens": 13544718,
+            "cachedPct": 87,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -1962,11 +1984,11 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Closer",
-            "fires": 1,
-            "calls": 37,
-            "promptTokens": 2569921,
-            "cachedTokens": 2428672,
-            "cachedPct": 95,
+            "fires": 2,
+            "calls": 42,
+            "promptTokens": 2683436,
+            "cachedTokens": 2514560,
+            "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2024,7 +2046,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-23T11:00:28-04:00",
+      "asOfISO": "2026-09-23T11:15:33-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2033,7 +2055,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-23T11:00:25-04:00"
+      "jobsAsOfISO": "2026-09-23T11:15:30-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2208,12 +2230,12 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
+          "The Closer",
           "handback-sweep (Hostinger)",
           "reconcile-review (Hostinger)",
           "The Analyst",
-          "The Closer",
           "The Host",
           "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
@@ -2223,7 +2245,11 @@ const DATA = /*__DATA__*/{
           "The Loop",
           "The Opener"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Closer",
+          "label": "Due",
+          "lastISO": "2026-09-23T09:14:00-04:00"
+        }
       },
       {
         "k": "money",
@@ -2274,25 +2300,25 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 21.8,
-            "setpoint": "COOL 26",
+            "inside": 21.5,
+            "setpoint": "COOL 23",
             "mode": "COOL",
             "hvac": "OFF",
             "humidity": 46,
-            "whenISO": "2026-09-23T10:05:00-04:00",
-            "ageMin": 58,
+            "whenISO": "2026-09-23T11:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 20.3,
+            "inside": 20.2,
             "setpoint": "COOL 20",
             "mode": "COOL",
-            "hvac": "OFF",
+            "hvac": "COOLING",
             "humidity": 47,
-            "whenISO": "2026-09-23T10:05:00-04:00",
-            "ageMin": 58,
+            "whenISO": "2026-09-23T11:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           }
         ],
@@ -2350,22 +2376,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-23",
-        "fires": 16,
-        "promptTokens": 21266416,
-        "cachedTokens": 20026838,
+        "fires": 18,
+        "promptTokens": 29334721,
+        "cachedTokens": 27491118,
         "cachedPct": 94,
-        "completionTokens": 39999,
+        "completionTokens": 90550,
         "errors": 0,
-        "maxFireTokens": 3084585,
-        "maxFireJob": "The Doorman",
+        "maxFireTokens": 7954790,
+        "maxFireJob": "The Responder",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 6,
-            "calls": 208,
-            "promptTokens": 7669007,
-            "cachedTokens": 7669007,
-            "cachedPct": 100,
+            "fires": 7,
+            "calls": 245,
+            "promptTokens": 15623797,
+            "cachedTokens": 13544718,
+            "cachedPct": 87,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2397,11 +2423,11 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Closer",
-            "fires": 1,
-            "calls": 37,
-            "promptTokens": 2569921,
-            "cachedTokens": 2428672,
-            "cachedPct": 95,
+            "fires": 2,
+            "calls": 42,
+            "promptTokens": 2683436,
+            "cachedTokens": 2514560,
+            "cachedPct": 94,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2459,7 +2485,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-23T11:00:28-04:00",
+      "asOfISO": "2026-09-23T11:15:33-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2468,9 +2494,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-23T11:00:25-04:00"
+      "jobsAsOfISO": "2026-09-23T11:15:30-04:00"
     },
-    "stamp": "11:03"
+    "stamp": "11:17"
   }
 }/*__END_DATA__*/;
 
