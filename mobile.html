@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 24, 2026",
   "shiftBaseDay": "2026-09-24",
-  "generatedAt": "Sep 24, 9:03 AM ET",
-  "generatedAtISO": "2026-09-24T09:03:42-04:00",
+  "generatedAt": "Sep 24, 9:11 AM ET",
+  "generatedAtISO": "2026-09-24T09:11:59-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1069,22 +1069,13 @@ const DATA = /*__DATA__*/{
   "alarmAlerts": [],
   "armFallback": true,
   "armFeed": {
-    "panel": "ok",
+    "panel": "failed",
     "mail": "ok",
-    "doors": "ok",
-    "updatedAt": "2026-09-24T03:42:01+00:00",
-    "polledAt": "2026-09-24T13:03:01+00:00",
-    "doorGaps": [
-      {
-        "since": "2026-09-24T11:10:48.425586Z",
-        "until": "2026-09-24T11:10:48.767885Z"
-      },
-      {
-        "since": "2026-09-24T12:12:36.472575Z",
-        "until": "2026-09-24T12:12:36.626509Z"
-      }
-    ],
-    "down": false
+    "doors": "failed",
+    "updatedAt": null,
+    "polledAt": null,
+    "doorGaps": [],
+    "down": true
   },
   "robots": [
     {
@@ -1125,7 +1116,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:03:00-04:00"
+      "lastISO": "2026-09-24T09:09:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1175,7 +1166,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:01:00-04:00"
+      "lastISO": "2026-09-24T09:11:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1185,7 +1176,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:55:00-04:00"
+      "lastISO": "2026-09-24T09:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1195,7 +1186,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:00:00-04:00"
+      "lastISO": "2026-09-24T09:10:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1205,7 +1196,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:03:00-04:00"
+      "lastISO": "2026-09-24T09:11:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1225,7 +1216,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:00:00-04:00"
+      "lastISO": "2026-09-24T09:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1235,7 +1226,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:07:00-04:00"
+      "lastISO": "2026-09-24T09:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1335,7 +1326,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:30:00-04:00"
+      "lastISO": "2026-09-24T09:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1345,7 +1336,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:05:00-04:00"
+      "lastISO": "2026-09-24T09:12:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1375,7 +1366,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T03:10:00-04:00"
+      "lastISO": "2026-09-24T09:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1670,22 +1661,6 @@ const DATA = /*__DATA__*/{
         "default": false
       },
       {
-        "lane": "custodian",
-        "name": "The Custodian",
-        "executor": "vps",
-        "how": "Hermes cron · VPS",
-        "status": "ok",
-        "default": false
-      },
-      {
-        "lane": "doorman",
-        "name": "The Doorman",
-        "executor": "vps",
-        "how": "Hermes cron · VPS",
-        "status": "ok",
-        "default": false
-      },
-      {
         "lane": "host",
         "name": "The Host",
         "executor": "cloudrun",
@@ -1696,14 +1671,6 @@ const DATA = /*__DATA__*/{
       {
         "lane": "loop",
         "name": "The Loop",
-        "executor": "vps",
-        "how": "Hermes cron · VPS",
-        "status": "ok",
-        "default": false
-      },
-      {
-        "lane": "mechanic",
-        "name": "The Mechanic",
         "executor": "vps",
         "how": "Hermes cron · VPS",
         "status": "ok",
@@ -1726,14 +1693,6 @@ const DATA = /*__DATA__*/{
         "default": false
       },
       {
-        "lane": "timekeeper",
-        "name": "The Timekeeper",
-        "executor": "vps",
-        "how": "Hermes cron · VPS",
-        "status": "ok",
-        "default": false
-      },
-      {
         "lane": "treasurer",
         "name": "The Treasurer",
         "executor": "vps",
@@ -1750,8 +1709,40 @@ const DATA = /*__DATA__*/{
         "default": false
       },
       {
+        "lane": "custodian",
+        "name": "The Custodian",
+        "executor": "cloud",
+        "how": "cloud",
+        "status": "plain",
+        "default": false
+      },
+      {
+        "lane": "doorman",
+        "name": "The Doorman",
+        "executor": "cloud",
+        "how": "cloud",
+        "status": "plain",
+        "default": false
+      },
+      {
+        "lane": "mechanic",
+        "name": "The Mechanic",
+        "executor": "cloud",
+        "how": "cloud",
+        "status": "plain",
+        "default": false
+      },
+      {
         "lane": "responder",
         "name": "The Responder",
+        "executor": "cloud",
+        "how": "cloud",
+        "status": "plain",
+        "default": false
+      },
+      {
+        "lane": "timekeeper",
+        "name": "The Timekeeper",
         "executor": "cloud",
         "how": "cloud",
         "status": "plain",
@@ -1760,9 +1751,9 @@ const DATA = /*__DATA__*/{
     ],
     "counts": {
       "mac": 1,
-      "vps": 8,
+      "vps": 4,
       "cloudrun": 4,
-      "cloud": 2
+      "cloud": 6
     }
   },
   "leaseNote": null,
@@ -1856,15 +1847,11 @@ const DATA = /*__DATA__*/{
         "name": "Weatherman",
         "fine": "Thermostats read hourly. Cooling set by the bookings.",
         "down": "Rooms drift. Dancers sweat or freeze.",
-        "status": "crit",
+        "status": "ok",
         "robots": [
           "The Weatherman"
         ],
-        "worst": {
-          "run": "Thermal Log",
-          "label": "No fresh reading",
-          "lastISO": "2026-09-24T03:05:00-04:00"
-        },
+        "worst": null,
         "studios": [
           {
             "studio": "509",
@@ -1874,24 +1861,24 @@ const DATA = /*__DATA__*/{
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 46,
-            "whenISO": "2026-09-24T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "whenISO": "2026-09-24T09:05:00-04:00",
+            "ageMin": 6,
+            "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 20.1,
+            "inside": 20.3,
             "setpoint": "COOL 20",
             "mode": "COOL",
-            "hvac": "OFF",
-            "humidity": 56,
-            "whenISO": "2026-09-24T03:05:00-04:00",
-            "ageMin": 358,
-            "stale": true
+            "hvac": "COOLING",
+            "humidity": 47,
+            "whenISO": "2026-09-24T09:05:00-04:00",
+            "ageMin": 6,
+            "stale": false
           }
         ],
-        "climateNote": "Newest reading is older than 2 h — the Weatherman is blind",
+        "climateNote": null,
         "rules": {
           "model": {
             "ceiling": 24.0,
@@ -1931,7 +1918,7 @@ const DATA = /*__DATA__*/{
     ],
     "liveCount": 28,
     "holder": "hermes",
-    "where": "on the VPS",
+    "where": "cloud",
     "provider": {
       "name": "Codex",
       "primary": "openai-codex",
@@ -2053,7 +2040,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-24T09:00:46-04:00"
     },
-    "stamp": "09:03"
+    "stamp": "09:11"
   }
 }/*__END_DATA__*/;
 
