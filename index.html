@@ -10,6 +10,9 @@
 <!-- Web-app install (PWA): manifest + iOS standalone metas. Relative paths resolve
      under /fbs-monitor/ on Pages; harmless in other contexts. -->
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:wght@400;600;700&display=swap">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#161412">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,10 +32,10 @@
     --ok-bg:#e2efe7; --watch-bg:#f6ead6; --crit-bg:#f9e6e2;
     --live-bg:#eef3ec; --live-line:#bcd4c2;
     --shadow:0 6px 18px rgba(25,23,21,.07);
-    --disp:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
-    --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
-    --body:Seravek,"Avenir Next","Segoe UI",Ubuntu,sans-serif;
-    --mono:"SF Mono",ui-monospace,"Cascadia Mono",Menlo,monospace;
+    --disp:"Barlow Condensed","Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+    --sans:"Nunito Sans","Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
+    --body:"Nunito Sans",Seravek,"Avenir Next","Segoe UI",Ubuntu,sans-serif;
+    --mono:"JetBrains Mono","SF Mono",ui-monospace,"Cascadia Mono",Menlo,monospace;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -521,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 24, 2026",
   "shiftBaseDay": "2026-09-24",
-  "generatedAt": "Sep 24, 9:50 AM ET",
-  "generatedAtISO": "2026-09-24T09:50:20-04:00",
+  "generatedAt": "Sep 24, 10:02 AM ET",
+  "generatedAtISO": "2026-09-24T10:02:25-04:00",
   "studios": [
     {
       "id": "509A",
@@ -937,24 +940,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 1,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "a09c7a8c5343",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
       "id": "f977be9a84ac",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T18:45:00-04:00",
+      "endISO": "2026-09-25T19:15:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 1,
+      "start": 18.75,
+      "end": 19.25,
+      "id": "a09c7a8c5343",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -1303,7 +1306,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-24T13:50:01+00:00",
-    "polledAt": "2026-09-24T13:50:01+00:00",
+    "polledAt": "2026-09-24T14:02:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1351,24 +1354,14 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
-      "run": "desk-watch (Mac)",
-      "cadence": "Daily",
-      "expected": "Once a day around 09:30-10:15 Toronto. Stale after 1500 min = 25 h, so a missed morning shows red by about 11:00 the same morning. Fails silently when the Mac is asleep or the Claude account is out of usage; the heartbeat is how that silence is seen.",
-      "produces": "One dated block per morning in archive/desk-watch-tally.md on Junyan's Mac (the daily human-grade read of unproven lanes: ensure_artist, HTA Verified, heartbeats, PBF, attendance, registry, JOB 3/4). At most one Decision row.",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-23T10:08:00-04:00"
-    },
-    {
-      "run": "The Mechanic",
+      "run": "The Concierge",
       "cadence": "Hourly",
-      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
       "monitoring": "Live",
       "status": "watch",
       "statusLabel": "Due",
-      "lastISO": "2026-09-24T05:57:00-04:00"
+      "lastISO": "2026-09-21T17:19:00-04:00"
     },
     {
       "run": "alarm-watchdog (Cloud Run)",
@@ -1378,7 +1371,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:48:00-04:00"
+      "lastISO": "2026-09-24T09:59:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1401,6 +1394,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-24T09:20:00-04:00"
     },
     {
+      "run": "desk-watch (Mac)",
+      "cadence": "Daily",
+      "expected": "Once a day around 09:30-10:15 Toronto. Stale after 1500 min = 25 h, so a missed morning shows red by about 11:00 the same morning. Fails silently when the Mac is asleep or the Claude account is out of usage; the heartbeat is how that silence is seen.",
+      "produces": "One dated block per morning in archive/desk-watch-tally.md on Junyan's Mac (the daily human-grade read of unproven lanes: ensure_artist, HTA Verified, heartbeats, PBF, attendance, registry, JOB 3/4). At most one Decision row.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-24T09:51:00-04:00"
+    },
+    {
       "run": "docIntakeTick (Apps Script send engine)",
       "cadence": "Hourly",
       "expected": "hourly at :47 America/Toronto — Apps Script time-driven trigger docIntakeTick in project \"Message Queue Send Engine\" (script id 12bMAcZISYPKSkJuRnGIYJ1QYTh1siC4ZBGdq2tBH2bws3YodOAz2cZFX). Three lanes: Dropbox Sign agreements, Duuo, direct-email insurance intake + the undated-certificate backfill. Window 0-24: documents arrive at night too.",
@@ -1418,7 +1421,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:45:00-04:00"
+      "lastISO": "2026-09-24T10:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1428,7 +1431,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:46:00-04:00"
+      "lastISO": "2026-09-24T10:01:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1438,7 +1441,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:45:00-04:00"
+      "lastISO": "2026-09-24T09:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1448,7 +1451,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:50:00-04:00"
+      "lastISO": "2026-09-24T10:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1458,7 +1461,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:49:00-04:00"
+      "lastISO": "2026-09-24T10:01:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1478,7 +1481,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:40:00-04:00"
+      "lastISO": "2026-09-24T10:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1521,16 +1524,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-23T09:14:00-04:00"
     },
     {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-21T17:19:00-04:00"
-    },
-    {
       "run": "The Custodian",
       "cadence": "2×/day",
       "expected": "02:35 + 09:35 America/Toronto · Codex production fallback",
@@ -1561,6 +1554,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-24T04:11:00-04:00"
     },
     {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-24T09:56:00-04:00"
+    },
+    {
       "run": "The Planner",
       "cadence": "Daily",
       "expected": "19:30 America/Toronto · Codex production fallback",
@@ -1588,7 +1591,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T09:30:00-04:00"
+      "lastISO": "2026-09-24T09:57:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1767,11 +1770,11 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-24",
-        "fires": 12,
-        "promptTokens": 24247969,
-        "cachedTokens": 22899200,
+        "fires": 14,
+        "promptTokens": 24379176,
+        "cachedTokens": 22974848,
         "cachedPct": 94,
-        "completionTokens": 54898,
+        "completionTokens": 55250,
         "errors": 0,
         "maxFireTokens": 8485645,
         "maxFireJob": "The Custodian",
@@ -1814,10 +1817,10 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Mechanic",
-            "fires": 2,
-            "calls": 61,
-            "promptTokens": 2915183,
-            "cachedTokens": 2783104,
+            "fires": 3,
+            "calls": 64,
+            "promptTokens": 2976536,
+            "cachedTokens": 2818176,
             "cachedPct": 95,
             "completionTokens": null,
             "errors": 0,
@@ -1826,10 +1829,10 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Responder",
-            "fires": 3,
-            "calls": 9,
-            "promptTokens": 208771,
-            "cachedTokens": 121344,
+            "fires": 4,
+            "calls": 12,
+            "promptTokens": 278625,
+            "cachedTokens": 161920,
             "cachedPct": 58,
             "completionTokens": null,
             "errors": 0,
@@ -1876,7 +1879,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-24T09:45:58-04:00",
+      "asOfISO": "2026-09-24T10:00:57-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1885,7 +1888,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-24T09:45:54-04:00"
+      "jobsAsOfISO": "2026-09-24T10:00:54-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2042,16 +2045,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-21T17:19:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2093,22 +2100,18 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
           "The Morning Text",
-          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
+          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Mechanic",
-          "label": "Due",
-          "lastISO": "2026-09-24T05:57:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "climate",
@@ -2130,7 +2133,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-24T09:05:00-04:00",
-            "ageMin": 45,
+            "ageMin": 57,
             "stale": false
           },
           {
@@ -2142,7 +2145,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-24T09:05:00-04:00",
-            "ageMin": 45,
+            "ageMin": 57,
             "stale": false
           }
         ],
@@ -2200,11 +2203,11 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-24",
-        "fires": 12,
-        "promptTokens": 24247969,
-        "cachedTokens": 22899200,
+        "fires": 14,
+        "promptTokens": 24379176,
+        "cachedTokens": 22974848,
         "cachedPct": 94,
-        "completionTokens": 54898,
+        "completionTokens": 55250,
         "errors": 0,
         "maxFireTokens": 8485645,
         "maxFireJob": "The Custodian",
@@ -2247,10 +2250,10 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Mechanic",
-            "fires": 2,
-            "calls": 61,
-            "promptTokens": 2915183,
-            "cachedTokens": 2783104,
+            "fires": 3,
+            "calls": 64,
+            "promptTokens": 2976536,
+            "cachedTokens": 2818176,
             "cachedPct": 95,
             "completionTokens": null,
             "errors": 0,
@@ -2259,10 +2262,10 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Responder",
-            "fires": 3,
-            "calls": 9,
-            "promptTokens": 208771,
-            "cachedTokens": 121344,
+            "fires": 4,
+            "calls": 12,
+            "promptTokens": 278625,
+            "cachedTokens": 161920,
             "cachedPct": 58,
             "completionTokens": null,
             "errors": 0,
@@ -2309,7 +2312,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-24T09:45:58-04:00",
+      "asOfISO": "2026-09-24T10:00:57-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2318,9 +2321,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-24T09:45:54-04:00"
+      "jobsAsOfISO": "2026-09-24T10:00:54-04:00"
     },
-    "stamp": "09:50"
+    "stamp": "10:02"
   }
 }/*__END_DATA__*/;
 
@@ -2998,7 +3001,10 @@ function renderAlarms(){
   if(FEED_DOWN)
     html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
       <span class="head">Arrival feed down</span><span class="items"><span class="statusitem">
-      No arm/disarm events from the panel ledger or the ADT email feed — arrival times
+      ${evs.length
+        ? `The panel ledger and door feed did not answer. The events below come from the
+      ADT email feed only and can be incomplete —`
+        : `No arm/disarm events from the panel ledger or the ADT email feed —`} arrival times
       are unknown, not absent. No-arrival flags are suppressed.</span></span></div>`;
   /* armFallback means only "arrival times came from the board's own columns",
      which happens for TWO different reasons — a feed that broke, and a feed
