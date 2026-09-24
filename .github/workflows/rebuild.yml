@@ -1,21 +1,17 @@
 name: Rebuild FBS Monitor
 
 on:
-  # PRIMARY trigger: the cloud RemoteTrigger driver writes a new timestamp to
-  # `.rebuild-tick` (via Zapier's GitHub Create-or-Update-File) every ~15 min.
-  # Scheduling on claude.ai is reliable; GitHub's own cron is not (it throttles
-  # this repo's scheduled runs to ~1/hour regardless of frequency). Path-scoped
-  # so the build's own index.html commit can never re-trigger the workflow.
+  # PRIMARY trigger: day-sheet's render workflow writes a new timestamp to
+  # `.rebuild-tick` every 15 min around the clock (cron-job.org dispatches it,
+  # `*/15 * * * *` Toronto, all hours since 2026-09-24). Path-scoped so the
+  # build's own index.html commit can never re-trigger the workflow.
   push:
     paths:
       - ".rebuild-tick"
-  # BACKUP trigger: GitHub cron. Delivers only ~hourly here (best-effort, heavily
-  # throttled on low-traffic repos), so it's a safety net behind the driver, not
-  # the primary. Overnight (03:00-06:59 Toronto = 07-10 UTC in EDT, 08-11 UTC in
-  # EST) it is the ONLY trigger — the day-sheet tick sleeps 02:45-08:00 Toronto —
-  # and one build an hour is the ask (Junyan, 2026-09-05): the board used to
-  # freeze on the prior day until the first tick landed, anywhere from 07:10 to
-  # 08:00. UTC hours below cover both DST offsets; a shoulder hour is harmless.
+  # BACKUP trigger: GitHub cron. GitHub throttles it on this repo to roughly one
+  # run every 3 hours, so it is only a safety net if the tick chain breaks.
+  # Until 2026-09-24 it was the only overnight trigger (the tick slept
+  # 02:45-08:00 Toronto) and the board read "rebuild down?" every morning.
   schedule:
     - cron: "3-59/15 11-23,0-6 * * *"
     - cron: "3 7-10 * * *"

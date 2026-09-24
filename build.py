@@ -5530,9 +5530,9 @@ def main():
         pass
     now = datetime.now(TZ)
     # No time gate since 2026-09-05. Bookings regularly cross midnight (socials
-    # ending 02:15), so the board updates through the night; 03:00–06:59 the
-    # workflow cron fires once an hour instead of every 15 min (the day-sheet
-    # tick that drives the daytime cadence sleeps 02:45–08:00). The old quiet
+    # ending 02:15), so the board updates through the night: the day-sheet tick
+    # runs every 15 min around the clock (all hours since 2026-09-24; before
+    # that it slept 02:45–08:00 behind a throttled GitHub cron). The old quiet
     # hours skip left the board on the PRIOR day until the first morning tick,
     # anywhere from 07:10 to 08:00. (FORCE_BUILD, the old gate bypass, is
     # still exported by the workflow and now ignored.)
