@@ -583,11 +583,15 @@ open("/tmp/preview.html","w").write(out)
 PY
 ```
 
-The build has no time gate (since 2026-09-05). Daytime cadence is the day-sheet
-tick every 15 min, 08:00–02:45 Toronto; 03:00–06:59 the workflow's own cron
-fires once an hour (best-effort — GitHub throttles it) so the board rolls to the
-new day at 05:00 instead of freezing on yesterday until the first tick. The
-build skips green until `NOTION_TOKEN` is set.
+The build has no time gate (since 2026-09-05). The cadence is the day-sheet
+tick every 15 min around the clock: cron-job.org's "day-sheet render dispatch"
+job (`*/15 * * * *`, America/Toronto) dispatches `day-sheet/render.yml`, which
+bumps `.rebuild-tick` here. Until 2026-09-24 that job skipped 03:00–07:59 and
+the only overnight trigger was this workflow's own cron, which GitHub throttled
+to about one run every 3 hours; the board read "rebuild down?" every morning.
+The workflow cron stays as a backup. Every tick is free: both repos are public
+(no Actions minutes billed) and the build calls no model. The build skips green
+until `NOTION_TOKEN` is set.
 
 ### How the build spends its time (2026-09-20)
 
