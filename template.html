@@ -5,6 +5,9 @@
 <!-- Web-app install (PWA): manifest + iOS standalone metas. Relative paths resolve
      under /fbs-monitor/ on Pages; harmless in other contexts. -->
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:wght@400;600;700&display=swap">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#161412">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,10 +27,10 @@
     --ok-bg:#e2efe7; --watch-bg:#f6ead6; --crit-bg:#f9e6e2;
     --live-bg:#eef3ec; --live-line:#bcd4c2;
     --shadow:0 6px 18px rgba(25,23,21,.07);
-    --disp:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
-    --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
-    --body:Seravek,"Avenir Next","Segoe UI",Ubuntu,sans-serif;
-    --mono:"SF Mono",ui-monospace,"Cascadia Mono",Menlo,monospace;
+    --disp:"Barlow Condensed","Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+    --sans:"Nunito Sans","Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
+    --body:"Nunito Sans",Seravek,"Avenir Next","Segoe UI",Ubuntu,sans-serif;
+    --mono:"JetBrains Mono","SF Mono",ui-monospace,"Cascadia Mono",Menlo,monospace;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -1193,7 +1196,10 @@ function renderAlarms(){
   if(FEED_DOWN)
     html += `<div class="statusbar warn" style="margin-top:16px"><span class="dot"></span>
       <span class="head">Arrival feed down</span><span class="items"><span class="statusitem">
-      No arm/disarm events from the panel ledger or the ADT email feed — arrival times
+      ${evs.length
+        ? `The panel ledger and door feed did not answer. The events below come from the
+      ADT email feed only and can be incomplete —`
+        : `No arm/disarm events from the panel ledger or the ADT email feed —`} arrival times
       are unknown, not absent. No-arrival flags are suppressed.</span></span></div>`;
   /* armFallback means only "arrival times came from the board's own columns",
      which happens for TWO different reasons — a feed that broke, and a feed
