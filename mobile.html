@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 24, 2026",
   "shiftBaseDay": "2026-09-24",
-  "generatedAt": "Sep 24, 1:47 PM ET",
-  "generatedAtISO": "2026-09-24T13:47:53-04:00",
+  "generatedAt": "Sep 24, 1:48 PM ET",
+  "generatedAtISO": "2026-09-24T13:48:31-04:00",
   "studios": [
     {
       "id": "509A",
@@ -393,11 +393,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "10:22",
+      "departed": "11:30",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Jia Chian Lee",
+      "departed_by": "Jia Chian Lee",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -417,10 +417,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:46",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Maggie Morrison",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -465,11 +465,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:47",
+      "departed": "11:04",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Risa Waldman",
+      "departed_by": "Risa Waldman",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1018,7 +1018,53 @@ const DATA = /*__DATA__*/{
       "text": "2 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
+  "armEvents": [
+    {
+      "studio": "693",
+      "name": "Risa Waldman",
+      "time": "09:47",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790257657346,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "10:22",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790259734263,
+      "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Risa Waldman",
+      "time": "11:04",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790262244770,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Jia Chian Lee",
+      "time": "11:30",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790263833270,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Maggie Morrison",
+      "time": "11:46",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790264772053,
+      "source": "doors"
+    }
+  ],
   "panelPrior": {
     "509A": {
       "kind": "departure",
@@ -1030,16 +1076,6 @@ const DATA = /*__DATA__*/{
       "ts": 1790216543887,
       "when": "Wed 22:22"
     },
-    "509B": {
-      "kind": "arrival",
-      "name": "Maggie Morrison",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "11:46",
-      "ts": 1790264772053,
-      "when": "Thu 11:46"
-    },
     "527": {
       "kind": "departure",
       "name": "Khalid Roach-McLeod",
@@ -1049,16 +1085,6 @@ const DATA = /*__DATA__*/{
       "time": "22:13",
       "ts": 1790215994106,
       "when": "Wed 22:13"
-    },
-    "693": {
-      "kind": "departure",
-      "name": "Risa Waldman",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "11:04",
-      "ts": 1790262244770,
-      "when": "Thu 11:04"
     },
     "901": {
       "kind": "departure",
@@ -1072,13 +1098,13 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-24T15:48:01+00:00",
-    "polledAt": "2026-09-24T17:47:00+00:00",
+    "polledAt": "2026-09-24T17:48:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1437,7 +1463,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T13:33:00-04:00"
+      "lastISO": "2026-09-24T13:48:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -1945,7 +1971,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-24T13:30:00-04:00",
-            "ageMin": 17,
+            "ageMin": 18,
             "stale": false
           },
           {
@@ -1957,7 +1983,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-24T13:30:00-04:00",
-            "ageMin": 17,
+            "ageMin": 18,
             "stale": false
           }
         ],
@@ -2135,7 +2161,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-24T13:45:08-04:00"
     },
-    "stamp": "13:47"
+    "stamp": "13:48"
   }
 }/*__END_DATA__*/;
 
