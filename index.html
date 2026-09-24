@@ -521,8 +521,8 @@
 const DATA = /*__DATA__*/{
   "date": "Wednesday, September 23, 2026",
   "shiftBaseDay": "2026-09-23",
-  "generatedAt": "Sep 23, 11:35 PM ET",
-  "generatedAtISO": "2026-09-23T23:35:37-04:00",
+  "generatedAt": "Sep 23, 11:41 PM ET",
+  "generatedAtISO": "2026-09-23T23:41:31-04:00",
   "studios": [
     {
       "id": "509A",
@@ -802,12 +802,12 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "22:00",
-      "departed": null,
+      "departed": "23:38",
       "facilitator": null,
       "arrived_by": null,
-      "departed_by": null,
+      "departed_by": "Angus Dirnbeck",
       "arrived_foreign": false,
-      "departed_foreign": false,
+      "departed_foreign": true,
       "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
@@ -1406,6 +1406,15 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1790217906426,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Angus Dirnbeck",
+      "time": "23:38",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790221096630,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1416,7 +1425,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-24T02:41:00+00:00",
-    "polledAt": "2026-09-24T03:35:01+00:00",
+    "polledAt": "2026-09-24T03:41:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1557,7 +1566,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T23:34:00-04:00"
+      "lastISO": "2026-09-23T23:40:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1577,7 +1586,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T23:35:00-04:00"
+      "lastISO": "2026-09-23T23:40:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1587,7 +1596,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-23T23:35:00-04:00"
+      "lastISO": "2026-09-23T23:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1757,7 +1766,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T23:31:00-04:00"
+      "lastISO": "2026-09-23T23:41:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1767,7 +1776,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T23:25:00-04:00"
+      "lastISO": "2026-09-23T23:35:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -1807,7 +1816,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-23T23:20:00-04:00"
+      "lastISO": "2026-09-23T23:40:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2340,7 +2349,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-23T23:05:00-04:00",
-            "ageMin": 30,
+            "ageMin": 36,
             "stale": false
           },
           {
@@ -2352,7 +2361,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-23T23:05:00-04:00",
-            "ageMin": 30,
+            "ageMin": 36,
             "stale": false
           }
         ],
@@ -2542,7 +2551,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-23T23:30:37-04:00"
     },
-    "stamp": "23:35"
+    "stamp": "23:41"
   }
 }/*__END_DATA__*/;
 
