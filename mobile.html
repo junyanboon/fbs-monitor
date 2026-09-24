@@ -291,8 +291,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 24, 2026",
   "shiftBaseDay": "2026-09-24",
-  "generatedAt": "Sep 24, 8:35 AM ET",
-  "generatedAtISO": "2026-09-24T08:35:19-04:00",
+  "generatedAt": "Sep 24, 8:47 AM ET",
+  "generatedAtISO": "2026-09-24T08:47:13-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1058,7 +1058,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "2 robots overdue — see Robots tab"
+      "text": "1 robot overdue — see Robots tab"
     }
   ],
   "armEvents": [],
@@ -1121,7 +1121,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-24T03:42:01+00:00",
-    "polledAt": "2026-09-24T12:35:01+00:00",
+    "polledAt": "2026-09-24T12:47:00+00:00",
     "doorGaps": [
       {
         "since": "2026-09-24T11:10:48.425586Z",
@@ -1146,16 +1146,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "The Morning Text",
-      "cadence": "Daily",
-      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
-      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
-      "monitoring": "Retired",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-06T17:25:00-04:00"
-    },
-    {
       "run": "desk-watch (Mac)",
       "cadence": "Daily",
       "expected": "Once a day around 09:30-10:15 Toronto. Stale after 1500 min = 25 h, so a missed morning shows red by about 11:00 the same morning. Fails silently when the Mac is asleep or the Claude account is out of usage; the heartbeat is how that silence is seen.",
@@ -1166,6 +1156,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-23T10:08:00-04:00"
     },
     {
+      "run": "The Morning Text",
+      "cadence": "Daily",
+      "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
+      "produces": "Alert SMS to Junyan only when needed + daily Workflow Report heartbeat (quiet days say 'No alert needed')",
+      "monitoring": "Retired",
+      "status": "watch",
+      "statusLabel": "Awaiting completion",
+      "lastISO": "2026-09-06T17:25:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1173,7 +1173,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:30:00-04:00"
+      "lastISO": "2026-09-24T08:47:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1213,7 +1213,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:30:00-04:00"
+      "lastISO": "2026-09-24T08:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1223,7 +1223,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:31:00-04:00"
+      "lastISO": "2026-09-24T08:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1233,7 +1233,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:25:00-04:00"
+      "lastISO": "2026-09-24T08:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1243,7 +1243,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:35:00-04:00"
+      "lastISO": "2026-09-24T08:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1253,7 +1253,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:34:00-04:00"
+      "lastISO": "2026-09-24T08:46:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1273,7 +1273,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T08:30:00-04:00"
+      "lastISO": "2026-09-24T08:40:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1383,7 +1383,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T02:19:00-04:00"
+      "lastISO": "2026-09-24T08:38:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1669,7 +1669,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-24T08:30:49-04:00",
+      "asOfISO": "2026-09-24T08:45:49-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1678,13 +1678,21 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-24T08:30:46-04:00"
+      "jobsAsOfISO": "2026-09-24T08:45:46-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
     "flippedBy": "human:Junyan via claude-session-2026-09-18 (holder renamed codex→hermes; ownership unchanged)",
     "sinceISO": "2026-09-04T10:10:00-04:00",
     "lanes": [
+      {
+        "lane": "concierge",
+        "name": "The Concierge",
+        "executor": "mac",
+        "how": "Codex app · Mac",
+        "status": "watch",
+        "default": false
+      },
       {
         "lane": "responder",
         "name": "The Responder",
@@ -1714,14 +1722,6 @@ const DATA = /*__DATA__*/{
         "name": "The Bookkeeper",
         "executor": "cloudrun",
         "how": "Deterministic · Cloud Run",
-        "status": "ok",
-        "default": false
-      },
-      {
-        "lane": "concierge",
-        "name": "The Concierge",
-        "executor": "vps",
-        "how": "Hermes cron · VPS",
         "status": "ok",
         "default": false
       },
@@ -1807,8 +1807,8 @@ const DATA = /*__DATA__*/{
       }
     ],
     "counts": {
-      "mac": 1,
-      "vps": 9,
+      "mac": 2,
+      "vps": 8,
       "cloudrun": 4,
       "cloud": 1
     }
@@ -1923,7 +1923,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-24T03:05:00-04:00",
-            "ageMin": 330,
+            "ageMin": 342,
             "stale": true
           },
           {
@@ -1935,7 +1935,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 56,
             "whenISO": "2026-09-24T03:05:00-04:00",
-            "ageMin": 330,
+            "ageMin": 342,
             "stale": true
           }
         ],
@@ -2090,7 +2090,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-24T08:30:49-04:00",
+      "asOfISO": "2026-09-24T08:45:49-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2099,9 +2099,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-24T08:30:46-04:00"
+      "jobsAsOfISO": "2026-09-24T08:45:46-04:00"
     },
-    "stamp": "08:35"
+    "stamp": "08:47"
   }
 }/*__END_DATA__*/;
 
