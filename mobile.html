@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 10:24 AM ET",
-  "generatedAtISO": "2026-09-25T10:24:34-04:00",
+  "generatedAt": "Sep 25, 10:27 AM ET",
+  "generatedAtISO": "2026-09-25T10:27:57-04:00",
   "studios": [
     {
       "id": "509A",
@@ -528,11 +528,6 @@ const DATA = /*__DATA__*/{
         {
           "kind": "EOB",
           "state": "missing",
-          "time": null
-        },
-        {
-          "kind": "HTA",
-          "state": "awaiting",
           "time": null
         }
       ],
@@ -830,18 +825,6 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "f977be9a84ac",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509B",
       "day_offset": 0,
@@ -860,6 +843,18 @@ const DATA = /*__DATA__*/{
       "start": 18.75,
       "end": 19.25,
       "id": "a09c7a8c5343",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T18:45:00-04:00",
+      "endISO": "2026-09-25T19:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 0,
+      "start": 18.75,
+      "end": 19.25,
+      "id": "f977be9a84ac",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -1240,17 +1235,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "PHONE-peerspace-•••B — Marek H phone ask",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 24 · 21:33",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "ANALYST-SOUND-•••-T•••",
       "kind": null,
       "channel": "SMS",
@@ -1348,18 +1332,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 25 · 10:17",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "HTA — Marek H. — 509B Fri Sep 25 5:30 PM (Peerspace relay, Junyan ruling)",
-      "kind": "HTA",
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 25 · 10:23",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "HTA for Marek H. Peerspace in Studio 509B"
     },
     {
       "code": "AVA-sweep-•••B",
@@ -1510,10 +1482,6 @@ const DATA = /*__DATA__*/{
     {
       "level": "warn",
       "text": "3 robots overdue — see Robots tab"
-    },
-    {
-      "level": "crit",
-      "text": "HTA awaiting review · Marek H. Peerspace · 509B · 17:30"
     }
   ],
   "armEvents": [
@@ -1576,7 +1544,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T13:25:01+00:00",
-    "polledAt": "2026-09-25T14:24:01+00:00",
+    "polledAt": "2026-09-25T14:27:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1634,6 +1602,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-06T17:25:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-25T08:34:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1641,7 +1619,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:20:00-04:00"
+      "lastISO": "2026-09-25T10:26:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1691,7 +1669,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:20:00-04:00"
+      "lastISO": "2026-09-25T10:25:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1711,7 +1689,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:20:00-04:00"
+      "lastISO": "2026-09-25T10:25:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1721,7 +1699,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:23:00-04:00"
+      "lastISO": "2026-09-25T10:27:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1782,16 +1760,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-23T09:14:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:34:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -2307,16 +2275,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-25T08:34:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2391,7 +2363,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T10:05:00-04:00",
-            "ageMin": 19,
+            "ageMin": 22,
             "stale": false
           },
           {
@@ -2403,7 +2375,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 48,
             "whenISO": "2026-09-25T10:05:00-04:00",
-            "ageMin": 19,
+            "ageMin": 22,
             "stale": false
           }
         ],
@@ -2581,7 +2553,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T10:15:04-04:00"
     },
-    "stamp": "10:24"
+    "stamp": "10:27"
   }
 }/*__END_DATA__*/;
 
