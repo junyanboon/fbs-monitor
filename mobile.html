@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 24, 2026",
   "shiftBaseDay": "2026-09-24",
-  "generatedAt": "Sep 24, 10:02 PM ET",
-  "generatedAtISO": "2026-09-24T22:02:18-04:00",
+  "generatedAt": "Sep 24, 10:17 PM ET",
+  "generatedAtISO": "2026-09-24T22:17:09-04:00",
   "studios": [
     {
       "id": "509A",
@@ -502,14 +502,14 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "22:00",
       "departed": null,
       "facilitator": null,
       "arrived_by": null,
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
-      "assumed": null,
+      "assumed": "open",
       "wrong_studio": null,
       "dup_studios": null,
       "start": 22.0,
@@ -1156,7 +1156,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T01:36:01+00:00",
-    "polledAt": "2026-09-25T02:02:00+00:00",
+    "polledAt": "2026-09-25T02:17:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1342,6 +1342,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
+      "run": "The Concierge",
+      "cadence": "Hourly",
+      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
+      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
+      "monitoring": "Live",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-24T20:18:00-04:00"
+    },
+    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1349,7 +1359,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T21:59:00-04:00"
+      "lastISO": "2026-09-24T22:15:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1379,7 +1389,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T22:00:00-04:00"
+      "lastISO": "2026-09-24T22:15:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1389,7 +1399,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T22:00:00-04:00"
+      "lastISO": "2026-09-24T22:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1399,7 +1409,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T21:55:00-04:00"
+      "lastISO": "2026-09-24T22:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1409,7 +1419,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T22:00:00-04:00"
+      "lastISO": "2026-09-24T22:15:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1419,7 +1429,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T22:01:00-04:00"
+      "lastISO": "2026-09-24T22:16:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1439,7 +1449,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T22:00:00-04:00"
+      "lastISO": "2026-09-24T22:10:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1449,7 +1459,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T21:07:00-04:00"
+      "lastISO": "2026-09-24T22:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -1470,16 +1480,6 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-24T06:00:00-04:00"
-    },
-    {
-      "run": "The Concierge",
-      "cadence": "Hourly",
-      "expected": "every 2 hours at :10 · 08:10–22:10 America/Toronto · no tick inside the odd hours by design",
-      "produces": "Alarm/ADT tracking + fast tracks + first-timer, then inbox triage + reconcile + resume",
-      "monitoring": "Live",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-24T20:18:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1539,7 +1539,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T21:30:00-04:00"
+      "lastISO": "2026-09-24T22:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1579,7 +1579,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T21:10:00-04:00"
+      "lastISO": "2026-09-24T22:10:00-04:00"
     },
     {
       "run": "Watchlist sync",
@@ -1589,7 +1589,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T21:47:00-04:00"
+      "lastISO": "2026-09-24T22:03:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1879,7 +1879,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-24T22:00:12-04:00",
+      "asOfISO": "2026-09-24T22:15:08-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -1888,7 +1888,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-24T22:00:05-04:00"
+      "jobsAsOfISO": "2026-09-24T22:15:05-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2037,16 +2037,20 @@ const DATA = /*__DATA__*/{
         "name": "Mail gets answered",
         "fine": "Messages read. Replies drafted.",
         "down": "People wait. Nobody replies.",
-        "status": "ok",
+        "status": "watch",
         "robots": [
-          "greeter-sweep (Cloud Run)",
           "The Concierge",
+          "greeter-sweep (Cloud Run)",
           "The Responder",
           "QA release check",
           "The Concierge — 2026-09-05 20:10 interrupted",
           "The Receptionist"
         ],
-        "worst": null
+        "worst": {
+          "run": "The Concierge",
+          "label": "Due",
+          "lastISO": "2026-09-24T20:18:00-04:00"
+        }
       },
       {
         "k": "plan",
@@ -2120,8 +2124,8 @@ const DATA = /*__DATA__*/{
             "mode": "OFF",
             "hvac": "OFF",
             "humidity": 46,
-            "whenISO": "2026-09-24T21:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-24T22:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           },
           {
@@ -2132,8 +2136,8 @@ const DATA = /*__DATA__*/{
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 47,
-            "whenISO": "2026-09-24T21:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-24T22:05:00-04:00",
+            "ageMin": 12,
             "stale": false
           }
         ],
@@ -2312,7 +2316,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-24T22:00:12-04:00",
+      "asOfISO": "2026-09-24T22:15:08-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2321,9 +2325,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-24T22:00:05-04:00"
+      "jobsAsOfISO": "2026-09-24T22:15:05-04:00"
     },
-    "stamp": "22:02"
+    "stamp": "22:17"
   }
 }/*__END_DATA__*/;
 
