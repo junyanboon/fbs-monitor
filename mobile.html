@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 5:48 PM ET",
-  "generatedAtISO": "2026-09-25T17:48:20-04:00",
+  "generatedAt": "Sep 25, 5:49 PM ET",
+  "generatedAtISO": "2026-09-25T17:49:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -490,10 +490,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:48",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Marek H",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -729,24 +729,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "a09c7a8c5343",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509B",
       "day_offset": 0,
       "start": 18.75,
       "end": 19.25,
       "id": "f977be9a84ac",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T18:45:00-04:00",
+      "endISO": "2026-09-25T19:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 18.75,
+      "end": 19.25,
+      "id": "a09c7a8c5343",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -934,11 +934,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -946,11 +946,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1006,11 +1006,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1018,11 +1018,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1310,6 +1310,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790372371383,
       "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Marek H",
+      "time": "17:48",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790372935453,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1341,7 +1350,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T21:42:01+00:00",
-    "polledAt": "2026-09-25T21:48:00+00:00",
+    "polledAt": "2026-09-25T21:49:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -2278,7 +2287,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T17:47:00-04:00",
-            "ageMin": 1,
+            "ageMin": 2,
             "stale": false
           },
           {
@@ -2290,7 +2299,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-25T17:47:00-04:00",
-            "ageMin": 1,
+            "ageMin": 2,
             "stale": false
           }
         ],
@@ -2468,7 +2477,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T17:45:38-04:00"
     },
-    "stamp": "17:48"
+    "stamp": "17:49"
   }
 }/*__END_DATA__*/;
 
