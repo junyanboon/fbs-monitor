@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 2:17 PM ET",
-  "generatedAtISO": "2026-09-25T14:17:07-04:00",
+  "generatedAt": "Sep 25, 2:18 PM ET",
+  "generatedAtISO": "2026-09-25T14:18:03-04:00",
   "studios": [
     {
       "id": "509A",
@@ -334,11 +334,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:21",
+      "departed": "10:42",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Brad Wong",
+      "departed_by": "Brad Wong",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -839,24 +839,24 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "f977be9a84ac",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 18.75,
       "end": 19.25,
       "id": "a09c7a8c5343",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T18:45:00-04:00",
+      "endISO": "2026-09-25T19:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "509B",
+      "day_offset": 0,
+      "start": 18.75,
+      "end": 19.25,
+      "id": "f977be9a84ac",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -1116,11 +1116,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1128,11 +1128,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1454,18 +1454,27 @@ const DATA = /*__DATA__*/{
       "text": "2 robots overdue — see Robots tab"
     }
   ],
-  "armEvents": [],
-  "panelPrior": {
-    "509A": {
-      "kind": "departure",
-      "name": "Brad Wong",
-      "remote": false,
-      "source": "doors",
+  "armEvents": [
+    {
       "studio": "509A",
-      "time": "10:42",
-      "ts": 1790347354118,
-      "when": "Fri 10:42"
+      "name": "Brad Wong",
+      "time": "09:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790342510711,
+      "source": "doors"
     },
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "10:42",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790347354118,
+      "source": "doors"
+    }
+  ],
+  "panelPrior": {
     "509B": {
       "kind": "departure",
       "name": "Maggie Morrison",
@@ -1508,15 +1517,89 @@ const DATA = /*__DATA__*/{
     }
   },
   "alarmAlerts": [],
-  "armFallback": true,
+  "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
-    "doors": "failed",
-    "updatedAt": null,
-    "polledAt": null,
-    "doorGaps": [],
-    "down": true
+    "doors": "ok",
+    "updatedAt": "2026-09-25T14:48:01+00:00",
+    "polledAt": "2026-09-25T18:18:00+00:00",
+    "panelCheck": {
+      "inGap": 0,
+      "missed": [],
+      "missedCount": 0
+    },
+    "doorGaps": [
+      {
+        "since": "2026-09-25T09:23:48.604896Z",
+        "until": "2026-09-25T09:23:48.993625Z"
+      },
+      {
+        "since": "2026-09-25T11:29:49.606447Z",
+        "until": "2026-09-25T11:29:49.952167Z"
+      },
+      {
+        "since": "2026-09-25T11:40:57.081760Z",
+        "until": "2026-09-25T11:40:57.436568Z"
+      },
+      {
+        "since": "2026-09-25T12:38:17.193211Z",
+        "until": "2026-09-25T12:38:17.484936Z"
+      },
+      {
+        "since": "2026-09-25T14:39:18.194495Z",
+        "until": "2026-09-25T14:39:18.334619Z"
+      },
+      {
+        "since": "2026-09-25T14:49:18.259809Z",
+        "until": "2026-09-25T14:49:18.507648Z"
+      },
+      {
+        "since": "2026-09-25T16:54:51.244484Z",
+        "until": "2026-09-25T16:54:51.581795Z"
+      },
+      {
+        "since": "2026-09-25T17:00:43.863704Z",
+        "until": "2026-09-25T17:00:43.992334Z"
+      },
+      {
+        "since": "2026-09-25T17:06:19.095983Z",
+        "until": "2026-09-25T17:06:19.544509Z"
+      },
+      {
+        "since": "2026-09-25T17:33:36.174390Z",
+        "until": "2026-09-25T17:33:43.895118Z"
+      },
+      {
+        "since": "2026-09-25T17:33:43.932752Z",
+        "until": "2026-09-25T17:33:49.350636Z"
+      },
+      {
+        "since": "2026-09-25T17:39:29.305345Z",
+        "until": "2026-09-25T17:39:44.362503Z"
+      },
+      {
+        "since": "2026-09-25T17:39:44.397316Z",
+        "until": "2026-09-25T17:40:00.516643Z"
+      },
+      {
+        "since": "2026-09-25T17:45:29.316293Z",
+        "until": "2026-09-25T17:45:30.071467Z"
+      },
+      {
+        "since": "2026-09-25T17:50:52.672571Z",
+        "until": "2026-09-25T17:50:52.988784Z"
+      },
+      {
+        "since": "2026-09-25T18:01:51.644454Z",
+        "until": "2026-09-25T18:01:51.747510Z"
+      },
+      {
+        "since": "2026-09-25T18:07:29.438876Z",
+        "until": "2026-09-25T18:07:34.577567Z"
+      }
+    ],
+    "down": false
   },
   "robots": [
     {
@@ -1547,7 +1630,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T14:12:00-04:00"
+      "lastISO": "2026-09-25T14:18:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -2311,7 +2394,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-25T14:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 13,
             "stale": false
           },
           {
@@ -2323,7 +2406,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-25T14:05:00-04:00",
-            "ageMin": 12,
+            "ageMin": 13,
             "stale": false
           }
         ],
@@ -2501,7 +2584,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T14:15:13-04:00"
     },
-    "stamp": "14:17"
+    "stamp": "14:18"
   }
 }/*__END_DATA__*/;
 
