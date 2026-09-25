@@ -295,7 +295,7 @@ const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-24",
   "generatedAt": "Sep 25, 4:12 AM ET",
-  "generatedAtISO": "2026-09-25T04:12:16-04:00",
+  "generatedAtISO": "2026-09-25T04:12:45-04:00",
   "studios": [
     {
       "id": "509A",
@@ -809,11 +809,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 2,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -821,11 +821,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 2,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -921,6 +921,17 @@ const DATA = /*__DATA__*/{
       "studio": "901",
       "raised_by": "The Analyst",
       "created": "Sep 25 · 04:11",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "ANALYST-SOUND-•••-T•••",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Analyst",
+      "created": "Sep 25 · 04:12",
       "send_after": null,
       "send_after_iso": null
     },
@@ -1517,16 +1528,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "The Host",
-      "cadence": "Daily",
-      "expected": "04:05 America/Toronto · Cloud Scheduler",
-      "produces": "FBS itinerary built + board seeded",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Awaiting completion",
-      "lastISO": "2026-09-24T04:11:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1544,7 +1545,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T04:11:00-04:00"
+      "lastISO": "2026-09-25T04:12:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1564,7 +1565,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T04:06:00-04:00"
+      "lastISO": "2026-09-25T04:12:00-04:00"
     },
     {
       "run": "The Bookkeeper",
@@ -1585,6 +1586,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-25T04:07:00-04:00"
+    },
+    {
+      "run": "The Host",
+      "cadence": "Daily",
+      "expected": "04:05 America/Toronto · Cloud Scheduler",
+      "produces": "FBS itinerary built + board seeded",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-25T04:12:00-04:00"
     },
     {
       "run": "The Mechanic",
@@ -1624,7 +1635,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T04:11:00-04:00"
+      "lastISO": "2026-09-25T04:12:00-04:00"
     },
     {
       "run": "The Weatherman",
@@ -2156,10 +2167,10 @@ const DATA = /*__DATA__*/{
         "name": "Today's plan",
         "fine": "Board built. Tomorrow staged.",
         "down": "Staff show up with no plan.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Host",
           "The Analyst",
+          "The Host",
           "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
           "desk-loop (Cloud Run)",
@@ -2171,11 +2182,7 @@ const DATA = /*__DATA__*/{
           "The Opener",
           "Watchlist sync"
         ],
-        "worst": {
-          "run": "The Host",
-          "label": "Awaiting completion",
-          "lastISO": "2026-09-24T04:11:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "money",
