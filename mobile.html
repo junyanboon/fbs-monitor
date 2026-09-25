@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 10:19 AM ET",
-  "generatedAtISO": "2026-09-25T10:19:04-04:00",
+  "generatedAt": "Sep 25, 10:24 AM ET",
+  "generatedAtISO": "2026-09-25T10:24:34-04:00",
   "studios": [
     {
       "id": "509A",
@@ -532,7 +532,7 @@ const DATA = /*__DATA__*/{
         },
         {
           "kind": "HTA",
-          "state": "missing",
+          "state": "awaiting",
           "time": null
         }
       ],
@@ -830,18 +830,6 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "770a382296f2",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "Monitoring",
       "studio": "509B",
       "day_offset": 0,
@@ -860,6 +848,18 @@ const DATA = /*__DATA__*/{
       "start": 18.75,
       "end": 19.25,
       "id": "770a382296f2",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T18:45:00-04:00",
+      "endISO": "2026-09-25T19:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 18.75,
+      "end": 19.25,
+      "id": "a09c7a8c5343",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -1035,11 +1035,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1047,11 +1047,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1350,6 +1350,18 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "HTA — Marek H. — 509B Fri Sep 25 5:30 PM (Peerspace relay, Junyan ruling)",
+      "kind": "HTA",
+      "channel": "Email",
+      "status": "Pending Review",
+      "studio": "509B",
+      "raised_by": "Staff (manual)",
+      "created": "Sep 25 · 10:23",
+      "send_after": null,
+      "send_after_iso": null,
+      "label": "HTA for Marek H. Peerspace in Studio 509B"
+    },
+    {
       "code": "AVA-sweep-•••B",
       "kind": "AVA",
       "channel": "SMS",
@@ -1497,11 +1509,11 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "4 robots overdue — see Robots tab"
+      "text": "3 robots overdue — see Robots tab"
     },
     {
       "level": "crit",
-      "text": "HTA not queued · Marek H. Peerspace · 509B · 17:30"
+      "text": "HTA awaiting review · Marek H. Peerspace · 509B · 17:30"
     }
   ],
   "armEvents": [
@@ -1564,7 +1576,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T13:25:01+00:00",
-    "polledAt": "2026-09-25T14:19:01+00:00",
+    "polledAt": "2026-09-25T14:24:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1612,16 +1624,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "reconcile-sweep (Cloud Run)",
-      "cadence": "15-min",
-      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
-      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-24T23:30:00-04:00"
-    },
-    {
       "run": "The Morning Text",
       "cadence": "Daily",
       "expected": "08:40 America/Toronto · ALERT-ONLY: SMS only on watchdog-silent or handoff INCOMPLETE/UNKNOWN; heartbeat every day",
@@ -1639,7 +1641,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:14:00-04:00"
+      "lastISO": "2026-09-25T10:20:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1649,7 +1651,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T09:20:00-04:00"
+      "lastISO": "2026-09-25T10:24:00-04:00"
     },
     {
       "run": "desk-watch (Mac)",
@@ -1689,7 +1691,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:15:00-04:00"
+      "lastISO": "2026-09-25T10:20:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1699,7 +1701,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:05:00-04:00"
+      "lastISO": "2026-09-25T10:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1709,7 +1711,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:15:00-04:00"
+      "lastISO": "2026-09-25T10:20:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1719,7 +1721,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T10:18:00-04:00"
+      "lastISO": "2026-09-25T10:23:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1729,7 +1731,17 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T09:20:00-04:00"
+      "lastISO": "2026-09-25T10:20:00-04:00"
+    },
+    {
+      "run": "reconcile-sweep (Cloud Run)",
+      "cadence": "15-min",
+      "expected": "every 10 min, 24/7 (Cloud Scheduler job reconcile-sweep, America/Toronto). Cadence reads '15-min' because the board has no 10-min option; Stale after (min) = 30 represents three missed passes. Alert window 08:00–22:59 only.",
+      "produces": "Mechanical Message Queue reconciliation: closes no-ticket Sent and Will Not Send rows; flags stuck sends; leaves ticket-linked and ambiguous rows for the agent pass.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-25T10:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1849,7 +1861,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T09:52:00-04:00"
+      "lastISO": "2026-09-25T10:24:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2379,7 +2391,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T10:05:00-04:00",
-            "ageMin": 14,
+            "ageMin": 19,
             "stale": false
           },
           {
@@ -2391,7 +2403,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 48,
             "whenISO": "2026-09-25T10:05:00-04:00",
-            "ageMin": 14,
+            "ageMin": 19,
             "stale": false
           }
         ],
@@ -2569,7 +2581,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T10:15:04-04:00"
     },
-    "stamp": "10:19"
+    "stamp": "10:24"
   }
 }/*__END_DATA__*/;
 
