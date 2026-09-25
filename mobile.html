@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 5:57 PM ET",
-  "generatedAtISO": "2026-09-25T17:57:01-04:00",
+  "generatedAt": "Sep 25, 6:01 PM ET",
+  "generatedAtISO": "2026-09-25T18:01:44-04:00",
   "studios": [
     {
       "id": "509A",
@@ -627,10 +627,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:58",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Nabil Fairbairn",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -730,11 +730,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509A",
+      "studio": "509B",
       "day_offset": 0,
       "start": 18.75,
       "end": 19.25,
-      "id": "a09c7a8c5343",
+      "id": "770a382296f2",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -754,11 +754,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "509A",
       "day_offset": 0,
       "start": 18.75,
       "end": 19.25,
-      "id": "770a382296f2",
+      "id": "a09c7a8c5343",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -934,11 +934,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -946,11 +946,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1172,6 +1172,17 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
+      "code": "PBF — Megan Chapman ••• [pbf:3e37503281c4811c9195fd8a082d1ee4]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 25 · 18:01",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
       "code": "AVA-sweep-•••B",
       "kind": "AVA",
       "channel": "SMS",
@@ -1328,20 +1339,18 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790373248156,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Nabil Fairbairn",
+      "time": "17:58",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790373520828,
+      "source": "doors"
     }
   ],
-  "panelPrior": {
-    "693": {
-      "kind": "departure",
-      "name": "Angus Dirnbeck",
-      "remote": false,
-      "source": "doors",
-      "studio": "693",
-      "time": "23:39",
-      "ts": 1790307545749,
-      "when": "Thu 23:39"
-    }
-  },
+  "panelPrior": {},
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
@@ -1349,7 +1358,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T21:55:01+00:00",
-    "polledAt": "2026-09-25T21:57:00+00:00",
+    "polledAt": "2026-09-25T22:01:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1542,7 +1551,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:55:00-04:00"
+      "lastISO": "2026-09-25T18:00:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1582,7 +1591,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:45:00-04:00"
+      "lastISO": "2026-09-25T18:00:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1592,7 +1601,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:55:00-04:00"
+      "lastISO": "2026-09-25T18:01:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1602,7 +1611,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:45:00-04:00"
+      "lastISO": "2026-09-25T17:55:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1612,7 +1621,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:55:00-04:00"
+      "lastISO": "2026-09-25T18:00:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1622,7 +1631,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:56:00-04:00"
+      "lastISO": "2026-09-25T18:01:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1712,7 +1721,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:56:00-04:00"
+      "lastISO": "2026-09-25T17:57:00-04:00"
     },
     {
       "run": "The Planner",
@@ -1931,21 +1940,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-25",
-        "fires": 34,
-        "promptTokens": 2537704,
-        "cachedTokens": 1679577,
+        "fires": 36,
+        "promptTokens": 2672161,
+        "cachedTokens": 1756889,
         "cachedPct": 66,
-        "completionTokens": 7557,
+        "completionTokens": 7908,
         "errors": 0,
         "maxFireTokens": 107125,
         "maxFireJob": "The Responder",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 19,
-            "calls": 57,
-            "promptTokens": 1371324,
-            "cachedTokens": 802905,
+            "fires": 20,
+            "calls": 60,
+            "promptTokens": 1442679,
+            "cachedTokens": 844249,
             "cachedPct": 59,
             "completionTokens": null,
             "errors": 0,
@@ -1966,10 +1975,10 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Mechanic",
-            "fires": 4,
-            "calls": 12,
-            "promptTokens": 245284,
-            "cachedTokens": 137216,
+            "fires": 5,
+            "calls": 15,
+            "promptTokens": 308386,
+            "cachedTokens": 173184,
             "cachedPct": 56,
             "completionTokens": null,
             "errors": 0,
@@ -2040,7 +2049,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-25T17:45:40-04:00",
+      "asOfISO": "2026-09-25T18:00:41-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2049,7 +2058,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-25T17:45:38-04:00"
+      "jobsAsOfISO": "2026-09-25T18:00:38-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2290,7 +2299,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T17:47:00-04:00",
-            "ageMin": 10,
+            "ageMin": 14,
             "stale": false
           },
           {
@@ -2302,7 +2311,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-25T17:47:00-04:00",
-            "ageMin": 10,
+            "ageMin": 14,
             "stale": false
           }
         ],
@@ -2360,21 +2369,21 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-25",
-        "fires": 34,
-        "promptTokens": 2537704,
-        "cachedTokens": 1679577,
+        "fires": 36,
+        "promptTokens": 2672161,
+        "cachedTokens": 1756889,
         "cachedPct": 66,
-        "completionTokens": 7557,
+        "completionTokens": 7908,
         "errors": 0,
         "maxFireTokens": 107125,
         "maxFireJob": "The Responder",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 19,
-            "calls": 57,
-            "promptTokens": 1371324,
-            "cachedTokens": 802905,
+            "fires": 20,
+            "calls": 60,
+            "promptTokens": 1442679,
+            "cachedTokens": 844249,
             "cachedPct": 59,
             "completionTokens": null,
             "errors": 0,
@@ -2395,10 +2404,10 @@ const DATA = /*__DATA__*/{
           },
           {
             "job": "The Mechanic",
-            "fires": 4,
-            "calls": 12,
-            "promptTokens": 245284,
-            "cachedTokens": 137216,
+            "fires": 5,
+            "calls": 15,
+            "promptTokens": 308386,
+            "cachedTokens": 173184,
             "cachedPct": 56,
             "completionTokens": null,
             "errors": 0,
@@ -2469,7 +2478,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-25T17:45:40-04:00",
+      "asOfISO": "2026-09-25T18:00:41-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2478,9 +2487,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-25T17:45:38-04:00"
+      "jobsAsOfISO": "2026-09-25T18:00:38-04:00"
     },
-    "stamp": "17:57"
+    "stamp": "18:01"
   }
 }/*__END_DATA__*/;
 
