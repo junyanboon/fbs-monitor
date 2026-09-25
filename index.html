@@ -524,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 8:15 AM ET",
-  "generatedAtISO": "2026-09-25T08:15:45-04:00",
+  "generatedAt": "Sep 25, 8:18 AM ET",
+  "generatedAtISO": "2026-09-25T08:18:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -584,7 +584,7 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "FBS",
       "gtg": false,
-      "hta": "Sent",
+      "hta": "Unsent",
       "dispatch": [
         {
           "kind": "AVA",
@@ -598,7 +598,7 @@ const DATA = /*__DATA__*/{
         },
         {
           "kind": "HTA",
-          "state": "missing",
+          "state": "awaiting",
           "time": null
         }
       ],
@@ -1066,6 +1066,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
+      "studio": "509A",
+      "day_offset": 0,
+      "start": 18.75,
+      "end": 19.25,
+      "id": "a09c7a8c5343",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T18:45:00-04:00",
+      "endISO": "2026-09-25T19:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
       "studio": "509B",
       "day_offset": 0,
       "start": 18.75,
@@ -1083,18 +1095,6 @@ const DATA = /*__DATA__*/{
       "start": 18.75,
       "end": 19.25,
       "id": "f977be9a84ac",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "509A",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "a09c7a8c5343",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -1342,11 +1342,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1354,11 +1354,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1539,6 +1539,42 @@ const DATA = /*__DATA__*/{
       "created": "Sep 25 · 04:12",
       "send_after": null,
       "send_after_iso": null
+    },
+    {
+      "code": "HTA-desk-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Desk Sort",
+      "created": "Sep 25 · 08:17",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-25T09:00:00-04:00",
+      "label": "HTA · Studio 901"
+    },
+    {
+      "code": "HTA-desk-•••A",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "509A",
+      "raised_by": "The Desk Sort",
+      "created": "Sep 25 · 08:17",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-25T09:00:00-04:00",
+      "label": "HTA for Taylor Yeung in Studio 509A"
+    },
+    {
+      "code": "HTA-desk-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Pending Review",
+      "studio": "901",
+      "raised_by": "The Desk Sort",
+      "created": "Sep 25 · 08:17",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-25T09:00:00-04:00",
+      "label": "HTA · Studio 901"
     },
     {
       "code": "HTA-sweep-•••B",
@@ -1742,7 +1778,7 @@ const DATA = /*__DATA__*/{
     },
     {
       "level": "crit",
-      "text": "HTA not queued · Taylor Yeung · 509A · 17:00"
+      "text": "HTA awaiting review · Taylor Yeung · 509A · 17:00"
     }
   ],
   "armEvents": [],
@@ -1805,7 +1841,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T03:43:01+00:00",
-    "polledAt": "2026-09-25T12:15:12+00:00",
+    "polledAt": "2026-09-25T12:18:00+00:00",
     "doorGaps": [
       {
         "since": "2026-09-25T09:23:48.604896Z",
@@ -1871,7 +1907,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:11:00-04:00"
+      "lastISO": "2026-09-25T08:17:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1911,7 +1947,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:10:00-04:00"
+      "lastISO": "2026-09-25T08:15:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1941,7 +1977,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:15:00-04:00"
+      "lastISO": "2026-09-25T08:18:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2111,7 +2147,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:05:00-04:00"
+      "lastISO": "2026-09-25T08:18:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2591,7 +2627,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T03:05:00-04:00",
-            "ageMin": 310,
+            "ageMin": 313,
             "stale": true
           },
           {
@@ -2603,7 +2639,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-25T03:05:00-04:00",
-            "ageMin": 310,
+            "ageMin": 313,
             "stale": true
           }
         ],
@@ -2757,7 +2793,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T08:15:30-04:00"
     },
-    "stamp": "08:15"
+    "stamp": "08:18"
   }
 }/*__END_DATA__*/;
 
