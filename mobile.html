@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 3:25 PM ET",
-  "generatedAtISO": "2026-09-25T15:25:19-04:00",
+  "generatedAt": "Sep 25, 3:32 PM ET",
+  "generatedAtISO": "2026-09-25T15:32:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -499,11 +499,6 @@ const DATA = /*__DATA__*/{
       "gtg": true,
       "hta": null,
       "dispatch": [
-        {
-          "kind": "AVA",
-          "state": "scheduled",
-          "time": "15:30"
-        },
         {
           "kind": "EOB",
           "state": "scheduled",
@@ -1009,11 +1004,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1021,11 +1016,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1386,18 +1381,6 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-25T18:45:00-04:00",
       "label": "EOB for Marek H. Peerspace in Studio 509B"
-    },
-    {
-      "code": "AVA",
-      "kind": "AVA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "Staff (manual)",
-      "created": "Sep 25 · 13:48",
-      "send_after": "15:30",
-      "send_after_iso": "2026-09-25T15:30:00-04:00",
-      "label": "AVA for Marek H. Peerspace in Studio 509B"
     }
   ],
   "attention": [
@@ -1492,7 +1475,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T19:25:01+00:00",
-    "polledAt": "2026-09-25T19:25:01+00:00",
+    "polledAt": "2026-09-25T19:32:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1599,7 +1582,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T15:24:00-04:00"
+      "lastISO": "2026-09-25T15:30:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1609,7 +1592,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T14:25:00-04:00"
+      "lastISO": "2026-09-25T15:25:00-04:00"
     },
     {
       "run": "Desk Sort",
@@ -1649,7 +1632,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T15:15:00-04:00"
+      "lastISO": "2026-09-25T15:30:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1659,7 +1642,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T15:21:00-04:00"
+      "lastISO": "2026-09-25T15:31:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1669,7 +1652,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T15:15:00-04:00"
+      "lastISO": "2026-09-25T15:25:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1679,7 +1662,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T15:25:00-04:00"
+      "lastISO": "2026-09-25T15:30:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1689,7 +1672,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T15:24:00-04:00"
+      "lastISO": "2026-09-25T15:31:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2008,22 +1991,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-25",
-        "fires": 28,
-        "promptTokens": 2056731,
-        "cachedTokens": 1353728,
-        "cachedPct": 66,
-        "completionTokens": 5942,
+        "fires": 29,
+        "promptTokens": 2163856,
+        "cachedTokens": 1408473,
+        "cachedPct": 65,
+        "completionTokens": 6461,
         "errors": 0,
-        "maxFireTokens": 103923,
-        "maxFireJob": "The Timekeeper",
+        "maxFireTokens": 107125,
+        "maxFireJob": "The Responder",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 14,
-            "calls": 42,
-            "promptTokens": 983703,
-            "cachedTokens": 565760,
-            "cachedPct": 58,
+            "fires": 15,
+            "calls": 45,
+            "promptTokens": 1090828,
+            "cachedTokens": 620505,
+            "cachedPct": 57,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2117,7 +2100,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-25T15:15:33-04:00",
+      "asOfISO": "2026-09-25T15:30:38-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2126,7 +2109,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-25T15:15:30-04:00"
+      "jobsAsOfISO": "2026-09-25T15:30:34-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2363,7 +2346,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-25T15:05:00-04:00",
-            "ageMin": 20,
+            "ageMin": 27,
             "stale": false
           },
           {
@@ -2375,7 +2358,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-25T15:05:00-04:00",
-            "ageMin": 20,
+            "ageMin": 27,
             "stale": false
           }
         ],
@@ -2433,22 +2416,22 @@ const DATA = /*__DATA__*/{
     "usage": {
       "today": {
         "date": "2026-09-25",
-        "fires": 28,
-        "promptTokens": 2056731,
-        "cachedTokens": 1353728,
-        "cachedPct": 66,
-        "completionTokens": 5942,
+        "fires": 29,
+        "promptTokens": 2163856,
+        "cachedTokens": 1408473,
+        "cachedPct": 65,
+        "completionTokens": 6461,
         "errors": 0,
-        "maxFireTokens": 103923,
-        "maxFireJob": "The Timekeeper",
+        "maxFireTokens": 107125,
+        "maxFireJob": "The Responder",
         "jobs": [
           {
             "job": "The Responder",
-            "fires": 14,
-            "calls": 42,
-            "promptTokens": 983703,
-            "cachedTokens": 565760,
-            "cachedPct": 58,
+            "fires": 15,
+            "calls": 45,
+            "promptTokens": 1090828,
+            "cachedTokens": 620505,
+            "cachedPct": 57,
             "completionTokens": null,
             "errors": 0,
             "maxFireTokens": null,
@@ -2542,7 +2525,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-25T15:15:33-04:00",
+      "asOfISO": "2026-09-25T15:30:38-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2551,9 +2534,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-25T15:15:30-04:00"
+      "jobsAsOfISO": "2026-09-25T15:30:34-04:00"
     },
-    "stamp": "15:25"
+    "stamp": "15:32"
   }
 }/*__END_DATA__*/;
 
