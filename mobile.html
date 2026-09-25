@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Thursday, September 24, 2026",
   "shiftBaseDay": "2026-09-24",
-  "generatedAt": "Sep 24, 8:07 PM ET",
-  "generatedAtISO": "2026-09-24T20:07:21-04:00",
+  "generatedAt": "Sep 24, 8:08 PM ET",
+  "generatedAtISO": "2026-09-24T20:08:34-04:00",
   "studios": [
     {
       "id": "509A",
@@ -939,7 +939,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     }
   ],
   "armEvents": [
@@ -1069,7 +1069,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-24T22:30:12+00:00",
-    "polledAt": "2026-09-25T00:07:01+00:00",
+    "polledAt": "2026-09-25T00:08:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1231,16 +1231,6 @@ const DATA = /*__DATA__*/{
   },
   "robots": [
     {
-      "run": "Desk Sort",
-      "cadence": "Hourly",
-      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
-      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-24T16:48:00-04:00"
-    },
-    {
       "run": "docIntakeTick (Apps Script send engine)",
       "cadence": "Hourly",
       "expected": "hourly at :47 America/Toronto — Apps Script time-driven trigger docIntakeTick in project \"Message Queue Send Engine\" (script id 12bMAcZISYPKSkJuRnGIYJ1QYTh1siC4ZBGdq2tBH2bws3YodOAz2cZFX). Three lanes: Dropbox Sign agreements, Duuo, direct-email insurance intake + the undated-certificate backfill. Window 0-24: documents arrive at night too.",
@@ -1301,6 +1291,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-24T19:25:00-04:00"
     },
     {
+      "run": "Desk Sort",
+      "cadence": "Hourly",
+      "expected": "Every 30 min at :05 and :35 Toronto, 08:05 to 21:35 only, while Junyan's Claude app is open. Never overnight (Junyan 2026-09-15).",
+      "produces": "Desk Sort cards on Actions (Desk Sort property), signed-ruling drains with Desk Sort receipt lines, standing-ruling capture.",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-24T20:08:00-04:00"
+    },
+    {
       "run": "desk-watch (Mac)",
       "cadence": "Daily",
       "expected": "Once a day around 09:30-10:15 Toronto. Stale after 1500 min = 25 h, so a missed morning shows red by about 11:00 the same morning. Fails silently when the Mac is asleep or the Claude account is out of usage; the heartbeat is how that silence is seen.",
@@ -1338,7 +1338,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T19:55:00-04:00"
+      "lastISO": "2026-09-24T20:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1358,7 +1358,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T20:06:00-04:00"
+      "lastISO": "2026-09-24T20:08:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1388,7 +1388,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T19:07:00-04:00"
+      "lastISO": "2026-09-24T20:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2038,7 +2038,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 46,
             "whenISO": "2026-09-24T20:05:00-04:00",
-            "ageMin": 2,
+            "ageMin": 3,
             "stale": false
           },
           {
@@ -2050,7 +2050,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-24T20:05:00-04:00",
-            "ageMin": 2,
+            "ageMin": 3,
             "stale": false
           }
         ],
@@ -2240,7 +2240,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-24T20:00:54-04:00"
     },
-    "stamp": "20:07"
+    "stamp": "20:08"
   }
 }/*__END_DATA__*/;
 
