@@ -524,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 7:46 PM ET",
-  "generatedAtISO": "2026-09-25T19:46:58-04:00",
+  "generatedAt": "Sep 25, 7:48 PM ET",
+  "generatedAtISO": "2026-09-25T19:48:10-04:00",
   "studios": [
     {
       "id": "509A",
@@ -735,13 +735,7 @@ const DATA = /*__DATA__*/{
       "tier": "Monitor",
       "gtg": true,
       "hta": "Sent",
-      "dispatch": [
-        {
-          "kind": "EOB",
-          "state": "scheduled",
-          "time": "19:45"
-        }
-      ],
+      "dispatch": [],
       "booking_studios": [],
       "heard": false,
       "arrived": "19:06",
@@ -1437,18 +1431,6 @@ const DATA = /*__DATA__*/{
       "send_after": "20:15",
       "send_after_iso": "2026-09-25T20:15:00-04:00",
       "label": "EOB for Vidhisha Patel in Studio 509A"
-    },
-    {
-      "code": "EOB-sweep-•••B",
-      "kind": "EOB",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 25 · 00:06",
-      "send_after": "19:45",
-      "send_after_iso": "2026-09-25T19:45:00-04:00",
-      "label": "EOB for Aris Wu in Studio 509B"
     }
   ],
   "attention": [
@@ -1637,8 +1619,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-25T23:04:01+00:00",
-    "polledAt": "2026-09-25T23:46:00+00:00",
+    "updatedAt": "2026-09-25T23:48:00+00:00",
+    "polledAt": "2026-09-25T23:48:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1832,16 +1814,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-23T09:14:00-04:00"
     },
     {
-      "run": "The Planner",
-      "cadence": "Daily",
-      "expected": "19:30 America/Toronto · Codex production fallback",
-      "produces": "Tomorrow staged for approval",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Awaiting completion",
-      "lastISO": "2026-09-24T22:45:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1849,7 +1821,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T19:43:00-04:00"
+      "lastISO": "2026-09-25T19:48:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1889,7 +1861,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T18:47:00-04:00"
+      "lastISO": "2026-09-25T19:47:00-04:00"
     },
     {
       "run": "drop-sweep (Cloud Run)",
@@ -1939,7 +1911,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T19:44:00-04:00"
+      "lastISO": "2026-09-25T19:47:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2042,6 +2014,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-25T17:57:00-04:00"
     },
     {
+      "run": "The Planner",
+      "cadence": "Daily",
+      "expected": "19:30 America/Toronto · Codex production fallback",
+      "produces": "Tomorrow staged for approval",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-25T19:47:00-04:00"
+    },
+    {
       "run": "The Registrar (booking-sweep, Hostinger)",
       "cadence": "Hourly",
       "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
@@ -2099,7 +2081,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T19:33:00-04:00"
+      "lastISO": "2026-09-25T19:47:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2546,11 +2528,11 @@ const DATA = /*__DATA__*/{
         "status": "crit",
         "robots": [
           "The Closer",
-          "The Planner",
           "handback-sweep (Hostinger)",
           "reconcile-review (Hostinger)",
           "The Analyst",
           "The Host",
+          "The Planner",
           "The Registrar (booking-sweep, Hostinger)",
           "Watchlist sync",
           "desk-loop (Cloud Run)",
@@ -2615,7 +2597,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-25T19:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 43,
             "stale": false
           },
           {
@@ -2627,7 +2609,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-25T19:05:00-04:00",
-            "ageMin": 41,
+            "ageMin": 43,
             "stale": false
           }
         ],
@@ -2817,7 +2799,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T19:45:52-04:00"
     },
-    "stamp": "19:46"
+    "stamp": "19:48"
   }
 }/*__END_DATA__*/;
 
