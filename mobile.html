@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 9:48 AM ET",
-  "generatedAtISO": "2026-09-25T09:48:07-04:00",
+  "generatedAt": "Sep 25, 9:49 AM ET",
+  "generatedAtISO": "2026-09-25T09:49:26-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1035,11 +1035,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1047,11 +1047,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1350,18 +1350,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "HTA-sweep-•••B",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 25 · 00:02",
-      "send_after": null,
-      "send_after_iso": null,
-      "label": "HTA · Studio 509B"
-    },
-    {
       "code": "AVA-sweep-•••B",
       "kind": "AVA",
       "channel": "SMS",
@@ -1509,7 +1497,7 @@ const DATA = /*__DATA__*/{
   "attention": [
     {
       "level": "warn",
-      "text": "5 robots overdue — see Robots tab"
+      "text": "4 robots overdue — see Robots tab"
     },
     {
       "level": "crit",
@@ -1576,7 +1564,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T13:25:01+00:00",
-    "polledAt": "2026-09-25T13:48:00+00:00",
+    "polledAt": "2026-09-25T13:49:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1612,16 +1600,6 @@ const DATA = /*__DATA__*/{
       "status": "crit",
       "statusLabel": "Overdue",
       "lastISO": "2026-09-24T22:25:00-04:00"
-    },
-    {
-      "run": "docIntakeTick (Apps Script send engine)",
-      "cadence": "Hourly",
-      "expected": "hourly at :47 America/Toronto — Apps Script time-driven trigger docIntakeTick in project \"Message Queue Send Engine\" (script id 12bMAcZISYPKSkJuRnGIYJ1QYTh1siC4ZBGdq2tBH2bws3YodOAz2cZFX). Three lanes: Dropbox Sign agreements, Duuo, direct-email insurance intake + the undated-certificate backfill. Window 0-24: documents arrive at night too.",
-      "produces": "filed agreement / insurance PDFs in Drive + linked 📎 Docs rows",
-      "monitoring": "Live",
-      "status": "crit",
-      "statusLabel": "Overdue",
-      "lastISO": "2026-09-24T11:47:00-04:00"
     },
     {
       "run": "Ops Executor",
@@ -1694,6 +1672,16 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-25T09:20:00-04:00"
     },
     {
+      "run": "docIntakeTick (Apps Script send engine)",
+      "cadence": "Hourly",
+      "expected": "hourly at :47 America/Toronto — Apps Script time-driven trigger docIntakeTick in project \"Message Queue Send Engine\" (script id 12bMAcZISYPKSkJuRnGIYJ1QYTh1siC4ZBGdq2tBH2bws3YodOAz2cZFX). Three lanes: Dropbox Sign agreements, Duuo, direct-email insurance intake + the undated-certificate backfill. Window 0-24: documents arrive at night too.",
+      "produces": "filed agreement / insurance PDFs in Drive + linked 📎 Docs rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-25T09:48:00-04:00"
+    },
+    {
       "run": "drop-sweep (Cloud Run)",
       "cadence": "15-min",
       "expected": "every 15 min, 24/7 (Cloud Scheduler job drop-sweep, America/Toronto). Alert window 08:00–22:59 only — an overnight gap is not worth a page, and the 48h stateless window means a missed night costs nothing.",
@@ -1741,7 +1729,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T09:46:00-04:00"
+      "lastISO": "2026-09-25T09:49:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1901,7 +1889,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T09:18:00-04:00"
+      "lastISO": "2026-09-25T09:48:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2395,7 +2383,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T09:05:00-04:00",
-            "ageMin": 43,
+            "ageMin": 44,
             "stale": false
           },
           {
@@ -2407,7 +2395,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 48,
             "whenISO": "2026-09-25T09:05:00-04:00",
-            "ageMin": 43,
+            "ageMin": 44,
             "stale": false
           }
         ],
@@ -2585,7 +2573,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T09:45:55-04:00"
     },
-    "stamp": "09:48"
+    "stamp": "09:49"
   }
 }/*__END_DATA__*/;
 
