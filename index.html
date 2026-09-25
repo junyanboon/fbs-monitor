@@ -524,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 5:03 PM ET",
-  "generatedAtISO": "2026-09-25T17:03:09-04:00",
+  "generatedAt": "Sep 25, 5:05 PM ET",
+  "generatedAtISO": "2026-09-25T17:05:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -746,12 +746,17 @@ const DATA = /*__DATA__*/{
       "kind": "booking",
       "tier": "Monitor",
       "gtg": true,
-      "hta": "Will Not Send",
+      "hta": "Sent",
       "dispatch": [
         {
           "kind": "EOB",
           "state": "scheduled",
           "time": "19:45"
+        },
+        {
+          "kind": "HTA",
+          "state": "queued",
+          "time": null
         }
       ],
       "booking_studios": [],
@@ -1001,18 +1006,6 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "f977be9a84ac",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Today"
-    },
-    {
       "role": "FBS",
       "studio": "509B",
       "day_offset": 0,
@@ -1206,11 +1199,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1218,11 +1211,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1444,17 +1437,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Greeter — Peerspace instant (returning — number on file) — June P. — 509B Sat Sep 26 3:30 PM–5:30 PM [greeter:1a0d9e5b795f0955]",
-      "kind": null,
-      "channel": "Email",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Greeter",
-      "created": "Sep 25 · 14:51",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "AVA-sweep-•••B",
       "kind": "AVA",
       "channel": "SMS",
@@ -1525,6 +1507,28 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-25T18:45:00-04:00",
       "label": "EOB for Marek H. Peerspace in Studio 509B"
+    },
+    {
+      "code": "Greeter — Peerspace instant (returning — number on file) — June P. — 509B Sat Sep 26 3:30 PM–5:30 PM [greeter:1a0d9e5b795f0955]",
+      "kind": null,
+      "channel": "Email",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Greeter",
+      "created": "Sep 25 · 14:51",
+      "send_after": null,
+      "send_after_iso": null
+    },
+    {
+      "code": "Returning Access 509B RA-sweep-•••B",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 25 · 17:04",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1637,7 +1641,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T20:58:01+00:00",
-    "polledAt": "2026-09-25T21:03:01+00:00",
+    "polledAt": "2026-09-25T21:05:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1782,7 +1786,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T16:59:00-04:00"
+      "lastISO": "2026-09-25T17:05:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1862,7 +1866,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:00:00-04:00"
+      "lastISO": "2026-09-25T17:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1872,7 +1876,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:02:00-04:00"
+      "lastISO": "2026-09-25T17:04:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1982,7 +1986,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T16:30:00-04:00"
+      "lastISO": "2026-09-25T17:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2534,13 +2538,13 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 22.4,
-            "setpoint": "COOL 26",
+            "inside": 23.3,
+            "setpoint": "COOL 23",
             "mode": "COOL",
-            "hvac": "OFF",
+            "hvac": "COOLING",
             "humidity": 43,
-            "whenISO": "2026-09-25T16:05:00-04:00",
-            "ageMin": 58,
+            "whenISO": "2026-09-25T17:05:00-04:00",
+            "ageMin": 0,
             "stale": false
           },
           {
@@ -2551,8 +2555,8 @@ const DATA = /*__DATA__*/{
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 44,
-            "whenISO": "2026-09-25T16:05:00-04:00",
-            "ageMin": 58,
+            "whenISO": "2026-09-25T17:05:00-04:00",
+            "ageMin": 0,
             "stale": false
           }
         ],
@@ -2730,7 +2734,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T17:00:37-04:00"
     },
-    "stamp": "17:03"
+    "stamp": "17:05"
   }
 }/*__END_DATA__*/;
 
