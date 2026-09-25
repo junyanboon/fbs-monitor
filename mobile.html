@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 8:31 AM ET",
-  "generatedAtISO": "2026-09-25T08:31:39-04:00",
+  "generatedAt": "Sep 25, 8:35 AM ET",
+  "generatedAtISO": "2026-09-25T08:35:42-04:00",
   "studios": [
     {
       "id": "509A",
@@ -368,8 +368,8 @@ const DATA = /*__DATA__*/{
         },
         {
           "kind": "HTA",
-          "state": "awaiting",
-          "time": null
+          "state": "scheduled",
+          "time": "09:00"
         }
       ],
       "booking_studios": [],
@@ -1112,11 +1112,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1124,11 +1124,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1309,42 +1309,6 @@ const DATA = /*__DATA__*/{
       "created": "Sep 25 · 04:12",
       "send_after": null,
       "send_after_iso": null
-    },
-    {
-      "code": "HTA-desk-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Desk Sort",
-      "created": "Sep 25 · 08:17",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-25T09:00:00-04:00",
-      "label": "HTA · Studio 901"
-    },
-    {
-      "code": "HTA-desk-•••A",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Desk Sort",
-      "created": "Sep 25 · 08:17",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-25T09:00:00-04:00",
-      "label": "HTA for Taylor Yeung in Studio 509A"
-    },
-    {
-      "code": "HTA-desk-•••",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "901",
-      "raised_by": "The Desk Sort",
-      "created": "Sep 25 · 08:17",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-25T09:00:00-04:00",
-      "label": "HTA · Studio 901"
     },
     {
       "code": "Correction — Nina Li — 901 Fri Sep 25 not moved [desk-sort:sms-64fa7086]",
@@ -1568,6 +1532,42 @@ const DATA = /*__DATA__*/{
       "send_after": "17:45",
       "send_after_iso": "2026-09-25T17:45:00-04:00",
       "label": "EOB for Taylor Yeung in Studio 509A"
+    },
+    {
+      "code": "HTA-desk-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Desk Sort",
+      "created": "Sep 25 · 08:17",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-25T09:00:00-04:00",
+      "label": "HTA · Studio 901"
+    },
+    {
+      "code": "HTA-desk-•••A",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Desk Sort",
+      "created": "Sep 25 · 08:17",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-25T09:00:00-04:00",
+      "label": "HTA for Taylor Yeung in Studio 509A"
+    },
+    {
+      "code": "HTA-desk-•••",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Desk Sort",
+      "created": "Sep 25 · 08:17",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-25T09:00:00-04:00",
+      "label": "HTA · Studio 901"
     }
   ],
   "attention": [
@@ -1578,10 +1578,6 @@ const DATA = /*__DATA__*/{
     {
       "level": "crit",
       "text": "HTA not queued · Marek H. Peerspace · 509B · 17:30"
-    },
-    {
-      "level": "crit",
-      "text": "HTA awaiting review · Taylor Yeung · 509A · 17:00"
     }
   ],
   "armEvents": [],
@@ -1644,7 +1640,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T03:43:01+00:00",
-    "polledAt": "2026-09-25T12:31:00+00:00",
+    "polledAt": "2026-09-25T12:35:01+00:00",
     "doorGaps": [
       {
         "since": "2026-09-25T09:23:48.604896Z",
@@ -1720,7 +1716,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:28:00-04:00"
+      "lastISO": "2026-09-25T08:33:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1760,7 +1756,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:30:00-04:00"
+      "lastISO": "2026-09-25T08:35:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1780,7 +1776,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:30:00-04:00"
+      "lastISO": "2026-09-25T08:35:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1790,7 +1786,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:31:00-04:00"
+      "lastISO": "2026-09-25T08:35:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1840,7 +1836,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-24T22:33:00-04:00"
+      "lastISO": "2026-09-25T08:34:00-04:00"
     },
     {
       "run": "The Custodian",
@@ -1900,7 +1896,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:00:00-04:00"
+      "lastISO": "2026-09-25T08:30:00-04:00"
     },
     {
       "run": "The Responder",
@@ -1950,7 +1946,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T08:18:00-04:00"
+      "lastISO": "2026-09-25T08:33:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2442,7 +2438,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T03:05:00-04:00",
-            "ageMin": 326,
+            "ageMin": 330,
             "stale": true
           },
           {
@@ -2454,7 +2450,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 47,
             "whenISO": "2026-09-25T03:05:00-04:00",
-            "ageMin": 326,
+            "ageMin": 330,
             "stale": true
           }
         ],
@@ -2620,7 +2616,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T08:30:34-04:00"
     },
-    "stamp": "08:31"
+    "stamp": "08:35"
   }
 }/*__END_DATA__*/;
 
