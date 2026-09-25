@@ -524,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 5:56 PM ET",
-  "generatedAtISO": "2026-09-25T17:56:32-04:00",
+  "generatedAt": "Sep 25, 5:57 PM ET",
+  "generatedAtISO": "2026-09-25T17:57:01-04:00",
   "studios": [
     {
       "id": "509A",
@@ -564,11 +564,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "09:21",
+      "departed": "10:42",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Brad Wong",
+      "departed_by": "Brad Wong",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -588,10 +588,10 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
+      "arrived": "16:54",
       "departed": null,
       "facilitator": "Megan Chapman",
-      "arrived_by": null,
+      "arrived_by": "Megan Chapman",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -666,11 +666,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": true,
-      "arrived": null,
-      "departed": null,
+      "arrived": "14:30",
+      "departed": "15:01",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Serena James",
+      "departed_by": "Serena James",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -690,11 +690,11 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
-      "departed": null,
+      "arrived": "15:19",
+      "departed": "16:28",
       "facilitator": null,
-      "arrived_by": null,
-      "departed_by": null,
+      "arrived_by": "Stephanie Billones",
+      "departed_by": "Stephanie Billones",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -720,10 +720,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "17:48",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Marek H",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -960,18 +960,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 18.75,
-      "end": 19.25,
-      "id": "770a382296f2",
-      "date": "2026-09-25",
-      "startISO": "2026-09-25T18:45:00-04:00",
-      "endISO": "2026-09-25T19:15:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
       "studio": "509A",
       "day_offset": 0,
       "start": 18.75,
@@ -989,6 +977,18 @@ const DATA = /*__DATA__*/{
       "start": 18.75,
       "end": 19.25,
       "id": "f977be9a84ac",
+      "date": "2026-09-25",
+      "startISO": "2026-09-25T18:45:00-04:00",
+      "endISO": "2026-09-25T19:15:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
+      "studio": "509B",
+      "day_offset": 0,
+      "start": 18.75,
+      "end": 19.25,
+      "id": "770a382296f2",
       "date": "2026-09-25",
       "startISO": "2026-09-25T18:45:00-04:00",
       "endISO": "2026-09-25T19:15:00-04:00",
@@ -1164,11 +1164,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1176,11 +1176,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1470,6 +1470,69 @@ const DATA = /*__DATA__*/{
   ],
   "armEvents": [
     {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "09:21",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790342510711,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Brad Wong",
+      "time": "10:42",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790347354118,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Serena James",
+      "time": "14:30",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790361024199,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Serena James",
+      "time": "15:01",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790362862515,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stephanie Billones",
+      "time": "15:19",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790363963651,
+      "source": "doors"
+    },
+    {
+      "studio": "509B",
+      "name": "Stephanie Billones",
+      "time": "16:28",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790368127055,
+      "source": "doors"
+    },
+    {
+      "studio": "509A",
+      "name": "Megan Chapman",
+      "time": "16:54",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790369643311,
+      "source": "doors"
+    },
+    {
       "studio": "527",
       "name": "Tanisha Chakma",
       "time": "17:39",
@@ -1498,26 +1561,6 @@ const DATA = /*__DATA__*/{
     }
   ],
   "panelPrior": {
-    "509A": {
-      "kind": "arrival",
-      "name": "Megan Chapman",
-      "remote": false,
-      "source": "doors",
-      "studio": "509A",
-      "time": "16:54",
-      "ts": 1790369643311,
-      "when": "Fri 16:54"
-    },
-    "509B": {
-      "kind": "arrival",
-      "name": "Marek H",
-      "remote": false,
-      "source": "doors",
-      "studio": "509B",
-      "time": "17:48",
-      "ts": 1790372935453,
-      "when": "Fri 17:48"
-    },
     "693": {
       "kind": "departure",
       "name": "Angus Dirnbeck",
@@ -1532,11 +1575,11 @@ const DATA = /*__DATA__*/{
   "alarmAlerts": [],
   "armFallback": false,
   "armFeed": {
-    "panel": "failed",
+    "panel": "ok",
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-25T21:55:01+00:00",
-    "polledAt": "2026-09-25T21:56:01+00:00",
+    "polledAt": "2026-09-25T21:57:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1722,16 +1765,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-25T16:16:00-04:00"
     },
     {
-      "run": "The Mechanic",
-      "cadence": "Hourly",
-      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
-      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-25T13:56:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1819,7 +1852,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T17:55:00-04:00"
+      "lastISO": "2026-09-25T17:56:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1900,6 +1933,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-25T04:12:00-04:00"
+    },
+    {
+      "run": "The Mechanic",
+      "cadence": "Hourly",
+      "expected": "six passes a day at 01:54/05:54/09:54/13:54/17:54/21:54 America/Toronto (Cadence left Hourly so the sentinel's elapsed rule applies; stale 300 = one missed pass + grace) · Hermes cron 4a40b5097beb · v3 trimmed prompt 2026-09-20",
+      "produces": "J13 lane A — Send Engine error triage + four silence checks (inbox backlog, intake stall, queue stall, Invariant K receipts); files Sweep Feedback + Actions rows",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-25T17:56:00-04:00"
     },
     {
       "run": "The Planner",
@@ -2444,22 +2487,18 @@ const DATA = /*__DATA__*/{
         "name": "Someone is watching",
         "fine": "A robot texts you if one goes quiet.",
         "down": "Things break and nobody knows. Trust nothing green above.",
-        "status": "watch",
+        "status": "ok",
         "robots": [
-          "The Mechanic",
           "drop-sweep (Cloud Run)",
           "sentinel-sweep (Cloud Run)",
           "The Custodian",
+          "The Mechanic",
           "scribe (GitHub Actions)",
           "The Morning Text",
           "The Sentinel",
           "The Watchman"
         ],
-        "worst": {
-          "run": "The Mechanic",
-          "label": "Due",
-          "lastISO": "2026-09-25T13:56:00-04:00"
-        }
+        "worst": null
       },
       {
         "k": "climate",
@@ -2481,7 +2520,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T17:47:00-04:00",
-            "ageMin": 9,
+            "ageMin": 10,
             "stale": false
           },
           {
@@ -2493,7 +2532,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-25T17:47:00-04:00",
-            "ageMin": 9,
+            "ageMin": 10,
             "stale": false
           }
         ],
@@ -2671,7 +2710,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T17:45:38-04:00"
     },
-    "stamp": "17:56"
+    "stamp": "17:57"
   }
 }/*__END_DATA__*/;
 
