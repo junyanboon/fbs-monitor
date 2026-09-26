@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 26, 2026",
   "shiftBaseDay": "2026-09-26",
-  "generatedAt": "Sep 26, 11:16 AM ET",
-  "generatedAtISO": "2026-09-26T11:16:57-04:00",
+  "generatedAt": "Sep 26, 11:23 AM ET",
+  "generatedAtISO": "2026-09-26T11:23:23-04:00",
   "studios": [
     {
       "id": "509A",
@@ -732,10 +732,10 @@ const DATA = /*__DATA__*/{
       ],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "11:18",
       "departed": null,
       "facilitator": "Elzbieta Chernyak",
-      "arrived_by": null,
+      "arrived_by": "Elzbieta Chernyak",
       "departed_by": null,
       "arrived_foreign": false,
       "departed_foreign": false,
@@ -990,6 +990,18 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
+      "studio": "509B",
+      "day_offset": 0,
+      "start": 17.25,
+      "end": 17.75,
+      "id": "f7414e78ba6e",
+      "date": "2026-09-26",
+      "startISO": "2026-09-26T17:15:00-04:00",
+      "endISO": "2026-09-26T17:45:00-04:00",
+      "day": "Today"
+    },
+    {
+      "role": "FBS",
       "studio": null,
       "day_offset": 0,
       "start": 17.25,
@@ -1007,18 +1019,6 @@ const DATA = /*__DATA__*/{
       "start": 17.25,
       "end": 17.75,
       "id": "ccf7ab4913d6",
-      "date": "2026-09-26",
-      "startISO": "2026-09-26T17:15:00-04:00",
-      "endISO": "2026-09-26T17:45:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
-      "studio": "509B",
-      "day_offset": 0,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "f7414e78ba6e",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -1110,11 +1110,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 1,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1122,11 +1122,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 1,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1564,6 +1564,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790433594488,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Elzbieta Chernyak",
+      "time": "11:18",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790435923833,
+      "source": "doors"
     }
   ],
   "panelPrior": {
@@ -1576,16 +1585,6 @@ const DATA = /*__DATA__*/{
       "time": "00:17",
       "ts": 1790396250681,
       "when": "Sat 00:17"
-    },
-    "901": {
-      "kind": "departure",
-      "name": "Stefan Lovecchio",
-      "remote": false,
-      "source": "doors",
-      "studio": "901",
-      "time": "23:47",
-      "ts": 1790394459448,
-      "when": "Fri 23:47"
     }
   },
   "alarmAlerts": [],
@@ -1594,8 +1593,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-26T14:42:01+00:00",
-    "polledAt": "2026-09-26T15:16:01+00:00",
+    "updatedAt": "2026-09-26T15:23:01+00:00",
+    "polledAt": "2026-09-26T15:23:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1674,7 +1673,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T11:15:00-04:00"
+      "lastISO": "2026-09-26T11:21:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1734,7 +1733,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T11:16:00-04:00"
+      "lastISO": "2026-09-26T11:21:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1744,7 +1743,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T11:05:00-04:00"
+      "lastISO": "2026-09-26T11:15:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1754,7 +1753,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T11:15:00-04:00"
+      "lastISO": "2026-09-26T11:20:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1764,7 +1763,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T11:16:00-04:00"
+      "lastISO": "2026-09-26T11:22:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1784,7 +1783,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T11:10:00-04:00"
+      "lastISO": "2026-09-26T11:20:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -1884,7 +1883,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T10:53:00-04:00"
+      "lastISO": "2026-09-26T11:23:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -1924,7 +1923,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T11:03:00-04:00"
+      "lastISO": "2026-09-26T11:17:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2428,7 +2427,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 43,
             "whenISO": "2026-09-26T11:05:00-04:00",
-            "ageMin": 11,
+            "ageMin": 18,
             "stale": false
           },
           {
@@ -2440,7 +2439,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 48,
             "whenISO": "2026-09-26T11:05:00-04:00",
-            "ageMin": 11,
+            "ageMin": 18,
             "stale": false
           }
         ],
@@ -2618,7 +2617,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-26T11:15:57-04:00"
     },
-    "stamp": "11:16"
+    "stamp": "11:23"
   }
 }/*__END_DATA__*/;
 
