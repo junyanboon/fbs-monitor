@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 9:42 PM ET",
-  "generatedAtISO": "2026-09-25T21:42:04-04:00",
+  "generatedAt": "Sep 25, 9:46 PM ET",
+  "generatedAtISO": "2026-09-25T21:46:56-04:00",
   "studios": [
     {
       "id": "509A",
@@ -826,24 +826,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "FBS",
-      "studio": null,
-      "day_offset": 1,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "f1d76b674d69",
-      "date": "2026-09-26",
-      "startISO": "2026-09-26T17:15:00-04:00",
-      "endISO": "2026-09-26T17:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "Monitoring",
       "studio": "693",
       "day_offset": 1,
       "start": 17.25,
       "end": 17.75,
       "id": "ccf7ab4913d6",
+      "date": "2026-09-26",
+      "startISO": "2026-09-26T17:15:00-04:00",
+      "endISO": "2026-09-26T17:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "FBS",
+      "studio": null,
+      "day_offset": 1,
+      "start": 17.25,
+      "end": 17.75,
+      "id": "f1d76b674d69",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -1381,7 +1381,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-26T01:08:00+00:00",
-    "polledAt": "2026-09-26T01:42:01+00:00",
+    "polledAt": "2026-09-26T01:46:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1592,7 +1592,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:39:00-04:00"
+      "lastISO": "2026-09-25T21:44:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1642,7 +1642,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:30:00-04:00"
+      "lastISO": "2026-09-25T21:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -1652,7 +1652,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:40:00-04:00"
+      "lastISO": "2026-09-25T21:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1672,7 +1672,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:40:00-04:00"
+      "lastISO": "2026-09-25T21:45:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1682,7 +1682,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:41:00-04:00"
+      "lastISO": "2026-09-25T21:46:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2112,7 +2112,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-25T21:31:02-04:00",
+      "asOfISO": "2026-09-25T21:46:02-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Planner single fire 14,912,636 prompt tokens (limit 10,000,000)",
@@ -2121,7 +2121,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-25T21:30:59-04:00"
+      "jobsAsOfISO": "2026-09-25T21:45:59-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2137,6 +2137,14 @@ const DATA = /*__DATA__*/{
         "default": false
       },
       {
+        "lane": "host",
+        "name": "The Host",
+        "executor": "mac",
+        "how": "Codex app · Mac",
+        "status": "watch",
+        "default": true
+      },
+      {
         "lane": "analyst",
         "name": "The Analyst",
         "executor": "cloudrun",
@@ -2147,14 +2155,6 @@ const DATA = /*__DATA__*/{
       {
         "lane": "bookkeeper",
         "name": "The Bookkeeper",
-        "executor": "cloudrun",
-        "how": "Deterministic · Cloud Run",
-        "status": "ok",
-        "default": false
-      },
-      {
-        "lane": "host",
-        "name": "The Host",
         "executor": "cloudrun",
         "how": "Deterministic · Cloud Run",
         "status": "ok",
@@ -2242,8 +2242,8 @@ const DATA = /*__DATA__*/{
       }
     ],
     "counts": {
-      "mac": 1,
-      "cloudrun": 4,
+      "mac": 2,
+      "cloudrun": 3,
       "vps": 3,
       "cloud": 6
     }
@@ -2358,7 +2358,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-25T21:05:00-04:00",
-            "ageMin": 37,
+            "ageMin": 41,
             "stale": false
           },
           {
@@ -2370,7 +2370,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 44,
             "whenISO": "2026-09-25T21:05:00-04:00",
-            "ageMin": 37,
+            "ageMin": 41,
             "stale": false
           }
         ],
@@ -2549,7 +2549,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-25T21:31:02-04:00",
+      "asOfISO": "2026-09-25T21:46:02-04:00",
       "stale": false,
       "alarm": true,
       "alarmNote": "The Planner single fire 14,912,636 prompt tokens (limit 10,000,000)",
@@ -2558,9 +2558,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-25T21:30:59-04:00"
+      "jobsAsOfISO": "2026-09-25T21:45:59-04:00"
     },
-    "stamp": "21:42"
+    "stamp": "21:46"
   }
 }/*__END_DATA__*/;
 
