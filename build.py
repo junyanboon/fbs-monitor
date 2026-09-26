@@ -56,6 +56,9 @@ STUDIOS = [
 STUDIO_IDS = {s["id"] for s in STUDIOS}
 
 NOTION_DATA_SOURCE = "36475032-81c4-80d6-b18a-000b8d6f9421"
+# 🎨 Artist Database — read by NAME only, for bookings with no FBS row; see
+# find_artists_by_name(). Names only, never the Alarm Code field.
+ARTIST_DS = "3cfb93cb-55f9-46a4-bde8-9b7023797d4b"
 # 🚥 Run Monitor DB (Staff Console) — robot heartbeat roster for the Robots tab.
 RUN_MONITOR_DS = "caca3d50-b7b9-4f2a-b172-4fdcfce96cac"
 # ⚖️ Active Runtime — the fleet lease page. One JSON code block on it names the
@@ -469,7 +472,7 @@ def facilitator_of(title):
     return m.group(1).strip() if m else None
 
 
-def fetch_authorized_names(token, events, lookup=None, pool=None):
+def fetch_authorized_names(token, events, lookup=None, pool=None, by_name=None):
     """Attach `_allowed_names` to each booking: the account holder's Artist
     Database Name / Company / Alarm Display Name, plus the same fields of every
     page in its `Authorized Users` relation.
@@ -479,22 +482,82 @@ def fetch_authorized_names(token, events, lookup=None, pool=None):
     rendered "not the expected person" because neither name shares a token with
     the company title. Names only: the `Alarm Code` field is never read (this
     board is public). Names never leave the build — only the foreign booleans.
-    Soft: a failed read keeps the old title-only match for that booking."""
+    Soft: a failed read keeps the old title-only match for that booking.
+
+    A booking with no FBS row has no `_artist_id` (Junyan, 2026-09-25): Avante's
+    one-off "Extra practice - Fuerza team" in 693 was keyed in and armed by
+    Ishfaaq Jookhun and still read "not the expected person", because only FBS
+    rows link to the Artist page. Those bookings find their Artist page by the
+    booking name instead (find_artists_by_name)."""
+    unjoined = {_account_key(e.get("who")) for e in events
+                if e.get("kind") == "booking" and not e.get("_artist_id")}
+    unjoined.discard("")
+    if by_name is None:
+        by_name = find_artists_by_name(token, unjoined, pool) if unjoined else {}
     if lookup is None:
         lookup = fetch_allowed_names(
             token, [e["_artist_id"] for e in events
-                    if e.get("kind") == "booking" and e.get("_artist_id")], pool)
+                    if e.get("kind") == "booking" and e.get("_artist_id")]
+            + [a for ids in by_name.values() for a in ids], pool)
     for e in events:
+        if e.get("kind") != "booking":
+            continue
         aid = e.get("_artist_id")
-        if e.get("kind") != "booking" or not aid:
+        ids = [aid] if aid else by_name.get(_account_key(e.get("who")), [])
+        missing = [a for a in ids if a not in lookup]
+        if missing:                      # ids the prefetch did not cover
+            lookup.update(fetch_allowed_names(token, missing, pool))
+        found = [lookup.get(a) for a in ids if lookup.get(a) is not None]
+        if not found:
             continue
-        if aid not in lookup:            # an id the prefetch did not cover
-            lookup.update(fetch_allowed_names(token, [aid], pool))
-        allowed = lookup.get(aid)
-        if allowed is None:
-            continue
-        e["_allowed_names"] = list(allowed)
+        e["_allowed_names"] = [n for names in found for n in names]
     return events
+
+
+_CORP_SUFFIX = re.compile(r"[,.]?\s+(inc|incorporated|ltd|limited|llc|corp|corporation)\.?$", re.I)
+
+
+def _account_key(name):
+    """"Avante Dance  Company Inc. — Extra practice" → "avante dance company".
+    The booker part of a title (or an Artist Name / Company), bracket and paren
+    notes dropped, corporate suffix dropped, case and spacing folded."""
+    t = _display_name(name or "")
+    t = re.sub(r"\s*\[[^\]]*\]", "", t)
+    t = re.sub(r"\s+", " ", t).strip(" ,.")
+    t = _CORP_SUFFIX.sub("", t)
+    return t.strip(" ,.").lower()
+
+
+def find_artists_by_name(token, keys, pool=None):
+    """{account key: [artist page ids]} for bookings that have no FBS row.
+
+    A candidate must match EXACTLY on the folded key: its Company, its whole
+    Name, or one comma-separated part of its Name ("Claudia Dzierbicki, Avante
+    Dance Company [Fixed Option]" answers both "claudia dzierbicki" and "avante
+    dance company"). More than three exact matches is not an account, it is a
+    common name: the key maps to nothing and the title-only match stands. Soft:
+    a failed query maps its key to nothing."""
+    def query(key):
+        try:
+            rows = _notion_query(token, ARTIST_DS, {"page_size": 25, "filter": {"or": [
+                {"property": "Company", "rich_text": {"contains": key}},
+                {"property": "Name", "title": {"contains": key}}]}})
+        except Exception:  # noqa: BLE001
+            return []
+        hits = []
+        for r in rows:
+            p = r.get("properties") or {}
+            name = _prop_text(p.get("Name")) or ""
+            forms = {_account_key(_prop_text(p.get("Company"))), _account_key(name)}
+            forms |= {_account_key(part) for part in name.split(",")}
+            if key in forms:
+                hits.append((r.get("id") or "").replace("-", ""))
+        hits = [h for h in dict.fromkeys(hits) if h]
+        return hits if len(hits) <= 3 else []
+
+    keys = [k for k in dict.fromkeys(keys) if k]
+    results = pool.map("notion:artists", query, keys) if pool is not None else map(query, keys)
+    return dict(zip(keys, results))
 
 
 def fetch_allowed_names(token, artist_ids, pool=None):
