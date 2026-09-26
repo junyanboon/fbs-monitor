@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 26, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 26, 12:35 AM ET",
-  "generatedAtISO": "2026-09-26T00:35:41-04:00",
+  "generatedAt": "Sep 26, 12:47 AM ET",
+  "generatedAtISO": "2026-09-26T00:47:02-04:00",
   "studios": [
     {
       "id": "509A",
@@ -857,11 +857,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -869,11 +869,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1298,7 +1298,12 @@ const DATA = /*__DATA__*/{
       "label": "AVA · Studio 901"
     }
   ],
-  "attention": [],
+  "attention": [
+    {
+      "level": "warn",
+      "text": "1 robot overdue — see Robots tab"
+    }
+  ],
   "armEvents": [
     {
       "studio": "509A",
@@ -1668,6 +1673,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790396939453,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Stefan Lovecchio",
+      "time": "00:44",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790397877204,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1678,14 +1692,14 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-26T04:32:00+00:00",
-    "polledAt": "2026-09-26T04:35:01+00:00",
+    "polledAt": "2026-09-26T04:47:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
       "missedCount": 0
     },
     "mailCheck": {
-      "matched": 5,
+      "matched": 6,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -1885,8 +1899,8 @@ const DATA = /*__DATA__*/{
       "expected": null,
       "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
       "monitoring": "Retired",
-      "status": "watch",
-      "statusLabel": "Due",
+      "status": "crit",
+      "statusLabel": "Overdue",
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
@@ -1897,7 +1911,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T00:35:00-04:00"
+      "lastISO": "2026-09-26T00:47:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -1917,7 +1931,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T00:35:00-04:00"
+      "lastISO": "2026-09-26T00:46:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2057,7 +2071,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-26T00:30:00-04:00"
+      "lastISO": "2026-09-26T00:45:00-04:00"
     },
     {
       "run": "greeter-sweep (Cloud Run)",
@@ -2067,7 +2081,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-26T00:31:00-04:00"
+      "lastISO": "2026-09-26T00:46:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -2077,7 +2091,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-26T00:25:00-04:00"
+      "lastISO": "2026-09-26T00:35:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -2087,7 +2101,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-26T00:35:00-04:00"
+      "lastISO": "2026-09-26T00:45:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2127,7 +2141,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-26T00:30:00-04:00"
+      "lastISO": "2026-09-26T00:40:00-04:00"
     },
     {
       "run": "scribe (GitHub Actions)",
@@ -2340,7 +2354,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-26T00:30:22-04:00",
+      "asOfISO": "2026-09-26T00:45:26-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2349,7 +2363,7 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-26T00:30:19-04:00"
+      "jobsAsOfISO": "2026-09-26T00:45:22-04:00"
     },
     "leaseId": "lease-2026-09-04-cutover-codex",
     "reason": "Manual cutover 2026-09-04: Claude tokens exhausted. All 14 Claude RemoteTriggers disabled and read back enabled=false. Codex desktop automations (12 lanes, lease-gated) are the active runtime.",
@@ -2582,7 +2596,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 90,
+            "ageMin": 102,
             "stale": false
           },
           {
@@ -2594,7 +2608,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 57,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 90,
+            "ageMin": 102,
             "stale": false
           }
         ],
@@ -2676,7 +2690,7 @@ const DATA = /*__DATA__*/{
         "jobs": [],
         "runs": []
       },
-      "asOfISO": "2026-09-26T00:30:22-04:00",
+      "asOfISO": "2026-09-26T00:45:26-04:00",
       "stale": false,
       "alarm": false,
       "alarmNote": "",
@@ -2685,9 +2699,9 @@ const DATA = /*__DATA__*/{
         "dayPromptTokens": 0
       },
       "jobsSource": "run-monitor",
-      "jobsAsOfISO": "2026-09-26T00:30:19-04:00"
+      "jobsAsOfISO": "2026-09-26T00:45:22-04:00"
     },
-    "stamp": "00:35"
+    "stamp": "00:47"
   }
 }/*__END_DATA__*/;
 
