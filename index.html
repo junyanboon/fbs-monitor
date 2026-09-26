@@ -524,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Friday, September 25, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 25, 9:02 PM ET",
-  "generatedAtISO": "2026-09-25T21:02:13-04:00",
+  "generatedAt": "Sep 25, 9:07 PM ET",
+  "generatedAtISO": "2026-09-25T21:07:30-04:00",
   "studios": [
     {
       "id": "509A",
@@ -858,12 +858,12 @@ const DATA = /*__DATA__*/{
       "dispatch": [],
       "booking_studios": [],
       "heard": false,
-      "arrived": null,
+      "arrived": "21:02",
       "departed": null,
       "facilitator": null,
-      "arrived_by": null,
+      "arrived_by": "Ishfaaq Jookhun",
       "departed_by": null,
-      "arrived_foreign": false,
+      "arrived_foreign": true,
       "departed_foreign": false,
       "assumed": null,
       "wrong_studio": null,
@@ -1056,24 +1056,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "693",
-      "day_offset": 1,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "ccf7ab4913d6",
-      "date": "2026-09-26",
-      "startISO": "2026-09-26T17:15:00-04:00",
-      "endISO": "2026-09-26T17:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": null,
       "day_offset": 1,
       "start": 17.25,
       "end": 17.75,
       "id": "f1d76b674d69",
+      "date": "2026-09-26",
+      "startISO": "2026-09-26T17:15:00-04:00",
+      "endISO": "2026-09-26T17:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 17.25,
+      "end": 17.75,
+      "id": "ccf7ab4913d6",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -1165,11 +1165,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1177,11 +1177,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1298,17 +1298,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "Kimberly Rampersad: extension confirmed Oct •••:30-21:30",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "693",
-      "raised_by": "The Desk Sort",
-      "created": "Sep 25 · 12:15",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Post-HTA go-ahead confirmation — Thea [Giggster] — 509B [gtg:6aca76eb-2ab9-••••-af98-aa1c17a03e78]",
       "kind": null,
       "channel": "SMS",
@@ -1397,6 +1386,17 @@ const DATA = /*__DATA__*/{
       "send_after": "22:45",
       "send_after_iso": "2026-09-25T22:45:00-04:00",
       "label": "EOB for Nerie Ann Delos Santos in Studio 509B"
+    },
+    {
+      "code": "Kimberly Rampersad: extension confirmed Oct •••:30-21:30",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Desk Sort",
+      "created": "Sep 25 · 12:15",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1603,6 +1603,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790383193220,
       "source": "doors"
+    },
+    {
+      "studio": "693",
+      "name": "Ishfaaq Jookhun",
+      "time": "21:02",
+      "kind": "arrival",
+      "remote": false,
+      "ts": 1790384549024,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1613,7 +1622,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-26T00:43:01+00:00",
-    "polledAt": "2026-09-26T01:02:00+00:00",
+    "polledAt": "2026-09-26T01:07:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1807,16 +1816,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-23T09:14:00-04:00"
     },
     {
-      "run": "The Registrar (booking-sweep, Hostinger)",
-      "cadence": "Hourly",
-      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
-      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-25T20:00:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1824,7 +1823,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:01:00-04:00"
+      "lastISO": "2026-09-25T21:06:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1884,7 +1883,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:01:00-04:00"
+      "lastISO": "2026-09-25T21:06:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1904,7 +1903,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:00:00-04:00"
+      "lastISO": "2026-09-25T21:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1914,7 +1913,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T21:01:00-04:00"
+      "lastISO": "2026-09-25T21:05:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1934,7 +1933,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-25T20:50:00-04:00"
+      "lastISO": "2026-09-25T21:00:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2015,6 +2014,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-25T19:47:00-04:00"
+    },
+    {
+      "run": "The Registrar (booking-sweep, Hostinger)",
+      "cadence": "Hourly",
+      "expected": "every 30 min, 24/7 (Hostinger systemd timer danceannex-booking-sweep.timer, /30 UTC). Cadence reads 'Hourly' because the board has no 30-min option; Hourly / 15-min / 5-min all take the same continuous-window staleness rule in sentinel_sweep.classify(), so a /30 job is judged on raw elapsed time, never against a parsed Expected time (the 2026-08-07 bug applies to 2x/day only). Stale after (min) = 75 = two missed passes plus a slow pass. Window 0-24: same-day bookings arrive at night and the lane must be seen dead at night too. LIVE since 2026-09-11 12:02Z (REGISTRAR_HEARTBEAT_LIVE=1, event-gate b4f3fee); first stamp read back, Monitoring flipped to Live (wayfinder 086).",
+      "produces": "No report row. Every 30 min: access provisioned, board rows, HTA/confirmation queue rows, residue Actions rows, daily lanes, send verifier. A quiet pass writes nothing anywhere else, which is why Self-heartbeat is this row's only signal (wayfinder 086).",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-25T21:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2521,12 +2530,12 @@ const DATA = /*__DATA__*/{
         "status": "crit",
         "robots": [
           "The Closer",
-          "The Registrar (booking-sweep, Hostinger)",
           "handback-sweep (Hostinger)",
           "reconcile-review (Hostinger)",
           "The Analyst",
           "The Host",
           "The Planner",
+          "The Registrar (booking-sweep, Hostinger)",
           "Watchlist sync",
           "desk-loop (Cloud Run)",
           "The Closer",
@@ -2584,13 +2593,13 @@ const DATA = /*__DATA__*/{
           {
             "studio": "509",
             "name": "509 Bloor",
-            "inside": 22.2,
+            "inside": 22.8,
             "setpoint": "COOL 22.85",
             "mode": "COOL",
             "hvac": "OFF",
             "humidity": 43,
-            "whenISO": "2026-09-25T20:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-25T21:05:00-04:00",
+            "ageMin": 2,
             "stale": false
           },
           {
@@ -2601,8 +2610,8 @@ const DATA = /*__DATA__*/{
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 44,
-            "whenISO": "2026-09-25T20:05:00-04:00",
-            "ageMin": 57,
+            "whenISO": "2026-09-25T21:05:00-04:00",
+            "ageMin": 2,
             "stale": false
           }
         ],
@@ -2792,7 +2801,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-25T21:00:59-04:00"
     },
-    "stamp": "21:02"
+    "stamp": "21:07"
   }
 }/*__END_DATA__*/;
 
