@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 26, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 26, 12:07 AM ET",
-  "generatedAtISO": "2026-09-26T00:07:45-04:00",
+  "generatedAt": "Sep 26, 12:08 AM ET",
+  "generatedAtISO": "2026-09-26T00:08:12-04:00",
   "studios": [
     {
       "id": "509A",
@@ -820,24 +820,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "693",
-      "day_offset": 1,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "ccf7ab4913d6",
-      "date": "2026-09-26",
-      "startISO": "2026-09-26T17:15:00-04:00",
-      "endISO": "2026-09-26T17:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": null,
       "day_offset": 1,
       "start": 17.25,
       "end": 17.75,
       "id": "f1d76b674d69",
+      "date": "2026-09-26",
+      "startISO": "2026-09-26T17:15:00-04:00",
+      "endISO": "2026-09-26T17:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 17.25,
+      "end": 17.75,
+      "id": "ccf7ab4913d6",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -857,11 +857,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -869,11 +869,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -1190,6 +1190,18 @@ const DATA = /*__DATA__*/{
       "send_after_iso": "2026-09-26T09:00:00-04:00"
     },
     {
+      "code": "AVA-sweep-•••",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 26 · 00:07",
+      "send_after": "15:30",
+      "send_after_iso": "2026-09-26T15:30:00-04:00",
+      "label": "AVA · Studio 693"
+    },
+    {
       "code": "EOB-sweep-•••",
       "kind": "EOB",
       "channel": "SMS",
@@ -1224,6 +1236,18 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-26T18:45:00-04:00",
       "label": "EOB · Studio 901"
+    },
+    {
+      "code": "EOB-sweep-•••A",
+      "kind": "EOB",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 26 · 00:08",
+      "send_after": "14:15",
+      "send_after_iso": "2026-09-26T14:15:00-04:00",
+      "label": "EOB · Studio 509A"
     }
   ],
   "attention": [],
@@ -1542,6 +1566,15 @@ const DATA = /*__DATA__*/{
       "remote": false,
       "ts": 1790394459448,
       "source": "doors"
+    },
+    {
+      "studio": "527",
+      "name": "Justin Blayney",
+      "time": "00:07",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790395670284,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1552,14 +1585,14 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-26T03:50:01+00:00",
-    "polledAt": "2026-09-26T04:07:00+00:00",
+    "polledAt": "2026-09-26T04:08:00+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
       "missedCount": 0
     },
     "mailCheck": {
-      "matched": 3,
+      "matched": 4,
       "inGap": 0,
       "missed": [],
       "missedCount": 0
@@ -2432,7 +2465,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 62,
+            "ageMin": 63,
             "stale": false
           },
           {
@@ -2444,7 +2477,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 57,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 62,
+            "ageMin": 63,
             "stale": false
           }
         ],
@@ -2537,7 +2570,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-26T00:00:09-04:00"
     },
-    "stamp": "00:07"
+    "stamp": "00:08"
   }
 }/*__END_DATA__*/;
 
