@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 26, 2026",
   "shiftBaseDay": "2026-09-26",
-  "generatedAt": "Sep 26, 1:55 PM ET",
-  "generatedAtISO": "2026-09-26T13:55:35-04:00",
+  "generatedAt": "Sep 26, 1:56 PM ET",
+  "generatedAtISO": "2026-09-26T13:56:39-04:00",
   "studios": [
     {
       "id": "509A",
@@ -908,11 +908,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
+      "studio": "509B",
       "day_offset": 0,
       "start": 17.25,
       "end": 17.75,
-      "id": "f1d76b674d69",
+      "id": "f7414e78ba6e",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -932,11 +932,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": null,
       "day_offset": 0,
       "start": 17.25,
       "end": 17.75,
-      "id": "f7414e78ba6e",
+      "id": "f1d76b674d69",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -1028,11 +1028,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 1,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1040,11 +1040,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 1,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1350,17 +1350,6 @@ const DATA = /*__DATA__*/{
       "label": "EOB for Thea Giggster in Studio 509B"
     },
     {
-      "code": "Desk Sort hold — Dana Brookman thanks for Oct 11 credit [sms-in-eee7a7d7]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Ready to Send",
-      "studio": null,
-      "raised_by": "The Desk Sort",
-      "created": "Sep 26 · 08:07",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "Himanshi Mehta: moved Sep 27 to Oct 17 5-7 PM 901 + extension invoice [extender:sms-in-6fadd4ae-9c9f-4f97-bbc9-948e17eef5c2]",
       "kind": null,
       "channel": "SMS",
@@ -1579,7 +1568,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-26T17:02:01+00:00",
-    "polledAt": "2026-09-26T17:55:01+00:00",
+    "polledAt": "2026-09-26T17:56:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1651,16 +1640,6 @@ const DATA = /*__DATA__*/{
       "lastISO": "2026-09-15T19:44:00-04:00"
     },
     {
-      "run": "main queue sender (Apps Script send engine)",
-      "cadence": "5-min",
-      "expected": "every 5 minutes, 24/7 — Apps Script time-driven trigger main() in project \"Message Queue Send Engine\". Sends the Ready to Send + due rows of the 📤 Message Queue (SMS via Phone.com, email via Gmail).",
-      "produces": "renter SMS and email sends, with dispatch receipts on the queue row",
-      "monitoring": "Live",
-      "status": "watch",
-      "statusLabel": "Due",
-      "lastISO": "2026-09-26T13:36:00-04:00"
-    },
-    {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
       "expected": "every 60s, 24/7 (Cloud Scheduler → alarm-mcp /watchdog). Heartbeat is written every 5 min, not every tick.",
@@ -1728,7 +1707,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T13:51:00-04:00"
+      "lastISO": "2026-09-26T13:56:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1749,6 +1728,16 @@ const DATA = /*__DATA__*/{
       "status": "ok",
       "statusLabel": "On time",
       "lastISO": "2026-09-26T13:55:00-04:00"
+    },
+    {
+      "run": "main queue sender (Apps Script send engine)",
+      "cadence": "5-min",
+      "expected": "every 5 minutes, 24/7 — Apps Script time-driven trigger main() in project \"Message Queue Send Engine\". Sends the Ready to Send + due rows of the 📤 Message Queue (SMS via Phone.com, email via Gmail).",
+      "produces": "renter SMS and email sends, with dispatch receipts on the queue row",
+      "monitoring": "Live",
+      "status": "ok",
+      "statusLabel": "On time",
+      "lastISO": "2026-09-26T13:56:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -2428,7 +2417,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 43,
             "whenISO": "2026-09-26T13:05:00-04:00",
-            "ageMin": 50,
+            "ageMin": 51,
             "stale": false
           },
           {
@@ -2440,7 +2429,7 @@ const DATA = /*__DATA__*/{
             "hvac": "COOLING",
             "humidity": 51,
             "whenISO": "2026-09-26T13:05:00-04:00",
-            "ageMin": 50,
+            "ageMin": 51,
             "stale": false
           }
         ],
@@ -2618,7 +2607,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-26T13:45:45-04:00"
     },
-    "stamp": "13:55"
+    "stamp": "13:56"
   }
 }/*__END_DATA__*/;
 
