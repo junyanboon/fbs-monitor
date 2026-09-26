@@ -524,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 26, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 26, 12:32 AM ET",
-  "generatedAtISO": "2026-09-26T00:32:37-04:00",
+  "generatedAt": "Sep 26, 12:35 AM ET",
+  "generatedAtISO": "2026-09-26T00:35:41-04:00",
   "studios": [
     {
       "id": "509A",
@@ -1159,11 +1159,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1171,11 +1171,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1514,6 +1514,18 @@ const DATA = /*__DATA__*/{
       "send_after": "08:00",
       "send_after_iso": "2026-09-26T08:00:00-04:00",
       "label": "AVA · Studio 693"
+    },
+    {
+      "code": "AVA-sweep-•••",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "901",
+      "raised_by": "The Registrar",
+      "created": "Sep 26 · 00:34",
+      "send_after": "09:15",
+      "send_after_iso": "2026-09-26T09:15:00-04:00",
+      "label": "AVA · Studio 901"
     }
   ],
   "attention": [],
@@ -1896,7 +1908,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-26T04:32:00+00:00",
-    "polledAt": "2026-09-26T04:32:00+00:00",
+    "polledAt": "2026-09-26T04:35:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -2084,11 +2096,29 @@ const DATA = /*__DATA__*/{
       {
         "since": "2026-09-26T04:31:33.234669Z",
         "until": "2026-09-26T04:31:33.344968Z"
+      },
+      {
+        "since": "2026-09-26T04:34:22.851304Z",
+        "until": "2026-09-26T04:34:22.939153Z"
+      },
+      {
+        "since": "2026-09-26T04:34:37.119597Z",
+        "until": "2026-09-26T04:34:48.907533Z"
       }
     ],
     "down": false
   },
   "robots": [
+    {
+      "run": "Ops Executor",
+      "cadence": "15-min",
+      "expected": null,
+      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
+      "monitoring": "Retired",
+      "status": "watch",
+      "statusLabel": "Due",
+      "lastISO": "2026-09-15T19:44:00-04:00"
+    },
     {
       "run": "alarm-watchdog (Cloud Run)",
       "cadence": "5-min",
@@ -2097,7 +2127,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T00:29:00-04:00"
+      "lastISO": "2026-09-26T00:35:00-04:00"
     },
     {
       "run": "docIntakeTick (Apps Script send engine)",
@@ -2117,17 +2147,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T00:32:00-04:00"
-    },
-    {
-      "run": "Ops Executor",
-      "cadence": "15-min",
-      "expected": null,
-      "produces": "Source-bound operational feedback routing and independently verified owner operations. Heartbeat proves source-pass liveness, never business completion.",
-      "monitoring": "Retired",
-      "status": "ok",
-      "statusLabel": "On time",
-      "lastISO": "2026-09-15T19:44:00-04:00"
+      "lastISO": "2026-09-26T00:35:00-04:00"
     },
     {
       "run": "sentinel-sweep (Cloud Run)",
@@ -2197,7 +2217,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T00:00:00-04:00"
+      "lastISO": "2026-09-26T00:30:00-04:00"
     },
     {
       "run": "The Timekeeper",
@@ -2297,7 +2317,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "plain",
       "statusLabel": "Off-hours",
-      "lastISO": "2026-09-26T00:30:00-04:00"
+      "lastISO": "2026-09-26T00:35:00-04:00"
     },
     {
       "run": "migration-sweep (Cloud Run — alarm-mcp)",
@@ -2792,7 +2812,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 87,
+            "ageMin": 90,
             "stale": false
           },
           {
@@ -2804,7 +2824,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 57,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 87,
+            "ageMin": 90,
             "stale": false
           }
         ],
@@ -2897,7 +2917,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-26T00:30:19-04:00"
     },
-    "stamp": "00:32"
+    "stamp": "00:35"
   }
 }/*__END_DATA__*/;
 
