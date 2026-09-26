@@ -294,8 +294,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 26, 2026",
   "shiftBaseDay": "2026-09-25",
-  "generatedAt": "Sep 26, 12:08 AM ET",
-  "generatedAtISO": "2026-09-26T00:08:54-04:00",
+  "generatedAt": "Sep 26, 12:09 AM ET",
+  "generatedAtISO": "2026-09-26T00:09:27-04:00",
   "studios": [
     {
       "id": "509A",
@@ -820,24 +820,24 @@ const DATA = /*__DATA__*/{
       "day": "Tomorrow"
     },
     {
-      "role": "Monitoring",
-      "studio": "693",
-      "day_offset": 1,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "ccf7ab4913d6",
-      "date": "2026-09-26",
-      "startISO": "2026-09-26T17:15:00-04:00",
-      "endISO": "2026-09-26T17:45:00-04:00",
-      "day": "Tomorrow"
-    },
-    {
       "role": "FBS",
       "studio": null,
       "day_offset": 1,
       "start": 17.25,
       "end": 17.75,
       "id": "f1d76b674d69",
+      "date": "2026-09-26",
+      "startISO": "2026-09-26T17:15:00-04:00",
+      "endISO": "2026-09-26T17:45:00-04:00",
+      "day": "Tomorrow"
+    },
+    {
+      "role": "Monitoring",
+      "studio": "693",
+      "day_offset": 1,
+      "start": 17.25,
+      "end": 17.75,
+      "id": "ccf7ab4913d6",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -857,11 +857,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "509B",
+      "studio": "901",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "329af271f4ce",
+      "id": "b748e9d61fa4",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -869,11 +869,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "509B",
       "day_offset": 1,
       "start": 18.75,
       "end": 19.25,
-      "id": "b748e9d61fa4",
+      "id": "329af271f4ce",
       "date": "2026-09-26",
       "startISO": "2026-09-26T18:45:00-04:00",
       "endISO": "2026-09-26T19:15:00-04:00",
@@ -929,11 +929,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "901",
+      "studio": "693",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "c68759a5d2e9",
+      "id": "aae65692917b",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -941,11 +941,11 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": "693",
+      "studio": "901",
       "day_offset": 2,
       "start": 10.75,
       "end": 11.25,
-      "id": "aae65692917b",
+      "id": "c68759a5d2e9",
       "date": "2026-09-27",
       "startISO": "2026-09-27T10:45:00-04:00",
       "endISO": "2026-09-27T11:15:00-04:00",
@@ -1084,18 +1084,6 @@ const DATA = /*__DATA__*/{
       "send_after_iso": null
     },
     {
-      "code": "HTA-sweep-•••A",
-      "kind": "HTA",
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509A",
-      "raised_by": "The Registrar",
-      "created": "Sep 26 · 00:03",
-      "send_after": "09:00",
-      "send_after_iso": "2026-09-26T09:00:00-04:00",
-      "label": "HTA · Studio 509A"
-    },
-    {
       "code": "HTA-sweep-•••",
       "kind": "HTA",
       "channel": "SMS",
@@ -1117,6 +1105,18 @@ const DATA = /*__DATA__*/{
       "created": "Sep 26 · 00:04",
       "send_after": null,
       "send_after_iso": null
+    },
+    {
+      "code": "HTA-sweep-•••A",
+      "kind": "HTA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509A",
+      "raised_by": "The Registrar",
+      "created": "Sep 26 · 00:03",
+      "send_after": "09:00",
+      "send_after_iso": "2026-09-26T09:00:00-04:00",
+      "label": "HTA · Studio 509A"
     },
     {
       "code": "AVA-sweep-•••B",
@@ -1272,6 +1272,18 @@ const DATA = /*__DATA__*/{
       "send_after": "14:15",
       "send_after_iso": "2026-09-26T14:15:00-04:00",
       "label": "EOB · Studio 509A"
+    },
+    {
+      "code": "AVA-sweep-•••",
+      "kind": "AVA",
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "693",
+      "raised_by": "The Registrar",
+      "created": "Sep 26 · 00:09",
+      "send_after": "08:00",
+      "send_after_iso": "2026-09-26T08:00:00-04:00",
+      "label": "AVA · Studio 693"
     }
   ],
   "attention": [],
@@ -1609,7 +1621,7 @@ const DATA = /*__DATA__*/{
     "mail": "ok",
     "doors": "ok",
     "updatedAt": "2026-09-26T03:50:01+00:00",
-    "polledAt": "2026-09-26T04:08:00+00:00",
+    "polledAt": "2026-09-26T04:09:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -2489,7 +2501,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 46,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 63,
+            "ageMin": 64,
             "stale": false
           },
           {
@@ -2501,7 +2513,7 @@ const DATA = /*__DATA__*/{
             "hvac": "OFF",
             "humidity": 57,
             "whenISO": "2026-09-25T23:05:00-04:00",
-            "ageMin": 63,
+            "ageMin": 64,
             "stale": false
           }
         ],
@@ -2594,7 +2606,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-26T00:00:09-04:00"
     },
-    "stamp": "00:08"
+    "stamp": "00:09"
   }
 }/*__END_DATA__*/;
 
