@@ -524,8 +524,8 @@
 const DATA = /*__DATA__*/{
   "date": "Saturday, September 26, 2026",
   "shiftBaseDay": "2026-09-26",
-  "generatedAt": "Sep 26, 3:03 PM ET",
-  "generatedAtISO": "2026-09-26T15:03:08-04:00",
+  "generatedAt": "Sep 26, 3:10 PM ET",
+  "generatedAtISO": "2026-09-26T15:10:22-04:00",
   "studios": [
     {
       "id": "509A",
@@ -953,10 +953,10 @@ const DATA = /*__DATA__*/{
       "booking_studios": [],
       "heard": false,
       "arrived": "12:58",
-      "departed": null,
+      "departed": "15:07",
       "facilitator": null,
       "arrived_by": "Nina Li",
-      "departed_by": null,
+      "departed_by": "Nina Li",
       "arrived_foreign": false,
       "departed_foreign": false,
       "assumed": null,
@@ -1090,18 +1090,6 @@ const DATA = /*__DATA__*/{
     },
     {
       "role": "FBS",
-      "studio": null,
-      "day_offset": 0,
-      "start": 15.25,
-      "end": 15.75,
-      "id": "522e55ca3bc4",
-      "date": "2026-09-26",
-      "startISO": "2026-09-26T15:15:00-04:00",
-      "endISO": "2026-09-26T15:45:00-04:00",
-      "day": "Today"
-    },
-    {
-      "role": "FBS",
       "studio": "509B",
       "day_offset": 0,
       "start": 15.25,
@@ -1116,21 +1104,21 @@ const DATA = /*__DATA__*/{
       "role": "FBS",
       "studio": null,
       "day_offset": 0,
-      "start": 17.25,
-      "end": 17.75,
-      "id": "f1d76b674d69",
+      "start": 15.25,
+      "end": 15.75,
+      "id": "522e55ca3bc4",
       "date": "2026-09-26",
-      "startISO": "2026-09-26T17:15:00-04:00",
-      "endISO": "2026-09-26T17:45:00-04:00",
+      "startISO": "2026-09-26T15:15:00-04:00",
+      "endISO": "2026-09-26T15:45:00-04:00",
       "day": "Today"
     },
     {
-      "role": "FBS",
-      "studio": null,
+      "role": "Monitoring",
+      "studio": "693",
       "day_offset": 0,
       "start": 17.25,
       "end": 17.75,
-      "id": "f1d76b674d69",
+      "id": "ccf7ab4913d6",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -1149,12 +1137,12 @@ const DATA = /*__DATA__*/{
       "day": "Today"
     },
     {
-      "role": "Monitoring",
-      "studio": "693",
+      "role": "FBS",
+      "studio": null,
       "day_offset": 0,
       "start": 17.25,
       "end": 17.75,
-      "id": "ccf7ab4913d6",
+      "id": "f1d76b674d69",
       "date": "2026-09-26",
       "startISO": "2026-09-26T17:15:00-04:00",
       "endISO": "2026-09-26T17:45:00-04:00",
@@ -1416,17 +1404,6 @@ const DATA = /*__DATA__*/{
   "staffAhead": [],
   "messages": [
     {
-      "code": "PBF — Thea ••• [pbf:3e47503281c4814c9e68dd652df6f632]",
-      "kind": null,
-      "channel": "SMS",
-      "status": "Pending Review",
-      "studio": "509B",
-      "raised_by": "The Registrar",
-      "created": "Sep 26 · 15:01",
-      "send_after": null,
-      "send_after_iso": null
-    },
-    {
       "code": "EOB-sweep-•••B",
       "kind": "EOB",
       "channel": "SMS",
@@ -1509,6 +1486,17 @@ const DATA = /*__DATA__*/{
       "send_after": "18:45",
       "send_after_iso": "2026-09-26T18:45:00-04:00",
       "label": "EOB for Taylor Yeung in Studio 901"
+    },
+    {
+      "code": "PBF — Thea ••• [pbf:3e47503281c4814c9e68dd652df6f632]",
+      "kind": null,
+      "channel": "SMS",
+      "status": "Ready to Send",
+      "studio": "509B",
+      "raised_by": "The Registrar",
+      "created": "Sep 26 · 15:01",
+      "send_after": null,
+      "send_after_iso": null
     }
   ],
   "attention": [
@@ -1733,6 +1721,15 @@ const DATA = /*__DATA__*/{
       "remote": true,
       "ts": 1790448308259,
       "source": "doors"
+    },
+    {
+      "studio": "901",
+      "name": "Nina Li",
+      "time": "15:07",
+      "kind": "departure",
+      "remote": false,
+      "ts": 1790449667779,
+      "source": "doors"
     }
   ],
   "panelPrior": {},
@@ -1742,8 +1739,8 @@ const DATA = /*__DATA__*/{
     "panel": "ok",
     "mail": "ok",
     "doors": "ok",
-    "updatedAt": "2026-09-26T18:38:01+00:00",
-    "polledAt": "2026-09-26T19:02:01+00:00",
+    "updatedAt": "2026-09-26T19:10:01+00:00",
+    "polledAt": "2026-09-26T19:10:01+00:00",
     "panelCheck": {
       "inGap": 0,
       "missed": [],
@@ -1834,7 +1831,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T15:00:00-04:00"
+      "lastISO": "2026-09-26T15:06:00-04:00"
     },
     {
       "run": "Desk Invariants",
@@ -1894,7 +1891,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T15:01:00-04:00"
+      "lastISO": "2026-09-26T15:05:00-04:00"
     },
     {
       "run": "handback-sweep (Hostinger)",
@@ -1904,7 +1901,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T14:55:00-04:00"
+      "lastISO": "2026-09-26T15:05:00-04:00"
     },
     {
       "run": "mail-rules (event-gate)",
@@ -1914,7 +1911,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T15:00:00-04:00"
+      "lastISO": "2026-09-26T15:05:00-04:00"
     },
     {
       "run": "main queue sender (Apps Script send engine)",
@@ -1924,7 +1921,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T15:02:00-04:00"
+      "lastISO": "2026-09-26T15:09:00-04:00"
     },
     {
       "run": "reconcile-review (Hostinger)",
@@ -1954,7 +1951,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T14:07:00-04:00"
+      "lastISO": "2026-09-26T15:07:00-04:00"
     },
     {
       "run": "The Analyst",
@@ -2034,7 +2031,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T14:30:00-04:00"
+      "lastISO": "2026-09-26T15:00:00-04:00"
     },
     {
       "run": "The Responder",
@@ -2084,7 +2081,7 @@ const DATA = /*__DATA__*/{
       "monitoring": "Live",
       "status": "ok",
       "statusLabel": "On time",
-      "lastISO": "2026-09-26T14:47:00-04:00"
+      "lastISO": "2026-09-26T15:03:00-04:00"
     },
     {
       "run": "desk-loop (Cloud Run)",
@@ -2601,22 +2598,22 @@ const DATA = /*__DATA__*/{
             "inside": 22.8,
             "setpoint": "COOL 22.7",
             "mode": "COOL",
-            "hvac": "OFF",
+            "hvac": "COOLING",
             "humidity": 46,
-            "whenISO": "2026-09-26T14:05:00-04:00",
-            "ageMin": 58,
+            "whenISO": "2026-09-26T15:05:00-04:00",
+            "ageMin": 5,
             "stale": false
           },
           {
             "studio": "901",
             "name": "901 Yonge",
-            "inside": 21.7,
+            "inside": 21.8,
             "setpoint": "COOL 20",
             "mode": "COOL",
             "hvac": "COOLING",
             "humidity": 51,
-            "whenISO": "2026-09-26T14:05:00-04:00",
-            "ageMin": 58,
+            "whenISO": "2026-09-26T15:05:00-04:00",
+            "ageMin": 5,
             "stale": false
           }
         ],
@@ -2794,7 +2791,7 @@ const DATA = /*__DATA__*/{
       "jobsSource": "run-monitor",
       "jobsAsOfISO": "2026-09-26T15:00:02-04:00"
     },
-    "stamp": "15:03"
+    "stamp": "15:10"
   }
 }/*__END_DATA__*/;
 
